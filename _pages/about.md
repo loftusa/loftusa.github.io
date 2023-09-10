@@ -23,8 +23,8 @@ I have multimodal research interests which span across natural language processi
 ## Talks & Publications
 - [Hands-on Network Machine Learning with Scikit-Learn and Graspologic](http://docs.neurodata.io/graph-stats-book/coverpage.html): Textbook, 2023, Cambridge University Press. Second author, contributed roughly half the pages and figures.
 - [A low-resource reliable pipeline to democratize multi-modal connectome estimation and analysis](https://www.biorxiv.org/content/10.1101/2021.11.01.466686v1): Paper, 2022, Nature Methods, under review. Second author, wrote most of the infrastructure for the codebase.
+- [ICML Conference Highlights](https://www.youtube.com/watch?v=V_hcmfdJzF8): Talk about new machine learning techniques in drug discovery and medicine presented at ICML
 - [Working with LLMs](https://lu.ma/aisd1): Talk, 2023, for 100 people at the AIML San Diego meetup
-- [What Happened at ICML?](https://www.youtube.com/@SanDiegoMachineLearning/videos): Talk for the San Diego Machine Learning group summarizing ICML posters
 - [1st Place Solution - Vesuvius Ink Competition](https://www.youtube.com/watch?v=IWySc8s00P0): Presentation, 2023, for 60 people. Presenting on our winning solution to a \$100,000 Kaggle competition.
 - [Effects of an unc-43 (CaMKII) Gene Deletion on Short-Term Memory for Associative Conditioning in C. elegans](): Talk, presented at Psychfest, 2017, Bellingham, WA.
 - [Role of CAMKII in Associative Conditioning and GLR-1 Expression in C. Elegans](): Poster, presented at Society for Neuroscience, 2017, Washington, DC. Later author, conducted most of the later experiments.
