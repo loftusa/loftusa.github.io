@@ -29,7 +29,7 @@ I have multimodal research interests which span across natural language processi
 - [Effects of an unc-43 (CaMKII) Gene Deletion on Short-Term Memory for Associative Conditioning in C. elegans](): Talk, presented at Psychfest, 2017, Bellingham, WA.
 - [Role of CAMKII in Associative Conditioning and GLR-1 Expression in C. Elegans](): Poster, presented at Society for Neuroscience, 2017, Washington, DC. Later author, conducted most of the later experiments.
 
-### Background and Misc Info
+### Misc
 I grew up in Seattle, WA and studied behavioral neuroscience during my undergraduate years, with a philosophy minor and an early interest in theory of mind. I got interested in math and programming and started a computational neuroscience club, where I taught weekly seminars. I also spent a lot of time partner dancing and playing guitar at open mic nights!
 
 <!-- 
