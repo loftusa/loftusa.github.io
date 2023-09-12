@@ -13,9 +13,9 @@ About Me
 Hi, I’m **Alex Loftus**. I am currently a data scientist at [Creyon Bio](creyonbio.com); Prior to this, I was a machine learning engineer at [Blue Halo](https://bluehalo.com/), and a master's student in biomedical engineering, with a data science focus, at Johns Hopkins University.
 
 I’ve been fortunate to work with a number of brilliant people over the last few years. Here are some fun projects which resulted:
- - I worked with [Professor Joshua Vogelstein](neurodata.io) in the Johns Hopkins Biomedical Engineering department to build a [pipeline to create graphs from MRI data](https://github.com/neurodata/m2g), which led to a paper in-review at Nature Methods. 
- - I co-authored a [textbook on spectral graph theory](docs.neurodata.io/graph-stats-book/coverpage.html), which we are publishing with with Cambridge University Press. 
- - We developed an open-source project, [Graspologic](github.com/microsoft/graspologic), which was acquired by Microsoft and used to measure collaboration changes in their workforce during COVID. 
+ - I worked with [Professor Joshua Vogelstein](https://www.neurodata.io) in the Johns Hopkins Biomedical Engineering department to build a [pipeline to create graphs from MRI data](https://github.com/neurodata/m2g), which led to a paper in-review at Nature Methods. 
+ - I co-authored a [textbook on spectral graph theory](https://www.docs.neurodata.io/graph-stats-book/coverpage.html), which we are publishing with with Cambridge University Press. 
+ - We developed an open-source project, [Graspologic](https://www.github.com/microsoft/graspologic), which was acquired by Microsoft and used to measure collaboration changes in their workforce during COVID. 
  - This year, I began [giving talks](https://www.youtube.com/@SanDiegoMachineLearning/videos) for the San Diego Machine Learning meetup group, where I joined a team competing in the [Vesuvius Ink Detection Kaggle Competition](https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection). We won 1st place against 1,249 teams for a competition prize pool of $100,000.
 
 I have multimodal research interests which span across natural language processing and computer vision, with the common thread being an excitement about inference-time knowledge editing and knowledge understanding techniques. I am particularly interested in using my background in spectral graph theory to bring new ideas into this area of research.
