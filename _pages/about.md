@@ -26,8 +26,8 @@ I have multimodal research interests which span across natural language processi
 - [ICML Conference Highlights](https://www.youtube.com/watch?v=V_hcmfdJzF8): Talk about new machine learning techniques in drug discovery and medicine presented at ICML
 - [Working with LLMs](https://lu.ma/aisd1): Talk, 2023, for 100 people at the AIML San Diego meetup
 - [1st Place Solution - Vesuvius Ink Competition](https://www.youtube.com/watch?v=IWySc8s00P0): Presentation, 2023, for 60 people. Presenting on our winning solution to a \$100,000 Kaggle competition.
+- [Role of CAMKII in Associative Conditioning and GLR-1 Expression in C. Elegans](https://imgur.com/a/f2TxUt9): Poster, presented at Society for Neuroscience, 2017, Washington, DC. Later author, conducted most of the later experiments.
 - [Effects of an unc-43 (CaMKII) Gene Deletion on Short-Term Memory for Associative Conditioning in C. elegans](): Talk, presented at Psychfest, 2017, Bellingham, WA.
-- [Role of CAMKII in Associative Conditioning and GLR-1 Expression in C. Elegans](): Poster, presented at Society for Neuroscience, 2017, Washington, DC. Later author, conducted most of the later experiments.
 
 ### Misc
 I grew up in Seattle, WA and studied behavioral neuroscience during my undergraduate years, with a philosophy minor and an early interest in theory of mind. I got interested in math and programming and started a computational neuroscience club, where I taught weekly seminars. I also spent a lot of time partner dancing and playing guitar at open mic nights!
