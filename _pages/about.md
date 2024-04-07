@@ -21,7 +21,7 @@ I’ve been fortunate to work with a number of brilliant people over the last fe
 I have multimodal research interests which span across natural language processing and computer vision, with the common thread being an excitement about inference-time knowledge editing and knowledge understanding techniques. I am particularly interested in using my background in spectral graph theory to bring new ideas into this area of research.
 
 ## Talks & Publications
-- [A Saliency-based Clustering Framework for Identifying Aberrant Predictions](https://arxiv.org/pdf/2311.06454.pdf): NeurIPS Workshop Paper, 2023
+- [A Saliency-based Clustering Framework for Identifying Aberrant Predictions](https://arxiv.org/pdf/2311.06454.pdf): NeurIPS Workshop Paper, 2023 - won best poster
 - [1st Place Solution - Vesuvius Ink Competition](https://www.youtube.com/watch?v=IWySc8s00P0): Presentation, 2023, for 60 people. Presenting on our winning solution to a \$100,000 Kaggle competition.
 - [Hands-on Network Machine Learning with Scikit-Learn and Graspologic](https://www.overleaf.com/read/cdmbzwkrxtbv): Textbook, 2023, Cambridge University Press. Second author, contributed roughly half the pages and figures.
 - [A low-resource reliable pipeline to democratize multi-modal connectome estimation and analysis](https://www.biorxiv.org/content/10.1101/2021.11.01.466686v1): Paper, 2022, Nature Methods, under review. Second author, wrote most of the infrastructure for the codebase.
