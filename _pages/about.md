@@ -10,7 +10,7 @@ redirect_from:
 
 About Me
 ---
-Hi, I’m **Alex Loftus**. I am currently a data scientist at [Creyon Bio](creyonbio.com); Prior to this, I was a machine learning engineer at [Blue Halo](https://bluehalo.com/), and a master's student in biomedical engineering, with a data science focus, at Johns Hopkins University.
+Hi, I’m **Alex Loftus**. I will be starting a PhD with [David Bau's group](https://baulab.info/) at Northeastern in the fall in interpretability. I am currently a data scientist at [Creyon Bio](creyonbio.com); Prior to this, I was a machine learning engineer at [Blue Halo](https://bluehalo.com/), and a master's student in biomedical engineering, with a data science focus, at Johns Hopkins University.
 
 I’ve been fortunate to work with a number of brilliant people over the last few years. Here are some fun projects which resulted:
  - I worked with [Professor Joshua Vogelstein](https://www.neurodata.io) in the Johns Hopkins Biomedical Engineering department to build a [pipeline to create graphs from MRI data](https://github.com/neurodata/m2g), which led to a paper in-review at Nature Methods. 
@@ -33,15 +33,4 @@ I have multimodal research interests which span across natural language processi
 ### Misc
 I grew up in Seattle, WA and studied behavioral neuroscience during my undergraduate years, with a philosophy minor and an early interest in theory of mind. I got interested in math and programming and started a computational neuroscience club, where I taught weekly seminars. I also spent a lot of time partner dancing and playing guitar at open mic nights!
 
-<!-- 
-Talks
-=====
-
-TODO:
-
-about section
-Papers
-Talks
-Teaching
-include resume
-misc section -->
+My girlfriend, Aina, is also in machine learning and we sometimes do research together. You can learn about her on her website: [ainatersol.github.io](https://ainatersol.github.io/).
