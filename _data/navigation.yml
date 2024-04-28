@@ -21,8 +21,8 @@ main:
   # - title: "Textbook"
   #   url: /files/textbook.pdf
 
-  # - title: "MS Thesis"
-  #   url: https://alex-loftus.com/thesis/
+  - title: "Thesis"
+    url: https://alex-loftus.com/thesis/
 
     
   # - title: "Guide"
