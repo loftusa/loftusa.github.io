@@ -5,7 +5,7 @@ title:  "Walking along manifolds with pytorch's autodiff"
 date:   2024-04-06
 mathjax: true
 ---
-
+# Walking Along Manifolds
 You've probably heard something about pytorch's `autodiff` capabilities. It's used under the hood for backpropagation in neural networks, but it's also a general tool that can be used for many other tricks and interesting use cases: automatic access to gradients can be a powerful and fun thing to play with. In this post, I'll show you how to use pytorch's autodiff to walk along manifolds, by estimating and walking along the tangent space of the manifold.
 
 It's a useful and fun thing to be able to walk along manifolds. The latent space of diffusion images are manifolds: 
