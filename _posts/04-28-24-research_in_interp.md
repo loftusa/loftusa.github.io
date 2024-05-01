@@ -72,5 +72,53 @@ With all of the above in mind, here is an equally non-exhaustive list of directi
     - vertex nomination: find communities for community-less nodes when we know the communities of the other nodes. Don't think this is super interesting here but maybe I'm wrong.
     - out-of-sample embedding: Estimate the embedding for a new node given the embeddings of existing nodes. You need to have already decomposed a graph with SVD in order to be able to do this. I suppose you could measure the extent to which you can estimate what the embedding for a token should be given the embeddings of other tokens, but would have to think about downstream use cases for this.
     - two-sample testing: test whether two attention matrices are drawn from the same distribution. Could be interesting for comparing attention matrices across heads and layers.
-
 - [Mixture of Depths](https://arxiv.org/abs/2404.02258) is an interesting paper which commits to the idea: "why apply every transformer block to every token when presumably some tokens need more computation than others?". An interesting interpretability follow-up to this would be: Which tokens ended up needing more compute than others, and what does that tell us about what is easy and difficult to compute for a language model?
+
+## Whittling it Down
+So, after discussing with David, there are a few potential ways these directions are harmonious with existing work:
+
+### Erasing
+Low rank updates have overlap with **unlearning**. There are two ways in which you can get a model to unlearn through gradients updates or whatever.  
+
+First, you can use a model's knowledge against itself. So, you ask a model what it knows about X, save the resulting activation vectors, and fine-tune against those vectors. This
+Second, you can localize the model's knowledge about X using probes or causal mediation analysis or whatever, and then once you've localized, change the model at that location so that the probe can no longer see X. That's what LEACE does, for instance.
+
+Rohit has a paper in review in this general area called sliders. The idea is that you can modify outputs of diffusion models by using an unlearning loss function to dynamically control stuff like age; erase concepts like 'youngness', for instance, so that it always makes people old or whatever. This is already published. The new idea is, instaed of using the erasing loss to permanently change a model, use the erasing loss to train a lora; and then you can just slide the lora up and down.
+
+There is also a visiting HCI student named Imca Grabe, who is training a bunch of sliders. One idea here is: you have a left-hand vector and a right-hand vector, right? What if they were from different sliders? Then you're composing sliders together and maybe they can do interesting composed things. 
+
+### Reverse-Engineering PEFT updates
+Another line of research is in **reverse-engineering**. The idea is: Say you edit a concept in a model with ROME or whatever. You do this with a rank-one change.
+
+Anybody can figure out that you've changed the model, that's easy - you just take the difference in weights and see that it's nonzero. You can also look at the rank of the difference matrix and see whether the change is just a low-rank update or something major.
+
+What you can't do is figure out what's actually changed. So the question is: How do you figure it out?
+
+Koyena is working on this right now, so I'd reach out to her and brainstorm.
+
+### Function vectors
+This is related to the context windows densification idea. There is also an industry application here.
+
+So, the idea is essentially compression. Say you have a huge prompt. Like, you're a company and you've done a bunch of prompt engineering and now you have this gargantuan thing that's half the context window. It turns out that, under the hood, the model essentially represents this whole thing with a single vector. 
+
+So, you can take this vector out, jam it back in later, and voila, the model will do the same thing it was going to do originally; you don't need all these examples.
+
+Eric is working on this. He's mostly been looking at it for theoretical reasons, but there's room for turning it into an industrial-strength method that people would want to use. So, for instance, you have these chipmaking companies that need knowledge in these old programming languages that people don't know how to use anymore. And copilot doesn't work either because it wasn't trained on these languages. So they have these super long prompts that cost lots of money (in token cost) to run inference with.
+
+Instead of these companies writing in these super wrong prompts, we can basically compress their big prompts into a single vector, and then they can just use that vector to get the same results for cost savings. There are various techniques for compressing context instructions, we'd do a literature review. But here we'd try to beat a benchmark: can we use function vectors to compress in ways that beat the current state of the art?
+
+### Mechanisms of pause tokens
+Related to the question about Mixture of Depths, as well as the question about ranks of attention matrices when viewed as linear transformations, is the question: what are the mechanisms of pause tokens? Why do they work and what do they do? What kinds of extra computations become available when we add pause tokens?
+
+A guy named Rihanna Brinkman is doing some stuff related to this. There's also a student in Chris Manning's lab at Stanford, Shikar, who is doing a research project around this. Learning why pause tokens work seems potentially fruitful; it seems like the type of thing that, if figured out, would open more research doors.
+
+### Linear Relations and graphs
+This has to do with the linear relations paper.
+
+Take the phrase "The Eiffel Tower is located in the city of Paris". Run this through a forward pass and get the activations. Take the hidden state for Eiffel Tower in an early layer, and for Paris in a later layer. What is the relationship from one token to the other?
+
+Well, take the Jacobian of the thing and you have this locally linear mapping between the two. But the cool thing is that then, using this Jacobian, you can, say, replace "eiffel tower" with "Great Wall", and the later hidden state will now output "China" -- with the same Jacobian, using the same linear transformation matrix!
+
+So this tells us that transformers are not just locally linear, but they are linear over a pretty broad area.
+
+Evan Hernandez at MIT wrote the linear relation embeddings paper, but he just graduated.
