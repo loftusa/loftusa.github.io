@@ -75,6 +75,7 @@ With all of the above in mind, here is an equally non-exhaustive list of directi
 - [Mixture of Depths](https://arxiv.org/abs/2404.02258) is an interesting paper which commits to the idea: "why apply every transformer block to every token when presumably some tokens need more computation than others?". An interesting interpretability follow-up to this would be: Which tokens ended up needing more compute than others, and what does that tell us about what is easy and difficult to compute for a language model?
 - It feels to me like PEFT methods would work better if the weight matrices they are updating are low-rank. There is a more rigorous way to think about this: how much of the mass of singular values is concentrated in the top singular vectors? You can think of this sort of the entropy of the singular values. If the entropy is low, e.g., the magnitude of all the singular values is concentrated in the highest ones, then PEFT methods should work better, because the weight matrices are a closer approximation to low rank.
 
+
 ## Whittling it Down
 So, after discussing with David, there are a few potential ways these directions are harmonious with existing work:
 
@@ -123,3 +124,14 @@ Well, take the Jacobian of the thing and you have this locally linear mapping be
 So this tells us that transformers are not just locally linear, but they are linear over a pretty broad area.
 
 Evan Hernandez at MIT wrote the linear relation embeddings paper, but he just graduated.
+
+## More Ideas post-meeting
+- Not interpretability, but initialization seems weirdly underexplored. Is it possible to distil a transformer down to an MLP, and then reverse-engineer what the nearest easy initialization is? If someone could figure out how to encode the attention mechanism inside an MLP, for instance, that would be a massive breakthrough.
+- what if instead of next word prediction, you predicted the embedding for the next word, using the loss of some embedding distance metric instead of cross entropy?
+	- Could test a bunch of different distance metrics, using cross-entropy as a baseline, and see if any of them is better
+- Nobody seems to care about proper model initialization because it isn't flashy. Is correct model initialization solved for every type of common layer? Is there a guide somewhere that says "for this type of layer, use this type of initialization" for all common layer types? If not, could I write a review paper?
+    - by 'correct model initialization', I mean: 'model initialization such that, when data with mean 0 and variance 1 is passed through the untrained model, mean and variance statistically stay 0 and 1 respectively at every layer'
+    - I ask this because many implementations I've seen only change the initialization for linear layers, even relatively well-known models (dinov2, for instance)
+- Anthropic recently came out with some great [sparse autoencoders](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html) work which seems to open a lot of doors. Near the end they track activations for the features which combine to result in a particular output, with examples being a bunch of sentences and how strongly these sparse features they created (from the SAE) fire for each of the tokens in the sentences.
+    - I wonder if we could use this to figure out what in the training data created that feature in the first place. Could you use the strength of activations in training tokens to create a 'map' of where in the training data the model is using to make its decisions?
+    - This could be very broadly useful: companies training models could use this to get much more specific with what their model ends up learning, by ablating sections of training data they don't want (based on this map).
