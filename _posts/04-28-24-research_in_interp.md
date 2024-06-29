@@ -31,7 +31,7 @@ In general, here are a few areas in which better interpretability would be very 
 
 Basically, anywhere in which a central push is to *learn something* rather than *do something*, and any application area in which there's a high cost for mistakes.
 
-The biggest, most useful big-picture goal would be: can I create a set of tools which let users tell the extent to which a model is hallucinating, based on what's happening in its activation space? 
+**The biggest, most useful big-picture goal would be: can I create a set of tools which let users tell the extent to which a model is hallucinating, based on what's happening in its activation space?**
 
 ## Interests
 With the above impact motivations in mind, there are also things that just *strike my fancy*, and which I think are interesting and fun to think about. Good projects, in my opinion, will also contain elements of this. A somewhat representative but not at all exhaustive list:
