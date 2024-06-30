@@ -19,7 +19,7 @@ I’ve been fortunate to work with a number of brilliant people over the last fe
  - This year, I began [giving talks](https://www.youtube.com/@SanDiegoMachineLearning/videos) for the San Diego Machine Learning meetup group, where I joined a team competing in the [Vesuvius Ink Detection Kaggle Competition](https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection). We won 1st place against 1,249 teams for a competition prize pool of $100,000.
  - I made a [linear algebra tutoring series](https://youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh&si=iYEkHZXhZbq2jrQC) for my friend, which builds up the mathematical machinery of neural networks starting from the absolute foundations: dot product geometry and linear algebra.
 
-I have a number of academic side-interests, including spectral theory and the mechanics of linear representation spaces, the history of science and mathematics, the mechanics of the visual system, and the various causal relationships between geography and history. I am also an avid traveler and am (slowly) learning Spanish.
+I have a number of academic side-interests, including spectral theory and the mechanics of linear representation spaces, the history of science and mathematics, the mechanics of the visual system, the statistics of chess openings, and various causal relationships between geography and history. I am an avid traveler and am (slowly) learning Spanish.
 
 ## Talks & Publications
 - [A Saliency-based Clustering Framework for Identifying Aberrant Predictions](https://arxiv.org/pdf/2311.06454.pdf): NeurIPS Workshop Paper, 2023 - won best poster
