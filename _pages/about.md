@@ -10,7 +10,7 @@ redirect_from:
 
 About Me
 ---
-Hi, I’m **Alex Loftus**. I will be starting a PhD with [David Bau's group](https://baulab.info/) at Northeastern in the fall in interpretability. I am currently a data scientist at [Creyon Bio](creyonbio.com); Prior to this, I was a machine learning engineer at [Blue Halo](https://bluehalo.com/), and a master's student in biomedical engineering, with a data science focus, at Johns Hopkins University.
+Hi, I’m **Alex Loftus**. I am a textbook author, kaggle competition winnter, and PhD student starting in the fall with [David Bau's group](https://baulab.info/). I am interested in understanding how we can use techniques from interpretability to steer large models at inference time, reduce hallucinations, and create truly customized systems. I have worked as a data scientist, a machine learning engineer, and as a master's student in biomedical machine learning at Johns Hopkins University.
 
 I’ve been fortunate to work with a number of brilliant people over the last few years. Here are some fun projects which resulted:
  - I worked with [Professor Joshua Vogelstein](https://www.neurodata.io) in the Johns Hopkins Biomedical Engineering department on a [pipeline to create graphs from MRI data](https://github.com/neurodata/m2g), which led to a paper in-review at Nature Methods. 
@@ -19,7 +19,7 @@ I’ve been fortunate to work with a number of brilliant people over the last fe
  - This year, I began [giving talks](https://www.youtube.com/@SanDiegoMachineLearning/videos) for the San Diego Machine Learning meetup group, where I joined a team competing in the [Vesuvius Ink Detection Kaggle Competition](https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection). We won 1st place against 1,249 teams for a competition prize pool of $100,000.
  - I made a [linear algebra tutoring series](https://youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh&si=iYEkHZXhZbq2jrQC) for my friend, which builds up the mathematical machinery of neural networks starting from the absolute foundations: dot product geometry and linear algebra.
 
-I have multimodal research interests which span across natural language processing and computer vision, with the common thread being an excitement about inference-time knowledge editing and knowledge understanding techniques. I am particularly interested in using my background in spectral graph theory to bring new ideas into this area of research.
+I have a number of academic side-interests, including spectral theory and the mechanics of linear representation spaces, the history of science and mathematics, the mechanics of the visual system, and the various causal relationships between geography and history. I am also an avid traveler and am (slowly) learning Spanish.
 
 ## Talks & Publications
 - [A Saliency-based Clustering Framework for Identifying Aberrant Predictions](https://arxiv.org/pdf/2311.06454.pdf): NeurIPS Workshop Paper, 2023 - won best poster
