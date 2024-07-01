@@ -138,3 +138,5 @@ Evan Hernandez at MIT wrote the linear relation embeddings paper, but he just gr
     - I wonder if we could use this to figure out what in the training data created that feature in the first place. Could you use the strength of activations in training tokens to create a 'map' of where in the training data the model is using to make its decisions?
     - This could be very broadly useful: companies training models could use this to get much more specific with what their model ends up learning, by ablating sections of training data they don't want (based on this map).
 - Method: Using only activations as input, train a network to predict what the output will be. Which layers contain the most output-relevant enformation?
+- Method: Use SAE features to build better search pipelines. A k-nearest neighbor search on an SAE feature space might be much better than one on a polysemantic feature space.
+- Method: initialization technique --> warm up for some number of epochs on a loss function that encourages a weight space such that mean is 0, variance is 1 for activations. Then replace with the real loss function.
