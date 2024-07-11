@@ -127,7 +127,7 @@ So this tells us that transformers are not just locally linear, but they are lin
 
 Evan Hernandez at MIT wrote the linear relation embeddings paper, but he just graduated.
 
-## More Ideas post-meeting
+## More Ideas
 - Not interpretability, but initialization seems weirdly underexplored. Is it possible to distil a transformer down to an MLP, and then reverse-engineer what the nearest easy initialization is? If someone could figure out how to encode the attention mechanism inside an MLP, for instance, that would be a massive breakthrough.
 - what if instead of next word prediction, you predicted the embedding for the next word, using the loss of some embedding distance metric instead of cross entropy?
 	- Could test a bunch of different distance metrics, using cross-entropy as a baseline, and see if any of them is better
@@ -140,3 +140,5 @@ Evan Hernandez at MIT wrote the linear relation embeddings paper, but he just gr
 - Method: Using only activations as input, train a network to predict what the output will be. Which layers contain the most output-relevant enformation?
 - Method: Use SAE features to build better search pipelines. A k-nearest neighbor search on an SAE feature space might be much better than one on a polysemantic feature space.
 - Method: initialization technique --> warm up for some number of epochs on a loss function that encourages a weight space such that mean is 0, variance is 1 for activations. Then replace with the real loss function.
+- Benchmark / Dataset: Pieces of code followed by what happens if you execute the code. Rather than next-token prediction, it'd be: predict terminal output given code input. Problems:
+	- What do you predict? You're not predicting one token at a time, so it would need to be something other than a probability distribution over tokens. Predicting every token of output seems computationally intractable, because of combinatorial explosion when you try to predict n tokens at once. Maybe there's a way I don't know about.
