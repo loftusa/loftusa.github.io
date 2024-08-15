@@ -34,6 +34,6 @@ I have a number of academic side-interests, including spectral theory and the me
 - [Effects of an unc-43 (CaMKII) Gene Deletion on Short-Term Memory for Associative Conditioning in C. elegans](): Talk, presented at Psychfest, 2017, Bellingham, WA.
 
 ### Misc
-I grew up in Seattle, WA and studied behavioral neuroscience during my undergraduate years, with a philosophy minor and an early interest in theory of mind. I got interested in math and programming and started a computational neuroscience club, where I taught weekly seminars. I also spent a lot of time partner dancing and playing guitar at open mic nights!
+I grew up in Seattle, WA, and was a competitive Starcraft 2 player in high school (I hovered between the grandmaster and top master leagues!). I studied behavioral neuroscience during my undergraduate years, with a philosophy minor. I got interested in math and programming and started a computational neuroscience club, where I taught weekly seminars. I also spent a lot of time partner dancing and playing guitar at open mic nights!
 
 My girlfriend, Aina, is also in machine learning and we sometimes do research together. You can learn about her on her website: [ainatersol.github.io](https://ainatersol.github.io/).
