@@ -127,6 +127,9 @@ So this tells us that transformers are not just locally linear, but they are lin
 
 Evan Hernandez at MIT wrote the linear relation embeddings paper, but he just graduated.
 
+## Blog Post Ideas
+- How much longer would it take to train a transformer if you expressed everything in residual stream format?
+
 ## More Ideas
 - Not interpretability, but initialization seems weirdly underexplored. Is it possible to distil a transformer down to an MLP, and then reverse-engineer what the nearest easy initialization is? If someone could figure out how to encode the attention mechanism inside an MLP, for instance, that would be a massive breakthrough.
 - what if instead of next word prediction, you predicted the embedding for the next word, using the loss of some embedding distance metric instead of cross entropy?
