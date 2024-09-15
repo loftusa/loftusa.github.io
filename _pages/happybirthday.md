@@ -35,6 +35,7 @@ Consider the entire set of instructions. **What is the sum of all of the measure
 <p id="feedback" style="color:red;"></p>
 
 <!-- JavaScript -->
+{% raw %}
 <script type="text/javascript">
   document.getElementById('puzzle-form').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -48,4 +49,5 @@ Consider the entire set of instructions. **What is the sum of all of the measure
     }
   });
 </script>
+{% endraw %}
 
