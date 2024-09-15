@@ -34,20 +34,6 @@ Consider the entire set of instructions. **What is the sum of all of the measure
 
 <p id="feedback" style="color:red;"></p>
 
-<!-- JavaScript -->
-{% raw %}
-<script type="text/javascript">
-  document.getElementById('puzzle-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    var answer = document.getElementById('answer').value.trim();
-
-    // Replace 'CORRECT_ANSWER' with the actual numerical answer
-    if (answer === '55834') {
-      window.location.href = '/solution_page.html';
-    } else {
-      document.getElementById('feedback').textContent = 'Incorrect Input! Ha Ha, You Suck!';
-    }
-  });
-</script>
-{% endraw %}
+<!-- Include the external JavaScript file -->
+<script src="/assets/js/puzzle.js" type="text/javascript"></script>
 
