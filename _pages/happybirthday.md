@@ -6,9 +6,9 @@ layout: single
 
 Alex and Aina had just moved into their charming new home in Beacon Hill. The brick-lined streets reminded Aina of the historic alleys back in Spain, except with more bumpy bike lanes, while Alex was excited to start his PhD. The house was perfect, but it still needed that personal touch, and possibly some paint and hanging shelves, to feel like home.
 
-Alex's family flew in from Seattle to help them settle in. Boxes were everywhere, and the walls looked bare. Determined to hang their favorite furniture and decorations, they unboxed their tools and the all-important instruction manual. However, hanging the damn paintings turned out to be more complicated than they ever could have expected!
+Alex's family flew in from Seattle to help them settle in. Boxes were everywhere, and the walls looked bare. Determined to hang their favorite furniture and decorations, they unboxed their tools and the all-important instruction manual. And hanging the damn paintings turned out to be more complicated than they ever could have expected!
 
-In the midst of the chaos, they found a mysterious, ancient papyrus scroll in one of the boxes. It was coded in a strange way...
+In the midst of the chaos, they found a mysterious, ancient papyrus scroll in one of the boxes labeled SDML. It was coded in a strange way...
 
 The front of the scroll consisted of lines of text, and the back a clearly encoded message. On each line of text on the front, there was a string of numbers and letters. 
 
