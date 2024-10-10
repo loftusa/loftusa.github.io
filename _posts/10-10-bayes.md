@@ -1,0 +1,88 @@
+---
+layout: post
+title:  "Bayes' Rule and the the Pretend Dichotomy between Intuition and Formalism"
+date: 2024-10-10
+permalink: /posts/2024/10/bayes
+mathjax: true
+---
+
+<!-- # The Pretend Dichotomy between Intuition and Formalism -->
+
+<!-- I have had a strong side-interest in education for many years, with a particularly strong bent towards math education. I've noticed this debate between two tribes in would-be education reformers. 
+First, there's the tribe that wants students to shut up and calculate. This is the eastern mathematics tradition: terry tao inherited from this (based on a story I read about how he spent his childhood filling out math workbooks). Russian mathematics also inherits from this tradition. My advisor, David, recently made the point that there's something to be said for this tradition: there are many more good russian and asian mathematicians, proportional to the relative population sizes in their respective countries, than there are good western mathematicians.
+
+The other tribe is the one that I inherit from (to the extent that I inherit from anything, given that I am a deep learning researcher rather than a mathematician). Figures like Paul Lockhart in *A Mathematician's Lament*, or Feynman in *Surely You're Joking*, or Yudkowsky's *Sequences*, or [better explained](https://www.betterexplained.com) (which more people should read) are examples in my mind when I think about the second tribe.
+
+The real dichotomy isn't intuition vs computation: it's pattern-matching vs world-modeling. When the *intuition* tribe talks about disliking computation, what they really mean is that they dislike math-as-pattern-matching; and when the *computation* tribe disagrees, they're imagining that the intuition tribe is advocating for some non-rigorous flowerey way of thinking about mathematics rather than something *serious*, and they worry that the fluency that comes from just sitting down and *cranking* will disappear.
+
+We can have both, and that's where real progress happens. -->
+
+
+# Being Clear About What We're Talking About
+
+I've been reading some of Yudkowsky's [Sequences](https://www.lesswrong.com/rationality) recently and I've got to say, even though I think Eliezer's conduct on twitter and views on safety are fairly extreme, I really like the way he thinks about probability, information, and causality. He clearly has an intuition built from thinking clearly and deeply about the implications of basic formal ideas, and I can respect that. I read somewhere that people complain that he doesn't bring any new ideas to the table. I disagree. I think in the graph of ideas, he hasn't found new nodes, but he has a unique and interesting set of edges that map a bit better to human intuition than normal.
+
+However, the thing that annoys me about the LessWrong brand of probability theory is that it often isn't careful about the specifics of what it's talking about, and so it's impossible to develop new intuition or even bake the intuition that exists into pre-existing mathematical machinery. It feels sort of like he's telling a tribesman in new guinea that a computer is sort of like a vision that lives on the water, and the vision tells you things if you act in certain ways or press on the water, and that's how I know what the weather will be tomorrow from my laptop. The tribesman doesn't know what a computer is after this and certainly couldn't build one, even if this conversation gave him some fuzzy intuition.
+
+I have a hardline opinion that the importance of baking new concepts into prexisting mental machinery is the most underemphasized thing in all of education, and that if schools were built around adding to existing knowledge rather than temporary isolated subgraphs that disappear after exams, we'd be a lot better off as a society. My specific experience has been that if I don't add edges to what I already know, I lose a new node of knowledge almost immediately; however, if I bake it in, it permanently adds to my map of the world.
+
+The specific set of examples I'm thinking about is all the times Eliezer talks about probabilities and the scientific method in terms of possible-future-worlds without connecting it to any formalization. So let's get clear about what the fuck we're talking about and map on to some pre-existing machinery.
+
+## Defining Universes
+
+First, we need to define what we mean by "possible future worlds". Probability uses sets under-the-hood to define "things that happen", and includes a probability measure $P$ that maps sets to scalar values between 0 and 1.
+So, let's map the universe. Set an origin point (I prefer the location right in front of my noise because I'm egocentric). Call that origin point 0. Now define a cartesian coordinate system in 3D spreading out from that origin point. It extends across the entire known universe. Units are totally arbitrary, but it's good to build on the shoulders of giants, so let's say that a meter is one unit. Now the location of every single point in the universe is associated with a 3-vector $p$.
+
+We can define shapes in 3d with planes of boundary points, all in 3d. There can be objects at these points, but let's abstract that away by saying that every point is associated with some density (characterizing how many mass-units are in its local volume). We can think of every* such point as indices into a tensor. If we do this, the universe becomes a big tensor $U \in \mathcal{R}^{p \times p \times p}$.
+
+$U$ defines the state of the universe at a particular point in time. But we don't just want frozen points, so let's add a time dimension, so that we can move along it and watch the universe change. $U \in \mathcal{R}^{t \times p \times p \times p}$. 
+
+(*One problem with this growing formalization is that we're forced to discretize, meaning, if we zoom in enough we lose continuity. The fix for this is saying that $U$ is a function: you give me four real numbers, and I give you the local density at that point in spacetime. But let's think with tensors for now since that's easier to work with, and all the intuitions are the same).
+
+There are problems with this formalization. For instance, there are different types of densities: One $kg/m^3$ of hydrogen is different than a $kg/m^3$ of Oganesson-118 (an incredibly unstable superheavy element). But we've reached an important point: we have the exact amount of formalism that we need to move on into probabilities, and we can just figure that there's some isomorphism that puts the rest of the details of the actual universe into the same mapping.
+
+
+## Probabilities of Possible Universes
+
+An outcome in the formalization we're building is exactly one state of the world at a particular time: $U \in \mathcal{R}^{t \times p \times p \times p}$. But in probability theory, probabilities are functions defined on sets of outcomes. So we need to be clear about what we mean by "sets of outcomes".
+
+What do we want events to be? Well, we are considering different possible universes, and we want to be able to get at probabilities of possible futures. So a set of outcomes is just some collection of universes $E = \{U \in \mathcal{U}\}$. We call a particular $E$ an event, and $E \subseteq \mathcal{U}$. Here, $\mathcal{U}$ is the set of all possible future universes: it's every 4-tensor that exists. There is some subset of $\mathcal{U}$, linear over $t$, that defines the spacetime trajectory of our actual universe (we can call this $R$ if we need it, for 'real'). We want to condition on all $\{R: t \leq t_0\}$, where $t_0$ is the present time, to think about future events (however, we don't ever have perfect information, so we always must approximate that conditioning). The set of possible universes that we might actually care about is some low-entropy manifold on $\mathcal{U}$.
+
+Now we can start to get specific, and we can start bringing in the machinery of probability, because we know what we mean by 'outcome' and 'events'. The set of all possible events is called the *sigma algebra* $\mathcal{E}$. The probability measure $P$ simply maps events to probabilities, $P: \mathcal{E} \rightarrow \mathcal{R}^{[0,1]}$, such that $P(E) = p$. Each outcome isn't associated with a probability, but with a local probability-density. We integrate over outcomes ("possible universes") to create probabilities. (consider that we are integrating rather than summing - because each element of our 4-tensor exists on the real line, the set of universes exists on a continuous space).
+
+Now that we can use real machinery, we can think about the fact that probabilities have particular properties. For instance, we know that there's something called a 'sample space' with probability 1, and that every event is a subset of this sample space. Here, the sample space is $\mathcal{U}$.
+
+We often want to define events based on some condition about the world. The condition can be anything. "the set of universes in which my hypothesis about the world is true" is a useful family of conditions. "The set of universes in which I guess that I hung up my keys by the door, and then my keys are actually by the door" is a member of that family. 
+
+
+## The Scientific Method
+
+The box below (lifted from the 3blue1brown video on bayes' theorem) represents $\mathcal{U}$. The entire box has probability $1$ (think about it as area). $E$ and $H$ are both collections of universes (somewhat confusingly, because I didn't bother to change from 3b1b notation to my own, 'E' stands for 'evidence' in this box and 'H' stands for 'hypothesis').
+
+$P(E|H)$ means: zoom into the part of the box corresponding to '$H$', the bright-gray column on the left, and look at what proportion of that '$E$' takes up. Mapping everything I built up above into this box visualization: A particular $U$ is a singleton point on the box. Some event $E$ is an area in the box. The sigma-algebra $\mathcal{E}$ is the set of all areas of the box (think an infinite number of bounding-boxes or weird shapes). Conditioning on an event means zooming into that part of the box and making it your entire universe. $R$ is some very small area in this box, and in practice we pretty much always want to be conditioning on the low-entropy manifold that $R$ lives on (think about a wavey sliver of the box - shapes we condition on don't have to be rectangles).
+
+<div class="imgcap">
+<img src="/images/bayes.jpg">
+</div>
+
+
+Let's say I'm publishing a paper and I have some data $D$ ("D" is shorthand for "the set of $U_i$ in which the data was measured"). I want to figure out if some hypothesis $H$ that I have is true (a "hypothesis" is a set of universes $E_H = \{U_i\}$ in which a guess I have about the universe is true).
+
+Well, we can think about this: if I take all possible disjoint hypotheses, then *one of them* has to be true: $D = D \bigcap (\bigcup_{i} H_i)$.
+
+
+The human brain can't literally figure out *all* possible hypotheses that fit observations that we see, so we do a brainstorming session to take the top $k$: $\{H: P(D | \cup_{H_i}) > t\}$, and we want the threshold $t$ to be as high as possible given the time we've given ourselves to come up with hypotheses.
+
+Zoom into one hypothesis with high probability $H = \argmax_i P(D|H_i)$. Remember that this is an event: a set of possible universes in which our hypothesis was true. What we're *really* doing here is trying to find the $H$ that maximally overlaps with $D$, e.g., maximizing some notion of the volume of $(H \cap D)/(H \cup D)$ (after defining what we mean by 'volume'). Finding the hypothesis that maximizes this intersection-over-union is the same thing as finding $\max P(H_i | D)$ (this is what we call a 'theory' in physics).
+
+### Observations about How to Do Science
+
+Now that we have a reasonable-ish formalization, there are a ton of different observations we can make. For instance:
+- Collecting more data means that we now condition on $\hat{D} = \bigcap_i D_i$ instead. This is a smaller-volume subset of universes, and consequently there aren't as many compatible hypotheses (e.g., it's harder to overlap in our intersection-over-union). This is a good thing: it means that it's easier to pick hypotheses during our brainstorming sessions that might 'match'.
+- We can think about what type of data we should collect when designing experiments. It seems to me like we would want to collect data that maximally reduces the volume of $\hat{D}$ (we really should define what we mean by 'volume' - I guess this is just the Lebesgue measure?). That way we're maximally restricting the set of hypotheses compatible with that data (e.g., the ones with high intersection-over-union). The best way to do this is to find a hypotheses as disjoint with what we've already conditioned on as possible with as large a volume as possible, and then eliminate or not-disprove it by performing an experiment that could result in collecting data incompatible with the hypotheses.
+- We've conditioned on our data, so (in the basis of our data rather than the basis of $\mathcal{U}$ or $\mathcal{R}$), we have $P(D) = 1$. So if we had access to a full set of disjoint hypothesis, then we'd have $\sum_i P(H_i | D) = 1$. If we eliminate a hypothesis $H_j$ by collecting new data $\hat{D}$, then in the basis of that new data, $\sum_{i \neq j} P(H_i | \hat{D}) = 1$. Our other hypotheses weren't eliminated; so the amount of probability that $H_j$ was responsible for must be dispersed into the other hypotheses.
+- I'm going to be building out more interesting implications here as I think of them (there are a lot)
+
+
+
+Side note, it definitely feels like there should be some notion of turning everything into a vector space equipped with an inner product (our IoU metric or some derivative), and then 'finding good hypotheses' becomes a search to find the few hypotheses that have high inner products with our data. I'd have to think about exactly how that translation would work. This might be a useful thing to think through later. I suppose orthogonal vectors in this case would correspond to fully disjoint events?
