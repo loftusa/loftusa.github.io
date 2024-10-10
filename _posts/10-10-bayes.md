@@ -1,5 +1,4 @@
 ---
-layout: post
 title:  "Bayes' Rule and the the Pretend Dichotomy between Intuition and Formalism"
 date: 2024-10-10
 permalink: /posts/2024/10/bayes
