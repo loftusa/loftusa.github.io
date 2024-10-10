@@ -160,3 +160,4 @@ Evan Hernandez at MIT wrote the linear relation embeddings paper, but he just gr
 - Transformers, since they are recurrent, can be decomposed into the sum of a bunch of different smaller networks, e.g., they can be thought of as an ensemble. What are those smaller networks doing? can we run their ouputs through tuned lens or logit lens or whatever to see how each contributes to the result, or causal tracing? 
 	- what does the relationship between deleting subnetworks and performance look like? could you make a model smaller and not lose performance by deleting non-important subnetworks?
 - **model stitching would be extremely useful if figured out**, because it would allow us to usefully combine the abilities of more than one foundation model.
+- for david's class: reproduce anthropic's induction heads ICL loss thing, and then do it with random text instead of ICL data
