@@ -161,3 +161,4 @@ Evan Hernandez at MIT wrote the linear relation embeddings paper, but he just gr
 	- what does the relationship between deleting subnetworks and performance look like? could you make a model smaller and not lose performance by deleting non-important subnetworks?
 - **model stitching would be extremely useful if figured out**, because it would allow us to usefully combine the abilities of more than one foundation model.
 - for david's class: reproduce anthropic's induction heads ICL loss thing, and then do it with random text instead of ICL data
+- test the hypothesis that facts are stored in MLP layers by fine-tuning a model on new facts with MLP layers frozen and seeing if it learns them. Then train with attention layers frozen and see if it knows facts as well as an unfrozen model would.
