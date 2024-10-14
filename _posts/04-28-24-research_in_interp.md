@@ -3,6 +3,7 @@ title:  "Research directions in interpretability"
 date:   2024-04-28
 permalink: /posts/2024/04/research_in_interp/
 mathjax: true
+comments: true
 ---
 
 # Research Directions in Interpretability
