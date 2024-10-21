@@ -34,6 +34,9 @@ Basically, anywhere in which a central push is to *learn something* rather than 
 
 **The biggest, most useful big-picture goal would be: can I create a set of tools which let users tell the extent to which a model is hallucinating, based on what's happening in its activation space?**
 
+### More Motivations
+Being succesful in accomplishing a long-term goal will require constant adjustment, both in the goal itself and in the actions I take that lead me towards it. In this section I will keep updating this blog post to keep refining what exactly I am trying to accomplish.
+
 ## Interests
 With the above impact motivations in mind, there are also things that just *strike my fancy*, and which I think are interesting and fun to think about. Good projects, in my opinion, will also contain elements of this. A somewhat representative but not at all exhaustive list:
 
@@ -163,3 +166,4 @@ Evan Hernandez at MIT wrote the linear relation embeddings paper, but he just gr
 - **model stitching would be extremely useful if figured out**, because it would allow us to usefully combine the abilities of more than one foundation model.
 - for david's class: reproduce anthropic's induction heads ICL loss thing, and then do it with random text instead of ICL data
 - test the hypothesis that facts are stored in MLP layers by fine-tuning a model on new facts with MLP layers frozen and seeing if it learns them. Then train with attention layers frozen and see if it knows facts as well as an unfrozen model would.
+- is there room for a sanity-check-for-saliency-maps style attack on SAEs somewhere? seems to be in the zeitgeist
