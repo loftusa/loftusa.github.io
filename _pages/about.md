@@ -10,7 +10,7 @@ redirect_from:
 
 About Me
 ---
-Hi, I’m **Alex Loftus**. I am a textbook author, kaggle competition winner, and PhD student starting in the fall with [David Bau's group](https://baulab.info/). I am interested in understanding how we can use techniques from interpretability to steer large models at inference time, reduce hallucinations, and create truly customized systems. I have worked as a data scientist, a machine learning engineer, and as a master's student in biomedical machine learning at Johns Hopkins University.
+Hi, I’m **Alex Loftus**. I am a textbook author, kaggle competition winner, and PhD with [David Bau's group](https://baulab.info/). I am interested in understanding how we can use techniques from interpretability to steer large models at inference time, reduce hallucinations, and create truly customized systems. I have worked as a data scientist, a machine learning engineer, and as a master's student in biomedical machine learning at Johns Hopkins University.
 
 I’ve been fortunate to work with a number of brilliant people over the years. Here are some fun projects which resulted:
  - I worked with [Professor Joshua Vogelstein](https://www.neurodata.io) in the Johns Hopkins Biomedical Engineering department on a [pipeline to create graphs from MRI data](https://github.com/neurodata/m2g), which led to a paper in-review at Nature Methods. 
