@@ -22,7 +22,7 @@ I’ve been fortunate to work with a number of brilliant people over the years. 
 I have a number of academic side-interests, including spectral theory and the mechanics of linear representation spaces, the history of science and mathematics, the mechanics of the visual system, the statistics of chess openings, and various causal relationships between geography and history. I am an avid traveler and am (slowly) learning Spanish.
 
 ## Talks & Publications
-- [NNsight and NDIF: Democratizing Access to Foundation Model Internals](https://arxiv.org/abs/2407.14561): First authorship. Explore large model internals easily.
+- [NNsight and NDIF: Democratizing Access to Foundation Model Internals](https://openreview.net/forum?id=MxbEiFRf39): First authorship. Explore large model internals easily.
 
 - [A Saliency-based Clustering Framework for Identifying Aberrant Predictions](https://arxiv.org/pdf/2311.06454.pdf): NeurIPS Workshop Paper, 2023 - won best poster
 - [1st Place Solution - Vesuvius Ink Competition](https://www.youtube.com/watch?v=IWySc8s00P0): Presentation, 2023, for 60 people. Presenting on our winning solution to a \$100,000 Kaggle competition.

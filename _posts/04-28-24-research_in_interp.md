@@ -168,3 +168,4 @@ Evan Hernandez at MIT wrote the linear relation embeddings paper, but he just gr
 - for david's class: reproduce anthropic's induction heads ICL loss thing, and then do it with random text instead of ICL data
 - test the hypothesis that facts are stored in MLP layers by fine-tuning a model on new facts with MLP layers frozen and seeing if it learns them. Then train with attention layers frozen and see if it knows facts as well as an unfrozen model would.
 - is there room for a sanity-check-for-saliency-maps style attack on SAEs somewhere? seems to be in the zeitgeist
+- say we do topic clustering on a big factual recall dataset. Is there a relationship between which MLP layers have the highest causal impact and what the topic is? e.g., is knowledge localized by topic at all?
