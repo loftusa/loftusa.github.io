@@ -169,3 +169,4 @@ Evan Hernandez at MIT wrote the linear relation embeddings paper, but he just gr
 - test the hypothesis that facts are stored in MLP layers by fine-tuning a model on new facts with MLP layers frozen and seeing if it learns them. Then train with attention layers frozen and see if it knows facts as well as an unfrozen model would.
 - is there room for a sanity-check-for-saliency-maps style attack on SAEs somewhere? seems to be in the zeitgeist
 - say we do topic clustering on a big factual recall dataset. Is there a relationship between which MLP layers have the highest causal impact and what the topic is? e.g., is knowledge localized by topic at all?
+- Can you *create* a new concept, e.g., add a new fact in and then adjust the probability of that fact being returned inside some conditional token distribution?
