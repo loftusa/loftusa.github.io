@@ -34,5 +34,3 @@ I have a number of academic side-interests, including spectral theory, informati
 
 ### Misc
 I grew up in Seattle, WA. I was a competitive Starcraft 2 player in high school (grandmaster league - competed/won in seattle-area tournaments!). I studied behavioral neuroscience during my undergraduate years, with a philosophy minor focused on ethics. I got interested in math and programming and started a computational neuroscience club, where I taught weekly seminars. I also spent a lot of time partner dancing and playing guitar at open mic nights!
-
-My girlfriend, Aina, is also in machine learning and we sometimes do research together. You can learn about her on her website: [ainatersol.github.io](https://ainatersol.github.io/).
