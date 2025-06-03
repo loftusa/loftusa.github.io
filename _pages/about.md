@@ -13,9 +13,10 @@ About Me
 
 ## [Textbook now preorderable on Amazon!](https://a.co/d/4IDM8d3)
 
-Hi, I’m **Alex Loftus**. I am a textbook author, kaggle competition winner, and PhD student with [David Bau's group](https://baulab.info/). I am interested in understanding how we can use techniques from interpretability to understand training dynamics, steer large models at inference time, reduce hallucinations, and create truly customized systems. I have worked as a data scientist, a machine learning engineer, and as a master's student in biomedical machine learning at Johns Hopkins University.
+Hi, I’m **Alex Loftus**. I am a textbook author, communicator, kaggle competition winner, and PhD student with [David Bau's group](https://baulab.info/). I am interested in understanding how we can use techniques from interpretability in code models to understand training dynamics, steer large models at inference time, reduce hallucinations, and create truly customized systems. I have worked as a data scientist, a machine learning engineer, and as a master's student in biomedical machine learning at Johns Hopkins University.
 
 I’ve been fortunate to work with a number of brilliant people over the years. Here are some fun projects which resulted:
+ - I led the publication effort for [NDIF](ndif.us), a large-scale AI interpretability infrastructure project, which led to a paper at ICLR.
  - I worked with [Professor Joshua Vogelstein](https://www.neurodata.io) in the Johns Hopkins Biomedical Engineering department on a [pipeline to create graphs from MRI data](https://github.com/neurodata/m2g), which led to a paper in-review at Nature Methods. 
  - I co-authored a [textbook on spectral graph theory](https://www.alex-loftus.com/files/textbook.pdf), which we are publishing with Cambridge University Press. 
  - We developed an open-source project, [Graspologic](https://www.github.com/microsoft/graspologic), which was acquired by Microsoft and used to measure collaboration changes in their workforce during COVID. 
