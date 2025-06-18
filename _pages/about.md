@@ -13,6 +13,8 @@ About Me
 
 ## [Textbook now preorderable on Amazon!](https://a.co/d/4IDM8d3)
 
+buy me a coffee: https://coff.ee/loftusa
+
 Hi, I’m **Alex Loftus**. I am a textbook author, communicator, kaggle competition winner, and PhD student with [David Bau's group](https://baulab.info/). I am interested in understanding how we can use techniques from interpretability in code models to understand training dynamics, steer large models at inference time, reduce hallucinations, and create truly customized systems. I have worked as a data scientist, a machine learning engineer, and as a master's student in biomedical machine learning at Johns Hopkins University.
 
 I’ve been fortunate to work with a number of brilliant people over the years. Here are some fun projects which resulted:
