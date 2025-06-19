@@ -10,9 +10,15 @@ redirect_from:
 
 About Me
 ---
-Hi, I’m **Alex Loftus**. I am a textbook author, kaggle competition winner, and PhD student with [David Bau's group](https://baulab.info/). I am interested in understanding how we can use techniques from interpretability to understand training dynamics, steer large models at inference time, reduce hallucinations, and create truly customized systems. I have worked as a data scientist, a machine learning engineer, and as a master's student in biomedical machine learning at Johns Hopkins University.
+
+## [Textbook now preorderable on Amazon!](https://a.co/d/4IDM8d3)
+
+buy me a coffee: https://coff.ee/loftusa
+
+Hi, I’m **Alex Loftus**. I am a textbook author, communicator, kaggle competition winner, and PhD student with [David Bau's group](https://baulab.info/). I am interested in understanding how we can use techniques from interpretability in code models to understand training dynamics, steer large models at inference time, reduce hallucinations, and create truly customized systems. I have worked as a data scientist, a machine learning engineer, and as a master's student in biomedical machine learning at Johns Hopkins University.
 
 I’ve been fortunate to work with a number of brilliant people over the years. Here are some fun projects which resulted:
+ - I led the publication effort for [NDIF](ndif.us), a large-scale AI interpretability infrastructure project, which led to a paper at ICLR.
  - I worked with [Professor Joshua Vogelstein](https://www.neurodata.io) in the Johns Hopkins Biomedical Engineering department on a [pipeline to create graphs from MRI data](https://github.com/neurodata/m2g), which led to a paper in-review at Nature Methods. 
  - I co-authored a [textbook on spectral graph theory](https://www.alex-loftus.com/files/textbook.pdf), which we are publishing with Cambridge University Press. 
  - We developed an open-source project, [Graspologic](https://www.github.com/microsoft/graspologic), which was acquired by Microsoft and used to measure collaboration changes in their workforce during COVID. 
@@ -22,7 +28,7 @@ I’ve been fortunate to work with a number of brilliant people over the years. 
 I have a number of academic side-interests, including spectral theory, information geometry, the history of science and mathematics, the mechanics of the visual system, constitutional law, various causal relationships between geography and history, and ethics (I am a big fan of Kant, Hume, Ross, and some modern ethicists like Susan Wolf). I am an avid traveler and am (slowly) learning Spanish.
 
 ## Talks & Publications
-- [NNsight and NDIF: Democratizing Access to Foundation Model Internals](https://openreview.net/forum?id=MxbEiFRf39): First authorship. Explore large model internals easily.
+- [NNsight and NDIF: Democratizing Access to Foundation Model Internals](https://openreview.net/forum?id=MxbEiFRf39): First authorship, ICLR 2025. Explore large model internals easily.
 - [A Saliency-based Clustering Framework for Identifying Aberrant Predictions](https://arxiv.org/pdf/2311.06454.pdf): NeurIPS Workshop Paper, 2023 - won best poster
 - [1st Place Solution - Vesuvius Ink Competition](https://www.youtube.com/watch?v=IWySc8s00P0): Presentation, 2023, for 60 people. Presenting on our winning solution to a \$100,000 Kaggle competition.
 - [Network Machine Learning with Python](alex-loftus.com/files/textbook.pdf): Textbook, 2023, Cambridge University Press. Second author. 550 pages, ~200 figures.

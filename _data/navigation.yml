@@ -14,13 +14,13 @@ main:
         
     
   - title: "CV"
-    url: /files/cv.pdf
+    url: /files/cv_business.pdf
 
   - title: "Blog"
     url: /year-archive/
 
   - title: "Textbook"
-    url: /files/textbook.pdf
+    url: https://a.co/d/4IDM8d3
 
   - title: "Thesis"
     url: /files/submitted_thesis.pdf  
