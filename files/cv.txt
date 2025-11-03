@@ -1,0 +1,153 @@
+Alexander Loftus
+
+CONTACT
+- Email: alexloftus2004@gmail.com
+- LinkedIn: https://www.linkedin.com/in/alex-loftus/
+- Google Scholar: https://scholar.google.com/citations?user=_Njcmm8AAAAJ&hl=en
+- GitHub: https://github.com/loftusa
+- Website: https://alex-loftus.com
+
+SUMMARY
+AI researcher & communicator with 7+ years of experience in deep learning & machine learning. Kaggle $100k competition winner, Cambridge University Press textbook author, first-author published work in top AI conferences, frequent public speaker, and organizer of a 200-person mechanistic interpretability conference. Research in code interpretability, attribution, and evaluation for LLMs. Seeking pivot into a developer advocate / technical evangelist role where deep technical depth, collaborative communication, and teaching ability can combine.
+
+CAREER HIGHLIGHTS
+- Textbook author: Authored a 524-page technical book on statistical network ML (Cambridge Univ. Press, Nov 2025)
+  Link: https://a.co/d/blsxidy
+- Organizer, Teacher, & Communicator: Organized the New England Mechanistic Interpretability (NEMI) conference; YouTube lecture series creator; delivered 10+ invited talks to 20-300 attendees; taught hundreds of students through meetups, summer camps, and tutorials.
+  Link: https://nemiconf.github.io/summer25
+- $100k ML Competition winner: Part of a 4-person team that won 1st place in the Vesuvius Kaggle competition (1,249 teams); featured on the cover of Scientific American.
+  Link: https://www.scientificamerican.com/article/inside-the-ai-competition-that-decoded-an-ancient-scroll-and-changed/
+- High-impact Interpretability research: Subliminal learning work featured in YouTube video with 1m+ subscribers; best poster award at NeurIPS 2023 LatinX workshop.
+  Links: https://youtu.be/NUAb6zHXqdI?t=1671
+- Strategic Advisory Roles: CBAI mentor for Harvard/MIT students; advisor for cybersecurity/mechanistic interpretability startup.
+  Links: https://www.cbai.ai/david-bau-alex-loftus , https://krnel.ai/
+- Cloud & AI Infrastructure: First author on ICLR paper on scaling up AI systems for interpretability; AWS experience scaling up an AI pipeline for computational neuroscience.
+  Links: https://arxiv.org/abs/2407.14561 , https://github.com/neurodata/m2g
+
+EDUCATION
+- Northeastern University — Boston, MA
+  • PhD Student, Computer Science (2024–Present)
+  • Advisor: Dr. David Bau — https://scholar.google.com/citations?user=CYI6cKgAAAAJ&hl=en&oi=ao
+  • Focus on mechanistic interpretability in code LLMs. Data attribution, representation learning, causality.
+- Johns Hopkins University — Baltimore, MD
+  • MSE Biomedical Engineering: Machine Learning & Data Science Focus (2020–2022)
+  • Advisor: Dr. Joshua Vogelstein — https://scholar.google.com/citations?user=DWPfdT4AAAAJ&hl=en&oi=ao
+  • Thesis: Hands-On Network Machine Learning — https://alex-loftus.com/files/submitted_thesis.pdf
+  • dean's list, highest honors, GPA 3.97/4.0.
+- Western Washington University — Bellingham, WA
+  • BS Behavioral Neuroscience | Minors: Chemistry, Philosophy (2014–2018)
+  • Founder & President, Computational Neuroscience Club
+  • Built computational neuroscience club from scratch, taught weekly seminars.
+
+EXPERIENCE
+- Creyon Bio — Data Scientist (San Diego, CA) — 2023–2024
+  • Large Protein Models For Splice-Site Prediction: Explored splice site prediction in LLMs trained on protein sequences. Pre-training, fine-tuning, and benchmarking+evals.
+  • ML for Toxicity Prediction: Developed a novel contrastive learning pipeline to predict oligo toxicity from 3-D electrostatic maps; increased classification AUC from 0.73 to 0.88.
+  • Neuron Toxicity Detection: Developed scalable neuron segmentation and toxicology classification pipeline.
+- Blue Halo — Machine Learning Research Engineer (Rockville, MD) — 2022–2023
+  • Conditional Image Generation with Generative Adversarial Networks: Built diffusion-model synthetic data generator.
+  • Detecting Objects with Enhanced Yolo and Knowledge Graphs: Led knowledge graph effort for object detection project. Delivered live demos to program officers.
+  • Geometric Multi-Resolution Analysis: Led infra for document clustering & analysis method.
+- NeuroData Lab, Johns Hopkins University | Dr. Joshua Vogelstein — Research Software Engineer (Baltimore, MD) — 2018–2020
+  • MRI-to-Graphs: Optimized a diffusion MRI pipeline with Kubernetes, Docker, and AWS Batch. Halved runtime and cut cloud costs by 40%.
+    Link: https://neurodata.io/m2g/
+  • Graspologic: Contributed to an open-source graph statistics library. Later adopted by Microsoft Research for large-scale network analysis.
+    Link: https://microsoft.github.io/graspologic/latest/
+- iD Tech Camps | University of Washington — Assistant Director (Seattle, WA) — 2014–2018 summers
+  • Leader and Manager: Managed 10+ instructors/week and 300+ students.
+  • Curriculum Designer: Authored game development curriculum deployed to 50+ locations, impacting 10k+ students nationwide.
+
+TEXTBOOK
+- Hands-On Network Machine Learning with Python — Cambridge University Press, Printed October 2025.
+  Authors: Eric Bridgeford, Alexander R. Loftus, Joshua Vogelstein.
+  Details: Spectral representation theory on networks. 524 pages, 147 figures.
+  Link: https://www.cambridge.org/core/books/handson-network-machine-learning-with-python/9735741A096973A9C963E930BBAF5368
+
+SELECTED PUBLICATIONS
+- Token Entanglement in Subliminal Learning — NeurIPS mechanistic interpretability workshop 2025.
+  Authors: A. Zur, Z. Ying, A.R. Loftus, et al.
+  Notes: Investigation on token entanglement in LLMs. Featured in Welch Labs video on YouTube.
+  Links: https://openreview.net/forum?id=auKgpBRzIW&noteId=auKgpBRzIW , https://www.youtube.com/watch?v=NUAb6zHXqdI&t=1671s
+- NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals — ICLR 2025.
+  Authors: A.R. Loftus*, J. Fiotto-Kaufman*, et al. (* indicates equal contribution)
+  Notes: Open‑source suite for probing & manipulating LLM weights without engineering overhead. Ray GCS Service backend with AWS object storage and VLLM for inference speed.
+  Link: https://arxiv.org/abs/2407.14561
+- A Saliency-based Clustering Framework for Identifying Aberrant Predictions — NeurIPS LatinX AI Workshop, 2023. (Best poster award)
+  Authors: A. Tersol Montserrat, A.R. Loftus, Y. Daihes.
+  Link: https://arxiv.org/abs/2311.06454
+- A low-resource reliable pipeline to democratize multi-modal connectome estimation and analysis — in review at Nature Methods, 2024.
+  Authors: J. Chung, R. Lawrence, A.R. Loftus, et al.
+  Links: https://www.biorxiv.org/content/10.1101/2021.11.01.466686v2 , https://github.com/neurodata/m2g
+
+SKILLS SUMMARY
+- Languages: Python, Bash, R, Rust, SQL
+- Tools & Frameworks: docker, kubernetes, pytorch, pytorch-lightning, VLLM, AWS, google cloud (GCP), numpy, scipy, pandas, polars, sklearn, seaborn, matplotlib, photoshop, SQL, weights & biases, mlflow, linux, cursor, ray, claude code, codex-cli
+- Areas of Expertise: LLMs for code, interpretability, transformers, GPUs and CUDA, linear algebra, probability & statistics, deep learning, information theory, diffusion models, convolutional autoencoders, public speaking, leadership & management, teaching, natural language processing, computer vision
+- Soft Skills: Public speaking, technical writing, leadership, mentorship, community-building
+
+LEADERSHIP & COMMUNITY ENGAGEMENT
+- Conference Organizer — NEMI — 2025
+  • Running 200+ person interpretability conference; Raised $17,000 grant funding.
+  Link: https://nemiconf.github.io/summer24/
+- Research Mentor — CBAI — 2025
+  • Mentoring Harvard/MIT students in Summer 2025.
+  Link: https://www.cbai.ai/david-bau-alex-loftus
+- Strategic Advisor — Krnel.ai — 2025
+  • Advisor to cybersecurity-focused startup specializing in interpretability tooling for AI systems.
+  Link: https://krnel.ai/
+- Meetup Speaker — SDML — 2023–2024
+  • Speaker & organizer for San Diego AI Meetups.
+  Link: https://www.meetup.com/san-diego-machine-learning/
+- Hackathon Organizer — NeuroData Workshop — 2019
+  • Helped organize hackathon & workshop to explore statistics for high-dimensional testing.
+  Link: https://neurodata.devpost.com/
+
+TALKS & DEMOS
+- White-Box Techniques for Code LLMs: Influence Benchmarking, the Attendome, and Variable State Debugging — Lawrence Livermore National Laboratory, 2025
+  • Invited talk on interpretability for code LLMs.
+- A Shared Infrastructure for Interpretability — FAR AI Tech. Innovations for AI Policy Conf., 2025
+  • Invited demo for DC policymakers; showcased live editing of GPT2 internals.
+- State of the Art in Knowledge Editing — A.R. Loftus, 2024
+  • Survey talk on LLM knowledge-editing methods.
+  Link: https://youtu.be/q9mC3T2aBL8
+- 1st Place Solution - Vesuvius Ink Competition — R. Chesler, A.R. Loftus, A. Tersol Montserrat, T. Kyi, 2023
+  • Walkthrough of winning $100,000 ink-detection model.
+  Link: https://www.youtube.com/watch?v=IWySc8s00P0
+- ICML Conference Highlights — A.R. Loftus, 2023
+  • Selected breakthroughs from ICML. Presented to biotech execs and SDML meetup group.
+  Link: https://www.youtube.com/watch?v=V_hcmfdJzF8
+- Working with LLMs — AI San Diego Conference, 2023
+  • Invited talk: Introduction to LLM engineering. 300+ attendees.
+  Link: https://lu.ma/aisd1
+- Linear Algebra, from Dot Products to Neural Networks — A.R. Loftus, 2023
+  • Created a YouTube tutorial series on the fundamentals of linear algebra for machine learning.
+  Link: https://www.youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh
+
+FELLOWSHIPS & AWARDS
+- First Place Winner — Kaggle Vesuvius Competition, $100,000 — 2023
+  Link: https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection/overview
+- Khoury Distinguished Fellowship — Northeastern University PhD fellowship — 2024
+- GCP Research Grant — $5,000 grant for computational research — 2025
+- Best Poster Award — NeurIPS 2023 LatinX AI Workshop — 2023
+- Harvard AI Safety Technical Fellowship — Harvard fellowship for technical work in AI safety — 2025
+  Link: https://haist.ai/tech-fellowship
+- AWS Research Grant — $10,000 grant for computational research on cloud services — 2019
+
+TEACHING
+- Head Teaching Assistant — Johns Hopkins University — Spring 2021
+  • Foundations of Computational Biology and Bioinformatics, EN.BME.410/634
+- Teaching Assistant — Johns Hopkins University — Spring 2020
+  • NeuroData Design II, EN.BME.438/638 — https://neurodatadesign.io/
+- Teaching Assistant — Johns Hopkins University — Fall 2019
+  • NeuroData Design I, EN.BME.437/637 — https://neurodatadesign.io/
+- Teaching Assistant — Western Washington University — Winter 2017
+  • Introduction to Behavioral Neuroscience, PSY.220
+- Curriculum Designer — iD Tech Camps — Spring 2017
+  • Built curriculum used across 50 locations in the United States by tens of thousands of students.
+- Instructor — iD Tech Camps — 2014–2018 summers
+  • Taught programming and game design to high school students.
+
+FUN
+- Gaming: Starcraft 2 grandmaster, local tournament winner
+- Music: Fingerstyle guitarist; performed at open mic nights.
+- Dancing: Partner dance instructor and competition winner (Fusion, West Coast Swing, Zouk)
