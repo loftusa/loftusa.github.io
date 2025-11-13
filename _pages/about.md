@@ -20,7 +20,7 @@ Hi, I’m **Alex Loftus**. I am a textbook author, communicator, kaggle competit
 
 I’ve been fortunate to work with a number of brilliant people over the years. Here are some fun projects which resulted:
  - I helped out with some work on [Subliminal Learning](https://www.lesswrong.com/posts/m5XzhbZjEuF9uRgGR/it-s-owl-in-the-numbers-token-entanglement-in-subliminal-1), which got featured in a [Welsh labs YouTube video](https://www.youtube.com/watch?v=NUAb6zHXqdI)
- - I led the publication effort for [NDIF](ndif.us), a large-scale AI interpretability infrastructure project, which led to a paper at ICLR.
+ - I led the publication effort for [NDIF](https://www.ndif.us), a large-scale AI interpretability infrastructure project, which led to a paper at ICLR.
  - I co-authored a [textbook on spectral graph theory](https://www.alex-loftus.com/files/textbook.pdf), which is [published](https://a.co/d/4IDM8d3) with Cambridge University Press. 
  - I've [given talks](https://www.youtube.com/watch?v=V_hcmfdJzF8) for the San Diego Machine Learning meetup group, where I joined a team competing in the [Vesuvius Ink Detection Kaggle Competition](https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection). We won 1st place against 1,249 teams for a competition prize pool of $100,000. Our work was featured in [Scientific American](https://x.com/AlexLoftus19/status/1828158652018237536)!
  - I worked with [Professor Joshua Vogelstein](https://www.neurodata.io) in the Johns Hopkins Biomedical Engineering department on a [pipeline to create graphs from MRI data](https://github.com/neurodata/m2g), which led to a paper in-review at Nature Methods. 
