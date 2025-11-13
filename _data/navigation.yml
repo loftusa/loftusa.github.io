@@ -19,9 +19,6 @@ main:
   - title: "Blog"
     url: /year-archive/
 
-  - title: "Textbook"
-    url: https://a.co/d/4IDM8d3
-
   - title: "Thesis"
     url: /files/submitted_thesis.pdf  
 

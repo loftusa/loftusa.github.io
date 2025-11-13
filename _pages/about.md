@@ -21,7 +21,7 @@ Hi, I’m **Alex Loftus**. I am a textbook author, communicator, kaggle competit
 I’ve been fortunate to work with a number of brilliant people over the years. Here are some fun projects which resulted:
  - I helped out with some work on [Subliminal Learning](https://www.lesswrong.com/posts/m5XzhbZjEuF9uRgGR/it-s-owl-in-the-numbers-token-entanglement-in-subliminal-1), which got featured in a [Welsh labs YouTube video](https://www.youtube.com/watch?v=NUAb6zHXqdI)
  - I led the publication effort for [NDIF](https://www.ndif.us), a large-scale AI interpretability infrastructure project, which led to a paper at ICLR.
- - I co-authored a [textbook on spectral graph theory](https://www.alex-loftus.com/files/textbook.pdf), which is [published](https://a.co/d/4IDM8d3) with Cambridge University Press. 
+ - I co-authored a textbook on spectral graph theory, which is [published](https://a.co/d/4IDM8d3) with Cambridge University Press. 
  - I've [given talks](https://www.youtube.com/watch?v=V_hcmfdJzF8) for the San Diego Machine Learning meetup group, where I joined a team competing in the [Vesuvius Ink Detection Kaggle Competition](https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection). We won 1st place against 1,249 teams for a competition prize pool of $100,000. Our work was featured in [Scientific American](https://x.com/AlexLoftus19/status/1828158652018237536)!
  - I worked with [Professor Joshua Vogelstein](https://www.neurodata.io) in the Johns Hopkins Biomedical Engineering department on a [pipeline to create graphs from MRI data](https://github.com/neurodata/m2g), which led to a paper in-review at Nature Methods. 
  - We developed an open-source project, [Graspologic](https://www.github.com/microsoft/graspologic), which was acquired by Microsoft and used to measure collaboration changes in their workforce during COVID. 
@@ -33,7 +33,7 @@ I have a number of academic side-interests, including spectral theory, informati
 - [NNsight and NDIF: Democratizing Access to Foundation Model Internals](https://openreview.net/forum?id=MxbEiFRf39): First authorship, ICLR 2025. Explore large model internals easily.
 - [A Saliency-based Clustering Framework for Identifying Aberrant Predictions](https://arxiv.org/pdf/2311.06454.pdf): NeurIPS Workshop Paper, 2023 - won best poster
 - [1st Place Solution - Vesuvius Ink Competition](https://www.youtube.com/watch?v=IWySc8s00P0): Presentation, 2023, for 60 people. Presenting on our winning solution to a \$100,000 Kaggle competition.
-- [Network Machine Learning with Python](alex-loftus.com/files/textbook.pdf): Textbook, 2023, Cambridge University Press. Second author. 550 pages, ~200 figures.
+- Network Machine Learning with Python: Textbook, 2023, Cambridge University Press. Second author. 550 pages, ~200 figures.
 - [A low-resource reliable pipeline to democratize multi-modal connectome estimation and analysis](https://www.biorxiv.org/content/10.1101/2021.11.01.466686v1): Paper, 2022, Nature Methods, under review. Second author, wrote most of the infrastructure for the codebase.
 - [ICML Conference Highlights](https://www.youtube.com/watch?v=V_hcmfdJzF8): Talk about new machine learning techniques in drug discovery and medicine presented at ICML
 - [Working with LLMs](https://lu.ma/aisd1): Talk, 2023, for 100 people at the AIML San Diego meetup
