@@ -10,6 +10,22 @@ redirect_from:
 
 About Me
 ---
+<br>
+<div id="chat-container">
+  <div id="chat-messages"></div>
+
+  <form id="chat-form">
+    <input
+      id="chat-input"
+      type="text"
+      placeholder="Talk to my resume!"
+      autocomplete="off"
+    />
+    <button id="chat-send" type="submit">Send</button>
+  </form>
+</div>
+<script src="/assets/js/chat.js"></script>
+<br>
 
 buy me a coffee: https://coff.ee/loftusa  
 set up a meeting with me: https://calendly.com/alexloftus2004/new-meeting-1

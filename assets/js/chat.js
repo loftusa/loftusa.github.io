@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    const conversation = [];
+
     formEl.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -17,13 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         addMessage("You", text);
-        // const reply = await getBotReply(text);
-        const botMessageEl = addMessage("Resume", "");
+        conversation.push({ role: "user", content: text });
 
-        await streamBotReply(text, (chunk) => {
-            botMessageEl.textContent += chunk;
+        const botMessageEl = addMessage("Resume", "");
+        let botText = "";
+
+        await streamBotReply(conversation, (chunk) => {
+            botText += chunk;
+            botMessageEl.textContent = botText;
             messagesEl.scrollTop = messagesEl.scrollHeight;
         });
+
+        conversation.push({ role: "assistant", content: botText });
 
         inputEl.value = "";
     });
@@ -41,13 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
     return data.reply;
     }
 
-    async function streamBotReply(userText, onChunk) {
+    async function streamBotReply(messages, onChunk) {
         const response = await fetch("http://127.0.0.1:8000/chat-stream", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ message: userText }),
+            body: JSON.stringify({ messages }),
         });
 
         const reader = response.body.getReader();

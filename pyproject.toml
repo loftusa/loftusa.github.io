@@ -5,6 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "cerebras-cloud-sdk>=1.59.0",
     "dotenv>=0.9.9",
     "fastapi>=0.121.2",
     "ipykernel>=7.1.0",
