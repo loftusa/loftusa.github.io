@@ -17,16 +17,51 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         addMessage("You", text);
-        const reply = await getBotReply(text);
-        addMessage("Bot", reply);
+        // const reply = await getBotReply(text);
+        const botMessageEl = addMessage("Resume", "");
+
+        await streamBotReply(text, (chunk) => {
+            botMessageEl.textContent += chunk;
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        });
 
         inputEl.value = "";
-        messagesEl.scrollTop = messagesEl.scrollHeight;
     });
 
     async function getBotReply(userText) {
-        await new Promise((resolve) => setTimeout(resolve, 300)); // simulate latency
-        return "hello world";
+    const response = await fetch("http://127.0.0.1:8000/chat", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message: userText }),
+    });
+
+    const data = await response.json();
+    return data.reply;
+    }
+
+    async function streamBotReply(userText, onChunk) {
+        const response = await fetch("http://127.0.0.1:8000/chat-stream", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message: userText }),
+        });
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let done = false;
+
+        while (!done) {
+            const { value, done: streamDone } = await reader.read();
+            done = streamDone;
+            if (value) {
+                const chunkText = decoder.decode(value, { stream: !done });
+                onChunk(chunkText);
+            }
+        }
     }
 
     function addMessage(sender, text) {
@@ -42,6 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
         messageEl.appendChild(senderEl);
         messageEl.appendChild(textEl);
         messagesEl.appendChild(messageEl);
+
+        return textEl;
     }
 
 });
