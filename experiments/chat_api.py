@@ -68,3 +68,9 @@ def chat_stream(request: ChatRequest) -> ChatResponse:
                 yield delta.content
 
     return StreamingResponse(token_stream(), media_type="text/plain")
+
+
+@app.post("/health")
+def health() -> str:
+    assert CEREBRAS_API_KEY, "Cerebras API key not set"
+    return {"status": "ok"}
