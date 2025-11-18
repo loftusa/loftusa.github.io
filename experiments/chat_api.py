@@ -6,20 +6,17 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 from pathlib import Path
 import os
-from openai import OpenAI
 from cerebras.cloud.sdk import Cerebras
 
 # LLM setup
 load_dotenv()
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 CEREBRAS_API_KEY = os.getenv("CEREBRAS_API_KEY")
 SYSTEM_PROMPT = (Path(__file__).parent / 'system_prompt.txt').read_text()
 RESUME = (Path(__file__).parent / 'resume.txt').read_text()
 # MODEL = "gpt-5-nano"
 # MODEL = "qwen-3-32b"
+# MODEL = "llama-3.3-70b"
 MODEL = "gpt-oss-120b"
-# client = OpenAI()
 
 client = Cerebras(api_key=CEREBRAS_API_KEY)
 
@@ -40,6 +37,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:4000",
         "http://127.0.0.1:4000",
+        "https://alex-loftus.com",
+        "https://www.alex-loftus.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -55,7 +54,7 @@ def build_messages(user_messages: list[ChatMessage]) -> list[dict[str, str]]:
     return base
 
 
-@app.post("/chat-stream")
+@app.post("/chat")
 def chat_stream(request: ChatRequest) -> ChatResponse:
     def token_stream():
         completion = client.chat.completions.create(
@@ -69,22 +68,3 @@ def chat_stream(request: ChatRequest) -> ChatResponse:
                 yield delta.content
 
     return StreamingResponse(token_stream(), media_type="text/plain")
-
-
-def call_llm(user_message: str) -> str:
-    completion = client.chat.completions.create(
-        model=MODEL,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "system", "content": f"Here is Alex's resume:\n\n {RESUME}"},
-            {"role": "user", "content": user_message},
-        ]
-    )
-    return completion.choices[0].message.content
-
-
-@app.post("/chat", response_model=ChatResponse)
-def chat(request: ChatRequest) -> ChatResponse:
-    reply_text = call_llm(request.message)
-    return ChatResponse(reply=reply_text)
-    

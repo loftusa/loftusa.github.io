@@ -35,21 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
         inputEl.value = "";
     });
 
-    async function getBotReply(userText) {
-    const response = await fetch("http://127.0.0.1:8000/chat", {
-        method: "POST",
-        headers: {
-        "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: userText }),
-    });
-
-    const data = await response.json();
-    return data.reply;
-    }
-
     async function streamBotReply(messages, onChunk) {
-        const response = await fetch("http://127.0.0.1:8000/chat-stream", {
+        const isLocalhost = window.location.hostname === "localhost" ||
+                            window.location.hostname === "127.0.0.1";
+        const apiUrl = isLocalhost
+            ? "http://127.0.0.1:8000/chat"
+            : "https://llm-resume-restless-thunder-9259.fly.dev/chat";
+
+        const response = await fetch(apiUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

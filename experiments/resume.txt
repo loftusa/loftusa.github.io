@@ -10,14 +10,14 @@ CONTACT
 - Website: https://alex-loftus.com
 
 SUMMARY
-AI researcher & communicator with 7+ years of experience in deep learning & machine learning. Kaggle $100k competition winner, Cambridge University Press textbook author, first-author published work in top AI conferences, frequent public speaker, and organizer of a 200-person mechanistic interpretability conference. Research in code interpretability, attribution, and evaluation for LLMs. Seeking pivot into a developer advocate / technical evangelist role where deep technical depth, collaborative communication, and teaching ability can combine.
+AI researcher \& communicator with 7+ years of experience in deep learning \& machine learning. Research in code interpretability, attribution, and evaluation for Large Language Models. Seeking pivot into a developer advocate / technical evangelist role where deep technical depth, communication and community-building, and teaching ability can combine.
 
 CAREER HIGHLIGHTS
 - Textbook author: Authored a 524-page technical book on statistical network ML (Cambridge Univ. Press, Nov 2025)
   Link: https://a.co/d/blsxidy
 - Organizer, Teacher, & Communicator: Organized the New England Mechanistic Interpretability (NEMI) conference; YouTube lecture series creator; delivered 10+ invited talks to 20-300 attendees; taught hundreds of students through meetups, summer camps, and tutorials.
   Link: https://nemiconf.github.io/summer25
-- $100k ML Competition winner: Part of a 4-person team that won 1st place in the Vesuvius Kaggle competition (1,249 teams); featured on the cover of Scientific American.
+- ML Competition winner: Part of a 4-person team that won 1st place in the $1,000,000 Vesuvius Kaggle competition (1,249 teams); featured on the cover of Scientific American. The kaggle part of the competition was a $100,000 prize, and the first place team got $20,000.
   Link: https://www.scientificamerican.com/article/inside-the-ai-competition-that-decoded-an-ancient-scroll-and-changed/
 - High-impact Interpretability research: Subliminal learning work featured in YouTube video with 1m+ subscribers; best poster award at NeurIPS 2023 LatinX workshop.
   Links: https://youtu.be/NUAb6zHXqdI?t=1671
@@ -88,6 +88,8 @@ SKILLS SUMMARY
 - Soft Skills: Public speaking, technical writing, leadership, mentorship, community-building
 
 LEADERSHIP & COMMUNITY ENGAGEMENT
+- Strategic Advisor for Philanthropic Partnerships - EleutherAI - 2025
+    • Developed funding strategy for EleutherAI's 2025 grant applications.
 - Conference Organizer — NEMI — 2025
   • Running 200+ person interpretability conference; Raised $17,000 grant funding.
   Link: https://nemiconf.github.io/summer24/
@@ -150,7 +152,7 @@ TEACHING
   • Taught programming and game design to high school students.
 
 FUN
-- Gaming: Starcraft 2 grandmaster, local tournament winner
+- Gaming: Starcraft 2 grandmaster, local tournament winner; WoW 10-man server first ToGC (off-tank)
 - Music: Fingerstyle guitarist; performed at open mic nights.
 - Dancing: Partner dance instructor and competition winner (Fusion, West Coast Swing, Zouk)
 

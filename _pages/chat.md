@@ -12,7 +12,7 @@ author_profile: false
     <input
       id="chat-input"
       type="text"
-      placeholder="Type a message..."
+      placeholder="Talk to my resume!"
       autocomplete="off"
     />
     <button id="chat-send" type="submit">Send</button>
