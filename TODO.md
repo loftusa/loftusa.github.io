@@ -13,6 +13,7 @@
 
 ## Future (major)
 - add chat logging
+- add live monitoring (tokens/sec, first response latency)
 - make faster
     - dont keep passing conversation history back and forth (store on Fly.io server)
     - Preload KV cache w/ background context whenever a new user accesses the website
@@ -20,10 +21,14 @@
 - make more cost-efficient
     - have fly.io machine start up only when at least one user is on the site (upon entering the site)
 - make UI prettier (anthropic-style, rendered as a box inline, scrolling possible)
+- build an evaluation harness for accuracy
+    - Q&A questions about my resume
+    - call backend on each question
+    - log raw responses, latency, errors
+    - output summary report
 - Add RAG with vector embeddings. Should contain 
   - all links in the resume so that the chat model has access to them if it needs
   - the code used to create the model chat window so that the model can figure out how it is set up
-- add live monitoring (tokens/sec, first response latency)
 
 ## future (minor)
 - make "send" button and input box lower w.r.t the conversation
