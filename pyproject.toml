@@ -12,5 +12,6 @@ dependencies = [
     "openai>=2.8.0",
     "pydantic>=2.12.4",
     "python-dotenv>=1.2.1",
+    "twilio>=9.8.6",
     "uvicorn>=0.38.0",
 ]

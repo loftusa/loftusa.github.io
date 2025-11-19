@@ -1,0 +1,24 @@
+name: monitor API health
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: GET health check
+        id: health_check
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://llm-resume-restless-thunder-9259.fly.dev/health)
+          echo "status_code=$response" >> $GITHUB_OUTPUT
+          if [ "$response" != "200" ]; then
+            echo "Health check failed with status $response"
+            exit 1
+          fi
+      - name: Send WhatsApp alert
+        if: steps.health_check.outcome == 'failure'
+        run: |
+          echo "Would send WhatsApp here"
+    

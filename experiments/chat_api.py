@@ -6,11 +6,15 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 from pathlib import Path
 import os
+from datetime import datetime
 from cerebras.cloud.sdk import Cerebras
+from twilio.rest import Client as TwilioClient
 
 # LLM setup
 load_dotenv()
 CEREBRAS_API_KEY = os.getenv("CEREBRAS_API_KEY")
+TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
+TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 SYSTEM_PROMPT = (Path(__file__).parent / 'system_prompt.txt').read_text()
 RESUME = (Path(__file__).parent / 'resume.txt').read_text()
 # MODEL = "gpt-5-nano"
@@ -18,8 +22,8 @@ RESUME = (Path(__file__).parent / 'resume.txt').read_text()
 # MODEL = "llama-3.3-70b"
 MODEL = "gpt-oss-120b"
 
-client = Cerebras(api_key=CEREBRAS_API_KEY)
-
+model_client = Cerebras(api_key=CEREBRAS_API_KEY)
+twilio_client = TwilioClient(username=TWILIO_ACCOUNT_SID, password=TWILIO_AUTH_TOKEN)
 
 # HTTP requests
 class ChatMessage(BaseModel):
@@ -57,7 +61,7 @@ def build_messages(user_messages: list[ChatMessage]) -> list[dict[str, str]]:
 @app.post("/chat")
 def chat_stream(request: ChatRequest) -> ChatResponse:
     def token_stream():
-        completion = client.chat.completions.create(
+        completion = model_client.chat.completions.create(
             model=MODEL,
             messages=build_messages(request.messages),
             stream=True
@@ -68,3 +72,12 @@ def chat_stream(request: ChatRequest) -> ChatResponse:
                 yield delta.content
 
     return StreamingResponse(token_stream(), media_type="text/plain")
+
+
+@app.get("/health")
+def health_check() -> dict[str, bool | str]:
+    return {
+        "status": "ok",
+        "api_key": bool(CEREBRAS_API_KEY),
+        "timestamp": datetime.utcnow().isoformat(),
+        }
