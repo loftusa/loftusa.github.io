@@ -18,7 +18,12 @@ jobs:
             exit 1
           fi
       - name: Send WhatsApp alert
-        if: steps.health_check.outcome == 'failure'
+        if: always() && steps.health_check.outcome == 'failure'
         run: |
-          echo "Would send WhatsApp here"
+          curl -X POST \
+            -u "${{ secrets.TWILIO_ACCOUNT_SID }}:${{ secrets.TWILIO_AUTH_TOKEN }}" \
+            https://api.twilio.com/2010-04-01/Accounts/${{ secrets.TWILIO_ACCOUNT_SID }}/Messages.json \
+            --data-urlencode "From=${{ secrets.ACCOUNT_WHATSAPP_NUMBER }}" \
+            --data-urlencode "To=${{ secrets.ALERT_WHATSAPP_NUMBER }}" \
+            --data-urlencode "Body=Alert: API health check failed at $(date -u +"%Y-%m-%d %H:%M:%S UTC"). Status: ${{ steps.health_check.outputs.status_code }}"
     
