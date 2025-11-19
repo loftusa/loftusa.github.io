@@ -12,7 +12,7 @@
 ~~- keep Fly.io machine warm~~
 
 ## Future (major)
-- add chat logging to see what recruiters asked about me
+- add chat logging
 - make faster
     - dont keep passing conversation history back and forth (store on Fly.io server)
     - Preload KV cache w/ background context whenever a new user accesses the website
@@ -29,5 +29,3 @@
 - make "send" button and input box lower w.r.t the conversation
 - switch to typescript over javascript
 
-
-?
