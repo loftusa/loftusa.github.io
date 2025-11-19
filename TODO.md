@@ -30,4 +30,4 @@
 - switch to typescript over javascript
 
 
-alright, nice job! we've done it. Now I want the chat interface to be pretty. Ideally it'd copy Anthropic's orange color scheme. Design should be in the style of Edward Tufte. I also like academic minimalism / mid-century modern furniture. Can you come up with a design scheme that hints at these things for the frontend chat interface, and can you outline the mimal changes we'd need to add/change to the repository to implement this?
+?
