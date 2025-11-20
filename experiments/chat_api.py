@@ -75,7 +75,7 @@ def build_messages(user_messages: list[ChatMessage]) -> list[dict[str, str]]:
 #   - latency_ms: float(end-start) * 1000
 
 
-LOG_PATH = Path(os.getenv("LOG_PATH", "/app/experiments/logs/chat_logs.jsonl"))
+LOG_PATH = Path(os.getenv("LOG_PATH", "experiments/logs/chat_logs.jsonl"))
 LOG_PATH.parent.mkdir(exist_ok=True, parents=True)
 current_time = datetime.utcnow().isoformat()
 
