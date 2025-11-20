@@ -10,6 +10,10 @@ from datetime import datetime
 from cerebras.cloud.sdk import Cerebras
 from twilio.rest import Client as TwilioClient
 
+import json
+import time
+
+
 # LLM setup
 load_dotenv()
 CEREBRAS_API_KEY = os.getenv("CEREBRAS_API_KEY")
@@ -58,22 +62,86 @@ def build_messages(user_messages: list[ChatMessage]) -> list[dict[str, str]]:
     return base
 
 
+# logging setup
+#  1. modify chat endpoint to:
+#   - record start timestamp before streaming begins
+#   - track bot response by accumulating chunks
+#   - record end timestamp after stream completes
+#  2. write log entry as JSONl with fields:
+#   - timestamp: ISO format string
+#   - user_message: string content
+#   - bot_response: full accumulated response string
+#   - latency_ms: float(end-start) * 1000
+
+
+LOG_PATH = Path(os.getenv("LOG_PATH", "experiments/logs/chat_logs.jsonl"))
+LOG_PATH.parent.mkdir(exist_ok=True, parents=True)
+current_time = datetime.utcnow().isoformat()
+
+def write_log_entry(user_message: str, bot_response: str, token_latency_ms: float, message_count: int, token_count: int) -> None:
+    """write a single log entry to a JSONL file"""
+    entry = {
+        "user_message": user_message, 
+        "bot_response": bot_response,
+        "token_latency_ms": token_latency_ms,
+        "timestamp": datetime.utcnow().isoformat(),
+        "message_count": message_count,
+        "token_count": token_count
+    }
+    try:
+        with LOG_PATH.open('a', encoding='utf-8') as f:
+            f.write(json.dumps(entry) + '\n')
+    except Exception as e:
+        print(f"logging failed with error:\n\n {e}")
+
+# write_log_entry('test message', 'the message worked', -1., 0)
+# write_log_entry('test message 2', 'its a success', -1, 1)
+
 @app.post("/chat")
 def chat_stream(request: ChatRequest) -> ChatResponse:
+    """
+    todo: 
+      - record start timestamp before streaming begins
+      - track bot response by accumulating chunks
+      - record end timestamp after stream completes
+    """
     def token_stream():
         completion = model_client.chat.completions.create(
             model=MODEL,
             messages=build_messages(request.messages),
             stream=True
         )
+        bot_response = ""
+        token_count = -1
+        start = time.time()
+        chunk_count = 0
         for chunk in completion:
             delta = chunk.choices[0].delta
             if delta and delta.content:
+                bot_response += delta.content
+                chunk_count += 1
                 yield delta.content
+            if hasattr(chunk, 'usage') and chunk.usage and chunk.usage.completion_tokens:
+                token_count = chunk.usage.completion_tokens
+        if token_count == -1:
+            token_count = chunk_count
+        latency = (time.time() - start)*1000
+        
+        message_count = len(request.messages)
+        user_message = request.messages[-1].content if request.messages else ''
+        token_latency_ms = latency / token_count if token_count not in [0, -1] else -1
+        write_log_entry(
+            user_message=user_message, 
+            bot_response=bot_response, 
+            token_latency_ms=token_latency_ms,
+            message_count=message_count,
+            token_count = token_count
+            )
 
     return StreamingResponse(token_stream(), media_type="text/plain")
 
 
+# health check
 @app.get("/health")
 def health_check() -> dict[str, bool | str]:
     return {
