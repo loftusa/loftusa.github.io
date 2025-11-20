@@ -22,6 +22,6 @@ primary_region = 'iad'
   cpu_kind = 'shared'
   cpus = 1
 
-[mounts]
+[[mounts]]
   source = "logs"
   destination = "/app/experiments/logs"
