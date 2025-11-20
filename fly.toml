@@ -21,3 +21,7 @@ primary_region = 'iad'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
+
+[mounts]
+  source = "logs"
+  destination = "/app/experiments/logs"
