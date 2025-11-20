@@ -1,3 +1,4 @@
+**/experiments/logs/
 __pycache__/
 **/*__pycache__
 *.pyc
@@ -7,3 +8,5 @@ _site/
 .ipynb_checkpoints
 .DS_STORE
 
+experiments/scale_prep.md
+scale.md

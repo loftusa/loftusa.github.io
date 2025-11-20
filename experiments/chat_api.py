@@ -34,6 +34,7 @@ class ChatMessage(BaseModel):
     role: str
     content: str
 class ChatRequest(BaseModel):
+    user_id: str | None = None
     messages: list[ChatMessage]
 class ChatResponse(BaseModel):
     reply: str
@@ -78,9 +79,10 @@ LOG_PATH = Path(os.getenv("LOG_PATH", "experiments/logs/chat_logs.jsonl"))
 LOG_PATH.parent.mkdir(exist_ok=True, parents=True)
 current_time = datetime.utcnow().isoformat()
 
-def write_log_entry(user_message: str, bot_response: str, token_latency_ms: float, message_count: int, token_count: int) -> None:
+def write_log_entry(user_message: str, bot_response: str, token_latency_ms: float, message_count: int, token_count: int, user_id: str|None) -> None:
     """write a single log entry to a JSONL file"""
     entry = {
+        "user_id": user_id,
         "user_message": user_message, 
         "bot_response": bot_response,
         "token_latency_ms": token_latency_ms,
@@ -135,7 +137,8 @@ def chat_stream(request: ChatRequest) -> ChatResponse:
             bot_response=bot_response, 
             token_latency_ms=token_latency_ms,
             message_count=message_count,
-            token_count = token_count
+            token_count = token_count,
+            user_id = request.user_id
             )
 
     return StreamingResponse(token_stream(), media_type="text/plain")

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const conversation = [];
+    const userId = getOrCreateUserId();
 
     formEl.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -35,6 +36,22 @@ document.addEventListener("DOMContentLoaded", function () {
         inputEl.value = "";
     });
 
+    function generateUUID() {
+        // Fallback if crypto.randomUUID() not available
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            const r = Math.random() * 16 | 0;
+            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+    function getOrCreateUserId() {
+        let userId = localStorage.getItem('chat_user_id');
+        if (!userId) {
+            userId = crypto.randomUUID ? crypto.randomUUID() : generateUUID();
+            localStorage.setItem('chat_user_id', userId)
+        }
+        return userId;
+    }
     async function streamBotReply(messages, onChunk) {
         const isLocalhost = window.location.hostname === "localhost" ||
                             window.location.hostname === "127.0.0.1";
@@ -47,7 +64,10 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ messages }),
+            body: JSON.stringify({
+                messages: messages,
+                user_id: userId || getOrCreateUserId()
+            }),
         });
 
         const reader = response.body.getReader();
