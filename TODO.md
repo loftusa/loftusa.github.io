@@ -10,9 +10,16 @@
 ~~add conversation history support~~
 ~~add health check endpoint and CI/CD~~
 ~~- keep Fly.io machine warm~~
+~~- add chat logging~~
+    - stats on chat logging
+    - notify me whenever a new user starts a chat
 
 ## Future (major)
-- add chat logging
+- build an evaluation harness for accuracy
+    - Q&A questions about my resume
+    - call backend on each question
+    - log raw responses, latency, errors
+    - output summary report
 - add live monitoring (tokens/sec, first response latency)
 - make faster
     - dont keep passing conversation history back and forth (store on Fly.io server)
@@ -21,11 +28,6 @@
 - make more cost-efficient
     - have fly.io machine start up only when at least one user is on the site (upon entering the site)
 - make UI prettier (anthropic-style, rendered as a box inline, scrolling possible)
-- build an evaluation harness for accuracy
-    - Q&A questions about my resume
-    - call backend on each question
-    - log raw responses, latency, errors
-    - output summary report
 - Add RAG with vector embeddings. Should contain 
   - all links in the resume so that the chat model has access to them if it needs
   - the code used to create the model chat window so that the model can figure out how it is set up

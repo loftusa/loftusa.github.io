@@ -15,8 +15,6 @@ if LOG_PATH.is_dir():
 LOG_PATH.parent.mkdir(exist_ok=True, parents=True)
 
 
-print(LOG_PATH)
-
 def sync():
     try:
         response = requests.get(
