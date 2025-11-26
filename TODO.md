@@ -15,6 +15,7 @@
     - notify me whenever a new user starts a chat
 
 ## Future (major)
+- classifier head that predicts whether a user is asking a question about the resume or not
 - build an evaluation harness for accuracy
     - Q&A questions about my resume
     - call backend on each question
