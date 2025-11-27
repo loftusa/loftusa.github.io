@@ -12,9 +12,9 @@
 ~~- keep Fly.io machine warm~~
 ~~- add chat logging~~
     - stats on chat logging
-    - notify me whenever a new user starts a chat
 
 ## Future (major)
+- classifier head that predicts whether a user is asking a question about the resume or not
 - build an evaluation harness for accuracy
     - Q&A questions about my resume
     - call backend on each question
@@ -35,4 +35,4 @@
 ## future (minor)
 - make "send" button and input box lower w.r.t the conversation
 - switch to typescript over javascript
-
+- log user id by IP address rather than making a new hash every time

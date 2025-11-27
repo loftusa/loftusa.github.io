@@ -27,7 +27,7 @@ About Me
 <script src="/assets/js/chat.js"></script>
 <br>
 
-(FYI for privacy, I log conversations on the resume LLM and do data science / ML engineering stuff with them!)  
+(FYI for privacy, I log conversations on the resume LLM and do data science / ML engineering stuff on them!)  
 
 Set up a meeting with me here: https://calendly.com/alexloftus2004/new-meeting-1
 

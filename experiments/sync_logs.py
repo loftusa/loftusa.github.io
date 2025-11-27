@@ -35,13 +35,15 @@ def sync():
     with LOG_PATH_TMP.open("w", encoding="utf-8") as f:
         f.write(response.text)
 
+    bytes_difference = LOG_PATH_TMP.stat().st_size - LOG_PATH.stat().st_size
     LOG_PATH_TMP.replace(LOG_PATH)
 
     bytes_downloaded = len(response.content)
     print(f"""
-    Synced logs from {LOG_SYNC_URL}.
+    Synced logs from {LOG_SYNC_URL}. 
     Logs saved in {LOG_PATH}.
     Bytes downloaded: {bytes_downloaded}. 
+    Bytes difference: {bytes_difference}.
     Time: {datetime.now().isoformat()}.
     """)
 
