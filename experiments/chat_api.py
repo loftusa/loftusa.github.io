@@ -42,19 +42,23 @@ class ChatResponse(BaseModel):
     reply: str
 
 
-app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost:4000",
-        "http://127.0.0.1:4000",
-        "https://alex-loftus.com",
-        "https://www.alex-loftus.com",
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+def setup_fastapi_app():
+    app = FastAPI()
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=[
+            "http://localhost:4000",
+            "http://127.0.0.1:4000",
+            "https://alex-loftus.com",
+            "https://www.alex-loftus.com",
+        ],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+    return app
+
+app = setup_fastapi_app()
 
 
 def build_messages(user_messages: list[ChatMessage]) -> list[dict[str, str]]:
@@ -92,7 +96,7 @@ def write_log_entry(
 
 
 @app.post("/chat")
-def chat_stream(request: ChatRequest) -> ChatResponse:
+def chat_stream(request: ChatRequest, logging: bool = True) -> ChatResponse:
     """
     todo:
       - record start timestamp before streaming begins
@@ -127,14 +131,15 @@ def chat_stream(request: ChatRequest) -> ChatResponse:
         message_count = len(request.messages)
         user_message = request.messages[-1].content if request.messages else ""
         token_latency_ms = latency / token_count if token_count not in [0, -1] else -1
-        write_log_entry(
-            user_message=user_message,
-            bot_response=bot_response,
-            token_latency_ms=token_latency_ms,
-            message_count=message_count,
-            token_count=token_count,
-            user_id=request.user_id,
-        )
+        if logging:
+            write_log_entry(
+                user_message=user_message,
+                bot_response=bot_response,
+                token_latency_ms=token_latency_ms,
+                message_count=message_count,
+                token_count=token_count,
+                user_id=request.user_id,
+            )
 
     return StreamingResponse(token_stream(), media_type="text/plain")
 
