@@ -81,6 +81,8 @@ def run_evaluation(dataset_path: Path, output_path: Path) -> EvalSummary:
     print(f"50th percentile: {percentile(latencies, p=0.50)}")
     print(f"75th percentile: {percentile(latencies, p=0.75)}")
 
+    return evaluations
+
 
 
 
