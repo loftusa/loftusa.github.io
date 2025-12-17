@@ -58,7 +58,12 @@ def run_evaluation(dataset_path: Path, output_path: Path) -> EvalSummary:
     for eval_question in dataset:
         full_response, elapsed_ms = call_chat_api((question:=eval_question['question']))
         all_passed, missing = check_facts(full_response, (expected_facts:=eval_question['expected_facts']))
+<<<<<<< HEAD
         summary = EvalSummary(
+=======
+        evaluations.append(
+            EvalSummary(
+>>>>>>> eval-harness
                 question=question,
                 expected_facts=expected_facts,
                 category=eval_question['category'],
@@ -67,6 +72,7 @@ def run_evaluation(dataset_path: Path, output_path: Path) -> EvalSummary:
                 all_passed=all_passed,
                 missing=missing
             )
+<<<<<<< HEAD
         evaluations.append(summary)
         with output_path.open('a', encoding='utf-8') as f:
             f.write(json.dumps(asdict(summary)) + "\n")
@@ -80,6 +86,16 @@ def run_evaluation(dataset_path: Path, output_path: Path) -> EvalSummary:
     print(f"25th percentile: {percentile(latencies, p=0.25)}")
     print(f"50th percentile: {percentile(latencies, p=0.50)}")
     print(f"75th percentile: {percentile(latencies, p=0.75)}")
+=======
+        )
+        with output_path.open('a', encoding='utf-8') as f:
+            f.write(json.dumps(asdict(evaluations)) + "\n")
+
+    total = len(evaluations)
+    passed_count = sum(1 for r in evaluations if r['all_passed'])
+    print(f"Accuracy: {passed_count}/{total} = {100*passed_count/total:.1f}%")
+
+>>>>>>> eval-harness
 
 
 

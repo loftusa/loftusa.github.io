@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const isLocalhost = window.location.hostname === "localhost" ||
                             window.location.hostname === "127.0.0.1";
         const apiUrl = isLocalhost
-            ? "http://127.0.0.1:8000/chat"
-            : "https://llm-resume-restless-thunder-9259.fly.dev/chat";
+            ? "http://127.0.0.1:8000/chat?logging=true"
+            : "https://llm-resume-restless-thunder-9259.fly.dev/chat?logging=true";
 
         const response = await fetch(apiUrl, {
             method: "POST",

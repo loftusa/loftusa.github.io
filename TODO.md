@@ -36,3 +36,4 @@
 - make "send" button and input box lower w.r.t the conversation
 - switch to typescript over javascript
 - log user id by IP address rather than making a new hash every time
+- speed up evaluation by switching to `httpx` with `asyncio`
