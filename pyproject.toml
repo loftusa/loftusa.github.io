@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "cerebras-cloud-sdk>=1.59.0",
+    "datasets>=4.4.1",
     "dotenv>=0.9.9",
     "fastapi>=0.121.2",
     "groq>=0.37.1",
@@ -15,6 +16,7 @@ dependencies = [
     "pydantic>=2.12.4",
     "python-dotenv>=1.2.1",
     "requests>=2.32.5",
+    "torch>=2.9.1",
     "transformers>=4.57.3",
     "twilio>=9.8.6",
     "uvicorn>=0.38.0",
