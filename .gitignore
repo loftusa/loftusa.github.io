@@ -1,3 +1,4 @@
+**/tinyllama-chat-lora/**
 gitignored/*
 .cursor/
 **/*.env
