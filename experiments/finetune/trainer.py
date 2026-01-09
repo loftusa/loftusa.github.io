@@ -1,12 +1,16 @@
 from transformers import Trainer, PreTrainedModel, AutoModelForCausalLM
 from torch.nn import CrossEntropyLoss
 
+
 class LengthWeightedTrainer(Trainer):
+    """
+    depracated
+    """
     def compute_loss(self, model: PreTrainedModel, inputs: dict, return_outputs=False, **kwargs):
+        raise NotImplementedError  # depracated for now
         response_lengths = inputs.pop("response_lengths")
         labels = inputs.pop("labels")
         outputs = model(**inputs)
-
 
         batch_size = outputs.logits.shape[0]
         loss_fn = CrossEntropyLoss(reduction="none")
@@ -29,6 +33,34 @@ class LengthWeightedTrainer(Trainer):
 
         return (loss, outputs) if return_outputs else loss
 
+
+class LengthPenaltyTrainer(Trainer):
+    def compute_loss(self, model: PreTrainedModel, inputs: dict, return_outputs=False, **kwargs):
+        response_lengths = inputs.pop("response_lengths")
+        labels = inputs.pop("labels")
+        outputs = model(**inputs)
+
+        batch_size = outputs.logits.shape[0]
+        loss_fn = CrossEntropyLoss(reduction="none")
+        logits = outputs.logits[:, :-1, :].contiguous()
+        shift_labels = labels[:, 1:].contiguous()
+
+        per_token_loss = loss_fn(logits.view(-1, logits.shape[-1]), shift_labels.view(-1))  # returns (batch*(seq-q),)
+        per_token_loss = per_token_loss.view(batch_size, -1)
+
+        # per-example loss (mean over valid tokens)
+        valid_mask = (shift_labels != -100)
+        valid_counts = valid_mask.sum(dim=1)  # (batch,)
+        per_example_loss = (per_token_loss * valid_mask).sum(dim=1) / valid_counts
+
+        # inverse-length weighting
+        weights = 1.0 / response_lengths.float()
+        weights = weights / weights.sum() * batch_size
+
+        loss = (per_example_loss * weights).mean()
+
+        return (loss, outputs) if return_outputs else loss
+  
 
 if __name__ == "__main__":
     from transformers import AutoTokenizer

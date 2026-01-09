@@ -25,13 +25,14 @@ def main():
         device_map='auto',
     )
 
-    # lora
+    # dora
     lora_config = LoraConfig(
         task_type=TaskType.CAUSAL_LM,
         r=8,
         lora_alpha=32,
         lora_dropout=0.1,
         target_modules=["q_proj", "v_proj"],
+        use_dora=True
     )
 
     model = get_peft_model(model, lora_config)

@@ -27,8 +27,8 @@ def tokenize_chat_example(
         response_length: int - number of tokens in response
     """
 
-    message_enc = tokenizer.encode(user_message, return_tensors='pt').squeeze(0)
-    response_enc = tokenizer.encode(bot_response, return_tensors='pt', add_special_tokens=False).squeeze(0)
+    message_enc = tokenizer.apply_chat_template(user_message, return_tensors='pt').squeeze(0)
+    response_enc = tokenizer.apply_chat_template(bot_response, return_tensors='pt', add_special_tokens=False).squeeze(0)
     eos = torch.tensor([tokenizer.eos_token_id], dtype=response_enc.dtype)
     response_enc = torch.cat((response_enc, eos))
 
