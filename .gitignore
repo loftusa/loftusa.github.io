@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 **/tinyllama-chat-lora/**
+=======
+<<<<<<< HEAD
+>>>>>>> master
 gitignored/*
+=======
+gitignored/
+>>>>>>> eval-harness
 .cursor/
 **/*.env
 **/experiments/logs/
