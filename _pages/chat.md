@@ -6,6 +6,18 @@ author_profile: false
 ---
 
 <div id="chat-container">
+  <div id="name-input-container">
+    <label for="name-input">Your name (optional):</label>
+    <input
+      id="name-input"
+      type="text"
+      placeholder="Enter your name"
+      autocomplete="off"
+    />
+    <button id="name-save" type="button">Save</button>
+    <span id="name-status"></span>
+  </div>
+
   <div id="chat-messages"></div>
 
   <form id="chat-form">

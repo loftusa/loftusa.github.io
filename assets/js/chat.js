@@ -2,14 +2,54 @@ document.addEventListener("DOMContentLoaded", function () {
     const messagesEl = document.getElementById("chat-messages");
     const formEl = document.getElementById("chat-form");
     const inputEl = document.getElementById("chat-input");
+    const nameInputEl = document.getElementById("name-input");
+    const nameSaveEl = document.getElementById("name-save");
+    const nameStatusEl = document.getElementById("name-status");
 
     if (!messagesEl || !formEl || !inputEl) {
         console.error("Chat elements not found on this page.");
         return;
     }
 
+    // Check if on main page
+    const nameContainerEl = document.getElementById("name-input-container");
+    const isMainPage = window.location.pathname === "/" ||
+                       window.location.pathname === "/about/" ||
+                       window.location.pathname === "/about.html";
+
+    // Load saved name if exists
+    const savedName = localStorage.getItem('chat_user_name');
+    if (savedName && nameInputEl) {
+        nameInputEl.value = savedName;
+        // Hide container on main page if name already saved
+        if (isMainPage && nameContainerEl) {
+            nameContainerEl.style.display = "none";
+        } else if (nameStatusEl) {
+            nameStatusEl.textContent = "✓ Saved";
+        }
+    }
+
+    if (nameSaveEl && nameInputEl) {
+        nameSaveEl.addEventListener("click", function () {
+            const name = nameInputEl.value.trim();
+            if (name) {
+                localStorage.setItem('chat_user_name', name);
+                // Hide container on main page after saving
+                if (isMainPage && nameContainerEl) {
+                    nameContainerEl.style.display = "none";
+                } else if (nameStatusEl) {
+                    nameStatusEl.textContent = "✓ Saved";
+                }
+            } else {
+                localStorage.removeItem('chat_user_name');
+                if (nameStatusEl) {
+                    nameStatusEl.textContent = "";
+                }
+            }
+        });
+    }
+
     const conversation = [];
-    const userId = getOrCreateUserId();
 
     formEl.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -45,19 +85,25 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
     function getOrCreateUserId() {
-        let userId = localStorage.getItem('chat_user_id');
-        if (!userId) {
-            userId = crypto.randomUUID ? crypto.randomUUID() : generateUUID();
-            localStorage.setItem('chat_user_id', userId)
+        // First check if user has saved a name
+        const savedName = localStorage.getItem('chat_user_name');
+        if (savedName) {
+            return savedName;
         }
-        return userId;
+        // Fall back to random hash
+        let hashId = localStorage.getItem('chat_user_id');
+        if (!hashId) {
+            hashId = crypto.randomUUID ? crypto.randomUUID() : generateUUID();
+            localStorage.setItem('chat_user_id', hashId)
+        }
+        return hashId;
     }
     async function streamBotReply(messages, onChunk) {
         const isLocalhost = window.location.hostname === "localhost" ||
                             window.location.hostname === "127.0.0.1";
         const apiUrl = isLocalhost
-            ? "http://127.0.0.1:8000/chat"
-            : "https://llm-resume-restless-thunder-9259.fly.dev/chat";
+            ? "http://127.0.0.1:8000/chat?logging=true"
+            : "https://llm-resume-restless-thunder-9259.fly.dev/chat?logging=true";
 
         const response = await fetch(apiUrl, {
             method: "POST",
@@ -66,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             body: JSON.stringify({
                 messages: messages,
-                user_id: userId || getOrCreateUserId()
+                user_id: getOrCreateUserId()
             }),
         });
 

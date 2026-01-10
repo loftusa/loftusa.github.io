@@ -47,5 +47,33 @@
 }
 
 #chat-container {
-    margin-top: 40px 
+    margin-top: 40px
+}
+
+#name-input-container {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#name-input-container label {
+    font-weight: 500;
+}
+
+#name-input {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+#name-save {
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+#name-status {
+    color: #2e7d32;
+    font-size: 0.9em;
 }
