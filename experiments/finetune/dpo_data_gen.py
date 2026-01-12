@@ -10,7 +10,7 @@ from tqdm import tqdm
 
 if __name__ == "__main__":
     # PROMPT = "Here is a user message: `{}`. \n An LLM had this response: `{}` \n Rewrite this response to be maximally concise while preserving all key information. Say and do nothing else."
-    PROMPT = "Rewrite this response to be maximally concise while preserving all key information."
+    PROMPT = "Rewrite this response to be maximally concise while preserving all key information. If the response "
     LOG_PATH = Path(os.getenv("LOG_PATH"))
     api_key = os.getenv("ANTHROPIC_API_KEY")
 
