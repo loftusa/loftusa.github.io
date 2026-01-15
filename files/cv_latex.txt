@@ -1,0 +1,447 @@
+%-------------------------
+% Resume in Latex
+% Author : Shubhi Rani
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,10.8pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome}
+\usepackage{emoji}
+\usepackage[T1]{fontenc}
+\usepackage{academicons}
+\usepackage{xcolor}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=cyan,
+  urlcolor=[rgb]{0,0,.4}
+}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.375in}
+\addtolength{\evensidemargin}{-0.375in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1in}
+
+\urlstyle{rm}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-3pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textit{\normalsize{#1}}{: #2 \vspace{-1pt}}
+  }
+}
+
+\newcommand{\resumeItemWithoutTitle}[1]{
+  \item\small{
+    {\vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{#2} \\
+      {\small#3} & #4 \\
+    \end{tabular*}\vspace{-1pt}
+}
+
+\newcommand{\educationSubheading}[6]{
+  \vspace{1pt}\item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{#2}\vspace{1pt} \\
+      {\normalsize#3} & #4\vspace{1pt} \\
+      {\normalsize#5}\vspace{1pt} \\
+      {\normalsize#6}\vspace{2pt} \\
+      \ifx&#6&\vspace{-30pt}\fi  % super hacky and not correct spacing, but whatever
+      
+    \end{tabular*}\vspace{0pt}
+}
+
+\newcommand{\resumeSubItem}[3]{
+  \setlength{\itemsep}{1pt}
+  \item\normalsize{
+    \textbf{{#1}}{: \small{#2 \vspace{1pt}}} \\
+    {\small{#3}\vspace{0pt}}
+  }
+}
+
+\newcommand{\topHeadingItem}[2]{
+  \setlength{\itemsep}{1pt}
+  \item\normalsize{
+    \textbf{\small{#1}}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\topHeadingListStart}{\begin{itemize}[label={}, leftmargin=0.05in, itemsep=0pt]}
+\newcommand{\topHeadingListEnd}{\end{itemize}\vspace{-22pt}}
+
+
+\renewcommand{\labelitemii}{$\circ$}
+
+% adjust indentation of bullet points
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[label={}, leftmargin=0.05in]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[label={}, leftmargin=0.05in]\vspace{-5pt}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\redstar}{\textcolor{red}{*}}
+
+
+%-------------------------------------------
+%%%%%%  CV STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  & \href{mailto:alexloftus2004@gmail.com}{\large{\faEnvelopeSquare} alexloftus2004@gmail.com} \href{https://alex-loftus.com}{\large{\faGlobe} alex-loftus.com}\\
+  \textbf{{\LARGE Alexander Loftus}} & 
+  \href{https://www.linkedin.com/in/alex-loftus/}{\large{\faLinkedinSquare} alex-loftus} 
+  \href{https://github.com/loftusa}{\large{\faGithub} loftusa} 
+  \href{https://scholar.google.com/citations?user=_Njcmm8AAAAJ&hl=en}{\large{\aiGoogleScholar} google scholar}\\
+\end{tabular*}
+
+%-----------Summary of Qualifications-----------------
+% \section{\centering Summary of Qualifications}
+\noindent\color{black}\rule{\linewidth}{0.4pt}  % make a black horizontal line
+AI researcher \& communicator with 7+ years of experience in deep learning \& machine learning. Research in code interpretability, attribution, and evaluation for Large Language Models. Seeking a role where technical depth, love for community-building, and teaching ability can combine. \href{https://www.alex-loftus.com/chat}{Chat with this CV!}
+
+\vspace{6pt}
+\textbf{\large Career highlights:}
+\vspace{-2pt}
+\topHeadingListStart
+    \topHeadingItem{Textbook Authorship}{Authored a \href{https://a.co/d/9r4BFkX}{524-page technical book} on statistical network ML (Cambridge University Press, November 2025)}\vspace{-2pt}
+    \topHeadingItem{Community-building}{Organized the \href{https://www.khoury.northeastern.edu/northeastern-mechanistic-interpretability-workshop-aims-to-make-sense-of-ai-systems/}{New England Mechanistic Interpretability} (NEMI) conference; \href{https://youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh&si=oR1Ool9xr3zrc_NN}{Linear Algebra YouTube lecture series} creator; delivered 10+ invited talks to 20-300 attendees; taught hundreds of students through meetups, summer camps, and tutorials.}\vspace{-2pt}
+    \topHeadingItem{Competitions}{Part of a 4-person team that won 1st place in the \$1,000,000 \href{https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection}{Vesuvius Kaggle competition.} Won \$100k Kaggle Ink Detection Progress Prize. (1,249 teams); \href{https://www.scientificamerican.com/article/inside-the-ai-competition-that-decoded-an-ancient-scroll-and-changed/}{featured on the cover of \emph{Scientific American}}. }\vspace{-2pt} 
+    \topHeadingItem{Research}{Subliminal learning work featured in \href{ https://youtu.be/NUAb6zHXqdI?t=1671}{YouTube video} with 1m+ subscribers; best poster award for a NeurIPS workshop paper; publications in top conferences.}\vspace{-2pt} 
+    \topHeadingItem{Strategic Advisory}{EleutherAI funding strategy consultant; \href{https://www.cbai.ai/david-bau-alex-loftus}{CBAI mentor} for Harvard/MIT students; advisor for \href{https://krnel.ai/}{cybersecurity/mechanistic interpretability} startup.}\vspace{-2pt}
+    \topHeadingItem{Cloud \& AI Infrastructure}{Light GCP/AWS background. First author on \href{https://arxiv.org/abs/2407.14561}{ICLR paper} on scaling up AI systems for interpretability; Scaled up an  \href{https://github.com/neurodata/m2g}{AI pipeline} for computational neuroscience.}\vspace{10pt}
+\topHeadingListEnd
+    
+    %--------PROGRAMMING SKILLS------------
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \educationSubheading
+      {Northeastern University}{Boston, MA}
+      {\textit{PhD Student,} Computer Science | AI/ML}{2024-Present}
+      {\textit{Advisor}: \href{https://scholar.google.com/citations?user=CYI6cKgAAAAJ&hl=en&oi=ao}{Dr. David Bau}}
+      {} \newline
+      
+      Focus on mechanistic interpretability in code language models. Data attribution, representation learning, causality.
+	    
+    \educationSubheading
+      {Johns Hopkins University}{Baltimore, MD}
+      {\textit{MSE} Biomedical Engineering | Machine Learning \& Data Science Focus}{2020-2022}
+      {\textit{Advisor}: \href{https://scholar.google.com/citations?user=DWPfdT4AAAAJ&hl=en&oi=ao}{Dr. Joshua Vogelstein}}
+      {\textit{Thesis}: \href{https://alex-loftus.com/files/submitted_thesis.pdf}{Hands-On Network Machine Learning}}
+      
+      dean's list, highest honors, GPA 3.97/4.0.
+	    
+    \educationSubheading
+      {Western Washington University}{Bellingham, WA}
+      {\textit{BS} Behavioral Neuroscience | \textit{Minors}: Chemistry, Philosophy}{2014-2018}
+      {\textit{Founder \& President}, Computational Neuroscience Club} 
+      
+      Built computational neuroscience club from scratch, taught weekly seminars.
+     
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------------
+\section{Experience}
+  \resumeSubHeadingListStart
+ 
+    % creyon
+    \resumeSubheading
+    {Data Scientist}{San Diego, CA}
+    {Creyon Bio}{2023-2024}
+    \resumeItemListStart
+        \resumeItem{Large Protein Models For Splice-Site Prediction}{Explored splice site prediction in LLMs trained on protein sequences. Pre-training, fine-tuning, and benchmarking+evals.}
+        \resumeItem{ML for Toxicity Prediction}{Developed a novel contrastive learning pipeline to predict oligo toxicity from 3-D electrostatic maps; increased classification AUC from 0.73 to 0.88.}
+        \resumeItem{Neuron Toxicity Detection}{Developed scalable neuron segmentation and toxicology classification pipeline.}
+
+      \resumeItemListEnd
+  
+  % IAI
+    \resumeSubheading
+    {Machine Learning Research Engineer}{Rockville, MD}
+    {Blue Halo}{2022-2023}
+    \resumeItemListStart
+        \resumeItem{Conditional Image Generation with Generative Adversarial Networks}{Built diffusion-model synthetic data generator.}
+        \resumeItem{Detecting Objects with Enhanced Yolo and Knowledge Graphs}{Led knowledge graph effort for object detection project. Delivered live demos to program officers.}
+        \resumeItem{Geometric Multi-Resolution Analysis}{Led infra for document clustering \& analysis method.}
+      \resumeItemListEnd
+     % JHU
+    \resumeSubheading
+    {Research Software Engineer}{Baltimore, MD}
+    {NeuroData Lab, Johns Hopkins University | Dr. Joshua Vogelstein}{2018-2020}
+    \resumeItemListStart
+    \resumeItem{\href{https://neurodata.io/m2g/}{MRI-to-Graphs}}{Optimized a diffusion MRI pipeline with docker and AWS Batch. Halved runtime and cut cloud costs by 40\%.}
+    \resumeItem{\href{https://microsoft.github.io/graspologic/latest/}{Graspologic}}{Worked on an open-source graph statistics library. Later adopted by Microsoft Research for large-scale network analysis.}
+    \resumeItemListEnd
+    
+    % ID TECH
+    \resumeSubheading
+    {Assistant Director}{Seattle, WA}
+    {iD Tech Camps | University of Washington}{2014-2018 summers}
+    \resumeItemListStart
+    \resumeItem{Leader and Manager}{Managed 10+ instructors/week and 300+ students.}
+    \resumeItem{Curriculum Designer}{Authored game development curriculum deployed to 50+ locations, impacting 10k+ students nationwide.} \resumeItemListEnd
+    % WWU
+    % \resumeSubheading
+    % {Research Assistant}{Bellingham, WA}
+    % {Western Washington University}{2015-2018}
+    % \resumeItemListStart
+    % \resumeItem{Associative learning in C. elegans}{Python automation pipeline cut 5 days of work down to minutes. Resulted in research presented at the Society for Neuroscience, 2017.}
+    % \resumeItemListEnd
+    
+\resumeSubHeadingListEnd
+
+\section{Skills Summary}
+    \resumeSubHeadingListStart
+        \resumeSubItem{Languages}{Python (advanced), Bash (intermediate), R, javascript, SQL}{}
+        \resumeSubItem{Tools \& Frameworks}{docker,  pytorch, pytorch-lightning, VLLM, AWS, google cloud (GCP), numpy, scipy, pandas, polars, scikit-learn, seaborn, matplotlib, photoshop, SQL, weights \& biases, mlflow, linux, cursor, ray, claude code, codex-cli}{}
+        \resumeSubItem{Areas of Expertise}{LLMs for code, interpretability, transformers, GPUs and CUDA, linear algebra, probability \& statistics, deep learning, information theory, diffusion models, convolutional autoencoders, public speaking, leadership \& management, teaching, natural language processing, computer vision}{}
+        \resumeSubItem{Soft Skills}{Public speaking, technical writing, leadership, mentorship, community-building}{}
+    \resumeSubHeadingListEnd
+
+
+
+
+%-----------TEXTBOOK-----------------
+\section{Textbook}
+\resumeSubHeadingListStart
+\resumeSubItem{\href{https://www.cambridge.org/core/books/handson-network-machine-learning-with-python/9735741A096973A9C963E930BBAF5368}{Hands-On Network Machine Learning with Python}}{\textit{Eric Bridgeford, \textbf{Alexander R. Loftus}, Joshua Vogelstein.} Cambridge University Press. Printed November 2025.}{Statistics + spectral representation theory on networks. 524 pages, 147 figures.}
+\resumeSubHeadingListEnd
+
+
+
+
+%-----------------PUBLICATIONS-------------------
+
+
+\section{Selected Publications}
+
+\small{\textcolor{red}{*} indicates equal contribution.} \\
+\small{\faTrophy\ indicates best poster.}
+
+\resumeSubHeadingListStart
+
+\resumeSubItem{\href{https://openreview.net/forum?id=auKgpBRzIW&noteId=auKgpBRzIW}{Token Entanglement in Subliminal Learning}}{\textit{A. Zur, Z. Ying, \textbf{A.R. Loftus}, et al.} NeurIPS mechanistic interpretability workshop 2025.}{Investigation on token entanglement in LLMs. Featured in \href{https://www.youtube.com/watch?v=NUAb6zHXqdI&t=1671s}{Welch Labs video} on YouTube.}
+
+\resumeSubItem{\href{https://arxiv.org/abs/2407.14561}{NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals}}{\textit{\textbf{A.R. Loftus}\redstar, J.Fiotto-Kaufman\redstar, et al.} ICLR 2025.}{Open source fabric for probing \& manipulating LLM weights without engineering overhead.}
+
+\resumeSubItem{\href{https://arxiv.org/abs/2311.06454}{\faTrophy  A Saliency-based Clustering Framework for Identifying Aberrant Predictions }}{\textit{A. Tersol Montserrat, \textbf{A.R. Loftus}, Y. Daihes.} Paper, \textbf{NeurIPS} LatinX AI Workshop, 2023.}{Detects spurious feature reliance via saliency embeddings.}
+
+\resumeSubItem{\href{https://www.biorxiv.org/content/10.1101/2021.11.01.466686v2}{A low-resource reliable pipeline to democratize multi-modal connectome estimation and analysis}}{\textit{J. Chung, R. Lawrence, \textbf{A.R. Loftus}, et al}. Paper, in review at Nature Methods, 2024}{Transforms diffusion MRI scans into graphs; open-sourced (\href{https://github.com/neurodata/m2g}{code})}
+
+% \resumeSubItem{Role of CAMKII in Associative Conditioning and GLR-1 Expression in C. Elegans}{\textit{M. Pribic, \textbf{A.R. Loftus}, et al}. Poster, Society for Neuroscience, 2017.} {Removing a protein involved in learning blocks associative conditioning in worms.}
+
+\resumeSubHeadingListEnd
+
+% LEADERSHIP
+\section{Leadership \& Community Engagement}
+\resumeSubHeadingListStart
+  
+  \resumeSubheading
+  {EleutherAI Funding Consultant}{EleutherAI}
+  {Developing funding strategy for EleutherAI's 2025 philanthropic effort}{2025}\vspace{-1pt}
+  
+  \resumeSubheading
+  {\href{https://nemiconf.github.io/summer24/}{Conference Organizer}}{NEMI}
+  {Running $200+$ person interpretability conference; Raised \$17,000 grant funding.}{2025}\vspace{-1pt}
+  
+  \resumeSubheading
+  {\href{https://www.cbai.ai/david-bau-alex-loftus}{Research Mentor}}{CBAI}
+  {Mentoring Harvard/MIT students in Summer 2025}{2025}\vspace{-1pt}
+  
+  \resumeSubheading
+  {Strategic Advisor}{Krnel.ai}
+  {Advisor to cybersecurity-focused startup specializing in interpretability tooling for AI systems.}{2025}\vspace{-1pt}
+  
+  \resumeSubheading
+  {\href{https://www.meetup.com/san-diego-machine-learning/}{Meetup Speaker}}{SDML}
+  {Speaker \& organizer for San Diego AI Meetups.}{2023 - 2024}\vspace{-1pt}
+
+  \resumeSubheading
+  {\href{https://neurodata.devpost.com/}{Hackathon Organizer}}{NeuroData Workshop}
+  {Helped organize hackathon \& workshop to explore statistics for high-dimensional testing.}{2019}\vspace{-1pt}
+
+\resumeSubHeadingListEnd
+
+\section{Talks \& Demos}
+
+\resumeSubHeadingListStart
+
+\resumeSubItem{White-Box Techniques for Code LLMs: Influence Benchmarking, the Attendome, and Variable State Debugging}{\textit{Lawrence Livermore National Laboratory, 2025}}{Invited talk on interpretability for code LLMs.}\vspace{-1pt}
+
+\resumeSubItem{A Shared Infrastructure for Interpretability}{\textit{FAR AI Tech. Innovations for AI Policy Conf., 2025}}{Invited demo for DC policymakers; showcased live editing of GPT2 internals}\vspace{-1pt}
+
+\resumeSubItem{\href{https://youtu.be/q9mC3T2aBL8}{State of the Art in Knowledge Editing}}{\textit{A.R. Loftus}, 2024}{Survey talk on LLM knowledge-editing methods.}\vspace{-1pt}
+
+\resumeSubItem{\href{https://www.youtube.com/watch?v=IWySc8s00P0}{1st Place Solution - Vesuvius Ink Competition}}{\textit{R. Chesler, \textbf{A.R. Loftus}, A. Tersol Montserrat, T. Kyi}, 2023}{Walkthrough of winning \$100,000 ink-detection model.}\vspace{-1pt}
+
+\resumeSubItem{\href{https://www.youtube.com/watch?v=V_hcmfdJzF8}{ICML Conference Highlights}}{\textit{\textbf{A.R. Loftus}}, 2023} {Selected breakthroughs from ICML. Presented to biotech execs and SDML meetup group.}\vspace{-1pt}
+
+\resumeSubItem{\href{https://lu.ma/aisd1}{Working with LLMs}}{AI San Diego Conference, 2023.} {Invited talk: Introduction to LLM engineering. 300+ attendees}\vspace{-1pt}
+
+\resumeSubItem{\href{https://www.youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh}{Linear Algebra, from Dot Products to Neural Networks}}{\textit{\textbf{A.R. Loftus}}, 2023.} {Created a YouTube tutorial series on the fundamentals of linear algebra for machine learning.}\vspace{-1pt}
+
+% \resumeSubItem{Effects of an unc-43 (CaMKII) Gene Deletion on Short-Term Memory for Associative Conditioning in C. elegans}{\textit{\textbf{A.R. Loftus}}, Psychfest 2017.} {Mechanistic understanding of worm neural circuitry.}
+
+\resumeSubHeadingListEnd
+
+
+
+
+
+
+
+
+
+%-----------------GRANTS-------------------
+\section{Fellowships \& Awards}
+\topHeadingListStart
+
+    \resumeSubheading
+    {\href{https://haist.ai/tech-fellowship}{Harvard AI Safety Technical Fellowship}}{}
+    {Harvard fellowship for technical work in AI safety.}{2025}
+    
+    \resumeSubheading
+    {GCP Research Grant}{}
+    {\$5,000 grant for computational research.}{2025}
+    
+    \resumeSubheading
+    {Khoury Distinguished Fellowship}{}
+    {Northeastern University PhD fellowship.}{2024}
+    
+    \resumeSubheading
+    {First Place Winner}{}
+    {\href{https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection/overview}{Kaggle Vesuvius Competition, \$100,000.}}{2023}
+    
+    \resumeSubheading
+    {Best Poster Award}{}
+    {NeurIPS 2023 LatinX AI Workshop.}{2023}
+
+    % \resumeSubheading
+    % {MIT EECS GAAP}{2023}
+    % {Selected for MIT mentorship program.}
+
+
+    \resumeSubheading
+    {AWS Research Grant}{}
+    {\$10,000 grant for computational research on cloud services.}{2019}
+
+\topHeadingListEnd
+\vspace{14pt}
+
+%-----------------TEACHING-------------------
+\section{Teaching}
+\resumeSubHeadingListStart
+
+    \resumeSubheading
+    {Head Teaching Assistant}{Johns Hopkins University}
+    {Foundations of Computational Biology and Bioinformatics, \textit{EN.BME.410/634}}{Spring 2021}
+    
+    \resumeSubheading
+    {Teaching Assistant}{Johns Hopkins University}
+    {\href{https://neurodatadesign.io/}{NeuroData Design II}, \textit{EN.BME.438/638}}{Spring 2020}
+    
+    \resumeSubheading
+    {Teaching Assistant}{Johns Hopkins University}
+    {\href{https://neurodatadesign.io/}{NeuroData Design I}, \textit{EN.BME.437/637}}{Fall 2019}
+
+    \resumeSubheading
+    {Teaching Assistant}{Western Washington University}
+    {Introduction to Behavioral Neuroscience, \textit{PSY.220}}{Winter 2017}
+    
+    \resumeSubheading
+    {Curriculum Designer}{iD Tech Camps}
+    {Built curriculum used across 50 locations in the United States by tens of thousands of students.}{Spring 2017}
+    
+    \resumeSubheading
+    {Instructor}{iD Tech Camps}
+    {Taught programming and game design to high school students.}{2014-2018 summers}
+
+
+\resumeSubHeadingListEnd
+
+    
+
+\section{Fun}
+    \resumeSubHeadingListStart
+        \resumeSubItem{Gaming}{Starcraft 2 grandmaster, local tournament winner; WoW 10-man server first ToGC (off-tank)}{}
+        \resumeSubItem{Music}{Fingerstyle guitarist; performed at open mic nights.}{}
+        \resumeSubItem{Dancing}{Partner dance instructor and competition winner (Fusion, West Coast Swing, Zouk)}{}
+    \resumeSubHeadingListEnd
+    
+%-----------PROJECTS-----------------
+% \section{Academic, Personal, \& Open-Source Projects}
+% \resumeSubHeadingListStart
+% \resumeSubItem{\href{https://github.com/neurodata/graphutils}{graphutils}}{Utility functions and statistics library for use on networks stored in AWS S3 buckets.}
+% \resumeSubItem{\href{https://github.com/loftusa/genetic-correlates-adhd}{Genetic Correlates of ADHD}}{Using a dataset of 50,000 ADHD genomes, including my own, to try to reduce noise in finding genes correlated with ADHD. Summary poster \href{https://i.ibb.co/cx5PVmB/Slide1.png}{here.}}
+% \resumeSubItem{\href{https://github.com/loftusa/mri-code-challenge/blob/master/Main-analysis.ipynb}{MRI Session Classifier}}{Exploratory data analysis on basic MRI data.}
+% \resumeSubItem{\href{https://github.com/loftusa/Dota-Stats}{Dota 2 Stats}}{Data analysis from statistics I generated while playing the video game dota 2, exploring the strengths and weaknesses of various characters with respect to my own playstyle.}
+% \resumeSubItem{\href{https://github.com/loftusa/General-Projects-And-Scripts}{Early Projects}}{Scripts and mini-projects from early years. Includes a web scraper for chemical compounds, estimations of basketball free-throw probabilities, grade trends, and code implementations of every chapter of two textbooks (linear algebra and data science)}
+
+
+% \resumeSubHeadingListEnd
+
+% \section{Self-learning / Informal Education}
+% \resumeSubHeadingListStart
+% \resumeSubItem{\href{https://www.codecademy.com/learn/learn-python-3}{Learn Python: Codecademy}} {Finished full course.}
+
+% \resumeSubItem{\href{https://automatetheboringstuff.com/}{Automate the Boring Stuff with Python}} {Finished full course.}
+
+% \resumeSubItem{\href{https://www.amazon.com/Introducing-Python-Modern-Computing-Packages/dp/1449359361}{Introducing Python}} {Finished book cover-to-cover.}
+
+% \resumeSubItem{\href{https://jakevdp.github.io/PythonDataScienceHandbook/}{Python Data Science Handbook}}{ Finished cover-to-cover.}
+
+% \resumeSubItem{\href{https://www.khanacademy.org/}{Khan Academy}} {Finished multivariate calculus series.}
+
+% \resumeSubItem{\href{https://linear.axler.net/}{Linear Algebra Done Right - Sheldon Axler}} {Finished entire textbook and 1/4 of the exercises.}
+
+% \resumeSubItem{\href{https://www.amazon.com/Mathematics-Discrete-Introduction-Edward-Scheinerman/dp/0840049420}{Mathematics: A Discrete Introduction}} {Finished cover-to-cover and 1/2 of the exercises.}
+
+% \resumeSubItem{\href{https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/}{MIT OpenCourseware: Matrix Methods for Machine Learning}} {Finished entire course}
+
+% \resumeSubItem{\href{https://ocw.mit.edu/courses/res-18-010-a-2020-vision-of-linear-algebra-spring-2020/}{MIT OpenCourseware: A 2020 Vision of Linear Algebra}} {Finished entire course}
+
+% \resumeSubItem{\href{https://github.com/ageron/handson-ml3}{Hands-On Machine Learning with Scikit-Learn, Keras and Tensorflow}} {Finished textbook}
+
+% \resumeSubItem{\href{https://course.fast.ai/}{Practical deep learning for coders}} {Finished full course}
+
+% \resumeSubHeadingListEnd
+%-------------------------------------------
+\end{document}
