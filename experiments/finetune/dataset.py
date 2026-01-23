@@ -11,7 +11,7 @@ from datasets import load_dataset
 
 
 dotenv.load_dotenv()
-MODEL_NAME = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
+MODEL_NAME = "Qwen/Qwen2-0.5B-Instruct"
 LOG_PATH = Path(os.getenv("LOG_PATH"))
 
 

@@ -28,7 +28,6 @@ dependencies = [
     "trl[peft]>=0.26.2",
     "twilio>=9.8.6",
     "typeguard>=4.4.4",
-    "unsloth>=2025.7.2",
     "uvicorn>=0.38.0",
-    "vllm>=0.1.2",
+    "rich>=14.2.0",
 ]

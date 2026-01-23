@@ -13,7 +13,7 @@ from trainer import LengthWeightedTrainer
 
 def main():
     LOG_PATH = Path(os.getenv("LOG_PATH"))
-    OUTPUT_DIR = "./tinyllama-chat-lora"
+    OUTPUT_DIR = "./qwen-instruct-lora"
 
     # model+tokenizer
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
