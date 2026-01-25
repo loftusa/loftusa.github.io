@@ -30,4 +30,5 @@ dependencies = [
     "typeguard>=4.4.4",
     "uvicorn>=0.38.0",
     "rich>=14.2.0",
+    "inspect-ai>=0.3.164",
 ]

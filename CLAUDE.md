@@ -84,16 +84,41 @@ Key files:
 - `EVAL_OUTPUT_PATH`: Path to evaluation output JSON
 
 ### Fine-tuning System (`experiments/finetune/`)
-**Goal**: Fine-tune TinyLlama with inverse-length weighted loss to produce shorter responses
+
+Two training approaches exist: SFT (inverse-length weighted) and DPO (direct preference optimization).
+
+#### SFT Training (Length-Weighted)
+**Goal**: Fine-tune with inverse-length weighted loss to produce shorter responses
 
 Architecture (see `finetune_plan.md` for detailed design):
-- `dataset.py`: `ChatDataset` class that tokenizes chat logs, masks prompt tokens in labels with -100, returns `{input_ids, labels, response_length}`
+- `dataset.py`: `ChatDataset` class that tokenizes chat logs, masks prompt tokens in labels with -100, returns `{input_ids, labels, response_length}`. Uses Qwen2-0.5B-Instruct as base model.
 - `collator.py`: `DataCollatorWithLengths` for left-padding batches and stacking response lengths
 - `trainer.py`: `LengthWeightedTrainer` (subclass of HuggingFace Trainer) - overrides `compute_loss` to weight loss inversely by response length
+- `train.py`: Main SFT training script using DoRA (LoRA with weight decomposition)
+- `inference.py`: Compare base vs LoRA model responses, shows token count difference
 
 **Key implementation detail**: Loss is computed per-token with `reduction="none"`, averaged per-example, then weighted by `1.0 / response_length`. Weights are normalized to preserve learning rate scale.
 
-Data sources:
+#### DPO Training (Refusal Training)
+**Goal**: Train model to refuse off-topic/inappropriate requests instead of complying
+
+**DPO Data Generation Pipeline**:
+- `dpo_data_gen.py`: Simple approach - uses Claude to rewrite responses more concisely, creates preference pairs where shorter=chosen
+- `dpo_data_gen_agents.py`: Agent-based approach using OpenAI Agents SDK with three agents:
+  - `RequestClassifier`: Categorizes requests as legitimate/off_topic/jailbreak/inappropriate
+  - `ComplianceChecker`: Checks if model incorrectly complied with bad requests
+  - `RefusalAgent`: Generates brief, professional refusals
+  - Only generates DPO pairs when model incorrectly complied (chosen=refusal, rejected=bad_response)
+- `run_dpo_variance.sh`: Runs data generation 10 times to measure variance
+- `analyze_dpo_variance.py`: Analyzes agreement across runs using sentence embeddings (all-MiniLM-L6-v2), generates visualizations in `variance_analysis/`
+- `combine_dpo_runs.py`: Combines multiple runs into consensus dataset based on agreement threshold (default 50%), uses shortest chosen and modal rejected
+
+**DPO Training & Inference**:
+- `dpo_train.py`: DPO training using TRL's `DPOTrainer` with LoRA on Qwen2-0.5B-Instruct. Trains on `local_datasets/dpo_combined.jsonl`
+- `dpo_chat.py`: Interactive chat to test DPO checkpoints. Commands: `quit`, `base` (toggle adapter), `ckpt#` (load checkpoint N)
+- `view_dpo.py`: Pretty-print DPO dataset with rich formatting
+
+**Data sources**:
 1. Real chat logs from `chat_logs.jsonl`
 2. Synthetic Q&A pairs generated from `resume.txt`
 
@@ -149,10 +174,11 @@ Data sources:
 - Model: Cerebras `gpt-oss-120b`
 
 ### Fine-tuning
-- Uses TinyLlama-1.1B-Chat-v1.0 as base model
-- LoRA/PEFT for memory efficiency
+- Uses Qwen2-0.5B-Instruct as base model (upgraded from TinyLlama)
+- LoRA/PEFT for memory efficiency (DoRA for SFT, standard LoRA for DPO)
 - Labels are masked with `-100` for prompt tokens (standard causal LM practice)
-- Response length weighting: `weight = 1.0 / response_length`, normalized to preserve batch loss scale
+- SFT: Response length weighting (`weight = 1.0 / response_length`, normalized)
+- DPO: Direct preference optimization for refusal training - model learns to refuse off-topic/inappropriate requests
 
 ### Testing
 - Write tests in `tests/` directory (use `pytest` and `hypothesis`)

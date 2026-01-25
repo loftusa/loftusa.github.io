@@ -1,12 +1,7 @@
-<<<<<<< HEAD
+**/.cache/*
+**/local_datasets/*
+**/checkpoints/*
 **/tinyllama-chat-lora/**
-=======
-<<<<<<< HEAD
->>>>>>> master
-gitignored/*
-=======
-gitignored/
->>>>>>> eval-harness
 .cursor/
 **/*.env
 **/experiments/logs/
