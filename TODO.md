@@ -11,15 +11,15 @@
 ~~add health check endpoint and CI/CD~~
 ~~- keep Fly.io machine warm~~
 ~~- add chat logging~~
-    - stats on chat logging
+    ~~- stats on chat logging~~
+- ~~build an evaluation harness for accuracy~~
+    ~~- Q&A questions about my resume~~
+    ~~- call backend on each question~~
+    ~~- log raw responses, latency, errors~~
+    ~~- output summary report~~
 
 ## Future (major)
 - classifier head that predicts whether a user is asking a question about the resume or not
-- build an evaluation harness for accuracy
-    - Q&A questions about my resume
-    - call backend on each question
-    - log raw responses, latency, errors
-    - output summary report
 - add live monitoring (tokens/sec, first response latency)
 - make faster
     - dont keep passing conversation history back and forth (store on Fly.io server)
@@ -31,6 +31,7 @@
 - Add RAG with vector embeddings. Should contain 
   - all links in the resume so that the chat model has access to them if it needs
   - the code used to create the model chat window so that the model can figure out how it is set up
+- add guardrails with the [Agents SDK](https://openai.github.io/openai-agents-python/)
 
 ## future (minor)
 - make "send" button and input box lower w.r.t the conversation

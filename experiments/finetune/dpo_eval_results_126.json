@@ -1,0 +1,25 @@
+{
+  "checkpoint": 126,
+  "num_eval_samples": 221,
+  "num_gen_samples": 20,
+  "preference_accuracy": {
+    "base": 0.8914027149321267,
+    "finetuned": 0.8914027149321267,
+    "base_margin": 1110.1004666289593,
+    "finetuned_margin": 1123.0845588235295
+  },
+  "response_length": {
+    "base_avg": 150.45,
+    "finetuned_avg": 93.65,
+    "reduction_pct": 37.753406447324686
+  },
+  "refusal_rate": {
+    "base": 0.15,
+    "finetuned": 0.1
+  },
+  "win_rate": {
+    "finetuned": 0.6,
+    "base": 0.26666666666666666,
+    "tie": 0.13333333333333333
+  }
+}

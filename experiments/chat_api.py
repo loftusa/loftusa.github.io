@@ -106,7 +106,9 @@ def chat_stream(request: ChatRequest, logging: bool = True) -> ChatResponse:
 
     def token_stream():
         completion = model_client.chat.completions.create(
-            model=MODEL, messages=build_messages(request.messages), stream=True
+            model=MODEL, 
+            messages=build_messages(request.messages), 
+            stream=True
         )
         bot_response = ""
         token_count = -1

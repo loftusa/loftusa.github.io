@@ -1,8 +1,7 @@
-<<<<<<< HEAD
-gitignored/*
-=======
-gitignored/
->>>>>>> eval-harness
+**/.cache/*
+**/local_datasets/*
+**/checkpoints/*
+**/tinyllama-chat-lora/**
 .cursor/
 **/*.env
 **/experiments/logs/

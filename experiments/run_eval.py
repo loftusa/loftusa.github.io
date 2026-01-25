@@ -97,6 +97,8 @@ def run_evaluation(dataset_path: Path, output_path: Path) -> EvalSummary:
 
 >>>>>>> eval-harness
 
+    return evaluations
+
 
 
 
