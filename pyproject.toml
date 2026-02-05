@@ -31,4 +31,8 @@ dependencies = [
     "uvicorn>=0.38.0",
     "rich>=14.2.0",
     "inspect-ai>=0.3.164",
+    "chromadb>=1.4.1",
+    "beautifulsoup4>=4.14.3",
+    "youtube-transcript-api>=1.0.0",
+    "pymupdf>=1.25.0",
 ]
