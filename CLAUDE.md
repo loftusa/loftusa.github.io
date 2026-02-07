@@ -122,6 +122,40 @@ Architecture (see `finetune_plan.md` for detailed design):
 1. Real chat logs from `chat_logs.jsonl`
 2. Synthetic Q&A pairs generated from `resume.txt`
 
+### Jailbreak Evaluation System (`experiments/evals/`)
+
+Evaluates the production Cerebras `gpt-oss-120b` chatbot against jailbreak attacks using the UK AISI [Inspect AI](https://inspect.ai-safety-institute.org.uk/) framework. Uses Cerebras's OpenAI-compatible API (`openai/gpt-oss-120b` with `OPENAI_BASE_URL=https://api.cerebras.ai/v1`).
+
+**Core pattern**: `Task = Dataset + Solver(s) + Scorer`
+
+**Dataset**: `jailbreak_dataset.jsonl` — 96 samples (63 jailbreak/refuse + 33 legitimate/answer) built by `build_dataset.py` from three sources: DPO jailbreak data, eval_dataset.json, and handwritten prompts. Categories: legitimate, prompt_injection, off_topic, creative_bypass, emotional, roleplay, authority, hypothetical, topic_drift.
+
+**6 progressive exercises** (docstring-only templates — user fills in code):
+| Exercise | Concepts | What You Build |
+|----------|----------|----------------|
+| `ex1_hello_world.py` | Task, MemoryDataset, Sample | 8 hardcoded samples, basic eval |
+| `ex2_jailbreak_dataset.py` | json_dataset(), record_to_sample() | Load 96-sample JSONL dataset |
+| `ex3_refusal_scorer.py` | @scorer, regex patterns, two-case logic | Category-aware refusal/answer scorer |
+| `ex4_llm_judge.py` | get_model(), LLM-as-judge | Claude judges model behavior |
+| `ex5_system_context.py` | @solver, ChatMessageSystem | Inject system prompt + resume |
+| `ex6_jailbreak_eval.py` | inspect_eval() API, results extraction | Per-category jailbreak defense table |
+
+Key files:
+- `model_api.py`: Maps `CEREBRAS_API_KEY` → `OPENAI_API_KEY`, sets `OPENAI_BASE_URL`. Exports `SYSTEM_PROMPT`, `RESUME`, `MODEL` constants.
+- `build_dataset.py`: Dataset builder (run once: `uv run build_dataset.py`)
+- `solutions.py`: Complete reference implementations for all 6 exercises
+- `run_eval.py`: CLI runner (`uv run run_eval.py ex1`, `uv run run_eval.py ex6 --use-solutions`)
+
+Running:
+```bash
+cd experiments/evals
+inspect eval solutions.py@context_eval --model openai/gpt-oss-120b --limit 10
+uv run solutions.py 20  # full programmatic eval with per-category table
+inspect view  # browse logs in browser
+```
+
+**Initial results** (15-sample test): 46.7% overall defense rate — creative_bypass 40%, emotional 100%, off_topic 50%, prompt_injection 33%.
+
 ### Jekyll Site Structure
 - `_pages/`: Main pages (about, cv, chat, publications, etc.)
 - `_posts/`: Blog posts (research notes, Bayesian analysis, etc.)
