@@ -31,4 +31,6 @@ dependencies = [
     "uvicorn>=0.38.0",
     "rich>=14.2.0",
     "inspect-ai>=0.3.164",
+    "faiss-cpu>=1.7.0",
+    "pypdf2>=3.0.0",
 ]

@@ -30,22 +30,17 @@ def main():
                         help="Path to checkpoint (default: checkpoint-126)")
     args = parser.parse_args()
 
-    # Import the task
-    # Use solutions for tasks that aren't implemented yet
+    # Import the task from the exercise file
     if args.exercise == "ex1":
         from ex1_hello_world import hello_world as task_fn
     elif args.exercise == "ex2":
-        # Use solution since ex2 is a template
-        from solutions import full_dataset as task_fn
+        from ex2_custom_dataset import full_dataset as task_fn
     elif args.exercise == "ex3":
-        # Use solution since ex3 is a template
-        from solutions import refusal_eval as task_fn
+        from ex3_refusal_scorer import refusal_eval as task_fn
     elif args.exercise == "ex4":
-        # Use solution since ex4 is a template
-        from solutions import judge_eval as task_fn
+        from ex4_llm_judge import judge_eval as task_fn
     elif args.exercise == "ex5":
-        # Use solution since ex5 is a template
-        from solutions import context_eval as task_fn
+        from ex5_custom_solver import context_eval as task_fn
     elif args.exercise == "ex6":
         from ex6_dpo_comparison import run_comparison
         run_comparison(limit=args.limit or 20)
@@ -68,7 +63,7 @@ def main():
     )
 
     # Print summary
-    if results:
+    if results and results[0].results:
         result = results[0]
         print("\n" + "=" * 60)
         print("Results")
@@ -77,6 +72,14 @@ def main():
             print(f"Scorer: {score.name}")
             for metric_name, metric in score.metrics.items():
                 print(f"  {metric_name}: {metric.value:.3f}")
+    else:
+        print("\n" + "=" * 60)
+        print("No results - check your implementation!")
+        print("=" * 60)
+        print("Common issues:")
+        print("  - Scorer returns None (forgot to return Score object)")
+        print("  - Solver returns None (forgot to return await generate(state))")
+        print("  - Empty REFUSAL_PATTERNS list")
 
 
 if __name__ == "__main__":

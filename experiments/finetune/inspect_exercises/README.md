@@ -1,101 +1,43 @@
-# Inspect AI Learning Exercises
+# Inspect AI Exercises
 
-Learn the UK AISI Inspect framework by rebuilding your DPO evaluation suite.
+Build an evaluation system for your DPO model using the UK AISI Inspect framework.
 
-## The Goal
+## Exercises
 
-By the end of these exercises, you'll have built an evaluation system that:
-1. Loads your `dpo_eval.jsonl` dataset
-2. Evaluates your DPO-trained model (from `dpo_train.py`)
-3. Compares refusal rates between base Qwen and your DPO checkpoint
-4. Replaces manual testing in `dpo_chat.py` with automated eval
+| # | Goal | Run |
+|---|------|-----|
+| 1 | Basic Task + Dataset + Scorer | `uv run python run_eval.py ex1 --limit 5` |
+| 2 | Load JSONL dataset | `uv run python run_eval.py ex2 --limit 5` |
+| 3 | Custom scorer (regex) | `uv run python run_eval.py ex3 --limit 10` |
+| 4 | LLM-as-judge scorer | `uv run python run_eval.py ex4 --limit 5` |
+| 5 | Custom solver (system prompt) | `uv run python run_eval.py ex5 --limit 5` |
+| 6 | Compare base vs DPO | `uv run python ex6_dpo_comparison.py` |
 
-## Core Mental Model
+## Reference
 
+`solutions.py` has working implementations.
+
+## Quick Reference
+
+```python
+# Task = Dataset + Solver + Scorer
+Task(dataset=my_dataset, solver=generate(), scorer=includes())
+
+# Sample
+Sample(input="question", target="expected", metadata={...})
+
+# Scorer
+@scorer(metrics=[accuracy()])
+def my_scorer():
+    async def score(state: TaskState, target: Target) -> Score:
+        return Score(value="C" or "I", answer=state.output.completion)
+    return score
+
+# Solver
+@solver
+def my_solver():
+    async def solve(state: TaskState, generate: Generate) -> TaskState:
+        state.messages.insert(0, ChatMessageSystem(content="..."))
+        return await generate(state)
+    return solve
 ```
-Task = Dataset + Solver(s) + Scorer
-
-Flow:
-1. Dataset provides Samples (input + target)
-2. Solver(s) transform TaskState (add messages, call model)
-3. Scorer evaluates output → Score
-```
-
-Key insight: Everything flows through **TaskState**, which holds:
-- `messages`: conversation history
-- `output`: model's final output
-- `input_text`: original prompt
-- `target`: expected answer/grading criteria
-
-## Exercise Progression
-
-All exercises use your local Qwen model via `model_api.py`.
-
-| Exercise | Concept | What You Build |
-|----------|---------|----------------|
-| ex1_hello_world.py | Task, Dataset, basic Scorer | Basic eval skeleton |
-| ex2_custom_dataset.py | Loading JSONL, field mapping | Load dpo_eval.jsonl |
-| ex3_refusal_scorer.py | Custom scorer with regex | Refusal rate metric |
-| ex4_llm_judge.py | Model-graded scorer | LLM-as-judge comparison |
-| ex5_custom_solver.py | Custom solver | System prompt injection |
-| **ex6_dpo_comparison.py** | **Programmatic eval** | **Compare base vs DPO!** |
-
-## How to Work Through
-
-1. Open an exercise file
-2. Read the docstring for context
-3. Fill in the TODOs (hints are provided)
-4. Run to verify (command in each file's docstring)
-5. Use `inspect view` to explore logs
-
-## CLI Commands
-
-```bash
-# From this directory
-cd experiments/finetune/inspect_exercises
-
-# Run any exercise with your base Qwen model
-inspect eval ex1_hello_world.py --model peft/Qwen/Qwen2-0.5B-Instruct
-
-# Run with your DPO-trained model
-inspect eval ex1_hello_world.py --model peft/Qwen/Qwen2-0.5B-Instruct \
-    --model-args checkpoint_path=../checkpoints/qwen-instruct-lora-dpo/checkpoint-126
-
-# Limit samples for faster iteration
-inspect eval ex3_refusal_scorer.py --model peft/Qwen/Qwen2-0.5B-Instruct --limit 10
-
-# View logs in browser
-inspect view
-
-# Exercise 6: Full comparison (both models)
-uv run python ex6_dpo_comparison.py
-```
-
-## Verification Checklist
-
-- [ ] Exercise 1: `inspect eval` runs, logs appear
-- [ ] Exercise 2: 221 samples loaded correctly
-- [ ] Exercise 3: Refusal accuracy metric appears
-- [ ] Exercise 4: LLM judge produces scores
-- [ ] Exercise 5: Model answers "What is Alex's education?" correctly
-- [ ] **Exercise 6: See refusal rate comparison (base vs DPO)**
-
-## Files
-
-- `model_api.py` - Custom PEFT ModelAPI (already implemented)
-- `ex1-ex6` - Exercise files with TODOs
-- `solutions.py` - Complete solutions to check against
-
-## Interview Talking Points
-
-After completing these exercises, you can discuss:
-
-1. **Architecture**: "Inspect uses a Task abstraction that combines Dataset, Solver chain, and Scorer."
-
-2. **Solvers**: "Solvers are composable transformations on TaskState. You chain them like `[system_message(), generate()]`."
-
-3. **Scorers**: "Scorers evaluate model output against targets. You can use built-ins like `includes()` or write custom async functions."
-
-4. **Custom Models**: "I integrated my local PEFT/LoRA model by implementing a custom ModelAPI class."
-
-5. **Practical Use**: "I used Inspect to compare my DPO-finetuned model against the base model, measuring refusal rate improvement."
