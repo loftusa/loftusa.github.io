@@ -11,11 +11,9 @@ Usage:
 
 import argparse
 
-import model_api  # noqa: F401 — sets up Cerebras env vars
+from model_api import MODEL
 
 from inspect_ai import eval as inspect_eval
-
-MODEL = "openai/gpt-oss-120b"
 
 
 def main():
