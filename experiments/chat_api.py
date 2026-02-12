@@ -22,7 +22,7 @@ RESUME = (Path(__file__).parent / "resume.txt").read_text()
 LOG_PATH = Path(os.getenv("LOG_PATH", "/app/experiments/logs/chat_logs.jsonl"))
 LOG_PATH.parent.mkdir(exist_ok=True, parents=True)
 LOG_ACCESS_TOKEN = os.getenv("LOG_ACCESS_TOKEN")
-MODEL = "qwen-3-235b-a22b-instruct-2507"
+MODEL = "zai-glm-4.7"
 
 model_client = Cerebras(api_key=CEREBRAS_API_KEY)
 

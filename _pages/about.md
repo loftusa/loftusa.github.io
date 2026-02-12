@@ -36,6 +36,7 @@ About Me
     <button id="chat-send" type="submit">Send</button>
   </form>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="/assets/js/chat.js"></script>
 <br>
 

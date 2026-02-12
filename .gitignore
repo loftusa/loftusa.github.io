@@ -16,3 +16,4 @@ _site/
 
 experiments/scale_prep.md
 scale.md
+**/evals/logs/*
