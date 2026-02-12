@@ -49,6 +49,7 @@ def setup_fastapi_app():
         allow_origins=[
             "http://localhost:4000",
             "http://127.0.0.1:4000",
+            "http://127.0.0.1:3863",
             "https://alex-loftus.com",
             "https://www.alex-loftus.com",
         ],

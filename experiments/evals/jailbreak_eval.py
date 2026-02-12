@@ -202,20 +202,43 @@ def run_comparison(limit=None, log_dir="logs/comparison"):
     print(f"{'=' * 72}")
     print_comparison_table(all_results)
 
+def get_failed_ids(log: EvalLog) -> list[str]:
+    return [
+        s.id for s in log.samples
+        if s.scores.get('model_graded_qa') and s.scores['model_graded_qa'].value != "C"
+    ]
+
+
+def get_latest_log(log_dir: str = "logs") -> EvalLog:
+    """Read the most recent .eval log file from log_dir."""
+    log_path = Path(log_dir)
+    eval_files = sorted(log_path.glob("*.eval"), key=lambda p: p.stat().st_mtime, reverse=True)
+    assert eval_files, f"No .eval files found in {log_path}"
+    return read_eval_log(str(eval_files[0]))
+
 
 @click.command()
 @click.option("--model", default=MODEL, help="Model to use for single eval.")
 @click.option("--limit", default=None, type=int, help="Number of samples to evaluate.")
 @click.option("--compare-all", is_flag=True, help="Run eval on all Cerebras models.")
 @click.option("--log-dir", default="logs/comparison", help="Log directory for comparison runs.")
-def main(model, limit, compare_all, log_dir):
+@click.option("--rerun-failures", is_flag=True, help="Re-run only samples that failed in the latest log.")
+def main(model, limit, compare_all, log_dir, rerun_failures):
     if compare_all:
         run_comparison(limit=limit, log_dir=log_dir)
+        return
+
+    if rerun_failures:
+        last_log = get_latest_log()
+        failed = get_failed_ids(last_log)
+        print(f"Re-running {len(failed)} failures")
+        results = inspect_eval(jailbreak_eval(), model=model, limit=limit, sample_id=failed)
     else:
         results = inspect_eval(jailbreak_eval(), model=model, limit=limit)
-        log = results[0]
-        category_results = extract_category_results(log)
-        print_results_table(category_results)
+
+    log = results[0]
+    category_results = extract_category_results(log)
+    print_results_table(category_results)
 
 
 if __name__ == "__main__":
