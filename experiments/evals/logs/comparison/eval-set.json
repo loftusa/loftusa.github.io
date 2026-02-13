@@ -1,0 +1,59 @@
+{
+  "eval_set_id": "KULS3NDun7Zfj4FY22Y3K4",
+  "tasks": [
+    {
+      "name": "jailbreak_eval",
+      "task_id": "FBwt3qjygSZ3aeyfhoRZUb",
+      "task_file": "jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/llama3.1-8b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "jailbreak_eval",
+      "task_id": "LYYU5cvVMiPRQZ2CyETe7q",
+      "task_file": "jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/llama-3.3-70b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "jailbreak_eval",
+      "task_id": "YGt7xgPNjDuCSe2BjW4U9s",
+      "task_file": "jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/gpt-oss-120b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "jailbreak_eval",
+      "task_id": "4brAuBYVUQcEq526LqTAYX",
+      "task_file": "jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/qwen-3-32b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "jailbreak_eval",
+      "task_id": "jXyXkfQJYAg62n7yxmQGiv",
+      "task_file": "jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/qwen-3-235b-a22b-instruct-2507",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "jailbreak_eval",
+      "task_id": "bLxayZu78d7cBAaoULY3BS",
+      "task_file": "jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/zai-glm-4.7",
+      "model_args": {},
+      "sequence": 0
+    }
+  ]
+}
