@@ -15,7 +15,8 @@ EXPERIMENTS_DIR = Path(__file__).parent.parent
 SYSTEM_PROMPT = (EXPERIMENTS_DIR / "system_prompt.txt").read_text() if (EXPERIMENTS_DIR / "system_prompt.txt").exists() else ""
 RESUME = (EXPERIMENTS_DIR / "resume.txt").read_text() if (EXPERIMENTS_DIR / "resume.txt").exists() else ""
 
-MODEL = "openai-api/cerebras/gpt-oss-120b"
+# MODEL = "openai-api/cerebras/gpt-oss-120b"
+MODEL = "openai-api/cerebras/zai-glm-4.7"
 
 CEREBRAS_MODELS = [
     "openai-api/cerebras/llama3.1-8b",

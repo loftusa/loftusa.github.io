@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const messagesEl = document.getElementById("chat-messages");
     const formEl = document.getElementById("chat-form");
     const inputEl = document.getElementById("chat-input");
+    const sendBtn = document.getElementById("chat-send");
     const nameInputEl = document.getElementById("name-input");
     const nameSaveEl = document.getElementById("name-save");
     const nameStatusEl = document.getElementById("name-status");
@@ -51,6 +52,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const conversation = [];
 
+    function setInputEnabled(enabled) {
+        inputEl.disabled = !enabled;
+        if (sendBtn) sendBtn.disabled = !enabled;
+    }
+
     formEl.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -59,21 +65,38 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        addMessage("You", text);
+        addMessage("You", text, false);
         conversation.push({ role: "user", content: text });
-
-        const botMessageEl = addMessage("Resume", "");
-        let botText = "";
-
-        await streamBotReply(conversation, (chunk) => {
-            botText += chunk;
-            botMessageEl.textContent = botText;
-            messagesEl.scrollTop = messagesEl.scrollHeight;
-        });
-
-        conversation.push({ role: "assistant", content: botText });
-
         inputEl.value = "";
+
+        const botMessageEl = addMessage("Resume", "", true);
+        botMessageEl.textContent = "...";
+        let botText = "";
+        let firstChunk = true;
+
+        setInputEnabled(false);
+
+        try {
+            await streamBotReply(conversation, (chunk) => {
+                if (firstChunk) {
+                    botMessageEl.textContent = "";
+                    firstChunk = false;
+                }
+                botText += chunk;
+                botMessageEl.innerHTML = marked.parse(botText);
+                messagesEl.scrollTop = messagesEl.scrollHeight;
+            });
+            conversation.push({ role: "assistant", content: botText });
+        } catch (err) {
+            console.error("Chat error:", err);
+            if (firstChunk) {
+                botMessageEl.textContent = "";
+            }
+            botMessageEl.textContent = "Something went wrong. Please try again.";
+        } finally {
+            setInputEnabled(true);
+            inputEl.focus();
+        }
     });
 
     function generateUUID() {
@@ -116,6 +139,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }),
         });
 
+        if (!response.ok) {
+            throw new Error("API returned " + response.status);
+        }
+
         const reader = response.body.getReader();
         const decoder = new TextDecoder("utf-8");
         let done = false;
@@ -130,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    function addMessage(sender, text) {
+    function addMessage(sender, text, isMarkdown) {
         const messageEl = document.createElement("div");
         messageEl.className = "chat-message";
 
@@ -138,7 +165,11 @@ document.addEventListener("DOMContentLoaded", function () {
         senderEl.textContent = sender + ": ";
 
         const textEl = document.createElement("div");
-        textEl.textContent = text;
+        if (isMarkdown && text) {
+            textEl.innerHTML = marked.parse(text);
+        } else {
+            textEl.textContent = text;
+        }
 
         messageEl.appendChild(senderEl);
         messageEl.appendChild(textEl);

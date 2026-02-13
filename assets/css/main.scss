@@ -40,10 +40,46 @@
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
 
-/* alex changes
+/* alex changes */
 /* Chat page styles */
 .chat-message div {
     white-space: pre-wrap;
+}
+
+.chat-message div p {
+    margin: 0.3em 0;
+}
+
+.chat-message div ul,
+.chat-message div ol {
+    margin: 0.3em 0;
+    padding-left: 1.4em;
+}
+
+.chat-message div code {
+    background: #f4f4f4;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.chat-message div pre {
+    background: #f4f4f4;
+    padding: 8px 12px;
+    border-radius: 4px;
+    overflow-x: auto;
+    white-space: pre;
+}
+
+.chat-message div pre code {
+    background: none;
+    padding: 0;
+}
+
+#chat-input:disabled,
+#chat-send:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 #chat-container {
