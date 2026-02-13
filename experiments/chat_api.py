@@ -11,13 +11,13 @@ from fastapi import Header, HTTPException, FastAPI
 from fastapi.responses import StreamingResponse, FileResponse, Response
 from fastapi.middleware.cors import CORSMiddleware
 
-from evals.model_api import MODEL
 
 # LLM setup + constants
 # Load .env from experiments directory (or parent directory)
 load_dotenv(dotenv_path=Path(__file__).parent / ".env")
 load_dotenv()  # Also try parent directory .env for backward compatibility
 CEREBRAS_API_KEY = os.getenv("CEREBRAS_API_KEY")
+MODEL = "zai-glm-4.7"
 SYSTEM_PROMPT = (Path(__file__).parent / "system_prompt.txt").read_text()
 RESUME = (Path(__file__).parent / "resume.txt").read_text()
 LOG_PATH = Path(os.getenv("LOG_PATH", "/app/experiments/logs/chat_logs.jsonl"))
