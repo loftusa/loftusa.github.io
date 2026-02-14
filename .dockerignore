@@ -1,0 +1,15 @@
+.git/
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+experiments/finetune/
+experiments/evals/
+experiments/logs/
+experiments/.env
+tests/
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata/
+*.egg-info/

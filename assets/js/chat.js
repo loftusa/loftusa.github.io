@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     firstChunk = false;
                 }
                 botText += chunk;
-                botMessageEl.innerHTML = marked.parse(botText);
+                botMessageEl.innerHTML = DOMPurify.sanitize(marked.parse(botText));
                 messagesEl.scrollTop = messagesEl.scrollHeight;
             });
             conversation.push({ role: "assistant", content: botText });
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const textEl = document.createElement("div");
         if (isMarkdown && text) {
-            textEl.innerHTML = marked.parse(text);
+            textEl.innerHTML = DOMPurify.sanitize(marked.parse(text));
         } else {
             textEl.textContent = text;
         }

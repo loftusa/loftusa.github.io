@@ -13,7 +13,7 @@ ENV PATH="/root/.local/bin:$PATH"
 
 COPY pyproject.toml .
 COPY uv.lock .
-RUN uv sync
+RUN uv sync --only-group prod
 
 COPY experiments/ ./experiments/
 

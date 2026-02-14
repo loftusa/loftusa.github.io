@@ -10,7 +10,6 @@ dependencies = [
     "bitsandbytes>=0.49.1",
     "cerebras-cloud-sdk>=1.59.0",
     "datasets>=4.4.1",
-    "dotenv>=0.9.9",
     "fastapi>=0.121.2",
     "groq>=0.37.1",
     "ipykernel>=7.1.0",
@@ -35,4 +34,13 @@ dependencies = [
     "beautifulsoup4>=4.14.3",
     "youtube-transcript-api>=1.0.0",
     "pymupdf>=1.25.0",
+]
+
+[dependency-groups]
+prod = [
+    "cerebras-cloud-sdk>=1.59.0",
+    "fastapi>=0.121.2",
+    "pydantic>=2.12.4",
+    "python-dotenv>=1.2.1",
+    "uvicorn>=0.38.0",
 ]
