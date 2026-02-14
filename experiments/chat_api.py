@@ -97,7 +97,7 @@ def write_log_entry(
 
 
 @app.post("/chat")
-def chat_stream(request: ChatRequest, logging: bool = True) -> ChatResponse:
+def chat_stream(request: ChatRequest, logging: bool = True) -> StreamingResponse:
     """
     todo:
       - record start timestamp before streaming begins
