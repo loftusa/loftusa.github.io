@@ -1,0 +1,84 @@
+name: Monitor API health
+on:
+  schedule:
+    - cron: '0 8,20 * * *'
+  workflow_dispatch:
+
+env:
+  API_BASE: https://llm-resume-restless-thunder-9259.fly.dev
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # ── Step 1: DNS resolution ──
+      - name: DNS resolution
+        run: |
+          echo "Resolving $(echo $API_BASE | sed 's|https://||')..."
+          start=$(date +%s%N)
+          if ! host_result=$(dig +short $(echo $API_BASE | sed 's|https://||') 2>&1); then
+            echo "::error::DNS resolution failed"
+            echo "$host_result"
+            exit 1
+          fi
+          elapsed=$(( ($(date +%s%N) - start) / 1000000 ))
+          echo "Resolved in ${elapsed}ms: $host_result"
+
+      # ── Step 2: TCP + TLS handshake ──
+      - name: TCP + TLS handshake
+        run: |
+          host=$(echo $API_BASE | sed 's|https://||')
+          curl_out=$(curl -sv --max-time 10 -o /dev/null \
+            -w "time_namelookup: %{time_namelookup}s\ntime_connect: %{time_connect}s\ntime_appconnect: %{time_appconnect}s\nssl_verify_result: %{ssl_verify_result}\n" \
+            "https://${host}/" 2>&1 || true)
+          echo "$curl_out" | grep -E "time_|ssl_"
+          # Check TLS succeeded (ssl_verify_result 0 = ok)
+          ssl_result=$(echo "$curl_out" | grep "ssl_verify_result" | awk '{print $2}')
+          if [ "$ssl_result" != "0" ]; then
+            echo "::error::TLS verification failed (ssl_verify_result=$ssl_result)"
+            echo "--- Full curl verbose output ---"
+            echo "$curl_out"
+            exit 1
+          fi
+
+      # ── Step 3: Health check ──
+      - name: Health check
+        run: |
+          response=$(curl -s --max-time 15 \
+            -w "\n---CURL_METRICS---\nhttp_code: %{http_code}\ncurl_exit: %{exitcode}\ntime_total: %{time_total}s\ntime_starttransfer: %{time_starttransfer}s\nsize_download: %{size_download} bytes\n" \
+            -D /tmp/health_headers \
+            "$API_BASE/health" || true)
+          curl_exit=$?
+
+          metrics=$(echo "$response" | sed -n '/---CURL_METRICS---/,$p')
+          body=$(echo "$response" | sed '/---CURL_METRICS---/,$d')
+          http_code=$(echo "$metrics" | grep "http_code:" | awk '{print $2}')
+
+          echo "::group::Health check details"
+          echo "curl exit code: $curl_exit"
+          echo "--- Timing & metrics ---"
+          echo "$metrics"
+          echo ""
+          echo "--- Response headers ---"
+          cat /tmp/health_headers 2>/dev/null || echo "(no headers captured)"
+          echo ""
+          echo "--- Response body ---"
+          echo "$body"
+          echo "::endgroup::"
+
+          if [ "$curl_exit" != "0" ] && [ "$curl_exit" != "" ]; then
+            echo "::error::Health check curl failed with exit code $curl_exit"
+            echo "Response so far: $body"
+            exit 1
+          fi
+          if [ "$http_code" != "200" ]; then
+            echo "::error::Health check failed with HTTP $http_code"
+            echo "--- Full response body ---"
+            echo "$body"
+            echo "--- Response headers ---"
+            cat /tmp/health_headers 2>/dev/null || echo "(no headers)"
+            exit 1
+          fi
+          echo "Health check passed (HTTP $http_code)"

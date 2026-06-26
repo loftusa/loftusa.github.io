@@ -1,0 +1,105 @@
+/* /perfumes/analyses/ — an elegant field guide to the scent atlas.
+   Editorial, Tufte-quiet, feminine: Cormorant display + warm cream, the bottles do the talking. */
+
+:root {
+  --cream: #faf8f3; --ink: #38332e; --ink-soft: #6f685e;
+  --ink-faint: #7d7461;   /* ~4.2:1 on cream — readable secondary text, still quiet */
+  --rose: #b8757d; --rose-deep: #9a565f; --line: #e7ded0; --line-soft: #efe9dc;
+}
+
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 28px 120px; }
+
+/* ---- hero ---- */
+.hero { padding: 78px 0 30px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-size: 12px; letter-spacing: .34em; text-transform: uppercase; color: var(--rose); }
+.hero h1 { font-family: "Cormorant Garamond", Garamond, serif; font-weight: 500;
+  font-size: 58px; line-height: 1.0; margin: 12px 0 0; letter-spacing: .3px; }
+.hero .sub { font-size: 17px; line-height: 1.62; color: var(--ink-soft); margin: 18px 0 0; max-width: 64ch; }
+.hero .sub b { color: var(--ink); font-weight: 600; }
+.hero .back { display: inline-block; margin-top: 22px; font-size: 14px; color: var(--rose-deep);
+  text-decoration: none; border-bottom: 1px solid #e3cdcf; }
+.hero .back:hover { border-bottom-color: var(--rose-deep); }
+
+/* ---- section scaffolding ---- */
+section { padding: 52px 0 0; }
+section > h2 { font-family: "Cormorant Garamond", Garamond, serif; font-weight: 600;
+  font-size: 33px; margin: 0 0 6px; }
+section > .note { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 26px; max-width: 62ch; }
+section > .note b { color: var(--ink); }
+
+/* ---- the fourteen families (a field guide) ---- */
+.fam-row { padding: 20px 0; border-top: 1px solid var(--line-soft); display: grid;
+  grid-template-columns: 232px 1fr; gap: 26px; align-items: start; }
+.fam-row:first-of-type { border-top: none; }
+.fam-id { }
+.fam-id .nm { font-family: "Cormorant Garamond", Garamond, serif; font-weight: 600; font-size: 23px;
+  line-height: 1.05; display: flex; align-items: baseline; gap: 9px; }
+.fam-id .sw { width: 12px; height: 12px; border-radius: 50%; flex: none; transform: translateY(1px); }
+.fam-id .share { margin-top: 9px; height: 6px; background: var(--line-soft); border-radius: 3px; overflow: hidden; }
+.fam-id .share i { display: block; height: 100%; border-radius: 3px; }
+.fam-id .pct { font-size: 12px; color: var(--ink-faint); margin-top: 4px; }
+.fam-id .meta { font-size: 12.5px; color: var(--ink-soft); margin-top: 11px; line-height: 1.7; }
+.fam-id .meta .k { color: var(--ink-faint); }
+/* gender lean bar */
+.glean { display: flex; height: 7px; border-radius: 4px; overflow: hidden; margin: 9px 0 3px; }
+.glean i { height: 100%; }
+.glean i.w { background: #cf8aa0; } .glean i.m { background: #6f8faf; } .glean i.u { background: #c9b48f; }
+.gkey { font-size: 10.5px; color: var(--ink-faint); letter-spacing: .02em; }
+
+.fam-notes { font-size: 13px; color: var(--ink-soft); margin: 0 0 12px; }
+.fam-notes .n { display: inline-block; background: #f3ece0; border-radius: 11px; padding: 2px 9px;
+  margin: 0 5px 5px 0; color: var(--ink); font-size: 12px; }
+.gallery { display: flex; gap: 8px; flex-wrap: wrap; }
+.gallery a { display: block; text-decoration: none; width: 58px; }
+.gallery .shot { width: 58px; height: 76px; border-radius: 6px; border: 1px solid var(--line);
+  background: #fff center/contain no-repeat; transition: transform .15s, box-shadow .15s; }
+.gallery a:hover .shot { transform: translateY(-2px); box-shadow: 0 5px 16px rgba(80,60,50,.16); }
+.gallery .cap { font-size: 9.5px; color: var(--ink-faint); margin-top: 3px; line-height: 1.15;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gallery .arch { outline: 2px solid var(--rose); outline-offset: 1px; }
+
+/* ---- twins gallery ---- */
+.twins { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.pair { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center;
+  padding: 16px; border: 1px solid var(--line); border-radius: 13px; background: #fffdf8; }
+.pair .side { text-align: center; min-width: 0; }
+.pair .side a { text-decoration: none; }
+.pair .shot { width: 62px; height: 82px; margin: 0 auto; border-radius: 6px; border: 1px solid var(--line);
+  background: #fff center/contain no-repeat; }
+.pair .nm { font-size: 12.5px; color: var(--ink); margin-top: 7px; line-height: 1.15; }
+.pair .br { font-size: 11px; color: var(--ink-faint); }
+.pair .eq { text-align: center; color: var(--rose); }
+.pair .eq .pct { font-family: "Cormorant Garamond", Garamond, serif; font-size: 22px; font-weight: 600; }
+.pair .eq .lab { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
+
+/* ---- loners strip ---- */
+.loners { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.loner { text-align: center; }
+.loner a { text-decoration: none; }
+.loner .shot { width: 72px; height: 94px; margin: 0 auto; border-radius: 7px; border: 1px solid var(--line);
+  background: #fff center/contain no-repeat; }
+.loner .nm { font-size: 12px; color: var(--ink); margin-top: 8px; line-height: 1.15; }
+.loner .br { font-size: 10.5px; color: var(--ink-faint); }
+.loner .nt { font-size: 10px; color: var(--ink-faint); margin-top: 4px; line-height: 1.35; font-style: italic; }
+
+/* ---- decades chart ---- */
+#decades { width: 100%; }
+.dec-row { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: center; margin-bottom: 7px; }
+.dec-row .yr { font-size: 13px; color: var(--ink-soft); text-align: right; }
+.dec-bar { display: flex; height: 22px; border-radius: 4px; overflow: hidden; background: var(--line-soft); }
+.dec-bar i { height: 100%; }
+.dec-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 20px; }
+.dec-legend .it { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--ink-soft); }
+.dec-legend .sw { width: 10px; height: 10px; border-radius: 50%; }
+
+.foot { margin-top: 70px; padding-top: 22px; border-top: 1px solid var(--line);
+  font-size: 13px; color: var(--ink-faint); line-height: 1.7; }
+.foot a { color: var(--rose-deep); text-decoration: none; border-bottom: 1px solid #e3cdcf; }
+.foot a:hover { border-bottom-color: var(--rose-deep); }
+
+@media (max-width: 720px) {
+  .hero h1 { font-size: 40px; }
+  .fam-row { grid-template-columns: 1fr; gap: 14px; }
+  .twins { grid-template-columns: 1fr; }
+  .loners { grid-template-columns: repeat(3, 1fr); }
+}

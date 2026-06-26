@@ -1,0 +1,2818 @@
+{
+ "people": [
+  {
+   "id": "h:A5026207393",
+   "label": "Abram Handler",
+   "initials": "AH"
+  },
+  {
+   "id": "h:A5073858017",
+   "label": "Aditi Chaudhary",
+   "initials": "AC"
+  },
+  {
+   "id": "h:A5068223710",
+   "label": "Alaa Abdel Latif",
+   "initials": "AA"
+  },
+  {
+   "id": "h:A5085827704",
+   "label": "Alan Balu",
+   "initials": "AB"
+  },
+  {
+   "id": "h:A5056219662",
+   "label": "Albert Webson",
+   "initials": "AW"
+  },
+  {
+   "id": "h:A5036806772",
+   "label": "Alexander L. Coon",
+   "initials": "AL"
+  },
+  {
+   "id": "h:A5055348866",
+   "label": "Ali Geisa",
+   "initials": "AG"
+  },
+  {
+   "id": "h:A5091370913",
+   "label": "Ali Mahzarnia",
+   "initials": "AM"
+  },
+  {
+   "id": "h:A5080972212",
+   "label": "Allison D. Lemmer",
+   "initials": "AD"
+  },
+  {
+   "id": "h:A5088386242",
+   "label": "Alvin Grissom",
+   "initials": "AG"
+  },
+  {
+   "id": "h:A5043044679",
+   "label": "Andisheh Amrollahi",
+   "initials": "AA"
+  },
+  {
+   "id": "h:A5003040843",
+   "label": "Andreas Krause",
+   "initials": "AK"
+  },
+  {
+   "id": "h:A5071740624",
+   "label": "Andrew Shaw",
+   "initials": "AS"
+  },
+  {
+   "id": "h:A5012793261",
+   "label": "Andrew Siemion",
+   "initials": "AS"
+  },
+  {
+   "id": "h:A5023335993",
+   "label": "Anish Mudide",
+   "initials": "AM"
+  },
+  {
+   "id": "h:A5012994458",
+   "label": "Ankita Gupta",
+   "initials": "AG"
+  },
+  {
+   "id": "h:A5018022850",
+   "label": "Aranyak Acharyya",
+   "initials": "AA"
+  },
+  {
+   "id": "h:A5109455967",
+   "label": "Ashish Rana",
+   "initials": "AR"
+  },
+  {
+   "id": "h:A5084571178",
+   "label": "Audrey Branch",
+   "initials": "AB"
+  },
+  {
+   "id": "h:A5002362689",
+   "label": "Bahar Sateli",
+   "initials": "BS"
+  },
+  {
+   "id": "h:A5068391167",
+   "label": "Bastian Seifert",
+   "initials": "BS"
+  },
+  {
+   "id": "h:A5078489506",
+   "label": "Benjamin D. Pedigo",
+   "initials": "BD"
+  },
+  {
+   "id": "h:A5101834124",
+   "label": "Bowen Jiang",
+   "initials": "BJ"
+  },
+  {
+   "id": "h:A5023365550",
+   "label": "Brendan O’Connor",
+   "initials": "BO"
+  },
+  {
+   "id": "h:A5032244188",
+   "label": "Brian Caffo",
+   "initials": "BC"
+  },
+  {
+   "id": "h:A5055582336",
+   "label": "Briana Abrahms",
+   "initials": "BA"
+  },
+  {
+   "id": "h:A5102836934",
+   "label": "Bryan Tower",
+   "initials": "BT"
+  },
+  {
+   "id": "h:A5031834098",
+   "label": "Carey E. Priebe",
+   "initials": "CE"
+  },
+  {
+   "id": "h:A5103171114",
+   "label": "Carlos Muñoz",
+   "initials": "CM"
+  },
+  {
+   "id": "h:A5014921416",
+   "label": "Carsten Eickhoff",
+   "initials": "CE"
+  },
+  {
+   "id": "h:A5101975391",
+   "label": "Catherine Chen",
+   "initials": "CC"
+  },
+  {
+   "id": "h:A5099025197",
+   "label": "Charlie M. Crawford",
+   "initials": "CM"
+  },
+  {
+   "id": "h:A5023405613",
+   "label": "Chenyu Gao",
+   "initials": "CG"
+  },
+  {
+   "id": "h:A5020967690",
+   "label": "Christian Bartelt",
+   "initials": "CB"
+  },
+  {
+   "id": "h:A5067262667",
+   "label": "Christopher White",
+   "initials": "CW"
+  },
+  {
+   "id": "h:A5047543012",
+   "label": "Connor Barrett",
+   "initials": "CB"
+  },
+  {
+   "id": "h:A5083822059",
+   "label": "Dan Alistarh",
+   "initials": "DA"
+  },
+  {
+   "id": "h:A5009266404",
+   "label": "Danielle S. Bassett",
+   "initials": "DS"
+  },
+  {
+   "id": "h:A5056959868",
+   "label": "Danish Pruthi",
+   "initials": "DP"
+  },
+  {
+   "id": "h:A5033305045",
+   "label": "David Bau",
+   "initials": "DB"
+  },
+  {
+   "id": "h:A5093902877",
+   "label": "David D. Baek",
+   "initials": "DD"
+  },
+  {
+   "id": "h:A5021896187",
+   "label": "David Thue",
+   "initials": "DT"
+  },
+  {
+   "id": "h:A5000100329",
+   "label": "Disa Mhembere",
+   "initials": "DM"
+  },
+  {
+   "id": "h:A5068036546",
+   "label": "Edward Raff",
+   "initials": "ER"
+  },
+  {
+   "id": "h:A5000096066",
+   "label": "Eli Kramer",
+   "initials": "EK"
+  },
+  {
+   "id": "h:A5089599249",
+   "label": "Emily Chang",
+   "initials": "EC"
+  },
+  {
+   "id": "h:A5091608339",
+   "label": "Erick M. Westbroek",
+   "initials": "EM"
+  },
+  {
+   "id": "h:A5036590364",
+   "label": "Fernanda Del Castillo",
+   "initials": "FD"
+  },
+  {
+   "id": "h:A5070585344",
+   "label": "Geoffrey P. Colby",
+   "initials": "GP"
+  },
+  {
+   "id": "h:A5049810748",
+   "label": "Gido M. van de Ven",
+   "initials": "GM"
+  },
+  {
+   "id": "h:A5062582323",
+   "label": "Giulia Grisolia",
+   "initials": "GG"
+  },
+  {
+   "id": "h:A5068811427",
+   "label": "Graham Neubig",
+   "initials": "GN"
+  },
+  {
+   "id": "h:A5053240953",
+   "label": "Gregory Kiar",
+   "initials": "GK"
+  },
+  {
+   "id": "h:A5089675192",
+   "label": "Haoyin Xu",
+   "initials": "HX"
+  },
+  {
+   "id": "h:A5108520183",
+   "label": "Isaac Liao",
+   "initials": "IL"
+  },
+  {
+   "id": "h:A5066969185",
+   "label": "J. Webster Stayman",
+   "initials": "JW"
+  },
+  {
+   "id": "h:A5064683530",
+   "label": "Jaewon Chung",
+   "initials": "JC"
+  },
+  {
+   "id": "h:A5101499187",
+   "label": "Jayanta Dey",
+   "initials": "JD"
+  },
+  {
+   "id": "h:A5068191508",
+   "label": "Jeff Trost",
+   "initials": "JT"
+  },
+  {
+   "id": "h:A5086776097",
+   "label": "Jeremias Sulam",
+   "initials": "JS"
+  },
+  {
+   "id": "h:A5055668668",
+   "label": "Jesse Read",
+   "initials": "JR"
+  },
+  {
+   "id": "h:A5006133545",
+   "label": "Jessica K Campos",
+   "initials": "JK"
+  },
+  {
+   "id": "h:A5056572216",
+   "label": "Jonathan Larson",
+   "initials": "JL"
+  },
+  {
+   "id": "h:A5066606219",
+   "label": "Joshua Agterberg",
+   "initials": "JA"
+  },
+  {
+   "id": "h:A5071093940",
+   "label": "Joshua B. Tenenbaum",
+   "initials": "JB"
+  },
+  {
+   "id": "h:A5104313316",
+   "label": "Joshua Engels",
+   "initials": "JE"
+  },
+  {
+   "id": "h:A5065441417",
+   "label": "Joshua T Vogelstein",
+   "initials": "JT"
+  },
+  {
+   "id": "h:A5104139679",
+   "label": "Jospeh W. Stayman",
+   "initials": "JW"
+  },
+  {
+   "id": "h:A5032360074",
+   "label": "Judy Huang",
+   "initials": "JH"
+  },
+  {
+   "id": "h:A5078893115",
+   "label": "Kalpesh Krishna",
+   "initials": "KK"
+  },
+  {
+   "id": "h:A5066364669",
+   "label": "Kasim Rafiq",
+   "initials": "KR"
+  },
+  {
+   "id": "h:A5067502662",
+   "label": "Laura Mercurio",
+   "initials": "LM"
+  },
+  {
+   "id": "h:A5004714414",
+   "label": "Louis Castricato",
+   "initials": "LC"
+  },
+  {
+   "id": "h:A5011215761",
+   "label": "Luke Yeh",
+   "initials": "LY"
+  },
+  {
+   "id": "h:A5025559955",
+   "label": "Malihe Alikhani",
+   "initials": "MA"
+  },
+  {
+   "id": "h:A5076407181",
+   "label": "Markus Püschel",
+   "initials": "MP"
+  },
+  {
+   "id": "h:A5089752802",
+   "label": "Marzena Karpinska",
+   "initials": "MK"
+  },
+  {
+   "id": "h:A5104241454",
+   "label": "Mateja Vukelić",
+   "initials": "MV"
+  },
+  {
+   "id": "h:A5089321471",
+   "label": "Matthew Tivnan",
+   "initials": "MT"
+  },
+  {
+   "id": "h:A5091601455",
+   "label": "Max Tegmark",
+   "initials": "MT"
+  },
+  {
+   "id": "h:A5073047671",
+   "label": "Medha Agarwal",
+   "initials": "MA"
+  },
+  {
+   "id": "h:A5033151214",
+   "label": "Michael I. Miller",
+   "initials": "MI"
+  },
+  {
+   "id": "h:A5005226161",
+   "label": "Michael Oesterle",
+   "initials": "MO"
+  },
+  {
+   "id": "h:A5053480593",
+   "label": "Michael Powell",
+   "initials": "MP"
+  },
+  {
+   "id": "h:A5082767919",
+   "label": "Mohit Iyyer",
+   "initials": "MI"
+  },
+  {
+   "id": "h:A5026910217",
+   "label": "Nancy Kanwisher",
+   "initials": "NK"
+  },
+  {
+   "id": "h:A5029793899",
+   "label": "Nihal V. Nayak",
+   "initials": "NV"
+  },
+  {
+   "id": "h:A5069332731",
+   "label": "Nik Bear Brown",
+   "initials": "NB"
+  },
+  {
+   "id": "h:A5085836868",
+   "label": "Noah Metzger",
+   "initials": "NM"
+  },
+  {
+   "id": "h:A5062985244",
+   "label": "Noam Finkelstein",
+   "initials": "NF"
+  },
+  {
+   "id": "h:A5114402379",
+   "label": "Oghenefejiro Isaacs Anigboro",
+   "initials": "OI"
+  },
+  {
+   "id": "h:A5061762931",
+   "label": "Patrick Fernandes",
+   "initials": "PF"
+  },
+  {
+   "id": "h:A5070897658",
+   "label": "Paul Swoboda",
+   "initials": "PS"
+  },
+  {
+   "id": "h:A5057633538",
+   "label": "Pawan Sinha",
+   "initials": "PS"
+  },
+  {
+   "id": "h:A5005019403",
+   "label": "Pedro Cabrales",
+   "initials": "PC"
+  },
+  {
+   "id": "h:A5100776173",
+   "label": "Qingyang Wang",
+   "initials": "QW"
+  },
+  {
+   "id": "h:A5084849539",
+   "label": "Randal Burns",
+   "initials": "RB"
+  },
+  {
+   "id": "h:A5010914685",
+   "label": "Rhonda Dzakpasu",
+   "initials": "RD"
+  },
+  {
+   "id": "h:A5020584092",
+   "label": "Rogelio E. Cardona-Rivera",
+   "initials": "RE"
+  },
+  {
+   "id": "h:A5055358499",
+   "label": "Sambit Panda",
+   "initials": "SP"
+  },
+  {
+   "id": "h:A5015567863",
+   "label": "Sarah F. Muldoon",
+   "initials": "SF"
+  },
+  {
+   "id": "h:A5086384189",
+   "label": "Sorelle A. Friedler",
+   "initials": "SA"
+  },
+  {
+   "id": "h:A5011117177",
+   "label": "Stephen H. Bach",
+   "initials": "SH"
+  },
+  {
+   "id": "h:A5103024110",
+   "label": "Steven P. Schulman",
+   "initials": "SP"
+  },
+  {
+   "id": "h:A5055371276",
+   "label": "Suchi Saria",
+   "initials": "SS"
+  },
+  {
+   "id": "h:A5093775237",
+   "label": "Tara Rezaei Kheirkhah",
+   "initials": "TR"
+  },
+  {
+   "id": "h:A5090033541",
+   "label": "Tyler M. Tomita",
+   "initials": "TM"
+  },
+  {
+   "id": "h:A5023215687",
+   "label": "Umberto Lucia",
+   "initials": "UL"
+  },
+  {
+   "id": "h:A5060150524",
+   "label": "Vasiliki Courelli",
+   "initials": "VC"
+  },
+  {
+   "id": "h:A5015527945",
+   "label": "Vedang Lad",
+   "initials": "VL"
+  },
+  {
+   "id": "h:A5012473250",
+   "label": "Vikram Chandrashekhar",
+   "initials": "VC"
+  },
+  {
+   "id": "h:A5101978099",
+   "label": "Weiwei Yang",
+   "initials": "WY"
+  },
+  {
+   "id": "h:A5033982504",
+   "label": "Wenlong Zhao",
+   "initials": "WZ"
+  },
+  {
+   "id": "h:A5071265225",
+   "label": "William Rudman",
+   "initials": "WR"
+  },
+  {
+   "id": "h:A5101866940",
+   "label": "Xiaoqing Sun",
+   "initials": "XS"
+  },
+  {
+   "id": "h:A5100363053",
+   "label": "Xin Chen",
+   "initials": "XC"
+  },
+  {
+   "id": "h:A5021862004",
+   "label": "Youngser Park",
+   "initials": "YP"
+  },
+  {
+   "id": "h:A5010613767",
+   "label": "Zaïd Harchaoui",
+   "initials": "ZH"
+  },
+  {
+   "id": "h:A5110807797",
+   "label": "Zheng-Xin Yong",
+   "initials": "ZY"
+  },
+  {
+   "id": "h:A5041044253",
+   "label": "Zijun Lin",
+   "initials": "ZL"
+  },
+  {
+   "id": "h:A5101924540",
+   "label": "Ziming Liu",
+   "initials": "ZL"
+  },
+  {
+   "id": "h:gh:aashiqmuhamed",
+   "label": "Aashiq Muhamed",
+   "initials": "AM"
+  },
+  {
+   "id": "h:gh:alexandersumer",
+   "label": "Alexander Sumer",
+   "initials": "AS"
+  },
+  {
+   "id": "h:gh:anishthite",
+   "label": "Anish Thite",
+   "initials": "AT"
+  },
+  {
+   "id": "h:gh:anthonyduong9",
+   "label": "Anthony Duong",
+   "initials": "AD"
+  },
+  {
+   "id": "h:gh:crowsonkb",
+   "label": "Katherine Crowson",
+   "initials": "KC"
+  },
+  {
+   "id": "h:gh:haileyschoelkopf",
+   "label": "Hailey Schoelkopf",
+   "initials": "HS"
+  },
+  {
+   "id": "h:gh:jon-tow",
+   "label": "Jonathan Tow",
+   "initials": "JT"
+  },
+  {
+   "id": "h:gh:leogao2",
+   "label": "Leo Gao",
+   "initials": "LG"
+  },
+  {
+   "id": "h:gh:lintangsutawika",
+   "label": "Lintang Sutawika",
+   "initials": "LS"
+  },
+  {
+   "id": "h:gh:neverix",
+   "label": "neverix",
+   "initials": "N"
+  },
+  {
+   "id": "h:gh:norabelrose",
+   "label": "Nora Belrose",
+   "initials": "NB"
+  },
+  {
+   "id": "h:gh:quentin-anthony",
+   "label": "Quentin Anthony",
+   "initials": "QA"
+  },
+  {
+   "id": "h:gh:trisongz",
+   "label": "trisongz",
+   "initials": "T"
+  }
+ ],
+ "links": [
+  {
+   "person": "h:A5026207393",
+   "org": "university-of-massachusetts-amherst",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 2,
+   "years": "2019",
+   "top": "Investigating Sports Commentator Bias within a Large Corpus of American Football Broadcasts (2019)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5073858017",
+   "org": "carnegie-mellon-university",
+   "via": [
+    "kayo yin"
+   ],
+   "n": 4,
+   "years": "2021",
+   "top": "When is Wall a Pared and when a Muro?: Extracting Rules Governing Lexical Selection (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5068223710",
+   "org": "university-of-san-francisco",
+   "via": [
+    "jeremy howard"
+   ],
+   "n": 2,
+   "years": "2021",
+   "top": "Deep learning-based point-scanning super-resolution imaging (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5085827704",
+   "org": "johns-hopkins-university",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Entropy estimation within <i>in vitro</i> neural-astrocyte networks as a measure of development instability (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5085827704",
+   "org": "politecnico-di-torino",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Entropy estimation within <i>in vitro</i> neural-astrocyte networks as a measure of development instability (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5056219662",
+   "org": "brown-university",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Multitask Prompted Training Enables Zero-Shot Task Generalization (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5036806772",
+   "org": "johns-hopkins-university",
+   "via": [
+    "bijan varjavand"
+   ],
+   "n": 1,
+   "years": "2018",
+   "top": "Declining complication rates with flow diversion of anterior circulation aneurysms after introduction of the Pipeline Flex: analysis of a single-institution series of 568 cases (2018)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5055348866",
+   "org": "johns-hopkins-university",
+   "via": [
+    "eric bridgeford",
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 10,
+   "years": "2021–2025",
+   "top": "Simple Lifelong Learning Machines (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5055348866",
+   "org": "microsoft",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 3,
+   "years": "2021",
+   "top": "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5091370913",
+   "org": "stanford-university",
+   "via": [
+    "eric bridgeford"
+   ],
+   "n": 1,
+   "years": "2025",
+   "top": "Network biomarkers of Alzheimer’s disease risk derived from joint volume and texture covariance patterns in mouse models (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5080972212",
+   "org": "johns-hopkins-university",
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "n": 4,
+   "years": "2019–2021",
+   "top": "Standardizing human brain parcellations (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5088386242",
+   "org": "university-of-massachusetts-amherst",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 2,
+   "years": "2019",
+   "top": "Investigating Sports Commentator Bias within a Large Corpus of American Football Broadcasts (2019)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5043044679",
+   "org": "eth-zurich",
+   "via": [
+    "chris wendler"
+   ],
+   "n": 2,
+   "years": "2020–2021",
+   "top": "Learning Set Functions that are Sparse in Non-Orthogonal Fourier Bases (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5003040843",
+   "org": "eth-zurich",
+   "via": [
+    "chris wendler"
+   ],
+   "n": 2,
+   "years": "2020–2021",
+   "top": "Learning Set Functions that are Sparse in Non-Orthogonal Fourier Bases (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5071740624",
+   "org": "university-of-san-francisco",
+   "via": [
+    "jeremy howard"
+   ],
+   "n": 2,
+   "years": "2021",
+   "top": "Deep learning-based point-scanning super-resolution imaging (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5012793261",
+   "org": "uc-berkeley",
+   "via": [
+    "eric michaud"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Lunar Opportunities for SETI (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5023335993",
+   "org": "mit",
+   "via": [
+    "eric michaud"
+   ],
+   "n": 1,
+   "years": "2024",
+   "top": "Opening the AI Black Box: Distilling Machine-Learned Algorithms into Code (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5012994458",
+   "org": "brown-university",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5012994458",
+   "org": "google",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5012994458",
+   "org": "university-of-massachusetts-amherst",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5018022850",
+   "org": "jhu-applied-physics-laboratory",
+   "via": [
+    "brandon duderstadt"
+   ],
+   "n": 1,
+   "years": "2025",
+   "top": "Statistical inference on black-box generative models in the data kernel perspective space (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5018022850",
+   "org": "johns-hopkins-university",
+   "via": [
+    "brandon duderstadt"
+   ],
+   "n": 1,
+   "years": "2025",
+   "top": "Statistical inference on black-box generative models in the data kernel perspective space (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5109455967",
+   "org": "university-of-mannheim",
+   "via": [
+    "jannik brinkmann"
+   ],
+   "n": 1,
+   "years": "2024",
+   "top": "GOV-REK: Governed Reward Engineering Kernels for Designing Robust Multi-Agent Reinforcement Learning Systems (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5084571178",
+   "org": "johns-hopkins-university",
+   "via": [
+    "devin crowley"
+   ],
+   "n": 2,
+   "years": "2021",
+   "top": "CloudReg: automatic terabyte-scale cross-modal brain volume registration (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5002362689",
+   "org": "pwc-canada",
+   "via": [
+    "rod moshtagi"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "Towards determining the criticality of AI applications: A model risk management perspective (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5068391167",
+   "org": "eth-zurich",
+   "via": [
+    "chris wendler"
+   ],
+   "n": 5,
+   "years": "2020–2023",
+   "top": "Causal Fourier Analysis on Directed Acyclic Graphs and Posets (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5078489506",
+   "org": "johns-hopkins-university",
+   "via": [
+    "eric bridgeford"
+   ],
+   "n": 8,
+   "years": "2019–2025",
+   "top": "Multiscale comparative connectomics (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5101834124",
+   "org": "johns-hopkins-university",
+   "via": [
+    "bijan varjavand"
+   ],
+   "n": 1,
+   "years": "2018",
+   "top": "Declining complication rates with flow diversion of anterior circulation aneurysms after introduction of the Pipeline Flex: analysis of a single-institution series of 568 cases (2018)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5023365550",
+   "org": "brown-university",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5023365550",
+   "org": "google",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5023365550",
+   "org": "university-of-massachusetts-amherst",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 3,
+   "years": "2019–2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5032244188",
+   "org": "johns-hopkins-university",
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "n": 13,
+   "years": "2017–2025",
+   "top": "When no answer is better than a wrong answer: A causal perspective on batch effects (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5055582336",
+   "org": "university-of-washington",
+   "via": [
+    "ronak mehta"
+   ],
+   "n": 2,
+   "years": "2024–2025",
+   "top": "Leveraging machine learning and accelerometry to classify animal behaviours with uncertainty (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5102836934",
+   "org": "johns-hopkins-university",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 3,
+   "years": "2021",
+   "top": "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5102836934",
+   "org": "microsoft",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 3,
+   "years": "2021",
+   "top": "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5031834098",
+   "org": "jhu-applied-physics-laboratory",
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "brandon duderstadt",
+    "hayden helm"
+   ],
+   "n": 5,
+   "years": "2021–2025",
+   "top": "Statistical inference on black-box generative models in the data kernel perspective space (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5031834098",
+   "org": "johns-hopkins-university",
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "brandon duderstadt",
+    "eric bridgeford",
+    "hayden helm",
+    "ronak mehta",
+    "ross lawrence",
+    "will levine"
+   ],
+   "n": 47,
+   "years": "2017–2025",
+   "top": "Statistical inference on black-box generative models in the data kernel perspective space (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5031834098",
+   "org": "microsoft",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 3,
+   "years": "2021",
+   "top": "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5103171114",
+   "org": "uc-san-diego",
+   "via": [
+    "madi kusmonov"
+   ],
+   "n": 1,
+   "years": "2020",
+   "top": "Effects of Increased Hemoglobin Oxygen Affinity on Cerebrovascular Reserve Capacity in Sickle Cell Disease (2020)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5014921416",
+   "org": "brown-university",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 2,
+   "years": "2022",
+   "top": "ACQuA: Arrhythmia Classification with Quasi-Attractors (2022)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5101975391",
+   "org": "brown-university",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2024",
+   "top": "Axiomatic Causal Interventions for Reverse Engineering Relevance Computation in Neural Retrieval Models (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5099025197",
+   "org": "haverford-college",
+   "via": [
+    "grace proebsting"
+   ],
+   "n": 1,
+   "years": "2025",
+   "top": "Identity-related Speech Suppression in Generative AI Content Moderation (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5023405613",
+   "org": "johns-hopkins-university",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 9,
+   "years": "2021–2025",
+   "top": "Simple Lifelong Learning Machines (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5023405613",
+   "org": "microsoft",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 3,
+   "years": "2021",
+   "top": "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5020967690",
+   "org": "university-of-mannheim",
+   "via": [
+    "jannik brinkmann"
+   ],
+   "n": 2,
+   "years": "2023–2024",
+   "top": "Unsupervised Extraction of Test Scenarios from Time-Series Sensor Data using Trace Graphs (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5067262667",
+   "org": "microsoft",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 3,
+   "years": "2021",
+   "top": "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5047543012",
+   "org": "johns-hopkins-university",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Entropy estimation within <i>in vitro</i> neural-astrocyte networks as a measure of development instability (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5047543012",
+   "org": "politecnico-di-torino",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Entropy estimation within <i>in vitro</i> neural-astrocyte networks as a measure of development instability (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5083822059",
+   "org": "eth-zurich",
+   "via": [
+    "chris wendler"
+   ],
+   "n": 1,
+   "years": "2019",
+   "top": "Powerset Convolutional Neural Networks (2019)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5009266404",
+   "org": "university-of-pennsylvania",
+   "via": [
+    "eric bridgeford"
+   ],
+   "n": 1,
+   "years": "2016",
+   "top": "Small-World Propensity and Weighted Brain Networks (2016)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5056959868",
+   "org": "carnegie-mellon-university",
+   "via": [
+    "kayo yin"
+   ],
+   "n": 2,
+   "years": "2021",
+   "top": "Do Context-Aware Translation Models Pay the Right Attention? (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5033305045",
+   "org": "northeastern-university",
+   "via": [
+    "rohit gandikota"
+   ],
+   "n": 1,
+   "years": "2024",
+   "top": "Concept Sliders: LoRA Adaptors for Precise Control in Diffusion Models (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5093902877",
+   "org": "mit",
+   "via": [
+    "eric michaud"
+   ],
+   "n": 1,
+   "years": "2025",
+   "top": "The Geometry of Concepts: Sparse Autoencoder Feature Structure (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5021896187",
+   "org": "carleton-university",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Towards a Model-Theoretic View of Narratives (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5021896187",
+   "org": "georgia-tech",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Towards a Model-Theoretic View of Narratives (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5000100329",
+   "org": "johns-hopkins-university",
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "n": 4,
+   "years": "2016–2021",
+   "top": "A low-resource reliable pipeline to democratize multi-modal connectome estimation and analysis (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5068036546",
+   "org": "booz-allen-hamilton",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 4,
+   "years": "2022–2023",
+   "top": "Crosslingual Generalization through Multitask Finetuning (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5000096066",
+   "org": "mit",
+   "via": [
+    "sarah schwettman"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "Intuitive Physics in Text-Conditional Image Generation (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5089599249",
+   "org": "johns-hopkins-university",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 6,
+   "years": "2021–2022",
+   "top": "Representation Ensembling for Synergistic Lifelong Learning with Quasilinear Complexity (2022)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5089599249",
+   "org": "microsoft",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 3,
+   "years": "2021",
+   "top": "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5091608339",
+   "org": "johns-hopkins-university",
+   "via": [
+    "bijan varjavand"
+   ],
+   "n": 1,
+   "years": "2018",
+   "top": "Declining complication rates with flow diversion of anterior circulation aneurysms after introduction of the Pipeline Flex: analysis of a single-institution series of 568 cases (2018)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5036590364",
+   "org": "pwc-canada",
+   "via": [
+    "rod moshtagi"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "Towards determining the criticality of AI applications: A model risk management perspective (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5070585344",
+   "org": "johns-hopkins-university",
+   "via": [
+    "bijan varjavand"
+   ],
+   "n": 1,
+   "years": "2018",
+   "top": "Declining complication rates with flow diversion of anterior circulation aneurysms after introduction of the Pipeline Flex: analysis of a single-institution series of 568 cases (2018)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5049810748",
+   "org": "microsoft",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 3,
+   "years": "2021",
+   "top": "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5062582323",
+   "org": "johns-hopkins-university",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Entropy estimation within <i>in vitro</i> neural-astrocyte networks as a measure of development instability (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5062582323",
+   "org": "politecnico-di-torino",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Entropy estimation within <i>in vitro</i> neural-astrocyte networks as a measure of development instability (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5068811427",
+   "org": "carnegie-mellon-university",
+   "via": [
+    "kayo yin"
+   ],
+   "n": 7,
+   "years": "2021–2022",
+   "top": "Interpreting Language Models with Contrastive Explanations (2022)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5068811427",
+   "org": "uc-berkeley",
+   "via": [
+    "kayo yin"
+   ],
+   "n": 1,
+   "years": "2022",
+   "top": "Interpreting Language Models with Contrastive Explanations (2022)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5053240953",
+   "org": "johns-hopkins-university",
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "n": 8,
+   "years": "2016–2021",
+   "top": "A low-resource reliable pipeline to democratize multi-modal connectome estimation and analysis (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5089675192",
+   "org": "johns-hopkins-university",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 6,
+   "years": "2022–2025",
+   "top": "Simple Lifelong Learning Machines (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5108520183",
+   "org": "mit",
+   "via": [
+    "eric michaud"
+   ],
+   "n": 1,
+   "years": "2024",
+   "top": "Opening the AI Black Box: Distilling Machine-Learned Algorithms into Code (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5066969185",
+   "org": "johns-hopkins-university",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 3,
+   "years": "2023–2025",
+   "top": "Fourier Diffusion Models: A Method to Control MTF and NPS in Score-Based Stochastic Image Generation (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5064683530",
+   "org": "jhu-applied-physics-laboratory",
+   "via": [
+    "anton alyakin",
+    "bijan varjavand"
+   ],
+   "n": 2,
+   "years": "2021",
+   "top": "Valid two‐sample graph testing via optimal transport Procrustes and multiscale graph correlation with applications in connectomics (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5064683530",
+   "org": "johns-hopkins-university",
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "n": 14,
+   "years": "2019–2025",
+   "top": "When no answer is better than a wrong answer: A causal perspective on batch effects (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5101499187",
+   "org": "johns-hopkins-university",
+   "via": [
+    "eric bridgeford",
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 11,
+   "years": "2019–2025",
+   "top": "Simple Lifelong Learning Machines (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5101499187",
+   "org": "microsoft",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 3,
+   "years": "2021",
+   "top": "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5068191508",
+   "org": "johns-hopkins-university",
+   "via": [
+    "anton alyakin"
+   ],
+   "n": 2,
+   "years": "2021–2022",
+   "top": "Using Machine Learning for Early Prediction of Cardiogenic Shock in Patients With Acute Heart Failure (2022)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5086776097",
+   "org": "johns-hopkins-university",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 12,
+   "years": "2022–2025",
+   "top": "Fourier Diffusion Models: A Method to Control MTF and NPS in Score-Based Stochastic Image Generation (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5055668668",
+   "org": "ecole-polytechnique",
+   "via": [
+    "kayo yin"
+   ],
+   "n": 1,
+   "years": "2020",
+   "top": "Better Sign Language Translation with STMC-Transformer (2020)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5006133545",
+   "org": "johns-hopkins-university",
+   "via": [
+    "bijan varjavand"
+   ],
+   "n": 1,
+   "years": "2018",
+   "top": "Declining complication rates with flow diversion of anterior circulation aneurysms after introduction of the Pipeline Flex: analysis of a single-institution series of 568 cases (2018)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5056572216",
+   "org": "microsoft",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 3,
+   "years": "2021",
+   "top": "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5066606219",
+   "org": "jhu-applied-physics-laboratory",
+   "via": [
+    "anton alyakin",
+    "bijan varjavand"
+   ],
+   "n": 2,
+   "years": "2021",
+   "top": "Valid two‐sample graph testing via optimal transport Procrustes and multiscale graph correlation with applications in connectomics (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5066606219",
+   "org": "johns-hopkins-university",
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "hayden helm"
+   ],
+   "n": 10,
+   "years": "2019–2024",
+   "top": "Correcting a nonparametric two-sample graph hypothesis test for graphs with different numbers of vertices with applications to connectomics (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5071093940",
+   "org": "mit",
+   "via": [
+    "sarah schwettman"
+   ],
+   "n": 3,
+   "years": "2018–2019",
+   "top": "Invariant representations of mass in the human brain (2019)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5104313316",
+   "org": "mit",
+   "via": [
+    "eric michaud"
+   ],
+   "n": 1,
+   "years": "2025",
+   "top": "The Geometry of Concepts: Sparse Autoencoder Feature Structure (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5065441417",
+   "org": "jhu-applied-physics-laboratory",
+   "via": [
+    "anton alyakin",
+    "bijan varjavand"
+   ],
+   "n": 2,
+   "years": "2021",
+   "top": "Valid two‐sample graph testing via optimal transport Procrustes and multiscale graph correlation with applications in connectomics (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5065441417",
+   "org": "johns-hopkins-university",
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "devin crowley",
+    "eric bridgeford",
+    "hayden helm",
+    "jacopo teneggi",
+    "ronak mehta",
+    "ross lawrence",
+    "will levine"
+   ],
+   "n": 57,
+   "years": "2016–2025",
+   "top": "When no answer is better than a wrong answer: A causal perspective on batch effects (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5104139679",
+   "org": "johns-hopkins-university",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "How to Trust Your Diffusion Model: A Convex Optimization Approach to Conformal Risk Control (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5032360074",
+   "org": "johns-hopkins-university",
+   "via": [
+    "bijan varjavand"
+   ],
+   "n": 1,
+   "years": "2018",
+   "top": "Declining complication rates with flow diversion of anterior circulation aneurysms after introduction of the Pipeline Flex: analysis of a single-institution series of 568 cases (2018)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5078893115",
+   "org": "brown-university",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5078893115",
+   "org": "google",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5078893115",
+   "org": "university-of-massachusetts-amherst",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5066364669",
+   "org": "university-of-washington",
+   "via": [
+    "ronak mehta"
+   ],
+   "n": 2,
+   "years": "2024–2025",
+   "top": "Leveraging machine learning and accelerometry to classify animal behaviours with uncertainty (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5067502662",
+   "org": "brown-university",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 2,
+   "years": "2022",
+   "top": "ACQuA: Arrhythmia Classification with Quasi-Attractors (2022)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5004714414",
+   "org": "carleton-university",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Towards a Model-Theoretic View of Narratives (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5004714414",
+   "org": "georgia-tech",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Towards a Model-Theoretic View of Narratives (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5011215761",
+   "org": "brown-university",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5011215761",
+   "org": "google",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5011215761",
+   "org": "university-of-massachusetts-amherst",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 3,
+   "years": "2019–2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5025559955",
+   "org": "carnegie-mellon-university",
+   "via": [
+    "kayo yin"
+   ],
+   "n": 1,
+   "years": "2022",
+   "top": "Including Signed Languages in Natural Language Processing (Extended Abstract) (2022)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5076407181",
+   "org": "eth-zurich",
+   "via": [
+    "chris wendler"
+   ],
+   "n": 9,
+   "years": "2019–2023",
+   "top": "Causal Fourier Analysis on Directed Acyclic Graphs and Posets (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5089752802",
+   "org": "brown-university",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5089752802",
+   "org": "google",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5089752802",
+   "org": "university-of-massachusetts-amherst",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5104241454",
+   "org": "mit",
+   "via": [
+    "eric michaud"
+   ],
+   "n": 1,
+   "years": "2024",
+   "top": "Opening the AI Black Box: Distilling Machine-Learned Algorithms into Code (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5089321471",
+   "org": "johns-hopkins-university",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 3,
+   "years": "2023–2025",
+   "top": "Fourier Diffusion Models: A Method to Control MTF and NPS in Score-Based Stochastic Image Generation (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5091601455",
+   "org": "mit",
+   "via": [
+    "eric michaud"
+   ],
+   "n": 3,
+   "years": "2023–2025",
+   "top": "The Geometry of Concepts: Sparse Autoencoder Feature Structure (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5073047671",
+   "org": "university-of-washington",
+   "via": [
+    "ronak mehta"
+   ],
+   "n": 2,
+   "years": "2024–2025",
+   "top": "Leveraging machine learning and accelerometry to classify animal behaviours with uncertainty (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5033151214",
+   "org": "johns-hopkins-university",
+   "via": [
+    "eric bridgeford",
+    "jacopo teneggi"
+   ],
+   "n": 2,
+   "years": "2018–2021",
+   "top": "Fitting Splines to Axonal Arbors Quantifies Relationship Between Branch Order and Geometry (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5005226161",
+   "org": "university-of-mannheim",
+   "via": [
+    "jannik brinkmann"
+   ],
+   "n": 1,
+   "years": "2024",
+   "top": "GOV-REK: Governed Reward Engineering Kernels for Designing Robust Multi-Agent Reinforcement Learning Systems (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5053480593",
+   "org": "johns-hopkins-university",
+   "via": [
+    "anton alyakin",
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "n": 7,
+   "years": "2021–2023",
+   "top": "Generative network modeling reveals quantitative definitions of bilateral symmetry exhibited by a whole insect brain connectome (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5082767919",
+   "org": "brown-university",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5082767919",
+   "org": "google",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5082767919",
+   "org": "university-of-massachusetts-amherst",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 2,
+   "years": "2019–2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5026910217",
+   "org": "mit",
+   "via": [
+    "sarah schwettman"
+   ],
+   "n": 3,
+   "years": "2018–2019",
+   "top": "Invariant representations of mass in the human brain (2019)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5029793899",
+   "org": "brown-university",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Multitask Prompted Training Enables Zero-Shot Task Generalization (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5069332731",
+   "org": "northeastern-university",
+   "via": [
+    "rohit gandikota"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "Hiding Video in Images: Harnessing Adversarial Learning on Deep 3D-Spatio-Temporal Convolutional Neural Networks (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5085836868",
+   "org": "university-of-mannheim",
+   "via": [
+    "jannik brinkmann"
+   ],
+   "n": 1,
+   "years": "2024",
+   "top": "Unsupervised Extraction of Test Scenarios from Time-Series Sensor Data using Trace Graphs (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5062985244",
+   "org": "johns-hopkins-university",
+   "via": [
+    "anton alyakin"
+   ],
+   "n": 2,
+   "years": "2021–2022",
+   "top": "Using Machine Learning for Early Prediction of Cardiogenic Shock in Patients With Acute Heart Failure (2022)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5114402379",
+   "org": "haverford-college",
+   "via": [
+    "grace proebsting"
+   ],
+   "n": 1,
+   "years": "2025",
+   "top": "Identity-related Speech Suppression in Generative AI Content Moderation (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5061762931",
+   "org": "carnegie-mellon-university",
+   "via": [
+    "kayo yin"
+   ],
+   "n": 3,
+   "years": "2021",
+   "top": "Measuring and Increasing Context Usage in Context-Aware Machine Translation (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5070897658",
+   "org": "university-of-mannheim",
+   "via": [
+    "jannik brinkmann"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "A Multidimensional Analysis of Social Biases in Vision Transformers (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5057633538",
+   "org": "mit",
+   "via": [
+    "sarah schwettman"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "Intuitive Physics in Text-Conditional Image Generation (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5005019403",
+   "org": "uc-san-diego",
+   "via": [
+    "madi kusmonov"
+   ],
+   "n": 1,
+   "years": "2020",
+   "top": "Effects of Increased Hemoglobin Oxygen Affinity on Cerebrovascular Reserve Capacity in Sickle Cell Disease (2020)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5100776173",
+   "org": "johns-hopkins-university",
+   "via": [
+    "eric bridgeford",
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 4,
+   "years": "2023–2025",
+   "top": "Simple Lifelong Learning Machines (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5084849539",
+   "org": "johns-hopkins-university",
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "n": 7,
+   "years": "2016–2021",
+   "top": "Supervised dimensionality reduction for big data (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5010914685",
+   "org": "politecnico-di-torino",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Entropy estimation within <i>in vitro</i> neural-astrocyte networks as a measure of development instability (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5020584092",
+   "org": "carleton-university",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Towards a Model-Theoretic View of Narratives (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5020584092",
+   "org": "georgia-tech",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Towards a Model-Theoretic View of Narratives (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5055358499",
+   "org": "johns-hopkins-university",
+   "via": [
+    "eric bridgeford",
+    "ronak mehta",
+    "ross lawrence"
+   ],
+   "n": 4,
+   "years": "2019–2025",
+   "top": "When no answer is better than a wrong answer: A causal perspective on batch effects (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5015567863",
+   "org": "university-of-pennsylvania",
+   "via": [
+    "eric bridgeford"
+   ],
+   "n": 1,
+   "years": "2016",
+   "top": "Small-World Propensity and Weighted Brain Networks (2016)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5086384189",
+   "org": "haverford-college",
+   "via": [
+    "grace proebsting"
+   ],
+   "n": 1,
+   "years": "2025",
+   "top": "Identity-related Speech Suppression in Generative AI Content Moderation (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5011117177",
+   "org": "brown-university",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Multitask Prompted Training Enables Zero-Shot Task Generalization (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5103024110",
+   "org": "johns-hopkins-university",
+   "via": [
+    "anton alyakin"
+   ],
+   "n": 2,
+   "years": "2021–2022",
+   "top": "Using Machine Learning for Early Prediction of Cardiogenic Shock in Patients With Acute Heart Failure (2022)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5055371276",
+   "org": "johns-hopkins-university",
+   "via": [
+    "anton alyakin"
+   ],
+   "n": 2,
+   "years": "2021–2022",
+   "top": "Using Machine Learning for Early Prediction of Cardiogenic Shock in Patients With Acute Heart Failure (2022)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5093775237",
+   "org": "mit",
+   "via": [
+    "eric michaud"
+   ],
+   "n": 1,
+   "years": "2024",
+   "top": "Opening the AI Black Box: Distilling Machine-Learned Algorithms into Code (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5090033541",
+   "org": "johns-hopkins-university",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 4,
+   "years": "2023–2025",
+   "top": "Simple Lifelong Learning Machines (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5023215687",
+   "org": "politecnico-di-torino",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Entropy estimation within <i>in vitro</i> neural-astrocyte networks as a measure of development instability (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5060150524",
+   "org": "uc-san-diego",
+   "via": [
+    "madi kusmonov"
+   ],
+   "n": 1,
+   "years": "2020",
+   "top": "Effects of Increased Hemoglobin Oxygen Affinity on Cerebrovascular Reserve Capacity in Sickle Cell Disease (2020)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5015527945",
+   "org": "mit",
+   "via": [
+    "eric michaud"
+   ],
+   "n": 1,
+   "years": "2024",
+   "top": "Opening the AI Black Box: Distilling Machine-Learned Algorithms into Code (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5012473250",
+   "org": "johns-hopkins-university",
+   "via": [
+    "devin crowley",
+    "eric bridgeford",
+    "jacopo teneggi",
+    "ross lawrence"
+   ],
+   "n": 8,
+   "years": "2017–2021",
+   "top": "CloudReg: automatic terabyte-scale cross-modal brain volume registration (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5101978099",
+   "org": "microsoft",
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "n": 5,
+   "years": "2021–2024",
+   "top": "Approximately Optimal Domain Adaptation with Fisher’s Linear Discriminant (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5033982504",
+   "org": "google",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5033982504",
+   "org": "university-of-massachusetts-amherst",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 1,
+   "years": "2023",
+   "top": "ezCoref: Towards Unifying Annotation Guidelines for Coreference Resolution (2023)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5071265225",
+   "org": "brown-university",
+   "via": [
+    "jack merullo"
+   ],
+   "n": 2,
+   "years": "2022",
+   "top": "ACQuA: Arrhythmia Classification with Quasi-Attractors (2022)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5101866940",
+   "org": "mit",
+   "via": [
+    "eric michaud"
+   ],
+   "n": 1,
+   "years": "2025",
+   "top": "The Geometry of Concepts: Sparse Autoencoder Feature Structure (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5100363053",
+   "org": "politecnico-di-torino",
+   "via": [
+    "jacopo teneggi"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Entropy estimation within <i>in vitro</i> neural-astrocyte networks as a measure of development instability (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5021862004",
+   "org": "johns-hopkins-university",
+   "via": [
+    "anton alyakin",
+    "eric bridgeford",
+    "hayden helm"
+   ],
+   "n": 4,
+   "years": "2019–2025",
+   "top": "Multiscale comparative connectomics (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5010613767",
+   "org": "university-of-washington",
+   "via": [
+    "ronak mehta"
+   ],
+   "n": 2,
+   "years": "2024–2025",
+   "top": "Leveraging machine learning and accelerometry to classify animal behaviours with uncertainty (2025)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5110807797",
+   "org": "brown-university",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "2021",
+   "top": "Multitask Prompted Training Enables Zero-Shot Task Generalization (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5041044253",
+   "org": "university-of-san-francisco",
+   "via": [
+    "jeremy howard"
+   ],
+   "n": 2,
+   "years": "2021",
+   "top": "Deep learning-based point-scanning super-resolution imaging (2021)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:A5101924540",
+   "org": "mit",
+   "via": [
+    "eric michaud"
+   ],
+   "n": 2,
+   "years": "2023–2024",
+   "top": "Opening the AI Black Box: Distilling Machine-Learned Algorithms into Code (2024)",
+   "src": "openalex"
+  },
+  {
+   "person": "h:gh:aashiqmuhamed",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/delphi (2 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:alexandersumer",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/delphi (5 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:anishthite",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 2,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/lm-evaluation-harness (25 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:anthonyduong9",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 2,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/sparsify (1 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:crowsonkb",
+   "org": "eleutherai",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 2,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/vqgan-clip (10 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:haileyschoelkopf",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 5,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/lm-evaluation-harness (536 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:jon-tow",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 2,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/lm-evaluation-harness (178 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:leogao2",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 3,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/lm-evaluation-harness (497 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:lintangsutawika",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 2,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/lm-evaluation-harness (908 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:neverix",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 4,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/sparsify (3 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:norabelrose",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 4,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/sparsify (106 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:quentin-anthony",
+   "org": "eleutherai",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 4,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/gpt-neox (66 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:trisongz",
+   "org": "eleutherai",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 3,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/gpt-neox (32 commits)",
+   "src": "github"
+  }
+ ],
+ "meta": {
+  "inst2org": {
+   "bau lab (david bau's interpretability lab, northeastern / ndif)": "bau-lab-northeastern-ndif",
+   "david bau's interpretable neural networks lab (bau lab, northeastern)": "bau-lab-northeastern-ndif",
+   "david bau's lab (baulab, northeastern interpretability lab)": "bau-lab-northeastern-ndif",
+   "ndif (national deep inference fabric), david bau's lab, northeastern university": "bau-lab-northeastern-ndif",
+   "northeastern university (david bau's interpretable neural networks lab)": "bau-lab-northeastern-ndif",
+   "northeastern university (david bau's lab / ndif)": "bau-lab-northeastern-ndif",
+   "neurodata lab, johns hopkins university": "neurodata-lab-johns-hopkins",
+   "neurodata (vogelstein lab)": "neurodata-lab-johns-hopkins",
+   "neurodata (vogelstein/priebe group), johns hopkins university": "neurodata-lab-johns-hopkins",
+   "neurodata lab (johns hopkins center for imaging science)": "neurodata-lab-johns-hopkins",
+   "neurodata lab (johns hopkins, joshua vogelstein / carey priebe)": "neurodata-lab-johns-hopkins",
+   "neurodata lab (johns hopkins, vogelstein/miller)": "neurodata-lab-johns-hopkins",
+   "neurodata lab (joshua vogelstein, johns hopkins university)": "neurodata-lab-johns-hopkins",
+   "neurodata laboratory (vogelstein lab, jhu biomedical engineering)": "neurodata-lab-johns-hopkins",
+   "jhu neurodata / center for imaging science (vogelstein–priebe circle)": "neurodata-lab-johns-hopkins",
+   "johns hopkins university": "johns-hopkins-university",
+   "johns hopkins university applied physics laboratory": "jhu-applied-physics-laboratory",
+   "mathematical institute for data science (minds), johns hopkins": "minds-johns-hopkins",
+   "mao lab (mao group), johns hopkins university": "mao-lab-johns-hopkins",
+   "saria lab, johns hopkins university": "saria-lab-johns-hopkins",
+   "mats (ml alignment & theory scholars)": "mats",
+   "arena (alignment research engineer accelerator)": "arena",
+   "spar (supervised program for alignment research)": "spar",
+   "ml4g (machine learning for good ai-safety bootcamp)": "ml4g",
+   "centre for the governance of ai (govai)": "govai",
+   "ai safety camp": "ai-safety-camp",
+   "ai safety camp (aisc 2024)": "ai-safety-camp",
+   "ai safety camp (aisc8)": "ai-safety-camp",
+   "lasr labs (london ai safety research)": "lasr-labs",
+   "lasr labs (london ai safety research labs)": "lasr-labs",
+   "cambridge boston alignment initiative (cbai)": "cbai",
+   "cbai (cambridge boston alignment initiative)": "cbai",
+   "harvard ai safety team (haist)": "harvard-ai-safety-team",
+   "harvard ai safety student team (haisst)": "harvard-ai-safety-team",
+   "rutgers university winlab (summer internship program)": "rutgers-winlab",
+   "simons institute for the theory of computing (uc berkeley)": "simons-institute-berkeley",
+   "cosmos institute / fire — ai x truth-seeking grant": "cosmos-institute-fire",
+   "opendp (harvard)": "opendp-harvard",
+   "harvard university": "harvard-university",
+   "harvard kennedy school": "harvard-university",
+   "harvard kennedy school (belfer center)": "harvard-university",
+   "belfer center for science and international affairs (harvard)": "harvard-university",
+   "harvard business school": "harvard-university",
+   "harvard john a. paulson school of engineering and applied sciences (seas)": "harvard-university",
+   "microsoft": "microsoft",
+   "microsoft (research / special projects)": "microsoft",
+   "microsoft research": "microsoft",
+   "microsoft research (ai frontiers)": "microsoft",
+   "kaggle": "kaggle",
+   "san diego machine learning": "san-diego-machine-learning",
+   "san diego machine learning (meetup)": "san-diego-machine-learning",
+   "vesuvius challenge (kaggle ink detection, 1st place team)": "vesuvius-challenge-team",
+   "mechanistic interpretability discord (mech interp community)": "mech-interp-discord",
+   "eleutherai": "eleutherai",
+   "epfl (data science lab / dlab, robert west)": "epfl-data-science-lab-dlab",
+   "epfl data science lab (dlab)": "epfl-data-science-lab-dlab",
+   "mit csail": "mit-csail",
+   "mit csail — computational connectomics group": "mit-csail",
+   "center for human-compatible ai (chai), uc berkeley": "chai-uc-berkeley",
+   "nsf ai institute for artificial intelligence and fundamental interactions (iaifi)": "iaifi-nsf-ai-institute",
+   "visual inference lab (kriegeskorte lab), columbia zuckerman institute": "kriegeskorte-lab-columbia",
+   "olab (oermann lab), nyu langone health": "oermann-lab-nyu-langone",
+   "leuthardt lab, washington university neurosurgery": "leuthardt-lab-washu",
+   "lunar lab, brown university (ellie pavlick)": "lunar-lab-brown",
+   "david krueger's lab (university of cambridge)": "krueger-lab-cambridge",
+   "dynamic robotics laboratory (oregon state university)": "dynamic-robotics-lab-osu",
+   "new york university (ml2 group)": "nyu-ml2-group",
+   "mila (quebec artificial intelligence institute)": "mila",
+   "stanford digital economy lab": "stanford-digital-economy-lab",
+   "uk ai security institute (aisi)": "uk-ai-security-institute",
+   "massachusetts institute of technology": "mit",
+   "georgia institute of technology": "georgia-tech",
+   "university of california, berkeley": "uc-berkeley",
+   "university of california, san diego": "uc-san-diego",
+   "university of california san diego": "uc-san-diego",
+   "university of pennsylvania": "university-of-pennsylvania",
+   "ens paris-saclay (école normale supérieure paris-saclay)": "ens-paris-saclay",
+   "university of innsbruck (lfu innsbruck)": "university-of-innsbruck",
+   "technische universität wien (tu wien)": "tu-wien",
+   "shahjalal university of science and technology (sust)": "shahjalal-university-sust",
+   "eth zurich (advanced computing laboratory)": "eth-zurich",
+   "kth royal institute of technology": "kth",
+   "washington university in st. louis school of medicine": "washu-school-of-medicine",
+   "university of science and technology of china (ustc)": "ustc",
+   "d. e. shaw & co.": "d-e-shaw",
+   "anduril industries": "anduril",
+   "pricewaterhousecoopers (canada)": "pwc-canada",
+   "leap labs (leap laboratories)": "leap-labs",
+   "astera institute (simplex)": "astera-institute-simplex",
+   "atana (later operator.io)": "atana-operator-io",
+   "nference, inc.": "nference",
+   "smtm (daughters capital)": "smtm-daughters-capital",
+   "adobe research": "adobe-research",
+   "amsterdam university college": "amsterdam-university-college",
+   "anduril": "anduril",
+   "answer.ai": "answer-ai",
+   "anthropic": "anthropic",
+   "arena": "arena",
+   "ascender software": "ascender-software",
+   "astera institute / simplex": "astera-institute-simplex",
+   "atana / operator.io": "atana-operator-io",
+   "atlassian": "atlassian",
+   "bank of america": "bank-of-america",
+   "bau lab (northeastern / ndif)": "bau-lab-northeastern-ndif",
+   "bluehalo": "bluehalo",
+   "boardingware": "boardingware",
+   "booz allen hamilton": "booz-allen-hamilton",
+   "brigham young university": "brigham-young-university",
+   "brown university": "brown-university",
+   "calcifer computing": "calcifer-computing",
+   "canva": "canva",
+   "carleton university": "carleton-university",
+   "carnegie mellon university": "carnegie-mellon-university",
+   "cbai": "cbai",
+   "cellware labs": "cellware-labs",
+   "chai (uc berkeley)": "chai-uc-berkeley",
+   "clinia": "clinia",
+   "columbia university": "columbia-university",
+   "cosmos institute / fire": "cosmos-institute-fire",
+   "creyon bio": "creyon-bio",
+   "d. e. shaw": "d-e-shaw",
+   "deep sentinel": "deep-sentinel",
+   "deephealth": "deephealth",
+   "deepmind": "deepmind",
+   "digipen institute of technology": "digipen-institute-of-technology",
+   "doc duck": "doc-duck",
+   "dynamic robotics lab (osu)": "dynamic-robotics-lab-osu",
+   "école polytechnique": "ecole-polytechnique",
+   "enlitic": "enlitic",
+   "ens paris-saclay": "ens-paris-saclay",
+   "eth zurich": "eth-zurich",
+   "fast.ai": "fast-ai",
+   "fastmail": "fastmail",
+   "finch": "finch",
+   "future of life institute": "future-of-life-institute",
+   "georgia tech": "georgia-tech",
+   "goodfire": "goodfire",
+   "google": "google",
+   "govai": "govai",
+   "h2o.ai": "h2o-ai",
+   "harvard ai safety team": "harvard-ai-safety-team",
+   "haverford college": "haverford-college",
+   "health curious": "health-curious",
+   "helivan": "helivan",
+   "iaifi (nsf ai institute)": "iaifi-nsf-ai-institute",
+   "ikigai technologies": "ikigai-technologies",
+   "indian space research organisation (isro)": "indian-space-research-organisation-isro",
+   "j.p. morgan research": "j-p-morgan-research",
+   "jhu applied physics laboratory": "jhu-applied-physics-laboratory",
+   "kriegeskorte lab (columbia)": "kriegeskorte-lab-columbia",
+   "krueger lab (cambridge)": "krueger-lab-cambridge",
+   "kth": "kth",
+   "lasr labs": "lasr-labs",
+   "leap labs": "leap-labs",
+   "leuthardt lab (washu)": "leuthardt-lab-washu",
+   "lunar lab (brown)": "lunar-lab-brown",
+   "mao lab (johns hopkins)": "mao-lab-johns-hopkins",
+   "matrix medical network": "matrix-medical-network",
+   "mats": "mats",
+   "mech interp discord": "mech-interp-discord",
+   "mila": "mila",
+   "miltenyi biotec": "miltenyi-biotec",
+   "minds (johns hopkins)": "minds-johns-hopkins",
+   "mit": "mit",
+   "ml4g": "ml4g",
+   "neolithic": "neolithic",
+   "neurodata lab (johns hopkins)": "neurodata-lab-johns-hopkins",
+   "new york university": "new-york-university",
+   "nference": "nference",
+   "nomic ai": "nomic-ai",
+   "northeastern university": "northeastern-university",
+   "northeastern university (khoury college of computer sciences)": "northeastern-university-khoury-college-of-computer-sciences",
+   "nvidia": "nvidia",
+   "nyu ml2 group": "nyu-ml2-group",
+   "oermann lab (nyu langone)": "oermann-lab-nyu-langone",
+   "openai": "openai",
+   "oregon state university": "oregon-state-university",
+   "ouster": "ouster",
+   "pallet": "pallet",
+   "politecnico di torino": "politecnico-di-torino",
+   "polymathic ai": "polymathic-ai",
+   "princeton university": "princeton-university",
+   "profluent bio": "profluent-bio",
+   "pwc canada": "pwc-canada",
+   "quantic school of business and technology": "quantic-school-of-business-and-technology",
+   "rad ai": "rad-ai",
+   "rice university": "rice-university",
+   "rockstar games": "rockstar-games",
+   "rutgers winlab": "rutgers-winlab",
+   "samsung research": "samsung-research",
+   "sapienza university of rome": "sapienza-university-of-rome",
+   "saria lab (johns hopkins)": "saria-lab-johns-hopkins",
+   "scale ai": "scale-ai",
+   "seattlejs": "seattlejs",
+   "shahjalal university (sust)": "shahjalal-university-sust",
+   "simons institute (berkeley)": "simons-institute-berkeley",
+   "spar": "spar",
+   "stanford existential risks initiative": "stanford-existential-risks-initiative",
+   "stanford university": "stanford-university",
+   "technically private": "technically-private",
+   "timaeus": "timaeus",
+   "transluce": "transluce",
+   "tu wien": "tu-wien",
+   "uc berkeley": "uc-berkeley",
+   "uc san diego": "uc-san-diego",
+   "uk ai security institute": "uk-ai-security-institute",
+   "university of amsterdam": "university-of-amsterdam",
+   "university of auckland": "university-of-auckland",
+   "university of british columbia": "university-of-british-columbia",
+   "university of cambridge": "university-of-cambridge",
+   "university of chicago": "university-of-chicago",
+   "university of edinburgh": "university-of-edinburgh",
+   "university of innsbruck": "university-of-innsbruck",
+   "university of mannheim": "university-of-mannheim",
+   "university of maryland": "university-of-maryland",
+   "university of massachusetts amherst": "university-of-massachusetts-amherst",
+   "university of melbourne": "university-of-melbourne",
+   "university of north carolina at chapel hill": "university-of-north-carolina-at-chapel-hill",
+   "university of queensland": "university-of-queensland",
+   "university of san francisco": "university-of-san-francisco",
+   "university of sydney": "university-of-sydney",
+   "university of vermont": "university-of-vermont",
+   "university of victoria": "university-of-victoria",
+   "university of washington": "university-of-washington",
+   "university of waterloo": "university-of-waterloo",
+   "ustc": "ustc",
+   "vector institute": "vector-institute",
+   "vesuvius challenge team": "vesuvius-challenge-team",
+   "washu school of medicine": "washu-school-of-medicine",
+   "western washington university": "western-washington-university",
+   "wikimedia new york city": "wikimedia-new-york-city",
+   "world economic forum cybercrime center": "world-economic-forum-cybercrime-center",
+   "world labs": "world-labs"
+  }
+ }
+}

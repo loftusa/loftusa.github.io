@@ -1,0 +1,204 @@
+---
+---
+
+/*
+ *    Minimal Mistakes Jekyll Theme
+ *
+ *  - Michael Rose
+ *  - mademistakes.com
+ *  - https://twitter.com/mmistakes
+ *
+*/
+
+@import "vendor/breakpoint/breakpoint"; // media query mixins
+@import "variables";
+@import "mixins";
+@import "vendor/susy/susy";
+
+@import "reset";
+@import "base";
+
+@import "utilities";
+@import "animations";
+@import "tables";
+@import "buttons";
+@import "notices";
+@import "masthead";
+@import "navigation";
+@import "footer";
+@import "syntax";
+
+@import "forms";
+
+@import "page";
+@import "archive";
+@import "sidebar";
+
+@import "vendor/font-awesome/fontawesome";
+@import "vendor/font-awesome/solid";
+@import "vendor/font-awesome/brands";
+@import "vendor/magnific-popup/magnific-popup";
+@import "print";
+
+/* ==========================================================================
+   Chat widget — Tufte style
+   ========================================================================== */
+
+#chat-container {
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+}
+
+.chat-rule {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 0 0 1em 0;
+}
+
+/* --- Input --- */
+
+#chat-form {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+#chat-input {
+  flex: 1;
+  padding: 0.35em 0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  font-family: $serif;
+  font-size: 1em;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  transition: border-color 0.15s;
+
+  &::placeholder {
+    font-style: italic;
+    color: #999;
+  }
+
+  &:focus {
+    border-bottom-color: #111;
+  }
+}
+
+#chat-send {
+  position: absolute;
+  right: 0;
+  bottom: 0.3em;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #999;
+  font-size: 1.1em;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.15s;
+
+  &:hover {
+    color: #111;
+  }
+}
+
+#chat-input:disabled {
+  opacity: 0.5;
+}
+
+#chat-send:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* --- Messages --- */
+
+#chat-messages {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 1.2em;
+  padding: 0;
+}
+
+.chat-msg {
+  margin-bottom: 0.75em;
+  font-family: $serif;
+  line-height: 1.55;
+}
+
+.chat-msg-user {
+  text-align: right;
+  color: #666;
+  padding-left: 20%;
+}
+
+.chat-msg-user .chat-label {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  font-size: 0.8em;
+  color: #999;
+  margin-right: 0.4em;
+}
+
+.chat-msg-bot {
+  color: #111;
+  padding-right: 10%;
+}
+
+.chat-msg-bot .chat-text p {
+  margin: 0.3em 0;
+}
+
+.chat-msg-bot .chat-text ul,
+.chat-msg-bot .chat-text ol {
+  margin: 0.3em 0;
+  padding-left: 1.4em;
+}
+
+.chat-msg .chat-text code {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 1px 4px;
+  border-radius: 0;
+  font-size: 0.9em;
+  font-family: $monospace;
+}
+
+.chat-msg .chat-text pre {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 8px 12px;
+  border-radius: 0;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.chat-msg .chat-text pre code {
+  background: none;
+  padding: 0;
+}
+
+/* --- Privacy footnote --- */
+
+.chat-privacy {
+  color: #999;
+  font-size: 0.7em;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+
+/* Inline code in body text (not inside code blocks) */
+p > code,
+a > code,
+li > code,
+figcaption > code,
+td > code {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border: none;
+  box-shadow: none;
+}

@@ -1,0 +1,66 @@
+tests:
+  - name: Test share and comments settings
+    steps:
+      - name: Set share and comments to true
+        config:
+          share: true
+          comments: true
+      - name: Verify share and comments are set to true
+        assert:
+          - share == true
+          - comments == true
+
+  - name: Test _publications settings
+    steps:
+      - name: Set _publications settings
+        config:
+          scope:
+            path: ""
+            type: publications
+          values:
+            layout: single
+            author_profile: true
+            share: true
+            comments: true
+      - name: Verify _publications settings
+        assert:
+          - layout == single
+          - author_profile == true
+          - share == true
+          - comments == true
+
+  - name: Test _portfolio settings
+    steps:
+      - name: Set _portfolio settings
+        config:
+          scope:
+            path: ""
+            type: portfolio
+          values:
+            layout: single
+            author_profile: true
+            share: true
+            comment: true
+      - name: Verify _portfolio settings
+        assert:
+          - layout == single
+          - author_profile == true
+          - share == true
+          - comment == true
+
+  - name: Test _talks settings
+    steps:
+      - name: Set _talks settings
+        config:
+          scope:
+            path: ""
+            type: talks
+          values:
+            layout: talk
+            author_profile: true
+            share: true
+      - name: Verify _talks settings
+        assert:
+          - layout == talk
+          - author_profile == true
+          - share == true

@@ -1,0 +1,211 @@
+---
+permalink: /networks/
+redirect_from: /coauthorship/
+title: "Co-authorship network"
+description: "An interactive map of co-authorship among a set of researchers, cross-referenced across Semantic Scholar and OpenAlex."
+layout: fullscreen
+---
+
+<link rel="stylesheet" href="/assets/css/coauthorship-page.css">
+<style>
+  /* sidebar/list/graph chrome: /assets/css/coauthorship-page.css (shared with the affiliations page) */
+
+  /* ---- hop control ---- */
+  #hopctl { border-top: 1px solid #e3ddcf; border-bottom: 1px solid #e3ddcf; padding: 12px 0; }
+  #hopctl .row { display: flex; justify-content: space-between; align-items: baseline; }
+  #hopctl .k { font-weight: 600; color: #2b2b2b; font-size: 14px; }
+  #hopctl .desc { color: #6b665d; font-size: 12px; margin-top: 3px; min-height: 30px; }
+  #hops { width: 100%; margin: 8px 0 0; accent-color: #4c6b8a; cursor: pointer; }
+  #hopctl .ticks { display: flex; justify-content: space-between; font-size: 10px; color: #a8a296; margin-top: 1px; }
+
+  /* ---- shortest-path finder ---- */
+  #pathctl { border-bottom: 1px solid #e3ddcf; padding-bottom: 12px; }
+  #pathctl .row { display: flex; justify-content: space-between; align-items: baseline; }
+  #pathctl .pp-clear { color: #8c867b; cursor: pointer; font-size: 12px; visibility: hidden; }
+  #pathctl .pp-clear:hover { color: #2b2b2b; }
+  #pathctl .pp-slots { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+  #pathctl .desc { color: #6b665d; font-size: 12px; margin-top: 6px; }
+  /* position: relative anchors the type-ahead menu; the old overflow:hidden would clip it,
+     so ellipsis truncation lives on .pp-name instead */
+  .pp-slot {
+    flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 6px;
+    font-family: inherit; font-size: 12px; color: #8c867b; text-align: left;
+    background: #fff; border: 1px solid #ddd6c8; border-radius: 4px; padding: 5px 7px;
+    cursor: pointer; position: relative;
+  }
+  .pp-slot:hover { border-color: #9a958c; }
+  .pp-slot.armed { border-color: #4c6b8a; color: #4c6b8a; }
+  .pp-slot.filled { color: #2b2b2b; }
+  .pp-slot .dot { width: 14px; height: 14px; border-radius: 50%; flex: none;
+    font-size: 7px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .pp-slot .pp-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .pp-input { flex: 1 1 auto; min-width: 0; font-family: inherit; font-size: 12px; color: #2b2b2b;
+    background: none; border: none; outline: none; padding: 0; }
+  .pp-input::placeholder { color: #8c867b; }
+  .pp-menu { position: absolute; top: 100%; left: -1px; right: -1px; z-index: 5; margin-top: 2px;
+    background: #fff; border: 1px solid #ddd6c8; border-radius: 4px; max-height: 210px;
+    overflow-y: auto; box-shadow: 0 3px 10px rgba(0,0,0,.1); }
+  .pp-opt { display: flex; align-items: center; gap: 6px; padding: 5px 7px; cursor: pointer;
+    color: #2b2b2b; }
+  .pp-opt:hover { background: #eae5d8; }
+  #pathctl .pp-arrow { color: #b3a98f; flex: none; }
+
+  /* people-list extras for this page (base list styles in the shared css) */
+  #people li.off { color: #b3ab9c; cursor: default; }
+  #people li.off:hover { background: transparent; }
+  #people .pct { margin-left: auto; font-size: 10px; color: #b3ab9c; }
+
+  /* ---- route breadcrumb (shown when an isolated person's bridge route is opened) ---- */
+  #path-detail:empty { display: none; }
+  #path-detail { border-top: 1px solid #e3ddcf; padding-top: 10px; font-size: 12px; }
+  #path-detail .pd-title { font-weight: 600; color: #2b2b2b; margin-bottom: 5px; }
+  #path-detail .pd-chain { line-height: 1.7; }
+  #path-detail .pd-name { color: #6b665d; }
+  #path-detail .pd-name.pd-end { color: #2b2b2b; font-weight: 600; }
+  #path-detail .pd-arrow { color: #b3a98f; margin: 0 5px; }
+  #path-detail .pd-none { color: #8c867b; font-style: italic; }
+
+  /* ---- edit mode (crowd corrections) ---- */
+  #edit-tools { border-top: 1px solid #e3ddcf; padding-top: 10px; }
+  #edit-toggle {
+    font-family: inherit; font-size: 12px; color: #6b665d; background: none;
+    border: 1px solid #ddd6c8; border-radius: 4px; padding: 5px 9px; cursor: pointer; width: 100%;
+  }
+  #edit-toggle:hover { background: #eae5d8; }
+  #edit-toggle.on { background: #e2ebf2; border-color: #b9cbdc; color: #2b2b2b; }
+  #app.editing #graph { cursor: crosshair; }
+  #app.editing .node, #app.editing line.hit { cursor: pointer; }
+  /* :not([hidden]) — a bare `display: flex` would override the hidden attribute's UA display:none */
+  #edit-panel:not([hidden]) { margin-top: 10px; font-size: 12px; color: #4a463f; display: flex;
+    flex-direction: column; gap: 8px; }
+  #edit-panel .ep-hint { color: #8c867b; font-style: italic; line-height: 1.4; }
+  #edit-panel .ep-title { font-weight: 600; color: #2b2b2b; }
+  #edit-panel label { display: block; color: #6b665d; margin: 4px 0 2px; }
+  #edit-panel input, #edit-panel select {
+    font-family: inherit; font-size: 12px; color: #2b2b2b; width: 100%; box-sizing: border-box;
+    background: #fff; border: 1px solid #ddd6c8; border-radius: 4px; padding: 4px 7px; outline: none;
+  }
+  #edit-panel input:focus, #edit-panel select:focus { border-color: #9a958c; }
+  #edit-panel .ep-row { display: flex; gap: 6px; align-items: center; }
+  #edit-panel .ep-row input { flex: 1 1 auto; }
+  #edit-panel button.ep-act {
+    font-family: inherit; font-size: 12px; background: #4c6b8a; color: #fff; border: none;
+    border-radius: 4px; padding: 5px 10px; cursor: pointer;
+  }
+  #edit-panel button.ep-act:hover { background: #3f5b76; }
+  #edit-panel .ep-sec button.ep-act { margin-top: 5px; }
+  #edit-panel button.ep-mini {
+    font-family: inherit; font-size: 11px; background: none; border: 1px solid #ddd6c8;
+    border-radius: 4px; padding: 2px 7px; cursor: pointer; color: #6b665d; flex: none;
+  }
+  #edit-panel button.ep-mini:hover { background: #eae5d8; }
+  #edit-panel button.ep-danger { color: #9a4a3a; border-color: #e0c4bd; }
+  #edit-panel button.ep-danger:hover { background: #f3e3df; }
+  #edit-panel .ep-papers { list-style: none; margin: 2px 0 0; padding: 0; }
+  #edit-panel .ep-papers li { display: flex; gap: 6px; align-items: center; margin: 0 0 5px;
+    line-height: 1.3; }
+  #edit-panel .ep-papers .pt { flex: 1 1 auto; }
+  #edit-panel .ep-sec { border-top: 1px solid #efe9dc; padding-top: 7px; margin-top: 2px; }
+  #edit-panel .ep-msg { font-size: 11px; }
+  #edit-panel .ep-msg.ok { color: #5a7d5a; }
+  #edit-panel .ep-msg.err { color: #9a4a3a; }
+
+  #legend .prov { margin-top: 8px; padding-top: 8px; border-top: 1px solid #efe9dc; color: #8c867b; }
+  #legend .prov .ln { width: 16px; height: 0; border-top: 2px solid #9a958c; flex: none; }
+  #legend .prov .ln.dash { border-top-style: dashed; }
+  .label { font-size: 11px; fill: #3a3631; pointer-events: none; paint-order: stroke;
+    stroke: #faf8f3; stroke-width: 3px; stroke-linejoin: round; }
+  .tooltip .t-src { font-size: 10.5px; margin-top: 3px; font-weight: 600; }
+  .tooltip .t-src-both { color: #5a7d5a; }
+  .tooltip .t-src-s2 { color: #a6611a; }
+  .tooltip .t-src-oa { color: #4c6b8a; }
+  .tooltip .t-papers { list-style: none; margin: 6px 0 0; padding: 6px 0 0;
+    border-top: 1px solid #ece7da; font-size: 11.5px; line-height: 1.35; }
+  .tooltip .t-papers li { margin: 0 0 3px; color: #3a3631; }
+  .tooltip .t-papers .t-yr { color: #a8a296; }
+  .tooltip .t-papers .t-more { color: #a8a296; font-style: italic; }
+
+  /* ---- finder: search anyone near this graph (chrome shared with the careers map) ---- */
+  #finder { position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+    width: min(420px, 70%); z-index: 5; }
+  #finder input { width: 100%; box-sizing: border-box; font-family: inherit; font-size: 14.5px;
+    color: #2b2b2b; background: #fffdf8; border: 1px solid #ddd6c8; border-radius: 8px;
+    padding: 9px 14px; outline: none; box-shadow: 0 1px 4px rgba(60, 50, 30, .08); }
+  #finder input:focus { border-color: #9a958c; }
+  #finder input::placeholder { color: #a8a296; font-style: italic; }
+  #finder-results { background: #fffdf8; border: 1px solid #ddd6c8; border-top: none;
+    border-radius: 0 0 8px 8px; max-height: 280px; overflow-y: auto; font-size: 12.5px;
+    box-shadow: 0 3px 8px rgba(60, 50, 30, .1); }
+  #finder-results .fr { padding: 7px 14px; cursor: pointer; display: flex; gap: 8px;
+    align-items: baseline; }
+  #finder-results .fr:hover { background: #eae5d8; }
+  #finder-results .fr .fr-name { font-weight: 600; color: #2b2b2b; flex: none; }
+  #finder-results .fr .fr-hint { color: #8c867b; font-size: 11px; flex: 1 1 auto;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #finder-results .fr .fr-tag { color: #a8a296; font-size: 10px; flex: none; }
+  #finder-results .fr-note { padding: 7px 14px; color: #8c867b; font-style: italic;
+    font-size: 11.5px; }
+</style>
+
+<div id="app">
+  <aside id="sidebar">
+    <div>
+      <h1>Co-authorship network</h1>
+      {% include coauthorship-tabs.html network="papers" view="map" %}
+      <p class="caption">Researchers linked by shared papers, cross-referenced across Semantic
+        Scholar &amp; OpenAlex. Move the slider to reveal who connects them — or click a faded name
+        to trace its route into the network.</p>
+    </div>
+
+    <div id="hopctl">
+      <div class="row"><span>Reach</span><span class="k" id="hop-k">1 hop</span></div>
+      <input type="range" id="hops" min="1" max="4" step="1" value="1">
+      <div class="ticks"><span>1</span><span>2</span><span>3</span><span>4</span></div>
+      <div class="desc" id="hop-desc"></div>
+    </div>
+
+    <div id="pathctl">
+      <div class="row"><span>Shortest path</span><span class="pp-clear" title="clear">✕</span></div>
+      <div class="pp-slots">
+        <div class="pp-slot" data-end="from"></div>
+        <span class="pp-arrow">→</span>
+        <div class="pp-slot" data-end="to"></div>
+      </div>
+      <div class="desc">Type or click two listed people to trace the fewest co-authorship hops between them.</div>
+    </div>
+
+    <input id="search" type="search" placeholder="filter people…" autocomplete="off" spellcheck="false">
+    <div id="people-wrap"><ul id="people"></ul></div>
+
+    <div id="path-detail"></div>
+
+    <div id="edit-tools">
+      <button id="edit-toggle" type="button">✎ Suggest a correction</button>
+      <div id="edit-panel" hidden></div>
+    </div>
+
+    <div id="legend"></div>
+    <div id="foot">
+      Data: <a href="https://www.semanticscholar.org" target="_blank" rel="noopener">Semantic Scholar</a>
+      + <a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a>.
+      <span id="foot-note"></span>
+      <div style="margin-top:6px"><a href="/networks/analyses/">twelve analyses of this network →</a></div>
+      <div style="margin-top:6px"><a href="/networks/affiliations/?edit=1&join=1">join, or add someone to the maps →</a></div>
+      <div style="margin-top:6px"><a href="/">← alex-loftus.com</a></div>
+    </div>
+  </aside>
+
+  <div id="graph">
+    <div id="finder">
+      <input id="finder-q" type="search" placeholder="search for a person near this graph…"
+        autocomplete="off" spellcheck="false">
+      <div id="finder-results" hidden></div>
+    </div>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script src="/assets/js/network-identity.js"></script>
+<script src="https://d3js.org/d3.v7.min.js" defer></script>
+<script src="/assets/js/coauthorship-network.js" defer></script>

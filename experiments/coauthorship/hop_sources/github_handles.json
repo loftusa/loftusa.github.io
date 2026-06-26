@@ -1,0 +1,114 @@
+{
+ "alex loftus": {
+  "login": "loftusa",
+  "name": "Alex Loftus",
+  "company": "Northeastern University",
+  "blog": "https://www.alex-loftus.com",
+  "evidence": "org match: bau lab"
+ },
+ "arnab sen sharma": {
+  "login": "arnab-api",
+  "name": "Arnab Sen Sharma",
+  "company": "Northeastern University",
+  "blog": "https://arnab-api.github.io/",
+  "evidence": "org match: northeastern university"
+ },
+ "bijan varjavand": {
+  "login": "bvarjavand",
+  "name": "Bijan Varjavand",
+  "company": "Scale AI",
+  "blog": "",
+  "evidence": "org match: scale ai"
+ },
+ "eric bridgeford": {
+  "login": "ebridge2",
+  "name": "Eric Bridgeford",
+  "company": null,
+  "blog": "http://ericwb.me",
+  "evidence": "org match: johns hopkins university"
+ },
+ "eric michaud": {
+  "login": "ejmichaud",
+  "name": "Eric Michaud",
+  "company": null,
+  "blog": "ericjmichaud.com",
+  "evidence": "org match: mit"
+ },
+ "jacopo teneggi": {
+  "login": "JacopoTeneggi",
+  "name": "Jacopo Teneggi",
+  "company": "Johns Hopkins University",
+  "blog": "jacopoteneggi.github.io",
+  "evidence": "org match: johns hopkins university"
+ },
+ "jeremy howard": {
+  "login": "jph00",
+  "name": "Jeremy Howard",
+  "company": "@answerdotai",
+  "blog": "https://jeremy.fast.ai/",
+  "evidence": "org match: answer ai"
+ },
+ "jeremy kritz": {
+  "login": "JeremyKritz",
+  "name": "Jeremy Kritz",
+  "company": null,
+  "blog": "https://www.linkedin.com/in/jeremy-kritz",
+  "evidence": "org match: smtm"
+ },
+ "karl kaiser": {
+  "login": "kwkaiser",
+  "name": "Karl Kaiser",
+  "company": "Pallet",
+  "blog": "https://kwkaiser.io",
+  "evidence": "org match: pallet"
+ },
+ "kayo yin": {
+  "login": "kayoyin",
+  "name": "Kayo Yin",
+  "company": "UC Berkeley",
+  "blog": "http://kayoyin.github.io/",
+  "evidence": "org match: uc berkeley"
+ },
+ "lucia quirke": {
+  "login": "luciaquirke",
+  "name": "Lucia Quirke",
+  "company": null,
+  "blog": "",
+  "evidence": "org match: eleutherai"
+ },
+ "roy rinberg": {
+  "login": "RoyRin",
+  "name": "Roy Rinberg",
+  "company": "Columbia University",
+  "blog": "www.royrinberg.com",
+  "evidence": "org match: columbia university"
+ },
+ "ryan chesler": {
+  "login": "ryanchesler",
+  "name": "Ryan Chesler",
+  "company": "IT Connected",
+  "blog": "https://www.linkedin.com/in/ryan-chesler-9268b0118/",
+  "evidence": "org match: h2o ai"
+ },
+ "sheridan feucht": {
+  "login": "sfeucht",
+  "name": "Sheridan Feucht",
+  "company": "Northeastern University",
+  "blog": "sfeucht.github.io",
+  "evidence": "org match: northeastern university"
+ },
+ "stella biderman": {
+  "login": "StellaAthena",
+  "name": "Stella Biderman",
+  "company": "Booz Allen Hamilton, EleutherAI",
+  "blog": "www.stellabiderman.com",
+  "evidence": "org match: booz allen hamilton"
+ },
+ "will levine": {
+  "login": "levinwil",
+  "name": "Will LeVine",
+  "company": "Microsoft",
+  "blog": "",
+  "evidence": "org match: microsoft"
+ }
+}

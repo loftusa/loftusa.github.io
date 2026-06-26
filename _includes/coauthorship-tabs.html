@@ -1,0 +1,20 @@
+{% comment %} Two-level nav for the /networks/ network pages. Row 1 picks the network
+   (driven by _data/network_tabs.yml), row 2 picks the view of it. Switching network preserves
+   the view. Usage: {% include coauthorship-tabs.html network="papers" view="map" %}
+   (network: papers | careers | …; view: map | analyses) {% endcomment %}
+{% assign net = include.network | default: "papers" %}
+{% assign view = include.view | default: "map" %}
+{% for n in site.data.network_tabs %}{% if n.id == net %}{% assign base = n.base %}{% endif %}{% endfor %}
+<nav class="page-tabs">
+  <div class="tab-row" aria-label="network">
+    {%- for n in site.data.network_tabs -%}
+      {%- if n.id == net %}<span class="tab on">{{ n.label }}</span>
+      {%- elsif view == "analyses" %}<a class="tab" href="{{ n.base }}analyses/">{{ n.label }}</a>
+      {%- else %}<a class="tab" href="{{ n.base }}">{{ n.label }}</a>{% endif -%}
+    {%- endfor -%}
+  </div>
+  <div class="tab-row" aria-label="view">
+    {%- if view == "map" %}<span class="tab on">map</span>{% else %}<a class="tab" href="{{ base }}">map</a>{% endif -%}
+    {%- if view == "analyses" %}<span class="tab on">analyses</span>{% else %}<a class="tab" href="{{ base }}analyses/">analyses</a>{% endif -%}
+  </div>
+</nav>

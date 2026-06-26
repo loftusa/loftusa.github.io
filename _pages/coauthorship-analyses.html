@@ -1,0 +1,74 @@
+---
+permalink: /networks/analyses/
+redirect_from: /coauthorship/analyses/
+title: "Network analyses"
+description: "Twelve ways to read one co-authorship network — each a graph-statistics method, explained in plain language on people you know."
+layout: fullscreen
+---
+
+<link rel="stylesheet" href="/assets/css/analyses-page.css">
+
+<div id="app">
+  <aside id="sidebar">
+    <div>
+      <h1>Network analyses</h1>
+      {% include coauthorship-tabs.html network="papers" view="analyses" %}
+      <p class="caption">The same hundred researchers, examined twelve ways — and a
+        plain-language tour of the graph statistics behind each reading. Built on the
+        <a href="/networks/">co-authorship map</a>.</p>
+    </div>
+    <nav id="nav"></nav>
+    <div id="foot">
+      Each panel: the finding, the picture, then <em>how the method works</em> — written for
+      people who think in embeddings, not adjacency spectra.
+      <div style="margin-top:6px"><a href="/networks/">← the network map</a></div>
+    </div>
+  </aside>
+  <div id="main"></div>
+</div>
+
+<script>
+  window.ANALYSES_CONFIG = {
+    methods: [
+      { slug: "who-holds-it-together", sec: "People", label: "Who holds it together",
+        sub: "Remove each person, one at a time, and watch what breaks. The irreplaceable few, ranked." },
+      { slug: "dual-citizens", sec: "People", label: "Dual citizens",
+        sub: "The people who genuinely belong to two labs at once — by fraction, not by vibe." },
+      { slug: "who-moved-most", sec: "People", label: "Who moved the most",
+        sub: "Breakout years — whose place in the network shifted fastest, and when." },
+      { slug: "which-lab-claims-you", sec: "People", label: "Which lab claims you?",
+        sub: "For people on no lab's roster, the network's own verdict on where they belong." },
+      { slug: "year-everything-changed", sec: "Time", label: "The year everything changed",
+        sub: "The network's shape, year by year — and the moment it broke from its own past." },
+      { slug: "heating-up", sec: "Time", label: "Where it's heating up",
+        sub: "The corner of the network growing faster than the rest of it can explain." },
+      { slug: "stars-and-tribes", sec: "Shape", label: "Stars and tribes",
+        sub: "One network drawn twice — once it shows who's central, once who runs together." },
+      { slug: "lab-ledger", sec: "Shape", label: "The lab-to-lab ledger",
+        sub: "Three hundred collaborations settled into nine honest numbers." },
+      { slug: "bands-not-duets", sec: "Shape", label: "Bands, not duets",
+        sub: "The author groups that publish together again and again — real teams, bigger than pairs." },
+      { slug: "small-world", sec: "Shape", label: "A small world, measured",
+        sub: "How many handshakes between any two people here — and which lab is tightest knit." },
+      { slug: "two-witnesses", sec: "The record", label: "Two witnesses",
+        sub: "Two databases tell this story. Where their accounts differ — and about whom." },
+      { slug: "who-hasnt-met", sec: "The record", label: "Who hasn't met yet",
+        sub: "Like-minded researchers with no paper together — collaborations waiting to happen." },
+    ],
+  };
+</script>
+<script src="/assets/js/network-identity.js"></script>
+<script src="https://d3js.org/d3.v7.min.js" defer></script>
+<script src="/assets/js/analyses/shell.js?v=2" defer></script>
+<script src="/assets/js/analyses/who-holds-it-together.js" defer></script>
+<script src="/assets/js/analyses/dual-citizens.js" defer></script>
+<script src="/assets/js/analyses/who-moved-most.js" defer></script>
+<script src="/assets/js/analyses/which-lab-claims-you.js" defer></script>
+<script src="/assets/js/analyses/year-everything-changed.js" defer></script>
+<script src="/assets/js/analyses/heating-up.js" defer></script>
+<script src="/assets/js/analyses/stars-and-tribes.js" defer></script>
+<script src="/assets/js/analyses/lab-ledger.js" defer></script>
+<script src="/assets/js/analyses/bands-not-duets.js" defer></script>
+<script src="/assets/js/analyses/small-world.js" defer></script>
+<script src="/assets/js/analyses/two-witnesses.js" defer></script>
+<script src="/assets/js/analyses/who-hasnt-met.js" defer></script>

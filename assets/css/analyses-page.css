@@ -1,0 +1,110 @@
+/* Chrome shared by the analyses pages (/coauthorship/analyses/ and
+   /coauthorship/affiliations/analyses/). Deliberately divergent from the map pages'
+   coauthorship-page.css (different sidebar rhythm, panel canvas, responsive behavior). */
+
+#app { display: flex; width: 100vw; height: 100vh; }
+
+/* ---- sidebar (chrome matches /coauthorship/) ---- */
+#sidebar {
+  flex: 0 0 270px; height: 100vh; overflow-y: auto;
+  background: #f4f1e9; border-right: 1px solid #e3ddcf;
+  padding: 20px 18px 16px; display: flex; flex-direction: column; gap: 12px;
+  font-size: 13px; color: #4a463f;
+}
+#sidebar h1 { font-size: 19px; font-weight: 600; margin: 0; color: #2b2b2b; letter-spacing: .2px; }
+/* .page-tabs rules style the SHARED nav include — keep in sync with the other page css */
+.page-tabs { display: flex; flex-direction: column; gap: 5px; margin-top: 9px; }
+.page-tabs .tab-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.page-tabs .tab { font-size: 12.5px; padding: 4px 12px; border-radius: 999px;
+  border: 1px solid #ddd6c8; background: #fff; color: #6b665d; text-decoration: none; }
+.page-tabs .tab:hover { background: #eae5d8; color: #2b2b2b; }
+.page-tabs .tab.on { background: #e2ebf2; border-color: #b9cbdc; color: #2b2b2b; font-weight: 600; }
+#sidebar .caption { margin: 4px 0 0; color: #6b665d; line-height: 1.45; font-size: 12.5px; }
+
+#nav { flex: 1 1 auto; }
+.nav-sec { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em;
+  color: #8c867b; margin: 16px 0 4px; }
+.nav-sec:first-child { margin-top: 4px; }
+.nav-item { padding: 6px 8px; border-radius: 4px; cursor: pointer; line-height: 1.3; }
+.nav-item:hover { background: #eae5d8; }
+.nav-item.sel { background: #e2ebf2; }
+.nav-item .nav-label { font-size: 13.5px; color: #2b2b2b; }
+.nav-item.sel .nav-label { font-weight: 600; }
+.nav-item .nav-idx { font-size: 10px; color: #b3ab9c; margin-right: 6px; }
+.nav-item .nav-sub { font-size: 11.5px; color: #8c867b; line-height: 1.4; margin-top: 2px;
+  max-height: 0; overflow: hidden; transition: max-height .18s ease; }
+.nav-item.sel .nav-sub, .nav-item:hover .nav-sub { max-height: 48px; }
+
+#foot { font-size: 11px; color: #8c867b; line-height: 1.4; border-top: 1px solid #e3ddcf; padding-top: 10px; }
+#foot a { color: #6b665d; }
+
+/* ---- main panel canvas ---- */
+#main { flex: 1 1 auto; height: 100vh; overflow-y: auto; background: #faf8f3; }
+.m-panel { max-width: 880px; padding: 44px 48px 64px; display: none; }
+.m-panel.active { display: block; }
+
+.m-kicker { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em;
+  color: #8c867b; }
+.m-title { font-size: 27px; line-height: 1.25; font-weight: 600; color: #2b2b2b;
+  margin: 6px 0 18px; max-width: 30ch; }
+.m-title strong { font-weight: 700; }
+.m-prose { font-size: 15px; line-height: 1.55; color: #4a463f; max-width: 62ch; }
+.m-prose p { margin: 0 0 10px; }
+.m-viz { min-height: 380px; margin: 22px 0 8px; position: relative; }
+.m-viz svg { display: block; }
+
+.m-how { margin: 26px 0 0; padding: 14px 16px; background: #f4f1e9; border-radius: 6px;
+  max-width: 66ch; }
+.m-how .m-how-k { font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .12em; color: #8c867b; margin-bottom: 6px; }
+.m-how .m-prose { font-size: 14px; }
+
+.m-note { margin-top: 22px; border-top: 1px solid #e3ddcf; padding-top: 10px;
+  font-size: 12.5px; line-height: 1.5; color: #6b665d; max-width: 66ch; }
+.m-note summary { cursor: pointer; font-weight: 600; outline: none; }
+.m-note[open] summary { margin-bottom: 6px; }
+
+.m-err { font-size: 14px; color: #8c867b; padding: 30px 0; max-width: 56ch; line-height: 1.5; }
+.m-err .m-err-t { font-weight: 600; color: #2b2b2b; font-size: 16px; margin-bottom: 8px; }
+.m-loading { color: #b3ab9c; font-size: 13px; padding: 30px 0; }
+
+/* in-viz text */
+.m-axis { font-size: 11px; fill: #8c867b; }
+.m-label { font-size: 12px; fill: #3a3631; paint-order: stroke; stroke: #faf8f3;
+  stroke-width: 3px; stroke-linejoin: round; }
+.m-anno { font-size: 12.5px; font-style: italic; fill: #6b665d; }
+
+/* shared tooltip (sister-page card) */
+.m-tip { position: fixed; z-index: 10; pointer-events: none; opacity: 0;
+  background: #fff; border: 1px solid #d8d2c6; border-radius: 5px; padding: 6px 9px;
+  font-size: 12.5px; color: #2b2b2b; max-width: 300px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  transition: opacity .12s; }
+.m-tip .t-name { font-weight: 600; }
+.m-tip .t-sub { color: #8c867b; font-size: 11px; margin-top: 2px; }
+
+/* mini-map anchor */
+.m-map { position: absolute; top: 0; right: 0; }
+.m-map-cap { font-size: 11px; color: #8c867b; text-align: center; margin-top: 2px; }
+
+/* person seat links — quiet by default, the underline firms up on hover */
+.seat-link { color: inherit; text-decoration: none; cursor: pointer;
+  border-bottom: 1px solid rgba(107, 102, 93, 0.3); }
+.seat-link:hover { color: #2b2b2b; border-bottom-color: #2b2b2b; }
+
+/* ---- responsive ---- */
+@media (max-width: 720px) {
+  #app { flex-direction: column; }
+  #sidebar { flex: none; width: 100vw; height: auto; max-height: none; border-right: none;
+    border-bottom: 1px solid #e3ddcf; padding: 14px 16px 10px; }
+  #nav { display: flex; overflow-x: auto; gap: 6px; padding-bottom: 6px; }
+  .nav-sec { flex: none; align-self: center; margin: 0 4px; }
+  .nav-item { flex: none; border: 1px solid #e3ddcf; border-radius: 999px; padding: 5px 12px;
+    background: #fff; }
+  .nav-item.sel { background: #e2ebf2; }
+  .nav-item .nav-sub, .nav-item .nav-idx { display: none; }
+  #sidebar .caption, #foot { display: none; }
+  #main { height: auto; }
+  .m-panel { padding: 20px 16px 48px; }
+  .m-title { font-size: 21px; }
+  .m-prose { font-size: 14.5px; }
+}

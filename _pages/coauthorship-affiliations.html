@@ -1,0 +1,205 @@
+---
+permalink: /networks/affiliations/
+redirect_from: /coauthorship/affiliations/
+title: "Affiliations"
+description: "Where the same people have worked, studied, and gathered — labs, universities, companies, communities, and programs. Publications optional."
+layout: fullscreen
+---
+
+<link rel="stylesheet" href="/assets/css/coauthorship-page.css">
+<style>
+  /* sidebar/list/graph chrome: /assets/css/coauthorship-page.css (shared with the map page) */
+
+  /* ---- view + filters ---- */
+  #viewctl { border-top: 1px solid #e3ddcf; border-bottom: 1px solid #e3ddcf; padding: 12px 0; }
+  #viewctl .modes { display: flex; gap: 6px; }
+  #viewctl .mode { flex: 1 1 0; font-family: inherit; font-size: 12px; padding: 4px 0;
+    text-align: center; border-radius: 999px; border: 1px solid #ddd6c8; background: #fff;
+    color: #6b665d; cursor: pointer; }
+  #viewctl .mode:hover { background: #eae5d8; }
+  #viewctl .mode.on { background: #e2ebf2; border-color: #b9cbdc; color: #2b2b2b; font-weight: 600; }
+  #viewctl .desc { color: #6b665d; font-size: 12px; margin-top: 7px; min-height: 28px; }
+
+  /* ---- adaptive reach slider (chrome mirrors the papers map's #hopctl) ---- */
+  #reachctl { margin-top: 10px; }
+  #reachctl .row { display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 12px; color: #6b665d; }
+  #reachctl .k { font-weight: 600; color: #2b2b2b; font-size: 13px; }
+  #reachctl input { width: 100%; margin: 6px 0 0; accent-color: #4c6b8a; cursor: pointer; }
+  #reachctl .ticks { display: flex; justify-content: space-between; font-size: 10px;
+    color: #a8a296; margin-top: 1px; }
+  #reachctl .rdesc { color: #8c867b; font-size: 11px; margin-top: 4px; min-height: 28px;
+    line-height: 1.35; }
+
+  #typectl .row { display: flex; align-items: center; gap: 7px; margin: 2px 0; cursor: pointer;
+    border-radius: 4px; padding: 2px 4px; }
+  #typectl .row:hover { background: #eae5d8; }
+  #typectl .row.off { opacity: .35; }
+  #typectl .swatch { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  #typectl .n { margin-left: auto; font-size: 10.5px; color: #b3ab9c; }
+  #typectl .singles { display: flex; align-items: center; gap: 6px; margin-top: 8px; padding-top: 8px;
+    border-top: 1px solid #efe9dc; color: #6b665d; font-size: 12px; cursor: pointer; }
+  #typectl .singles input { accent-color: #4c6b8a; margin: 0; }
+
+  /* people-list extra for this page (base list styles in the shared css) */
+  #people .n { margin-left: auto; font-size: 10px; color: #b3ab9c; }
+
+  /* ---- detail panel (selected person / org) ---- */
+  #detail:empty { display: none; }
+  #detail { border-top: 1px solid #e3ddcf; padding-top: 10px; font-size: 12px; max-height: 38vh;
+    overflow-y: auto; }
+  #detail .d-title { font-weight: 600; color: #2b2b2b; margin-bottom: 2px; font-size: 13px; }
+  #detail .d-sub { color: #8c867b; margin-bottom: 6px; }
+  #detail .d-row { display: flex; gap: 7px; margin: 0 0 6px; line-height: 1.35; }
+  #detail .d-row .swatch { width: 9px; height: 9px; border-radius: 50%; flex: none; margin-top: 3px; }
+  #detail .d-org { color: #2b2b2b; font-weight: 600; }
+  #detail .d-meta { color: #6b665d; }
+  #detail .d-src a { color: #8c867b; font-size: 10.5px; text-decoration: underline; }
+  #detail .d-member { cursor: pointer; border-radius: 4px; padding: 2px 4px; margin: 0 -4px; }
+  #detail .d-member:hover { background: #eae5d8; }
+  #detail .d-clear { float: right; color: #8c867b; cursor: pointer; font-size: 12px; }
+  #detail .d-clear:hover { color: #2b2b2b; }
+
+  /* ---- edit my row / join (chrome mirrors the papers map's correction panel) ---- */
+  #edit-tools { border-top: 1px solid #e3ddcf; padding-top: 10px; }
+  #edit-toggle {
+    font-family: inherit; font-size: 12px; color: #6b665d; background: none;
+    border: 1px solid #ddd6c8; border-radius: 4px; padding: 5px 9px; cursor: pointer; width: 100%;
+  }
+  #edit-toggle:hover { background: #eae5d8; }
+  #edit-toggle.on { background: #e2ebf2; border-color: #b9cbdc; color: #2b2b2b; }
+  #edit-panel:not([hidden]) { margin-top: 10px; font-size: 12px; color: #4a463f; display: flex;
+    flex-direction: column; gap: 8px; max-height: 45vh; overflow-y: auto; }
+  #edit-panel .ep-hint { color: #8c867b; font-style: italic; line-height: 1.4; }
+  #edit-panel .ep-title { font-weight: 600; color: #2b2b2b; }
+  #edit-panel label { display: block; color: #6b665d; margin: 4px 0 2px; }
+  #edit-panel input, #edit-panel select {
+    font-family: inherit; font-size: 12px; color: #2b2b2b; width: 100%; box-sizing: border-box;
+    background: #fff; border: 1px solid #ddd6c8; border-radius: 4px; padding: 4px 7px; outline: none;
+  }
+  #edit-panel input:focus, #edit-panel select:focus { border-color: #9a958c; }
+  #edit-panel .ep-row { display: flex; gap: 6px; align-items: center; }
+  #edit-panel .ep-row input { flex: 1 1 auto; }
+  #edit-panel button.ep-act {
+    font-family: inherit; font-size: 12px; background: #4c6b8a; color: #fff; border: none;
+    border-radius: 4px; padding: 5px 10px; cursor: pointer;
+  }
+  #edit-panel button.ep-act:hover { background: #3f5b76; }
+  #edit-panel button.ep-mini {
+    font-family: inherit; font-size: 11px; background: none; border: 1px solid #ddd6c8;
+    border-radius: 4px; padding: 2px 7px; cursor: pointer; color: #6b665d; flex: none;
+  }
+  #edit-panel button.ep-mini:hover { background: #eae5d8; }
+  #edit-panel button.ep-danger { color: #9a4a3a; border-color: #e0c4bd; }
+  #edit-panel button.ep-danger:hover { background: #f3e3df; }
+  #edit-panel .ep-papers { list-style: none; margin: 2px 0 0; padding: 0; }
+  #edit-panel .ep-papers li { display: flex; gap: 6px; align-items: flex-start; margin: 0 0 5px;
+    line-height: 1.3; }
+  #edit-panel .ep-papers .pt { flex: 1 1 auto; }
+  #edit-panel .ep-sec { border-top: 1px solid #efe9dc; padding-top: 7px; margin-top: 2px; }
+  #edit-panel .ep-msg { font-size: 11px; }
+  #edit-panel .ep-msg.ok { color: #5a7d5a; }
+  #edit-panel .ep-msg.err { color: #9a4a3a; }
+
+  /* ---- guest finder: try anyone on the map (OpenAlex-backed) ---- */
+  #finder { position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+    width: min(420px, 70%); z-index: 5; }
+  #finder input { width: 100%; box-sizing: border-box; font-family: inherit; font-size: 14.5px;
+    color: #2b2b2b; background: #fffdf8; border: 1px solid #ddd6c8; border-radius: 8px;
+    padding: 9px 14px; outline: none; box-shadow: 0 1px 4px rgba(60, 50, 30, .08); }
+  #finder input:focus { border-color: #9a958c; }
+  #finder input::placeholder { color: #a8a296; font-style: italic; }
+  #finder-results { background: #fffdf8; border: 1px solid #ddd6c8; border-top: none;
+    border-radius: 0 0 8px 8px; max-height: 280px; overflow-y: auto; font-size: 12.5px;
+    box-shadow: 0 3px 8px rgba(60, 50, 30, .1); }
+  #finder-results .fr { padding: 7px 14px; cursor: pointer; display: flex; gap: 8px;
+    align-items: baseline; }
+  #finder-results .fr:hover { background: #eae5d8; }
+  #finder-results .fr .fr-name { font-weight: 600; color: #2b2b2b; flex: none; }
+  #finder-results .fr .fr-hint { color: #8c867b; font-size: 11px; flex: 1 1 auto;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #finder-results .fr .fr-tag { color: #a8a296; font-size: 10px; flex: none; }
+  #finder-results .fr-note { padding: 7px 14px; color: #8c867b; font-style: italic;
+    font-size: 11.5px; }
+  .guest-badge { display: inline-block; font-size: 10px; color: #7b3294;
+    border: 1px dashed #c4a6d6; border-radius: 999px; padding: 1px 7px; margin-left: 6px;
+    vertical-align: 1px; }
+
+  /* ---- add-a-person: floating "+" top-right of the graph ---- */
+  #add-person { position: absolute; top: 14px; right: 14px; z-index: 5;
+    width: 34px; height: 34px; border-radius: 50%; border: 1px solid #ddd6c8;
+    background: #fff; color: #6b665d; font-size: 20px; line-height: 1; cursor: pointer; }
+  #add-person:hover { background: #eae5d8; color: #2b2b2b; }
+
+  .plabel { font-size: 10.5px; fill: #3a3631; pointer-events: none; paint-order: stroke;
+    stroke: #faf8f3; stroke-width: 3px; stroke-linejoin: round; }
+  .olabel { font-weight: 600; pointer-events: all; cursor: pointer; paint-order: stroke;
+    stroke: #faf8f3; stroke-width: 3.5px; stroke-linejoin: round; text-anchor: middle;
+    dominant-baseline: central; }
+  .tooltip .t-list { list-style: none; margin: 6px 0 0; padding: 6px 0 0;
+    border-top: 1px solid #ece7da; font-size: 11.5px; line-height: 1.35; }
+  .tooltip .t-list li { margin: 0 0 3px; color: #3a3631; }
+  .tooltip .t-list .t-dim { color: #a8a296; }
+</style>
+
+<div id="app">
+  <aside id="sidebar">
+    <div>
+      <h1>Affiliations</h1>
+      {% include coauthorship-tabs.html network="careers" view="map" %}
+      <p class="caption">Where the same people have worked, studied, and gathered — labs,
+        universities, companies, communities, programs. Publications optional: this is the
+        network the paper map can't see.</p>
+    </div>
+
+    <div id="viewctl">
+      <div class="modes">
+        <button class="mode on" data-mode="bipartite" type="button">people &amp; orgs</button>
+        <button class="mode" data-mode="people" type="button">people only</button>
+      </div>
+      <div class="desc" id="mode-desc"></div>
+      <div id="reachctl">
+        <div class="row"><span id="reach-name">Reach</span><span class="k" id="reach-k"></span></div>
+        <input type="range" id="reach" min="1" max="4" step="1" value="1">
+        <div class="ticks"><span id="reach-lo"></span><span id="reach-hi"></span></div>
+        <div class="rdesc" id="reach-desc"></div>
+      </div>
+    </div>
+
+    <div id="typectl"></div>
+
+    <input id="search" type="search" placeholder="filter people…" autocomplete="off" spellcheck="false">
+    <div id="people-wrap"><ul id="people"></ul></div>
+
+    <div id="detail"></div>
+
+    <div id="edit-tools">
+      <button id="edit-toggle" type="button">✎ edit my row / join the map</button>
+      <div id="edit-panel" hidden></div>
+    </div>
+
+    <div id="legend"></div>
+    <div id="foot">
+      Hand-reviewed data; every entry carries its public source — or says it was self-reported by the person (shown when you click them).
+      Spot an error? It's your history — tell Alex.
+      <div style="margin-top:6px"><a href="/networks/">← the co-authorship map</a></div>
+      <div style="margin-top:6px"><a href="/">← alex-loftus.com</a></div>
+    </div>
+  </aside>
+
+  <div id="graph">
+    <div id="finder">
+      <input id="finder-q" type="search" placeholder="search for a person near this graph…"
+        autocomplete="off" spellcheck="false">
+      <div id="finder-results" hidden></div>
+    </div>
+
+    <button id="add-person" type="button" title="add a person" aria-label="add a person">+</button>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script src="/assets/js/network-identity.js"></script>
+<script src="https://d3js.org/d3.v7.min.js" defer></script>
+<script src="/assets/js/coauthorship-affiliations.js" defer></script>

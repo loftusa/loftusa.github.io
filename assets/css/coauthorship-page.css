@@ -1,0 +1,70 @@
+/* Chrome shared by the full-bleed graph pages: /coauthorship/ and /coauthorship/affiliations/.
+   (The analyses page has its own deliberately divergent chrome — don't link this there.)
+   Page-specific rules stay in each page's <style> block. */
+
+#app { display: flex; width: 100vw; height: 100vh; }
+
+/* ---- sidebar ---- */
+#sidebar {
+  flex: 0 0 270px; height: 100vh; overflow-y: auto;
+  background: #f4f1e9; border-right: 1px solid #e3ddcf;
+  padding: 20px 18px 16px; display: flex; flex-direction: column; gap: 14px;
+  font-size: 13px; color: #4a463f;
+}
+#sidebar h1 { font-size: 19px; font-weight: 600; margin: 0; color: #2b2b2b; letter-spacing: .2px; }
+/* .page-tabs rules style the SHARED nav include — keep in sync with the other page css */
+.page-tabs { display: flex; flex-direction: column; gap: 5px; margin-top: 9px; }
+.page-tabs .tab-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.page-tabs .tab { font-size: 12.5px; padding: 4px 12px; border-radius: 999px;
+  border: 1px solid #ddd6c8; background: #fff; color: #6b665d; text-decoration: none; }
+.page-tabs .tab:hover { background: #eae5d8; color: #2b2b2b; }
+.page-tabs .tab.on { background: #e2ebf2; border-color: #b9cbdc; color: #2b2b2b; font-weight: 600; }
+#sidebar .caption { margin: 4px 0 0; color: #6b665d; line-height: 1.45; font-size: 12.5px; }
+
+/* ---- search + people list ---- */
+#search {
+  font-family: inherit; font-size: 13px; color: #2b2b2b; width: 100%;
+  background: #fff; border: 1px solid #ddd6c8; border-radius: 4px; padding: 6px 9px; outline: none;
+}
+#search:focus { border-color: #9a958c; }
+/* min-height: the list is the primary navigation and must never be squeezed flat — it is the
+   only zero-min flex item here (overflow != visible), so all sidebar growth (path breadcrumb,
+   edit tools, …) would otherwise come out of it; past the floor the sidebar scrolls instead. */
+#people-wrap { flex: 1 1 auto; min-height: 120px; overflow-y: auto; margin: 0 -6px; }
+#people { list-style: none; margin: 0; padding: 0; }
+#people li {
+  display: flex; align-items: center; gap: 8px; padding: 4px 6px; border-radius: 4px;
+  cursor: pointer; line-height: 1.2;
+}
+#people li:hover { background: #eae5d8; }
+#people li.sel { background: #e2ebf2; }
+#people .dot { width: 16px; height: 16px; border-radius: 50%; flex: none; color: #fff;
+  font-size: 8px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+#legend { border-top: 1px solid #e3ddcf; padding-top: 10px; font-size: 12px; }
+#legend .row { display: flex; align-items: center; gap: 7px; margin: 2px 0; }
+#legend .swatch { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+#foot { font-size: 11px; color: #8c867b; line-height: 1.4; }
+#foot a { color: #6b665d; }
+
+/* ---- graph ---- */
+#graph { flex: 1 1 auto; position: relative; height: 100vh; cursor: grab; background: #faf8f3; }
+#graph:active { cursor: grabbing; }
+#graph svg { display: block; width: 100%; height: 100%; }
+.ava-text { font-weight: 700; fill: #fff; text-anchor: middle; dominant-baseline: central;
+  pointer-events: none; }
+
+.tooltip { position: fixed; z-index: 10; pointer-events: none; opacity: 0;
+  background: #fff; border: 1px solid #d8d2c6; border-radius: 5px; padding: 6px 9px;
+  font-size: 12.5px; color: #2b2b2b; max-width: 320px; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  transition: opacity .12s; }
+.tooltip .t-name { font-weight: 600; }
+.tooltip .t-sub { color: #8c867b; font-size: 11px; margin-top: 2px; }
+
+/* ---- responsive ---- */
+@media (max-width: 720px) {
+  #app { flex-direction: column; }
+  #sidebar { flex: none; width: 100vw; height: auto; max-height: 46vh; border-right: none;
+    border-bottom: 1px solid #e3ddcf; }
+  #graph { height: 54vh; }
+}

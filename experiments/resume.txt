@@ -1,0 +1,323 @@
+ALEXANDER LOFTUS — RESUME
+=========================
+
+Contact:
+- Email: alexloftus2004@gmail.com (mailto:alexloftus2004@gmail.com)
+- Website: https://alex-loftus.com
+- LinkedIn: https://www.linkedin.com/in/alex-loftus/
+- GitHub: https://github.com/loftusa
+- Google Scholar: https://scholar.google.com/citations?user=_Njcmm8AAAAJ&hl=en
+
+---
+
+SUMMARY
+-------
+Technical program leader and AI safety researcher with 8 years in machine learning, including 2 years of LLM interpretability and evaluation research. Builds 0-to-1 technical programs for frontier-model red-teaming and evaluation: recruiting the team, designing the research, building the infrastructure, and owning live operations end-to-end. Currently leading red-teaming campaigns for OpenAI on contract alongside PhD research on LLM evaluation and interpretability. Seeking a technical program manager role.
+
+Chat with this CV: https://www.alex-loftus.com/chat
+
+---
+
+CAREER HIGHLIGHTS
+-----------------
+
+Red-Teaming Program Leadership: Designed and ran two multi-agent red-teaming campaigns for OpenAI from scratch: wrote the proposal, recruited and led a 16-person team (doubled for the second campaign), set the research direction, and delivered findings and recommendations to stakeholders.
+
+Operational Ownership: Built ~17K lines of campaign infrastructure in under two weeks (~45K lines of code by campaign end), then owned its day-to-day operation through the live campaign, keeping it running reliably under continuous load.
+
+Textbook Authorship: Authored a 524-page technical book on statistical network ML (Cambridge University Press, November 2025).
+  Link: https://a.co/d/9r4BFkX
+
+Community-building: Organized the New England Mechanistic Interpretability (NEMI) conference; Linear Algebra YouTube lecture series creator; delivered 10+ invited talks to 20–300 attendees; taught hundreds of students through meetups, summer camps, and tutorials; regularly organize 100+ member groups and events for AI conferences.
+  NEMI article: https://www.khoury.northeastern.edu/northeastern-mechanistic-interpretability-workshop-aims-to-make-sense-of-ai-systems/
+  Linear Algebra YouTube series: https://youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh&si=oR1Ool9xr3zrc_NN
+
+Competitions: Part of a 4-person team that won 1st place in the $1,000,000 Vesuvius Kaggle competition. Won $100k Kaggle Ink Detection Progress Prize (1,249 teams); featured on the cover of Scientific American.
+  Kaggle competition: https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection
+  Scientific American feature: https://www.scientificamerican.com/article/inside-the-ai-competition-that-decoded-an-ancient-scroll-and-changed/
+
+Research: Subliminal learning work featured in YouTube video with 1m+ subscribers; best poster award for a NeurIPS workshop paper; meeting lead for Harvard AI Safety technical fellowship.
+  Welch Labs video: https://youtu.be/NUAb6zHXqdI?t=1671
+
+Strategic Advisory: Leading red-teaming sprints for OpenAI; Head of Growth at EleutherAI; CBAI mentor for Harvard/MIT students; advisor for cybersecurity/mechanistic interpretability startup.
+  CBAI mentor page: https://www.cbai.ai/david-bau-alex-loftus
+  Krnel.ai: https://krnel.ai/
+
+AI Infrastructure: Co-first author on ICLR paper on scaling up AI systems for interpretability (led a team of 6); scaled up an AI pipeline for computational neuroscience.
+  ICLR paper (NNsight/NDIF): https://arxiv.org/abs/2407.14561
+  M2G pipeline: https://github.com/neurodata/m2g
+
+---
+
+EDUCATION
+---------
+
+Northeastern University — Boston, MA
+PhD Student, Computer Science — AI/ML | Advisor: Dr. David Bau | 2024–Present
+Research: mechanistic interpretability, data attribution, evaluation of large language models.
+  Advisor Google Scholar: https://scholar.google.com/citations?user=CYI6cKgAAAAJ&hl=en&oi=ao
+
+Johns Hopkins University — Baltimore, MD
+MSE, Biomedical Engineering | ML & Data Science Focus | Advisor: Dr. Joshua Vogelstein | 2020–2022
+GPA 3.97/4.0, highest honors. Thesis: Hands-On Network Machine Learning.
+  Advisor Google Scholar: https://scholar.google.com/citations?user=DWPfdT4AAAAJ&hl=en&oi=ao
+  Thesis: https://alex-loftus.com/files/submitted_thesis.pdf
+
+Western Washington University — Bellingham, WA
+BS, Behavioral Neuroscience | Minors: Chemistry, Philosophy | 2014–2018
+Founded and led Computational Neuroscience Club; taught weekly seminars.
+
+---
+
+EXPERIENCE
+----------
+
+Red-Teaming Program Lead — OpenAI (contract via Handshake) | Remote | March 2026–Present
+- Program design & leadership: Took a multi-agent red-teaming program from proposal to delivered findings: defined the research approach, recruited and coordinated a 16-person team across research and engineering, and set research direction. First campaign produced a research artifact successful enough to spawn follow-up engagements; the team doubled for the second campaign, now underway.
+- Infrastructure: Built the campaign's full technical infrastructure from scratch in 11 days (~17,000 lines of code), enabling the team to run large-scale multi-agent experiments reliably.
+- Live operations: Owned operational health across both live campaigns: monitoring, incident response, and daily operational reporting, keeping the system reliable throughout.
+
+Data Scientist — Creyon Bio | San Diego, CA | 2023–2024
+- Large Protein Models For Splice-Site Prediction: Explored splice site prediction for LLMs trained on protein sequences. Pre-training, fine-tuning, and benchmarking+evals.
+- ML for Toxicity Prediction: Developed a novel contrastive learning pipeline to predict drug toxicity from 3-D electrostatic maps of molecules; increased classification AUC from 0.73 to 0.88.
+- Neuron Toxicity Detection: Developed scalable neuron segmentation and toxicology classification pipeline.
+
+Machine Learning Research Engineer — BlueHalo | Rockville, MD | 2022–2023
+- Conditional Image Generation with Generative Adversarial Networks: Built diffusion-model synthetic data generator.
+- Detecting Objects with Enhanced Yolo and Knowledge Graphs: Led knowledge graph effort for object detection project. Delivered live demos to DARPA program officers.
+- Geometric Multi-Resolution Analysis: Led infra for document clustering & analysis method.
+
+Research Software Engineer — NeuroData Lab, Johns Hopkins University | Dr. Joshua Vogelstein | Baltimore, MD | 2018–2020
+- MRI-to-Graphs: Optimized a diffusion MRI pipeline with docker and AWS Batch. Halved runtime and cut cloud costs by 40%.
+  Link: https://neurodata.io/m2g/
+- Graspologic: Worked on an open-source graph statistics library. Later adopted by Microsoft Research for large-scale network analysis.
+  Link: https://microsoft.github.io/graspologic/latest/
+
+Assistant Director — iD Tech Camps | University of Washington | Seattle, WA | 2014–2018 summers
+- Leader and Manager: Managed 10+ instructors/week and 300+ students.
+- Curriculum Designer: Authored game development curriculum deployed to 50+ locations, impacting 10k+ students nationwide.
+
+---
+
+SKILLS SUMMARY
+--------------
+
+Program Management: 0-to-1 program design, cross-functional coordination without direct authority, stakeholder communication, risk triage, incident response, evaluation framework design, operational reporting
+
+Languages: Python (advanced), Bash (intermediate), R, JavaScript, SQL
+
+Tools & Frameworks: PyTorch, NumPy, scikit-learn, transformers, nnsight, inspect-evals, lm-evaluation-harness, pandas, Polars, matplotlib, seaborn, Weights & Biases, PyTorch Lightning, vLLM, Docker, CI/CD, AWS, AWS Batch, Google Cloud (GCP), Fly.io, Firebase, FastAPI, Photoshop, Linux, Cursor, Codex CLI, Claude Code, LaTeX
+
+Areas of Expertise: red-teaming, model evaluation, harm taxonomy design, attack-surface analysis, prompt engineering, LLMs for code, interpretability, transformers, GPUs and CUDA, linear algebra, probability & statistics, deep learning, information theory, diffusion models, convolutional autoencoders, natural language processing, computer vision, capacity planning, cloud cost optimization
+
+Soft Skills: Leadership, project design, extracting and presenting useful information to stakeholders, delegation, public speaking, technical writing, mentorship, community-building
+
+---
+
+TEXTBOOK
+--------
+
+Hands-On Network Machine Learning with Python
+Eric Bridgeford, Alexander R. Loftus, Joshua Vogelstein. Cambridge University Press. Printed November 2025.
+Statistics + spectral representation theory on networks. 524 pages, 147 figures.
+  Link: https://www.cambridge.org/core/books/handson-network-machine-learning-with-python/9735741A096973A9C963E930BBAF5368
+
+---
+
+SELECTED PUBLICATIONS
+---------------------
+
+(* indicates equal contribution; trophy indicates best poster)
+
+Agents of Chaos
+N. Shapira, ..., A.R. Loftus, et al. Preprint, 2026.
+Viral red-teaming investigation of LLMs in a social Discord server. Covered by Science, WIRED, and Die Zeit; featured in Anthropic co-founder Jack Clark's Import AI #447. Led to leadership of OpenAI red-teaming campaigns.
+
+Token Entanglement in Subliminal Learning
+A. Zur, Z. Ying, A.R. Loftus, et al. NeurIPS mechanistic interpretability workshop 2025.
+Investigation on token entanglement in LLMs. Featured in Welch Labs video on YouTube.
+  Paper: https://openreview.net/forum?id=auKgpBRzIW&noteId=auKgpBRzIW
+  Video: https://www.youtube.com/watch?v=NUAb6zHXqdI&t=1671s
+
+NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals
+A.R. Loftus*, J.Fiotto-Kaufman*, et al. ICLR 2025.
+Open source fabric for probing & manipulating LLM weights without engineering overhead.
+  Paper: https://arxiv.org/abs/2407.14561
+
+[Best Poster] A Saliency-based Clustering Framework for Identifying Aberrant Predictions
+A. Tersol Montserrat, A.R. Loftus, Y. Daihes. NeurIPS LatinX AI Workshop, 2023.
+Detects spurious feature reliance via saliency embeddings.
+  Paper: https://arxiv.org/abs/2311.06454
+
+A low-resource reliable pipeline to democratize multi-modal connectome estimation and analysis
+J. Chung, R. Lawrence, A.R. Loftus, et al. Under review, 2024.
+Transforms diffusion MRI scans into graphs; open-sourced.
+  Paper: https://www.biorxiv.org/content/10.1101/2021.11.01.466686v2
+  Code: https://github.com/neurodata/m2g
+
+---
+
+LEADERSHIP & COMMUNITY ENGAGEMENT
+----------------------------------
+
+Head of Growth — EleutherAI | 2025
+Developing funding strategy for EleutherAI's 2025-2026 philanthropic effort.
+
+Technical Lead — Harvard AI Safety Team | 2026
+Paid facilitator for the Spring 2026 Introductory Technical AI Safety Fellowship at Harvard.
+   Link: https://aisst.ai/tech-fellowship 
+
+Conference Organizer — NEMI | 2025
+Organized 200+ person interpretability conference; Raised $17,000 grant funding.
+  Link: https://nemiconf.github.io/summer24/
+
+Research Mentor — CBAI | 2025
+Mentoring Harvard/MIT students in Summer 2025.
+  Link: https://www.cbai.ai/david-bau-alex-loftus
+
+Strategic Advisor — Krnel.ai | 2025
+Advisor to cybersecurity-focused startup specializing in interpretability tooling for AI systems.
+
+Meetup Speaker — SDML | 2023–2024
+Speaker & organizer for San Diego AI Meetups.
+  Link: https://www.meetup.com/san-diego-machine-learning/
+
+Hackathon Organizer — NeuroData Workshop | 2019
+Helped organize hackathon & workshop to explore statistics for high-dimensional testing.
+  Link: https://neurodata.devpost.com/
+
+---
+
+TALKS & DEMOS
+-------------
+
+White-Box Techniques for Code LLMs: Influence Benchmarking, the Attendome, and Variable State Debugging
+Lawrence Livermore National Laboratory, 2025.
+Invited talk on interpretability for code LLMs.
+
+A Shared Infrastructure for Interpretability
+FAR AI Tech. Innovations for AI Policy Conf., 2025.
+Invited demo for DC policymakers; showcased live editing of GPT2 internals.
+
+State of the Art in Knowledge Editing
+A.R. Loftus, 2024.
+Survey talk on LLM knowledge-editing methods.
+  Video: https://youtu.be/q9mC3T2aBL8
+
+1st Place Solution — Vesuvius Ink Competition
+R. Chesler, A.R. Loftus, A. Tersol Montserrat, T. Kyi, 2023.
+Walkthrough of winning $100,000 ink-detection model.
+  Video: https://www.youtube.com/watch?v=IWySc8s00P0
+
+ICML Conference Highlights
+A.R. Loftus, 2023.
+Selected breakthroughs from ICML. Presented to biotech execs and SDML meetup group.
+  Video: https://www.youtube.com/watch?v=V_hcmfdJzF8
+
+Working with LLMs
+AI San Diego Conference, 2023.
+Invited talk: Introduction to LLM engineering. 300+ attendees.
+  Link: https://lu.ma/aisd1
+
+Linear Algebra, from Dot Products to Neural Networks
+A.R. Loftus, 2023.
+Created a YouTube tutorial series on the fundamentals of linear algebra for machine learning.
+  Playlist: https://www.youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh
+
+---
+
+FELLOWSHIPS & AWARDS
+---------------------
+
+Harvard AI Safety Technical Fellowship — 2025
+Harvard fellowship for technical work in AI safety.
+  Link: https://aisst.ai/tech-fellowship
+
+GCP Research Grant — 2025
+$5,000 grant for computational research.
+
+Khoury Distinguished Fellowship — 2024
+Northeastern University PhD fellowship.
+
+First Place Winner — 2023
+Kaggle Vesuvius Competition, $100,000.
+  Link: https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection/overview
+
+Best Poster Award — 2023
+NeurIPS 2023 LatinX AI Workshop.
+
+AWS Research Grant — 2019
+$10,000 grant for computational research on cloud services.
+
+---
+
+TEACHING
+--------
+
+Head Teaching Assistant — Johns Hopkins University | Spring 2021
+Foundations of Computational Biology and Bioinformatics, EN.BME.410/634
+
+Teaching Assistant — Johns Hopkins University | Spring 2020
+NeuroData Design II, EN.BME.438/638
+  Link: https://neurodatadesign.io/
+
+Teaching Assistant — Johns Hopkins University | Fall 2019
+NeuroData Design I, EN.BME.437/637
+  Link: https://neurodatadesign.io/
+
+Teaching Assistant — Western Washington University | Winter 2017
+Introduction to Behavioral Neuroscience, PSY.220
+
+Curriculum Designer — iD Tech Camps | Spring 2017
+Built curriculum used across 50 locations in the United States by tens of thousands of students.
+
+---
+
+FUN
+---
+
+Gaming: Starcraft 2 grandmaster, local tournament winner; WoW 10-man server first ToGC (off-tank)
+Music: Fingerstyle guitarist; performed at open mic nights.
+Dancing: Partner dance instructor and competition winner (Fusion, West Coast Swing, Zouk)
+
+---
+
+LINKS INDEX (for RAG ingestion)
+================================
+https://alex-loftus.com
+https://www.alex-loftus.com/chat
+https://www.linkedin.com/in/alex-loftus/
+https://github.com/loftusa
+https://scholar.google.com/citations?user=_Njcmm8AAAAJ&hl=en
+https://a.co/d/9r4BFkX
+https://www.khoury.northeastern.edu/northeastern-mechanistic-interpretability-workshop-aims-to-make-sense-of-ai-systems/
+https://youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh&si=oR1Ool9xr3zrc_NN
+https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection
+https://www.scientificamerican.com/article/inside-the-ai-competition-that-decoded-an-ancient-scroll-and-changed/
+https://youtu.be/NUAb6zHXqdI?t=1671
+https://www.cbai.ai/david-bau-alex-loftus
+https://krnel.ai/
+https://arxiv.org/abs/2407.14561
+https://github.com/neurodata/m2g
+https://scholar.google.com/citations?user=CYI6cKgAAAAJ&hl=en&oi=ao
+https://scholar.google.com/citations?user=DWPfdT4AAAAJ&hl=en&oi=ao
+https://alex-loftus.com/files/submitted_thesis.pdf
+https://neurodata.io/m2g/
+https://microsoft.github.io/graspologic/latest/
+https://www.cambridge.org/core/books/handson-network-machine-learning-with-python/9735741A096973A9C963E930BBAF5368
+https://openreview.net/forum?id=auKgpBRzIW&noteId=auKgpBRzIW
+https://www.youtube.com/watch?v=NUAb6zHXqdI&t=1671s
+https://arxiv.org/abs/2311.06454
+https://www.biorxiv.org/content/10.1101/2021.11.01.466686v2
+https://nemiconf.github.io/summer24/
+https://www.meetup.com/san-diego-machine-learning/
+https://neurodata.devpost.com/
+https://youtu.be/q9mC3T2aBL8
+https://www.youtube.com/watch?v=IWySc8s00P0
+https://www.youtube.com/watch?v=V_hcmfdJzF8
+https://lu.ma/aisd1
+https://www.youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh
+https://aisst.ai/tech-fellowship
+https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection/overview
+https://neurodatadesign.io/
+https://aisst.ai/tech-fellowship

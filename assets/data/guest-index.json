@@ -1,0 +1,5518 @@
+{
+ "people": [
+  {
+   "label": "Carey E. Priebe",
+   "oa": "A5031834098",
+   "n": 69,
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "brandon duderstadt",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2017–2025"
+    },
+    {
+     "org": "JHU Applied Physics Laboratory",
+     "type": "lab",
+     "years": "2017–2025"
+    },
+    {
+     "org": "University of Chinese Academy of Sciences",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "Baylor College of Medicine",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2021"
+    },
+    {
+     "org": "Applied Mathematics",
+     "type": "company",
+     "years": "2021"
+    },
+    {
+     "org": "Nanning Normal University",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Joshua T Vogelstein",
+   "oa": "A5065441417",
+   "n": 68,
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "brandon duderstadt",
+    "devin crowley"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2016–2025"
+    },
+    {
+     "org": "Johns Hopkins Medicine",
+     "type": "university",
+     "years": "2018–2021"
+    },
+    {
+     "org": "Chinese Institute for Brain Research",
+     "type": "lab",
+     "years": "2017–2021"
+    },
+    {
+     "org": "Child Mind Institute",
+     "type": "community",
+     "years": "2018–2019"
+    },
+    {
+     "org": "Baylor College of Medicine",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2021"
+    },
+    {
+     "org": "Discovery Institute",
+     "type": "community",
+     "years": "2021"
+    },
+    {
+     "org": "JHU Applied Physics Laboratory",
+     "type": "lab",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "David Bau",
+   "oa": "A5033305045",
+   "n": 36,
+   "via": [
+    "alex loftus",
+    "arnab sen sharma",
+    "can rager",
+    "eric michaud"
+   ],
+   "entries": [
+    {
+     "org": "Universidad del Noreste",
+     "type": "university",
+     "years": "2023–2026"
+    },
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Northeastern University",
+     "type": "university",
+     "years": "2024"
+    }
+   ]
+  },
+  {
+   "label": "Ellie Pavlick",
+   "oa": "A5053850863",
+   "n": 23,
+   "via": [
+    "jack merullo",
+    "sheridan feucht",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "John Brown University",
+     "type": "university",
+     "years": "2023–2025"
+    }
+   ]
+  },
+  {
+   "label": "David E. Wildt",
+   "oa": "A5046565388",
+   "n": 21,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "National Zoological Park",
+     "type": "community",
+     "years": "1988–2015"
+    },
+    {
+     "org": "Smithsonian Conservation Biology Institute",
+     "type": "lab",
+     "years": "1996–2015"
+    },
+    {
+     "org": "Smithsonian Institution",
+     "type": "lab",
+     "years": "1988–2001"
+    },
+    {
+     "org": "Toronto Zoo",
+     "type": "community",
+     "years": "1996"
+    },
+    {
+     "org": "University of California, Davis",
+     "type": "university",
+     "years": "1996"
+    },
+    {
+     "org": "Uniformed Services University of the Health Sciences",
+     "type": "university",
+     "years": "1988"
+    }
+   ]
+  },
+  {
+   "label": "Jeremias Sulam",
+   "oa": "A5086776097",
+   "n": 20,
+   "via": [
+    "jacopo teneggi"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2022–2025"
+    },
+    {
+     "org": "University of Maryland, Baltimore",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Eric K. Oermann",
+   "oa": "A5060570681",
+   "n": 19,
+   "via": [
+    "anton alyakin",
+    "brandon duderstadt"
+   ],
+   "entries": [
+    {
+     "org": "Neurological Surgery",
+     "type": "university",
+     "years": "2024–2026"
+    },
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "Médecins Sans Frontières",
+     "type": "community",
+     "years": "2025"
+    },
+    {
+     "org": "Hinge Health",
+     "type": "university",
+     "years": "2026"
+    }
+   ]
+  },
+  {
+   "label": "Gregory Kiar",
+   "oa": "A5053240953",
+   "n": 18,
+   "via": [
+    "brandon duderstadt",
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2016–2021"
+    },
+    {
+     "org": "Child Mind Institute",
+     "type": "community",
+     "years": "2021–2025"
+    },
+    {
+     "org": "McGill University",
+     "type": "university",
+     "years": "2017–2021"
+    },
+    {
+     "org": "University of Baltimore",
+     "type": "university",
+     "years": "2017–2021"
+    },
+    {
+     "org": "University of Chinese Academy of Sciences",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "Nanning Normal University",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Carsten Eickhoff",
+   "oa": "A5014921416",
+   "n": 17,
+   "via": [
+    "jack merullo",
+    "sheridan feucht",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "University of Tübingen",
+     "type": "university",
+     "years": "2024"
+    },
+    {
+     "org": "Brown University",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "John Brown University",
+     "type": "university",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Edward Raff",
+   "oa": "A5068036546",
+   "n": 16,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Booz Allen Hamilton",
+     "type": "company",
+     "years": "2022–2023"
+    }
+   ]
+  },
+  {
+   "label": "Jayanta Dey",
+   "oa": "A5101499187",
+   "n": 16,
+   "via": [
+    "bijan varjavand",
+    "eric bridgeford",
+    "hayden helm",
+    "madi kusmonov"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019–2025"
+    },
+    {
+     "org": "University of Chinese Academy of Sciences",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "Baylor College of Medicine",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2021"
+    },
+    {
+     "org": "Nanning Normal University",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Max Tegmark",
+   "oa": "A5091601455",
+   "n": 16,
+   "via": [
+    "eric michaud",
+    "jesse hoogland",
+    "sarah schwettman",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "The NSF AI Institute for Artificial Intelligence and Fundamental Interactions",
+     "type": "lab",
+     "years": "2023–2025"
+    },
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2023–2025"
+    }
+   ]
+  },
+  {
+   "label": "Atticus Geiger",
+   "oa": "A5002577142",
+   "n": 15,
+   "via": [
+    "arnab sen sharma",
+    "can rager",
+    "eric michaud",
+    "jack merullo"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Jaewon Chung",
+   "oa": "A5064683530",
+   "n": 15,
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "eric bridgeford",
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019–2025"
+    },
+    {
+     "org": "Johns Hopkins Medicine",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "JHU Applied Physics Laboratory",
+     "type": "lab",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Joanna Materzyńska",
+   "oa": "A5051693812",
+   "n": 15,
+   "via": [
+    "rohit gandikota",
+    "sarah schwettman",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2023–2024"
+    },
+    {
+     "org": "Moscow Institute of Thermal Technology",
+     "type": "lab",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Youngser Park",
+   "oa": "A5021862004",
+   "n": 15,
+   "via": [
+    "anton alyakin",
+    "brandon duderstadt",
+    "eric bridgeford",
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019–2025"
+    }
+   ]
+  },
+  {
+   "label": "Antonio Torralba",
+   "oa": "A5085020955",
+   "n": 13,
+   "via": [
+    "rohit gandikota",
+    "sarah schwettman"
+   ],
+   "entries": [
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2021–2024"
+    },
+    {
+     "org": "Moscow Institute of Thermal Technology",
+     "type": "lab",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Benjamin D. Pedigo",
+   "oa": "A5078489506",
+   "n": 13,
+   "via": [
+    "bijan varjavand",
+    "eric bridgeford",
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019–2025"
+    }
+   ]
+  },
+  {
+   "label": "Markus Püschel",
+   "oa": "A5076407181",
+   "n": 13,
+   "via": [
+    "chris wendler"
+   ],
+   "entries": [
+    {
+     "org": "ETH Zurich",
+     "type": "university",
+     "years": "2019–2023"
+    },
+    {
+     "org": "Institute of Science and Technology Austria",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Michael P. Milham",
+   "oa": "A5046014044",
+   "n": 13,
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "Child Mind Institute",
+     "type": "community",
+     "years": "2019–2025"
+    },
+    {
+     "org": "Chinese Institute for Brain Research",
+     "type": "lab",
+     "years": "2017–2021"
+    },
+    {
+     "org": "Nathan Kline Institute for Psychiatric Research",
+     "type": "community",
+     "years": "2022–2023"
+    },
+    {
+     "org": "University of Chinese Academy of Sciences",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "Czech Academy of Sciences, Institute of Psychology",
+     "type": "lab",
+     "years": "2021"
+    },
+    {
+     "org": "Lifespan",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Nanning Normal University",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Niklas Muennighoff",
+   "oa": "A5000043237",
+   "n": 13,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "FACE Foundation",
+     "type": "community",
+     "years": "2023"
+    },
+    {
+     "org": "Hugging Face",
+     "type": "company",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Randal Burns",
+   "oa": "A5084849539",
+   "n": 13,
+   "via": [
+    "brandon duderstadt",
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2016–2021"
+    },
+    {
+     "org": "Johns Hopkins Medicine",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "D. E. Wildt",
+   "oa": "A5110526306",
+   "n": 12,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "National Zoological Park",
+     "type": "community",
+     "years": "1982–1997"
+    },
+    {
+     "org": "Smithsonian Institution",
+     "type": "lab",
+     "years": "1983–1997"
+    },
+    {
+     "org": "Smithsonian Conservation Biology Institute",
+     "type": "lab",
+     "years": "1995–1997"
+    },
+    {
+     "org": "National Cancer Institute",
+     "type": "lab",
+     "years": "1983"
+    },
+    {
+     "org": "South African National Parks",
+     "type": "lab",
+     "years": "1993"
+    }
+   ]
+  },
+  {
+   "label": "Daniel Alexander Alber",
+   "oa": "A5039258965",
+   "n": 12,
+   "via": [
+    "anton alyakin",
+    "brandon duderstadt"
+   ],
+   "entries": [
+    {
+     "org": "Neurological Surgery",
+     "type": "university",
+     "years": "2024–2025"
+    },
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Karl L. Sangwon",
+   "oa": "A5047079851",
+   "n": 12,
+   "via": [
+    "anton alyakin",
+    "brandon duderstadt"
+   ],
+   "entries": [
+    {
+     "org": "Hinge Health",
+     "type": "university",
+     "years": "2025–2026"
+    },
+    {
+     "org": "Neurological Surgery",
+     "type": "university",
+     "years": "2024–2025"
+    },
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Sergey Kuznetsov",
+   "oa": "A5026735577",
+   "n": 12,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Tamar Rott Shaham",
+   "oa": "A5081132390",
+   "n": 12,
+   "via": [
+    "arnab sen sharma",
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": [
+    {
+     "org": "Moscow Institute of Thermal Technology",
+     "type": "lab",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Zaïd Harchaoui",
+   "oa": "A5010613767",
+   "n": 12,
+   "via": [
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "University of Washington",
+     "type": "university",
+     "years": "2024–2025"
+    }
+   ]
+  },
+  {
+   "label": "Ali Geisa",
+   "oa": "A5055348866",
+   "n": 11,
+   "via": [
+    "brandon duderstadt",
+    "eric bridgeford",
+    "hayden helm",
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2021–2025"
+    },
+    {
+     "org": "Baylor College of Medicine",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Cencheng Shen",
+   "oa": "A5017159636",
+   "n": 11,
+   "via": [
+    "eric bridgeford",
+    "hayden helm",
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "University of Delaware",
+     "type": "university",
+     "years": "2018–2019"
+    },
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Graham Neubig",
+   "oa": "A5068811427",
+   "n": 11,
+   "via": [
+    "kayo yin"
+   ],
+   "entries": [
+    {
+     "org": "Carnegie Mellon University",
+     "type": "university",
+     "years": "2021–2023"
+    },
+    {
+     "org": "Bridge University",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "UC Berkeley",
+     "type": "university",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Neil Chowdhury",
+   "oa": "A5053186663",
+   "n": 11,
+   "via": [
+    "sarah schwettman"
+   ],
+   "entries": [
+    {
+     "org": "Moscow Institute of Thermal Technology",
+     "type": "lab",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Raphaël Sarfati",
+   "oa": "A5082174299",
+   "n": 11,
+   "via": [
+    "can rager",
+    "jack merullo",
+    "sheridan feucht"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Shayne Longpre",
+   "oa": "A5001884064",
+   "n": 11,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Trinity College Dublin",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Vikram Chandrashekhar",
+   "oa": "A5012473250",
+   "n": 11,
+   "via": [
+    "bijan varjavand",
+    "brandon duderstadt",
+    "devin crowley",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2017–2021"
+    },
+    {
+     "org": "Johns Hopkins Medicine",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Douglas Kondziolka",
+   "oa": "A5020032572",
+   "n": 10,
+   "via": [
+    "anton alyakin",
+    "brandon duderstadt"
+   ],
+   "entries": [
+    {
+     "org": "Neurological Surgery",
+     "type": "university",
+     "years": "2024–2026"
+    },
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Jaden Stryker",
+   "oa": "A5114285297",
+   "n": 10,
+   "via": [
+    "anton alyakin",
+    "brandon duderstadt"
+   ],
+   "entries": [
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025–2026"
+    },
+    {
+     "org": "Neurological Surgery",
+     "type": "university",
+     "years": "2025–2026"
+    }
+   ]
+  },
+  {
+   "label": "Jesús Arroyo",
+   "oa": "A5057389361",
+   "n": 10,
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "eric bridgeford",
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2020–2023"
+    },
+    {
+     "org": "Texas A&M University",
+     "type": "university",
+     "years": "2021–2025"
+    },
+    {
+     "org": "Johns Hopkins Medicine",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Lintang Sutawika",
+   "oa": "A5002839718",
+   "n": 10,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "Cape Eleuthera Institute",
+     "type": "lab",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Quentin Anthony",
+   "oa": "A5015153122",
+   "n": 10,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "The Ohio State University",
+     "type": "university",
+     "years": "2023–2024"
+    },
+    {
+     "org": "Machine Intelligence Research Labs",
+     "type": "lab",
+     "years": "2022"
+    },
+    {
+     "org": "State Library of Ohio",
+     "type": "community",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Samuel D. Marks",
+   "oa": "A5037987827",
+   "n": 10,
+   "via": [
+    "alex loftus",
+    "arnab sen sharma",
+    "can rager",
+    "eric michaud"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Yacine Jernite",
+   "oa": "A5000126238",
+   "n": 10,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Hugging Face",
+     "type": "company",
+     "years": "2022–2023"
+    }
+   ]
+  },
+  {
+   "label": "Yonatan Belinkov",
+   "oa": "A5051184573",
+   "n": 10,
+   "via": [
+    "arnab sen sharma",
+    "can rager",
+    "eric michaud",
+    "jannik brinkmann"
+   ],
+   "entries": [
+    {
+     "org": "Technion – Israel Institute of Technology",
+     "type": "university",
+     "years": "2024–2025"
+    }
+   ]
+  },
+  {
+   "label": "Μ. Bush",
+   "oa": "A5113754907",
+   "n": 10,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "National Zoological Park",
+     "type": "community",
+     "years": "1982–1993"
+    },
+    {
+     "org": "Smithsonian Institution",
+     "type": "community",
+     "years": "1988–1993"
+    },
+    {
+     "org": "Willow Wood",
+     "type": "company",
+     "years": "1989"
+    },
+    {
+     "org": "South African National Parks",
+     "type": "lab",
+     "years": "1993"
+    }
+   ]
+  },
+  {
+   "label": "Jacob Andreas",
+   "oa": "A5070829652",
+   "n": 9,
+   "via": [
+    "arnab sen sharma",
+    "sarah schwettman"
+   ],
+   "entries": [
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Moscow Institute of Thermal Technology",
+     "type": "lab",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Janine L. Brown",
+   "oa": "A5023770508",
+   "n": 9,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "National Zoological Park",
+     "type": "community",
+     "years": "1993–2010"
+    },
+    {
+     "org": "Smithsonian Conservation Biology Institute",
+     "type": "lab",
+     "years": "1996–2010"
+    },
+    {
+     "org": "Smithsonian Institution",
+     "type": "lab",
+     "years": "1993–2001"
+    },
+    {
+     "org": "Uniformed Services University of the Health Sciences",
+     "type": "university",
+     "years": "1988–1994"
+    }
+   ]
+  },
+  {
+   "label": "Leo Gao",
+   "oa": "A5057062066",
+   "n": 9,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Machine Intelligence Research Labs",
+     "type": "lab",
+     "years": "2022"
+    },
+    {
+     "org": "Booz Allen Hamilton",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Louis Castricato",
+   "oa": "A5004714414",
+   "n": 9,
+   "via": [
+    "jack merullo",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Georgia Tech",
+     "type": "university",
+     "years": "2021–2022"
+    },
+    {
+     "org": "University of Utah",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Carleton University",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Manan Dey",
+   "oa": "A5070647299",
+   "n": 9,
+   "via": [
+    "kayo yin",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Systems, Applications & Products in Data Processing",
+     "type": "company",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Michael Powell",
+   "oa": "A5053480593",
+   "n": 9,
+   "via": [
+    "anton alyakin",
+    "eric bridgeford",
+    "hayden helm",
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2021–2023"
+    },
+    {
+     "org": "United States Military Academy",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Sambit Panda",
+   "oa": "A5055358499",
+   "n": 9,
+   "via": [
+    "eric bridgeford",
+    "madi kusmonov",
+    "ronak mehta",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019–2025"
+    }
+   ]
+  },
+  {
+   "label": "Shangsi Wang",
+   "oa": "A5058606356",
+   "n": 9,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019–2024"
+    },
+    {
+     "org": "University of Chinese Academy of Sciences",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "Nanning Normal University",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Vince Lyzinski",
+   "oa": "A5014425850",
+   "n": 9,
+   "via": [
+    "eric bridgeford",
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "University of Massachusetts Amherst",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "University of Maryland, College Park",
+     "type": "university",
+     "years": "2021–2023"
+    },
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Weiwei Yang",
+   "oa": "A5101978099",
+   "n": 9,
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "entries": [
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2022–2025"
+    }
+   ]
+  },
+  {
+   "label": "Alham Fikri Aji",
+   "oa": "A5112924039",
+   "n": 8,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Mohamed bin Zayed University of Artificial Intelligence",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Brian Caffo",
+   "oa": "A5044021585",
+   "n": 8,
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2017–2025"
+    },
+    {
+     "org": "Nanning Normal University",
+     "type": "university",
+     "years": "2019"
+    },
+    {
+     "org": "University of Chinese Academy of Sciences",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Daniel Wurgaft",
+   "oa": "A5092206144",
+   "n": 8,
+   "via": [
+    "can rager",
+    "jack merullo",
+    "sheridan feucht"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Dragomir Radev",
+   "oa": "A5081787254",
+   "n": 8,
+   "via": [
+    "kayo yin",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Yale University",
+     "type": "university",
+     "years": "2022–2023"
+    },
+    {
+     "org": "Mohamed bin Zayed University of Artificial Intelligence",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "University of Cambridge",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Jonathan Larson",
+   "oa": "A5056572216",
+   "n": 8,
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "entries": [
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2021–2022"
+    },
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Baylor College of Medicine",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Usha Bhalla",
+   "oa": "A5077350902",
+   "n": 8,
+   "via": [
+    "can rager",
+    "jack merullo",
+    "rohit gandikota",
+    "sheridan feucht"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Yindalon Aphinyanaphongs",
+   "oa": "A5087660055",
+   "n": 8,
+   "via": [
+    "anton alyakin",
+    "brandon duderstadt"
+   ],
+   "entries": [
+    {
+     "org": "Hinge Health",
+     "type": "university",
+     "years": "2025–2026"
+    },
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025–2026"
+    }
+   ]
+  },
+  {
+   "label": "Aaron Mueller",
+   "oa": "A5020998070",
+   "n": 7,
+   "via": [
+    "alex loftus",
+    "arnab sen sharma",
+    "can rager",
+    "eric michaud"
+   ],
+   "entries": [
+    {
+     "org": "Boston University",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Aruna Sankaranarayanan",
+   "oa": "A5060686905",
+   "n": 7,
+   "via": [
+    "arnab sen sharma",
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": [
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Christian Bartelt",
+   "oa": "A5020967690",
+   "n": 7,
+   "via": [
+    "jannik brinkmann"
+   ],
+   "entries": [
+    {
+     "org": "University of Mannheim",
+     "type": "university",
+     "years": "2023–2024"
+    },
+    {
+     "org": "Technische Hochschule Mannheim",
+     "type": "university",
+     "years": "2024"
+    }
+   ]
+  },
+  {
+   "label": "Christopher M. White",
+   "oa": "A5103871563",
+   "n": 7,
+   "via": [
+    "hayden helm",
+    "madi kusmonov",
+    "ronak mehta",
+    "will levine"
+   ],
+   "entries": [
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Daniel J. Tward",
+   "oa": "A5082725826",
+   "n": 7,
+   "via": [
+    "brandon duderstadt",
+    "devin crowley",
+    "eric bridgeford",
+    "jacopo teneggi"
+   ],
+   "entries": [
+    {
+     "org": "University of California, Los Angeles",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2018"
+    }
+   ]
+  },
+  {
+   "label": "Daniel Murfet",
+   "oa": "A5082251796",
+   "n": 7,
+   "via": [
+    "eric michaud",
+    "jesse hoogland",
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Deepak Mishra",
+   "oa": "A5086817031",
+   "n": 7,
+   "via": [
+    "rohit gandikota"
+   ],
+   "entries": [
+    {
+     "org": "Indian Institute of Space Science and Technology",
+     "type": "university",
+     "years": "2019–2023"
+    }
+   ]
+  },
+  {
+   "label": "Hadas Orgad",
+   "oa": "A5017373229",
+   "n": 7,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa",
+    "rohit gandikota"
+   ],
+   "entries": [
+    {
+     "org": "Technion – Israel Institute of Technology",
+     "type": "university",
+     "years": "2024"
+    }
+   ]
+  },
+  {
+   "label": "Khalid Almubarak",
+   "oa": "A5073811679",
+   "n": 7,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Prince Sattam Bin Abdulaziz University",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Maraim Masoud",
+   "oa": "A5079539370",
+   "n": 7,
+   "via": [
+    "kayo yin",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Google",
+     "type": "company",
+     "years": "2022"
+    },
+    {
+     "org": "Naver (South Korea)",
+     "type": "company",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Minh Tang",
+   "oa": "A5056784746",
+   "n": 7,
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "North Carolina State University",
+     "type": "university",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Johns Hopkins Medicine",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Tal Haklay",
+   "oa": "A5092671619",
+   "n": 7,
+   "via": [
+    "arnab sen sharma",
+    "can rager",
+    "jack merullo",
+    "sheridan feucht"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Ting Xu",
+   "oa": "A5101640031",
+   "n": 7,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Child Mind Institute",
+     "type": "community",
+     "years": "2020–2025"
+    },
+    {
+     "org": "University of Chinese Academy of Sciences",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "Nanning Normal University",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Xiaoqian J. Chai",
+   "oa": "A5109592896",
+   "n": 7,
+   "via": [
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "McGill University",
+     "type": "university",
+     "years": "2021–2025"
+    }
+   ]
+  },
+  {
+   "label": "Xi‐Nian Zuo",
+   "oa": "A5032668331",
+   "n": 7,
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "University of Chinese Academy of Sciences",
+     "type": "university",
+     "years": "2017–2021"
+    },
+    {
+     "org": "Beijing Normal University",
+     "type": "university",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Magnetic Resonance Imaging Institute for Biomedical Research",
+     "type": "community",
+     "years": "2017–2021"
+    },
+    {
+     "org": "Chinese Institute for Brain Research",
+     "type": "lab",
+     "years": "2017–2021"
+    },
+    {
+     "org": "Shanghai Jiao Tong University",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "Nanning Normal University",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "Behavioral Pharma",
+     "type": "company",
+     "years": "2021"
+    },
+    {
+     "org": "Czech Academy of Sciences, Institute of Psychology",
+     "type": "lab",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Zach Nussbaum",
+   "oa": "A5093241511",
+   "n": 7,
+   "via": [
+    "brandon duderstadt"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Zaid Alyafeai",
+   "oa": "A5082096652",
+   "n": 7,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "King Fahd University of Petroleum and Minerals",
+     "type": "university",
+     "years": "2021–2023"
+    }
+   ]
+  },
+  {
+   "label": "Zeyi Wang",
+   "oa": "A5100629712",
+   "n": 7,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019–2024"
+    },
+    {
+     "org": "University of Chinese Academy of Sciences",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "Nanning Normal University",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Ziming Liu",
+   "oa": "A5101924541",
+   "n": 7,
+   "via": [
+    "eric michaud"
+   ],
+   "entries": [
+    {
+     "org": "The NSF AI Institute for Artificial Intelligence and Fundamental Interactions",
+     "type": "lab",
+     "years": "2023"
+    },
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Ali Saad-Eldin",
+   "oa": "A5050250822",
+   "n": 6,
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2020–2021"
+    }
+   ]
+  },
+  {
+   "label": "André F. T. Martins",
+   "oa": "A5051693368",
+   "n": 6,
+   "via": [
+    "kayo yin"
+   ],
+   "entries": [
+    {
+     "org": "Instituto de Telecomunicações",
+     "type": "community",
+     "years": "2021–2023"
+    },
+    {
+     "org": "Instituto Superior Técnico",
+     "type": "university",
+     "years": "2021–2023"
+    },
+    {
+     "org": "University of Lisbon",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Anne W. Rimoin",
+   "oa": "A5051618172",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "University of California, Los Angeles",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "UCLA Health",
+     "type": "university",
+     "years": "2020"
+    },
+    {
+     "org": "University of San Francisco",
+     "type": "university",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Arne von Delft",
+   "oa": "A5069779889",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "University of Cape Town",
+     "type": "university",
+     "years": "2020–2021"
+    },
+    {
+     "org": "UCLA Health",
+     "type": "university",
+     "years": "2020"
+    },
+    {
+     "org": "University of San Francisco",
+     "type": "university",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Avanti Athreya",
+   "oa": "A5104310129",
+   "n": 6,
+   "via": [
+    "eric bridgeford",
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019–2022"
+    }
+   ]
+  },
+  {
+   "label": "Bastian Seifert",
+   "oa": "A5068391167",
+   "n": 6,
+   "via": [
+    "chris wendler"
+   ],
+   "entries": [
+    {
+     "org": "ETH Zurich",
+     "type": "university",
+     "years": "2020–2023"
+    }
+   ]
+  },
+  {
+   "label": "Bryan Tower",
+   "oa": "A5102836934",
+   "n": 6,
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "entries": [
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2021–2022"
+    },
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2025"
+    },
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Baylor College of Medicine",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Cameron Craddock",
+   "oa": "A5033643620",
+   "n": 6,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Child Mind Institute",
+     "type": "community",
+     "years": "2019–2020"
+    },
+    {
+     "org": "University of Chinese Academy of Sciences",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "The University of Texas at Austin",
+     "type": "university",
+     "years": "2020"
+    },
+    {
+     "org": "Nanning Normal University",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Chandrakumar Appayee",
+   "oa": "A5067744773",
+   "n": 6,
+   "via": [
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "Indian Institute of Technology Gandhinagar",
+     "type": "university",
+     "years": "2023–2025"
+    }
+   ]
+  },
+  {
+   "label": "Christina E. Bax",
+   "oa": "A5041905033",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "University of Pennsylvania",
+     "type": "university",
+     "years": "2020–2021"
+    }
+   ]
+  },
+  {
+   "label": "Christina M. Ramirez",
+   "oa": "A5022088425",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "University of California, Los Angeles",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "University of Cape Town",
+     "type": "university",
+     "years": "2020"
+    },
+    {
+     "org": "UCLA Health",
+     "type": "university",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Colin Raffel",
+   "oa": "A5045077843",
+   "n": 6,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "Hugging Face",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "David B. Kurland",
+   "oa": "A5077057828",
+   "n": 6,
+   "via": [
+    "anton alyakin",
+    "brandon duderstadt"
+   ],
+   "entries": [
+    {
+     "org": "Hinge Health",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "Neurological Surgery",
+     "type": "university",
+     "years": "2024"
+    }
+   ]
+  },
+  {
+   "label": "Eric C. Leuthardt",
+   "oa": "A5077868821",
+   "n": 6,
+   "via": [
+    "anton alyakin",
+    "brandon duderstadt"
+   ],
+   "entries": [
+    {
+     "org": "Washington University in St. Louis",
+     "type": "university",
+     "years": "2024–2025"
+    }
+   ]
+  },
+  {
+   "label": "Frederik Questier",
+   "oa": "A5045261904",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Vrije Universiteit Brussel",
+     "type": "university",
+     "years": "2020–2021"
+    }
+   ]
+  },
+  {
+   "label": "Gregory L. Watson",
+   "oa": "A5078844896",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "University of California, Los Angeles",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "UCLA Health",
+     "type": "university",
+     "years": "2020"
+    },
+    {
+     "org": "University of San Francisco",
+     "type": "university",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Gérard Dupont",
+   "oa": "A5072470031",
+   "n": 6,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Hailey Schoelkopf",
+   "oa": "A5049133108",
+   "n": 6,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "University of Cambridge",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "Yale University",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "Mohamed bin Zayed University of Artificial Intelligence",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Haoyin Xu",
+   "oa": "A5089675192",
+   "n": 6,
+   "via": [
+    "hayden helm",
+    "madi kusmonov",
+    "ronak mehta",
+    "will levine"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2022–2025"
+    }
+   ]
+  },
+  {
+   "label": "Helene‐Mari van der Westhuizen",
+   "oa": "A5045401433",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "University of Oxford",
+     "type": "university",
+     "years": "2020–2021"
+    }
+   ]
+  },
+  {
+   "label": "Howard A. Riina",
+   "oa": "A5056646847",
+   "n": 6,
+   "via": [
+    "anton alyakin",
+    "brandon duderstadt"
+   ],
+   "entries": [
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025–2026"
+    },
+    {
+     "org": "Hinge Health",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "J. Webster Stayman",
+   "oa": "A5066969185",
+   "n": 6,
+   "via": [
+    "jacopo teneggi"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2023–2025"
+    }
+   ]
+  },
+  {
+   "label": "Jason Phang",
+   "oa": "A5047763717",
+   "n": 6,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Machine Intelligence Research Labs",
+     "type": "lab",
+     "years": "2022"
+    },
+    {
+     "org": "Cape Eleuthera Institute",
+     "type": "lab",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Kevin Klyman",
+   "oa": "A5093104547",
+   "n": 6,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Larry F. Chu",
+   "oa": "A5055388471",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Stanford University",
+     "type": "university",
+     "years": "2020–2021"
+    },
+    {
+     "org": "Peking University",
+     "type": "university",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Lei‐Han Tang",
+   "oa": "A5014230214",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Hong Kong Baptist University",
+     "type": "university",
+     "years": "2020–2021"
+    },
+    {
+     "org": "Beijing Computational Science Research Center",
+     "type": "lab",
+     "years": "2020–2021"
+    }
+   ]
+  },
+  {
+   "label": "Lex Fridman",
+   "oa": "A5109009001",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2020–2021"
+    },
+    {
+     "org": "American Institute of Aeronautics and Astronautics",
+     "type": "community",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Michael Winding",
+   "oa": "A5045284572",
+   "n": 6,
+   "via": [
+    "eric bridgeford",
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "University of Cambridge",
+     "type": "university",
+     "years": "2022–2023"
+    },
+    {
+     "org": "Howard Hughes Medical Institute",
+     "type": "lab",
+     "years": "2023"
+    },
+    {
+     "org": "MRC Laboratory of Molecular Biology",
+     "type": "lab",
+     "years": "2023"
+    },
+    {
+     "org": "Janelia Research Campus",
+     "type": "lab",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Mohammad Ruhul Amin",
+   "oa": "A5028396045",
+   "n": 6,
+   "via": [
+    "arnab sen sharma"
+   ],
+   "entries": [
+    {
+     "org": "Fordham University",
+     "type": "university",
+     "years": "2021–2023"
+    }
+   ]
+  },
+  {
+   "label": "Natalie Shapira",
+   "oa": "A5078278146",
+   "n": 6,
+   "via": [
+    "arnab sen sharma",
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Patrick Fernandes",
+   "oa": "A5061762931",
+   "n": 6,
+   "via": [
+    "kayo yin"
+   ],
+   "entries": [
+    {
+     "org": "Instituto de Telecomunicações",
+     "type": "community",
+     "years": "2021–2023"
+    },
+    {
+     "org": "Instituto Superior Técnico",
+     "type": "university",
+     "years": "2021–2023"
+    },
+    {
+     "org": "Carnegie Mellon University",
+     "type": "university",
+     "years": "2021–2023"
+    }
+   ]
+  },
+  {
+   "label": "Paul H. Yi",
+   "oa": "A5015923200",
+   "n": 6,
+   "via": [
+    "jacopo teneggi"
+   ],
+   "entries": [
+    {
+     "org": "University of Maryland, Baltimore",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "University of Maryland, College Park",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "St. Jude Children's Research Hospital",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "Children's Hospital",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Reshama Shaikh",
+   "oa": "A5014569011",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Stephanie Noble",
+   "oa": "A5042339320",
+   "n": 6,
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "Yale University",
+     "type": "university",
+     "years": "2019–2025"
+    },
+    {
+     "org": "Universidad del Noreste",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "Northeastern University",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Stephen Casper",
+   "oa": "A5008237906",
+   "n": 6,
+   "via": [
+    "eric michaud",
+    "jesse hoogland",
+    "sarah schwettman",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Teven Le Scao",
+   "oa": "A5084957527",
+   "n": 6,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Hugging Face",
+     "type": "company",
+     "years": "2021–2023"
+    },
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Thomas J. Wang",
+   "oa": "A5085451281",
+   "n": 6,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "Hugging Face",
+     "type": "company",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Viola Tang",
+   "oa": "A5064923052",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Hong Kong University of Science and Technology",
+     "type": "university",
+     "years": "2020–2021"
+    },
+    {
+     "org": "University of Hong Kong",
+     "type": "university",
+     "years": "2020–2021"
+    }
+   ]
+  },
+  {
+   "label": "Vladimı́r Ždı́mal",
+   "oa": "A5069181410",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Czech Academy of Sciences, Institute of Chemical Process Fundamentals",
+     "type": "lab",
+     "years": "2020–2021"
+    }
+   ]
+  },
+  {
+   "label": "William Gray Roncal",
+   "oa": "A5110718333",
+   "n": 6,
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "JHU Applied Physics Laboratory",
+     "type": "lab",
+     "years": "2018–2021"
+    }
+   ]
+  },
+  {
+   "label": "Zeynep Tüfekçi",
+   "oa": "A5044522704",
+   "n": 6,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "University of North Carolina at Chapel Hill",
+     "type": "university",
+     "years": "2020–2025"
+    }
+   ]
+  },
+  {
+   "label": "Aaron Gokaslan",
+   "oa": "A5029160764",
+   "n": 5,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Cornell University",
+     "type": "university",
+     "years": "2022–2023"
+    }
+   ]
+  },
+  {
+   "label": "Adam Karvonen",
+   "oa": "A5109695738",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "kola ayonrinde"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Aditya Ratan Jannali",
+   "oa": "A5126598990",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Ailey Crow",
+   "oa": "A5023947454",
+   "n": 5,
+   "via": [
+    "devin crowley",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Stanford University",
+     "type": "university",
+     "years": "2018–2021"
+    }
+   ]
+  },
+  {
+   "label": "Aitor Soroa",
+   "oa": "A5053230169",
+   "n": 5,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "University of the Basque Country",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Amir Zur",
+   "oa": "A5027116633",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Amitabh Basu",
+   "oa": "A5048617506",
+   "n": 5,
+   "via": [
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Andriy Mulyar",
+   "oa": "A5014529173",
+   "n": 5,
+   "via": [
+    "brandon duderstadt"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Atai Ambus",
+   "oa": "A5120760036",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Avery Yen",
+   "oa": "A5126584870",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Brendan O’Connor",
+   "oa": "A5023365550",
+   "n": 5,
+   "via": [
+    "jack merullo"
+   ],
+   "entries": [
+    {
+     "org": "University of Massachusetts Amherst",
+     "type": "university",
+     "years": "2019–2023"
+    },
+    {
+     "org": "Ursinus College",
+     "type": "university",
+     "years": "2019"
+    },
+    {
+     "org": "Google",
+     "type": "company",
+     "years": "2023"
+    },
+    {
+     "org": "Brown University",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Cara R. Schiavon",
+   "oa": "A5019264239",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Salk Institute for Biological Studies",
+     "type": "community",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Curt Tigges",
+   "oa": "A5092031084",
+   "n": 5,
+   "via": [
+    "can rager",
+    "kola ayonrinde",
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Daniel van Strien",
+   "oa": "A5038148264",
+   "n": 5,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "British Library",
+     "type": "community",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "David Ifeoluwa Adelani",
+   "oa": "A5088658365",
+   "n": 5,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "University College London",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "Saarland University",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "David Manheim",
+   "oa": "A5010975997",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Disa Mhembere",
+   "oa": "A5000100329",
+   "n": 5,
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2016–2021"
+    }
+   ]
+  },
+  {
+   "label": "Francesco De Toni",
+   "oa": "A5054948010",
+   "n": 5,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "The University of Western Australia",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Fred Monroe",
+   "oa": "A5063706385",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Salk Institute for Biological Studies",
+     "type": "community",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Gülçin Pekkurnaz",
+   "oa": "A5003975304",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "UC San Diego",
+     "type": "university",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Salk Institute for Biological Studies",
+     "type": "community",
+     "years": "2020"
+    },
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    },
+    {
+     "org": "UC San Diego",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Honglu Fan",
+   "oa": "A5112952142",
+   "n": 5,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Jasmine Jisong Cui",
+   "oa": "A5084550469",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Jesse Patsolic",
+   "oa": "A5069734929",
+   "n": 5,
+   "via": [
+    "eric bridgeford",
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2018–2023"
+    },
+    {
+     "org": "Johns Hopkins Medicine",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Jessica Rumbelow",
+   "oa": "A5092991035",
+   "n": 5,
+   "via": [
+    "eric michaud",
+    "jesse hoogland",
+    "leo mckee reid",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Learning Through an Expanded Arts Program",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Joshua Agterberg",
+   "oa": "A5066606219",
+   "n": 5,
+   "via": [
+    "anton alyakin",
+    "bijan varjavand",
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019–2024"
+    },
+    {
+     "org": "JHU Applied Physics Laboratory",
+     "type": "lab",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "K.L. Goodrowe",
+   "oa": "A5059005869",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Smithsonian Institution",
+     "type": "lab",
+     "years": "1988–1996"
+    },
+    {
+     "org": "National Zoological Park",
+     "type": "community",
+     "years": "1988–1996"
+    },
+    {
+     "org": "Toronto Zoo",
+     "type": "community",
+     "years": "1989–1996"
+    },
+    {
+     "org": "Smithsonian Conservation Biology Institute",
+     "type": "lab",
+     "years": "1996"
+    },
+    {
+     "org": "University of California, Davis",
+     "type": "university",
+     "years": "1996"
+    }
+   ]
+  },
+  {
+   "label": "Karl Deisseroth",
+   "oa": "A5014360828",
+   "n": 5,
+   "via": [
+    "devin crowley",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Stanford University",
+     "type": "university",
+     "years": "2018–2021"
+    }
+   ]
+  },
+  {
+   "label": "Koyena Pal",
+   "oa": "A5106786204",
+   "n": 5,
+   "via": [
+    "arnab sen sharma",
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": [
+    {
+     "org": "Universidad del Noreste",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Kristen M. Harris",
+   "oa": "A5053361991",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "The University of Texas at Austin",
+     "type": "university",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Salk Institute for Biological Studies",
+     "type": "community",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Kyle Kastner",
+   "oa": "A5037751863",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Concordia University",
+     "type": "university",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Université de Montréal",
+     "type": "university",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Salk Institute for Biological Studies",
+     "type": "community",
+     "years": "2020"
+    },
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Leon Weber",
+   "oa": "A5041680406",
+   "n": 5,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Humboldt-Universität zu Berlin",
+     "type": "university",
+     "years": "2022–2023"
+    },
+    {
+     "org": "Max Delbrück Center",
+     "type": "lab",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Linjing Fang",
+   "oa": "A5073827859",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Salk Institute for Biological Studies",
+     "type": "community",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Lyndsey M. Kirk",
+   "oa": "A5081145294",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "The University of Texas at Austin",
+     "type": "university",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Salk Institute for Biological Studies",
+     "type": "community",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "M.C. Schiewe",
+   "oa": "A5047823938",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "National Zoological Park",
+     "type": "community",
+     "years": "1989–1990"
+    },
+    {
+     "org": "Smithsonian Institution",
+     "type": "community",
+     "years": "1989–1990"
+    },
+    {
+     "org": "Uniformed Services University of the Health Sciences",
+     "type": "university",
+     "years": "1990"
+    }
+   ]
+  },
+  {
+   "label": "Malihe Alikhani",
+   "oa": "A5025559955",
+   "n": 5,
+   "via": [
+    "kayo yin"
+   ],
+   "entries": [
+    {
+     "org": "University of Pittsburgh",
+     "type": "university",
+     "years": "2021–2022"
+    },
+    {
+     "org": "Northeastern University",
+     "type": "university",
+     "years": "2024"
+    },
+    {
+     "org": "Carnegie Mellon University",
+     "type": "university",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Margaret Mitchell",
+   "oa": "A5046235098",
+   "n": 5,
+   "via": [
+    "kayo yin",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Hugging Face",
+     "type": "company",
+     "years": "2022–2023"
+    }
+   ]
+  },
+  {
+   "label": "Maruf Ahmed Mridul",
+   "oa": "A5073925253",
+   "n": 5,
+   "via": [
+    "arnab sen sharma"
+   ],
+   "entries": [
+    {
+     "org": "Shahjalal University of Science and Technology",
+     "type": "university",
+     "years": "2018–2019"
+    }
+   ]
+  },
+  {
+   "label": "Matthew A. Wright",
+   "oa": "A5101935888",
+   "n": 5,
+   "via": [
+    "devin crowley",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Stanford University",
+     "type": "university",
+     "years": "2018–2021"
+    }
+   ]
+  },
+  {
+   "label": "Matthew Kowal",
+   "oa": "A5120318092",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jack merullo",
+    "sheridan feucht"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Matthew Tivnan",
+   "oa": "A5089321471",
+   "n": 5,
+   "via": [
+    "jacopo teneggi"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2023–2025"
+    },
+    {
+     "org": "Harvard University",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "Massachusetts General Hospital",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Michael I. Miller",
+   "oa": "A5033151214",
+   "n": 5,
+   "via": [
+    "brandon duderstadt",
+    "eric bridgeford",
+    "jacopo teneggi"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2018–2021"
+    },
+    {
+     "org": "Discovery Institute",
+     "type": "community",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Mohit Iyyer",
+   "oa": "A5082767919",
+   "n": 5,
+   "via": [
+    "jack merullo"
+   ],
+   "entries": [
+    {
+     "org": "University of Massachusetts Amherst",
+     "type": "university",
+     "years": "2019–2023"
+    },
+    {
+     "org": "Ursinus College",
+     "type": "university",
+     "years": "2019"
+    },
+    {
+     "org": "Google",
+     "type": "company",
+     "years": "2023"
+    },
+    {
+     "org": "Brown University",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Negev Taglicht",
+   "oa": "A5126649528",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Nora Belrose",
+   "oa": "A5088767744",
+   "n": 5,
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Olivia Floody",
+   "oa": "A5126586110",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Owen Lewis",
+   "oa": "A5017133373",
+   "n": 5,
+   "via": [
+    "jack merullo"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Paul Swoboda",
+   "oa": "A5070897658",
+   "n": 5,
+   "via": [
+    "jannik brinkmann"
+   ],
+   "entries": [
+    {
+     "org": "University of Mannheim",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Pedro Ortiz Suárez",
+   "oa": "A5054913492",
+   "n": 5,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Institut national de recherche en sciences et technologies du numérique",
+     "type": "lab",
+     "years": "2022"
+    },
+    {
+     "org": "Sorbonne Université",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "University of Mannheim",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Piotr Czapla",
+   "oa": "A5077565121",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Wroclaw University of Applied Informatics \"Horizon\"",
+     "type": "university",
+     "years": "2019"
+    },
+    {
+     "org": "West Africa Vocational Education",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Qinan Yu",
+   "oa": "A5010977706",
+   "n": 5,
+   "via": [
+    "jack merullo",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "John Brown University",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Reuth Mirsky",
+   "oa": "A5036081979",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Sara Hooker",
+   "oa": "A5078850040",
+   "n": 5,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Seungone Kim",
+   "oa": "A5014381991",
+   "n": 5,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Shiri Oron",
+   "oa": "A5126636059",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Siddharth Boppana",
+   "oa": "A5128261556",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jack merullo"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Thomas McGrath",
+   "oa": "A5135340762",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jack merullo",
+    "sheridan feucht"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Tomer Shabtay",
+   "oa": "A5126626088",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Uri Manor",
+   "oa": "A5070633413",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Salk Institute for Biological Studies",
+     "type": "community",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Yotam Kaplan",
+   "oa": "A5045167745",
+   "n": 5,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Zeerak Talat",
+   "oa": "A5053442069",
+   "n": 5,
+   "via": [
+    "kayo yin",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Simon Fraser University",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "NVIDIA",
+     "type": "company",
+     "years": "2022"
+    },
+    {
+     "org": "Tsinghua University",
+     "type": "university",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Zhao Zhang",
+   "oa": "A5100422982",
+   "n": 5,
+   "via": [
+    "jeremy howard",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    },
+    {
+     "org": "Rutgers, The State University of New Jersey",
+     "type": "university",
+     "years": "2024"
+    },
+    {
+     "org": "Texas Advanced Computing Center",
+     "type": "lab",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Zhiyuan Li",
+   "oa": "A5100337921",
+   "n": 5,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Peking University",
+     "type": "university",
+     "years": "2020–2021"
+    },
+    {
+     "org": "UCLA Health",
+     "type": "university",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Aditi Chaudhary",
+   "oa": "A5073858017",
+   "n": 4,
+   "via": [
+    "kayo yin"
+   ],
+   "entries": [
+    {
+     "org": "Carnegie Mellon University",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Albert Webson",
+   "oa": "A5056219662",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "John Brown University",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "Brown University",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Alex Baden",
+   "oa": "A5068552062",
+   "n": 4,
+   "via": [
+    "brandon duderstadt",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2018"
+    }
+   ]
+  },
+  {
+   "label": "Alexandra Badea",
+   "oa": "A5051190025",
+   "n": 4,
+   "via": [
+    "brandon duderstadt",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Duke University",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "Duke Medical Center",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Alon Albalak",
+   "oa": "A5090026363",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Amy Price",
+   "oa": "A5071658432",
+   "n": 4,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Stanford University",
+     "type": "university",
+     "years": "2020–2021"
+    },
+    {
+     "org": "Hong Kong University of Science and Technology",
+     "type": "university",
+     "years": "2020"
+    },
+    {
+     "org": "Peking University",
+     "type": "university",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Angelina McMillan-Major",
+   "oa": "A5063040968",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "University of Washington",
+     "type": "university",
+     "years": "2023–2024"
+    },
+    {
+     "org": "Hugging Face",
+     "type": "company",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Aranyak Acharyya",
+   "oa": "A5018022850",
+   "n": 4,
+   "via": [
+    "brandon duderstadt",
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "JHU Applied Physics Laboratory",
+     "type": "lab",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Arthur Conmy",
+   "oa": "A5071070679",
+   "n": 4,
+   "via": [
+    "can rager",
+    "eric michaud",
+    "jesse hoogland",
+    "kola ayonrinde"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Aryaman Arora",
+   "oa": "A5082261951",
+   "n": 4,
+   "via": [
+    "sarah schwettman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Austin Huang",
+   "oa": "A5059223958",
+   "n": 4,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Brown University",
+     "type": "university",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Aviya Skowron",
+   "oa": "A5031074289",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Ben Falk",
+   "oa": "A5016012968",
+   "n": 4,
+   "via": [
+    "bijan varjavand",
+    "eric bridgeford",
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "Johns Hopkins Medicine",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "St. Thomas University",
+     "type": "university",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Byron Wallace",
+   "oa": "A5036790226",
+   "n": 4,
+   "via": [
+    "alex loftus",
+    "arnab sen sharma",
+    "can rager",
+    "jannik brinkmann"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Christopher Akiki",
+   "oa": "A5033794353",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Center for Scalable Data Analytics and Artificial Intelligence",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "Leipzig University",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Christopher Douville",
+   "oa": "A5028941911",
+   "n": 4,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Johns Hopkins Medicine",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "University of Chinese Academy of Sciences",
+     "type": "university",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Christopher Klamm",
+   "oa": "A5003936190",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Connor Leahy",
+   "oa": "A5060025182",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Machine Intelligence Research Labs",
+     "type": "lab",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Danielle S. Bassett",
+   "oa": "A5009266404",
+   "n": 4,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "University of Pennsylvania",
+     "type": "university",
+     "years": "2016"
+    }
+   ]
+  },
+  {
+   "label": "Danny Hernandez",
+   "oa": "A5050358005",
+   "n": 4,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "OpenAI",
+     "type": "company",
+     "years": "2020–2021"
+    }
+   ]
+  },
+  {
+   "label": "Dashiell Stander",
+   "oa": "A5003444568",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Derek Pisner",
+   "oa": "A5007842672",
+   "n": 4,
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "The University of Texas at Austin",
+     "type": "university",
+     "years": "2019–2021"
+    }
+   ]
+  },
+  {
+   "label": "Donniell E. Fishkind",
+   "oa": "A5049233616",
+   "n": 4,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2020–2021"
+    }
+   ]
+  },
+  {
+   "label": "Ekdeep Singh Lubana",
+   "oa": "A5069090559",
+   "n": 4,
+   "via": [
+    "can rager",
+    "jack merullo",
+    "sheridan feucht"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Enrico Shippole",
+   "oa": "A5092741733",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Eric Alcaide",
+   "oa": "A5032292851",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Universitat de Barcelona",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "Cape Eleuthera Institute",
+     "type": "lab",
+     "years": "2021"
+    },
+    {
+     "org": "VIR Biotechnology",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Eric Hallahan",
+   "oa": "A5046909218",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Machine Intelligence Research Labs",
+     "type": "lab",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Eric T. Trautman",
+   "oa": "A5030949277",
+   "n": 4,
+   "via": [
+    "brandon duderstadt",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Janelia Research Campus",
+     "type": "lab",
+     "years": "2018"
+    }
+   ]
+  },
+  {
+   "label": "Evan Hernandez",
+   "oa": "A5083003591",
+   "n": 4,
+   "via": [
+    "arnab sen sharma",
+    "sarah schwettman"
+   ],
+   "entries": [
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Forrest Collman",
+   "oa": "A5081737132",
+   "n": 4,
+   "via": [
+    "brandon duderstadt",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Allen Institute for Brain Science",
+     "type": "lab",
+     "years": "2018"
+    },
+    {
+     "org": "Allen Institute",
+     "type": "community",
+     "years": "2018"
+    }
+   ]
+  },
+  {
+   "label": "Genta Indra Winata",
+   "oa": "A5085516032",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Hong Kong University of Science and Technology",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "George Wang",
+   "oa": "A5090006268",
+   "n": 4,
+   "via": [
+    "jesse hoogland"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Giada Pistilli",
+   "oa": "A5087530146",
+   "n": 4,
+   "via": [
+    "kayo yin",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Hugging Face",
+     "type": "company",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Gido M. van de Ven",
+   "oa": "A5049810748",
+   "n": 4,
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "entries": [
+    {
+     "org": "Baylor College of Medicine",
+     "type": "university",
+     "years": "2021–2025"
+    },
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2021"
+    },
+    {
+     "org": "University of Cambridge",
+     "type": "university",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Hady Elsahar",
+   "oa": "A5040371566",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Naver (South Korea)",
+     "type": "company",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "James Holt",
+   "oa": "A5071742303",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Jin Ha Lee",
+   "oa": "A5072843141",
+   "n": 4,
+   "via": [
+    "anton alyakin"
+   ],
+   "entries": [
+    {
+     "org": "Washington University in St. Louis",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "Médecins Sans Frontières",
+     "type": "community",
+     "years": "2025"
+    },
+    {
+     "org": "Neurological Surgery",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "John M. Mendenhall",
+   "oa": "A5083861675",
+   "n": 4,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "The University of Texas at Austin",
+     "type": "university",
+     "years": "2019–2021"
+    }
+   ]
+  },
+  {
+   "label": "Joshua Engels",
+   "oa": "A5104313316",
+   "n": 4,
+   "via": [
+    "eric michaud"
+   ],
+   "entries": [
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Keith Levin",
+   "oa": "A5112870105",
+   "n": 4,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Michigan United",
+     "type": "community",
+     "years": "2019–2020"
+    },
+    {
+     "org": "University of Michigan–Ann Arbor",
+     "type": "university",
+     "years": "2019–2020"
+    },
+    {
+     "org": "University of Michigan",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Krithik Vishwanath",
+   "oa": "A5102744719",
+   "n": 4,
+   "via": [
+    "anton alyakin"
+   ],
+   "entries": [
+    {
+     "org": "The University of Texas at Austin",
+     "type": "university",
+     "years": "2025–2026"
+    },
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "Neurological Surgery",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Kyle Lo",
+   "oa": "A5066588555",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Allen Institute for Artificial Intelligence",
+     "type": "community",
+     "years": "2022–2023"
+    }
+   ]
+  },
+  {
+   "label": "Lavender Yao Jiang",
+   "oa": "A5085004466",
+   "n": 4,
+   "via": [
+    "anton alyakin"
+   ],
+   "entries": [
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2025–2026"
+    },
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Louis Jaburi",
+   "oa": "A5119823551",
+   "n": 4,
+   "via": [
+    "kola ayonrinde",
+    "lucia quirke"
+   ],
+   "entries": []
+  },
+  {
+   "label": "M. A. Powell",
+   "oa": "A5037056730",
+   "n": 4,
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2023–2025"
+    }
+   ]
+  },
+  {
+   "label": "Marah Abdin",
+   "oa": "A5068559432",
+   "n": 4,
+   "via": [
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Mauro Maggioni",
+   "oa": "A5089371996",
+   "n": 4,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2018–2021"
+    },
+    {
+     "org": "Johns Hopkins Medicine",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Melissa Wu",
+   "oa": "A5031909808",
+   "n": 4,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Salk Institute for Biological Studies",
+     "type": "community",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Minh Chien Vu",
+   "oa": "A5000991839",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Mohammad Mahmudul Alam",
+   "oa": "A5032193294",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Nancy Kanwisher",
+   "oa": "A5026910217",
+   "n": 4,
+   "via": [
+    "sarah schwettman"
+   ],
+   "entries": [
+    {
+     "org": "Institute of Cognitive and Brain Sciences",
+     "type": "university",
+     "years": "2018–2019"
+    },
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2018–2019"
+    },
+    {
+     "org": "McGovern Institute for Brain Research",
+     "type": "lab",
+     "years": "2019"
+    },
+    {
+     "org": "Moscow Institute of Thermal Technology",
+     "type": "lab",
+     "years": "2018"
+    }
+   ]
+  },
+  {
+   "label": "Richard Guo",
+   "oa": "A5022341786",
+   "n": 4,
+   "via": [
+    "brandon duderstadt",
+    "hayden helm",
+    "ronak mehta"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Rohtash Kumar",
+   "oa": "A5101372655",
+   "n": 4,
+   "via": [
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "Indian Institute of Technology Gandhinagar",
+     "type": "university",
+     "years": "2023–2025"
+    }
+   ]
+  },
+  {
+   "label": "Ronan Perry",
+   "oa": "A5080462487",
+   "n": 4,
+   "via": [
+    "bijan varjavand",
+    "eric bridgeford",
+    "hayden helm",
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "Johns Hopkins Medicine",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Sammy Weiser Novak",
+   "oa": "A5053332912",
+   "n": 4,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Salk Institute for Biological Studies",
+     "type": "community",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Sarah F. Muldoon",
+   "oa": "A5015567863",
+   "n": 4,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "DEVCOM Army Research Laboratory",
+     "type": "lab",
+     "years": "2016"
+    },
+    {
+     "org": "University at Buffalo, State University of New York",
+     "type": "university",
+     "years": "2016"
+    },
+    {
+     "org": "University of Pennsylvania",
+     "type": "university",
+     "years": "2016"
+    }
+   ]
+  },
+  {
+   "label": "Shamik Bose",
+   "oa": "A5110946701",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Sheng Shen",
+   "oa": "A5100784818",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "UC Berkeley",
+     "type": "university",
+     "years": "2021–2023"
+    },
+    {
+     "org": "Berkeley College",
+     "type": "university",
+     "years": "2023"
+    },
+    {
+     "org": "John Brown University",
+     "type": "university",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Stas Bekman",
+   "oa": "A5079005032",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "Contextual Change",
+     "type": "company",
+     "years": "2024"
+    }
+   ]
+  },
+  {
+   "label": "Suraj Singh",
+   "oa": "A5109279284",
+   "n": 4,
+   "via": [
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "Indian Institute of Technology Gandhinagar",
+     "type": "university",
+     "years": "2023–2025"
+    }
+   ]
+  },
+  {
+   "label": "Sylvain Gugger",
+   "oa": "A5041801887",
+   "n": 4,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Foundation for the Advancement of Social Theory",
+     "type": "community",
+     "years": "2020"
+    }
+   ]
+  },
+  {
+   "label": "Thomas Dooms",
+   "oa": "A5093402694",
+   "n": 4,
+   "via": [
+    "alice rigg",
+    "kola ayonrinde"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Tong Zhang",
+   "oa": "A5100378768",
+   "n": 4,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Salk Institute for Biological Studies",
+     "type": "community",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Tristan Thrush",
+   "oa": "A5026811404",
+   "n": 4,
+   "via": [
+    "sarah schwettman",
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Hugging Face",
+     "type": "company",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "USVSN Sai Prashanth",
+   "oa": "A5033799563",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Machine Intelligence Research Labs",
+     "type": "lab",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Victor Sanh",
+   "oa": "A5049805631",
+   "n": 4,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2022"
+    },
+    {
+     "org": "Hugging Face",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Vivek Gopalakrishnan",
+   "oa": "A5066989785",
+   "n": 4,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2020–2025"
+    }
+   ]
+  },
+  {
+   "label": "Willow E. Primack",
+   "oa": "A5116082874",
+   "n": 4,
+   "via": [
+    "jeremy kritz"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Yoshiyuki Kubota",
+   "oa": "A5100635640",
+   "n": 4,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "National Institute for Physiological Sciences",
+     "type": "lab",
+     "years": "2019–2021"
+    },
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Zhengxuan Wu",
+   "oa": "A5102822963",
+   "n": 4,
+   "via": [
+    "sarah schwettman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "A. Villanova del Moral",
+   "oa": "A5021727268",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Hugging Face",
+     "type": "company",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Abram Handler",
+   "oa": "A5026207393",
+   "n": 3,
+   "via": [
+    "jack merullo"
+   ],
+   "entries": [
+    {
+     "org": "Ursinus College",
+     "type": "university",
+     "years": "2019"
+    },
+    {
+     "org": "University of Massachusetts Amherst",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Achyuta Rajaram",
+   "oa": "A5057373087",
+   "n": 3,
+   "via": [
+    "sarah schwettman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Adam Belfki",
+   "oa": "A5126709833",
+   "n": 3,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Adam Li",
+   "oa": "A5028551568",
+   "n": 3,
+   "via": [
+    "eric bridgeford",
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Aki Nikolaidis",
+   "oa": "A5069715854",
+   "n": 3,
+   "via": [
+    "eric bridgeford",
+    "ross lawrence"
+   ],
+   "entries": [
+    {
+     "org": "Child Mind Institute",
+     "type": "community",
+     "years": "2019–2023"
+    }
+   ]
+  },
+  {
+   "label": "Akshay Save",
+   "oa": "A5031166545",
+   "n": 3,
+   "via": [
+    "anton alyakin",
+    "brandon duderstadt"
+   ],
+   "entries": [
+    {
+     "org": "New York University",
+     "type": "university",
+     "years": "2025"
+    },
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Alaa Abdel Latif",
+   "oa": "A5068223710",
+   "n": 3,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "University of San Francisco",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Albert Cardona",
+   "oa": "A5042603640",
+   "n": 3,
+   "via": [
+    "hayden helm"
+   ],
+   "entries": [
+    {
+     "org": "University of Cambridge",
+     "type": "university",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Alexander Spangher",
+   "oa": "A5091017885",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Alexandre Luster",
+   "oa": "A5038007318",
+   "n": 3,
+   "via": [
+    "jacopo teneggi"
+   ],
+   "entries": [
+    {
+     "org": "École Polytechnique Fédérale de Lausanne",
+     "type": "university",
+     "years": "2022"
+    }
+   ]
+  },
+  {
+   "label": "Alvin Grissom",
+   "oa": "A5088386242",
+   "n": 3,
+   "via": [
+    "jack merullo"
+   ],
+   "entries": [
+    {
+     "org": "Ursinus College",
+     "type": "university",
+     "years": "2019"
+    },
+    {
+     "org": "University of Massachusetts Amherst",
+     "type": "university",
+     "years": "2019"
+    }
+   ]
+  },
+  {
+   "label": "Aly Valliani",
+   "oa": "A5026950052",
+   "n": 3,
+   "via": [
+    "anton alyakin"
+   ],
+   "entries": [
+    {
+     "org": "NYU Langone Health",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Amit Moryossef",
+   "oa": "A5064189148",
+   "n": 3,
+   "via": [
+    "kayo yin"
+   ],
+   "entries": [
+    {
+     "org": "Bar-Ilan University",
+     "type": "university",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "An Q Dinh",
+   "oa": "A5089139574",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Andisheh Amrollahi",
+   "oa": "A5043044679",
+   "n": 3,
+   "via": [
+    "chris wendler"
+   ],
+   "entries": [
+    {
+     "org": "ETH Zurich",
+     "type": "university",
+     "years": "2020–2021"
+    }
+   ]
+  },
+  {
+   "label": "Andrew Shaw",
+   "oa": "A5071740624",
+   "n": 3,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "University of San Francisco",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Twitter",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Anish Mudide",
+   "oa": "A5023335993",
+   "n": 3,
+   "via": [
+    "eric michaud"
+   ],
+   "entries": [
+    {
+     "org": "MIT",
+     "type": "university",
+     "years": "2024"
+    }
+   ]
+  },
+  {
+   "label": "Ann M. Donoghue",
+   "oa": "A5113642511",
+   "n": 3,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Smithsonian Institution",
+     "type": "lab",
+     "years": "1992–1994"
+    },
+    {
+     "org": "National Zoological Park",
+     "type": "community",
+     "years": "1992–1994"
+    }
+   ]
+  },
+  {
+   "label": "Anna Rogers",
+   "oa": "A5039256697",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "University of Copenhagen",
+     "type": "university",
+     "years": "2022–2023"
+    }
+   ]
+  },
+  {
+   "label": "Ariel Lee",
+   "oa": "A5020520148",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Arush Tagade",
+   "oa": "A5092401195",
+   "n": 3,
+   "via": [
+    "leo mckee reid"
+   ],
+   "entries": [
+    {
+     "org": "Learning Through an Expanded Arts Program",
+     "type": "university",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Ayelet Gordon-Tapiero",
+   "oa": "A5126694556",
+   "n": 3,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Babak Hemmatian",
+   "oa": "A5043382223",
+   "n": 3,
+   "via": [
+    "sheridan feucht"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Barbara A. Wolfe",
+   "oa": "A5108477524",
+   "n": 3,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Texas A&M University",
+     "type": "university",
+     "years": "1989"
+    }
+   ]
+  },
+  {
+   "label": "Beepul Bharti",
+   "oa": "A5066836445",
+   "n": 3,
+   "via": [
+    "jacopo teneggi"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Björn Sandstede",
+   "oa": "A5024502637",
+   "n": 3,
+   "via": [
+    "sheridan feucht"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Brian Hsueh",
+   "oa": "A5101943290",
+   "n": 3,
+   "via": [
+    "devin crowley",
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "Stanford University",
+     "type": "university",
+     "years": "2018–2021"
+    }
+   ]
+  },
+  {
+   "label": "Briana Abrahms",
+   "oa": "A5055582336",
+   "n": 3,
+   "via": [
+    "ronak mehta"
+   ],
+   "entries": [
+    {
+     "org": "University of Washington",
+     "type": "university",
+     "years": "2024–2025"
+    },
+    {
+     "org": "American Sentinel University",
+     "type": "university",
+     "years": "2024–2025"
+    },
+    {
+     "org": "Botswana Predator Conservation Trust",
+     "type": "community",
+     "years": "2025"
+    }
+   ]
+  },
+  {
+   "label": "Brock A. Wester",
+   "oa": "A5069909173",
+   "n": 3,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "JHU Applied Physics Laboratory",
+     "type": "lab",
+     "years": "2018"
+    }
+   ]
+  },
+  {
+   "label": "Caiming Xiong",
+   "oa": "A5032046813",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Charles Lovering",
+   "oa": "A5018940839",
+   "n": 3,
+   "via": [
+    "sheridan feucht",
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Chenyu Gao",
+   "oa": "A5023405613",
+   "n": 3,
+   "via": [
+    "hayden helm",
+    "ronak mehta",
+    "will levine"
+   ],
+   "entries": [
+    {
+     "org": "Johns Hopkins University",
+     "type": "university",
+     "years": "2021–2025"
+    },
+    {
+     "org": "Baylor College of Medicine",
+     "type": "university",
+     "years": "2021"
+    },
+    {
+     "org": "Microsoft",
+     "type": "company",
+     "years": "2021"
+    }
+   ]
+  },
+  {
+   "label": "Chris Chinenye Emezue",
+   "oa": "A5043359753",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Chris Hoder",
+   "oa": "A5019022311",
+   "n": 3,
+   "via": [
+    "sarah schwettman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Christoph Riedl",
+   "oa": "A5126713155",
+   "n": 3,
+   "via": [
+    "can rager",
+    "jannik brinkmann",
+    "michael ripa"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Claudio Mayrink Verdun",
+   "oa": "A5085996844",
+   "n": 3,
+   "via": [
+    "can rager",
+    "fred heiding",
+    "jannik brinkmann"
+   ],
+   "entries": [
+    {
+     "org": "Harvard University",
+     "type": "university",
+     "years": "2026"
+    }
+   ]
+  },
+  {
+   "label": "D.C. Kraemer",
+   "oa": "A5060599352",
+   "n": 3,
+   "via": [
+    "jeremy howard"
+   ],
+   "entries": [
+    {
+     "org": "Texas A&M University",
+     "type": "university",
+     "years": "1989"
+    }
+   ]
+  },
+  {
+   "label": "Damien Sileo",
+   "oa": "A5068059558",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Université de Lille",
+     "type": "university",
+     "years": "2024"
+    },
+    {
+     "org": "Centre de Recherche en Informatique",
+     "type": "lab",
+     "years": "2024"
+    },
+    {
+     "org": "École Centrale de Lille",
+     "type": "university",
+     "years": "2024"
+    }
+   ]
+  },
+  {
+   "label": "Dean M. Kleissas",
+   "oa": "A5058322230",
+   "n": 3,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Deividas Mataciunas",
+   "oa": "A5093917425",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Derek Pryor",
+   "oa": "A5056208080",
+   "n": 3,
+   "via": [
+    "eric bridgeford"
+   ],
+   "entries": [
+    {
+     "org": "JHU Applied Physics Laboratory",
+     "type": "lab",
+     "years": "2018"
+    }
+   ]
+  },
+  {
+   "label": "Dhruvil Gala",
+   "oa": "A5070959322",
+   "n": 3,
+   "via": [
+    "jack merullo"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Diganta Misra",
+   "oa": "A5035144667",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  },
+  {
+   "label": "Dipika Khullar",
+   "oa": "A5069259130",
+   "n": 3,
+   "via": [
+    "lucia quirke"
+   ],
+   "entries": [
+    {
+     "org": "Amazon",
+     "type": "company",
+     "years": "2026"
+    }
+   ]
+  },
+  {
+   "label": "Eduardo González Ponferrada",
+   "oa": "A5014898885",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": [
+    {
+     "org": "Ferrum College",
+     "type": "university",
+     "years": "2023"
+    }
+   ]
+  },
+  {
+   "label": "Emad A. Alghamdi",
+   "oa": "A5082020464",
+   "n": 3,
+   "via": [
+    "stella biderman"
+   ],
+   "entries": []
+  }
+ ]
+}

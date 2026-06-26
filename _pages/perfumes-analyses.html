@@ -1,0 +1,147 @@
+---
+permalink: /perfumes/analyses/
+title: "The Perfume Atlas — what the map reveals"
+description: "A plain-language field guide to the perfume atlas: the fourteen scent families, the perfumes that are secretly the same, and the rare few that smell like nothing else."
+layout: bare
+---
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fimgs.net" crossorigin>
+<link rel="stylesheet" href="/assets/css/perfumes-analyses.css">
+
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">The Perfume Atlas · notes from the map</div>
+    <h1>What the map reveals</h1>
+    <p class="sub">The <a class="back" style="border:none;padding:0" href="/perfumes/">atlas</a>
+      places <b id="an-count">24,050</b> fragrances by how they <b>smell</b> — two perfumes drift close together
+      when they share notes and accords, and the fourteen colours are <b>families</b> of scent.
+      Here is what falls out when you stand back: which families rule, which perfumes are secretly
+      the same, and the rare few that smell like nothing else. No numbers required.</p>
+    <a class="back" href="/perfumes/">← back to the map</a>
+  </div>
+
+  <section id="families-sec">
+    <h2>The fourteen families</h2>
+    <p class="note">Each perfume is sorted into one family by its accords — the broad strokes of how
+      it smells. The bar shows how much of the whole atlas a family claims; the little
+      <b>W · M · U</b> strip shows who tends to wear it (women · men · either).</p>
+    <div id="families"></div>
+  </section>
+
+  <section id="twins-sec">
+    <h2>Secretly the same</h2>
+    <p class="note">These pairs come from <b>different houses</b>, yet they land almost on top of each
+      other on the map — near-identical smells. The fragrance world calls them <i>dupes</i>; an
+      expensive perfume and its budget twin, side by side.</p>
+    <div class="twins" id="twins"></div>
+  </section>
+
+  <section id="loners-sec">
+    <h2>One of a kind</h2>
+    <p class="note">And the opposite — well-loved perfumes whose <b>nearest neighbour is still far
+      away</b>. These smell like almost nothing else in the whole atlas.</p>
+    <div class="loners" id="loners"></div>
+  </section>
+
+  <section id="decades-sec">
+    <h2>How scent has drifted</h2>
+    <p class="note">Each bar is a decade, split into its scent families. The sweet gourmands and
+      fresh citrus that fill today's shelves are a fairly recent taste.</p>
+    <div id="decades"></div>
+    <div class="dec-legend" id="dec-legend"></div>
+  </section>
+
+  <div class="foot">
+    Built from <a href="https://www.fragrantica.com" target="_blank" rel="noopener">Fragrantica</a>'s
+    notes and accords. Each perfume becomes a vector of its notes (weighted so the long-lasting base
+    notes count most, and rare shared notes count more than common ones); perfumes are then arranged
+    so that similar smells sit near each other. Bottle photographs © their respective houses.
+    <div style="margin-top:8px"><a href="/perfumes/">← the interactive map</a> &nbsp;·&nbsp; <a href="/">alex-loftus.com</a></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  let D = null;   // URL templates come from the build (single source), so they can't drift
+  const IMG = (pid) => D.img.replace("{pid}", pid);
+  const FRAG = (pid) => D.frag.replace("{pid}", pid);
+  const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const shot = (pid, cls) => `<div class="shot${cls ? " " + cls : ""}" style="background-image:url('${IMG(pid)}')"></div>`;
+  const pct = (x) => Math.round(x * 100);
+
+  fetch("/assets/data/perfume-analyses.json").then((r) => r.json()).then((data) => {
+    D = data;
+    document.getElementById("an-count").textContent = D.n.toLocaleString();
+    renderFamilies(D); renderTwins(D); renderLoners(D); renderDecades(D);
+  });
+
+  function renderFamilies(D) {
+    const maxShare = Math.max(...D.families.map((f) => f.pct));
+    document.getElementById("families").innerHTML = D.families.map((f) => {
+      const [w, m, u] = f.gender;
+      const notes = f.notes.slice(0, 6).map((n) => `<span class="n">${esc(n)}</span>`).join("");
+      const gallery = f.gallery.map((p, i) => `
+        <a href="${FRAG(p.pid)}" target="_blank" rel="noopener" title="${esc(p.name)} · ${esc(p.brand)}">
+          ${shot(p.pid, p.pid === f.archetype.pid ? "arch" : "")}
+          <div class="cap">${esc(p.name)}</div>
+        </a>`).join("");
+      return `<div class="fam-row">
+        <div class="fam-id">
+          <div class="nm"><span class="sw" style="background:${f.color}"></span>${esc(f.name)}</div>
+          <div class="share"><i style="width:${(f.pct / maxShare) * 100}%;background:${f.color}"></i></div>
+          <div class="pct">${f.size.toLocaleString()} perfumes · ${f.pct}% of the atlas</div>
+          <div class="glean" title="women ${pct(w)}% · men ${pct(m)}% · unisex ${pct(u)}%">
+            <i class="w" style="width:${pct(w)}%"></i><i class="m" style="width:${pct(m)}%"></i><i class="u" style="width:${pct(u)}%"></i>
+          </div>
+          <div class="gkey">W ${pct(w)} · M ${pct(m)} · U ${pct(u)}</div>
+          <div class="meta"><span class="k">typical era</span> ${f.median_year || "—"}
+            &nbsp;·&nbsp; <span class="k">loved</span> ★ ${f.avg_rating || "—"}</div>
+        </div>
+        <div>
+          <div class="fam-notes">${notes}</div>
+          <div class="gallery">${gallery}</div>
+        </div>
+      </div>`;
+    }).join("");
+  }
+
+  function renderTwins(D) {
+    document.getElementById("twins").innerHTML = D.twins.map((t) => `
+      <div class="pair">
+        <div class="side"><a href="${FRAG(t.a.pid)}" target="_blank" rel="noopener">
+          ${shot(t.a.pid)}<div class="nm">${esc(t.a.name)}</div><div class="br">${esc(t.a.brand)}</div></a></div>
+        <div class="eq"><div class="pct">${pct(t.sim)}%</div><div class="lab">alike</div></div>
+        <div class="side"><a href="${FRAG(t.b.pid)}" target="_blank" rel="noopener">
+          ${shot(t.b.pid)}<div class="nm">${esc(t.b.name)}</div><div class="br">${esc(t.b.brand)}</div></a></div>
+      </div>`).join("");
+  }
+
+  function renderLoners(D) {
+    document.getElementById("loners").innerHTML = D.loners.map((l) => `
+      <div class="loner"><a href="${FRAG(l.pid)}" target="_blank" rel="noopener">
+        ${shot(l.pid)}
+        <div class="nm">${esc(l.name)}</div><div class="br">${esc(l.brand)}</div></a>
+        <div class="nt">${esc(l.notes.split(",").slice(0, 3).join(", "))}</div>
+      </div>`).join("");
+  }
+
+  function renderDecades(D) {
+    const dec = D.decades, names = dec.fam_names, colors = dec.fam_colors;
+    const rows = dec.labels.map((yr, di) => {
+      const counts = dec.counts[di], total = counts.reduce((a, b) => a + b, 0);
+      if (total < 30) return "";   // skip thin early decades
+      const segs = counts.map((c, fi) => c
+        ? `<i style="width:${(c / total) * 100}%;background:${colors[fi]}" title="${esc(names[fi])}: ${c}"></i>` : "").join("");
+      return `<div class="dec-row"><div class="yr">${yr}s</div><div class="dec-bar">${segs}</div></div>`;
+    }).join("");
+    document.getElementById("decades").innerHTML = rows;
+    document.getElementById("dec-legend").innerHTML = names.map((nm, i) =>
+      `<span class="it"><span class="sw" style="background:${colors[i]}"></span>${esc(nm)}</span>`).join("");
+  }
+})();
+</script>

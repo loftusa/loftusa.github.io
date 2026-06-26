@@ -1,0 +1,224 @@
+{
+ "people": [
+  {
+   "id": "h:gh:aashiqmuhamed",
+   "label": "Aashiq Muhamed",
+   "initials": "AM"
+  },
+  {
+   "id": "h:gh:alexandersumer",
+   "label": "Alexander Sumer",
+   "initials": "AS"
+  },
+  {
+   "id": "h:gh:anishthite",
+   "label": "Anish Thite",
+   "initials": "AT"
+  },
+  {
+   "id": "h:gh:anthonyduong9",
+   "label": "Anthony Duong",
+   "initials": "AD"
+  },
+  {
+   "id": "h:gh:crowsonkb",
+   "label": "Katherine Crowson",
+   "initials": "KC"
+  },
+  {
+   "id": "h:gh:haileyschoelkopf",
+   "label": "Hailey Schoelkopf",
+   "initials": "HS"
+  },
+  {
+   "id": "h:gh:jon-tow",
+   "label": "Jonathan Tow",
+   "initials": "JT"
+  },
+  {
+   "id": "h:gh:leogao2",
+   "label": "Leo Gao",
+   "initials": "LG"
+  },
+  {
+   "id": "h:gh:lintangsutawika",
+   "label": "Lintang Sutawika",
+   "initials": "LS"
+  },
+  {
+   "id": "h:gh:neverix",
+   "label": "neverix",
+   "initials": "N"
+  },
+  {
+   "id": "h:gh:norabelrose",
+   "label": "Nora Belrose",
+   "initials": "NB"
+  },
+  {
+   "id": "h:gh:quentin-anthony",
+   "label": "Quentin Anthony",
+   "initials": "QA"
+  },
+  {
+   "id": "h:gh:trisongz",
+   "label": "trisongz",
+   "initials": "T"
+  }
+ ],
+ "links": [
+  {
+   "person": "h:gh:aashiqmuhamed",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/delphi (2 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:alexandersumer",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 1,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/delphi (5 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:anishthite",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 2,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/lm-evaluation-harness (25 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:anthonyduong9",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 2,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/sparsify (1 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:crowsonkb",
+   "org": "eleutherai",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 2,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/vqgan-clip (10 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:haileyschoelkopf",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 5,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/lm-evaluation-harness (536 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:jon-tow",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 2,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/lm-evaluation-harness (178 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:leogao2",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 3,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/lm-evaluation-harness (497 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:lintangsutawika",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 2,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/lm-evaluation-harness (908 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:neverix",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 4,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/sparsify (3 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:norabelrose",
+   "org": "eleutherai",
+   "via": [
+    "lucia quirke",
+    "stella biderman"
+   ],
+   "n": 4,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/sparsify (106 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:quentin-anthony",
+   "org": "eleutherai",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 4,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/gpt-neox (66 commits)",
+   "src": "github"
+  },
+  {
+   "person": "h:gh:trisongz",
+   "org": "eleutherai",
+   "via": [
+    "stella biderman"
+   ],
+   "n": 3,
+   "years": "",
+   "top": "co-contributor on github.com/EleutherAI/gpt-neox (32 commits)",
+   "src": "github"
+  }
+ ]
+}

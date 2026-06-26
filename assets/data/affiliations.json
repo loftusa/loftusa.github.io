@@ -1,0 +1,4714 @@
+{
+ "people": [
+  {
+   "id": "alex loftus",
+   "label": "Alexander R. Loftus",
+   "initials": "AL",
+   "community": 2,
+   "city": "Bay Area"
+  },
+  {
+   "id": "alice rigg",
+   "label": "Alice Rigg",
+   "initials": "AR",
+   "community": 0,
+   "city": "Bay Area"
+  },
+  {
+   "id": "allan deutsch",
+   "label": "Allan Deutsch",
+   "initials": "AD",
+   "community": -1,
+   "city": "Seattle"
+  },
+  {
+   "id": "anton alyakin",
+   "label": "Anton Alyakin",
+   "initials": "AA",
+   "community": 2,
+   "city": "Saint Louis"
+  },
+  {
+   "id": "antonio mari",
+   "label": "Antonio Mari",
+   "initials": "AM",
+   "community": 1,
+   "city": "Zurich"
+  },
+  {
+   "id": "arman ohmid",
+   "label": "Arman Ohmid",
+   "initials": "AO",
+   "community": -1,
+   "city": "San Diego"
+  },
+  {
+   "id": "arnab sen sharma",
+   "label": "Arnab Sen Sharma",
+   "initials": "AS",
+   "community": 1,
+   "city": "Boston"
+  },
+  {
+   "id": "bijan varjavand",
+   "label": "Bijan K. Varjavand",
+   "initials": "BV",
+   "community": 2,
+   "city": "San Francisco"
+  },
+  {
+   "id": "brandon duderstadt",
+   "label": "Brandon Duderstadt",
+   "initials": "BD",
+   "community": 2,
+   "city": "Brooklyn, NY (Williamsburg)"
+  },
+  {
+   "id": "can rager",
+   "label": "Can Rager",
+   "initials": "CR",
+   "community": 1,
+   "city": ""
+  },
+  {
+   "id": "cat khor",
+   "label": "Cat Khor",
+   "initials": "CK",
+   "community": -1,
+   "city": ""
+  },
+  {
+   "id": "chris wendler",
+   "label": "Chris Wendler",
+   "initials": "CW",
+   "community": 1,
+   "city": ""
+  },
+  {
+   "id": "clement dumas",
+   "label": "Clément Dumas",
+   "initials": "CD",
+   "community": 1,
+   "city": "London"
+  },
+  {
+   "id": "daniel brown",
+   "label": "Daniel Brown",
+   "initials": "DB",
+   "community": -1,
+   "city": ""
+  },
+  {
+   "id": "devin crowley",
+   "label": "Devin Crowley",
+   "initials": "DC",
+   "community": 2,
+   "city": "Corvallis, OR"
+  },
+  {
+   "id": "eric bridgeford",
+   "label": "Eric Bridgeford",
+   "initials": "EB",
+   "community": 2,
+   "city": "Stanford"
+  },
+  {
+   "id": "eric michaud",
+   "label": "Eric J. Michaud",
+   "initials": "EM",
+   "community": 1,
+   "city": ""
+  },
+  {
+   "id": "eric todd",
+   "label": "Eric Todd",
+   "initials": "ET",
+   "community": 1,
+   "city": "Boston"
+  },
+  {
+   "id": "fred heiding",
+   "label": "Fred Heiding",
+   "initials": "FH",
+   "community": 1,
+   "city": "Cambridge, MA"
+  },
+  {
+   "id": "giordano rogers",
+   "label": "Giordano Rogers",
+   "initials": "GR",
+   "community": 1,
+   "city": "Boston"
+  },
+  {
+   "id": "goncalo paulo",
+   "label": "Gonçalo Paulo",
+   "initials": "GP",
+   "community": 0,
+   "city": ""
+  },
+  {
+   "id": "grace proebsting",
+   "label": "Grace Proebsting",
+   "initials": "GP",
+   "community": 1,
+   "city": "Boston"
+  },
+  {
+   "id": "hayden helm",
+   "label": "Hayden S. Helm",
+   "initials": "HH",
+   "community": 2,
+   "city": "San Francisco"
+  },
+  {
+   "id": "jack merullo",
+   "label": "Jack Merullo",
+   "initials": "JM",
+   "community": 1,
+   "city": "San Francisco"
+  },
+  {
+   "id": "jacopo teneggi",
+   "label": "Jacopo Teneggi",
+   "initials": "JT",
+   "community": 2,
+   "city": "Baltimore, MD"
+  },
+  {
+   "id": "jannik brinkmann",
+   "label": "Jannik Brinkmann",
+   "initials": "JB",
+   "community": 1,
+   "city": "Mannheim"
+  },
+  {
+   "id": "jeremy howard",
+   "label": "Jeremy Howard",
+   "initials": "JH",
+   "community": -1,
+   "city": ""
+  },
+  {
+   "id": "jeremy kritz",
+   "label": "Jeremy Kritz",
+   "initials": "JK",
+   "community": 2,
+   "city": ""
+  },
+  {
+   "id": "jesse hoogland",
+   "label": "Jesse Hoogland",
+   "initials": "JH",
+   "community": 1,
+   "city": "Berkeley, CA"
+  },
+  {
+   "id": "josh ying",
+   "label": "Zhuofan Ying",
+   "initials": "ZY",
+   "community": 0,
+   "city": "New York"
+  },
+  {
+   "id": "karl kaiser",
+   "label": "Karl Kaiser",
+   "initials": "KK",
+   "community": -1,
+   "city": "Boston"
+  },
+  {
+   "id": "kayo yin",
+   "label": "Kayo Yin",
+   "initials": "KY",
+   "community": 1,
+   "city": "Berkeley, CA"
+  },
+  {
+   "id": "kola ayonrinde",
+   "label": "K. Ayonrinde",
+   "initials": "KA",
+   "community": 1,
+   "city": "London"
+  },
+  {
+   "id": "leo mckee reid",
+   "label": "Leo McKee-Reid",
+   "initials": "LM",
+   "community": -1,
+   "city": "San Francisco"
+  },
+  {
+   "id": "liv gorton",
+   "label": "Liv Gorton",
+   "initials": "LG",
+   "community": 1,
+   "city": "San Francisco"
+  },
+  {
+   "id": "lucia quirke",
+   "label": "Lucia Quirke",
+   "initials": "LQ",
+   "community": 0,
+   "city": "Sydney"
+  },
+  {
+   "id": "madi kusmonov",
+   "label": "M. Kusmanov",
+   "initials": "MK",
+   "community": 2,
+   "city": "San Diego"
+  },
+  {
+   "id": "maya deen",
+   "label": "Maya Deen",
+   "initials": "MD",
+   "community": -1,
+   "city": "Seattle, Washington (area)"
+  },
+  {
+   "id": "michael ripa",
+   "label": "M. Ripa",
+   "initials": "MR",
+   "community": 1,
+   "city": "Boston"
+  },
+  {
+   "id": "rod moshtagi",
+   "label": "Rod Moshtagi",
+   "initials": "RM",
+   "community": -1,
+   "city": "Cambridge, MA"
+  },
+  {
+   "id": "rohit gandikota",
+   "label": "Rohit Gandikota",
+   "initials": "RG",
+   "community": 1,
+   "city": ""
+  },
+  {
+   "id": "ronak mehta",
+   "label": "Ronak Mehta",
+   "initials": "RM",
+   "community": 2,
+   "city": "New York"
+  },
+  {
+   "id": "ross lawrence",
+   "label": "Ross Lawrence",
+   "initials": "RL",
+   "community": 2,
+   "city": ""
+  },
+  {
+   "id": "roy rinberg",
+   "label": "Roy Rinberg",
+   "initials": "RR",
+   "community": 1,
+   "city": "Cambridge, MA"
+  },
+  {
+   "id": "ryan chesler",
+   "label": "Ryan Chesler",
+   "initials": "RC",
+   "community": -1,
+   "city": "San Diego"
+  },
+  {
+   "id": "sarah schwettman",
+   "label": "Sarah Schwettmann",
+   "initials": "SS",
+   "community": 1,
+   "city": "Cambridge, MA"
+  },
+  {
+   "id": "sheridan feucht",
+   "label": "Sheridan Feucht",
+   "initials": "SF",
+   "community": 1,
+   "city": "Boston"
+  },
+  {
+   "id": "stella biderman",
+   "label": "Stella Biderman",
+   "initials": "SB",
+   "community": 0,
+   "city": ""
+  },
+  {
+   "id": "ted kyi",
+   "label": "Ted Kyi",
+   "initials": "TK",
+   "community": -1,
+   "city": "San Diego"
+  },
+  {
+   "id": "tommy atthey",
+   "label": "Thomas L. Athey",
+   "initials": "TA",
+   "community": 2,
+   "city": "Cambridge, Massachusetts"
+  },
+  {
+   "id": "will levine",
+   "label": "Will LeVine",
+   "initials": "WL",
+   "community": 2,
+   "city": "Laurel, MD"
+  },
+  {
+   "id": "zeno kujawa",
+   "label": "Zeno Kujawa",
+   "initials": "ZK",
+   "community": -1,
+   "city": "Edinburgh"
+  }
+ ],
+ "orgs": [
+  {
+   "id": "adobe-research",
+   "label": "Adobe Research",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "ai-safety-camp",
+   "label": "AI Safety Camp",
+   "type": "program",
+   "n_members": 3
+  },
+  {
+   "id": "amsterdam-university-college",
+   "label": "Amsterdam University College",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "anduril",
+   "label": "Anduril",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "answer-ai",
+   "label": "Answer.AI",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "anthropic",
+   "label": "Anthropic",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "arena",
+   "label": "ARENA",
+   "type": "program",
+   "n_members": 1
+  },
+  {
+   "id": "ascender-software",
+   "label": "Ascender Software",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "astera-institute-simplex",
+   "label": "Astera Institute / Simplex",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "atana-operator-io",
+   "label": "Atana / Operator.io",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "atlassian",
+   "label": "Atlassian",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "bank-of-america",
+   "label": "Bank of America",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "bau-lab-northeastern-ndif",
+   "label": "Bau Lab (Northeastern / NDIF)",
+   "type": "lab",
+   "n_members": 11
+  },
+  {
+   "id": "bluehalo",
+   "label": "BlueHalo",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "boardingware",
+   "label": "Boardingware",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "booz-allen-hamilton",
+   "label": "Booz Allen Hamilton",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "brigham-young-university",
+   "label": "Brigham Young University",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "brown-university",
+   "label": "Brown University",
+   "type": "university",
+   "n_members": 2
+  },
+  {
+   "id": "calcifer-computing",
+   "label": "Calcifer Computing",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "canva",
+   "label": "Canva",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "carleton-university",
+   "label": "Carleton University",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "carnegie-mellon-university",
+   "label": "Carnegie Mellon University",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "cbai",
+   "label": "CBAI",
+   "type": "program",
+   "n_members": 2
+  },
+  {
+   "id": "cellware-labs",
+   "label": "Cellware Labs",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "chai-uc-berkeley",
+   "label": "CHAI (UC Berkeley)",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "clinia",
+   "label": "Clinia",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "columbia-university",
+   "label": "Columbia University",
+   "type": "university",
+   "n_members": 2
+  },
+  {
+   "id": "cosmos-institute-fire",
+   "label": "Cosmos Institute / FIRE",
+   "type": "program",
+   "n_members": 1
+  },
+  {
+   "id": "creyon-bio",
+   "label": "Creyon Bio",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "d-e-shaw",
+   "label": "D. E. Shaw",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "deep-sentinel",
+   "label": "Deep Sentinel",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "deephealth",
+   "label": "DeepHealth",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "deepmind",
+   "label": "DeepMind",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "digipen-institute-of-technology",
+   "label": "DigiPen Institute of Technology",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "doc-duck",
+   "label": "Doc Duck",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "dynamic-robotics-lab-osu",
+   "label": "Dynamic Robotics Lab (OSU)",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "ecole-polytechnique",
+   "label": "École Polytechnique",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "eleutherai",
+   "label": "EleutherAI",
+   "type": "community",
+   "n_members": 5
+  },
+  {
+   "id": "enlitic",
+   "label": "Enlitic",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "ens-paris-saclay",
+   "label": "ENS Paris-Saclay",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "epfl-data-science-lab-dlab",
+   "label": "EPFL Data Science Lab (dlab)",
+   "type": "lab",
+   "n_members": 2
+  },
+  {
+   "id": "eth-zurich",
+   "label": "ETH Zurich",
+   "type": "university",
+   "n_members": 2
+  },
+  {
+   "id": "fast-ai",
+   "label": "fast.ai",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "fastmail",
+   "label": "FastMail",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "finch",
+   "label": "Finch",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "future-of-life-institute",
+   "label": "Future of Life Institute",
+   "type": "program",
+   "n_members": 1
+  },
+  {
+   "id": "georgia-tech",
+   "label": "Georgia Tech",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "goodfire",
+   "label": "Goodfire",
+   "type": "company",
+   "n_members": 3
+  },
+  {
+   "id": "google",
+   "label": "Google",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "govai",
+   "label": "GovAI",
+   "type": "program",
+   "n_members": 1
+  },
+  {
+   "id": "h2o-ai",
+   "label": "H2O.ai",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "harvard-ai-safety-team",
+   "label": "Harvard AI Safety Team",
+   "type": "program",
+   "n_members": 2
+  },
+  {
+   "id": "harvard-university",
+   "label": "Harvard University",
+   "type": "university",
+   "n_members": 3
+  },
+  {
+   "id": "haverford-college",
+   "label": "Haverford College",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "health-curious",
+   "label": "Health Curious",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "helivan",
+   "label": "Helivan",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "iaifi-nsf-ai-institute",
+   "label": "IAIFI (NSF AI Institute)",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "ikigai-technologies",
+   "label": "Ikigai Technologies",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "indian-space-research-organisation-isro",
+   "label": "Indian Space Research Organisation (ISRO)",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "j-p-morgan-research",
+   "label": "J.P. Morgan Research",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "jhu-applied-physics-laboratory",
+   "label": "JHU Applied Physics Laboratory",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "johns-hopkins-university",
+   "label": "Johns Hopkins University",
+   "type": "university",
+   "n_members": 13
+  },
+  {
+   "id": "kaggle",
+   "label": "Kaggle",
+   "type": "community",
+   "n_members": 2
+  },
+  {
+   "id": "kriegeskorte-lab-columbia",
+   "label": "Kriegeskorte Lab (Columbia)",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "krueger-lab-cambridge",
+   "label": "Krueger Lab (Cambridge)",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "kth",
+   "label": "KTH",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "lasr-labs",
+   "label": "LASR Labs",
+   "type": "program",
+   "n_members": 2
+  },
+  {
+   "id": "leap-labs",
+   "label": "Leap Labs",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "leuthardt-lab-washu",
+   "label": "Leuthardt Lab (WashU)",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "lunar-lab-brown",
+   "label": "LUNAR Lab (Brown)",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "mao-lab-johns-hopkins",
+   "label": "Mao Lab (Johns Hopkins)",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "matrix-medical-network",
+   "label": "Matrix Medical Network",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "mats",
+   "label": "MATS",
+   "type": "program",
+   "n_members": 7
+  },
+  {
+   "id": "mech-interp-discord",
+   "label": "Mech Interp Discord",
+   "type": "community",
+   "n_members": 1
+  },
+  {
+   "id": "microsoft",
+   "label": "Microsoft",
+   "type": "company",
+   "n_members": 5
+  },
+  {
+   "id": "mila",
+   "label": "Mila",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "miltenyi-biotec",
+   "label": "Miltenyi Biotec",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "minds-johns-hopkins",
+   "label": "MINDS (Johns Hopkins)",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "mit",
+   "label": "MIT",
+   "type": "university",
+   "n_members": 3
+  },
+  {
+   "id": "mit-csail",
+   "label": "MIT CSAIL",
+   "type": "lab",
+   "n_members": 2
+  },
+  {
+   "id": "ml4g",
+   "label": "ML4G",
+   "type": "program",
+   "n_members": 1
+  },
+  {
+   "id": "neolithic",
+   "label": "Neolithic",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "neurodata-lab-johns-hopkins",
+   "label": "NeuroData Lab (Johns Hopkins)",
+   "type": "lab",
+   "n_members": 10
+  },
+  {
+   "id": "new-york-university",
+   "label": "New York University",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "nference",
+   "label": "nference",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "nomic-ai",
+   "label": "Nomic AI",
+   "type": "company",
+   "n_members": 2
+  },
+  {
+   "id": "northeastern-university",
+   "label": "Northeastern University",
+   "type": "university",
+   "n_members": 8
+  },
+  {
+   "id": "northeastern-university-khoury-college-of-computer-sciences",
+   "label": "Northeastern University (Khoury College of Computer Sciences)",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "nvidia",
+   "label": "NVIDIA",
+   "type": "company",
+   "n_members": 2
+  },
+  {
+   "id": "nyu-ml2-group",
+   "label": "NYU ML2 group",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "oermann-lab-nyu-langone",
+   "label": "Oermann Lab (NYU Langone)",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "openai",
+   "label": "OpenAI",
+   "type": "company",
+   "n_members": 4
+  },
+  {
+   "id": "opendp-harvard",
+   "label": "OpenDP (Harvard)",
+   "type": "program",
+   "n_members": 1
+  },
+  {
+   "id": "oregon-state-university",
+   "label": "Oregon State University",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "ouster",
+   "label": "Ouster",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "pallet",
+   "label": "Pallet",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "politecnico-di-torino",
+   "label": "Politecnico di Torino",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "polymathic-ai",
+   "label": "Polymathic AI",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "princeton-university",
+   "label": "Princeton University",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "profluent-bio",
+   "label": "Profluent Bio",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "pwc-canada",
+   "label": "PwC Canada",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "quantic-school-of-business-and-technology",
+   "label": "Quantic School of Business and Technology",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "rad-ai",
+   "label": "Rad AI",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "rice-university",
+   "label": "Rice University",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "rockstar-games",
+   "label": "Rockstar Games",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "rutgers-winlab",
+   "label": "Rutgers WINLAB",
+   "type": "program",
+   "n_members": 1
+  },
+  {
+   "id": "samsung-research",
+   "label": "Samsung Research",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "san-diego-machine-learning",
+   "label": "San Diego Machine Learning",
+   "type": "community",
+   "n_members": 3
+  },
+  {
+   "id": "sapienza-university-of-rome",
+   "label": "Sapienza University of Rome",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "saria-lab-johns-hopkins",
+   "label": "Saria Lab (Johns Hopkins)",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "scale-ai",
+   "label": "Scale AI",
+   "type": "company",
+   "n_members": 3
+  },
+  {
+   "id": "seattlejs",
+   "label": "SeattleJS",
+   "type": "community",
+   "n_members": 1
+  },
+  {
+   "id": "shahjalal-university-sust",
+   "label": "Shahjalal University (SUST)",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "simons-institute-berkeley",
+   "label": "Simons Institute (Berkeley)",
+   "type": "program",
+   "n_members": 1
+  },
+  {
+   "id": "smtm-daughters-capital",
+   "label": "SMTM (Daughters Capital)",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "spar",
+   "label": "SPAR",
+   "type": "program",
+   "n_members": 1
+  },
+  {
+   "id": "stanford-digital-economy-lab",
+   "label": "Stanford Digital Economy Lab",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "stanford-existential-risks-initiative",
+   "label": "Stanford Existential Risks Initiative",
+   "type": "program",
+   "n_members": 1
+  },
+  {
+   "id": "stanford-university",
+   "label": "Stanford University",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "technically-private",
+   "label": "Technically Private",
+   "type": "community",
+   "n_members": 1
+  },
+  {
+   "id": "timaeus",
+   "label": "Timaeus",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "transluce",
+   "label": "Transluce",
+   "type": "company",
+   "n_members": 1
+  },
+  {
+   "id": "tu-wien",
+   "label": "TU Wien",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "uc-berkeley",
+   "label": "UC Berkeley",
+   "type": "university",
+   "n_members": 3
+  },
+  {
+   "id": "uc-san-diego",
+   "label": "UC San Diego",
+   "type": "university",
+   "n_members": 2
+  },
+  {
+   "id": "uk-ai-security-institute",
+   "label": "UK AI Security Institute",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-amsterdam",
+   "label": "University of Amsterdam",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-auckland",
+   "label": "University of Auckland",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-british-columbia",
+   "label": "University of British Columbia",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-cambridge",
+   "label": "University of Cambridge",
+   "type": "university",
+   "n_members": 2
+  },
+  {
+   "id": "university-of-chicago",
+   "label": "University of Chicago",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-edinburgh",
+   "label": "University of Edinburgh",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-innsbruck",
+   "label": "University of Innsbruck",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-mannheim",
+   "label": "University of Mannheim",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-maryland",
+   "label": "University of Maryland",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-massachusetts-amherst",
+   "label": "University of Massachusetts Amherst",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-melbourne",
+   "label": "University of Melbourne",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-north-carolina-at-chapel-hill",
+   "label": "University of North Carolina at Chapel Hill",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-pennsylvania",
+   "label": "University of Pennsylvania",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-queensland",
+   "label": "University of Queensland",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-san-francisco",
+   "label": "University of San Francisco",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-sydney",
+   "label": "University of Sydney",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-vermont",
+   "label": "University of Vermont",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-victoria",
+   "label": "University of Victoria",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-washington",
+   "label": "University of Washington",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "university-of-waterloo",
+   "label": "University of Waterloo",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "ustc",
+   "label": "USTC",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "vector-institute",
+   "label": "Vector Institute",
+   "type": "lab",
+   "n_members": 1
+  },
+  {
+   "id": "vesuvius-challenge-team",
+   "label": "Vesuvius Challenge team",
+   "type": "community",
+   "n_members": 2
+  },
+  {
+   "id": "washu-school-of-medicine",
+   "label": "WashU School of Medicine",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "western-washington-university",
+   "label": "Western Washington University",
+   "type": "university",
+   "n_members": 1
+  },
+  {
+   "id": "wikimedia-new-york-city",
+   "label": "Wikimedia New York City",
+   "type": "community",
+   "n_members": 1
+  },
+  {
+   "id": "world-economic-forum-cybercrime-center",
+   "label": "World Economic Forum Cybercrime Center",
+   "type": "community",
+   "n_members": 1
+  },
+  {
+   "id": "world-labs",
+   "label": "World Labs",
+   "type": "company",
+   "n_members": 1
+  }
+ ],
+ "links": [
+  {
+   "person": "alex loftus",
+   "org": "bau-lab-northeastern-ndif",
+   "role": "PhD researcher; co-first author of NNsight/NDIF (ICLR 2025)",
+   "years": "2024–",
+   "source": "https://baulab.info/"
+  },
+  {
+   "person": "alex loftus",
+   "org": "bluehalo",
+   "role": "Machine Learning Research Engineer",
+   "years": "2022–2023",
+   "source": "https://www.alex-loftus.com/files/cv.txt"
+  },
+  {
+   "person": "alex loftus",
+   "org": "cbai",
+   "role": "Research mentor for Harvard/MIT students (with David Bau)",
+   "years": "2025",
+   "source": "https://www.cbai.ai/david-bau-alex-loftus"
+  },
+  {
+   "person": "alex loftus",
+   "org": "creyon-bio",
+   "role": "Data Scientist (ML for drug discovery)",
+   "years": "2023–2024",
+   "source": "https://www.alex-loftus.com/files/cv.txt"
+  },
+  {
+   "person": "alex loftus",
+   "org": "eleutherai",
+   "role": "Head of Growth",
+   "years": "2025–",
+   "source": "https://www.alex-loftus.com/files/cv.txt"
+  },
+  {
+   "person": "alex loftus",
+   "org": "harvard-ai-safety-team",
+   "role": "Technical Lead / paid facilitator, Intro Technical AI Safety Fellowship",
+   "years": "2025–",
+   "source": "https://www.alex-loftus.com/files/cv.txt"
+  },
+  {
+   "person": "alex loftus",
+   "org": "johns-hopkins-university",
+   "role": "MSE Biomedical Engineering (ML & data science focus), advisor Joshua Vogelstein",
+   "years": "2020–2022",
+   "source": "https://www.alex-loftus.com/files/cv.txt"
+  },
+  {
+   "person": "alex loftus",
+   "org": "neurodata-lab-johns-hopkins",
+   "role": "Research Software Engineer (Vogelstein lab; m2g pipeline, graspologic)",
+   "years": "2018–2020",
+   "source": "https://www.alex-loftus.com/files/cv.txt"
+  },
+  {
+   "person": "alex loftus",
+   "org": "northeastern-university",
+   "role": "PhD student, Computer Science (Khoury College)",
+   "years": "2024–",
+   "source": "https://www.alex-loftus.com/files/cv.txt"
+  },
+  {
+   "person": "alex loftus",
+   "org": "openai",
+   "role": "Red-Teaming Lead (contract)",
+   "years": "2026–",
+   "source": "https://www.alex-loftus.com/files/cv.txt"
+  },
+  {
+   "person": "alex loftus",
+   "org": "san-diego-machine-learning",
+   "role": "speaker",
+   "years": "2023–2024",
+   "source": "https://www.alex-loftus.com/files/cv.txt"
+  },
+  {
+   "person": "alex loftus",
+   "org": "vesuvius-challenge-team",
+   "role": "1st-place team member",
+   "years": "2023",
+   "source": "https://www.alex-loftus.com/files/cv.txt"
+  },
+  {
+   "person": "alex loftus",
+   "org": "western-washington-university",
+   "role": "BS Behavioral Neuroscience (minors: Chemistry, Philosophy)",
+   "years": "2014–2018",
+   "source": "https://www.alex-loftus.com/files/cv.txt"
+  },
+  {
+   "person": "alice rigg",
+   "org": "ai-safety-camp",
+   "role": "Research Lead, 'Towards Ambitious Mechanistic Interpretability' project",
+   "years": "2024",
+   "source": "https://forum.effectivealtruism.org/posts/G7kuGAPNfiEeoNqvL/aisc-2024-project-summaries"
+  },
+  {
+   "person": "alice rigg",
+   "org": "clinia",
+   "role": "Intern",
+   "years": "2024",
+   "source": "https://openreview.net/profile?id=~Alice_Rigg1"
+  },
+  {
+   "person": "alice rigg",
+   "org": "eleutherai",
+   "role": "Researcher, Machine Learning",
+   "years": "2025–",
+   "source": "https://openreview.net/profile?id=~Alice_Rigg1"
+  },
+  {
+   "person": "alice rigg",
+   "org": "mech-interp-discord",
+   "role": "Moderator and weekly reading-group lead",
+   "years": "",
+   "source": "https://www.lesswrong.com/posts/gKeq7y9aqdnWG8GKf/interview-applications-w-alice-rigg"
+  },
+  {
+   "person": "allan deutsch",
+   "org": "digipen-institute-of-technology",
+   "role": "BS in Computer Science",
+   "years": "2013–2017",
+   "source": "https://allandeutsch.com/resume"
+  },
+  {
+   "person": "allan deutsch",
+   "org": "doc-duck",
+   "role": "Founder",
+   "years": "2023–",
+   "source": "https://allandeutsch.com/resume"
+  },
+  {
+   "person": "allan deutsch",
+   "org": "ikigai-technologies",
+   "role": "Head of Engineering and Product",
+   "years": "2022–2023",
+   "source": "https://allandeutsch.com/resume"
+  },
+  {
+   "person": "allan deutsch",
+   "org": "microsoft",
+   "role": "Technical Product Manager II (Game Developer Experience / Advanced Technology Group); earlier SWE and PM intern",
+   "years": "2016–2022",
+   "source": "https://allandeutsch.com/resume"
+  },
+  {
+   "person": "allan deutsch",
+   "org": "quantic-school-of-business-and-technology",
+   "role": "MBA (Honors)",
+   "years": "2021–2023",
+   "source": "https://allandeutsch.com/resume"
+  },
+  {
+   "person": "allan deutsch",
+   "org": "seattlejs",
+   "role": "Community Organizer and Speaker",
+   "years": "2024–",
+   "source": "https://allandeutsch.com/resume"
+  },
+  {
+   "person": "anton alyakin",
+   "org": "johns-hopkins-university",
+   "role": "BS Computer Science; MSE Applied Mathematics & Statistics",
+   "years": "2015–2019",
+   "source": "https://alyakin314.github.io/"
+  },
+  {
+   "person": "anton alyakin",
+   "org": "leuthardt-lab-washu",
+   "role": "Researcher",
+   "years": "2023–",
+   "source": "https://alyakin314.github.io/"
+  },
+  {
+   "person": "anton alyakin",
+   "org": "neurodata-lab-johns-hopkins",
+   "role": "Assistant Research Engineer",
+   "years": "2019–2021",
+   "source": "https://alyakin314.github.io/"
+  },
+  {
+   "person": "anton alyakin",
+   "org": "oermann-lab-nyu-langone",
+   "role": "CNS AI Fellow",
+   "years": "2024–",
+   "source": "https://www.nyuolab.org/team"
+  },
+  {
+   "person": "anton alyakin",
+   "org": "saria-lab-johns-hopkins",
+   "role": "Researcher",
+   "years": "2017–2019",
+   "source": "https://alyakin314.github.io/"
+  },
+  {
+   "person": "anton alyakin",
+   "org": "washu-school-of-medicine",
+   "role": "MD candidate / medical student",
+   "years": "2021–",
+   "source": "https://alyakin314.github.io/"
+  },
+  {
+   "person": "antonio mari",
+   "org": "eth-zurich",
+   "role": "Researcher",
+   "years": "",
+   "source": "https://scholar.google.com/citations?user=VL62tXMAAAAJ"
+  },
+  {
+   "person": "arman ohmid",
+   "org": "rockstar-games",
+   "role": "Computer vision / ML programmer",
+   "years": "",
+   "source": "https://github.com/armanommid"
+  },
+  {
+   "person": "arman ohmid",
+   "org": "uc-san-diego",
+   "role": "Computer science / ML graduate student (CSE coursework)",
+   "years": "",
+   "source": "https://github.com/armanommid"
+  },
+  {
+   "person": "arnab sen sharma",
+   "org": "bau-lab-northeastern-ndif",
+   "role": "PhD student, advised by David Bau",
+   "years": "2022–",
+   "source": "https://baulab.info/"
+  },
+  {
+   "person": "arnab sen sharma",
+   "org": "northeastern-university",
+   "role": "PhD candidate (Computer Science)",
+   "years": "2022–",
+   "source": "https://arnab-api.github.io/"
+  },
+  {
+   "person": "arnab sen sharma",
+   "org": "samsung-research",
+   "role": "Software Engineer",
+   "years": "",
+   "source": "https://arnab-api.github.io/"
+  },
+  {
+   "person": "arnab sen sharma",
+   "org": "shahjalal-university-sust",
+   "role": "B.Sc. in Computer Science and Engineering; later taught there",
+   "years": "",
+   "source": "https://arnab-api.github.io/"
+  },
+  {
+   "person": "bijan varjavand",
+   "org": "johns-hopkins-university",
+   "role": "Undergraduate then graduate student, Whiting School of Engineering",
+   "years": "2015–2021",
+   "source": "https://pure.johnshopkins.edu/en/publications/graspy-graph-statistics-in-python"
+  },
+  {
+   "person": "bijan varjavand",
+   "org": "mats",
+   "role": "Mentor",
+   "years": "2026–",
+   "source": "https://www.matsprogram.org/mentors"
+  },
+  {
+   "person": "bijan varjavand",
+   "org": "neurodata-lab-johns-hopkins",
+   "role": "Research contributor (GraSPy co-author, Brainlit maintainer)",
+   "years": "2018–2022",
+   "source": "https://arxiv.org/abs/1904.05329"
+  },
+  {
+   "person": "bijan varjavand",
+   "org": "openai",
+   "role": "Technical Program Manager",
+   "years": "",
+   "source": "https://www.matsprogram.org/mentors"
+  },
+  {
+   "person": "bijan varjavand",
+   "org": "scale-ai",
+   "role": "Research Engineer, Red Team (joined as prompt engineer)",
+   "years": "2024–2025",
+   "source": "https://www.linkedin.com/posts/bijanvarjavand_happy-to-announce-ive-started-a-new-position-activity-7275642948392771584-zxH_"
+  },
+  {
+   "person": "brandon duderstadt",
+   "org": "calcifer-computing",
+   "role": "Founder & CEO",
+   "years": "2025–",
+   "source": "https://scholar.google.com/citations?user=Ny_rzQgAAAAJ&hl=en"
+  },
+  {
+   "person": "brandon duderstadt",
+   "org": "cosmos-institute-fire",
+   "role": "Grant recipient, first cohort (project TLM-1B: tracking word-meaning change over time)",
+   "years": "2025",
+   "source": "https://blog.cosmos-institute.org/p/introducing-the-first-cohort-of-ai"
+  },
+  {
+   "person": "brandon duderstadt",
+   "org": "johns-hopkins-university",
+   "role": "BS Applied Mathematics & Statistics; MS Biomedical Engineering (alum); Researcher (computational semiotics; collaborates with Carey Priebe's group / Mathematical Institute for Data Science circle)",
+   "years": "2015–",
+   "source": "https://api.openreview.net/profiles?id=~Brandon_Duderstadt1"
+  },
+  {
+   "person": "brandon duderstadt",
+   "org": "nomic-ai",
+   "role": "Co-founder & founding CEO (GPT4All, Atlas, Nomic Embed)",
+   "years": "2021–2025",
+   "source": "https://blog.cosmos-institute.org/p/introducing-the-first-cohort-of-ai"
+  },
+  {
+   "person": "brandon duderstadt",
+   "org": "rad-ai",
+   "role": "Early team member",
+   "years": "",
+   "source": "https://www.nomad.garden/posts/bio"
+  },
+  {
+   "person": "brandon duderstadt",
+   "org": "wikimedia-new-york-city",
+   "role": "Director (board member)",
+   "years": "–2027",
+   "source": "https://meta.wikimedia.org/wiki/Wikimedia_New_York_City"
+  },
+  {
+   "person": "can rager",
+   "org": "ai-safety-camp",
+   "role": "Participant",
+   "years": "",
+   "source": "https://www.matsprogram.org/alumni/can-rager"
+  },
+  {
+   "person": "can rager",
+   "org": "arena",
+   "role": "Participant",
+   "years": "",
+   "source": "https://www.matsprogram.org/alumni/can-rager"
+  },
+  {
+   "person": "can rager",
+   "org": "bau-lab-northeastern-ndif",
+   "role": "Visiting researcher",
+   "years": "",
+   "source": "https://baulab.info/"
+  },
+  {
+   "person": "can rager",
+   "org": "mats",
+   "role": "Scholar (Neel Nanda stream), Summer 2024 cohort",
+   "years": "2024",
+   "source": "https://www.matsprogram.org/alumni/can-rager"
+  },
+  {
+   "person": "can rager",
+   "org": "university-of-innsbruck",
+   "role": "Bachelor's in Physics (advisor Hans J. Briegel)",
+   "years": "",
+   "source": "https://www.canrager.com/"
+  },
+  {
+   "person": "cat khor",
+   "org": "openai",
+   "role": "Red-teamer, Human Data team (Willow Primack)",
+   "years": "",
+   "source": "alex loftus (firsthand, 2026-06)"
+  },
+  {
+   "person": "chris wendler",
+   "org": "bau-lab-northeastern-ndif",
+   "role": "Postdoctoral researcher",
+   "years": "",
+   "source": "https://baulab.info/"
+  },
+  {
+   "person": "chris wendler",
+   "org": "epfl-data-science-lab-dlab",
+   "role": "Postdoctoral researcher",
+   "years": "",
+   "source": "https://dlab.epfl.ch/people/"
+  },
+  {
+   "person": "chris wendler",
+   "org": "eth-zurich",
+   "role": "PhD student (Dr. sc.)",
+   "years": "2019–2023",
+   "source": "https://wendlerc.github.io/"
+  },
+  {
+   "person": "chris wendler",
+   "org": "world-labs",
+   "role": "Research Scientist",
+   "years": "",
+   "source": "https://wendlerc.github.io/"
+  },
+  {
+   "person": "clement dumas",
+   "org": "ens-paris-saclay",
+   "role": "Student — double bachelor's in CS, then master's (MPRI), then MSc in Vision & Learning (MVA), graduated Sept 2025; now on ARPE pre-doctoral research year abroad",
+   "years": "2022–",
+   "source": "https://butanium.github.io/"
+  },
+  {
+   "person": "clement dumas",
+   "org": "epfl-data-science-lab-dlab",
+   "role": "Research intern (mechanistic interpretability) under Chris Wendler and Robert West",
+   "years": "2024",
+   "source": "https://butanium.github.io/"
+  },
+  {
+   "person": "clement dumas",
+   "org": "mats",
+   "role": "MATS 7.0 scholar, then extension scholar in Neel Nanda's stream (model diffing)",
+   "years": "2025–",
+   "source": "https://butanium.github.io/cv/"
+  },
+  {
+   "person": "clement dumas",
+   "org": "ml4g",
+   "role": "Participant",
+   "years": "2022",
+   "source": "https://butanium.github.io/cv/"
+  },
+  {
+   "person": "clement dumas",
+   "org": "spar",
+   "role": "Participant under Walter Laurito's supervision",
+   "years": "2023–2024",
+   "source": "https://butanium.github.io/cv/"
+  },
+  {
+   "person": "daniel brown",
+   "org": "university-of-maryland",
+   "role": "MS student",
+   "years": "",
+   "source": "alex loftus (firsthand, 2026-06)"
+  },
+  {
+   "person": "devin crowley",
+   "org": "dynamic-robotics-lab-osu",
+   "role": "Graduate researcher, advised by Alan Fern",
+   "years": "",
+   "source": "https://sites.google.com/oregonstate.edu/devincrowley/home"
+  },
+  {
+   "person": "devin crowley",
+   "org": "johns-hopkins-university",
+   "role": "Researcher (brain image registration / NeuroData)",
+   "years": "2021–2023",
+   "source": "https://api.openalex.org/authors/A5087840110"
+  },
+  {
+   "person": "devin crowley",
+   "org": "neurodata-lab-johns-hopkins",
+   "role": "Developer of registration software (Ardent; brainlit registration subpackage)",
+   "years": "",
+   "source": "https://brainlit.readthedocs.io/en/latest/README.html"
+  },
+  {
+   "person": "devin crowley",
+   "org": "oregon-state-university",
+   "role": "MS/PhD student, AI & Robotics (Graduate Research & Teaching Assistant)",
+   "years": "",
+   "source": "https://scholar.google.com/citations?hl=en&user=_1Ggyy0AAAAJ"
+  },
+  {
+   "person": "eric bridgeford",
+   "org": "atana-operator-io",
+   "role": "Vice President of Engineering",
+   "years": "2018–2019",
+   "source": "https://ericwb.me/"
+  },
+  {
+   "person": "eric bridgeford",
+   "org": "johns-hopkins-university",
+   "role": "Lecturer (Engineering for Professionals); PhD Biostatistics; Research Scientist (BME); BS BME & CS",
+   "years": "2013–",
+   "source": "https://ericwb.me/"
+  },
+  {
+   "person": "eric bridgeford",
+   "org": "neurodata-lab-johns-hopkins",
+   "role": "Research Scientist / Undergraduate Researcher",
+   "years": "2014–2024",
+   "source": "https://ericwb.me/"
+  },
+  {
+   "person": "eric bridgeford",
+   "org": "stanford-university",
+   "role": "Postdoctoral Scholar",
+   "years": "2024–",
+   "source": "https://ericwb.me/"
+  },
+  {
+   "person": "eric bridgeford",
+   "org": "university-of-pennsylvania",
+   "role": "Undergraduate Researcher (Bassett lab)",
+   "years": "2014–2016",
+   "source": "https://ericwb.me/"
+  },
+  {
+   "person": "eric michaud",
+   "org": "astera-institute-simplex",
+   "role": "Research Scientist",
+   "years": "2026–",
+   "source": "https://ericjmichaud.com/"
+  },
+  {
+   "person": "eric michaud",
+   "org": "chai-uc-berkeley",
+   "role": "Research intern (AI safety, mentored by Adam Gleave)",
+   "years": "",
+   "source": "https://ericjmichaud.com/"
+  },
+  {
+   "person": "eric michaud",
+   "org": "iaifi-nsf-ai-institute",
+   "role": "Graduate student member (MIT)",
+   "years": "2023–2025",
+   "source": "https://iaifi.org/people.html"
+  },
+  {
+   "person": "eric michaud",
+   "org": "mit",
+   "role": "PhD, Department of Physics (advisor Max Tegmark)",
+   "years": "2021–2026",
+   "source": "https://ericjmichaud.com/"
+  },
+  {
+   "person": "eric michaud",
+   "org": "uc-berkeley",
+   "role": "BA, Mathematics (undergrad; also worked with radio astronomers on SETI — \"Lunar Opportunities for SETI\", 2020)",
+   "years": "–2021",
+   "source": "https://ericjmichaud.com/"
+  },
+  {
+   "person": "eric todd",
+   "org": "bau-lab-northeastern-ndif",
+   "role": "PhD student, advised by David Bau",
+   "years": "",
+   "source": "https://ericwtodd.github.io"
+  },
+  {
+   "person": "eric todd",
+   "org": "brigham-young-university",
+   "role": "Undergraduate (Applied & Computational Mathematics)",
+   "years": "",
+   "source": "https://ericwtodd.github.io"
+  },
+  {
+   "person": "eric todd",
+   "org": "northeastern-university",
+   "role": "PhD student (Computer Science)",
+   "years": "",
+   "source": "https://ericwtodd.github.io"
+  },
+  {
+   "person": "fred heiding",
+   "org": "harvard-ai-safety-team",
+   "role": "Leader of the cybersecurity division",
+   "years": "",
+   "source": "https://www.belfercenter.org/people/fred-heiding"
+  },
+  {
+   "person": "fred heiding",
+   "org": "harvard-university",
+   "role": "Postdoctoral research fellow, Defense, Emerging Technology, and Strategy (DETS) program; Research fellow / visiting PhD researcher; Teaching fellow, Generative AI course",
+   "years": "2022–",
+   "source": "https://www.belfercenter.org/people/fred-heiding"
+  },
+  {
+   "person": "fred heiding",
+   "org": "kth",
+   "role": "PhD in computer science (Division of Network and Systems Engineering)",
+   "years": "2019–2024",
+   "source": "https://pub.orcid.org/v3.0/0000-0001-7884-966X/record"
+  },
+  {
+   "person": "fred heiding",
+   "org": "world-economic-forum-cybercrime-center",
+   "role": "Member",
+   "years": "",
+   "source": "https://www.belfercenter.org/people/fred-heiding"
+  },
+  {
+   "person": "giordano rogers",
+   "org": "bau-lab-northeastern-ndif",
+   "role": "Researcher (Bau Lab)",
+   "years": "",
+   "source": "https://www.semanticscholar.org/author/2388980977"
+  },
+  {
+   "person": "giordano rogers",
+   "org": "northeastern-university",
+   "role": "Researcher (mechanistic interpretability)",
+   "years": "",
+   "source": "https://scholar.google.com/citations?user=vkcZSNAAAAAJ"
+  },
+  {
+   "person": "goncalo paulo",
+   "org": "eleutherai",
+   "role": "Researcher (Interpretability team)",
+   "years": "2024–",
+   "source": "https://pub.orcid.org/v3.0/0000-0002-2002-884X/record"
+  },
+  {
+   "person": "goncalo paulo",
+   "org": "sapienza-university-of-rome",
+   "role": "PhD student, Mechanical and Aerospace Engineering",
+   "years": "2020–2023",
+   "source": "https://pub.orcid.org/v3.0/0000-0002-2002-884X/record"
+  },
+  {
+   "person": "grace proebsting",
+   "org": "bau-lab-northeastern-ndif",
+   "role": "PhD student / lab member",
+   "years": "2025–",
+   "source": "https://baulab.info/"
+  },
+  {
+   "person": "grace proebsting",
+   "org": "haverford-college",
+   "role": "Undergraduate (computer science, mathematics, philosophy)",
+   "years": "2021–2025",
+   "source": "https://highdimensionalgrace.com/about/"
+  },
+  {
+   "person": "grace proebsting",
+   "org": "microsoft",
+   "role": "Magentic-One contributor (likely research intern)",
+   "years": "2024",
+   "source": "https://www.microsoft.com/en-us/research/articles/magentic-one-a-generalist-multi-agent-system-for-solving-complex-tasks/"
+  },
+  {
+   "person": "grace proebsting",
+   "org": "northeastern-university",
+   "role": "PhD student, Khoury College of Computer Sciences",
+   "years": "2025–",
+   "source": "https://www.khoury.northeastern.edu/people/grace-proebsting/"
+  },
+  {
+   "person": "hayden helm",
+   "org": "helivan",
+   "role": "Founder / Principal Researcher",
+   "years": "2023–",
+   "source": "https://openreview.net/profile?id=~Hayden_Helm1"
+  },
+  {
+   "person": "hayden helm",
+   "org": "johns-hopkins-university",
+   "role": "BS then MS student (Statistics/statistical learning); later Assistant Research Engineer",
+   "years": "2015–2020",
+   "source": "https://openreview.net/profile?id=~Hayden_Helm1"
+  },
+  {
+   "person": "hayden helm",
+   "org": "microsoft",
+   "role": "Researcher, Special Projects",
+   "years": "2020–2023",
+   "source": "https://openreview.net/profile?id=~Hayden_Helm1"
+  },
+  {
+   "person": "hayden helm",
+   "org": "neurodata-lab-johns-hopkins",
+   "role": "Research engineer / GraSPy contributor",
+   "years": "2019–2020",
+   "source": "https://pure.johnshopkins.edu/en/publications/graspy-graph-statistics-in-python"
+  },
+  {
+   "person": "hayden helm",
+   "org": "nomic-ai",
+   "role": "Researcher",
+   "years": "2023–2025",
+   "source": "https://openreview.net/profile?id=~Hayden_Helm1"
+  },
+  {
+   "person": "jack merullo",
+   "org": "brown-university",
+   "role": "PhD student, Computer Science (advisors: Ellie Pavlick, Carsten Eickhoff)",
+   "years": "2020–2025",
+   "source": "https://openreview.net/profile?id=~Jack_Merullo2"
+  },
+  {
+   "person": "jack merullo",
+   "org": "goodfire",
+   "role": "Researcher (interpretability)",
+   "years": "2025–",
+   "source": "https://openreview.net/profile?id=~Jack_Merullo2"
+  },
+  {
+   "person": "jack merullo",
+   "org": "university-of-massachusetts-amherst",
+   "role": "BS in Computer Science; undergraduate NLP research with Mohit Iyyer and Brendan O'Connor",
+   "years": "2016–2020",
+   "source": "https://jmerullo.github.io/"
+  },
+  {
+   "person": "jacopo teneggi",
+   "org": "johns-hopkins-university",
+   "role": "PhD student, Computer Science (advisor: Jeremias Sulam); earlier MSE in Biomedical Engineering (2020–2022)",
+   "years": "2020–",
+   "source": "https://jacopoteneggi.github.io/assets/pdf/cv.pdf"
+  },
+  {
+   "person": "jacopo teneggi",
+   "org": "minds-johns-hopkins",
+   "role": "Affiliated PhD researcher; MINDS summer fellow (2024)",
+   "years": "2022–",
+   "source": "https://jacopoteneggi.github.io"
+  },
+  {
+   "person": "jacopo teneggi",
+   "org": "nference",
+   "role": "Data Scientist Intern (distributed pretraining of LLMs on biomedical corpora)",
+   "years": "2021",
+   "source": "https://jacopoteneggi.github.io/assets/pdf/cv.pdf"
+  },
+  {
+   "person": "jacopo teneggi",
+   "org": "politecnico-di-torino",
+   "role": "BS in Biomedical Engineering",
+   "years": "2017–2020",
+   "source": "https://jacopoteneggi.github.io/assets/pdf/cv.pdf"
+  },
+  {
+   "person": "jacopo teneggi",
+   "org": "polymathic-ai",
+   "role": "Research Scientist Intern (AI agents for specialized scientific applications)",
+   "years": "2025",
+   "source": "https://jacopoteneggi.github.io/assets/pdf/cv.pdf"
+  },
+  {
+   "person": "jacopo teneggi",
+   "org": "profluent-bio",
+   "role": "ML Scientist Intern (parameter-efficient fine-tuning of LLMs for guided protein generation)",
+   "years": "2023",
+   "source": "https://jacopoteneggi.github.io/assets/pdf/cv.pdf"
+  },
+  {
+   "person": "jannik brinkmann",
+   "org": "bau-lab-northeastern-ndif",
+   "role": "Visiting Researcher",
+   "years": "2024",
+   "source": "https://jannik-brinkmann.github.io/"
+  },
+  {
+   "person": "jannik brinkmann",
+   "org": "j-p-morgan-research",
+   "role": "Research Intern",
+   "years": "2025",
+   "source": "https://jannik-brinkmann.github.io/"
+  },
+  {
+   "person": "jannik brinkmann",
+   "org": "nyu-ml2-group",
+   "role": "Visiting Researcher (advised by He He)",
+   "years": "2024–2025",
+   "source": "https://jannik-brinkmann.github.io/"
+  },
+  {
+   "person": "jannik brinkmann",
+   "org": "openai",
+   "role": "Red-Teaming Contractor",
+   "years": "2026–",
+   "source": "https://jannik-brinkmann.github.io/"
+  },
+  {
+   "person": "jannik brinkmann",
+   "org": "university-of-mannheim",
+   "role": "PhD student in Computer Science / Research Assistant (Institute for Enterprise Systems, InES); also earned M.Sc. Data Science with distinction there",
+   "years": "2022–",
+   "source": "https://www.uni-mannheim.de/en/ines/about-us/researchers/jannik-brinkmann/"
+  },
+  {
+   "person": "jeremy howard",
+   "org": "answer-ai",
+   "role": "Founding CEO (co-founded with Eric Ries)",
+   "years": "2023–",
+   "source": "https://www.fast.ai/about.html"
+  },
+  {
+   "person": "jeremy howard",
+   "org": "enlitic",
+   "role": "Founding CEO",
+   "years": "",
+   "source": "https://jeremy.fast.ai/"
+  },
+  {
+   "person": "jeremy howard",
+   "org": "fast-ai",
+   "role": "Co-founder / Founding researcher",
+   "years": "2016–",
+   "source": "https://jeremy.fast.ai/"
+  },
+  {
+   "person": "jeremy howard",
+   "org": "fastmail",
+   "role": "Founding CEO",
+   "years": "",
+   "source": "https://www.fast.ai/about.html"
+  },
+  {
+   "person": "jeremy howard",
+   "org": "kaggle",
+   "role": "President and Chief Scientist",
+   "years": "",
+   "source": "https://www.fast.ai/about.html"
+  },
+  {
+   "person": "jeremy howard",
+   "org": "stanford-digital-economy-lab",
+   "role": "Digital Fellow",
+   "years": "",
+   "source": "https://digitaleconomy.stanford.edu/person/jeremy-howard/"
+  },
+  {
+   "person": "jeremy howard",
+   "org": "university-of-queensland",
+   "role": "Honorary Professor",
+   "years": "",
+   "source": "https://jeremy.fast.ai/"
+  },
+  {
+   "person": "jeremy howard",
+   "org": "university-of-san-francisco",
+   "role": "Distinguished Research Scientist; founding chair, Wicklow AI in Medical Research Initiative (WAMRI)",
+   "years": "",
+   "source": "https://www.fast.ai/about.html"
+  },
+  {
+   "person": "jeremy kritz",
+   "org": "bank-of-america",
+   "role": "",
+   "years": "",
+   "source": "https://github.com/JeremyKritz"
+  },
+  {
+   "person": "jeremy kritz",
+   "org": "rutgers-winlab",
+   "role": "Summer research intern (Augmented Reality project)",
+   "years": "2016",
+   "source": "http://www.orbit-lab.org/wiki/Other/Summer/2016/AR"
+  },
+  {
+   "person": "jeremy kritz",
+   "org": "scale-ai",
+   "role": "Prompt Engineer / red-team researcher (SEAL / Scale Red Team)",
+   "years": "2024–2026",
+   "source": "https://arxiv.org/html/2501.17399v2"
+  },
+  {
+   "person": "jeremy kritz",
+   "org": "smtm-daughters-capital",
+   "role": "",
+   "years": "",
+   "source": "https://github.com/JeremyKritz"
+  },
+  {
+   "person": "jesse hoogland",
+   "org": "amsterdam-university-college",
+   "role": "BSc student, Physics & Computer Science",
+   "years": "2016–2019",
+   "source": "https://www.jessehoogland.com/about/"
+  },
+  {
+   "person": "jesse hoogland",
+   "org": "health-curious",
+   "role": "Co-founder & CTO",
+   "years": "2021–2022",
+   "source": "https://www.jessehoogland.com/about/"
+  },
+  {
+   "person": "jesse hoogland",
+   "org": "krueger-lab-cambridge",
+   "role": "Research assistant",
+   "years": "",
+   "source": "https://www.jessehoogland.com/about/"
+  },
+  {
+   "person": "jesse hoogland",
+   "org": "mats",
+   "role": "Scholar (MATS 3.0 & 3.1, Evan Hubinger's Deceptive AI stream)",
+   "years": "2022–2023",
+   "source": "https://www.matsprogram.org/alumni/jesse-hoogland"
+  },
+  {
+   "person": "jesse hoogland",
+   "org": "timaeus",
+   "role": "Co-founder & Executive Director",
+   "years": "2023–",
+   "source": "https://www.jessehoogland.com/about/"
+  },
+  {
+   "person": "jesse hoogland",
+   "org": "university-of-amsterdam",
+   "role": "MSc student, Theoretical Physics",
+   "years": "2019–2021",
+   "source": "https://www.jessehoogland.com/about/"
+  },
+  {
+   "person": "josh ying",
+   "org": "cbai",
+   "role": "Research fellow (AI safety / interpretability; collaboration with David Bau's Northeastern group)",
+   "years": "2025",
+   "source": "https://www.lesswrong.com/posts/m5XzhbZjEuF9uRgGR/it-s-owl-in-the-numbers-token-entanglement-in-subliminal-1"
+  },
+  {
+   "person": "josh ying",
+   "org": "columbia-university",
+   "role": "PhD student, Department of Psychology (Visual Inference Lab, advisor Nikolaus Kriegeskorte)",
+   "years": "2023–",
+   "source": "https://openreview.net/profile?id=~Zhuofan_Ying1"
+  },
+  {
+   "person": "josh ying",
+   "org": "kriegeskorte-lab-columbia",
+   "role": "PhD student",
+   "years": "2023–",
+   "source": "https://openreview.net/profile?id=~Zhuofan_Ying1"
+  },
+  {
+   "person": "josh ying",
+   "org": "university-of-north-carolina-at-chapel-hill",
+   "role": "B.A. in Computer Science (and Philosophy); research with Mohit Bansal & Peter Hase (VisFIS, NeurIPS 2022)",
+   "years": "2020–2022",
+   "source": "https://openreview.net/profile?id=~Zhuofan_Ying1"
+  },
+  {
+   "person": "josh ying",
+   "org": "ustc",
+   "role": "Undergraduate in Physics (did not complete; transferred)",
+   "years": "2017–2018",
+   "source": "https://openreview.net/profile?id=~Zhuofan_Ying1"
+  },
+  {
+   "person": "karl kaiser",
+   "org": "finch",
+   "role": "Senior Software Engineer",
+   "years": "2022–2025",
+   "source": "https://kwkaiser.io/experience"
+  },
+  {
+   "person": "karl kaiser",
+   "org": "miltenyi-biotec",
+   "role": "Data Engineer",
+   "years": "2020–2022",
+   "source": "https://kwkaiser.io/experience"
+  },
+  {
+   "person": "karl kaiser",
+   "org": "pallet",
+   "role": "Senior Software Engineer",
+   "years": "2025–",
+   "source": "https://kwkaiser.io/experience"
+  },
+  {
+   "person": "karl kaiser",
+   "org": "university-of-vermont",
+   "role": "MS student, Computer Science",
+   "years": "2018–2020",
+   "source": "https://kwkaiser.io/education"
+  },
+  {
+   "person": "kayo yin",
+   "org": "carnegie-mellon-university",
+   "role": "Master's student, Language Technologies Institute, advised by Graham Neubig",
+   "years": "2020–2022",
+   "source": "https://kayoyin.github.io/assets/cv.pdf"
+  },
+  {
+   "person": "kayo yin",
+   "org": "deepmind",
+   "role": "Research Intern (London, Language team with Chris Dyer; sign language generation)",
+   "years": "2022",
+   "source": "https://kayoyin.github.io/assets/cv.pdf"
+  },
+  {
+   "person": "kayo yin",
+   "org": "ecole-polytechnique",
+   "role": "BSc in Mathematics and Computer Science (thesis: Sign Language Translation with Transformers)",
+   "years": "2017–2020",
+   "source": "https://kayoyin.github.io/assets/cv.pdf"
+  },
+  {
+   "person": "kayo yin",
+   "org": "future-of-life-institute",
+   "role": "Future of Life PhD Fellow (Class of 2023)",
+   "years": "2023–",
+   "source": "https://futureoflife.org/person/kayo-yin/"
+  },
+  {
+   "person": "kayo yin",
+   "org": "microsoft",
+   "role": "Research Intern (New York; ASL STEM Wiki, with Danielle Bragg, Hal Daumé III, Alex Lu, Cyril Zhang)",
+   "years": "2023",
+   "source": "https://kayoyin.github.io/assets/cv.pdf"
+  },
+  {
+   "person": "kayo yin",
+   "org": "uc-berkeley",
+   "role": "PhD student in Computer Science (Berkeley NLP / Berkeley AI Research), advised by Jacob Steinhardt and Dan Klein",
+   "years": "2022–",
+   "source": "https://nlp.cs.berkeley.edu/members.shtml"
+  },
+  {
+   "person": "kola ayonrinde",
+   "org": "lasr-labs",
+   "role": "Research supervisor",
+   "years": "2026–",
+   "source": "https://www.lesswrong.com/posts/dzSAsL4fPuBvCCarT/lasr-labs-summer-2026-applications-are-open"
+  },
+  {
+   "person": "kola ayonrinde",
+   "org": "mats",
+   "role": "Scholar (interpretability, mentored by Lee Sharkey)",
+   "years": "2024",
+   "source": "https://arxiv.org/html/2410.11179"
+  },
+  {
+   "person": "kola ayonrinde",
+   "org": "uk-ai-security-institute",
+   "role": "ML Researcher (Agency, Capability Evaluation and Elicitation)",
+   "years": "",
+   "source": "https://www.kolaayonrinde.com/blog/about/"
+  },
+  {
+   "person": "kola ayonrinde",
+   "org": "university-of-cambridge",
+   "role": "Alumnus (degree unspecified)",
+   "years": "",
+   "source": "https://scholar.google.com/citations?user=j40ixccAAAAJ&hl=en"
+  },
+  {
+   "person": "leo mckee reid",
+   "org": "lasr-labs",
+   "role": "AI Safety Researcher, Summer 2024 cohort (evals research)",
+   "years": "2024",
+   "source": "https://www.lasrlabs.org/"
+  },
+  {
+   "person": "leo mckee reid",
+   "org": "leap-labs",
+   "role": "Applied ML Researcher (interpretability / Discovery Engine for automated scientific discovery)",
+   "years": "2024–2025",
+   "source": "https://arxiv.org/html/2507.00964v1"
+  },
+  {
+   "person": "leo mckee reid",
+   "org": "neolithic",
+   "role": "Founder (AI-safety nonprofit building infrastructure to automate AI safety research)",
+   "years": "2025–",
+   "source": "https://foresight.org/people/leo-mckee-reid/"
+  },
+  {
+   "person": "leo mckee reid",
+   "org": "university-of-victoria",
+   "role": "Student, Computer Science & Math (also did computational-neuroscience ML research)",
+   "years": "2019–2024",
+   "source": "https://scholar.google.com/citations?user=qg70NLYAAAAJ&hl=en"
+  },
+  {
+   "person": "liv gorton",
+   "org": "anthropic",
+   "role": "Researcher, Cognitive Oversight team",
+   "years": "2026–",
+   "source": "https://livgorton.com/about/"
+  },
+  {
+   "person": "liv gorton",
+   "org": "cellware-labs",
+   "role": "Researcher",
+   "years": "2022–2024",
+   "source": "https://openreview.net/profile?id=~Liv_Gorton1"
+  },
+  {
+   "person": "liv gorton",
+   "org": "goodfire",
+   "role": "Founding Research Scientist (mechanistic interpretability)",
+   "years": "2024–2026",
+   "source": "https://livgorton.com/about/"
+  },
+  {
+   "person": "liv gorton",
+   "org": "google",
+   "role": "Intern",
+   "years": "2019–2020",
+   "source": "https://openreview.net/profile?id=~Liv_Gorton1"
+  },
+  {
+   "person": "liv gorton",
+   "org": "university-of-melbourne",
+   "role": "MS student, Melbourne Medical School",
+   "years": "2022–2023",
+   "source": "https://openreview.net/profile?id=~Liv_Gorton1"
+  },
+  {
+   "person": "liv gorton",
+   "org": "university-of-sydney",
+   "role": "Undergraduate, Faculty of Science",
+   "years": "2018–2021",
+   "source": "https://openreview.net/profile?id=~Liv_Gorton1"
+  },
+  {
+   "person": "lucia quirke",
+   "org": "ai-safety-camp",
+   "role": "Team participant, 'Understanding Search in Transformers' project",
+   "years": "2023",
+   "source": "https://www.aisafety.camp/research-outputs/aisc8-virtual-2023"
+  },
+  {
+   "person": "lucia quirke",
+   "org": "atlassian",
+   "role": "Software Engineer",
+   "years": "",
+   "source": "https://theorg.com/org/eleutherai/org-chart/lucia-quirke"
+  },
+  {
+   "person": "lucia quirke",
+   "org": "boardingware",
+   "role": "Software Engineer",
+   "years": "",
+   "source": "https://theorg.com/org/eleutherai/org-chart/lucia-quirke"
+  },
+  {
+   "person": "lucia quirke",
+   "org": "canva",
+   "role": "Software Engineer",
+   "years": "",
+   "source": "https://theorg.com/org/eleutherai/org-chart/lucia-quirke"
+  },
+  {
+   "person": "lucia quirke",
+   "org": "eleutherai",
+   "role": "Member of Technical Staff (interpretability researcher)",
+   "years": "",
+   "source": "https://github.com/luciaquirke"
+  },
+  {
+   "person": "lucia quirke",
+   "org": "stanford-existential-risks-initiative",
+   "role": "Researcher",
+   "years": "",
+   "source": "https://theorg.com/org/eleutherai/org-chart/lucia-quirke"
+  },
+  {
+   "person": "lucia quirke",
+   "org": "university-of-auckland",
+   "role": "Student",
+   "years": "2016–2019",
+   "source": "https://theorg.com/org/eleutherai/org-chart/lucia-quirke"
+  },
+  {
+   "person": "madi kusmonov",
+   "org": "johns-hopkins-university",
+   "role": "M.S.E. student, Biomedical Engineering (computational medicine)",
+   "years": "2020–2021",
+   "source": "https://maogroup.jhu.edu/people/madi-kusmanov/"
+  },
+  {
+   "person": "madi kusmonov",
+   "org": "mao-lab-johns-hopkins",
+   "role": "Masters student / lab member",
+   "years": "2020–2021",
+   "source": "https://maogroup.jhu.edu/people/madi-kusmanov/"
+  },
+  {
+   "person": "madi kusmonov",
+   "org": "neurodata-lab-johns-hopkins",
+   "role": "Co-author / contributor on DF/DN project",
+   "years": "2021",
+   "source": "https://arxiv.org/abs/2108.13637"
+  },
+  {
+   "person": "madi kusmonov",
+   "org": "uc-san-diego",
+   "role": "B.S. (bioengineering / computational medicine)",
+   "years": "2017–2020",
+   "source": "https://maogroup.jhu.edu/people/madi-kusmanov/"
+  },
+  {
+   "person": "maya deen",
+   "org": "nvidia",
+   "role": "ML / robotics engineer (Robotics Test Developer; Isaac ROS, TAO toolkit; foundation & embedded models; robotics QA/automation)",
+   "years": "2019–2024",
+   "source": "https://www.linkedin.com/in/mayadeen/"
+  },
+  {
+   "person": "maya deen",
+   "org": "university-of-waterloo",
+   "role": "BEng, Electrical & Computer Engineering (co-op)",
+   "years": "2014–2019",
+   "source": "https://github.com/mdeen"
+  },
+  {
+   "person": "michael ripa",
+   "org": "bau-lab-northeastern-ndif",
+   "role": "Research Software Engineer",
+   "years": "2024–",
+   "source": "https://ndif.us/about.html"
+  },
+  {
+   "person": "michael ripa",
+   "org": "carleton-university",
+   "role": "BS, Mathematics and Computer Science",
+   "years": "2019–2024",
+   "source": "https://ndif.us/about.html"
+  },
+  {
+   "person": "michael ripa",
+   "org": "northeastern-university-khoury-college-of-computer-sciences",
+   "role": "Research Software Engineer",
+   "years": "2024–",
+   "source": "https://www.khoury.northeastern.edu/people/michael-ripa/"
+  },
+  {
+   "person": "rod moshtagi",
+   "org": "govai",
+   "role": "Summer Fellow",
+   "years": "2026–",
+   "source": "https://rodmoshtagi.ai/about"
+  },
+  {
+   "person": "rod moshtagi",
+   "org": "harvard-university",
+   "role": "MPP candidate (AI policy and the future of labor); Co-author, 'AI and the Future of Conflict Resolution' (student publication)",
+   "years": "2025–",
+   "source": "https://rodmoshtagi.ai/about"
+  },
+  {
+   "person": "rod moshtagi",
+   "org": "mila",
+   "role": "MPP capstone collaborator — 'AI Early Warning System for Canada'",
+   "years": "",
+   "source": "https://rodmoshtagi.ai/work"
+  },
+  {
+   "person": "rod moshtagi",
+   "org": "pwc-canada",
+   "role": "AI & Analytics Consultant",
+   "years": "",
+   "source": "https://rodmoshtagi.ai/about"
+  },
+  {
+   "person": "rod moshtagi",
+   "org": "university-of-british-columbia",
+   "role": "Undergraduate, business and psychology",
+   "years": "",
+   "source": "https://rodmoshtagi.ai/about"
+  },
+  {
+   "person": "rohit gandikota",
+   "org": "adobe-research",
+   "role": "Research intern",
+   "years": "2024–2025",
+   "source": "https://rohitgandikota.github.io/"
+  },
+  {
+   "person": "rohit gandikota",
+   "org": "bau-lab-northeastern-ndif",
+   "role": "PhD student, advised by David Bau",
+   "years": "",
+   "source": "https://rohitgandikota.github.io/"
+  },
+  {
+   "person": "rohit gandikota",
+   "org": "indian-space-research-organisation-isro",
+   "role": "Applied Scientist",
+   "years": "",
+   "source": "https://rohitgandikota.github.io/"
+  },
+  {
+   "person": "rohit gandikota",
+   "org": "northeastern-university",
+   "role": "PhD student (Computer Science)",
+   "years": "",
+   "source": "https://rohitgandikota.github.io/"
+  },
+  {
+   "person": "ronak mehta",
+   "org": "d-e-shaw",
+   "role": "Quantitative Analyst (Futures)",
+   "years": "2025–",
+   "source": "https://ronakdm.github.io/files/Ronak_Mehta_CV.pdf"
+  },
+  {
+   "person": "ronak mehta",
+   "org": "johns-hopkins-university",
+   "role": "B.S. (2015–2018) and M.S.E. (2018–2019) in Applied Mathematics & Statistics; M.S.E. advisor Joshua Vogelstein",
+   "years": "2015–2019",
+   "source": "https://ronakdm.github.io/files/Ronak_Mehta_CV.pdf"
+  },
+  {
+   "person": "ronak mehta",
+   "org": "neurodata-lab-johns-hopkins",
+   "role": "Assistant Research Engineer",
+   "years": "2017–2020",
+   "source": "https://ronakdm.github.io/files/Ronak_Mehta_CV.pdf"
+  },
+  {
+   "person": "ronak mehta",
+   "org": "simons-institute-berkeley",
+   "role": "Visiting Graduate Student, Modern Paradigms in Generalization program",
+   "years": "2024",
+   "source": "https://simons.berkeley.edu/people/ronak-mehta"
+  },
+  {
+   "person": "ronak mehta",
+   "org": "university-of-washington",
+   "role": "Ph.D. in Statistics (advisor: Zaid Harchaoui)",
+   "years": "2020–2025",
+   "source": "https://ronakdm.github.io/files/Ronak_Mehta_CV.pdf"
+  },
+  {
+   "person": "ross lawrence",
+   "org": "deephealth",
+   "role": "Jr. Machine Learning Engineer",
+   "years": "",
+   "source": "https://github.com/Lawreros"
+  },
+  {
+   "person": "ross lawrence",
+   "org": "johns-hopkins-university",
+   "role": "MSE BioEngineering (concentration: Biomedical Data Science)",
+   "years": "2019–2021",
+   "source": "https://github.com/Lawreros"
+  },
+  {
+   "person": "ross lawrence",
+   "org": "neurodata-lab-johns-hopkins",
+   "role": "Researcher / open-source contributor (m2g, neuroparc)",
+   "years": "2019",
+   "source": "https://github.com/Lawreros"
+  },
+  {
+   "person": "roy rinberg",
+   "org": "columbia-university",
+   "role": "MS in Computer Science (thesis track), advised by Rachel Cummings and Steven Bellovin",
+   "years": "2021–2023",
+   "source": "https://royrinberg.com/assets/resume/CV.pdf"
+  },
+  {
+   "person": "roy rinberg",
+   "org": "harvard-university",
+   "role": "PhD student, Computer Science (trustworthy ML / differential privacy), advised by Seth Neel and Salil Vadhan",
+   "years": "2023–",
+   "source": "https://royrinberg.com/assets/resume/CV.pdf"
+  },
+  {
+   "person": "roy rinberg",
+   "org": "mats",
+   "role": "Research Scholar (worked with Keri Warr at Anthropic on detecting/preventing model weight exfiltration)",
+   "years": "2025",
+   "source": "https://royrinberg.com/assets/resume/CV.pdf"
+  },
+  {
+   "person": "roy rinberg",
+   "org": "new-york-university",
+   "role": "B.A. Computer Science and Physics (minor: Math)",
+   "years": "2014–2018",
+   "source": "https://royrinberg.com/assets/resume/CV.pdf"
+  },
+  {
+   "person": "roy rinberg",
+   "org": "opendp-harvard",
+   "role": "Graduate Student Intern (brought PATE private-ML into the OpenDP framework)",
+   "years": "2023",
+   "source": "https://opendp.org/directory/roy-rinberg/"
+  },
+  {
+   "person": "roy rinberg",
+   "org": "ouster",
+   "role": "Software Engineer (early-stage engineer, lidar-based collision-avoidance systems)",
+   "years": "2018–2021",
+   "source": "https://royrinberg.com/assets/resume/CV.pdf"
+  },
+  {
+   "person": "roy rinberg",
+   "org": "technically-private",
+   "role": "Organizer (inter-university grad-student privacy/security group)",
+   "years": "2021–",
+   "source": "https://royrinberg.com/assets/resume/CV.pdf"
+  },
+  {
+   "person": "roy rinberg",
+   "org": "vector-institute",
+   "role": "Research intern, Privacy in Machine Learning, advised by Nicolas Papernot",
+   "years": "2022",
+   "source": "https://royrinberg.com/assets/resume/CV.pdf"
+  },
+  {
+   "person": "ryan chesler",
+   "org": "h2o-ai",
+   "role": "Data Scientist (later Principal Data Scientist)",
+   "years": "2020–2024",
+   "source": "https://arxiv.org/abs/2306.08161"
+  },
+  {
+   "person": "ryan chesler",
+   "org": "kaggle",
+   "role": "Competitions Grandmaster (handle: ryches)",
+   "years": "",
+   "source": "https://github.com/SanDiegoMachineLearning/talks"
+  },
+  {
+   "person": "ryan chesler",
+   "org": "nvidia",
+   "role": "Senior Applied Research Scientist",
+   "years": "",
+   "source": "https://huggingface.co/blog/nvidia/nemotron-ocr-v2"
+  },
+  {
+   "person": "ryan chesler",
+   "org": "san-diego-machine-learning",
+   "role": "Organizer",
+   "years": "",
+   "source": "https://github.com/SanDiegoMachineLearning/talks"
+  },
+  {
+   "person": "sarah schwettman",
+   "org": "mats",
+   "role": "Mentor (Steinhardt stream, Summer 2026)",
+   "years": "2026–",
+   "source": "https://www.matsprogram.org/mentor/schwettmann"
+  },
+  {
+   "person": "sarah schwettman",
+   "org": "mit",
+   "role": "PhD, Brain and Cognitive Sciences (NSF Graduate Research Fellow; advisors Josh Tenenbaum and Antonio Torralba)",
+   "years": "2016",
+   "source": "https://listart.mit.edu/calendar/Graduate-Student-Talk-Sarah-schwettmann"
+  },
+  {
+   "person": "sarah schwettman",
+   "org": "mit-csail",
+   "role": "Research Scientist (with MIT-IBM Watson AI Lab)",
+   "years": "–2024",
+   "source": "https://www.matsprogram.org/mentor/schwettmann"
+  },
+  {
+   "person": "sarah schwettman",
+   "org": "rice-university",
+   "role": "BA, Computational and Applied Mathematics; BA, Cognitive Science",
+   "years": "",
+   "source": "https://listart.mit.edu/calendar/Graduate-Student-Talk-Sarah-schwettmann"
+  },
+  {
+   "person": "sarah schwettman",
+   "org": "transluce",
+   "role": "Co-Founder & Chief Scientist",
+   "years": "2024–",
+   "source": "https://statistics.berkeley.edu/about/news/steinhardt-announces-co-founding-transluce-non-profit-ai-research-lab"
+  },
+  {
+   "person": "sheridan feucht",
+   "org": "bau-lab-northeastern-ndif",
+   "role": "PhD candidate, advised by David Bau and Byron Wallace",
+   "years": "2023–",
+   "source": "https://baulab.info/"
+  },
+  {
+   "person": "sheridan feucht",
+   "org": "brown-university",
+   "role": "B.S. in Computer Science",
+   "years": "2019–2023",
+   "source": "https://sfeucht.github.io/"
+  },
+  {
+   "person": "sheridan feucht",
+   "org": "goodfire",
+   "role": "Research Fellow (working with Atticus Geiger on causal abstraction / feature geometry)",
+   "years": "2026",
+   "source": "https://sfeucht.github.io/sfeucht_cv.pdf"
+  },
+  {
+   "person": "sheridan feucht",
+   "org": "lunar-lab-brown",
+   "role": "Undergraduate researcher",
+   "years": "2022–2023",
+   "source": "https://sfeucht.github.io/sfeucht_cv.pdf"
+  },
+  {
+   "person": "sheridan feucht",
+   "org": "northeastern-university",
+   "role": "PhD candidate, Computer Science (Khoury College)",
+   "years": "2023–",
+   "source": "https://www.khoury.northeastern.edu/people/sheridan-feucht/"
+  },
+  {
+   "person": "stella biderman",
+   "org": "booz-allen-hamilton",
+   "role": "Researcher / Lead Scientist",
+   "years": "2016–2025",
+   "source": "https://openreview.net/profile?id=~Stella_Biderman1"
+  },
+  {
+   "person": "stella biderman",
+   "org": "eleutherai",
+   "role": "Executive Director (joined as researcher 2020, ED of the nonprofit since 2023)",
+   "years": "2020–",
+   "source": "https://www.eleuther.ai/staff"
+  },
+  {
+   "person": "stella biderman",
+   "org": "georgia-tech",
+   "role": "MS student, Computer Science",
+   "years": "2018–2022",
+   "source": "https://www.stellabiderman.ai/"
+  },
+  {
+   "person": "stella biderman",
+   "org": "university-of-chicago",
+   "role": "Undergraduate — B.S. Mathematics (honors) and B.A. Philosophy",
+   "years": "2012–2016",
+   "source": "https://www.stellabiderman.ai/"
+  },
+  {
+   "person": "ted kyi",
+   "org": "ascender-software",
+   "role": "President",
+   "years": "2003–2012",
+   "source": "https://theorg.com/org/deep-sentinel/org-chart/ted-kyi"
+  },
+  {
+   "person": "ted kyi",
+   "org": "deep-sentinel",
+   "role": "VP of Data Science",
+   "years": "2024–",
+   "source": "https://www.deepsentinel.com/blogs/learning-center/meet-ted-kyi-vp-of-data-science/"
+  },
+  {
+   "person": "ted kyi",
+   "org": "matrix-medical-network",
+   "role": "SVP, Business Intelligence & Analytics",
+   "years": "2012–2024",
+   "source": "https://theorg.com/org/deep-sentinel/org-chart/ted-kyi"
+  },
+  {
+   "person": "ted kyi",
+   "org": "princeton-university",
+   "role": "BSE, Computer Science",
+   "years": "",
+   "source": "https://theorg.com/org/deep-sentinel/org-chart/ted-kyi"
+  },
+  {
+   "person": "ted kyi",
+   "org": "san-diego-machine-learning",
+   "role": "book club / paper reading group leader",
+   "years": "",
+   "source": "https://github.com/SanDiegoMachineLearning/bookclub"
+  },
+  {
+   "person": "ted kyi",
+   "org": "uc-berkeley",
+   "role": "studied computer science",
+   "years": "",
+   "source": "https://www.deepsentinel.com/blogs/learning-center/meet-ted-kyi-vp-of-data-science/"
+  },
+  {
+   "person": "ted kyi",
+   "org": "vesuvius-challenge-team",
+   "role": "winning team member",
+   "years": "2023",
+   "source": "https://github.com/ainatersol/Vesuvius-InkDetection"
+  },
+  {
+   "person": "tommy atthey",
+   "org": "johns-hopkins-university",
+   "role": "PhD, Biomedical Engineering",
+   "years": "–2023",
+   "source": "https://tathey1.github.io/"
+  },
+  {
+   "person": "tommy atthey",
+   "org": "mit",
+   "role": "MIT-Novo Nordisk Artificial Intelligence Postdoctoral Fellow",
+   "years": "2023–",
+   "source": "https://toc.csail.mit.edu/user/471"
+  },
+  {
+   "person": "tommy atthey",
+   "org": "mit-csail",
+   "role": "Postdoctoral researcher",
+   "years": "2023–",
+   "source": "https://toc.csail.mit.edu/user/471"
+  },
+  {
+   "person": "tommy atthey",
+   "org": "neurodata-lab-johns-hopkins",
+   "role": "PhD student / open-source maintainer",
+   "years": "",
+   "source": "https://tathey1.github.io/"
+  },
+  {
+   "person": "will levine",
+   "org": "anduril",
+   "role": "Machine learning researcher (Frontier AI)",
+   "years": "",
+   "source": "https://www.linkedin.com/in/will-levine-63b986123/"
+  },
+  {
+   "person": "will levine",
+   "org": "jhu-applied-physics-laboratory",
+   "role": "Machine learning researcher",
+   "years": "2019",
+   "source": "https://ar5iv.labs.arxiv.org/html/1910.11363"
+  },
+  {
+   "person": "will levine",
+   "org": "johns-hopkins-university",
+   "role": "MSE student, Biomedical Engineering (Biomedical Data Science); research with Joshua Vogelstein and Carey Priebe (NeuroData)",
+   "years": "2020–2021",
+   "source": "https://ar5iv.labs.arxiv.org/html/2108.13637"
+  },
+  {
+   "person": "will levine",
+   "org": "microsoft",
+   "role": "Senior Machine Learning Researcher",
+   "years": "2024–2026",
+   "source": "https://arxiv.org/html/2504.07104v1"
+  },
+  {
+   "person": "will levine",
+   "org": "scale-ai",
+   "role": "Senior Machine Learning Engineer",
+   "years": "2022–2024",
+   "source": "https://arxiv.org/html/2311.14743v6"
+  },
+  {
+   "person": "zeno kujawa",
+   "org": "northeastern-university",
+   "role": "PhD student, Khoury College of Computer Sciences (advisor: Rajmohan Rajaraman)",
+   "years": "2024–",
+   "source": "https://openreview.net/profile?id=~Zeno_Kujawa1"
+  },
+  {
+   "person": "zeno kujawa",
+   "org": "tu-wien",
+   "role": "Research intern, Institute of Computer Technology",
+   "years": "2022–2023",
+   "source": "https://openreview.net/profile?id=~Zeno_Kujawa1"
+  },
+  {
+   "person": "zeno kujawa",
+   "org": "university-of-cambridge",
+   "role": "MPhil/MS student, Department of Computer Science and Technology (Computer Laboratory); later research intern (2025)",
+   "years": "2023–2024",
+   "source": "https://openreview.net/profile?id=~Zeno_Kujawa1"
+  },
+  {
+   "person": "zeno kujawa",
+   "org": "university-of-edinburgh",
+   "role": "Undergraduate student, School of Informatics (BSc); also research intern (2023)",
+   "years": "2019–2023",
+   "source": "https://openreview.net/profile?id=~Zeno_Kujawa1"
+  }
+ ],
+ "projection": [
+  {
+   "a": "alex loftus",
+   "b": "alice rigg",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "anton alyakin",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "arnab sen sharma",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "bijan varjavand",
+   "weight": 5.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins",
+    "openai"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "brandon duderstadt",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "can rager",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "cat khor",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "chris wendler",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "devin crowley",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "eric bridgeford",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "eric todd",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "fred heiding",
+   "weight": 2.0,
+   "shared": [
+    "harvard-ai-safety-team"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "giordano rogers",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "goncalo paulo",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "grace proebsting",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "hayden helm",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "jacopo teneggi",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "jannik brinkmann",
+   "weight": 5.0,
+   "shared": [
+    "bau-lab-northeastern-ndif",
+    "openai"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "josh ying",
+   "weight": 2.0,
+   "shared": [
+    "cbai"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "lucia quirke",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "madi kusmonov",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "michael ripa",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "rohit gandikota",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "ronak mehta",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "ross lawrence",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "ryan chesler",
+   "weight": 1.0,
+   "shared": [
+    "san-diego-machine-learning"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "sheridan feucht",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "stella biderman",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "ted kyi",
+   "weight": 2.0,
+   "shared": [
+    "san-diego-machine-learning",
+    "vesuvius-challenge-team"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "tommy atthey",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "will levine",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "zeno kujawa",
+   "weight": 1.0,
+   "shared": [
+    "northeastern-university"
+   ]
+  },
+  {
+   "a": "alice rigg",
+   "b": "can rager",
+   "weight": 2.0,
+   "shared": [
+    "ai-safety-camp"
+   ]
+  },
+  {
+   "a": "alice rigg",
+   "b": "goncalo paulo",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "alice rigg",
+   "b": "lucia quirke",
+   "weight": 3.0,
+   "shared": [
+    "ai-safety-camp",
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "alice rigg",
+   "b": "stella biderman",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "allan deutsch",
+   "b": "grace proebsting",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "allan deutsch",
+   "b": "hayden helm",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "allan deutsch",
+   "b": "kayo yin",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "allan deutsch",
+   "b": "will levine",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "anton alyakin",
+   "b": "bijan varjavand",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "anton alyakin",
+   "b": "brandon duderstadt",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "anton alyakin",
+   "b": "devin crowley",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "anton alyakin",
+   "b": "eric bridgeford",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "anton alyakin",
+   "b": "hayden helm",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "anton alyakin",
+   "b": "jacopo teneggi",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "anton alyakin",
+   "b": "madi kusmonov",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "anton alyakin",
+   "b": "ronak mehta",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "anton alyakin",
+   "b": "ross lawrence",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "anton alyakin",
+   "b": "tommy atthey",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "anton alyakin",
+   "b": "will levine",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "antonio mari",
+   "b": "chris wendler",
+   "weight": 1.0,
+   "shared": [
+    "eth-zurich"
+   ]
+  },
+  {
+   "a": "arman ohmid",
+   "b": "madi kusmonov",
+   "weight": 1.0,
+   "shared": [
+    "uc-san-diego"
+   ]
+  },
+  {
+   "a": "arnab sen sharma",
+   "b": "can rager",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "arnab sen sharma",
+   "b": "chris wendler",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "arnab sen sharma",
+   "b": "eric todd",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "arnab sen sharma",
+   "b": "giordano rogers",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "arnab sen sharma",
+   "b": "grace proebsting",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "arnab sen sharma",
+   "b": "jannik brinkmann",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "arnab sen sharma",
+   "b": "michael ripa",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "arnab sen sharma",
+   "b": "rohit gandikota",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "arnab sen sharma",
+   "b": "sheridan feucht",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "arnab sen sharma",
+   "b": "zeno kujawa",
+   "weight": 1.0,
+   "shared": [
+    "northeastern-university"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "brandon duderstadt",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "can rager",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "cat khor",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "clement dumas",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "devin crowley",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "eric bridgeford",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "hayden helm",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "jacopo teneggi",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "jannik brinkmann",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "jeremy kritz",
+   "weight": 2.0,
+   "shared": [
+    "scale-ai"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "jesse hoogland",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "kola ayonrinde",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "madi kusmonov",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "ronak mehta",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "ross lawrence",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "roy rinberg",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "sarah schwettman",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "tommy atthey",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "will levine",
+   "weight": 3.0,
+   "shared": [
+    "johns-hopkins-university",
+    "scale-ai"
+   ]
+  },
+  {
+   "a": "brandon duderstadt",
+   "b": "devin crowley",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "brandon duderstadt",
+   "b": "eric bridgeford",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "brandon duderstadt",
+   "b": "hayden helm",
+   "weight": 3.0,
+   "shared": [
+    "johns-hopkins-university",
+    "nomic-ai"
+   ]
+  },
+  {
+   "a": "brandon duderstadt",
+   "b": "jacopo teneggi",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "brandon duderstadt",
+   "b": "madi kusmonov",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "brandon duderstadt",
+   "b": "ronak mehta",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "brandon duderstadt",
+   "b": "ross lawrence",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "brandon duderstadt",
+   "b": "tommy atthey",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "brandon duderstadt",
+   "b": "will levine",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "chris wendler",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "clement dumas",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "eric todd",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "giordano rogers",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "grace proebsting",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "jannik brinkmann",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "jesse hoogland",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "kola ayonrinde",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "lucia quirke",
+   "weight": 2.0,
+   "shared": [
+    "ai-safety-camp"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "michael ripa",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "rohit gandikota",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "roy rinberg",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "sarah schwettman",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "can rager",
+   "b": "sheridan feucht",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "cat khor",
+   "b": "jannik brinkmann",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "chris wendler",
+   "b": "clement dumas",
+   "weight": 3.0,
+   "shared": [
+    "epfl-data-science-lab-dlab"
+   ]
+  },
+  {
+   "a": "chris wendler",
+   "b": "eric todd",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "chris wendler",
+   "b": "giordano rogers",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "chris wendler",
+   "b": "grace proebsting",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "chris wendler",
+   "b": "jannik brinkmann",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "chris wendler",
+   "b": "michael ripa",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "chris wendler",
+   "b": "rohit gandikota",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "chris wendler",
+   "b": "sheridan feucht",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "clement dumas",
+   "b": "jesse hoogland",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "clement dumas",
+   "b": "kola ayonrinde",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "clement dumas",
+   "b": "roy rinberg",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "clement dumas",
+   "b": "sarah schwettman",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "devin crowley",
+   "b": "eric bridgeford",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "devin crowley",
+   "b": "hayden helm",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "devin crowley",
+   "b": "jacopo teneggi",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "devin crowley",
+   "b": "madi kusmonov",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "devin crowley",
+   "b": "ronak mehta",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "devin crowley",
+   "b": "ross lawrence",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "devin crowley",
+   "b": "tommy atthey",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "devin crowley",
+   "b": "will levine",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "eric bridgeford",
+   "b": "hayden helm",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "eric bridgeford",
+   "b": "jacopo teneggi",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "eric bridgeford",
+   "b": "madi kusmonov",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "eric bridgeford",
+   "b": "ronak mehta",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "eric bridgeford",
+   "b": "ross lawrence",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "eric bridgeford",
+   "b": "tommy atthey",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "eric bridgeford",
+   "b": "will levine",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "eric michaud",
+   "b": "kayo yin",
+   "weight": 1.0,
+   "shared": [
+    "uc-berkeley"
+   ]
+  },
+  {
+   "a": "eric michaud",
+   "b": "sarah schwettman",
+   "weight": 1.0,
+   "shared": [
+    "mit"
+   ]
+  },
+  {
+   "a": "eric michaud",
+   "b": "ted kyi",
+   "weight": 1.0,
+   "shared": [
+    "uc-berkeley"
+   ]
+  },
+  {
+   "a": "eric michaud",
+   "b": "tommy atthey",
+   "weight": 1.0,
+   "shared": [
+    "mit"
+   ]
+  },
+  {
+   "a": "eric todd",
+   "b": "giordano rogers",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "eric todd",
+   "b": "grace proebsting",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "eric todd",
+   "b": "jannik brinkmann",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "eric todd",
+   "b": "michael ripa",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "eric todd",
+   "b": "rohit gandikota",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "eric todd",
+   "b": "sheridan feucht",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "eric todd",
+   "b": "zeno kujawa",
+   "weight": 1.0,
+   "shared": [
+    "northeastern-university"
+   ]
+  },
+  {
+   "a": "fred heiding",
+   "b": "rod moshtagi",
+   "weight": 1.0,
+   "shared": [
+    "harvard-university"
+   ]
+  },
+  {
+   "a": "fred heiding",
+   "b": "roy rinberg",
+   "weight": 1.0,
+   "shared": [
+    "harvard-university"
+   ]
+  },
+  {
+   "a": "giordano rogers",
+   "b": "grace proebsting",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "giordano rogers",
+   "b": "jannik brinkmann",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "giordano rogers",
+   "b": "michael ripa",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "giordano rogers",
+   "b": "rohit gandikota",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "giordano rogers",
+   "b": "sheridan feucht",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "giordano rogers",
+   "b": "zeno kujawa",
+   "weight": 1.0,
+   "shared": [
+    "northeastern-university"
+   ]
+  },
+  {
+   "a": "goncalo paulo",
+   "b": "lucia quirke",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "goncalo paulo",
+   "b": "stella biderman",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "grace proebsting",
+   "b": "hayden helm",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "grace proebsting",
+   "b": "jannik brinkmann",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "grace proebsting",
+   "b": "kayo yin",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "grace proebsting",
+   "b": "michael ripa",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "grace proebsting",
+   "b": "rohit gandikota",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "grace proebsting",
+   "b": "sheridan feucht",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "grace proebsting",
+   "b": "will levine",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "grace proebsting",
+   "b": "zeno kujawa",
+   "weight": 1.0,
+   "shared": [
+    "northeastern-university"
+   ]
+  },
+  {
+   "a": "hayden helm",
+   "b": "jacopo teneggi",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "hayden helm",
+   "b": "kayo yin",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "hayden helm",
+   "b": "madi kusmonov",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "hayden helm",
+   "b": "ronak mehta",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "hayden helm",
+   "b": "ross lawrence",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "hayden helm",
+   "b": "tommy atthey",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "hayden helm",
+   "b": "will levine",
+   "weight": 3.0,
+   "shared": [
+    "johns-hopkins-university",
+    "microsoft"
+   ]
+  },
+  {
+   "a": "jack merullo",
+   "b": "liv gorton",
+   "weight": 2.0,
+   "shared": [
+    "goodfire"
+   ]
+  },
+  {
+   "a": "jack merullo",
+   "b": "sheridan feucht",
+   "weight": 3.0,
+   "shared": [
+    "brown-university",
+    "goodfire"
+   ]
+  },
+  {
+   "a": "jacopo teneggi",
+   "b": "madi kusmonov",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "jacopo teneggi",
+   "b": "ronak mehta",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "jacopo teneggi",
+   "b": "ross lawrence",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "jacopo teneggi",
+   "b": "tommy atthey",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "jacopo teneggi",
+   "b": "will levine",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "jannik brinkmann",
+   "b": "michael ripa",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "jannik brinkmann",
+   "b": "rohit gandikota",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "jannik brinkmann",
+   "b": "sheridan feucht",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "jeremy howard",
+   "b": "ryan chesler",
+   "weight": 1.0,
+   "shared": [
+    "kaggle"
+   ]
+  },
+  {
+   "a": "jeremy kritz",
+   "b": "will levine",
+   "weight": 2.0,
+   "shared": [
+    "scale-ai"
+   ]
+  },
+  {
+   "a": "jesse hoogland",
+   "b": "kola ayonrinde",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "jesse hoogland",
+   "b": "roy rinberg",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "jesse hoogland",
+   "b": "sarah schwettman",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "josh ying",
+   "b": "roy rinberg",
+   "weight": 1.0,
+   "shared": [
+    "columbia-university"
+   ]
+  },
+  {
+   "a": "kayo yin",
+   "b": "ted kyi",
+   "weight": 1.0,
+   "shared": [
+    "uc-berkeley"
+   ]
+  },
+  {
+   "a": "kayo yin",
+   "b": "will levine",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "kola ayonrinde",
+   "b": "leo mckee reid",
+   "weight": 2.0,
+   "shared": [
+    "lasr-labs"
+   ]
+  },
+  {
+   "a": "kola ayonrinde",
+   "b": "roy rinberg",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "kola ayonrinde",
+   "b": "sarah schwettman",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "kola ayonrinde",
+   "b": "zeno kujawa",
+   "weight": 1.0,
+   "shared": [
+    "university-of-cambridge"
+   ]
+  },
+  {
+   "a": "liv gorton",
+   "b": "sheridan feucht",
+   "weight": 2.0,
+   "shared": [
+    "goodfire"
+   ]
+  },
+  {
+   "a": "lucia quirke",
+   "b": "stella biderman",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "madi kusmonov",
+   "b": "ronak mehta",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "madi kusmonov",
+   "b": "ross lawrence",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "madi kusmonov",
+   "b": "tommy atthey",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "madi kusmonov",
+   "b": "will levine",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "maya deen",
+   "b": "ryan chesler",
+   "weight": 2.0,
+   "shared": [
+    "nvidia"
+   ]
+  },
+  {
+   "a": "michael ripa",
+   "b": "rohit gandikota",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "michael ripa",
+   "b": "sheridan feucht",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "rod moshtagi",
+   "b": "roy rinberg",
+   "weight": 1.0,
+   "shared": [
+    "harvard-university"
+   ]
+  },
+  {
+   "a": "rohit gandikota",
+   "b": "sheridan feucht",
+   "weight": 3.0,
+   "shared": [
+    "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "rohit gandikota",
+   "b": "zeno kujawa",
+   "weight": 1.0,
+   "shared": [
+    "northeastern-university"
+   ]
+  },
+  {
+   "a": "ronak mehta",
+   "b": "ross lawrence",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "ronak mehta",
+   "b": "tommy atthey",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "ronak mehta",
+   "b": "will levine",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "ross lawrence",
+   "b": "tommy atthey",
+   "weight": 3.0,
+   "shared": [
+    "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "ross lawrence",
+   "b": "will levine",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "roy rinberg",
+   "b": "sarah schwettman",
+   "weight": 2.0,
+   "shared": [
+    "mats"
+   ]
+  },
+  {
+   "a": "ryan chesler",
+   "b": "ted kyi",
+   "weight": 1.0,
+   "shared": [
+    "san-diego-machine-learning"
+   ]
+  },
+  {
+   "a": "sarah schwettman",
+   "b": "tommy atthey",
+   "weight": 3.0,
+   "shared": [
+    "mit-csail"
+   ]
+  },
+  {
+   "a": "sheridan feucht",
+   "b": "zeno kujawa",
+   "weight": 1.0,
+   "shared": [
+    "northeastern-university"
+   ]
+  },
+  {
+   "a": "tommy atthey",
+   "b": "will levine",
+   "weight": 1.0,
+   "shared": [
+    "johns-hopkins-university"
+   ]
+  }
+ ],
+ "communities": [
+  {
+   "id": 0,
+   "label": "EleutherAI"
+  },
+  {
+   "id": 1,
+   "label": "David Bau"
+  },
+  {
+   "id": 2,
+   "label": "Joshua Vogelstein"
+  }
+ ],
+ "meta": {
+  "type_weights": {
+   "lab": 3.0,
+   "program": 2.0,
+   "company": 2.0,
+   "community": 1.0,
+   "university": 1.0
+  },
+  "parent": {
+   "neurodata-lab-johns-hopkins": "johns-hopkins-university",
+   "minds-johns-hopkins": "johns-hopkins-university",
+   "mao-lab-johns-hopkins": "johns-hopkins-university",
+   "saria-lab-johns-hopkins": "johns-hopkins-university",
+   "jhu-applied-physics-laboratory": "johns-hopkins-university",
+   "bau-lab-northeastern-ndif": "northeastern-university",
+   "mit-csail": "mit",
+   "iaifi-nsf-ai-institute": "mit",
+   "chai-uc-berkeley": "uc-berkeley",
+   "simons-institute-berkeley": "uc-berkeley",
+   "lunar-lab-brown": "brown-university",
+   "kriegeskorte-lab-columbia": "columbia-university",
+   "krueger-lab-cambridge": "university-of-cambridge",
+   "dynamic-robotics-lab-osu": "oregon-state-university",
+   "leuthardt-lab-washu": "washu-school-of-medicine",
+   "oermann-lab-nyu-langone": "new-york-university",
+   "nyu-ml2-group": "new-york-university",
+   "stanford-digital-economy-lab": "stanford-university",
+   "harvard-ai-safety-team": "harvard-university",
+   "opendp-harvard": "harvard-university"
+  }
+ }
+}

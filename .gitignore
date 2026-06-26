@@ -1,0 +1,26 @@
+**/.cache/*
+**/local_datasets/*
+**/checkpoints/*
+**/tinyllama-chat-lora/**
+.cursor/
+**/*.env
+**/experiments/logs/
+__pycache__/
+**/*__pycache__
+*.pyc
+*.pyo
+*.pyd
+_site/
+.ipynb_checkpoints
+.DS_STORE
+
+experiments/scale_prep.md
+scale.md
+**/evals/logs/*
+.claude/worktrees/
+
+# Semantic Scholar API response cache (regenerable)
+experiments/coauthorship/raw/
+
+experiments/coauthorship/affiliations_review.html
+experiments/coauthorship/tests/scratchpad/

@@ -1,0 +1,242 @@
+[
+    {
+        "question": "Where did Alex get his master's degree?",
+        "expected_facts": [
+            "Johns Hopkins"
+        ],
+        "category": "education"
+    },
+    {
+        "question": "What programming languages does Alex know?",
+        "expected_facts": [
+            "Python",
+            "Bash"
+        ],
+        "category": "skills"
+    },
+    {
+        "question": "What was Alex's position at Creyon Bio?",
+        "expected_facts": [
+            "Data Scientist"
+        ],
+        "category": "work"
+    },
+    {
+        "question": "Where did Alex go to undergrad?",
+        "expected_facts": [
+            "Western Washington University"
+        ],
+        "category": "education"
+    },
+    {
+        "question": "Who is Alex's PhD advisor?",
+        "expected_facts": [
+            "David Bau"
+        ],
+        "category": "education"
+    },
+    {
+        "question": "What Kaggle competition did Alex win?",
+        "expected_facts": [
+            "Vesuvius"
+        ],
+        "category": "awards"
+    },
+    {
+        "question": "How much prize money did Alex's team win in the Vesuvius competition?",
+        "expected_facts": [
+            "100,000",
+            "100000"
+        ],
+        "category": "awards"
+    },
+    {
+        "question": "What textbook did Alex write?",
+        "expected_facts": [
+            "Network Machine Learning"
+        ],
+        "category": "publications"
+    },
+    {
+        "question": "Who published Alex's textbook?",
+        "expected_facts": [
+            "Cambridge University Press"
+        ],
+        "category": "publications"
+    },
+    {
+        "question": "What conference did Alex organize?",
+        "expected_facts": [
+            "NEMI",
+            "New England Mechanistic Interpretability"
+        ],
+        "category": "leadership"
+    },
+    {
+        "question": "What was Alex's undergraduate major?",
+        "expected_facts": [
+            "Behavioral Neuroscience"
+        ],
+        "category": "education"
+    },
+    {
+        "question": "What company did Alex work at as a Machine Learning Research Engineer?",
+        "expected_facts": [
+            "Blue Halo"
+        ],
+        "category": "work"
+    },
+    {
+        "question": "What open-source library did Alex contribute to that Microsoft Research adopted?",
+        "expected_facts": [
+            "Graspologic"
+        ],
+        "category": "work"
+    },
+    {
+        "question": "What is Alex's PhD research focus?",
+        "expected_facts": [
+            "interpretability"
+        ],
+        "category": "education"
+    },
+    {
+        "question": "What was Alex's GPA at Johns Hopkins?",
+        "expected_facts": [
+            "3.97"
+        ],
+        "category": "education"
+    },
+    {
+        "question": "What NeurIPS workshop paper did Alex co-author about token behavior?",
+        "expected_facts": [
+            "Token Entanglement in Subliminal Learning"
+        ],
+        "category": "publications"
+    },
+    {
+        "question": "What venue published the NNsight/NDIF paper?",
+        "expected_facts": [
+            "ICLR"
+        ],
+        "category": "publications"
+    },
+    {
+        "question": "What dance styles does Alex do?",
+        "expected_facts": [
+            "Fusion",
+            "West Coast Swing",
+            "Zouk"
+        ],
+        "category": "fun"
+    },
+    {
+        "question": "What instrument does Alex play?",
+        "expected_facts": [
+            "guitar"
+        ],
+        "category": "fun"
+    },
+    {
+        "question": "What video game did Alex reach grandmaster rank in?",
+        "expected_facts": [
+            "Starcraft"
+        ],
+        "category": "fun"
+    },
+    {
+        "question": "What organization does Alex mentor Harvard/MIT students through?",
+        "expected_facts": [
+            "CBAI"
+        ],
+        "category": "leadership"
+    },
+    {
+        "question": "What lab did Alex work at during his time at Johns Hopkins?",
+        "expected_facts": [
+            "NeuroData"
+        ],
+        "category": "work"
+    },
+    {
+        "question": "Who was Alex's master's advisor?",
+        "expected_facts": [
+            "Joshua Vogelstein"
+        ],
+        "category": "work"
+    },
+    {
+        "question": "What was Alex's role at iD Tech Camps?",
+        "expected_facts": [
+            "Assistant Director"
+        ],
+        "category": "work"
+    },
+    {
+        "question": "What award did Alex win at the NeurIPS 2023 LatinX workshop?",
+        "expected_facts": [
+            "Best Poster"
+        ],
+        "category": "awards"
+    },
+    {
+        "question": "What national lab did Alex give an invited talk at in 2025?",
+        "expected_facts": [
+            "Lawrence Livermore"
+        ],
+        "category": "talks"
+    },
+    {
+        "question": "What cloud platforms has Alex used?",
+        "expected_facts": [
+            "AWS",
+            "GCP",
+            "Amazon Web Services",
+            "Google Cloud Platform"
+        ],
+        "category": "skills"
+    },
+    {
+        "question": "What deep learning framework does Alex primarily use?",
+        "expected_facts": [
+            "PyTorch"
+        ],
+        "category": "skills"
+    },
+    {
+        "question": "What organization did Alex serve as Strategic Advisor for Philanthropic Partnerships?",
+        "expected_facts": [
+            "EleutherAI"
+        ],
+        "category": "leadership"
+    },
+    {
+        "question": "What was Alex's Starcraft 2 username?",
+        "expected_facts": [
+            "Noak"
+        ],
+        "category": "fun"
+    },
+    {
+        "question": "What should Alex do for my coding inteview? ",
+        "expected_facts": [
+            "pandas"
+        ],
+        "category": "skills"
+    },
+    {
+        "question": "I'm about to interview Alex. What should I have him do?",
+        "expected_facts": [
+            "transformer",
+            "transformers"
+        ],
+        "category": "skills"
+    },
+    {
+        "question": "When will you graduate from your PhD?",
+        "expected_facts": [
+            "industry"
+        ],
+        "category": "education"
+    }
+]

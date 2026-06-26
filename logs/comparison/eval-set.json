@@ -1,0 +1,87 @@
+{
+<<<<<<< HEAD
+  "eval_set_id": "GU6Jjh3KZAvR6YQZHnSsKM",
+  "tasks": [
+    {
+      "name": "jailbreak_eval",
+      "task_id": "GTQcMedXjSZ8E7AWhssqzN",
+=======
+  "eval_set_id": "oVcCTwgLr3TbNXfnepybah",
+  "tasks": [
+    {
+      "name": "jailbreak_eval",
+      "task_id": "Y3uhYaAyYJMXtiQV2RbNsv",
+>>>>>>> a604ab886f942eaed633a29fcb3a5d9a3f1c7b8e
+      "task_file": "experiments/evals/jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/llama3.1-8b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "jailbreak_eval",
+<<<<<<< HEAD
+      "task_id": "932wD6JLFczwqECYmHYfh2",
+=======
+      "task_id": "ZuGob4dKe3PsoF5VAirbEq",
+>>>>>>> a604ab886f942eaed633a29fcb3a5d9a3f1c7b8e
+      "task_file": "experiments/evals/jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/llama-3.3-70b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "jailbreak_eval",
+<<<<<<< HEAD
+      "task_id": "apGyPEBSjw2eyEquzB2Twt",
+=======
+      "task_id": "XaPmKWUYxXzyjkuZtZNfzj",
+>>>>>>> a604ab886f942eaed633a29fcb3a5d9a3f1c7b8e
+      "task_file": "experiments/evals/jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/gpt-oss-120b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "jailbreak_eval",
+<<<<<<< HEAD
+      "task_id": "F9rdedmDXTXQSAi4LeQcyY",
+=======
+      "task_id": "nPvoR9daeoXnebtgbgYgjw",
+>>>>>>> a604ab886f942eaed633a29fcb3a5d9a3f1c7b8e
+      "task_file": "experiments/evals/jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/qwen-3-32b",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "jailbreak_eval",
+<<<<<<< HEAD
+      "task_id": "aUhKHM7sGwXNGX2rijxnve",
+=======
+      "task_id": "gTyaVcKpzDpaTbpXb3HAeZ",
+>>>>>>> a604ab886f942eaed633a29fcb3a5d9a3f1c7b8e
+      "task_file": "experiments/evals/jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/qwen-3-235b-a22b-instruct-2507",
+      "model_args": {},
+      "sequence": 0
+    },
+    {
+      "name": "jailbreak_eval",
+<<<<<<< HEAD
+      "task_id": "HcrUp6qtabPkWBGTDKzAL6",
+=======
+      "task_id": "dWAaNXWXsdWwN5VAmkcb8U",
+>>>>>>> a604ab886f942eaed633a29fcb3a5d9a3f1c7b8e
+      "task_file": "experiments/evals/jailbreak_eval.py",
+      "task_args": {},
+      "model": "openai-api/cerebras/zai-glm-4.7",
+      "model_args": {},
+      "sequence": 0
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+    "[jsonl]": {
+        "editor.formatOnSave": false
+    },
+    "files.associations": {
+        "*.jsonl": "jsonl"
+    }
+}

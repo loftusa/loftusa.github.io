@@ -1,0 +1,9 @@
+# The networks of the /networks/ project. Each has a map at `base` and analyses at
+# `<base>analyses/`. Adding a future network (chat-interaction, "how we met", …) = one entry here
+# + its two pages.
+- id: careers
+  label: careers
+  base: /networks/affiliations/
+- id: papers
+  label: papers
+  base: /networks/

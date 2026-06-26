@@ -1,0 +1,87 @@
+# See https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
+
+name: Alex loftus website
+on:
+  push:
+    branches:
+      - main
+      - master
+
+concurrency:
+  group: deploy-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  API_BASE: https://llm-resume-restless-thunder-9259.fly.dev
+
+jobs:
+  deploy-website:
+    name: Deploy Alex Loftus website
+    runs-on: ubuntu-latest
+    concurrency: deploy-group
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Wait for deploy to stabilize
+        run: |
+          echo "Waiting for app to start..."
+          for i in 1 2 3 4 5 6; do
+            curl_exit=0
+            response=$(curl -s --max-time 10 "$API_BASE/health") || curl_exit=$?
+            if [ "$curl_exit" = "0" ] && echo "$response" | grep -q '"status":"ok"'; then
+              echo "Health check passed on attempt $i"
+              exit 0
+            fi
+            echo "Attempt $i: curl_exit=$curl_exit response=${response:0:100}"
+            sleep 5
+          done
+          echo "::error::App did not become healthy after 6 attempts"
+          exit 1
+
+      - name: Smoke test /chat endpoint
+        run: |
+          # /chat returns a StreamingResponse (chunked). Curl will report
+          # exit 18 (partial file) or 92 (HTTP/2 stream error) because
+          # there's no Content-Length. We check http_code=200 instead.
+          curl_exit=0
+          response=$(curl -s --http1.1 --max-time 30 \
+            -w "\n---CURL_METRICS---\nhttp_code: %{http_code}\ntime_total: %{time_total}s\ntime_starttransfer: %{time_starttransfer}s\n" \
+            -D /tmp/chat_headers \
+            -X POST "$API_BASE/chat?logging=false" \
+            -H "Content-Type: application/json" \
+            -d '{"message": "hi", "user_id": "ci-smoke-test"}') || curl_exit=$?
+
+          metrics=$(echo "$response" | sed -n '/---CURL_METRICS---/,$p')
+          body=$(echo "$response" | sed '/---CURL_METRICS---/,$d')
+          http_code=$(echo "$metrics" | grep "http_code:" | awk '{print $2}')
+
+          echo "curl exit code: $curl_exit"
+          echo "HTTP status: $http_code"
+          echo "Response body (first 300 chars): ${body:0:300}"
+          echo "$metrics"
+
+          # Exit 18 (partial file) and 92 (HTTP/2 stream) are expected
+          # for streaming responses — but we MUST still get actual content
+          if [ "$curl_exit" != "0" ] && [ "$curl_exit" != "18" ] && [ "$curl_exit" != "92" ]; then
+            echo "::error::Smoke test curl failed (exit $curl_exit: 7=refused, 28=timeout, 52=empty reply)"
+            cat /tmp/chat_headers 2>/dev/null || echo "(no headers captured)"
+            exit 1
+          fi
+          if [ "$http_code" != "200" ]; then
+            echo "::error::Smoke test failed — HTTP $http_code"
+            echo "$body"
+            cat /tmp/chat_headers 2>/dev/null
+            exit 1
+          fi
+          # Critical: HTTP 200 with empty body means the streaming generator
+          # threw an exception (e.g. bad model name, API key, etc.)
+          if [ -z "$body" ]; then
+            echo "::error::Chat returned HTTP 200 but EMPTY response body — streaming generator likely crashed"
+            cat /tmp/chat_headers 2>/dev/null || echo "(no headers)"
+            exit 1
+          fi
+          echo "Smoke test passed (HTTP $http_code, ${#body} chars)"
