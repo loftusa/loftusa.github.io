@@ -1,0 +1,48 @@
+.page {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 1rem;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1.4rem;
+}
+.head h1 {
+  margin: 0;
+}
+.actions {
+  display: flex;
+  gap: 1.1rem;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+  font-size: 0.92rem;
+}
+.actions a {
+  color: var(--muted);
+}
+.actions a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.frame {
+  width: 100%;
+  height: min(80vh, 920px);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+}
+.fallback {
+  padding: 2rem;
+  text-align: center;
+  color: var(--ink-soft);
+}

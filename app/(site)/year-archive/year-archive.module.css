@@ -1,0 +1,45 @@
+.group {
+  margin-top: 2.2rem;
+}
+.year {
+  font-family: var(--font-serif-display);
+  font-size: 1.1rem;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 500;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+  margin: 0 0 1.1rem;
+}
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.item {
+  margin: 0 0 1.5em;
+}
+.date {
+  display: block;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  font-size: 0.85em;
+  margin-bottom: 0.1em;
+}
+.title {
+  font-family: var(--font-serif-display);
+  font-size: 1.25rem;
+  font-weight: 540;
+  color: var(--ink);
+}
+.title:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+.excerpt {
+  color: var(--ink-soft);
+  font-size: 0.95em;
+  margin: 0.25em 0 0;
+}

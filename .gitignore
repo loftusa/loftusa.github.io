@@ -19,8 +19,23 @@ scale.md
 **/evals/logs/*
 .claude/worktrees/
 
+# DM viewer plaintext (encrypted version in dm-viewer/ is fine)
+red-teaming/reports/dm_viewer.html
+red-teaming/reports/translation_cache.json
+
 # Semantic Scholar API response cache (regenerable)
 experiments/coauthorship/raw/
 
+# ISC-Bench: external repo cloned for red-teaming practice (405MB, not ours)
+red-teaming/practice/ISC-Bench/
 experiments/coauthorship/affiliations_review.html
-experiments/coauthorship/tests/scratchpad/
+
+# Next.js / Vercel
+/.next/
+/out/
+/build/
+next-env.d.ts
+node_modules/
+.vercel
+*.tsbuildinfo
+.env*.local

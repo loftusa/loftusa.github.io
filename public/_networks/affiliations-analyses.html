@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Career network analyses · Alex Loftus</title>
+  <meta name="description" content="Six ways to read the affiliation network — careers as data: shared rooms, cohort waves, the academia–industry pipeline, and where everyone is now.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      background: #faf8f3; color: #2b2b2b;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+<link rel="stylesheet" href="/assets/css/analyses-page.css">
+
+<div id="app">
+  <aside id="sidebar">
+    <div>
+      <h1>Career analyses</h1>
+      <nav class="page-tabs">
+  <div class="tab-row" aria-label="network">
+      <a class="tab" href="/networks/analyses/">papers</a>
+      <span class="tab on">careers</span>
+  </div>
+  <div class="tab-row" aria-label="view">
+    <a class="tab" href="/networks/affiliations/">map</a><span class="tab on">analyses</span>
+  </div>
+</nav>
+      <p class="caption">The same 48 people, read through their careers instead of their
+        papers — six analyses of the <a href="/networks/affiliations/">affiliation
+        network</a>, each doubling as a plain-language method explainer. The mini-map keeps
+        everyone in their usual seat (positions from the co-authorship map).</p>
+    </div>
+    <nav id="nav"></nav>
+    <div id="foot">
+      Each panel: the finding, the picture, then <em>how the method works</em> — written for
+      people who think in embeddings, not adjacency spectra. Data is the hand-reviewed
+      affiliation sweep; every entry carries its public source.
+      <div style="margin-top:6px"><a href="/networks/affiliations/">← the career map</a></div>
+    </div>
+  </aside>
+  <div id="main"></div>
+</div>
+
+<script>
+  window.ANALYSES_CONFIG = {
+    methods: [
+      { slug: "same-rooms-no-paper", sec: "Two graphs", label: "Same rooms, no paper",
+        sub: "Pairs who shared a lab, a program, or an office but never a paper — the collaborations still on the table." },
+      { slug: "eras", sec: "Time", label: "The eras",
+        sub: "The chat as cohort waves — who arrived at each shared room, and when." },
+      { slug: "the-pipeline", sec: "Time", label: "The pipeline",
+        sub: "Careers as a five-token language: where a university year tends to lead next." },
+      { slug: "where-we-are-now", sec: "Time", label: "Where everyone is now",
+        sub: "One snapshot, today: companies vs labs vs campuses — and who shares your city." },
+      { slug: "range", sec: "People", label: "Range",
+        sub: "How many kinds of institution one career covers — breadth and depth, both worn proudly." },
+      { slug: "embassies", sec: "People", label: "Embassies",
+        sub: "The organizations exactly one person holds — outposts in the wider world." },
+      { slug: "your-seat", sec: "People", label: "Your seat",
+        sub: "Pick anyone on the map — their ties, invitations, chapters, and outposts, on one card." },
+    ],
+    sharedPath: "/assets/data/analyses-affiliations/shared.json",
+    panelDataDir: "/assets/data/analyses-affiliations/",
+    minimap: { restrictToShared: true, links: "shared" },
+  };
+</script>
+<script src="/assets/js/network-identity.js"></script>
+<script src="https://d3js.org/d3.v7.min.js" defer></script>
+<script src="/assets/js/analyses/shell.js?v=2" defer></script>
+<script src="/assets/js/analyses-affiliations/same-rooms-no-paper.js" defer></script>
+<script src="/assets/js/analyses-affiliations/eras.js" defer></script>
+<script src="/assets/js/analyses-affiliations/the-pipeline.js" defer></script>
+<script src="/assets/js/analyses-affiliations/where-we-are-now.js" defer></script>
+<script src="/assets/js/analyses-affiliations/range.js" defer></script>
+<script src="/assets/js/analyses-affiliations/embassies.js" defer></script>
+<script src="/assets/js/analyses-affiliations/your-seat.js" defer></script>
+</body>
+</html>

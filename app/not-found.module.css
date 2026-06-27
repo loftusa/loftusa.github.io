@@ -1,0 +1,22 @@
+.wrap {
+  text-align: center;
+  padding-top: 5rem;
+}
+.code {
+  font-family: var(--font-serif-display);
+  font-size: clamp(3rem, 2rem + 5vw, 5rem);
+  color: var(--rule);
+  margin: 0;
+  line-height: 1;
+}
+.title {
+  margin: 0.3rem 0 0.3rem;
+}
+.sub {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.home {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}

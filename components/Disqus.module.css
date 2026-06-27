@@ -1,0 +1,25 @@
+.comments {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+.title {
+  font-size: var(--text-md);
+  margin: 0 0 1rem;
+}
+.loadBtn {
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 0.5em 1em;
+  font-family: var(--font-serif-text);
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.loadBtn:hover {
+  color: var(--accent);
+  border-color: var(--accent-soft);
+}
