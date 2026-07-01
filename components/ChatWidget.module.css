@@ -1,0 +1,136 @@
+/* Ported from the Tufte-style chat block in assets/css/main.scss, tokenized. */
+
+.container {
+  margin-top: 1.5em;
+  margin-bottom: 1.4em;
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0 0 1em 0;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+.input {
+  flex: 1;
+  padding: 0.4em 1.6em 0.4em 0;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  font-family: var(--font-serif-text);
+  font-size: 1.05em;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  color: var(--ink);
+  transition: border-color 0.15s;
+}
+.input::placeholder {
+  font-style: italic;
+  color: var(--muted);
+}
+.input:focus {
+  border-bottom-color: var(--ink);
+}
+.input:disabled {
+  opacity: 0.5;
+}
+
+.send {
+  position: absolute;
+  right: 0;
+  bottom: 0.32em;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.2em;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.send:hover {
+  color: var(--accent);
+}
+.send:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.messages {
+  max-height: 420px;
+  overflow-y: auto;
+  margin-top: 1.2em;
+  padding: 0;
+}
+.messages:empty {
+  margin-top: 0;
+}
+
+.msg {
+  margin-bottom: 0.8em;
+  font-family: var(--font-serif-text);
+  line-height: 1.55;
+}
+
+.user {
+  text-align: right;
+  color: var(--ink-soft);
+  padding-left: 20%;
+}
+.usrLabel {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  font-size: 0.8em;
+  color: var(--muted);
+  margin-right: 0.4em;
+}
+
+.bot {
+  color: var(--ink);
+  padding-right: 8%;
+}
+.bot .text p {
+  margin: 0.35em 0;
+}
+.bot .text ul,
+.bot .text ol {
+  margin: 0.35em 0;
+  padding-left: 1.4em;
+}
+
+.text :global(code) {
+  background: #232020;
+  color: #e8e3da;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-size: 0.88em;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+}
+.text :global(pre) {
+  background: #232020;
+  color: #e8e3da;
+  padding: 8px 12px;
+  border-radius: 2px;
+  overflow-x: auto;
+  white-space: pre;
+}
+.text :global(pre code) {
+  background: none;
+  padding: 0;
+}
+
+.privacy {
+  color: var(--muted);
+  font-size: 0.72em;
+  margin-top: 0.6em;
+  margin-bottom: 0;
+  font-style: italic;
+}

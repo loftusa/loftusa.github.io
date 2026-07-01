@@ -1,0 +1,48 @@
+/* ── Design tokens ───────────────────────────────────────────────────────────
+   Refined editorial / Tufte direction. Warm paper, oxblood accent, hairline
+   rules. Data categoricals mirror the /networks/ D3 palette so the maps and the
+   site read as one piece. next/font sets --font-display and --font-body on <html>. */
+
+:root {
+  /* Surfaces & ink */
+  --paper: #faf8f3;
+  --paper-raised: #fffdf8;
+  --paper-sunken: #f3efe6;
+  --ink: #2b2b2b;
+  --ink-soft: #4f4b45;
+  --muted: #8c867b;
+  --rule: #e3ddcf;
+  --rule-soft: #efe9dc;
+
+  /* Accent — refined oxblood (vs the old bright #a00) */
+  --accent: #8a1f1c;
+  --accent-soft: #b14a3f;
+  --accent-wash: #f4e9e3;
+
+  /* Data categoricals (match assets/css network palette) */
+  --cat-blue: #4c6b8a;
+  --cat-sienna: #a6611a;
+  --cat-sage: #5a7d5a;
+
+  /* Type families (composed with graceful fallbacks) */
+  --font-serif-display: var(--font-display), "Hoefler Text", "Iowan Old Style", Georgia, serif;
+  --font-serif-text: var(--font-body), "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+
+  /* Type scale (~1.2 modular, fluid at the top) */
+  --text-xs: 0.78rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-md: 1.2rem;
+  --text-lg: 1.45rem;
+  --text-xl: clamp(1.6rem, 1.3rem + 1.1vw, 2.05rem);
+  --text-2xl: clamp(2rem, 1.5rem + 1.9vw, 2.85rem);
+
+  /* Measure & containers */
+  --measure: 68ch;
+  --container: 46rem;
+  --container-wide: 70rem;
+
+  /* Misc */
+  --radius: 4px;
+  --shadow-soft: 0 1px 2px rgba(43, 43, 43, 0.04), 0 8px 24px -12px rgba(43, 43, 43, 0.18);
+}
