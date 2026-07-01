@@ -5,15 +5,39 @@ SQLite engine. RAG/LLM warm up lazily at startup (best-effort, never blocks boot
 """
 from __future__ import annotations
 
+import asyncio
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from . import config
-from .db import init_db
-from .routers import admin, affiliations, chat, coauthorship
-from .services import rag
+from .db import SessionLocal, init_db
+from .routers import (
+    admin,
+    affiliations,
+    auth,
+    chat,
+    coauthorship,
+    search,
+    translate,
+    ws,
+)
+from .services import housekeeping, rag
+
+
+async def _housekeeping_loop() -> None:
+    """Periodic durable housekeeping: prune old rate-limit rows, evict stale conversations."""
+    while True:
+        await asyncio.sleep(config.HOUSEKEEPING_INTERVAL_SECONDS)
+        try:
+            session = SessionLocal()
+            try:
+                print(f"housekeeping: {housekeeping.run_once(session)}")
+            finally:
+                session.close()
+        except Exception as e:
+            print(f"housekeeping error: {type(e).__name__}: {e}")
 
 
 @asynccontextmanager
@@ -24,7 +48,11 @@ async def lifespan(app: FastAPI):
         print(f"RAG ready: {rag.count()} chunks indexed")
     except Exception as e:  # never let a RAG hiccup stop the server booting
         print(f"RAG warmup skipped: {type(e).__name__}: {e}")
-    yield
+    task = asyncio.create_task(_housekeeping_loop())
+    try:
+        yield
+    finally:
+        task.cancel()
 
 
 def create_app() -> FastAPI:
@@ -32,6 +60,7 @@ def create_app() -> FastAPI:
     app.add_middleware(
         CORSMiddleware,
         allow_origins=config.CORS_ORIGINS,
+        allow_origin_regex=config.CORS_ORIGIN_REGEX,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -40,6 +69,10 @@ def create_app() -> FastAPI:
     app.include_router(coauthorship.router)
     app.include_router(affiliations.router)
     app.include_router(admin.router)
+    app.include_router(auth.router)
+    app.include_router(translate.router)
+    app.include_router(search.router)
+    app.include_router(ws.router)
     return app
 
 

@@ -46,6 +46,28 @@ SYSTEM_PROMPT_PATH = EXPERIMENTS / "system_prompt.txt"
 RESUME_PATH = EXPERIMENTS / "resume.txt"
 AFF_SEEDS_PATH = EXPERIMENTS / "coauthorship" / "seeds.json"
 
+# --- auth (P3) ---------------------------------------------------------------------------------
+# HS256 bearer JWT minted by the Next.js BFF from the NextAuth session; verified here.
+API_JWT_SECRET = os.getenv("API_JWT_SECRET", "dev-insecure-jwt-secret")
+JWT_ALGORITHM = "HS256"
+JWT_TTL_SECONDS = int(os.getenv("JWT_TTL_SECONDS", "900"))  # 15 min
+# S2S key gating the internal user-upsert endpoint (NextAuth signIn -> FastAPI).
+INTERNAL_API_KEY = os.getenv("INTERNAL_API_KEY", "dev-insecure-internal-key")
+
+# --- translate (P6) ----------------------------------------------------------------------------
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+TRANSLATE_MODEL = os.getenv("TRANSLATE_MODEL", "claude-haiku-4-5")
+
+# --- housekeeping (P4) -------------------------------------------------------------------------
+HOUSEKEEPING_INTERVAL_SECONDS = int(os.getenv("HOUSEKEEPING_INTERVAL_SECONDS", "3600"))
+RATE_LIMIT_RETENTION_SECONDS = 7 * 24 * 3600  # prune rate-limit rows older than a week
+DAILY_COST_CEILING_USD = float(os.getenv("DAILY_COST_CEILING_USD", "20"))
+
+# Extra CORS origins (comma-separated) + a regex for this project's Vercel deploys, so the
+# *.vercel.app preview can call the API before the DNS cutover completes.
+_extra = os.getenv("EXTRA_CORS_ORIGINS", "")
+CORS_ORIGIN_REGEX = r"https://aol-frontend[a-z0-9-]*\.vercel\.app"
+
 CORS_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
@@ -54,4 +76,4 @@ CORS_ORIGINS = [
     "http://127.0.0.1:3863",
     "https://alex-loftus.com",
     "https://www.alex-loftus.com",
-]
+] + [o.strip() for o in _extra.split(",") if o.strip()]
