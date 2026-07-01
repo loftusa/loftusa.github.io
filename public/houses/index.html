@@ -189,6 +189,13 @@
     font:600 11px -apple-system,sans-serif;padding:3px 8px;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.3)}
   .rankmark.reached-mk{box-shadow:0 0 0 2.5px var(--nature),0 1px 3px rgba(0,0,0,.4)!important}
   .lbrow.reached .lbname::after{content:"✓";color:var(--nature);font-weight:700;margin-left:5px}
+  /* contacted listing whose posting has since been removed */
+  .gone-badge{position:absolute;bottom:8px;left:8px;z-index:2;background:#7a7264;color:#fff;
+    font:600 11px -apple-system,sans-serif;padding:3px 8px;border-radius:4px}
+  .card.gone .ph img{filter:grayscale(1);opacity:.75}
+  .card.gone .price{text-decoration:line-through;color:var(--muted)}
+  .lbrow.gone .lbname{text-decoration:line-through;color:var(--faint)}
+  .rankmark.gone-mk{opacity:.45}
   /* modal */
   .modal-bg{position:fixed;inset:0;background:rgba(40,36,28,.5);z-index:5000;display:none;
     align-items:center;justify-content:center;padding:20px}
@@ -242,6 +249,7 @@
   <div class="controls ui" id="controls">
     <div class="cgroup"><span class="lbl">Area</span><span id="fReg"></span></div>
     <div class="cgroup"><span class="lbl">Type</span><span id="fBkt"></span></div>
+    <div class="cgroup"><span class="lbl">Contacted</span><span id="fRo"></span></div>
     <div class="cgroup"><span class="lbl">Sort</span>
       <select id="sortSel">
         <option value="fit">Best fit</option>
@@ -335,11 +343,12 @@ function card(x){
       <button class="gnav gprev" data-id="${x.id}" data-dir="-1" aria-label="Previous photo" title="Previous photo">‹</button>
       <button class="gnav gnext" data-id="${x.id}" data-dir="1" aria-label="Next photo" title="Next photo">›</button>
       <span class="gcount" data-id="${x.id}">1/${n}</span>` : "";
-  return `<article class="card ${x.pick?'pick':''} ${isReached(x)?'reached':''}" data-id="${x.id}">
+  return `<article class="card ${x.pick?'pick':''} ${isReached(x)?'reached':''} ${x.gone?'gone':''}" data-id="${x.id}">
     <div class="ph" data-id="${x.id}">
       <img class="gimg" loading="lazy" src="${imgs[0]}" onerror="this.src='${FALLBACK}'" alt="">
       <span class="badge ${x.bucket==='apt'?'b-apt':'b-room'}">${x.bucket==='apt'?'Apartment':'Room'}</span>
       ${isReached(x)?'<span class="reached-badge">✓ Reached out</span>':''}
+      ${x.gone?'<span class="gone-badge">no longer listed</span>':''}
       ${x.pick?'<span class="star" title="Top pick">★</span>':''}${nav}
     </div>
     <div class="body">
@@ -386,9 +395,10 @@ document.getElementById("picknote").innerHTML =
   `My ${picks.length} favorites, spanning both worlds: central SF (easy to both), your beloved Marin (♥, great to SF via drive or ferry), and the inner East Bay (short hop to Berkeley). Balancing nature, a nice/quiet feel, price, and both commutes.`;
 
 /* ---- filters + grid ---- */
-const state = {region:"All", bucket:"All", sort:"fit"};
+const state = {region:"All", bucket:"All", ro:"All", sort:"fit"};
 const REGIONS = ["All","SF","EastBay","NorthBay","Peninsula"];
 const BUCKETS = [["All","All"],["apt","Apartments"],["room","Rooms"]];
+const ROFILTER = [["All","All"],["reached","Reached out ✓"]];
 function chips(el, items, cur, on){
   el.innerHTML = items.map(it=>{const[v,l]=Array.isArray(it)?it:[it,it];
     return `<span class="chip ${v===cur?'on':''}" data-v="${v}">${l}</span>`}).join("");
@@ -396,12 +406,14 @@ function chips(el, items, cur, on){
 }
 chips(document.getElementById("fReg"),REGIONS,state.region,v=>{state.region=v;renderGrid();});
 chips(document.getElementById("fBkt"),BUCKETS,state.bucket,v=>{state.bucket=v;renderGrid();});
+chips(document.getElementById("fRo"),ROFILTER,state.ro,v=>{state.ro=v;renderGrid();});
 document.getElementById("sortSel").onchange = e=>{state.sort=e.target.value;renderGrid();};
 
 function filtered(){
   let a = D.listings.filter(x=>
     (state.region==="All"||x.region===state.region) &&
-    (state.bucket==="All"||x.bucket===state.bucket));
+    (state.bucket==="All"||x.bucket===state.bucket) &&
+    (state.ro==="All"||isReached(x)));
   const s = state.sort;
   a.sort((p,q)=> s==="price"? p.price-q.price : s==="drive"? p.drive_min-q.drive_min
       : s==="nature"? (q.scores.nature||0)-(p.scores.nature||0)
@@ -411,6 +423,7 @@ function filtered(){
 function renderGrid(){
   chips(document.getElementById("fReg"),REGIONS,state.region,v=>{state.region=v;renderGrid();});
   chips(document.getElementById("fBkt"),BUCKETS,state.bucket,v=>{state.bucket=v;renderGrid();});
+  chips(document.getElementById("fRo"),ROFILTER,state.ro,v=>{state.ro=v;renderGrid();});
   const a = filtered();
   document.getElementById("grid").innerHTML = a.map(card).join("");
   document.getElementById("count").textContent = a.length+" shown";
@@ -494,7 +507,7 @@ function markerIcon(x){
   const bg=x.bucket==="apt"?css("--apt"):css("--room");
   const ring=x.pick?`box-shadow:0 0 0 2.5px ${css('--pick')},0 1px 3px rgba(0,0,0,.4);`:"box-shadow:0 1px 3px rgba(0,0,0,.4);";
   const fs=RANK[x.id]>9?11:13;
-  const rc=isReached(x)?"reached-mk":"";
+  const rc=(isReached(x)?"reached-mk ":"")+(x.gone?"gone-mk":"");
   return L.divIcon({className:"rankmark-wrap",iconSize:[size,size],iconAnchor:[size/2,size/2],
     html:`<div class="rankmark ${rc}" style="width:${size}px;height:${size}px;background:${bg};${ring}font-size:${fs}px">${RANK[x.id]}</div>`});
 }
@@ -537,7 +550,7 @@ function renderLeaderboard(){
   document.getElementById("lbrows").innerHTML = rows.map(x=>{
     const left=Math.max(2,Math.min(98,(x.fit||0)*10));
     const col=x.bucket==="apt"?css("--apt"):css("--room");
-    return `<div class="lbrow ${x.pick?'pick':''} ${isReached(x)?'reached':''}" data-id="${x.id}">
+    return `<div class="lbrow ${x.pick?'pick':''} ${isReached(x)?'reached':''} ${x.gone?'gone':''}" data-id="${x.id}">
       <span class="lbrank num">${RANK[x.id]}</span>
       <span class="lbname">${x.loved?'<span class="love">♥</span> ':''}${shortHood(x.hood)}
         <span class="lbsub num">${money(x.price)} · SF ${x.drive_sf} · Bk ${x.drive_berk}</span></span>
@@ -567,8 +580,8 @@ legend.addTo(map);
 function draftMessage(x){
   const when = (D.meta && D.meta.move_by) ? D.meta.move_by.replace(/^~\s*/,'') : "this summer";
   return `Hi! I'm really interested in your listing "${x.title||'your place'}" (${money(x.price)}/mo`+
-    `${x.hood?', '+x.hood:''}). I'm a quiet, tidy professional (an ML researcher) relocating to the Bay Area `+
-    `around ${when}, with stable income and solid references, and no pets or smoking. `+
+    `${x.hood?', '+x.hood:''}). I'm a quiet, tidy ML researcher relocating to the Bay Area `+
+    `around ${when}, with stable income and solid references. `+
     `Is it still available? I'd love to set up a time to see it. Thank you!\n\n— Alex`;
 }
 
@@ -584,24 +597,38 @@ function refreshReachedUI(){ renderGrid(); renderLeaderboard();
   for(const k in markerById) delete markerById[k];
   drawMarkers(D.listings); }
 
+/* localStorage mirror: reach-out marks survive a dead backend / offline use.
+   Server wins on conflicts; local-only entries are pushed up when it's back. */
+const LS_KEY = "housesReached.v1";
+function lsSave(){ try{ localStorage.setItem(LS_KEY, JSON.stringify([...REACHED.values()])); }catch(e){} }
+
 async function loadReached(){
+  try{ (JSON.parse(localStorage.getItem(LS_KEY)||"[]")).forEach(e=>{ if(e&&e.url) REACHED.set(e.url,e); }); }catch(e){}
+  if(REACHED.size) refreshReachedUI();
   try{
     const r=await fetch(API_BASE+"/houses/reached-out");
     if(!r.ok) return;
-    (await r.json()).forEach(e=>REACHED.set(e.url,e));
-    if(REACHED.size) refreshReachedUI();
-  }catch(e){ console.warn("[houses] reached-out load failed",e); }
+    const server=await r.json();
+    const onServer=new Set(server.map(e=>e.url));
+    server.forEach(e=>REACHED.set(e.url,e));            // server wins
+    for(const [url,e] of REACHED) if(!onServer.has(url)){ // offline marks -> sync up
+      fetch(API_BASE+"/houses/reached-out",{method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({url:e.url,title:e.title||"",message:e.message||"",channel:e.channel||"listing"})})
+        .catch(()=>{});
+    }
+    lsSave(); refreshReachedUI();
+  }catch(e){ console.warn("[houses] reached-out load failed (using local copy)",e); }
 }
 async function saveReached(x,channel,message){
   const entry={url:x.url,title:x.title||"",message:message||"",channel:channel||"listing"};
   REACHED.set(x.url,{...entry,updated_at:new Date().toISOString()});
-  refreshReachedUI();
+  lsSave(); refreshReachedUI();
   try{ await fetch(API_BASE+"/houses/reached-out",{method:"POST",
     headers:{"Content-Type":"application/json"},body:JSON.stringify(entry)}); }
-  catch(e){ console.warn("[houses] save failed",e); toast("Saved locally (sync failed)"); }
+  catch(e){ console.warn("[houses] save failed",e); toast("Saved on this device (sync failed)"); }
 }
 async function unmarkReached(x){
-  REACHED.delete(x.url); refreshReachedUI(); closeReach();
+  REACHED.delete(x.url); lsSave(); refreshReachedUI(); closeReach();
   try{ await fetch(API_BASE+"/houses/reached-out?url="+encodeURIComponent(x.url),{method:"DELETE"}); }
   catch(e){ console.warn("[houses] delete failed",e); }
 }
