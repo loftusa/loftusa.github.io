@@ -21,7 +21,7 @@ Chat with this CV: https://www.alex-loftus.com/chat
 CAREER HIGHLIGHTS
 -----------------
 
-Red-Teaming Program Leadership: Designed and ran two multi-agent red-teaming campaigns for OpenAI from scratch: wrote the proposal, recruited and led a 16-person team (doubled for the second campaign), set the research direction, and delivered findings and recommendations to stakeholders.
+Red-Teaming Program Leadership: Designed and ran two multi-agent red-teaming campaigns for OpenAI from scratch: wrote the proposal, recruited and led a 16-person team (doubled for the second campaign), developed the harm taxonomy, set the research direction, and delivered findings and recommendations to stakeholders.
 
 Operational Ownership: Built ~17K lines of campaign infrastructure in under two weeks (~45K lines of code by campaign end), then owned its day-to-day operation through the live campaign, keeping it running reliably under continuous load.
 
@@ -73,9 +73,9 @@ EXPERIENCE
 ----------
 
 Red-Teaming Program Lead — OpenAI (contract via Handshake) | Remote | March 2026–Present
-- Program design & leadership: Took a multi-agent red-teaming program from proposal to delivered findings: defined the research approach, recruited and coordinated a 16-person team across research and engineering, and set research direction. First campaign produced a research artifact successful enough to spawn follow-up engagements; the team doubled for the second campaign, now underway.
-- Infrastructure: Built the campaign's full technical infrastructure from scratch in 11 days (~17,000 lines of code), enabling the team to run large-scale multi-agent experiments reliably.
-- Live operations: Owned operational health across both live campaigns: monitoring, incident response, and daily operational reporting, keeping the system reliable throughout.
+- Program design & leadership: Took a multi-agent red-teaming program from proposal to delivered findings: scoped the threat model, designed the harm taxonomy, recruited and coordinated a 16-person team across research and engineering, and set research direction. First campaign produced a research artifact successful enough to spawn follow-up engagements; the team doubled for the second campaign, now underway.
+- Evaluation infrastructure: Built the campaign's full infrastructure and evaluation stack from scratch in 11 days (~17,000 lines of code) against a fixed launch date: a fleet of 50+ isolated agent environments (one VM per agent) with dynamic provisioning, redundant data-collection pipelines, conversation forking for controlled A/B testing, automated daily LLM-summarized monitoring, and an encrypted research dashboard with live session viewing.
+- Live operations & incident response: Owned operational health across both live campaigns: incident triage and response (including weekends), zero-downtime hot-patching of running agents, a data-loss postmortem closed with corrective actions (redundant backup pipelines; maximum loss window cut from 24 hours to 5 minutes), and daily operational reporting to the team.
 
 Data Scientist — Creyon Bio | San Diego, CA | 2023–2024
 - Large Protein Models For Splice-Site Prediction: Explored splice site prediction for LLMs trained on protein sequences. Pre-training, fine-tuning, and benchmarking+evals.

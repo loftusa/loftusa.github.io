@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bay Area rental scout — where Alex should live</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<style>
+  :root{
+    --paper:#faf9f5; --panel:#fffdf8; --ink:#23201b; --muted:#6f6a60; --faint:#928c80;
+    --rule:#e6e0d2; --rule2:#efeadd;
+    --apt:#2f7d75; --room:#b06a1a; --pick:#977a1c;
+    --nature:#4f8a55; --quiet:#5f7189; --nice:#7b6091; --social:#bd8a3a; --value:#3f867e; --commute:#8a8378;
+    --good:#3f7d4e; --warn:#b0573c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased;line-height:1.45}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  .num{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+  .ui{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  a{color:#2f6f68;text-decoration:none;border-bottom:1px solid #cfe0dd}
+  a:hover{border-bottom-color:#2f6f68}
+
+  header.masthead{border-bottom:2px solid var(--ink);margin-top:26px;padding-bottom:14px}
+  h1{font-size:33px;line-height:1.08;margin:0 0 6px;letter-spacing:-.01em;font-weight:600}
+  .sub{color:var(--muted);font-size:16.5px;max-width:760px;margin:0}
+  .statstrip{display:flex;flex-wrap:wrap;gap:0;margin:16px 0 2px;border-top:1px solid var(--rule)}
+  .stat{padding:9px 20px 7px 0;margin-right:20px;border-right:0}
+  .stat .k{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-bottom:2px}
+  .stat .v{font-size:19px}
+  .stat .v small{font-size:12.5px;color:var(--muted)}
+
+  h2{font-size:14px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);
+    border-bottom:1px solid var(--ink);padding-bottom:5px;margin:44px 0 4px;font-weight:600}
+  .h2note{color:var(--muted);font-size:14px;margin:6px 0 16px}
+
+  /* controls */
+  .controls{display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center;margin:14px 0 18px;
+    font-size:13px}
+  .cgroup{display:flex;align-items:center;gap:7px}
+  .cgroup .lbl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .chip{cursor:pointer;padding:3px 10px;border:1px solid var(--rule);border-radius:13px;background:var(--panel);
+    color:var(--muted);user-select:none;transition:.12s}
+  .chip:hover{border-color:var(--faint)}
+  .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  select{font-family:inherit;font-size:13px;padding:3px 6px;border:1px solid var(--rule);background:var(--panel);border-radius:6px;color:var(--ink)}
+
+  /* map + leaderboard */
+  .mapwrap{display:flex;gap:14px;align-items:stretch}
+  #map{flex:1;height:560px;border:1px solid var(--rule);border-radius:4px;background:#eee}
+  .leaflet-container{font-family:-apple-system,sans-serif}
+  #leaderboard{width:322px;height:560px;display:flex;flex-direction:column;
+    border:1px solid var(--rule);border-radius:4px;background:var(--panel);overflow:hidden}
+  .lbhead{display:flex;justify-content:space-between;align-items:center;padding:8px 11px 7px;
+    border-bottom:1px solid var(--ink);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+  .lbscalerow{display:flex;gap:0;width:104px;justify-content:space-between;font-family:ui-monospace,monospace;
+    letter-spacing:0;color:var(--faint);font-size:9.5px}
+  #lbrows{overflow-y:auto;flex:1}
+  .lbrow{display:grid;grid-template-columns:20px 1fr 104px 26px;align-items:center;gap:7px;
+    padding:4px 10px;border-bottom:1px solid var(--rule2);cursor:pointer;transition:background .1s}
+  .lbrow:hover,.lbrow.hl{background:#f3eede}
+  .lbrow.pick{box-shadow:inset 3px 0 0 var(--pick)}
+  .lbrank{font-size:11px;color:var(--faint);text-align:right}
+  .lbname{font-size:12px;line-height:1.2;overflow:hidden}
+  .lbname .lbsub{display:block;font-size:9.5px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lbname .love{color:#b5573f}
+  .lbaxis{position:relative;height:16px}
+  .lbaxis .lbtick{position:absolute;left:50%;top:2px;bottom:2px;width:1px;background:var(--rule)}
+  .lbaxis::before{content:"";position:absolute;left:2%;right:2%;top:50%;height:1px;background:var(--rule)}
+  .lbdot{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 1.5px var(--panel)}
+  .lbfit{font-size:12px;font-weight:600;text-align:right}
+  .legend{background:rgba(255,253,248,.94);padding:9px 11px;border:1px solid var(--rule);border-radius:5px;
+    font-size:12px;line-height:1.7;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08);max-width:210px}
+  .legend .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+  .legend .ring{box-shadow:0 0 0 2px var(--pick)}
+  /* rank markers (nodes) */
+  .rankmark-wrap{background:none!important;border:none!important}
+  .rankmark{display:flex;align-items:center;justify-content:center;border-radius:50%;color:#fff;
+    font-weight:700;font-family:ui-monospace,monospace;line-height:1;cursor:pointer;transition:transform .1s}
+  .rankmark-wrap.hl{z-index:1500!important}
+  .rankmark-wrap.hl .rankmark{transform:scale(1.32);box-shadow:0 0 0 2.5px var(--ink),0 2px 6px rgba(0,0,0,.45)!important}
+  .anchor-wrap{background:none!important;border:none!important}
+  .anchor{color:#2b2b2b;font-size:13px;line-height:1;text-shadow:0 0 3px #fff,0 0 3px #fff}
+  .anchor-lbl{background:rgba(255,253,248,.9);border:1px solid var(--rule);border-radius:3px;
+    font-size:10.5px;font-weight:600;color:var(--ink);padding:1px 5px;box-shadow:none}
+  .anchor-lbl::before{display:none}
+  /* popup (with gallery) */
+  .popup{width:216px}
+  .popup .pop-ph{position:relative;height:126px;border-radius:3px;overflow:hidden;margin-bottom:7px;background:#ece7db}
+  .popup img.gimg{width:100%;height:100%;object-fit:cover;display:block}
+  .popup .gnav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:24px;height:30px;border:none;
+    border-radius:4px;cursor:pointer;padding:0;background:rgba(20,18,15,.45);color:#fff;font:400 20px/1 sans-serif;
+    display:flex;align-items:center;justify-content:center}
+  .popup .gnav:hover{background:rgba(20,18,15,.75)}
+  .popup .gprev{left:5px}.popup .gnext{right:5px}
+  .popup .gcount{position:absolute;bottom:5px;right:6px;z-index:3;font-family:ui-monospace,monospace;font-size:10px;
+    color:#fff;background:rgba(20,18,15,.5);padding:1px 5px;border-radius:8px}
+  .popup .pp{font-size:15px;font-weight:600}.popup .ph2{color:#555;font-size:12px;line-height:1.4;margin-top:2px}
+  @media(max-width:860px){.mapwrap{flex-direction:column}#leaderboard{width:auto;height:300px}}
+
+  /* card grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:18px;margin-top:6px}
+  .card{border:1px solid var(--rule);border-radius:5px;background:var(--panel);overflow:hidden;
+    display:flex;flex-direction:column;transition:box-shadow .12s,border-color .12s}
+  .card:hover{box-shadow:0 3px 14px rgba(0,0,0,.09);border-color:var(--faint)}
+  .card.pick{border-color:var(--pick);box-shadow:0 0 0 1px var(--pick) inset}
+  .card .ph{position:relative;height:150px;background:#ece7db;overflow:hidden}
+  .card .ph img.gimg{width:100%;height:100%;object-fit:cover;display:block}
+  .card .ph .gnav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+    width:25px;height:33px;border:none;border-radius:4px;cursor:pointer;padding:0;
+    background:rgba(20,18,15,.40);color:#fff;font:400 21px/1 -apple-system,sans-serif;
+    display:flex;align-items:center;justify-content:center;opacity:.5;
+    transition:opacity .12s,background .12s}
+  .card .ph:hover .gnav{opacity:1}
+  .card .ph .gnav:hover{background:rgba(20,18,15,.74)}
+  .card .ph .gprev{left:6px}.card .ph .gnext{right:6px}
+  .card .ph .gcount{position:absolute;bottom:7px;right:8px;z-index:3;
+    font-family:ui-monospace,monospace;font-size:10.5px;color:#fff;
+    background:rgba(20,18,15,.5);padding:1px 6px;border-radius:9px}
+  .card .badge{position:absolute;top:8px;left:8px;font-size:11px;letter-spacing:.04em;
+    padding:2px 7px;border-radius:10px;color:#fff;text-transform:uppercase}
+  .b-apt{background:var(--apt)} .b-room{background:var(--room)}
+  .card .star{position:absolute;top:6px;right:8px;color:var(--pick);font-size:17px;
+    text-shadow:0 1px 2px rgba(0,0,0,.4)}
+  .card .body{padding:11px 13px 13px;display:flex;flex-direction:column;gap:7px;flex:1}
+  .row1{display:flex;justify-content:space-between;align-items:baseline}
+  .price{font-size:21px;font-weight:600}.price small{font-size:12px;color:var(--muted);font-weight:400}
+  .fit{display:inline-flex;align-items:baseline;gap:3px}
+  .fit b{font-size:19px}.fit .s{font-size:10px;color:var(--faint);letter-spacing:.05em}
+  .fit .rk{font-size:11px;color:var(--faint);margin-right:4px}
+  .metaline{font-size:12.5px;color:var(--muted);line-height:1.4}
+  .metaline .love{color:#b5573f}
+  .metaline .drv b{color:var(--ink);font-weight:600}
+  .metaline .fer{color:#2f6f68;font-weight:600}
+  .glyph{display:flex;gap:5px;align-items:flex-end;height:34px;margin:1px 0}
+  .gb{width:15px;border-radius:2px 2px 0 0;background:#ccc}
+  .scorekey{display:flex;flex-wrap:wrap;gap:13px;align-items:center;font-size:11px;color:var(--muted);
+    font-family:-apple-system,sans-serif;margin:0 0 14px}
+  .scorekey .sk{display:inline-flex;align-items:center;gap:5px}
+  .scorekey .sk i{width:11px;height:11px;border-radius:2px;display:inline-block}
+  .scorekey .skx{color:var(--faint);font-style:italic}
+  .flags{display:flex;flex-wrap:wrap;gap:4px}
+  .flag{font-size:10.5px;background:#f1ecdf;color:#6a6455;padding:1px 6px;border-radius:8px}
+  .flag.red{background:#f6e3dd;color:#a24a34}
+  .rat{font-size:13.5px;margin:2px 0 0;line-height:1.42}
+  .attrs{font-size:11.5px;color:var(--faint);border-top:1px solid var(--rule2);padding-top:6px;margin-top:auto}
+  .card a.view{font-size:12.5px;font-family:-apple-system,sans-serif}
+
+  /* neighborhoods */
+  .hoodgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .hood{border:1px solid var(--rule);border-radius:5px;background:var(--panel);padding:12px 14px}
+  .hood h3{margin:0;font-size:16px;display:flex;justify-content:space-between;align-items:baseline}
+  .hood h3 .rg{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .hdrive{font-size:12px;color:var(--muted);margin:3px 0 8px}
+  .hbars{display:flex;gap:14px;margin:6px 0 9px}
+  .hbar{flex:1}
+  .hbar .hl{font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--faint);margin-bottom:2px}
+  .track{height:5px;background:#ece7da;border-radius:3px;overflow:hidden}
+  .track > i{display:block;height:100%}
+  .hood .vibe{font-size:13px;margin:6px 0}
+  .hood .bf{font-size:12.5px;color:var(--good)}
+  .hood .wo{font-size:12.5px;color:var(--warn);margin-top:3px}
+
+  /* search links */
+  .links{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  .lgroup{border:1px solid var(--rule);border-radius:5px;padding:11px 14px;background:var(--panel)}
+  .lgroup h4{margin:0 0 7px;font-size:13px;letter-spacing:.03em}
+  .lgroup ul{margin:0;padding:0;list-style:none;font-size:13.5px;line-height:1.9}
+  .lgroup .ui{font-family:-apple-system,sans-serif;font-size:13px}
+
+  footer{margin:46px 0 60px;border-top:1px solid var(--rule);padding-top:16px;color:var(--muted);font-size:13px;line-height:1.6}
+  footer b{color:var(--ink)}
+  .callout{background:#fbf4e4;border:1px solid #e8d9b0;border-left:3px solid var(--pick);
+    padding:11px 15px;border-radius:4px;font-size:13.5px;color:#5c5238;margin:12px 0}
+  .empty{color:var(--faint);font-size:13px;font-style:italic;padding:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <h1>Where should Alex live?</h1>
+    <p class="sub">A scout of real, currently-listed Bay Area rentals — mapped, photographed, and rated
+      against what Alex actually wants: a nice, quiet, tree-lined spot (or housemates worth networking with),
+      up to ~35&nbsp;min from downtown SF, aiming near&nbsp;$2,000.</p>
+    <div class="statstrip num" id="stats"></div>
+  </header>
+
+  <h2>The map &amp; ranking</h2>
+  <p class="h2note">Each node is numbered by <b>overall rank</b> (1 = best fit), sized by fit, colored by type. The two ◆ are the commute anchors: <b>downtown SF</b> and <b>Berkeley (FAR Labs)</b>. The list on the right is every listing as a dot on a 0→10 fit scale, sorted best→worst — hover to find it on the map, click to fly there.</p>
+  <div class="mapwrap">
+    <div id="map"></div>
+    <aside id="leaderboard">
+      <div class="lbhead"><span>Ranked by fit</span><span class="lbscalerow"><i>0</i><i>5</i><i>10</i></span></div>
+      <div id="lbrows"></div>
+    </aside>
+  </div>
+
+  <h2>Top picks</h2>
+  <p class="h2note" id="picknote"></p>
+  <div class="scorekey" id="scorekey"></div>
+  <div class="grid" id="picks"></div>
+
+  <h2>All scouted listings</h2>
+  <div class="controls ui" id="controls">
+    <div class="cgroup"><span class="lbl">Area</span><span id="fReg"></span></div>
+    <div class="cgroup"><span class="lbl">Type</span><span id="fBkt"></span></div>
+    <div class="cgroup"><span class="lbl">Sort</span>
+      <select id="sortSel">
+        <option value="fit">Best fit</option>
+        <option value="price">Price ↑</option>
+        <option value="drive">Drive time ↑</option>
+        <option value="nature">Most nature</option>
+      </select></div>
+    <div class="cgroup"><span id="count" class="lbl"></span></div>
+  </div>
+  <div class="grid" id="grid"></div>
+
+  <h2>Neighborhood scorecards</h2>
+  <p class="h2note">Independent read on each area Alex's listings cluster in — drive time, nature, quiet, niceness, and social/networking scene.</p>
+  <div class="hoodgrid" id="hoods"><div class="empty">Neighborhood ratings populate once the review agents finish.</div></div>
+
+  <h2>Browse it yourself</h2>
+  <p class="h2note">Zillow and Apartments.com block scrapers, so here are pre-filtered live searches (his budget + areas) plus room/housemate sources.</p>
+  <div class="links" id="links"></div>
+
+  <footer id="foot"></footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="data.js"></script>
+<script>
+const D = window.HOUSES_DATA;
+const IMAGES = {};   // listing id -> [photo urls]
+const IDX = {};      // listing id -> current photo index
+// global ranking (1 = best) by dual-anchor fit
+const RANK = {};
+[...D.listings].sort((a,b)=>(b.fit||0)-(a.fit||0)).forEach((x,i)=>{ RANK[x.id]=i+1; });
+const SC = [["nature","Nat","--nature"],["quiet","Qt","--quiet"],["nice","Nice","--nice"],
+            ["social","Soc","--social"],["value","Val","--value"],["commute","Cmt","--commute"]];
+const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+const money = n => "$"+Number(n).toLocaleString();
+const bedsLabel = b => b===0?"Studio":(b==null?"":b+" BR");
+const FALLBACK = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='40' height='40' fill='%23ece7db'/><text x='20' y='24' font-size='9' fill='%23999' text-anchor='middle'>no photo</text></svg>";
+
+/* ---- stats strip ---- */
+const m = D.meta;
+document.getElementById("stats").innerHTML = [
+  ["Listings scouted", m.n_scouted.toLocaleString()],
+  ["Shown here", m.n_shown+" <small>of "+m.n_shortlist+" shortlisted</small>"],
+  ["Price range", money(m.price_min)+"–"+money(m.price_max)+" <small>med "+money(m.price_med)+"</small>"],
+  ["Commute anchors", "<small>downtown SF + Berkeley (FAR Labs)</small>"],
+  ["Move by", "<small>"+m.move_by+"</small>"],
+].map(([k,v])=>`<div class="stat"><span class="k">${k}</span><span class="v">${v}</span></div>`).join("");
+
+/* ---- score glyph ---- */
+function glyph(s){
+  const cols = SC.map(([key,cap,varn])=>{
+    const v = s && s[key]!=null ? s[key] : null;
+    const h = v==null ? 2 : Math.max(2, v*3.0);
+    const c = v==null ? "#d8d2c4" : css(varn);
+    const t = v==null ? cap+": n/a" : cap+" "+v+"/10";
+    return `<div class="gcol"><div class="glyph" style="height:32px"><div class="gb" style="height:${h}px;background:${c}" title="${t}"></div></div><div class="gcap">${cap}</div></div>`;
+  }).join("");
+  return `<div style="display:flex;gap:5px">${cols}</div>`;
+}
+const SCNAME = {nature:"Nature",quiet:"Quiet",nice:"Nice area",social:"Social",value:"Value",commute:"Commute"};
+function glyphRow(s){
+  const bars = SC.map(([key,cap,varn])=>{
+    const v = s && s[key]!=null ? s[key] : null;
+    const h = v==null?2:Math.max(2,v*3.2);
+    const c = v==null?"#d8d2c4":css(varn);
+    return `<div class="gb" style="height:${h}px;background:${c}" title="${SCNAME[key]}: ${v==null?'n/a':v+'/10'}"></div>`;
+  }).join("");
+  return `<div class="glyph">${bars}</div>`;
+}
+document.getElementById("scorekey").innerHTML =
+  SC.map(([key,cap,varn])=>`<span class="sk"><i style="background:${css(varn)}"></i>${SCNAME[key]}</span>`).join("")
+  + `<span class="skx">— each card's bars, left→right, scored 0–10</span>`;
+
+/* ---- listing card ---- */
+function card(x){
+  const flags = (x.flags||[]).slice(0,5).map(f=>`<span class="flag">${f}</span>`).join("");
+  const red = x.red_flags ? `<span class="flag red" title="${x.red_flags}">⚠ caution</span>` : "";
+  const attrs = [x.available&&"avail: "+x.available, x.parking&&"parking: "+x.parking, x.laundry&&"laundry: "+x.laundry]
+    .filter(Boolean).join("  ·  ");
+  const imgs = (x.imgs&&x.imgs.length)?x.imgs:[x.img||FALLBACK];
+  IMAGES[x.id]=imgs; IDX[x.id]=0; const n=imgs.length;
+  const nav = n>1 ? `
+      <button class="gnav gprev" data-id="${x.id}" data-dir="-1" aria-label="Previous photo" title="Previous photo">‹</button>
+      <button class="gnav gnext" data-id="${x.id}" data-dir="1" aria-label="Next photo" title="Next photo">›</button>
+      <span class="gcount" data-id="${x.id}">1/${n}</span>` : "";
+  return `<article class="card ${x.pick?'pick':''}" data-id="${x.id}">
+    <div class="ph" data-id="${x.id}">
+      <img class="gimg" loading="lazy" src="${imgs[0]}" onerror="this.src='${FALLBACK}'" alt="">
+      <span class="badge ${x.bucket==='apt'?'b-apt':'b-room'}">${x.bucket==='apt'?'Apartment':'Room'}</span>
+      ${x.pick?'<span class="star" title="Top pick">★</span>':''}${nav}
+    </div>
+    <div class="body">
+      <div class="row1">
+        <span class="price num">${money(x.price)}<small>/mo</small></span>
+        <span class="fit num"><span class="rk" title="overall rank">#${RANK[x.id]}</span><b style="color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b><span class="s">FIT</span></span>
+      </div>
+      <div class="metaline">${bedsLabel(x.beds)} · ${x.hood} · ${x.region}${x.loved?' <span class="love" title="you love this area">♥</span>':''}<br>
+        <span class="drv"><b class="num">SF ${x.drive_sf}m</b> · <b class="num">Berkeley ${x.drive_berk}m</b>${x.ferry_sf?' · <span class="fer" title="~30-min ferry to SF Ferry Building nearby">⛴ ferry to SF</span>':''}</span></div>
+      ${glyphRow(x.scores)}
+      <div class="flags">${flags}${red}</div>
+      <p class="rat">${x.rationale||""}</p>
+      <div class="attrs">${attrs||"&nbsp;"}<br>
+        <a class="view" href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div>
+    </div>
+  </article>`;
+}
+function fitColor(f){ if(f==null)return "var(--muted)"; return f>=8?css("--good"):f>=6?"#7a7038":css("--warn"); }
+
+/* ---- photo gallery navigation ---- */
+function navPhoto(id, dir){
+  const imgs = IMAGES[id]; if(!imgs||imgs.length<2) return;
+  IDX[id] = ((IDX[id]||0) + dir + imgs.length) % imgs.length;
+  document.querySelectorAll(`.ph[data-id="${id}"]`).forEach(ph=>{
+    const im = ph.querySelector("img.gimg"); if(im) im.src = imgs[IDX[id]];
+    const c = ph.querySelector(".gcount"); if(c) c.textContent = (IDX[id]+1)+"/"+imgs.length;
+  });
+  const nx = imgs[(IDX[id]+1)%imgs.length]; if(nx){ const p=new Image(); p.src=nx; } // preload next
+}
+function wireGalleries(root){
+  (root||document).querySelectorAll(".gnav").forEach(btn=>{
+    btn.onclick = e=>{ e.stopPropagation(); e.preventDefault(); navPhoto(btn.dataset.id, +btn.dataset.dir); };
+  });
+}
+
+/* ---- render picks ---- */
+const picks = D.listings.filter(x=>x.pick);
+document.getElementById("picks").innerHTML = picks.map(card).join("");
+wireGalleries(document.getElementById("picks"));
+document.getElementById("picknote").innerHTML =
+  `My ${picks.length} favorites, spanning both worlds: central SF (easy to both), your beloved Marin (♥, great to SF via drive or ferry), and the inner East Bay (short hop to Berkeley). Balancing nature, a nice/quiet feel, price, and both commutes.`;
+
+/* ---- filters + grid ---- */
+const state = {region:"All", bucket:"All", sort:"fit"};
+const REGIONS = ["All","SF","EastBay","NorthBay","Peninsula"];
+const BUCKETS = [["All","All"],["apt","Apartments"],["room","Rooms"]];
+function chips(el, items, cur, on){
+  el.innerHTML = items.map(it=>{const[v,l]=Array.isArray(it)?it:[it,it];
+    return `<span class="chip ${v===cur?'on':''}" data-v="${v}">${l}</span>`}).join("");
+  el.querySelectorAll(".chip").forEach(c=>c.onclick=()=>on(c.dataset.v));
+}
+chips(document.getElementById("fReg"),REGIONS,state.region,v=>{state.region=v;renderGrid();});
+chips(document.getElementById("fBkt"),BUCKETS,state.bucket,v=>{state.bucket=v;renderGrid();});
+document.getElementById("sortSel").onchange = e=>{state.sort=e.target.value;renderGrid();};
+
+function filtered(){
+  let a = D.listings.filter(x=>
+    (state.region==="All"||x.region===state.region) &&
+    (state.bucket==="All"||x.bucket===state.bucket));
+  const s = state.sort;
+  a.sort((p,q)=> s==="price"? p.price-q.price : s==="drive"? p.drive_min-q.drive_min
+      : s==="nature"? (q.scores.nature||0)-(p.scores.nature||0) : (q.fit||0)-(p.fit||0));
+  return a;
+}
+function renderGrid(){
+  chips(document.getElementById("fReg"),REGIONS,state.region,v=>{state.region=v;renderGrid();});
+  chips(document.getElementById("fBkt"),BUCKETS,state.bucket,v=>{state.bucket=v;renderGrid();});
+  const a = filtered();
+  document.getElementById("grid").innerHTML = a.map(card).join("");
+  document.getElementById("count").textContent = a.length+" shown";
+  wireCardHover();
+  wireGalleries(document.getElementById("grid"));
+}
+
+/* ---- neighborhoods ---- */
+function track(v,varn){const w=Math.max(3,(v||0)*10);return `<div class="track"><i style="width:${w}%;background:${css(varn)}"></i></div>`;}
+function renderHoods(){
+  const el=document.getElementById("hoods");
+  const H=D.neighborhoods||[];
+  if(!H.length) return;
+  const score = h=>0.3*h.scores.nice+0.28*h.scores.nature+0.22*h.scores.quiet+0.2*h.scores.social;
+  H.sort((a,b)=>score(b)-score(a));
+  el.innerHTML = H.map(h=>`<div class="hood">
+    <h3><span>${h.name}</span><span class="rg">${h.region}</span></h3>
+    <div class="hdrive num">🚗 SF ${h.drive_offpeak}m <span style="color:var(--faint)">(${h.drive_peak}m rush)</span> · Berkeley ~${h.drive_berk}m</div>
+    <div class="hbars">
+      ${["nature","quiet","nice","social"].map(k=>`<div class="hbar"><div class="hl">${k}</div>${track(h.scores[k],"--"+(k==="nice"?"nice":k))}</div>`).join("")}
+    </div>
+    <div class="vibe">${h.vibe}</div>
+    <div class="bf">✓ ${h.best_for}</div>
+    ${h.watch_out?`<div class="wo">⚠ ${h.watch_out}</div>`:""}
+  </div>`).join("");
+}
+
+/* ---- search links ---- */
+document.getElementById("links").innerHTML = D.searchlinks.map(g=>`<div class="lgroup">
+  <h4>${g.group}</h4><ul>${g.links.map(l=>`<li><a class="ui" href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a></li>`).join("")}</ul></div>`).join("");
+
+/* ---- footer ---- */
+document.getElementById("foot").innerHTML = `
+  <div class="callout"><b>Before you contact anyone:</b> rentals move in days, so open the live link and confirm it's still up.
+  Never wire money or pay a deposit before seeing a unit in person. A price that looks too good usually is.</div>
+  <b>How this was built.</b> I pulled ${m.n_scouted.toLocaleString()} real, currently-listed rentals from Craigslist's
+  live API on ${m.generated} across San Francisco, the East Bay, North Bay and Peninsula ($800–$3,000). Review agents
+  opened each posting, confirmed it was still live, and scored it 1–10 on nature, quiet, niceness, social/networking and value.
+  <b>Dual-anchor commute:</b> every listing is now rated on driving to <b>both</b> downtown SF and downtown Berkeley (FAR Labs),
+  and the overall rank rewards being reachable to both — while Mill Valley and Sausalito get a nudge because you love them (♥).
+  <b>Ferry note:</b> Sausalito/Marin have a ~30-min ferry to the SF Ferry Building (great car-free link to SF), but there's
+  <b>no direct ferry to Berkeley</b> — you'd ferry to SF then BART, so the ferry helps the SF side only.
+  Drive times are off-peak estimates (bridges run much worse at rush hour); ratings are my judgment on your stated
+  preferences, not gospel; some map pins are approximate to the neighborhood. Data mode: <b>${m.mode}</b>.`;
+
+/* ================= MAP ================= */
+const map = L.map("map",{scrollWheelZoom:false}).setView([37.82,-122.30],11);
+L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{
+  attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:"abcd", maxZoom:19}).addTo(map);
+
+/* two commute anchors: downtown SF + downtown Berkeley (FAR Labs) */
+function anchor(lat,lon,label){
+  return L.marker([lat,lon],{icon:L.divIcon({className:"anchor-wrap",iconSize:[16,16],iconAnchor:[8,8],
+    html:'<div class="anchor" title="'+label+'">◆</div>'}),zIndexOffset:2000})
+    .bindTooltip(label,{permanent:true,direction:"right",className:"anchor-lbl",offset:[8,0]});
+}
+anchor(37.7935,-122.3970,"Downtown SF").addTo(map);
+anchor(37.8703,-122.2680,"Berkeley · FAR Labs").addTo(map);
+
+function shortHood(h){ if(!h)return"";
+  let s=h.replace(/\s*\/\s*/g,"/").replace(/\b\w/g,c=>c.toUpperCase());
+  return s.length>26?s.slice(0,25)+"…":s; }
+function popupInner(x){
+  const imgs=IMAGES[x.id]||[x.img||FALLBACK]; const i=IDX[x.id]||0; const n=imgs.length;
+  const nav = n>1?`<button class="gnav gprev" data-id="${x.id}" data-dir="-1" aria-label="Previous photo">‹</button>
+    <button class="gnav gnext" data-id="${x.id}" data-dir="1" aria-label="Next photo">›</button>
+    <span class="gcount" data-id="${x.id}">${i+1}/${n}</span>`:"";
+  return `<div class="popup">
+    <div class="ph pop-ph" data-id="${x.id}"><img class="gimg" src="${imgs[i]}" onerror="this.src='${FALLBACK}'">${nav}</div>
+    <div class="pp num">#${RANK[x.id]} · ${money(x.price)} <span style="font-size:12px;color:#777">${bedsLabel(x.beds)}</span>
+      <b style="float:right;color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b></div>
+    <div class="ph2">${x.loved?'♥ ':''}${x.hood} · ${x.region}<br>SF ${x.drive_sf}m · Berkeley ${x.drive_berk}m${x.ferry_sf?' · ⛴ ferry to SF':''}</div>
+    <div style="font-size:12px;margin:5px 0 4px">${x.rationale||""}</div>
+    <a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div>`;
+}
+
+const markerById = {};
+function markerIcon(x){
+  const size=Math.round(20+(x.fit||5)*1.6);
+  const bg=x.bucket==="apt"?css("--apt"):css("--room");
+  const ring=x.pick?`box-shadow:0 0 0 2.5px ${css('--pick')},0 1px 3px rgba(0,0,0,.4);`:"box-shadow:0 1px 3px rgba(0,0,0,.4);";
+  const fs=RANK[x.id]>9?11:13;
+  return L.divIcon({className:"rankmark-wrap",iconSize:[size,size],iconAnchor:[size/2,size/2],
+    html:`<div class="rankmark" style="width:${size}px;height:${size}px;background:${bg};${ring}font-size:${fs}px">${RANK[x.id]}</div>`});
+}
+function drawMarkers(list){
+  list.slice().sort((a,b)=>(a.fit||0)-(b.fit||0)).forEach(x=>{  // best fit drawn last = on top
+    if(x.lat==null||x.lon==null) return;
+    const mk=L.marker([x.lat,x.lon],{icon:markerIcon(x),riseOnHover:true});
+    mk.bindPopup(()=>popupInner(x),{maxWidth:236,minWidth:220});
+    mk.addTo(map); markerById[x.id]=mk;
+  });
+}
+map.on("popupopen",e=>{
+  const el=e.popup.getElement(); if(el) wireGalleries(el);
+  const id=(el&&el.querySelector(".pop-ph"))?el.querySelector(".pop-ph").dataset.id:null;
+  if(id){ const row=document.querySelector(`.lbrow[data-id="${id}"]`);
+    if(row){ row.classList.add("hl"); row.scrollIntoView({block:"nearest"}); } }
+});
+map.on("popupclose",()=>document.querySelectorAll(".lbrow.hl").forEach(r=>r.classList.remove("hl")));
+
+function highlightMarker(id,on){
+  const mk=markerById[id]; if(mk){const el=mk.getElement(); if(el)el.classList.toggle("hl",on); mk.setZIndexOffset(on?1500:0);}
+  const row=document.querySelector(`.lbrow[data-id="${id}"]`); if(row)row.classList.toggle("hl",on);
+}
+function flyToListing(id){
+  const mk=markerById[id]; if(!mk)return;
+  map.setView(mk.getLatLng(),14,{animate:true}); mk.openPopup();
+  window.scrollTo({top:document.getElementById("map").getBoundingClientRect().top+window.scrollY-12,behavior:"smooth"});
+}
+function wireCardHover(){
+  document.querySelectorAll("#grid .card, #picks .card").forEach(c=>{
+    c.onmouseenter=()=>highlightMarker(c.dataset.id,true);
+    c.onmouseleave=()=>highlightMarker(c.dataset.id,false);
+    c.onclick=e=>{ if(e.target.closest("a,.gnav,.gcount"))return; flyToListing(c.dataset.id); };
+  });
+}
+
+/* ---- ranked leaderboard (Tufte dot-plot, descending by fit) ---- */
+function renderLeaderboard(){
+  const rows=[...D.listings].sort((a,b)=>(b.fit||0)-(a.fit||0));
+  document.getElementById("lbrows").innerHTML = rows.map(x=>{
+    const left=Math.max(2,Math.min(98,(x.fit||0)*10));
+    const col=x.bucket==="apt"?css("--apt"):css("--room");
+    return `<div class="lbrow ${x.pick?'pick':''}" data-id="${x.id}">
+      <span class="lbrank num">${RANK[x.id]}</span>
+      <span class="lbname">${x.loved?'<span class="love">♥</span> ':''}${shortHood(x.hood)}
+        <span class="lbsub num">${money(x.price)} · SF ${x.drive_sf} · Bk ${x.drive_berk}</span></span>
+      <span class="lbaxis"><i class="lbtick"></i><i class="lbdot" style="left:${left}%;background:${col}"></i></span>
+      <span class="lbfit num" style="color:${fitColor(x.fit)}">${x.fit}</span>
+    </div>`;
+  }).join("");
+  document.querySelectorAll(".lbrow").forEach(r=>{
+    r.onmouseenter=()=>highlightMarker(r.dataset.id,true);
+    r.onmouseleave=()=>highlightMarker(r.dataset.id,false);
+    r.onclick=()=>flyToListing(r.dataset.id);
+  });
+}
+
+/* legend */
+const legend = L.control({position:"bottomright"});
+legend.onAdd=function(){const d=L.DomUtil.create("div","legend");
+  d.innerHTML=`<span class="dot" style="background:${css('--apt')}"></span>Apartment / studio<br>
+    <span class="dot" style="background:${css('--room')}"></span>Room / share (housemates)<br>
+    <span class="dot ring" style="background:#bbb"></span>Top pick<br>
+    <span style="color:var(--muted)">number = overall rank · bigger = better fit</span><br>
+    <span class="anchor" style="font-size:11px">◆</span> commute anchors (SF &amp; Berkeley)`;
+  return d;};
+legend.addTo(map);
+
+drawMarkers(D.listings);   // map + leaderboard show ALL listings, ranked
+renderLeaderboard();
+renderGrid();
+renderHoods();
+</script>
+</body>
+</html>

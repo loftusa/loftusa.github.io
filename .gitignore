@@ -14,6 +14,10 @@ _site/
 .ipynb_checkpoints
 .DS_STORE
 
+# Local, untracked Claude notes (may reference private paths — never commit)
+CLAUDE.local.md
+**/CLAUDE.local.md
+
 experiments/scale_prep.md
 scale.md
 **/evals/logs/*
@@ -29,7 +33,6 @@ experiments/coauthorship/raw/
 # ISC-Bench: external repo cloned for red-teaming practice (405MB, not ours)
 red-teaming/practice/ISC-Bench/
 experiments/coauthorship/affiliations_review.html
-
 # Next.js / Vercel
 /.next/
 /out/
@@ -39,3 +42,8 @@ node_modules/
 .vercel
 *.tsbuildinfo
 .env*.local
+
+# backend / python
+experiments/coauthorship/tests/scratchpad/
+.venv/
+.pytest_cache/
