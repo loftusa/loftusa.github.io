@@ -754,6 +754,110 @@ def extract_contact(body):
     return email, phone
 
 
+REACHED_API = "https://llm-resume-restless-thunder-9259.fly.dev/houses/reached-out"
+
+
+def load_data_js():
+    """Parse the existing data.js back into a dict (None if absent/unparseable)."""
+    if not os.path.exists(DATA_JS):
+        return None
+    try:
+        txt = open(DATA_JS).read()
+        return json.loads(
+            txt[txt.index("=") + 1 : txt.rstrip().rstrip(";").rindex("}") + 1]
+        )
+    except Exception as e:
+        print(f"warn: could not parse existing data.js ({e})", file=sys.stderr)
+        return None
+
+
+def write_data_js(data):
+    with open(DATA_JS, "w") as f:
+        f.write(
+            "window.HOUSES_DATA = " + json.dumps(data, separators=(",", ":")) + ";\n"
+        )
+
+
+def fetch_reached_urls():
+    """URLs Alex has reached out about (from the Fly backend). Empty set on failure —
+    pinning/gone-flagging degrade gracefully, they never block a build."""
+    try:
+        out = subprocess.run(
+            ["curl", "-sS", "--max-time", "8", REACHED_API],
+            capture_output=True,
+            text=True,
+            timeout=12,
+        )
+        return {e["url"] for e in json.loads(out.stdout)}
+    except Exception as e:
+        print(f"warn: reached-out fetch failed ({e})", file=sys.stderr)
+        return set()
+
+
+def check_live(url):
+    """True = alive, False = positive dead signal (removed/expired/404), None = unknown.
+    Fetch failures return None and are treated as alive — only a positive signal kills.
+    """
+    try:
+        out = subprocess.run(
+            ["curl", "-sSL", "--max-time", "20", "-A", UA, "-w", "\n%{http_code}", url],
+            capture_output=True,
+            text=True,
+            timeout=25,
+        )
+        body, _, code = out.stdout.rpartition("\n")
+        if code in ("404", "410"):
+            return False
+        if not body:
+            return None
+        return not bool(DEAD_RE.search(body))
+    except Exception:
+        return None
+
+
+def do_sweep():
+    """Keyless freshness pass: re-check every shown listing's page and prune the
+    dead ones (contacted/pinned ones are kept but flagged gone). No re-rating."""
+    print("== SWEEP ==")
+    data = load_data_js()
+    if data is None:
+        sys.exit("FATAL: no parseable data.js to sweep.")
+    listings = data["listings"]
+    reached = fetch_reached_urls()
+    with ThreadPoolExecutor(max_workers=4) as ex:
+        alive = dict(ex.map(lambda x: (x["url"], check_live(x["url"])), listings))
+
+    kept, pruned, newly_gone = [], [], 0
+    for x in listings:
+        dead = alive.get(x["url"]) is False
+        if dead and not (x["url"] in reached or x.get("pinned")):
+            pruned.append(x["id"])
+            continue
+        if dead and not x.get("gone"):
+            x["gone"] = True  # contacted listing vanished — keep it, tell Alex
+            newly_gone += 1
+        kept.append(x)
+
+    if len(kept) < 10:
+        sys.exit(
+            f"FATAL: sweep would leave only {len(kept)} listings — mass-death is "
+            f"more likely a scrape problem than reality. Not writing."
+        )
+    if not pruned and not newly_gone:
+        print(f"sweep: all {len(kept)} listings still live; no changes.")
+        return
+
+    data["listings"] = kept
+    data["neighborhoods"] = build_neighborhoods([x for x in kept if not x.get("gone")])
+    data["meta"]["n_shown"] = len(kept)
+    data["meta"]["swept"] = datetime.date.today().isoformat()
+    write_data_js(data)
+    print(
+        f"sweep: pruned {len(pruned)} dead {pruned}, flagged {newly_gone} contacted-as-gone, "
+        f"kept {len(kept)}."
+    )
+
+
 def do_build():
     print("== BUILD ==")
     if not os.path.exists(SHORTLIST):
@@ -851,6 +955,28 @@ def do_build():
         by_url.setdefault(x["url"], x)
     listings = sorted(by_url.values(), key=lambda x: -(x["fit"] or 0))
 
+    # pin: listings Alex contacted must never silently vanish from the board.
+    # Carry them forward from the previous data.js if today's shortlist missed
+    # them; flag ones whose posting is gone so he knows to stop waiting.
+    reached = fetch_reached_urls()
+    have = {x["url"] for x in listings}
+    prev_by_url = {}
+    if reached - have:
+        prev = load_data_js()
+        prev_by_url = {x["url"]: x for x in (prev or {}).get("listings", [])}
+    for u in sorted(reached - have):
+        old = prev_by_url.get(u)
+        if not old:
+            continue  # nothing to carry (reached from a source we never showed)
+        old["id"] = "P" + old["id"].lstrip("P")  # avoid colliding with today's L-ids
+        old["pinned"] = True
+        old["gone"] = check_live(u) is False
+        listings.append(old)
+        print(
+            f"pinned contacted listing {old['id']} ({old['hood']}), gone={old['gone']}"
+        )
+    listings.sort(key=lambda x: -(x["fit"] or 0))
+
     if len(listings) < MIN_SHOWN:
         sys.exit(
             f"FATAL: only {len(listings)} listings survived rating/filtering "
@@ -861,7 +987,12 @@ def do_build():
     seen_reg = {}
     for x in listings:
         reg = x["region"]
-        if x["fit"] >= 7 and seen_reg.get(reg, 0) < 2 and sum(seen_reg.values()) < 6:
+        if (
+            x["fit"] >= 7
+            and not x.get("gone")
+            and seen_reg.get(reg, 0) < 2
+            and sum(seen_reg.values()) < 6
+        ):
             x["pick"] = True
             seen_reg[reg] = seen_reg.get(reg, 0) + 1
         else:
@@ -891,10 +1022,7 @@ def do_build():
         "neighborhoods": neighborhoods,
         "searchlinks": SEARCHLINKS,
     }
-    with open(DATA_JS, "w") as f:
-        f.write(
-            "window.HOUSES_DATA = " + json.dumps(data, separators=(",", ":")) + ";\n"
-        )
+    write_data_js(data)
     picks = [x for x in listings if x["pick"]]
     print(
         f"wrote {DATA_JS}: shown={len(listings)} picks={len(picks)} neighborhoods={len(neighborhoods)}"
@@ -906,13 +1034,20 @@ def main():
     ap = argparse.ArgumentParser(description="Daily refresh for alex-loftus.com/houses")
     ap.add_argument("--pull", action="store_true", help="pull + shortlist + scrape")
     ap.add_argument("--build", action="store_true", help="merge ratings -> data.js")
+    ap.add_argument(
+        "--sweep",
+        action="store_true",
+        help="prune dead listings from data.js (no re-rating; keyless)",
+    )
     args = ap.parse_args()
     if args.pull:
         do_pull()
     elif args.build:
         do_build()
+    elif args.sweep:
+        do_sweep()
     else:
-        ap.error("specify --pull or --build")
+        ap.error("specify --pull, --build, or --sweep")
 
 
 if __name__ == "__main__":

@@ -6,6 +6,15 @@ on:
     branches:
       - main
       - master
+    # Only redeploy the Fly backend when something it actually serves changed.
+    # (The houses board auto-commits data.js up to 4x/day — those are Vercel-only.)
+    paths:
+      - "backend/**"
+      - "fly.toml"
+      - "experiments/system_prompt.txt"
+      - "experiments/resume.txt"
+      - "experiments/rag/**"
+      - ".github/workflows/deploy.yml"
 
 concurrency:
   group: deploy-${{ github.workflow }}-${{ github.ref }}
