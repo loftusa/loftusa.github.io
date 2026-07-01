@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Bay Area rental scout — where Alex should live</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<style>
+  :root{
+    --paper:#faf9f5; --panel:#fffdf8; --ink:#23201b; --muted:#6f6a60; --faint:#928c80;
+    --rule:#e6e0d2; --rule2:#efeadd;
+    --apt:#2f7d75; --room:#b06a1a; --pick:#977a1c;
+    --nature:#4f8a55; --quiet:#5f7189; --nice:#7b6091; --social:#bd8a3a; --value:#3f867e; --commute:#8a8378;
+    --good:#3f7d4e; --warn:#b0573c;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased;line-height:1.45}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+  .num{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+  .ui{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+  a{color:#2f6f68;text-decoration:none;border-bottom:1px solid #cfe0dd}
+  a:hover{border-bottom-color:#2f6f68}
+
+  header.masthead{border-bottom:2px solid var(--ink);margin-top:26px;padding-bottom:14px}
+  h1{font-size:33px;line-height:1.08;margin:0 0 6px;letter-spacing:-.01em;font-weight:600}
+  .sub{color:var(--muted);font-size:16.5px;max-width:760px;margin:0}
+  .statstrip{display:flex;flex-wrap:wrap;gap:0;margin:16px 0 2px;border-top:1px solid var(--rule)}
+  .stat{padding:9px 20px 7px 0;margin-right:20px;border-right:0}
+  .stat .k{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-bottom:2px}
+  .stat .v{font-size:19px}
+  .stat .v small{font-size:12.5px;color:var(--muted)}
+
+  h2{font-size:14px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink);
+    border-bottom:1px solid var(--ink);padding-bottom:5px;margin:44px 0 4px;font-weight:600}
+  .h2note{color:var(--muted);font-size:14px;margin:6px 0 16px}
+
+  /* controls */
+  .controls{display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center;margin:14px 0 18px;
+    font-size:13px}
+  .cgroup{display:flex;align-items:center;gap:7px}
+  .cgroup .lbl{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .chip{cursor:pointer;padding:3px 10px;border:1px solid var(--rule);border-radius:13px;background:var(--panel);
+    color:var(--muted);user-select:none;transition:.12s}
+  .chip:hover{border-color:var(--faint)}
+  .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  select{font-family:inherit;font-size:13px;padding:3px 6px;border:1px solid var(--rule);background:var(--panel);border-radius:6px;color:var(--ink)}
+
+  /* map */
+  #map{height:540px;border:1px solid var(--rule);border-radius:4px;margin-bottom:2px;background:#eee}
+  .leaflet-container{font-family:-apple-system,sans-serif}
+  .legend{background:rgba(255,253,248,.94);padding:9px 11px;border:1px solid var(--rule);border-radius:5px;
+    font-size:12px;line-height:1.7;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .legend .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+  .legend .ring{box-shadow:0 0 0 2px var(--pick)}
+  .pmark{font:inherit}
+  .popup{width:210px}
+  .popup img{width:100%;height:118px;object-fit:cover;border-radius:3px;display:block;margin-bottom:6px;background:#eee}
+  .popup .pp{font-size:16px;font-weight:600}.popup .ph2{color:#555;font-size:12.5px}
+
+  /* card grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:18px;margin-top:6px}
+  .card{border:1px solid var(--rule);border-radius:5px;background:var(--panel);overflow:hidden;
+    display:flex;flex-direction:column;transition:box-shadow .12s,border-color .12s}
+  .card:hover{box-shadow:0 3px 14px rgba(0,0,0,.09);border-color:var(--faint)}
+  .card.pick{border-color:var(--pick);box-shadow:0 0 0 1px var(--pick) inset}
+  .card .ph{position:relative;height:150px;background:#ece7db}
+  .card .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .card .badge{position:absolute;top:8px;left:8px;font-size:11px;letter-spacing:.04em;
+    padding:2px 7px;border-radius:10px;color:#fff;text-transform:uppercase}
+  .b-apt{background:var(--apt)} .b-room{background:var(--room)}
+  .card .star{position:absolute;top:6px;right:8px;color:var(--pick);font-size:17px;
+    text-shadow:0 1px 2px rgba(0,0,0,.4)}
+  .card .body{padding:11px 13px 13px;display:flex;flex-direction:column;gap:7px;flex:1}
+  .row1{display:flex;justify-content:space-between;align-items:baseline}
+  .price{font-size:21px;font-weight:600}.price small{font-size:12px;color:var(--muted);font-weight:400}
+  .fit{display:inline-flex;align-items:baseline;gap:3px}
+  .fit b{font-size:19px}.fit .s{font-size:10px;color:var(--faint);letter-spacing:.05em}
+  .metaline{font-size:12.5px;color:var(--muted);line-height:1.35}
+  .glyph{display:flex;gap:5px;align-items:flex-end;height:34px;margin:1px 0}
+  .gb{width:15px;border-radius:2px 2px 0 0;background:#ccc}
+  .scorekey{display:flex;flex-wrap:wrap;gap:13px;align-items:center;font-size:11px;color:var(--muted);
+    font-family:-apple-system,sans-serif;margin:0 0 14px}
+  .scorekey .sk{display:inline-flex;align-items:center;gap:5px}
+  .scorekey .sk i{width:11px;height:11px;border-radius:2px;display:inline-block}
+  .scorekey .skx{color:var(--faint);font-style:italic}
+  .flags{display:flex;flex-wrap:wrap;gap:4px}
+  .flag{font-size:10.5px;background:#f1ecdf;color:#6a6455;padding:1px 6px;border-radius:8px}
+  .flag.red{background:#f6e3dd;color:#a24a34}
+  .rat{font-size:13.5px;margin:2px 0 0;line-height:1.42}
+  .attrs{font-size:11.5px;color:var(--faint);border-top:1px solid var(--rule2);padding-top:6px;margin-top:auto}
+  .card a.view{font-size:12.5px;font-family:-apple-system,sans-serif}
+
+  /* neighborhoods */
+  .hoodgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .hood{border:1px solid var(--rule);border-radius:5px;background:var(--panel);padding:12px 14px}
+  .hood h3{margin:0;font-size:16px;display:flex;justify-content:space-between;align-items:baseline}
+  .hood h3 .rg{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint)}
+  .hdrive{font-size:12px;color:var(--muted);margin:3px 0 8px}
+  .hbars{display:flex;gap:14px;margin:6px 0 9px}
+  .hbar{flex:1}
+  .hbar .hl{font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--faint);margin-bottom:2px}
+  .track{height:5px;background:#ece7da;border-radius:3px;overflow:hidden}
+  .track > i{display:block;height:100%}
+  .hood .vibe{font-size:13px;margin:6px 0}
+  .hood .bf{font-size:12.5px;color:var(--good)}
+  .hood .wo{font-size:12.5px;color:var(--warn);margin-top:3px}
+
+  /* search links */
+  .links{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+  .lgroup{border:1px solid var(--rule);border-radius:5px;padding:11px 14px;background:var(--panel)}
+  .lgroup h4{margin:0 0 7px;font-size:13px;letter-spacing:.03em}
+  .lgroup ul{margin:0;padding:0;list-style:none;font-size:13.5px;line-height:1.9}
+  .lgroup .ui{font-family:-apple-system,sans-serif;font-size:13px}
+
+  footer{margin:46px 0 60px;border-top:1px solid var(--rule);padding-top:16px;color:var(--muted);font-size:13px;line-height:1.6}
+  footer b{color:var(--ink)}
+  .callout{background:#fbf4e4;border:1px solid #e8d9b0;border-left:3px solid var(--pick);
+    padding:11px 15px;border-radius:4px;font-size:13.5px;color:#5c5238;margin:12px 0}
+  .empty{color:var(--faint);font-size:13px;font-style:italic;padding:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <h1>Where should Alex live?</h1>
+    <p class="sub">A scout of real, currently-listed Bay Area rentals — mapped, photographed, and rated
+      against what Alex actually wants: a nice, quiet, tree-lined spot (or housemates worth networking with),
+      up to ~35&nbsp;min from downtown SF, aiming near&nbsp;$2,000.</p>
+    <div class="statstrip num" id="stats"></div>
+  </header>
+
+  <h2>The map</h2>
+  <p class="h2note">Every dot is a live listing. Size ∝ fit for Alex; color = type; gold ring = top pick. Click a dot for the listing.</p>
+  <div id="map"></div>
+
+  <h2>Top picks</h2>
+  <p class="h2note" id="picknote"></p>
+  <div class="scorekey" id="scorekey"></div>
+  <div class="grid" id="picks"></div>
+
+  <h2>All scouted listings</h2>
+  <div class="controls ui" id="controls">
+    <div class="cgroup"><span class="lbl">Area</span><span id="fReg"></span></div>
+    <div class="cgroup"><span class="lbl">Type</span><span id="fBkt"></span></div>
+    <div class="cgroup"><span class="lbl">Sort</span>
+      <select id="sortSel">
+        <option value="fit">Best fit</option>
+        <option value="price">Price ↑</option>
+        <option value="drive">Drive time ↑</option>
+        <option value="nature">Most nature</option>
+      </select></div>
+    <div class="cgroup"><span id="count" class="lbl"></span></div>
+  </div>
+  <div class="grid" id="grid"></div>
+
+  <h2>Neighborhood scorecards</h2>
+  <p class="h2note">Independent read on each area Alex's listings cluster in — drive time, nature, quiet, niceness, and social/networking scene.</p>
+  <div class="hoodgrid" id="hoods"><div class="empty">Neighborhood ratings populate once the review agents finish.</div></div>
+
+  <h2>Browse it yourself</h2>
+  <p class="h2note">Zillow and Apartments.com block scrapers, so here are pre-filtered live searches (his budget + areas) plus room/housemate sources.</p>
+  <div class="links" id="links"></div>
+
+  <footer id="foot"></footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="data.js"></script>
+<script>
+const D = window.HOUSES_DATA;
+const SC = [["nature","Nat","--nature"],["quiet","Qt","--quiet"],["nice","Nice","--nice"],
+            ["social","Soc","--social"],["value","Val","--value"],["commute","Cmt","--commute"]];
+const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+const money = n => "$"+Number(n).toLocaleString();
+const bedsLabel = b => b===0?"Studio":(b==null?"":b+" BR");
+const FALLBACK = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='40' height='40' fill='%23ece7db'/><text x='20' y='24' font-size='9' fill='%23999' text-anchor='middle'>no photo</text></svg>";
+
+/* ---- stats strip ---- */
+const m = D.meta;
+document.getElementById("stats").innerHTML = [
+  ["Listings scouted", m.n_scouted.toLocaleString()],
+  ["Shown here", m.n_shown+" <small>of "+m.n_shortlist+" shortlisted</small>"],
+  ["Price range", money(m.price_min)+"–"+money(m.price_max)+" <small>med "+money(m.price_med)+"</small>"],
+  ["Source", "<small>"+m.source+"</small>"],
+  ["Move by", "<small>"+m.move_by+"</small>"],
+].map(([k,v])=>`<div class="stat"><span class="k">${k}</span><span class="v">${v}</span></div>`).join("");
+
+/* ---- score glyph ---- */
+function glyph(s){
+  const cols = SC.map(([key,cap,varn])=>{
+    const v = s && s[key]!=null ? s[key] : null;
+    const h = v==null ? 2 : Math.max(2, v*3.0);
+    const c = v==null ? "#d8d2c4" : css(varn);
+    const t = v==null ? cap+": n/a" : cap+" "+v+"/10";
+    return `<div class="gcol"><div class="glyph" style="height:32px"><div class="gb" style="height:${h}px;background:${c}" title="${t}"></div></div><div class="gcap">${cap}</div></div>`;
+  }).join("");
+  return `<div style="display:flex;gap:5px">${cols}</div>`;
+}
+const SCNAME = {nature:"Nature",quiet:"Quiet",nice:"Nice area",social:"Social",value:"Value",commute:"Commute"};
+function glyphRow(s){
+  const bars = SC.map(([key,cap,varn])=>{
+    const v = s && s[key]!=null ? s[key] : null;
+    const h = v==null?2:Math.max(2,v*3.2);
+    const c = v==null?"#d8d2c4":css(varn);
+    return `<div class="gb" style="height:${h}px;background:${c}" title="${SCNAME[key]}: ${v==null?'n/a':v+'/10'}"></div>`;
+  }).join("");
+  return `<div class="glyph">${bars}</div>`;
+}
+document.getElementById("scorekey").innerHTML =
+  SC.map(([key,cap,varn])=>`<span class="sk"><i style="background:${css(varn)}"></i>${SCNAME[key]}</span>`).join("")
+  + `<span class="skx">— each card's bars, left→right, scored 0–10</span>`;
+
+/* ---- listing card ---- */
+function card(x){
+  const flags = (x.flags||[]).slice(0,5).map(f=>`<span class="flag">${f}</span>`).join("");
+  const red = x.red_flags ? `<span class="flag red" title="${x.red_flags}">⚠ caution</span>` : "";
+  const attrs = [x.available&&"avail: "+x.available, x.parking&&"parking: "+x.parking, x.laundry&&"laundry: "+x.laundry]
+    .filter(Boolean).join("  ·  ");
+  return `<article class="card ${x.pick?'pick':''}" data-id="${x.id}">
+    <div class="ph">
+      <img loading="lazy" src="${x.img||FALLBACK}" onerror="this.src='${FALLBACK}'" alt="">
+      <span class="badge ${x.bucket==='apt'?'b-apt':'b-room'}">${x.bucket==='apt'?'Apartment':'Room'}</span>
+      ${x.pick?'<span class="star" title="Top pick">★</span>':''}
+    </div>
+    <div class="body">
+      <div class="row1">
+        <span class="price num">${money(x.price)}<small>/mo</small></span>
+        <span class="fit num"><b style="color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b><span class="s">FIT</span></span>
+      </div>
+      <div class="metaline">${bedsLabel(x.beds)} · ${x.hood} · ${x.region} · <span class="num">~${x.drive_min} min</span> to downtown</div>
+      ${glyphRow(x.scores)}
+      <div class="flags">${flags}${red}</div>
+      <p class="rat">${x.rationale||""}</p>
+      <div class="attrs">${attrs||"&nbsp;"}<br>
+        <a class="view" href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div>
+    </div>
+  </article>`;
+}
+function fitColor(f){ if(f==null)return "var(--muted)"; return f>=8?css("--good"):f>=6?"#7a7038":css("--warn"); }
+
+/* ---- render picks ---- */
+const picks = D.listings.filter(x=>x.pick);
+document.getElementById("picks").innerHTML = picks.map(card).join("");
+document.getElementById("picknote").textContent =
+  `My ${picks.length} favorites for you, one or two per area — balancing nature, a nice/quiet feel, price, and the drive.`;
+
+/* ---- filters + grid ---- */
+const state = {region:"All", bucket:"All", sort:"fit"};
+const REGIONS = ["All","SF","EastBay","NorthBay","Peninsula"];
+const BUCKETS = [["All","All"],["apt","Apartments"],["room","Rooms"]];
+function chips(el, items, cur, on){
+  el.innerHTML = items.map(it=>{const[v,l]=Array.isArray(it)?it:[it,it];
+    return `<span class="chip ${v===cur?'on':''}" data-v="${v}">${l}</span>`}).join("");
+  el.querySelectorAll(".chip").forEach(c=>c.onclick=()=>on(c.dataset.v));
+}
+chips(document.getElementById("fReg"),REGIONS,state.region,v=>{state.region=v;renderGrid();});
+chips(document.getElementById("fBkt"),BUCKETS,state.bucket,v=>{state.bucket=v;renderGrid();});
+document.getElementById("sortSel").onchange = e=>{state.sort=e.target.value;renderGrid();};
+
+function filtered(){
+  let a = D.listings.filter(x=>
+    (state.region==="All"||x.region===state.region) &&
+    (state.bucket==="All"||x.bucket===state.bucket));
+  const s = state.sort;
+  a.sort((p,q)=> s==="price"? p.price-q.price : s==="drive"? p.drive_min-q.drive_min
+      : s==="nature"? (q.scores.nature||0)-(p.scores.nature||0) : (q.fit||0)-(p.fit||0));
+  return a;
+}
+function renderGrid(){
+  chips(document.getElementById("fReg"),REGIONS,state.region,v=>{state.region=v;renderGrid();});
+  chips(document.getElementById("fBkt"),BUCKETS,state.bucket,v=>{state.bucket=v;renderGrid();});
+  const a = filtered();
+  document.getElementById("grid").innerHTML = a.map(card).join("");
+  document.getElementById("count").textContent = a.length+" shown";
+  wireCardHover();
+  drawMarkers(a);
+}
+
+/* ---- neighborhoods ---- */
+function track(v,varn){const w=Math.max(3,(v||0)*10);return `<div class="track"><i style="width:${w}%;background:${css(varn)}"></i></div>`;}
+function renderHoods(){
+  const el=document.getElementById("hoods");
+  const H=D.neighborhoods||[];
+  if(!H.length) return;
+  const score = h=>0.3*h.scores.nice+0.28*h.scores.nature+0.22*h.scores.quiet+0.2*h.scores.social;
+  H.sort((a,b)=>score(b)-score(a));
+  el.innerHTML = H.map(h=>`<div class="hood">
+    <h3><span>${h.name}</span><span class="rg">${h.region}</span></h3>
+    <div class="hdrive num">🚗 ${h.drive_offpeak} min off-peak · ${h.drive_peak} min at rush hour</div>
+    <div class="hbars">
+      ${["nature","quiet","nice","social"].map(k=>`<div class="hbar"><div class="hl">${k}</div>${track(h.scores[k],"--"+(k==="nice"?"nice":k))}</div>`).join("")}
+    </div>
+    <div class="vibe">${h.vibe}</div>
+    <div class="bf">✓ ${h.best_for}</div>
+    ${h.watch_out?`<div class="wo">⚠ ${h.watch_out}</div>`:""}
+  </div>`).join("");
+}
+
+/* ---- search links ---- */
+document.getElementById("links").innerHTML = D.searchlinks.map(g=>`<div class="lgroup">
+  <h4>${g.group}</h4><ul>${g.links.map(l=>`<li><a class="ui" href="${l.url}" target="_blank" rel="noopener">${l.label} ↗</a></li>`).join("")}</ul></div>`).join("");
+
+/* ---- footer ---- */
+document.getElementById("foot").innerHTML = `
+  <div class="callout"><b>Before you contact anyone:</b> rentals move in days, so open the live link and confirm it's still up.
+  Never wire money or pay a deposit before seeing a unit in person. A price that looks too good usually is.</div>
+  <b>How this was built.</b> I pulled ${m.n_scouted.toLocaleString()} real, currently-listed rentals from Craigslist's
+  live API on ${m.generated} across San Francisco, the East Bay, North Bay and Peninsula (≤ ~35&nbsp;min drive to
+  downtown SF, $800–$3,000). After filtering to your commute zone and budget I shortlisted ${m.n_shortlist}, then ran a
+  fan-out of review agents that opened each posting, confirmed it was still live, pulled parking/laundry/availability, and
+  scored it 1–10 on nature, quiet, niceness, social/networking, value and commute. Ratings are my judgment on your stated
+  preferences, not gospel. Map coordinates come from each posting (some are approximate to the neighborhood).
+  Data mode: <b>${m.mode}</b>.`;
+
+/* ================= MAP ================= */
+const map = L.map("map",{scrollWheelZoom:false}).setView([37.80,-122.35],11);
+L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{
+  attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:"abcd", maxZoom:19}).addTo(map);
+map.on("click",()=>{}); // no-op
+// downtown SF anchor
+L.circleMarker([37.7935,-122.3970],{radius:4,color:"#333",fillColor:"#333",fillOpacity:1,weight:0})
+  .addTo(map).bindTooltip("Downtown SF (commute anchor)",{direction:"top"});
+
+let markerLayer = L.layerGroup().addTo(map);
+const markerById = {};
+function drawMarkers(list){
+  markerLayer.clearLayers(); for(const k in markerById) delete markerById[k];
+  list.forEach(x=>{
+    if(x.lat==null||x.lon==null) return;
+    const mk = L.circleMarker([x.lat,x.lon],{
+      radius: 5 + (x.fit||5)*0.9,
+      color: x.pick?css("--pick"):"#ffffff",
+      weight: x.pick?2.4:1,
+      fillColor: x.bucket==="apt"?css("--apt"):css("--room"),
+      fillOpacity:.82});
+    mk.bindPopup(`<div class="popup">
+      <img src="${x.img||FALLBACK}" onerror="this.style.display='none'">
+      <div class="pp num">${money(x.price)} <span style="font-size:12px;color:#777">${bedsLabel(x.beds)}</span></div>
+      <div class="ph2">${x.hood} · ${x.region} · ~${x.drive_min} min · fit ${x.fit==null?'–':x.fit}/10</div>
+      <div style="font-size:12px;margin:5px 0 3px">${x.rationale||""}</div>
+      <a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div>`,{maxWidth:230});
+    mk.addTo(markerLayer); markerById[x.id]=mk;
+  });
+}
+function wireCardHover(){
+  document.querySelectorAll(".card").forEach(c=>{
+    c.onmouseenter=()=>{const mk=markerById[c.dataset.id]; if(mk){mk.setStyle({weight:3,color:css("--ink")});}};
+    c.onmouseleave=()=>{const x=D.listings.find(y=>y.id===c.dataset.id);const mk=markerById[c.dataset.id];
+      if(mk)mk.setStyle({weight:x.pick?2.4:1,color:x.pick?css("--pick"):"#fff"});};
+    c.onclick=e=>{ if(e.target.closest("a"))return; const mk=markerById[c.dataset.id];
+      if(mk){map.setView(mk.getLatLng(),14,{animate:true});mk.openPopup();window.scrollTo({top:document.getElementById("map").offsetTop-10,behavior:"smooth"});}};
+  });
+}
+/* legend */
+const legend = L.control({position:"bottomright"});
+legend.onAdd=function(){const d=L.DomUtil.create("div","legend");
+  d.innerHTML=`<span class="dot" style="background:${css('--apt')}"></span>Apartment / studio<br>
+    <span class="dot" style="background:${css('--room')}"></span>Room / share (housemates)<br>
+    <span class="dot ring" style="background:#bbb"></span>Top pick &nbsp; · &nbsp;bigger = better fit`;
+  return d;};
+legend.addTo(map);
+
+renderGrid();
+renderHoods();
+</script>
+</body>
+</html>
