@@ -67,8 +67,19 @@
     display:flex;flex-direction:column;transition:box-shadow .12s,border-color .12s}
   .card:hover{box-shadow:0 3px 14px rgba(0,0,0,.09);border-color:var(--faint)}
   .card.pick{border-color:var(--pick);box-shadow:0 0 0 1px var(--pick) inset}
-  .card .ph{position:relative;height:150px;background:#ece7db}
-  .card .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .card .ph{position:relative;height:150px;background:#ece7db;overflow:hidden}
+  .card .ph img.gimg{width:100%;height:100%;object-fit:cover;display:block}
+  .card .ph .gnav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+    width:25px;height:33px;border:none;border-radius:4px;cursor:pointer;padding:0;
+    background:rgba(20,18,15,.40);color:#fff;font:400 21px/1 -apple-system,sans-serif;
+    display:flex;align-items:center;justify-content:center;opacity:.5;
+    transition:opacity .12s,background .12s}
+  .card .ph:hover .gnav{opacity:1}
+  .card .ph .gnav:hover{background:rgba(20,18,15,.74)}
+  .card .ph .gprev{left:6px}.card .ph .gnext{right:6px}
+  .card .ph .gcount{position:absolute;bottom:7px;right:8px;z-index:3;
+    font-family:ui-monospace,monospace;font-size:10.5px;color:#fff;
+    background:rgba(20,18,15,.5);padding:1px 6px;border-radius:9px}
   .card .badge{position:absolute;top:8px;left:8px;font-size:11px;letter-spacing:.04em;
     padding:2px 7px;border-radius:10px;color:#fff;text-transform:uppercase}
   .b-apt{background:var(--apt)} .b-room{background:var(--room)}
@@ -173,6 +184,8 @@
 <script src="data.js"></script>
 <script>
 const D = window.HOUSES_DATA;
+const IMAGES = {};   // listing id -> [photo urls]
+const IDX = {};      // listing id -> current photo index
 const SC = [["nature","Nat","--nature"],["quiet","Qt","--quiet"],["nice","Nice","--nice"],
             ["social","Soc","--social"],["value","Val","--value"],["commute","Cmt","--commute"]];
 const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
@@ -221,11 +234,17 @@ function card(x){
   const red = x.red_flags ? `<span class="flag red" title="${x.red_flags}">⚠ caution</span>` : "";
   const attrs = [x.available&&"avail: "+x.available, x.parking&&"parking: "+x.parking, x.laundry&&"laundry: "+x.laundry]
     .filter(Boolean).join("  ·  ");
+  const imgs = (x.imgs&&x.imgs.length)?x.imgs:[x.img||FALLBACK];
+  IMAGES[x.id]=imgs; IDX[x.id]=0; const n=imgs.length;
+  const nav = n>1 ? `
+      <button class="gnav gprev" data-id="${x.id}" data-dir="-1" aria-label="Previous photo" title="Previous photo">‹</button>
+      <button class="gnav gnext" data-id="${x.id}" data-dir="1" aria-label="Next photo" title="Next photo">›</button>
+      <span class="gcount" data-id="${x.id}">1/${n}</span>` : "";
   return `<article class="card ${x.pick?'pick':''}" data-id="${x.id}">
-    <div class="ph">
-      <img loading="lazy" src="${x.img||FALLBACK}" onerror="this.src='${FALLBACK}'" alt="">
+    <div class="ph" data-id="${x.id}">
+      <img class="gimg" loading="lazy" src="${imgs[0]}" onerror="this.src='${FALLBACK}'" alt="">
       <span class="badge ${x.bucket==='apt'?'b-apt':'b-room'}">${x.bucket==='apt'?'Apartment':'Room'}</span>
-      ${x.pick?'<span class="star" title="Top pick">★</span>':''}
+      ${x.pick?'<span class="star" title="Top pick">★</span>':''}${nav}
     </div>
     <div class="body">
       <div class="row1">
@@ -243,9 +262,26 @@ function card(x){
 }
 function fitColor(f){ if(f==null)return "var(--muted)"; return f>=8?css("--good"):f>=6?"#7a7038":css("--warn"); }
 
+/* ---- photo gallery navigation ---- */
+function navPhoto(id, dir){
+  const imgs = IMAGES[id]; if(!imgs||imgs.length<2) return;
+  IDX[id] = ((IDX[id]||0) + dir + imgs.length) % imgs.length;
+  document.querySelectorAll(`.ph[data-id="${id}"]`).forEach(ph=>{
+    const im = ph.querySelector("img.gimg"); if(im) im.src = imgs[IDX[id]];
+    const c = ph.querySelector(".gcount"); if(c) c.textContent = (IDX[id]+1)+"/"+imgs.length;
+  });
+  const nx = imgs[(IDX[id]+1)%imgs.length]; if(nx){ const p=new Image(); p.src=nx; } // preload next
+}
+function wireGalleries(root){
+  (root||document).querySelectorAll(".gnav").forEach(btn=>{
+    btn.onclick = e=>{ e.stopPropagation(); e.preventDefault(); navPhoto(btn.dataset.id, +btn.dataset.dir); };
+  });
+}
+
 /* ---- render picks ---- */
 const picks = D.listings.filter(x=>x.pick);
 document.getElementById("picks").innerHTML = picks.map(card).join("");
+wireGalleries(document.getElementById("picks"));
 document.getElementById("picknote").textContent =
   `My ${picks.length} favorites for you, one or two per area — balancing nature, a nice/quiet feel, price, and the drive.`;
 
@@ -278,6 +314,7 @@ function renderGrid(){
   document.getElementById("grid").innerHTML = a.map(card).join("");
   document.getElementById("count").textContent = a.length+" shown";
   wireCardHover();
+  wireGalleries(document.getElementById("grid"));
   drawMarkers(a);
 }
 
@@ -352,7 +389,7 @@ function wireCardHover(){
     c.onmouseenter=()=>{const mk=markerById[c.dataset.id]; if(mk){mk.setStyle({weight:3,color:css("--ink")});}};
     c.onmouseleave=()=>{const x=D.listings.find(y=>y.id===c.dataset.id);const mk=markerById[c.dataset.id];
       if(mk)mk.setStyle({weight:x.pick?2.4:1,color:x.pick?css("--pick"):"#fff"});};
-    c.onclick=e=>{ if(e.target.closest("a"))return; const mk=markerById[c.dataset.id];
+    c.onclick=e=>{ if(e.target.closest("a,.gnav,.gcount"))return; const mk=markerById[c.dataset.id];
       if(mk){map.setView(mk.getLatLng(),14,{animate:true});mk.openPopup();window.scrollTo({top:document.getElementById("map").offsetTop-10,behavior:"smooth"});}};
   });
 }
