@@ -153,3 +153,24 @@ class MigrationState(Base):
     updated_at: Mapped[datetime] = mapped_column(
         DateTime, default=_utcnow, onupdate=_utcnow, nullable=False
     )
+
+
+class HouseReachedOut(Base):
+    """Listings on the /houses page that Alex has reached out about.
+
+    Keyed by the Craigslist listing URL (stable across the daily data.js rebuild,
+    unlike the L-ids). Unauthenticated personal store — see routers/houses.py.
+    """
+
+    __tablename__ = "house_reached_out"
+
+    url: Mapped[str] = mapped_column(Text, primary_key=True)
+    title: Mapped[Optional[str]] = mapped_column(Text)
+    message: Mapped[Optional[str]] = mapped_column(Text)
+    channel: Mapped[Optional[str]] = mapped_column(String(16))  # email | text | listing
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=_utcnow, nullable=False
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime, default=_utcnow, onupdate=_utcnow, nullable=False
+    )

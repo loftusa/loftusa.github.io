@@ -177,6 +177,40 @@
   .callout{background:#fbf4e4;border:1px solid #e8d9b0;border-left:3px solid var(--pick);
     padding:11px 15px;border-radius:4px;font-size:13.5px;color:#5c5238;margin:12px 0}
   .empty{color:var(--faint);font-size:13px;font-style:italic;padding:8px 0}
+  /* reach-out */
+  .actions{display:flex;align-items:center;gap:9px;margin-top:2px}
+  .reach-btn{font:600 12px -apple-system,sans-serif;cursor:pointer;border:1px solid var(--apt);
+    color:var(--apt);background:#fff;border-radius:4px;padding:4px 10px;transition:.12s}
+  .reach-btn:hover{background:var(--apt);color:#fff}
+  .card.reached{box-shadow:inset 3px 0 0 var(--nature)}
+  .card.reached .reach-btn{border-color:var(--nature);color:var(--nature)}
+  .card.reached .reach-btn:hover{background:var(--nature);color:#fff}
+  .reached-badge{position:absolute;top:8px;left:8px;z-index:2;background:var(--nature);color:#fff;
+    font:600 11px -apple-system,sans-serif;padding:3px 8px;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+  .rankmark.reached-mk{box-shadow:0 0 0 2.5px var(--nature),0 1px 3px rgba(0,0,0,.4)!important}
+  .lbrow.reached .lbname::after{content:"✓";color:var(--nature);font-weight:700;margin-left:5px}
+  /* modal */
+  .modal-bg{position:fixed;inset:0;background:rgba(40,36,28,.5);z-index:5000;display:none;
+    align-items:center;justify-content:center;padding:20px}
+  .modal-bg.open{display:flex}
+  .modal{background:var(--paper,#fdfbf5);border:1px solid #d8cfb8;border-radius:8px;max-width:520px;width:100%;
+    box-shadow:0 12px 40px rgba(0,0,0,.25);padding:20px 22px;font-family:-apple-system,sans-serif}
+  .modal h3{margin:0 0 3px;font-size:16px}
+  .modal .msub{font-size:12.5px;color:var(--muted);margin-bottom:12px}
+  .modal textarea{width:100%;min-height:132px;font:13.5px/1.5 -apple-system,sans-serif;color:var(--ink);
+    border:1px solid #cdc4ad;border-radius:5px;padding:9px 11px;resize:vertical;box-sizing:border-box;background:#fff}
+  .modal .mnote{font-size:12px;color:var(--muted);margin:9px 0 4px}
+  .mactions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .mbtn{font:600 13px -apple-system,sans-serif;cursor:pointer;border-radius:5px;padding:8px 13px;border:1px solid transparent}
+  .mbtn.primary{background:var(--apt);color:#fff}.mbtn.primary:hover{filter:brightness(1.08)}
+  .mbtn.alt{background:#fff;border-color:#cdc4ad;color:var(--ink)}.mbtn.alt:hover{background:#f3eede}
+  .mbtn.ghost{background:none;color:var(--muted);border:none;margin-left:auto}
+  .mbtn.danger{background:none;border:none;color:#a5503f;cursor:pointer;font-size:12.5px}
+  .msent{font-size:12.5px;color:var(--nature);font-weight:600;margin-top:10px}
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;
+    padding:9px 16px;border-radius:6px;font:13px -apple-system,sans-serif;z-index:6000;opacity:0;
+    transition:.25s;pointer-events:none}
+  .toast.show{opacity:.96}
 </style>
 </head>
 <body>
@@ -236,6 +270,11 @@
 <script src="/houses/data.js"></script>
 <script>
 const D = window.HOUSES_DATA;
+/* reach-out state — declared first so render templates can call isReached() safely */
+const API_BASE = "https://llm-resume-restless-thunder-9259.fly.dev";
+const REACHED = new Map();            // url -> {url,title,message,channel,updated_at}
+const byId = id => D.listings.find(x=>x.id===id);
+function isReached(x){ return x && REACHED.has(x.url); }
 const IMAGES = {};   // listing id -> [photo urls]
 const IDX = {};      // listing id -> current photo index
 // global ranking (1 = best) by dual-anchor fit
@@ -296,10 +335,11 @@ function card(x){
       <button class="gnav gprev" data-id="${x.id}" data-dir="-1" aria-label="Previous photo" title="Previous photo">‹</button>
       <button class="gnav gnext" data-id="${x.id}" data-dir="1" aria-label="Next photo" title="Next photo">›</button>
       <span class="gcount" data-id="${x.id}">1/${n}</span>` : "";
-  return `<article class="card ${x.pick?'pick':''}" data-id="${x.id}">
+  return `<article class="card ${x.pick?'pick':''} ${isReached(x)?'reached':''}" data-id="${x.id}">
     <div class="ph" data-id="${x.id}">
       <img class="gimg" loading="lazy" src="${imgs[0]}" onerror="this.src='${FALLBACK}'" alt="">
       <span class="badge ${x.bucket==='apt'?'b-apt':'b-room'}">${x.bucket==='apt'?'Apartment':'Room'}</span>
+      ${isReached(x)?'<span class="reached-badge">✓ Reached out</span>':''}
       ${x.pick?'<span class="star" title="Top pick">★</span>':''}${nav}
     </div>
     <div class="body">
@@ -312,8 +352,11 @@ function card(x){
       ${glyphRow(x.scores)}
       <div class="flags">${flags}${red}</div>
       <p class="rat">${x.rationale||""}</p>
-      <div class="attrs">${attrs||"&nbsp;"}<br>
-        <a class="view" href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div>
+      <div class="attrs">${attrs||"&nbsp;"}</div>
+      <div class="actions">
+        <a class="view" href="${x.url}" target="_blank" rel="noopener">View listing ↗</a>
+        <button class="reach-btn" data-id="${x.id}">${isReached(x)?'Reached out ✓':'Reach out'}</button>
+      </div>
     </div>
   </article>`;
 }
@@ -441,7 +484,8 @@ function popupInner(x){
       <b style="float:right;color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b></div>
     <div class="ph2">${x.loved?'♥ ':''}${x.hood} · ${x.region}<br>SF ${x.drive_sf}m · Berkeley ${x.drive_berk}m${x.ferry_sf?' · ⛴ ferry to SF':''}</div>
     <div style="font-size:12px;margin:5px 0 4px">${x.rationale||""}</div>
-    <a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div>`;
+    <div class="actions"><a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a>
+      <button class="reach-btn" data-id="${x.id}">${isReached(x)?'Reached out ✓':'Reach out'}</button></div></div>`;
 }
 
 const markerById = {};
@@ -450,8 +494,9 @@ function markerIcon(x){
   const bg=x.bucket==="apt"?css("--apt"):css("--room");
   const ring=x.pick?`box-shadow:0 0 0 2.5px ${css('--pick')},0 1px 3px rgba(0,0,0,.4);`:"box-shadow:0 1px 3px rgba(0,0,0,.4);";
   const fs=RANK[x.id]>9?11:13;
+  const rc=isReached(x)?"reached-mk":"";
   return L.divIcon({className:"rankmark-wrap",iconSize:[size,size],iconAnchor:[size/2,size/2],
-    html:`<div class="rankmark" style="width:${size}px;height:${size}px;background:${bg};${ring}font-size:${fs}px">${RANK[x.id]}</div>`});
+    html:`<div class="rankmark ${rc}" style="width:${size}px;height:${size}px;background:${bg};${ring}font-size:${fs}px">${RANK[x.id]}</div>`});
 }
 function drawMarkers(list){
   list.slice().sort((a,b)=>(a.fit||0)-(b.fit||0)).forEach(x=>{  // best fit drawn last = on top
@@ -492,7 +537,7 @@ function renderLeaderboard(){
   document.getElementById("lbrows").innerHTML = rows.map(x=>{
     const left=Math.max(2,Math.min(98,(x.fit||0)*10));
     const col=x.bucket==="apt"?css("--apt"):css("--room");
-    return `<div class="lbrow ${x.pick?'pick':''}" data-id="${x.id}">
+    return `<div class="lbrow ${x.pick?'pick':''} ${isReached(x)?'reached':''}" data-id="${x.id}">
       <span class="lbrank num">${RANK[x.id]}</span>
       <span class="lbname">${x.loved?'<span class="love">♥</span> ':''}${shortHood(x.hood)}
         <span class="lbsub num">${money(x.price)} · SF ${x.drive_sf} · Bk ${x.drive_berk}</span></span>
@@ -518,10 +563,114 @@ legend.onAdd=function(){const d=L.DomUtil.create("div","legend");
   return d;};
 legend.addTo(map);
 
+/* ============ reach-out ============ */
+function draftMessage(x){
+  const when = (D.meta && D.meta.move_by) ? D.meta.move_by.replace(/^~\s*/,'') : "this summer";
+  return `Hi! I'm really interested in your listing "${x.title||'your place'}" (${money(x.price)}/mo`+
+    `${x.hood?', '+x.hood:''}). I'm a quiet, tidy professional (an ML researcher) relocating to the Bay Area `+
+    `around ${when}, with stable income and solid references, and no pets or smoking. `+
+    `Is it still available? I'd love to set up a time to see it. Thank you!\n\n— Alex`;
+}
+
+function toast(msg){
+  let t=document.getElementById("toast");
+  if(!t){ t=document.createElement("div"); t.id="toast"; t.className="toast"; document.body.appendChild(t); }
+  t.textContent=msg; t.classList.add("show"); clearTimeout(t._h);
+  t._h=setTimeout(()=>t.classList.remove("show"),2200);
+}
+
+function refreshReachedUI(){ renderGrid(); renderLeaderboard();
+  Object.values(markerById).forEach(m=>map.removeLayer(m));
+  for(const k in markerById) delete markerById[k];
+  drawMarkers(D.listings); }
+
+async function loadReached(){
+  try{
+    const r=await fetch(API_BASE+"/houses/reached-out");
+    if(!r.ok) return;
+    (await r.json()).forEach(e=>REACHED.set(e.url,e));
+    if(REACHED.size) refreshReachedUI();
+  }catch(e){ console.warn("[houses] reached-out load failed",e); }
+}
+async function saveReached(x,channel,message){
+  const entry={url:x.url,title:x.title||"",message:message||"",channel:channel||"listing"};
+  REACHED.set(x.url,{...entry,updated_at:new Date().toISOString()});
+  refreshReachedUI();
+  try{ await fetch(API_BASE+"/houses/reached-out",{method:"POST",
+    headers:{"Content-Type":"application/json"},body:JSON.stringify(entry)}); }
+  catch(e){ console.warn("[houses] save failed",e); toast("Saved locally (sync failed)"); }
+}
+async function unmarkReached(x){
+  REACHED.delete(x.url); refreshReachedUI(); closeReach();
+  try{ await fetch(API_BASE+"/houses/reached-out?url="+encodeURIComponent(x.url),{method:"DELETE"}); }
+  catch(e){ console.warn("[houses] delete failed",e); }
+}
+
+/* ---- modal ---- */
+let MODAL_X=null;
+function openReach(id){
+  const x=byId(id); if(!x) return; MODAL_X=x;
+  const already=REACHED.get(x.url);
+  const email=x.contact_email, phone=x.contact_phone;
+  document.getElementById("rm-title").textContent=x.title||x.hood||"Listing";
+  document.getElementById("rm-sub").innerHTML=`${money(x.price)}/mo · ${x.hood||""} · ${x.region||""}`+
+    (already?` &nbsp;·&nbsp; <b style="color:var(--nature)">✓ reached out</b>`:"");
+  const ta=document.getElementById("rm-msg");
+  ta.value=(already&&already.message)?already.message:draftMessage(x);
+  // contact line
+  const cl=document.getElementById("rm-contact");
+  if(email||phone){ cl.innerHTML=`Poster left contact info in the post: `+
+    (email?`<b>${email}</b>`:"")+(email&&phone?" · ":"")+(phone?`<b>${phone}</b>`:"")+
+    `. You can message them directly, or copy + open the listing to use Craigslist's reply.`; }
+  else{ cl.innerHTML=`Craigslist hides the poster's email, so copy your message and open the listing, `+
+    `then paste it into Craigslist's <b>reply</b>. Marking this "reached out" tracks it across your devices.`; }
+  // buttons
+  const acts=document.getElementById("rm-actions"); acts.innerHTML="";
+  const mk=(cls,label,fn)=>{const b=document.createElement("button");b.className="mbtn "+cls;b.textContent=label;b.onclick=fn;return b;};
+  if(email){ acts.appendChild(mk("primary","✉ Email poster",()=>{
+    const s=encodeURIComponent(`Inquiry: ${x.title||'your listing'}`), b=encodeURIComponent(ta.value);
+    window.open(`mailto:${email}?subject=${s}&body=${b}`,"_blank");
+    saveReached(x,"email",ta.value); toast("Marked reached out"); closeReach();
+  })); }
+  if(phone){ acts.appendChild(mk(email?"alt":"primary","✆ Text poster",()=>{
+    window.open(`sms:${phone.replace(/[^0-9]/g,"")}?&body=${encodeURIComponent(ta.value)}`,"_blank");
+    saveReached(x,"text",ta.value); toast("Marked reached out"); closeReach();
+  })); }
+  acts.appendChild(mk(email||phone?"alt":"primary","⧉ Copy & open listing",async()=>{
+    try{ await navigator.clipboard.writeText(ta.value); }catch(e){}
+    window.open(x.url,"_blank","noopener");
+    saveReached(x,"listing",ta.value); toast("Copied — paste into Craigslist's reply"); closeReach();
+  }));
+  const foot=document.getElementById("rm-foot");
+  foot.innerHTML="";
+  if(already){ const u=mk("danger","Un-mark reached out",()=>unmarkReached(x)); foot.appendChild(u); }
+  const cancel=mk("ghost","Close",closeReach); foot.appendChild(cancel);
+  document.getElementById("reachModal").classList.add("open");
+}
+function closeReach(){ document.getElementById("reachModal").classList.remove("open"); MODAL_X=null; }
+
+/* event delegation for all reach buttons (cards + popups) */
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".reach-btn"); if(b){ e.preventDefault(); openReach(b.dataset.id); return; }
+  if(e.target.id==="reachModal") closeReach();  // click backdrop
+});
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeReach(); });
+
 drawMarkers(D.listings);   // map + leaderboard show ALL listings, ranked
 renderLeaderboard();
 renderGrid();
 renderHoods();
+loadReached();             // then overlay reached-out state from the backend
 </script>
+<div class="modal-bg" id="reachModal">
+  <div class="modal" role="dialog" aria-modal="true">
+    <h3 id="rm-title">Listing</h3>
+    <div class="msub" id="rm-sub"></div>
+    <div class="mnote" id="rm-contact"></div>
+    <textarea id="rm-msg" spellcheck="true"></textarea>
+    <div class="mactions" id="rm-actions"></div>
+    <div class="mactions" id="rm-foot" style="margin-top:8px"></div>
+  </div>
+</div>
 </body>
 </html>

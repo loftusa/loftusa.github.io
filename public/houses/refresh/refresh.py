@@ -707,6 +707,47 @@ def build_neighborhoods(listings):
     return cards[:10]
 
 
+EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+# US phone: optional +1, then 3-3-4 with common separators/parens.
+PHONE_RE = re.compile(
+    r"(?<!\d)(?:\+?1[\s.-]?)?\(?([2-9]\d{2})\)?[\s.-]?(\d{3})[\s.-]?(\d{4})(?!\d)"
+)
+
+
+def extract_contact(body):
+    """Pull a poster-supplied email / phone out of the listing body, if present.
+
+    Craigslist hides its own relay email behind the reply flow, but many posters
+    paste a real email/phone into the post so people can contact them directly.
+    Returns (email_or_None, phone_or_None). Craigslist relay + image/no-reply
+    addresses are skipped.
+    """
+    if not body:
+        return None, None
+    email = None
+    for m in EMAIL_RE.findall(body):
+        low = m.lower()
+        if any(
+            bad in low
+            for bad in (
+                "craigslist.org",
+                "reply.craigslist",
+                "example.",
+                "@2x",
+                ".png",
+                ".jpg",
+            )
+        ):
+            continue
+        email = m
+        break
+    phone = None
+    pm = PHONE_RE.search(body)
+    if pm:
+        phone = f"({pm.group(1)}) {pm.group(2)}-{pm.group(3)}"
+    return email, phone
+
+
 def do_build():
     print("== BUILD ==")
     if not os.path.exists(SHORTLIST):
@@ -745,6 +786,7 @@ def do_build():
         }
         rationale = rt.get("rationale") or rt.get("why") or ""
         gallery = r.get("imgs") or ([r["img"]] if r.get("img") else [])
+        email, phone = extract_contact(r.get("body", ""))
         listings.append(
             {
                 "id": lid,
@@ -765,6 +807,8 @@ def do_build():
                 "fit": rt.get("fit"),
                 "scores": scores,
                 "rationale": rationale,
+                "contact_email": email,
+                "contact_phone": phone,
             }
         )
 
