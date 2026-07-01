@@ -31,13 +31,15 @@ Array of objects, one per shortlist `id`:
 
 ```json
 {"id": "L01", "nature": 7, "quiet": 8, "nice": 9, "social": 3,
- "value": 6, "commute": 7, "fit": 8, "why": "one line",
+ "value": 6, "commute": 7, "aesthetic": 8, "fit": 8, "why": "one line",
  "live": true, "commercial": false}
 ```
 
 `social` = networking potential with Alex's target crowd (tech founders/CEOs,
 AI-lab & elite-university people) — **not** artists/creative-collective houses.
-See the routine prompt for the full rubric.
+`aesthetic` = how good the place looks in its photos (judged by viewing the full
+gallery); weighted into fit so ugly/low-effort-photo listings don't rank high on
+looks alone. See the routine prompt for the full rubric.
 
 ## Notes
 

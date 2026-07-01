@@ -32,6 +32,7 @@ import json
 import math
 import os
 import re
+import statistics
 import subprocess
 import sys
 import time
@@ -732,7 +733,15 @@ def do_build():
         src = rt.get("scores", rt)
         scores = {
             k: src.get(k)
-            for k in ["nature", "quiet", "nice", "social", "value", "commute"]
+            for k in [
+                "nature",
+                "quiet",
+                "nice",
+                "social",
+                "value",
+                "commute",
+                "aesthetic",
+            ]
         }
         rationale = rt.get("rationale") or rt.get("why") or ""
         gallery = r.get("imgs") or ([r["img"]] if r.get("img") else [])
@@ -770,12 +779,16 @@ def do_build():
         x["loved"] = any(k in (x["hood"] or "").lower() for k in LOVED)
         s = x["scores"]
         soft = gs(s, "quiet") if x["bucket"] == "apt" else gs(s, "social")
+        # aesthetic = how good the place looks in its photos (weighted so listings
+        # with ugly/low-effort photos don't rank high on looks alone). gs() defaults
+        # missing scores to 5 (neutral) for backward compat with pre-aesthetic ratings.
         fit = (
-            0.22 * gs(s, "nice")
-            + 0.19 * gs(s, "nature")
-            + 0.15 * soft
-            + 0.14 * gs(s, "value")
-            + 0.30 * x["dual_commute"]
+            0.17 * gs(s, "nice")
+            + 0.15 * gs(s, "nature")
+            + 0.13 * soft
+            + 0.13 * gs(s, "value")
+            + 0.26 * x["dual_commute"]
+            + 0.16 * gs(s, "aesthetic")
         )
         if x["loved"]:
             fit += 0.8
@@ -818,6 +831,8 @@ def do_build():
         "anchors": "downtown SF + downtown Berkeley (FAR Labs)",
         "price_min": min(x["price"] for x in listings),
         "price_max": max(x["price"] for x in listings),
+        "price_med": int(statistics.median(x["price"] for x in listings)),
+        "move_by": "~late July 2026",
         "mode": "FINAL",
     }
     data = {

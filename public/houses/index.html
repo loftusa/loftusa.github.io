@@ -12,7 +12,7 @@
     --paper:#faf9f5; --panel:#fffdf8; --ink:#23201b; --muted:#6f6a60; --faint:#928c80;
     --rule:#e6e0d2; --rule2:#efeadd;
     --apt:#2f7d75; --room:#b06a1a; --pick:#977a1c;
-    --nature:#4f8a55; --quiet:#5f7189; --nice:#7b6091; --social:#bd8a3a; --value:#3f867e; --commute:#8a8378;
+    --nature:#4f8a55; --quiet:#5f7189; --nice:#7b6091; --social:#bd8a3a; --value:#3f867e; --commute:#8a8378; --aesthetic:#b0654d;
     --good:#3f7d4e; --warn:#b0573c;
   }
   *{box-sizing:border-box}
@@ -214,6 +214,7 @@
         <option value="price">Price ↑</option>
         <option value="drive">Drive time ↑</option>
         <option value="nature">Most nature</option>
+        <option value="aesthetic">Best photos</option>
       </select></div>
     <div class="cgroup"><span id="count" class="lbl"></span></div>
   </div>
@@ -241,7 +242,8 @@ const IDX = {};      // listing id -> current photo index
 const RANK = {};
 [...D.listings].sort((a,b)=>(b.fit||0)-(a.fit||0)).forEach((x,i)=>{ RANK[x.id]=i+1; });
 const SC = [["nature","Nat","--nature"],["quiet","Qt","--quiet"],["nice","Nice","--nice"],
-            ["social","Soc","--social"],["value","Val","--value"],["commute","Cmt","--commute"]];
+            ["social","Soc","--social"],["value","Val","--value"],["commute","Cmt","--commute"],
+            ["aesthetic","Pics","--aesthetic"]];
 const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
 const money = n => "$"+Number(n).toLocaleString();
 const bedsLabel = b => b===0?"Studio":(b==null?"":b+" BR");
@@ -268,7 +270,7 @@ function glyph(s){
   }).join("");
   return `<div style="display:flex;gap:5px">${cols}</div>`;
 }
-const SCNAME = {nature:"Nature",quiet:"Quiet",nice:"Nice area",social:"Social",value:"Value",commute:"Commute"};
+const SCNAME = {nature:"Nature",quiet:"Quiet",nice:"Nice area",social:"Social",value:"Value",commute:"Commute",aesthetic:"Photo quality"};
 function glyphRow(s){
   const bars = SC.map(([key,cap,varn])=>{
     const v = s && s[key]!=null ? s[key] : null;
@@ -359,7 +361,8 @@ function filtered(){
     (state.bucket==="All"||x.bucket===state.bucket));
   const s = state.sort;
   a.sort((p,q)=> s==="price"? p.price-q.price : s==="drive"? p.drive_min-q.drive_min
-      : s==="nature"? (q.scores.nature||0)-(p.scores.nature||0) : (q.fit||0)-(p.fit||0));
+      : s==="nature"? (q.scores.nature||0)-(p.scores.nature||0)
+      : s==="aesthetic"? (q.scores.aesthetic||0)-(p.scores.aesthetic||0) : (q.fit||0)-(p.fit||0));
   return a;
 }
 function renderGrid(){
