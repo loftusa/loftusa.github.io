@@ -328,8 +328,14 @@ DEFAULT_PRIOR = ("Other", 30, 3, 3, 3, 2)
 
 def priors(hood):
     h = (hood or "").lower().strip()
+    # SF Richmond district vs East Bay Richmond city disambiguation.
     if "richmond" in h and ("seacliff" in h or "inner" in h):
         return ("SF", 15, 5, 4, 5, 2)
+    # SF Marina/Cow Hollow contain the substring "marin", so the ordered scan
+    # would hit the NorthBay "marin" rule first — guard them explicitly.
+    # (Regression: this bug shipped once and mislabeled Fort Mason as NorthBay.)
+    if "marina" in h or "cow hollow" in h:
+        return ("SF", 13, 3, 3, 5, 5)
     for kw, p in RULES:
         if kw in h:
             return p
