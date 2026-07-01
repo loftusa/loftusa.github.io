@@ -7,7 +7,11 @@ app = 'llm-resume-restless-thunder-9259'
 primary_region = 'iad'
 
 [build]
-  dockerfile = 'experiments/Dockerfile'
+  dockerfile = 'backend/Dockerfile'
+
+[env]
+  # SQLite DB + JSONL backups live on the mounted volume (see [[mounts]] below).
+  DATA_DIR = '/app/experiments/logs'
 
 [http_service]
   internal_port = 8080

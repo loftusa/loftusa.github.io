@@ -1,0 +1,23 @@
+[project]
+name = "alex-loftus-backend"
+version = "0.1.0"
+description = "FastAPI backend for alex-loftus.com — résumé RAG chat + crowd-edit maps, SQLite on Fly."
+requires-python = ">=3.12"
+# Prod runtime deps only — deliberately NO torch / sentence-transformers (chromadb uses ONNX).
+dependencies = [
+    "cerebras-cloud-sdk>=1.59.0",
+    "chromadb>=1.4.1",
+    "fastapi>=0.121.2",
+    "pydantic>=2.12.4",
+    "python-dotenv>=1.2.1",
+    "uvicorn>=0.38.0",
+    "sqlalchemy>=2.0.0",
+    "alembic>=1.13.0",
+    "pyjwt>=2.8.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "httpx>=0.28.0",
+]

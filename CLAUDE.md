@@ -10,13 +10,16 @@ bundle exec jekyll serve --config _config.yml,_config.dev.yml  # With dev overri
 bundle exec jekyll build                    # Static build → _site/
 ```
 
-## Chat API (experiments/)
+## Backend API (backend/)
 
-- `experiments/chat_api.py` — FastAPI app, Cerebras `zai-glm-4.7` model, ChromaDB RAG
-- Fly.io app: `llm-resume-restless-thunder-9259`
-- Deploy: `cd experiments && fly deploy`
-- Endpoints: `POST /chat` (streaming), `POST /reset`, `GET /logs/download`
-- $2 USD cost cap per conversation
+- `backend/app/` — FastAPI package, Cerebras `zai-glm-4.7`, ChromaDB RAG, **SQLite on the Fly volume**
+  (durable rate-limits + cost caps + event-sourced crowd-edit logs). Imports the pure fold logic +
+  RAG module from `experiments/`. Full architecture + cutover runbook: `backend/README.md`.
+- Fly.io app: `llm-resume-restless-thunder-9259` (build = `backend/Dockerfile`)
+- Deploy: `fly deploy` (entrypoint runs `alembic upgrade head`)
+- Endpoints: `POST /chat` (streaming), `POST /reset`, `GET /health`, `GET /logs/download`,
+  `/coauthorship/*` + `/affiliations/*` crowd edits
+- $2 USD cost cap per conversation (now durable across restarts)
 
 ## Key Structure
 
