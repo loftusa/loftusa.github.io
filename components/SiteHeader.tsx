@@ -3,6 +3,7 @@ import styles from "./SiteHeader.module.css";
 
 const NAV = [
   { href: "/networks/", label: "Networks" },
+  { href: "/houses/", label: "Houses" },
   { href: "/year-archive/", label: "Writing" },
   { href: "/cv/", label: "CV" },
 ];
