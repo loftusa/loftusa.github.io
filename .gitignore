@@ -47,3 +47,4 @@ node_modules/
 experiments/coauthorship/tests/scratchpad/
 .venv/
 .pytest_cache/
+.env*
