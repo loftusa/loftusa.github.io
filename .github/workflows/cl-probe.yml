@@ -1,0 +1,21 @@
+# One-shot probe: can GitHub Actions runners reach Craigslist?
+# (Decides where the /houses daily refresh can run. Dispatch-only; removed after.)
+name: cl-probe
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: probe craigslist endpoints
+        run: |
+          UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+          echo "== sapi search API =="
+          curl -sS -o /tmp/sapi.json -w "sapi_code=%{http_code} bytes=%{size_download}\n" -A "$UA" -H "Accept: application/json"             "https://sapi.craigslist.org/web/v8/postings/search/full?batch=1-0-360-0-0&cc=US&lang=en&searchPath=apa&min_price=1300&max_price=3100&lat=37.78&lon=-122.42&search_distance=12&sort=date&availabilityMode=0" || true
+          head -c 200 /tmp/sapi.json; echo
+          echo "== listing page =="
+          curl -sSL -o /tmp/page.html -w "page_code=%{http_code} bytes=%{size_download}\n" -A "$UA" "https://www.craigslist.org/view/d/sausalito-gorgeous-and-immaculate/dBDBdqttgdM8GzJNn9kNya" || true
+          grep -c "postingbody" /tmp/page.html && echo "postingbody found" || echo "postingbody MISSING"
+          echo "== image cdn =="
+          curl -sS -o /dev/null -w "img_code=%{http_code} bytes=%{size_download}\n" -A "$UA" "https://images.craigslist.org/00H0H_6DoZhR4C4uA_0CI0pO_600x450.jpg" || true
+          echo "== montage available =="
+          which montage && montage -version | head -1
