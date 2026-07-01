@@ -48,25 +48,38 @@ AFF_SEEDS_PATH = EXPERIMENTS / "coauthorship" / "seeds.json"
 
 # --- auth (P3) ---------------------------------------------------------------------------------
 # HS256 bearer JWT minted by the Next.js BFF from the NextAuth session; verified here.
-API_JWT_SECRET = os.getenv("API_JWT_SECRET", "dev-insecure-jwt-secret")
+# The dev-fallback secrets are strings that live in this public repo, so on Fly they are
+# disabled: a missing secret must fail closed (500/401), never verify against a known value.
+_ON_FLY = bool(os.getenv("FLY_APP_NAME"))
+API_JWT_SECRET = os.getenv("API_JWT_SECRET") or (
+    None if _ON_FLY else "dev-insecure-jwt-secret"
+)
 JWT_ALGORITHM = "HS256"
 JWT_TTL_SECONDS = int(os.getenv("JWT_TTL_SECONDS", "900"))  # 15 min
 # S2S key gating the internal user-upsert endpoint (NextAuth signIn -> FastAPI).
-INTERNAL_API_KEY = os.getenv("INTERNAL_API_KEY", "dev-insecure-internal-key")
+INTERNAL_API_KEY = os.getenv("INTERNAL_API_KEY") or (
+    None if _ON_FLY else "dev-insecure-internal-key"
+)
 
 # --- translate (P6) ----------------------------------------------------------------------------
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 TRANSLATE_MODEL = os.getenv("TRANSLATE_MODEL", "claude-haiku-4-5")
+MAX_TRANSLATE_CHARS = 4000  # input cap — bounds per-call Anthropic spend
+TRANSLATE_RATE = (20, 600)  # at most 20 translations / 600s / client IP
 
 # --- housekeeping (P4) -------------------------------------------------------------------------
 HOUSEKEEPING_INTERVAL_SECONDS = int(os.getenv("HOUSEKEEPING_INTERVAL_SECONDS", "3600"))
 RATE_LIMIT_RETENTION_SECONDS = 7 * 24 * 3600  # prune rate-limit rows older than a week
 DAILY_COST_CEILING_USD = float(os.getenv("DAILY_COST_CEILING_USD", "20"))
+SPEND_RETENTION_SECONDS = 30 * 24 * 3600  # keep spend rows a month (cost audit trail)
 
-# Extra CORS origins (comma-separated) + a regex for this project's Vercel deploys, so the
-# *.vercel.app preview can call the API before the DNS cutover completes.
+# Extra CORS origins (comma-separated) + a regex for this project's Vercel PREVIEW deploys.
+# Anyone can register aol-frontend-*.vercel.app as their own project name, so the regex is
+# pinned to our team scope's deployment URLs (and credentials are off in main.py anyway).
 _extra = os.getenv("EXTRA_CORS_ORIGINS", "")
-CORS_ORIGIN_REGEX = r"https://aol-frontend[a-z0-9-]*\.vercel\.app"
+CORS_ORIGIN_REGEX = (
+    r"https://aol-frontend-[a-z0-9-]+-alexloftus2004-4021s-projects\.vercel\.app"
+)
 
 CORS_ORIGINS = [
     "http://localhost:3000",
@@ -76,4 +89,5 @@ CORS_ORIGINS = [
     "http://127.0.0.1:3863",
     "https://alex-loftus.com",
     "https://www.alex-loftus.com",
+    "https://aol-frontend-mu.vercel.app",  # the project's production alias
 ] + [o.strip() for o in _extra.split(",") if o.strip()]

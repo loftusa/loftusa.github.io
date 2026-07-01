@@ -145,6 +145,20 @@ class RateLimitHit(Base):
     )
 
 
+class SpendEvent(Base):
+    """One row per metered LLM turn (USD). Summed over a trailing 24h window to enforce
+    DAILY_COST_CEILING_USD (previously config-only, never checked); pruned by housekeeping
+    after SPEND_RETENTION_SECONDS."""
+
+    __tablename__ = "spend_events"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    ts: Mapped[float] = mapped_column(
+        Float, index=True, nullable=False
+    )  # epoch seconds
+    usd: Mapped[float] = mapped_column(Float, nullable=False)
+
+
 class MigrationState(Base):
     __tablename__ = "migration_state"
 
