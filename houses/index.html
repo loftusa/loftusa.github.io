@@ -49,17 +49,58 @@
   .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
   select{font-family:inherit;font-size:13px;padding:3px 6px;border:1px solid var(--rule);background:var(--panel);border-radius:6px;color:var(--ink)}
 
-  /* map */
-  #map{height:540px;border:1px solid var(--rule);border-radius:4px;margin-bottom:2px;background:#eee}
+  /* map + leaderboard */
+  .mapwrap{display:flex;gap:14px;align-items:stretch}
+  #map{flex:1;height:560px;border:1px solid var(--rule);border-radius:4px;background:#eee}
   .leaflet-container{font-family:-apple-system,sans-serif}
+  #leaderboard{width:322px;height:560px;display:flex;flex-direction:column;
+    border:1px solid var(--rule);border-radius:4px;background:var(--panel);overflow:hidden}
+  .lbhead{display:flex;justify-content:space-between;align-items:center;padding:8px 11px 7px;
+    border-bottom:1px solid var(--ink);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+  .lbscalerow{display:flex;gap:0;width:104px;justify-content:space-between;font-family:ui-monospace,monospace;
+    letter-spacing:0;color:var(--faint);font-size:9.5px}
+  #lbrows{overflow-y:auto;flex:1}
+  .lbrow{display:grid;grid-template-columns:20px 1fr 104px 26px;align-items:center;gap:7px;
+    padding:4px 10px;border-bottom:1px solid var(--rule2);cursor:pointer;transition:background .1s}
+  .lbrow:hover,.lbrow.hl{background:#f3eede}
+  .lbrow.pick{box-shadow:inset 3px 0 0 var(--pick)}
+  .lbrank{font-size:11px;color:var(--faint);text-align:right}
+  .lbname{font-size:12px;line-height:1.2;overflow:hidden}
+  .lbname .lbsub{display:block;font-size:9.5px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lbname .love{color:#b5573f}
+  .lbaxis{position:relative;height:16px}
+  .lbaxis .lbtick{position:absolute;left:50%;top:2px;bottom:2px;width:1px;background:var(--rule)}
+  .lbaxis::before{content:"";position:absolute;left:2%;right:2%;top:50%;height:1px;background:var(--rule)}
+  .lbdot{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 1.5px var(--panel)}
+  .lbfit{font-size:12px;font-weight:600;text-align:right}
   .legend{background:rgba(255,253,248,.94);padding:9px 11px;border:1px solid var(--rule);border-radius:5px;
-    font-size:12px;line-height:1.7;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    font-size:12px;line-height:1.7;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08);max-width:210px}
   .legend .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
   .legend .ring{box-shadow:0 0 0 2px var(--pick)}
-  .pmark{font:inherit}
-  .popup{width:210px}
-  .popup img{width:100%;height:118px;object-fit:cover;border-radius:3px;display:block;margin-bottom:6px;background:#eee}
-  .popup .pp{font-size:16px;font-weight:600}.popup .ph2{color:#555;font-size:12.5px}
+  /* rank markers (nodes) */
+  .rankmark-wrap{background:none!important;border:none!important}
+  .rankmark{display:flex;align-items:center;justify-content:center;border-radius:50%;color:#fff;
+    font-weight:700;font-family:ui-monospace,monospace;line-height:1;cursor:pointer;transition:transform .1s}
+  .rankmark-wrap.hl{z-index:1500!important}
+  .rankmark-wrap.hl .rankmark{transform:scale(1.32);box-shadow:0 0 0 2.5px var(--ink),0 2px 6px rgba(0,0,0,.45)!important}
+  .anchor-wrap{background:none!important;border:none!important}
+  .anchor{color:#2b2b2b;font-size:13px;line-height:1;text-shadow:0 0 3px #fff,0 0 3px #fff}
+  .anchor-lbl{background:rgba(255,253,248,.9);border:1px solid var(--rule);border-radius:3px;
+    font-size:10.5px;font-weight:600;color:var(--ink);padding:1px 5px;box-shadow:none}
+  .anchor-lbl::before{display:none}
+  /* popup (with gallery) */
+  .popup{width:216px}
+  .popup .pop-ph{position:relative;height:126px;border-radius:3px;overflow:hidden;margin-bottom:7px;background:#ece7db}
+  .popup img.gimg{width:100%;height:100%;object-fit:cover;display:block}
+  .popup .gnav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:24px;height:30px;border:none;
+    border-radius:4px;cursor:pointer;padding:0;background:rgba(20,18,15,.45);color:#fff;font:400 20px/1 sans-serif;
+    display:flex;align-items:center;justify-content:center}
+  .popup .gnav:hover{background:rgba(20,18,15,.75)}
+  .popup .gprev{left:5px}.popup .gnext{right:5px}
+  .popup .gcount{position:absolute;bottom:5px;right:6px;z-index:3;font-family:ui-monospace,monospace;font-size:10px;
+    color:#fff;background:rgba(20,18,15,.5);padding:1px 5px;border-radius:8px}
+  .popup .pp{font-size:15px;font-weight:600}.popup .ph2{color:#555;font-size:12px;line-height:1.4;margin-top:2px}
+  @media(max-width:860px){.mapwrap{flex-direction:column}#leaderboard{width:auto;height:300px}}
 
   /* card grid */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:18px;margin-top:6px}
@@ -90,7 +131,11 @@
   .price{font-size:21px;font-weight:600}.price small{font-size:12px;color:var(--muted);font-weight:400}
   .fit{display:inline-flex;align-items:baseline;gap:3px}
   .fit b{font-size:19px}.fit .s{font-size:10px;color:var(--faint);letter-spacing:.05em}
-  .metaline{font-size:12.5px;color:var(--muted);line-height:1.35}
+  .fit .rk{font-size:11px;color:var(--faint);margin-right:4px}
+  .metaline{font-size:12.5px;color:var(--muted);line-height:1.4}
+  .metaline .love{color:#b5573f}
+  .metaline .drv b{color:var(--ink);font-weight:600}
+  .metaline .fer{color:#2f6f68;font-weight:600}
   .glyph{display:flex;gap:5px;align-items:flex-end;height:34px;margin:1px 0}
   .gb{width:15px;border-radius:2px 2px 0 0;background:#ccc}
   .scorekey{display:flex;flex-wrap:wrap;gap:13px;align-items:center;font-size:11px;color:var(--muted);
@@ -144,9 +189,15 @@
     <div class="statstrip num" id="stats"></div>
   </header>
 
-  <h2>The map</h2>
-  <p class="h2note">Every dot is a live listing. Size ∝ fit for Alex; color = type; gold ring = top pick. Click a dot for the listing.</p>
-  <div id="map"></div>
+  <h2>The map &amp; ranking</h2>
+  <p class="h2note">Each node is numbered by <b>overall rank</b> (1 = best fit), sized by fit, colored by type. The two ◆ are the commute anchors: <b>downtown SF</b> and <b>Berkeley (FAR Labs)</b>. The list on the right is every listing as a dot on a 0→10 fit scale, sorted best→worst — hover to find it on the map, click to fly there.</p>
+  <div class="mapwrap">
+    <div id="map"></div>
+    <aside id="leaderboard">
+      <div class="lbhead"><span>Ranked by fit</span><span class="lbscalerow"><i>0</i><i>5</i><i>10</i></span></div>
+      <div id="lbrows"></div>
+    </aside>
+  </div>
 
   <h2>Top picks</h2>
   <p class="h2note" id="picknote"></p>
@@ -186,6 +237,9 @@
 const D = window.HOUSES_DATA;
 const IMAGES = {};   // listing id -> [photo urls]
 const IDX = {};      // listing id -> current photo index
+// global ranking (1 = best) by dual-anchor fit
+const RANK = {};
+[...D.listings].sort((a,b)=>(b.fit||0)-(a.fit||0)).forEach((x,i)=>{ RANK[x.id]=i+1; });
 const SC = [["nature","Nat","--nature"],["quiet","Qt","--quiet"],["nice","Nice","--nice"],
             ["social","Soc","--social"],["value","Val","--value"],["commute","Cmt","--commute"]];
 const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
@@ -199,7 +253,7 @@ document.getElementById("stats").innerHTML = [
   ["Listings scouted", m.n_scouted.toLocaleString()],
   ["Shown here", m.n_shown+" <small>of "+m.n_shortlist+" shortlisted</small>"],
   ["Price range", money(m.price_min)+"–"+money(m.price_max)+" <small>med "+money(m.price_med)+"</small>"],
-  ["Source", "<small>"+m.source+"</small>"],
+  ["Commute anchors", "<small>downtown SF + Berkeley (FAR Labs)</small>"],
   ["Move by", "<small>"+m.move_by+"</small>"],
 ].map(([k,v])=>`<div class="stat"><span class="k">${k}</span><span class="v">${v}</span></div>`).join("");
 
@@ -249,9 +303,10 @@ function card(x){
     <div class="body">
       <div class="row1">
         <span class="price num">${money(x.price)}<small>/mo</small></span>
-        <span class="fit num"><b style="color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b><span class="s">FIT</span></span>
+        <span class="fit num"><span class="rk" title="overall rank">#${RANK[x.id]}</span><b style="color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b><span class="s">FIT</span></span>
       </div>
-      <div class="metaline">${bedsLabel(x.beds)} · ${x.hood} · ${x.region} · <span class="num">~${x.drive_min} min</span> to downtown</div>
+      <div class="metaline">${bedsLabel(x.beds)} · ${x.hood} · ${x.region}${x.loved?' <span class="love" title="you love this area">♥</span>':''}<br>
+        <span class="drv"><b class="num">SF ${x.drive_sf}m</b> · <b class="num">Berkeley ${x.drive_berk}m</b>${x.ferry_sf?' · <span class="fer" title="~30-min ferry to SF Ferry Building nearby">⛴ ferry to SF</span>':''}</span></div>
       ${glyphRow(x.scores)}
       <div class="flags">${flags}${red}</div>
       <p class="rat">${x.rationale||""}</p>
@@ -282,8 +337,8 @@ function wireGalleries(root){
 const picks = D.listings.filter(x=>x.pick);
 document.getElementById("picks").innerHTML = picks.map(card).join("");
 wireGalleries(document.getElementById("picks"));
-document.getElementById("picknote").textContent =
-  `My ${picks.length} favorites for you, one or two per area — balancing nature, a nice/quiet feel, price, and the drive.`;
+document.getElementById("picknote").innerHTML =
+  `My ${picks.length} favorites, spanning both worlds: central SF (easy to both), your beloved Marin (♥, great to SF via drive or ferry), and the inner East Bay (short hop to Berkeley). Balancing nature, a nice/quiet feel, price, and both commutes.`;
 
 /* ---- filters + grid ---- */
 const state = {region:"All", bucket:"All", sort:"fit"};
@@ -315,7 +370,6 @@ function renderGrid(){
   document.getElementById("count").textContent = a.length+" shown";
   wireCardHover();
   wireGalleries(document.getElementById("grid"));
-  drawMarkers(a);
 }
 
 /* ---- neighborhoods ---- */
@@ -328,7 +382,7 @@ function renderHoods(){
   H.sort((a,b)=>score(b)-score(a));
   el.innerHTML = H.map(h=>`<div class="hood">
     <h3><span>${h.name}</span><span class="rg">${h.region}</span></h3>
-    <div class="hdrive num">🚗 ${h.drive_offpeak} min off-peak · ${h.drive_peak} min at rush hour</div>
+    <div class="hdrive num">🚗 SF ${h.drive_offpeak}m <span style="color:var(--faint)">(${h.drive_peak}m rush)</span> · Berkeley ~${h.drive_berk}m</div>
     <div class="hbars">
       ${["nature","quiet","nice","social"].map(k=>`<div class="hbar"><div class="hl">${k}</div>${track(h.scores[k],"--"+(k==="nice"?"nice":k))}</div>`).join("")}
     </div>
@@ -347,61 +401,122 @@ document.getElementById("foot").innerHTML = `
   <div class="callout"><b>Before you contact anyone:</b> rentals move in days, so open the live link and confirm it's still up.
   Never wire money or pay a deposit before seeing a unit in person. A price that looks too good usually is.</div>
   <b>How this was built.</b> I pulled ${m.n_scouted.toLocaleString()} real, currently-listed rentals from Craigslist's
-  live API on ${m.generated} across San Francisco, the East Bay, North Bay and Peninsula (≤ ~35&nbsp;min drive to
-  downtown SF, $800–$3,000). After filtering to your commute zone and budget I shortlisted ${m.n_shortlist}, then ran a
-  fan-out of review agents that opened each posting, confirmed it was still live, pulled parking/laundry/availability, and
-  scored it 1–10 on nature, quiet, niceness, social/networking, value and commute. Ratings are my judgment on your stated
-  preferences, not gospel. Map coordinates come from each posting (some are approximate to the neighborhood).
-  Data mode: <b>${m.mode}</b>.`;
+  live API on ${m.generated} across San Francisco, the East Bay, North Bay and Peninsula ($800–$3,000). Review agents
+  opened each posting, confirmed it was still live, and scored it 1–10 on nature, quiet, niceness, social/networking and value.
+  <b>Dual-anchor commute:</b> every listing is now rated on driving to <b>both</b> downtown SF and downtown Berkeley (FAR Labs),
+  and the overall rank rewards being reachable to both — while Mill Valley and Sausalito get a nudge because you love them (♥).
+  <b>Ferry note:</b> Sausalito/Marin have a ~30-min ferry to the SF Ferry Building (great car-free link to SF), but there's
+  <b>no direct ferry to Berkeley</b> — you'd ferry to SF then BART, so the ferry helps the SF side only.
+  Drive times are off-peak estimates (bridges run much worse at rush hour); ratings are my judgment on your stated
+  preferences, not gospel; some map pins are approximate to the neighborhood. Data mode: <b>${m.mode}</b>.`;
 
 /* ================= MAP ================= */
-const map = L.map("map",{scrollWheelZoom:false}).setView([37.80,-122.35],11);
+const map = L.map("map",{scrollWheelZoom:false}).setView([37.82,-122.30],11);
 L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{
   attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:"abcd", maxZoom:19}).addTo(map);
-map.on("click",()=>{}); // no-op
-// downtown SF anchor
-L.circleMarker([37.7935,-122.3970],{radius:4,color:"#333",fillColor:"#333",fillOpacity:1,weight:0})
-  .addTo(map).bindTooltip("Downtown SF (commute anchor)",{direction:"top"});
 
-let markerLayer = L.layerGroup().addTo(map);
+/* two commute anchors: downtown SF + downtown Berkeley (FAR Labs) */
+function anchor(lat,lon,label){
+  return L.marker([lat,lon],{icon:L.divIcon({className:"anchor-wrap",iconSize:[16,16],iconAnchor:[8,8],
+    html:'<div class="anchor" title="'+label+'">◆</div>'}),zIndexOffset:2000})
+    .bindTooltip(label,{permanent:true,direction:"right",className:"anchor-lbl",offset:[8,0]});
+}
+anchor(37.7935,-122.3970,"Downtown SF").addTo(map);
+anchor(37.8703,-122.2680,"Berkeley · FAR Labs").addTo(map);
+
+function shortHood(h){ if(!h)return"";
+  let s=h.replace(/\s*\/\s*/g,"/").replace(/\b\w/g,c=>c.toUpperCase());
+  return s.length>26?s.slice(0,25)+"…":s; }
+function popupInner(x){
+  const imgs=IMAGES[x.id]||[x.img||FALLBACK]; const i=IDX[x.id]||0; const n=imgs.length;
+  const nav = n>1?`<button class="gnav gprev" data-id="${x.id}" data-dir="-1" aria-label="Previous photo">‹</button>
+    <button class="gnav gnext" data-id="${x.id}" data-dir="1" aria-label="Next photo">›</button>
+    <span class="gcount" data-id="${x.id}">${i+1}/${n}</span>`:"";
+  return `<div class="popup">
+    <div class="ph pop-ph" data-id="${x.id}"><img class="gimg" src="${imgs[i]}" onerror="this.src='${FALLBACK}'">${nav}</div>
+    <div class="pp num">#${RANK[x.id]} · ${money(x.price)} <span style="font-size:12px;color:#777">${bedsLabel(x.beds)}</span>
+      <b style="float:right;color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b></div>
+    <div class="ph2">${x.loved?'♥ ':''}${x.hood} · ${x.region}<br>SF ${x.drive_sf}m · Berkeley ${x.drive_berk}m${x.ferry_sf?' · ⛴ ferry to SF':''}</div>
+    <div style="font-size:12px;margin:5px 0 4px">${x.rationale||""}</div>
+    <a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div>`;
+}
+
 const markerById = {};
+function markerIcon(x){
+  const size=Math.round(20+(x.fit||5)*1.6);
+  const bg=x.bucket==="apt"?css("--apt"):css("--room");
+  const ring=x.pick?`box-shadow:0 0 0 2.5px ${css('--pick')},0 1px 3px rgba(0,0,0,.4);`:"box-shadow:0 1px 3px rgba(0,0,0,.4);";
+  const fs=RANK[x.id]>9?11:13;
+  return L.divIcon({className:"rankmark-wrap",iconSize:[size,size],iconAnchor:[size/2,size/2],
+    html:`<div class="rankmark" style="width:${size}px;height:${size}px;background:${bg};${ring}font-size:${fs}px">${RANK[x.id]}</div>`});
+}
 function drawMarkers(list){
-  markerLayer.clearLayers(); for(const k in markerById) delete markerById[k];
-  list.forEach(x=>{
+  list.slice().sort((a,b)=>(a.fit||0)-(b.fit||0)).forEach(x=>{  // best fit drawn last = on top
     if(x.lat==null||x.lon==null) return;
-    const mk = L.circleMarker([x.lat,x.lon],{
-      radius: 5 + (x.fit||5)*0.9,
-      color: x.pick?css("--pick"):"#ffffff",
-      weight: x.pick?2.4:1,
-      fillColor: x.bucket==="apt"?css("--apt"):css("--room"),
-      fillOpacity:.82});
-    mk.bindPopup(`<div class="popup">
-      <img src="${x.img||FALLBACK}" onerror="this.style.display='none'">
-      <div class="pp num">${money(x.price)} <span style="font-size:12px;color:#777">${bedsLabel(x.beds)}</span></div>
-      <div class="ph2">${x.hood} · ${x.region} · ~${x.drive_min} min · fit ${x.fit==null?'–':x.fit}/10</div>
-      <div style="font-size:12px;margin:5px 0 3px">${x.rationale||""}</div>
-      <a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div>`,{maxWidth:230});
-    mk.addTo(markerLayer); markerById[x.id]=mk;
+    const mk=L.marker([x.lat,x.lon],{icon:markerIcon(x),riseOnHover:true});
+    mk.bindPopup(()=>popupInner(x),{maxWidth:236,minWidth:220});
+    mk.addTo(map); markerById[x.id]=mk;
   });
+}
+map.on("popupopen",e=>{
+  const el=e.popup.getElement(); if(el) wireGalleries(el);
+  const id=(el&&el.querySelector(".pop-ph"))?el.querySelector(".pop-ph").dataset.id:null;
+  if(id){ const row=document.querySelector(`.lbrow[data-id="${id}"]`);
+    if(row){ row.classList.add("hl"); row.scrollIntoView({block:"nearest"}); } }
+});
+map.on("popupclose",()=>document.querySelectorAll(".lbrow.hl").forEach(r=>r.classList.remove("hl")));
+
+function highlightMarker(id,on){
+  const mk=markerById[id]; if(mk){const el=mk.getElement(); if(el)el.classList.toggle("hl",on); mk.setZIndexOffset(on?1500:0);}
+  const row=document.querySelector(`.lbrow[data-id="${id}"]`); if(row)row.classList.toggle("hl",on);
+}
+function flyToListing(id){
+  const mk=markerById[id]; if(!mk)return;
+  map.setView(mk.getLatLng(),14,{animate:true}); mk.openPopup();
+  window.scrollTo({top:document.getElementById("map").getBoundingClientRect().top+window.scrollY-12,behavior:"smooth"});
 }
 function wireCardHover(){
-  document.querySelectorAll(".card").forEach(c=>{
-    c.onmouseenter=()=>{const mk=markerById[c.dataset.id]; if(mk){mk.setStyle({weight:3,color:css("--ink")});}};
-    c.onmouseleave=()=>{const x=D.listings.find(y=>y.id===c.dataset.id);const mk=markerById[c.dataset.id];
-      if(mk)mk.setStyle({weight:x.pick?2.4:1,color:x.pick?css("--pick"):"#fff"});};
-    c.onclick=e=>{ if(e.target.closest("a,.gnav,.gcount"))return; const mk=markerById[c.dataset.id];
-      if(mk){map.setView(mk.getLatLng(),14,{animate:true});mk.openPopup();window.scrollTo({top:document.getElementById("map").offsetTop-10,behavior:"smooth"});}};
+  document.querySelectorAll("#grid .card, #picks .card").forEach(c=>{
+    c.onmouseenter=()=>highlightMarker(c.dataset.id,true);
+    c.onmouseleave=()=>highlightMarker(c.dataset.id,false);
+    c.onclick=e=>{ if(e.target.closest("a,.gnav,.gcount"))return; flyToListing(c.dataset.id); };
   });
 }
+
+/* ---- ranked leaderboard (Tufte dot-plot, descending by fit) ---- */
+function renderLeaderboard(){
+  const rows=[...D.listings].sort((a,b)=>(b.fit||0)-(a.fit||0));
+  document.getElementById("lbrows").innerHTML = rows.map(x=>{
+    const left=Math.max(2,Math.min(98,(x.fit||0)*10));
+    const col=x.bucket==="apt"?css("--apt"):css("--room");
+    return `<div class="lbrow ${x.pick?'pick':''}" data-id="${x.id}">
+      <span class="lbrank num">${RANK[x.id]}</span>
+      <span class="lbname">${x.loved?'<span class="love">♥</span> ':''}${shortHood(x.hood)}
+        <span class="lbsub num">${money(x.price)} · SF ${x.drive_sf} · Bk ${x.drive_berk}</span></span>
+      <span class="lbaxis"><i class="lbtick"></i><i class="lbdot" style="left:${left}%;background:${col}"></i></span>
+      <span class="lbfit num" style="color:${fitColor(x.fit)}">${x.fit}</span>
+    </div>`;
+  }).join("");
+  document.querySelectorAll(".lbrow").forEach(r=>{
+    r.onmouseenter=()=>highlightMarker(r.dataset.id,true);
+    r.onmouseleave=()=>highlightMarker(r.dataset.id,false);
+    r.onclick=()=>flyToListing(r.dataset.id);
+  });
+}
+
 /* legend */
 const legend = L.control({position:"bottomright"});
 legend.onAdd=function(){const d=L.DomUtil.create("div","legend");
   d.innerHTML=`<span class="dot" style="background:${css('--apt')}"></span>Apartment / studio<br>
     <span class="dot" style="background:${css('--room')}"></span>Room / share (housemates)<br>
-    <span class="dot ring" style="background:#bbb"></span>Top pick &nbsp; · &nbsp;bigger = better fit`;
+    <span class="dot ring" style="background:#bbb"></span>Top pick<br>
+    <span style="color:var(--muted)">number = overall rank · bigger = better fit</span><br>
+    <span class="anchor" style="font-size:11px">◆</span> commute anchors (SF &amp; Berkeley)`;
   return d;};
 legend.addTo(map);
 
+drawMarkers(D.listings);   // map + leaderboard show ALL listings, ranked
+renderLeaderboard();
 renderGrid();
 renderHoods();
 </script>
