@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
       { source: "/talkmap", destination: "/talkmap/map.html" },
       // Bay Area rental scout — self-contained Leaflet page under public/houses/.
       { source: "/houses", destination: "/houses/index.html" },
+      // The 2 /perfumes/ pages are assembled from _pages/perfumes*.html into
+      // public/_perfumes/ (see scripts/build_perfumes_html.mjs); assets already
+      // live under public/assets/. atlas = fullscreen canvas app; analyses = text.
+      { source: "/perfumes", destination: "/_perfumes/atlas.html" },
+      { source: "/perfumes/analyses", destination: "/_perfumes/analyses.html" },
       // /red-teaming/* = the NDA "Mangrove" viewer. Source stays in the PRIVATE
       // loftusa/red-teaming repo and is deployed as a SEPARATE Vercel project
       // (aol-red-teaming.vercel.app, static docs/). Proxy to it so NO NDA content

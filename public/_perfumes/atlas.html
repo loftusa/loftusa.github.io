@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- no maximum-scale: never block browser pinch-zoom of the text UI (WCAG 1.4.4 Resize Text) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Perfume Atlas · Alex Loftus</title>
+  <meta name="description" content="A map of 24,050 fragrances arranged by how they smell — closer means more alike. Built from Fragrantica's notes and accords.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      background: #faf8f3; color: #2b2b2b;
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fimgs.net" crossorigin>
+<link rel="stylesheet" href="/assets/css/perfumes-atlas.css">
+
+<div id="app">
+  <canvas id="atlas" role="img"
+    aria-label="A map of 24,050 perfumes arranged so that similar-smelling fragrances sit close together; colour shows scent family, size shows popularity."></canvas>
+  <a class="sr-only" href="/perfumes/analyses/">Skip the interactive map — read the scent families and findings as text.</a>
+
+  <div id="hud">
+    <h1><span class="the">A map of</span>Scent</h1>
+    <p class="lede">
+      Every dot is a perfume — <b id="count">24,050</b> of them, drawn from Fragrantica.
+      Two sit close together when they <b>smell alike</b>; they share a colour when they belong
+      to the same <b>scent family</b>. The largest are the most loved.
+    </p>
+
+    <div id="search-wrap">
+      <span class="mag">⌕</span>
+      <input id="search" type="search" placeholder="search a perfume you know…"
+             autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false"
+             aria-controls="results" aria-autocomplete="list" aria-label="Search perfumes">
+      <div id="results" role="listbox" aria-label="Search results"></div>
+    </div>
+
+    <button id="hud-toggle" type="button" aria-expanded="false">scent families &amp; more ▾</button>
+
+    <div id="hud-more">
+    <div class="sec-label">Scent families</div>
+    <div id="legend"></div>
+
+    <div class="sec-label">A few things to find</div>
+    <p class="lede" style="margin-top:2px">
+      the largest neighbourhood, <a href="#" id="fact-bigfam">—</a>;
+      two perfumes from different houses that are <a href="#" id="fact-twin-pct">—</a> the same smell,
+      <a href="#" id="fact-twin-a">—</a> and <a href="#" id="fact-twin-b">—</a>;
+      and <a href="#" id="fact-loner">—</a>, the loner that smells like almost nothing else.
+    </p>
+
+    <div id="foot">
+      Notes &amp; accords from <a href="https://www.fragrantica.com" target="_blank" rel="noopener">Fragrantica</a>;
+      laid out by similarity (UMAP). Bottle photos © their houses.
+      <div style="margin-top:6px"><a href="/perfumes/analyses/">how this map was made, &amp; what it shows →</a></div>
+      <div style="margin-top:4px"><a href="/">← alex-loftus.com</a></div>
+    </div>
+    </div><!-- /#hud-more -->
+  </div>
+
+  <div id="tip"></div>
+  <button id="reset" type="button">⌂ show everything</button>
+  <div id="hint">scroll to zoom · drag to pan · hover a bottle · click to find its scent-twins</div>
+</div>
+
+<style>
+  /* the fun-fact links read as soft inline rose, not underlined chrome */
+  #hud .lede a { color: #9a565f; text-decoration: none; border-bottom: 1px solid #e3cdcf; cursor: pointer; }
+  #hud .lede a:hover { border-bottom-color: #9a565f; }
+</style>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="/assets/js/perfumes-atlas.js" defer></script>
+</body>
+</html>
