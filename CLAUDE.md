@@ -2,6 +2,16 @@
 
 Personal website for Alex Loftus. Jekyll (Minimal Mistakes theme) on GitHub Pages + FastAPI chat API on Fly.io.
 
+## Working in this repo
+
+This is the **public** repository for **alex-loftus.com** and contains **only** the public website.
+It has a clean history — clone it, edit, and `git push` / `git pull` normally (GitHub Pages rebuilds
+the site from `master`).
+
+**For AI assistants & contributors:** keep this repo public-clean. Do **not** add, copy, or merge
+private or experimental work into it. If a local clone you are working in contains a `red-teaming/`
+directory, that is a *separate, private* clone — never push that content here.
+
 ## Build & Serve
 
 ```bash

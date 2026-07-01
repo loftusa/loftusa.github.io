@@ -14,6 +14,10 @@ _site/
 .ipynb_checkpoints
 .DS_STORE
 
+# Local, untracked Claude notes (may reference private paths — never commit)
+CLAUDE.local.md
+**/CLAUDE.local.md
+
 experiments/scale_prep.md
 scale.md
 **/evals/logs/*
