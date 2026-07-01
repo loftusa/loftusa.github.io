@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
       { source: "/networks/analyses", destination: "/_networks/papers-analyses.html" },
       { source: "/networks/affiliations/analyses", destination: "/_networks/affiliations-analyses.html" },
       { source: "/talkmap", destination: "/talkmap/map.html" },
+      // Bay Area rental scout — self-contained Leaflet page under public/houses/.
+      { source: "/houses", destination: "/houses/index.html" },
     ];
   },
 
