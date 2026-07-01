@@ -172,7 +172,7 @@ Organized 200+ person interpretability conference; Raised $17,000 grant funding.
   Link: https://nemiconf.github.io/summer24/
 
 Research Mentor — CBAI | 2025
-Mentoring Harvard/MIT students in Summer 2025.
+Mentoring Harvard/MIT students in interpretability research.
   Link: https://www.cbai.ai/david-bau-alex-loftus
 
 Strategic Advisor — Krnel.ai | 2025
