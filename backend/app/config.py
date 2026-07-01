@@ -67,6 +67,9 @@ TRANSLATE_MODEL = os.getenv("TRANSLATE_MODEL", "claude-haiku-4-5")
 MAX_TRANSLATE_CHARS = 4000  # input cap — bounds per-call Anthropic spend
 TRANSLATE_RATE = (20, 600)  # at most 20 translations / 600s / client IP
 
+# --- /houses reached-out store -------------------------------------------------------------------
+HOUSES_RATE = (60, 600)  # at most 60 reached-out writes/deletes / 600s / client IP
+
 # --- housekeeping (P4) -------------------------------------------------------------------------
 HOUSEKEEPING_INTERVAL_SECONDS = int(os.getenv("HOUSEKEEPING_INTERVAL_SECONDS", "3600"))
 RATE_LIMIT_RETENTION_SECONDS = 7 * 24 * 3600  # prune rate-limit rows older than a week

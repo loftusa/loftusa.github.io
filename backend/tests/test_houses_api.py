@@ -52,3 +52,30 @@ def test_delete_not_found():
 def test_missing_url_rejected():
     r = client.post("/houses/reached-out", json={"message": "no url"})
     assert r.status_code == 422
+
+
+def test_rejects_non_craigslist_url():
+    for bad in (
+        "https://evil.example.com/listing",
+        "http://sfbay.craigslist.org/apa/123.html",  # not https
+        "https://craigslist.org.evil.com/x",  # suffix spoof
+        "notaurl",
+    ):
+        r = client.post("/houses/reached-out", json={"url": bad})
+        assert r.status_code == 422, bad
+
+
+def test_rejects_oversized_fields():
+    r = client.post(
+        "/houses/reached-out", json={"url": URL, "message": "x" * 4001}
+    )
+    assert r.status_code == 422
+
+
+def test_rate_limited(monkeypatch):
+    from backend.app import config
+
+    monkeypatch.setattr(config, "HOUSES_RATE", (2, 600))
+    assert client.post("/houses/reached-out", json={"url": URL}).status_code == 200
+    assert client.post("/houses/reached-out", json={"url": URL}).status_code == 200
+    assert client.post("/houses/reached-out", json={"url": URL}).status_code == 429
