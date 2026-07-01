@@ -13,6 +13,7 @@ from sqlalchemy.orm import Session
 
 from .. import config
 from ..models import ChatConversation, ChatMessage, RateLimitHit
+from . import spend
 
 
 def prune_rate_limits(
@@ -84,4 +85,9 @@ def run_once(session: Session, now: float | None = None) -> dict:
     """
     pruned = prune_rate_limits(session, now=now)
     evicted = evict_stale_conversations(session)
-    return {"pruned_rate_limits": pruned, "evicted_conversations": evicted}
+    pruned_spend = spend.prune(session, config.SPEND_RETENTION_SECONDS, now=now)
+    return {
+        "pruned_rate_limits": pruned,
+        "evicted_conversations": evicted,
+        "pruned_spend_events": pruned_spend,
+    }

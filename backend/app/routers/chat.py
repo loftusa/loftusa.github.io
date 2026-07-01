@@ -16,7 +16,7 @@ from .. import config
 from ..db import SessionLocal, get_db
 from ..models import ChatLog
 from ..services import conversations as conv
-from ..services import llm, rag
+from ..services import llm, rag, spend
 
 router = APIRouter(tags=["chat"])
 
@@ -45,6 +45,14 @@ def _utcnow_iso() -> str:
 def chat_stream(
     request: ChatRequest, logging: bool = True, db: Session = Depends(get_db)
 ):
+    # Site-wide daily brake, checked before anything is created or the LLM is called: the
+    # per-conversation cap doesn't bound aggregate spend (fresh conversation ids are free).
+    if spend.total_last_24h(db) >= config.DAILY_COST_CEILING_USD:
+        raise HTTPException(
+            status_code=429,
+            detail="Daily chat budget exhausted. Please try again tomorrow.",
+        )
+
     user_id = conv.get_or_create(db, request.user_id)
 
     # reject if this conversation already blew its cost budget (durable across restarts now)
@@ -105,6 +113,7 @@ def chat_stream(
                     + completion_tokens * config.OUTPUT_COST_PER_TOKEN
                 )
                 conv.add_cost(wdb, user_id, turn_cost)
+                spend.record(wdb, turn_cost)  # feeds the site-wide daily ceiling
             conv.append_message(wdb, user_id, "assistant", bot_response)
             cost_now = conv.get_cost(wdb, user_id)
             token_latency_ms = (

@@ -1,6 +1,8 @@
 """Shared FastAPI dependencies / guards."""
 from __future__ import annotations
 
+import secrets
+
 from fastapi import Depends, Header, HTTPException
 from sqlalchemy.orm import Session
 
@@ -18,19 +20,27 @@ def require_bearer(authorization: str | None) -> None:
         raise HTTPException(status_code=500)
     if not authorization or not authorization.startswith("Bearer "):
         raise HTTPException(status_code=401)
-    if authorization.removeprefix("Bearer ").strip() != config.LOG_ACCESS_TOKEN:
+    supplied = authorization.removeprefix("Bearer ").strip()
+    if not secrets.compare_digest(supplied, config.LOG_ACCESS_TOKEN):
         raise HTTPException(status_code=401)
 
 
 def client_ip(request) -> str:
-    return request.client.host if request.client else "unknown"
+    """Real client IP. On Fly the TCP peer is the edge proxy, not the visitor — Fly sets
+    (and overwrites) Fly-Client-IP itself, so unlike X-Forwarded-For a client can't spoof
+    it through the proxy. Socket peer is the local-dev / test fallback."""
+    return request.headers.get("fly-client-ip") or (
+        request.client.host if request.client else "unknown"
+    )
 
 
 def require_internal_key(x_internal_key: str | None = Header(None)) -> None:
     """Gate the S2S internal endpoints (NextAuth -> FastAPI user upsert) on INTERNAL_API_KEY."""
     if config.INTERNAL_API_KEY is None:
         raise HTTPException(status_code=500)
-    if x_internal_key != config.INTERNAL_API_KEY:
+    if x_internal_key is None or not secrets.compare_digest(
+        x_internal_key, config.INTERNAL_API_KEY
+    ):
         raise HTTPException(status_code=401, detail="bad internal key")
 
 

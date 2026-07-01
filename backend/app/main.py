@@ -62,7 +62,9 @@ def create_app() -> FastAPI:
         CORSMiddleware,
         allow_origins=config.CORS_ORIGINS,
         allow_origin_regex=config.CORS_ORIGIN_REGEX,
-        allow_credentials=True,
+        # Bearer-only API: no frontend fetch sends cookies, so never reflect a
+        # credentialed origin (Authorization is still allowed via allow_headers).
+        allow_credentials=False,
         allow_methods=["*"],
         allow_headers=["*"],
     )

@@ -13,11 +13,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    // On first sign-in, S2S-upsert the user into the FastAPI `users` table (gated by
-    // INTERNAL_API_KEY) to get the canonical backend user_id + session_version. Persisted in
-    // the NextAuth JWT so /api/api-token can mint API bearer tokens without re-hitting the DB.
+    // S2S-upsert the user into the FastAPI `users` table (gated by INTERNAL_API_KEY) to get
+    // the canonical backend user_id + session_version, persisted in the NextAuth JWT so
+    // /api/api-token can mint API bearer tokens without re-hitting the DB. The provider
+    // identity is stashed on the token at first sign-in so a failed upsert (backend hiccup
+    // during login) is retried on later jwt callbacks instead of leaving the session
+    // permanently unable to mint API tokens.
     async jwt({ token, account, profile }) {
+      const t = token as unknown as Record<string, unknown>;
       if (account && profile) {
+        t.provider = account.provider;
+        t.providerSub = String((profile as { id?: string | number }).id ?? account.providerAccountId ?? "");
+      }
+      if (!t.backendUserId && token.email && t.providerSub) {
         try {
           const res = await fetch(`${API_BASE}/internal/users/upsert`, {
             method: "POST",
@@ -28,17 +36,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             body: JSON.stringify({
               email: token.email,
               name: token.name,
-              provider: account.provider,
-              provider_sub: String((profile as { id?: string | number }).id ?? account.providerAccountId ?? ""),
+              provider: t.provider,
+              provider_sub: t.providerSub,
             }),
           });
           if (res.ok) {
             const data = await res.json();
-            (token as unknown as Record<string, unknown>).backendUserId = data.user_id;
-            (token as unknown as Record<string, unknown>).sessionVersion = data.session_version;
+            t.backendUserId = data.user_id;
+            t.sessionVersion = data.session_version;
           }
         } catch {
-          // upsert is best-effort — a backend hiccup shouldn't block login
+          // upsert is best-effort — a backend hiccup shouldn't block login; retried next callback
         }
       }
       return token;

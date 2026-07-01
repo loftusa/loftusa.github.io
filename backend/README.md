@@ -8,10 +8,25 @@ history) and its JSONL "database" with a small package on a real SQLite DB.
 
 - **Durable** rate-limits and per-conversation cost caps — they no longer reset to zero on every
   Fly redeploy (they used to live in process memory).
+- A site-wide **daily cost ceiling** (`DAILY_COST_CEILING_USD`, default $20): `spend_events` rows
+  are written per chat turn and summed over a trailing 24h in `/chat` before the LLM call. The
+  per-conversation cap alone doesn't bound aggregate spend (fresh conversation ids are free).
 - A `users` table as the foundation for accounts (P3).
 - The crowd-edit logs stay **event-sourced**: the pure `fold_events` / `fold_aff_events` functions
   in `experiments/coauthorship/` are unchanged; only the event *source* moved from JSONL lines to
   DB rows. `GET …/overlay` is still `fold_events(events)`, byte-for-byte.
+
+## Abuse guards (open endpoints)
+
+- **Real client IP**: `deps.client_ip` prefers the `Fly-Client-IP` header (set — and overwritten —
+  by Fly's edge proxy, so not client-spoofable). Without it, `request.client.host` on Fly is the
+  proxy address and every visitor shares one rate-limit bucket.
+- `/coauthorship|/affiliations /corrections`: `CORRECTION_RATE` per IP + payload size caps.
+- `/translate`: `MAX_TRANSLATE_CHARS` input cap + `TRANSLATE_RATE` per IP (rate-limit keys are
+  scoped `translate:<ip>` so the budgets don't mix).
+- `/chat`: per-conversation cost cap + the daily ceiling above.
+- On Fly (`FLY_APP_NAME` set) the dev-fallback values of `API_JWT_SECRET` / `INTERNAL_API_KEY`
+  are disabled — a missing secret fails closed instead of verifying against a public string.
 
 ## Layout
 
