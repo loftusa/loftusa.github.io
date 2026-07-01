@@ -59,13 +59,13 @@ To support this, all changes to the underlying code appear as a closed issue wit
 │           auto_start/auto_stop enabled for scaling             │
 │                                                              │
 │  ┌────────────────────────────────────────────────────────┐  │
-│  │          FastAPI  (experiments/chat_api.py)             │  │
-│  │                                                        │  │
-│  │  Startup:                                              │  │
-│  │    • Module-level: load_collection() opens ChromaDB,   │  │
-│  │      Cerebras() client init, reads system_prompt.txt   │  │
-│  │      + resume.txt                                      │  │
-│  │    • @app.on_event("startup"): warmup_rag() runs a     │  │
+│  │     FastAPI  (backend/app/ — SQLite on volume)         │  │
+│  │     see backend/README.md for the package layout       │  │
+│  │  Startup (lifespan):                                   │  │
+│  │    • alembic upgrade head (entrypoint), init_db()      │  │
+│  │    • LLM + RAG load lazily (chromadb/Cerebras only on  │  │
+│  │      first chat) — keeps imports + tests light         │  │
+│  │    • warmup() runs a dummy query to pre-warm the       │  │
 │  │      dummy query to pre-warm ONNX embedding model      │  │
 │  │    • ONNX model (all-MiniLM-L6-v2, ~80MB) is          │  │
 │  │      pre-cached in Docker image at build time          │  │

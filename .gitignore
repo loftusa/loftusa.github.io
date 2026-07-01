@@ -28,3 +28,8 @@ experiments/coauthorship/raw/
 
 experiments/coauthorship/affiliations_review.html
 experiments/coauthorship/tests/scratchpad/
+.venv/
+node_modules/
+.next/
+.pytest_cache/
+next-env.d.ts
