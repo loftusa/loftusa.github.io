@@ -1,0 +1,87 @@
+# Keeps alex-loftus.com/jobs fresh (password-gated job board).
+#
+#   full  — pull all ATS boards -> score new/changed roles with the Claude API
+#           (needs ANTHROPIC_API_KEY + JOBS_PAGE_PASSWORD secrets) -> build ->
+#           commit data.enc.js. Runs daily at 7:20am PT, after houses.
+#   sweep — keyless-ish re-pull to flag closed roles (needs only the password
+#           secret, no LLM). Runs every 8h between fulls.
+#
+# Pushing data.enc.js auto-deploys via Vercel; deploy.yml is paths-filtered so
+# these commits do NOT redeploy the Fly backend.
+name: jobs-refresh
+on:
+  schedule:
+    - cron: "20 14 * * *"     # daily full refresh (7:20am PT)
+    - cron: "20 6,22 * * *"   # closed-role sweeps
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "full = pull + LLM score + build; sweep = flag closed only"
+        type: choice
+        options: [sweep, full]
+        default: sweep
+concurrency:
+  group: jobs-refresh
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: determine mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            MODE="${{ inputs.mode }}"
+          elif [ "${{ github.event.schedule }}" = "20 14 * * *" ]; then
+            MODE=full
+          else
+            MODE=sweep
+          fi
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "running in mode: $MODE"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: install deps
+        run: pip install --quiet anthropic cryptography
+
+      - name: full refresh (pull + score + build)
+        if: steps.mode.outputs.mode == 'full'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          JOBS_PAGE_PASSWORD: ${{ secrets.JOBS_PAGE_PASSWORD }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ] || [ -z "$JOBS_PAGE_PASSWORD" ]; then
+            echo "::warning::missing ANTHROPIC_API_KEY or JOBS_PAGE_PASSWORD secret — degrading to sweep."
+            python3 public/jobs/refresh/refresh.py --sweep
+          else
+            python3 public/jobs/refresh/refresh.py --pull
+            python3 public/jobs/refresh/rate.py
+            python3 public/jobs/refresh/refresh.py --build
+          fi
+
+      - name: sweep (flag closed roles)
+        if: steps.mode.outputs.mode == 'sweep'
+        env:
+          JOBS_PAGE_PASSWORD: ${{ secrets.JOBS_PAGE_PASSWORD }}
+        run: python3 public/jobs/refresh/refresh.py --sweep
+
+      - name: commit & push if changed
+        run: |
+          git config user.name "jobs-refresh bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/jobs/data.enc.js
+          if git diff --cached --quiet; then
+            echo "no changes to publish"
+            exit 0
+          fi
+          git commit -m "jobs: refresh board data ($(date -u +%F))"
+          git pull --rebase origin master
+          git push origin HEAD:master

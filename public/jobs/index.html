@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Jobs — private board</title>
+<style>
+:root{
+  --paper:#faf7f1; --card:#fffdf9; --ink:#2b2320; --muted:#8a7f74;
+  --line:#e6dfd4; --accent:#b05c3a;            /* clay — Anthropic */
+  --interp:#5f7d6e; --frontier:#6b7a94;        /* company-group hues */
+  --good:#3e7d5c; --mid:#b58a3c; --bad:#a94f3f;
+  --people:#8c5f8a; --stage:#b05c3a; --social:#b58a3c; --technical:#4e6e8e; --domain:#5f7d6e;
+  --serif:Georgia,'Palatino Linotype',Palatino,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.45}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1280px;margin:0 auto;padding:28px 22px 80px}
+
+/* ---------- password gate ---------- */
+#gate{position:fixed;inset:0;background:var(--paper);z-index:50;display:flex;align-items:center;justify-content:center}
+#gate .box{text-align:center;max-width:340px}
+#gate h1{font-size:22px;font-weight:600;letter-spacing:.01em;margin-bottom:6px}
+#gate p{color:var(--muted);font-size:13.5px;margin-bottom:18px}
+#gate input{width:100%;padding:10px 12px;font:15px var(--mono);border:1px solid var(--line);
+  border-radius:6px;background:var(--card);color:var(--ink);text-align:center;outline:none}
+#gate input:focus{border-color:var(--accent)}
+#gate .err{color:var(--bad);font-size:12.5px;margin-top:10px;min-height:16px;font-family:var(--sans)}
+@keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+#gate .shake{animation:shake .35s}
+
+/* ---------- header ---------- */
+header{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}
+header h1{font-size:24px;font-weight:600}
+header .meta{color:var(--muted);font-size:13px;font-family:var(--sans)}
+header .meta b{color:var(--ink);font-weight:600}
+.newpill{background:var(--accent);color:#fff;border-radius:9px;padding:1px 8px;font:600 11px var(--sans)}
+
+/* ---------- controls ---------- */
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px;font-family:var(--sans)}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:4px 12px;
+  font-size:12.5px;cursor:pointer;color:var(--muted);user-select:none}
+.chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.controls select{border:1px solid var(--line);background:var(--card);border-radius:6px;
+  padding:4px 8px;font:12.5px var(--sans);color:var(--ink)}
+.count{color:var(--muted);font-size:12.5px;margin-left:auto}
+
+/* ---------- leaderboard ---------- */
+.leader{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:26px}
+.leader h2{font-size:13px;font-family:var(--sans);font-weight:600;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.lrow{display:grid;grid-template-columns:26px minmax(180px,340px) 1fr 46px;gap:10px;align-items:center;
+  padding:3px 4px;border-radius:5px;cursor:pointer;font-family:var(--sans)}
+.lrow:hover,.lrow.hi{background:var(--paper)}
+.lrow .rk{color:var(--muted);font:11px var(--mono);text-align:right}
+.lrow .nm{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lrow .nm small{color:var(--muted)}
+.lrow .axis{position:relative;height:14px}
+.lrow .axis .tick{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+.lrow .axis .dot{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;transform:translate(-50%,-50%)}
+.lrow .axis .pdot{position:absolute;top:50%;width:5px;height:5px;border-radius:50%;transform:translate(-50%,-50%);opacity:.45}
+.lrow .fv{font:600 12px var(--mono);text-align:right}
+.leg{color:var(--muted);font:11px var(--sans);margin-top:8px}
+.leg .dot{display:inline-block;width:8px;height:8px;border-radius:50%;vertical-align:middle;margin:0 3px 1px 8px}
+
+/* ---------- cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(292px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 15px;
+  cursor:pointer;position:relative;display:flex;flex-direction:column;gap:7px}
+.card:hover,.card.hi{border-color:var(--accent);box-shadow:0 1px 6px rgba(60,40,20,.08)}
+.card.closed{opacity:.55}
+.card .top{display:flex;align-items:center;gap:8px;font-family:var(--sans)}
+.co{font:600 11px var(--sans);padding:2px 8px;border-radius:9px;color:#fff}
+.co.anthropic{background:var(--accent)} .co.interp{background:var(--interp)} .co.frontier{background:var(--frontier)}
+.newb{font:600 10px var(--sans);color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:1px 6px}
+.closedb{font:600 10px var(--sans);color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:1px 6px}
+.fit{margin-left:auto;font:700 16px var(--mono)}
+.fit.g{color:var(--good)} .fit.m{color:var(--mid)} .fit.b{color:var(--bad)}
+.card h3{font-size:15.5px;font-weight:600;line-height:1.25}
+.card .loc{color:var(--muted);font:12px var(--sans)}
+.card .comp{font:12px var(--mono);color:var(--ink)}
+.bars{display:flex;gap:10px;margin:2px 0}
+.bar{flex:1}
+.bar .lbl{font:9.5px var(--sans);color:var(--muted);text-transform:uppercase;letter-spacing:.04em;text-align:center;margin-bottom:2px}
+.bar .tr{height:5px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar .fl{height:100%;border-radius:3px}
+.card .why{font-size:12.5px;color:var(--ink)}
+.card .gap{font-size:12px;color:var(--muted);font-style:italic}
+.card .foot{display:flex;align-items:center;gap:8px;font-family:var(--sans);margin-top:auto;padding-top:4px}
+.prob{font:11.5px var(--mono);color:var(--muted)}
+.st{font:600 10.5px var(--sans);padding:2px 8px;border-radius:8px;border:1px solid var(--line);color:var(--muted)}
+.st.referral{color:var(--mid);border-color:var(--mid)}
+.st.applied,.st.interview{color:var(--good);border-color:var(--good)}
+.st.offer{background:var(--good);color:#fff;border-color:var(--good)}
+.st.rejected{color:var(--bad);border-color:var(--bad)}
+.due{margin-left:auto;font:10.5px var(--sans);color:var(--accent)}
+
+/* ---------- drawer ---------- */
+#ovl{position:fixed;inset:0;background:rgba(40,30,22,.28);z-index:30;opacity:0;pointer-events:none;transition:opacity .18s}
+#ovl.open{opacity:1;pointer-events:auto}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,94vw);background:var(--card);z-index:40;
+  border-left:1px solid var(--line);transform:translateX(102%);transition:transform .22s ease;
+  display:flex;flex-direction:column}
+#drawer.open{transform:none}
+#drawer .dhead{padding:18px 22px 0}
+#drawer .dhead .top{display:flex;align-items:center;gap:8px;font-family:var(--sans)}
+#drawer .dhead h2{font-size:19px;font-weight:600;margin:8px 0 2px;line-height:1.25}
+#drawer .dhead .sub{color:var(--muted);font:12.5px var(--sans);margin-bottom:10px}
+#drawer .x{margin-left:auto;background:none;border:none;font-size:20px;color:var(--muted);cursor:pointer}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);padding:0 22px;font-family:var(--sans)}
+.tab{border:none;background:none;padding:8px 12px;font:12.5px var(--sans);color:var(--muted);
+  cursor:pointer;border-bottom:2px solid transparent}
+.tab.on{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
+.dbody{overflow-y:auto;padding:18px 22px 40px;flex:1;font-size:14px}
+.dbody h4{font:600 11.5px var(--sans);color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin:16px 0 6px}
+.dbody h4:first-child{margin-top:0}
+.dbody ul{padding-left:18px}
+.dbody li{margin-bottom:7px}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:4px 12px;font:13px var(--sans)}
+.kv .k{color:var(--muted)}
+.statusrow{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+.statusrow .chip.st-on{background:var(--accent);border-color:var(--accent);color:#fff}
+textarea.notes{width:100%;min-height:64px;border:1px solid var(--line);border-radius:6px;background:var(--paper);
+  padding:8px;font:13px var(--sans);color:var(--ink);resize:vertical}
+.calnote{font:12px var(--sans);color:var(--muted);font-style:italic;margin-top:6px}
+
+/* drill */
+.dcard{border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:12px;background:var(--paper)}
+.dcard .q{font-size:14.5px;font-weight:600}
+.dcard .meta{font:11px var(--sans);color:var(--muted);margin-top:4px}
+.dcard .ans{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;font-size:13.5px}
+.dcard .story{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px 10px;margin-top:8px;font-size:12.5px}
+.dcard .story b{font-family:var(--sans);font-size:11.5px}
+.dbtns{display:flex;gap:8px;margin-top:10px}
+.btn{border:1px solid var(--line);background:var(--card);border-radius:6px;padding:5px 14px;
+  font:600 12px var(--sans);cursor:pointer;color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.good{border-color:var(--good);color:var(--good)}
+.btn.again{border-color:var(--bad);color:var(--bad)}
+.drillmeta{font:12px var(--sans);color:var(--muted);margin-bottom:12px}
+
+/* pitch */
+.pitchbox{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:6px;padding:14px 16px;font-size:14.5px;line-height:1.55}
+.timer{display:flex;align-items:center;gap:14px;margin:14px 0}
+.timer .t{font:700 34px var(--mono)}
+.timer .t.low{color:var(--bad)}
+.winston{font-size:13px}
+.winston li{margin-bottom:5px}
+footer{margin-top:36px;color:var(--muted);font:12px var(--sans);display:flex;gap:14px;align-items:center}
+@media (max-width:720px){ .lrow{grid-template-columns:22px minmax(120px,200px) 1fr 40px} }
+</style>
+</head>
+<body>
+
+<div id="gate"><div class="box">
+  <h1>Jobs</h1>
+  <p>Private board. Enter the password.</p>
+  <input id="pw" type="password" autocomplete="current-password" autofocus>
+  <div class="err" id="gerr"></div>
+</div></div>
+
+<div class="wrap" id="app" style="display:none">
+  <header>
+    <h1>Jobs</h1>
+    <span class="meta" id="hmeta"></span>
+    <span class="newpill" id="hnew" style="display:none"></span>
+  </header>
+
+  <div class="controls" id="controls"></div>
+  <div class="leader" id="leader"></div>
+  <div class="grid" id="grid"></div>
+
+  <footer>
+    <span id="fmeta"></span>
+    <button class="btn" id="exportBtn">Export status + drill</button>
+    <label class="btn" style="cursor:pointer">Import<input id="importInp" type="file" accept=".json" style="display:none"></label>
+    <button class="btn" id="lockBtn">Lock</button>
+  </footer>
+</div>
+
+<div id="ovl"></div>
+<aside id="drawer">
+  <div class="dhead" id="dhead"></div>
+  <div class="tabs" id="dtabs"></div>
+  <div class="dbody" id="dbody"></div>
+</aside>
+
+<script src="data.enc.js"></script>
+<script>
+'use strict';
+/* ================= crypto gate ================= */
+const enc = new TextEncoder(), dec = new TextDecoder();
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function decrypt(password){
+  const B = window.JOBS_ENC;
+  const km = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey(
+    {name:'PBKDF2', salt:b64(B.salt), iterations:B.iter, hash:'SHA-256'},
+    km, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(B.iv)}, key, b64(B.ct));
+  return JSON.parse(dec.decode(pt));
+}
+
+let DATA=null, BANK=null;
+const LSPW='jobs_pw_v1', LSST='jobs_status_v1', LSDR='jobs_drill_v1';
+const $=id=>document.getElementById(id);
+
+async function tryUnlock(pw, silent){
+  try{
+    DATA = await decrypt(pw);
+    BANK = DATA.bank || {};
+    localStorage.setItem(LSPW, pw);
+    $('gate').style.display='none';
+    $('app').style.display='';
+    boot();
+  }catch(e){
+    localStorage.removeItem(LSPW);
+    if(!silent){
+      $('gerr').textContent='Wrong password.';
+      const box=document.querySelector('#gate .box');
+      box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake');
+    }
+  }
+}
+$('pw').addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock($('pw').value,false); });
+const saved = localStorage.getItem(LSPW);
+if(saved) tryUnlock(saved, true);
+
+/* ================= state ================= */
+const STATUSES=['watching','referral','applied','interview','offer','rejected'];
+const DIMS=['people','stage','social','technical','domain'];
+const DIMCOLORS={people:'var(--people)',stage:'var(--stage)',social:'var(--social)',technical:'var(--technical)',domain:'var(--domain)'};
+const GROUPLABEL={anthropic:'Anthropic',interp:'Interp orgs',frontier:'Frontier labs'};
+const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
+let STATUS=load(LSST,{}), DRILL=load(LSDR,{});
+const saveStatus=()=>localStorage.setItem(LSST,JSON.stringify(STATUS));
+const saveDrill=()=>localStorage.setItem(LSDR,JSON.stringify(DRILL));
+let F={group:'all', remote:false, status:'all', closed:false, belowbar:false, sort:'fit'};
+let openJob=null, openTab='fit';
+
+const fitCls=f=>f>=7?'g':f>=5.5?'m':'b';
+const today=()=>new Date().toISOString().slice(0,10);
+const stOf=id=>STATUS[id]||{};
+const compFmt=c=>c?('$'+Math.round(c[0]/1000)+'–'+Math.round(c[1]/1000)+'K'):'';
+const INTERVALS=[1,3,7];  // Leitner box -> days until due
+
+function dueCount(job){
+  if(!job.prep) return 0;
+  let n=0;
+  job.prep.questions.forEach((q,i)=>{
+    const c=DRILL[job.id+':'+i];
+    if(!c || c.due<=today()) n++;
+  });
+  return n;
+}
+function visibleJobs(){
+  let js=DATA.jobs.filter(j=>{
+    if(j.hidden && !F.belowbar) return false;
+    if(j.closed && !F.closed) return false;
+    if(F.group!=='all' && j.group!==F.group) return false;
+    if(F.remote && !j.remote) return false;
+    if(F.status!=='all'){
+      const s=stOf(j.id).status;
+      if(F.status==='none' ? !!s : s!==F.status) return false;
+    }
+    return true;
+  });
+  const key={fit:j=>-j.fit, prob:j=>-(j.prob||0),
+             newest:j=>-(j.first_seen||'').localeCompare('9999'),
+             comp:j=>-(j.comp?j.comp[1]:0)}[F.sort];
+  if(F.sort==='newest') js.sort((a,b)=>(b.first_seen||'').localeCompare(a.first_seen||'')||b.fit-a.fit);
+  else js.sort((a,b)=>key(a)-key(b));
+  return js;
+}
+
+/* ================= render ================= */
+function boot(){ renderControls(); renderAll(); }
+function renderAll(){ const js=visibleJobs(); renderHeader(js); renderLeader(js); renderGrid(js); }
+
+function renderHeader(js){
+  const m=DATA.meta;
+  const inflight=DATA.jobs.filter(j=>['referral','applied','interview','offer'].includes(stOf(j.id).status)).length;
+  $('hmeta').innerHTML=`refreshed <b>${m.date}</b> · <b>${m.shown}</b> open roles scored · <b>${inflight}</b> in flight`;
+  if(m.new_today>0){ $('hnew').style.display=''; $('hnew').textContent=m.new_today+' new today'; }
+  $('fmeta').textContent=`fit = ${DIMS.map(d=>Math.round(DATA.meta.fit_weights[d]*100)+'% '+d).join(' + ')} · prob = offer odds w/ referral (Anthropic)`;
+}
+
+function renderControls(){
+  const c=$('controls'); c.innerHTML='';
+  const chip=(lbl,on,fn)=>{const b=document.createElement('button');b.className='chip'+(on?' on':'');b.textContent=lbl;b.onclick=fn;c.appendChild(b);return b};
+  [['all','All'],['anthropic','Anthropic'],['interp','Interp orgs'],['frontier','Frontier labs']]
+    .forEach(([g,l])=>chip(l,F.group===g,()=>{F.group=g;renderControls();renderAll();}));
+  chip('Remote',F.remote,()=>{F.remote=!F.remote;renderControls();renderAll();});
+  chip('Show closed',F.closed,()=>{F.closed=!F.closed;renderControls();renderAll();});
+  chip('Below bar',F.belowbar,()=>{F.belowbar=!F.belowbar;renderControls();renderAll();});
+  const st=document.createElement('select');
+  st.innerHTML='<option value="all">Any status</option><option value="none">Untracked</option>'+
+    STATUSES.map(s=>`<option value="${s}">${s[0].toUpperCase()+s.slice(1)}</option>`).join('');
+  st.value=F.status; st.onchange=()=>{F.status=st.value;renderAll();}; c.appendChild(st);
+  const so=document.createElement('select');
+  so.innerHTML='<option value="fit">Best fit</option><option value="prob">Highest prob</option><option value="newest">Newest</option><option value="comp">Comp ↓</option>';
+  so.value=F.sort; so.onchange=()=>{F.sort=so.value;renderAll();}; c.appendChild(so);
+  const n=document.createElement('span'); n.className='count'; n.id='shownCount'; c.appendChild(n);
+}
+
+function renderLeader(js){
+  const L=$('leader');
+  const top=js.slice(0,25);
+  let h='<h2>Leaderboard — fit 0–10 (small dot = offer probability, ×2 scale)</h2>';
+  top.forEach((j,i)=>{
+    const x=j.fit*10, px=Math.min(100,(j.prob||0)*2);
+    const col=j.group==='anthropic'?'var(--accent)':j.group==='interp'?'var(--interp)':'var(--frontier)';
+    h+=`<div class="lrow" data-id="${j.id}">
+      <span class="rk">${i+1}</span>
+      <span class="nm">${esc(j.title)} <small>· ${esc(j.company)}${j.closed?' · closed':''}</small></span>
+      <span class="axis">${[0,25,50,75,100].map(t=>`<span class="tick" style="left:${t}%"></span>`).join('')}
+        <span class="pdot" style="left:${px}%;background:${col}"></span>
+        <span class="dot" style="left:${x}%;background:${col}"></span></span>
+      <span class="fv">${j.fit.toFixed(1)}</span></div>`;
+  });
+  h+=`<div class="leg">company:<span class="dot" style="background:var(--accent)"></span>Anthropic
+      <span class="dot" style="background:var(--interp)"></span>interp orgs
+      <span class="dot" style="background:var(--frontier)"></span>frontier labs</div>`;
+  L.innerHTML=h;
+  L.querySelectorAll('.lrow').forEach(r=>{
+    r.onclick=()=>openDrawer(r.dataset.id);
+    r.onmouseenter=()=>hi(r.dataset.id,true);
+    r.onmouseleave=()=>hi(r.dataset.id,false);
+  });
+}
+
+function renderGrid(js){
+  const g=$('grid'); g.innerHTML='';
+  $('shownCount').textContent=js.length+' shown';
+  js.forEach(j=>{
+    const s=stOf(j.id), due=dueCount(j);
+    const el=document.createElement('div');
+    el.className='card'+(j.closed?' closed':''); el.dataset.id=j.id;
+    el.innerHTML=`
+      <div class="top"><span class="co ${j.group}">${esc(j.company)}</span>
+        ${isNew(j)?'<span class="newb">NEW</span>':''}
+        ${j.closed?'<span class="closedb">CLOSED</span>':''}
+        <span class="fit ${fitCls(j.fit)}">${j.fit.toFixed(1)}</span></div>
+      <h3>${esc(j.title)}</h3>
+      <div class="loc">${esc((j.locations||[]).slice(0,3).join(' · '))||'—'}${j.remote?' · remote':''}</div>
+      ${j.comp?`<div class="comp">${compFmt(j.comp)}</div>`:''}
+      <div class="bars">${DIMS.map(d=>`
+        <div class="bar"><div class="lbl">${d.slice(0,4)}</div>
+        <div class="tr"><div class="fl" style="width:${j.scores[d]*10}%;background:${DIMCOLORS[d]}"></div></div></div>`).join('')}</div>
+      <div class="why">${esc(j.why)}</div>
+      <div class="gap">${esc(j.gap)}</div>
+      <div class="foot"><span class="prob">${j.prob!=null?j.prob+'% offer':''}</span>
+        ${s.status?`<span class="st ${s.status}">${s.status}</span>`:''}
+        ${due>0?`<span class="due">${due} drill due</span>`:''}</div>`;
+    el.onclick=()=>openDrawer(j.id);
+    el.onmouseenter=()=>hi(j.id,true);
+    el.onmouseleave=()=>hi(j.id,false);
+    g.appendChild(el);
+  });
+}
+function hi(id,on){
+  document.querySelectorAll(`[data-id="${CSS.escape(id)}"]`).forEach(e=>e.classList.toggle('hi',on));
+}
+function isNew(j){ return (DATA.meta.new_ids||[]).includes(j.id); }
+function esc(s){ return String(s??'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+/* ================= drawer ================= */
+function openDrawer(id){
+  openJob=DATA.jobs.find(j=>j.id===id); openTab='fit';
+  $('ovl').classList.add('open'); $('drawer').classList.add('open');
+  renderDrawer();
+}
+function closeDrawer(){ $('ovl').classList.remove('open'); $('drawer').classList.remove('open'); openJob=null; renderAll(); }
+$('ovl').onclick=closeDrawer;
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&openJob) closeDrawer(); });
+
+function renderDrawer(){
+  const j=openJob; if(!j) return;
+  $('dhead').innerHTML=`
+    <div class="top"><span class="co ${j.group}">${esc(j.company)}</span>
+      ${isNew(j)?'<span class="newb">NEW</span>':''}${j.closed?'<span class="closedb">CLOSED</span>':''}
+      <button class="x" id="dx">×</button></div>
+    <h2>${esc(j.title)}</h2>
+    <div class="sub">fit <b>${j.fit.toFixed(1)}</b> · ${j.prob!=null?j.prob+'% offer prob':''} ·
+      <a href="${esc(j.url)}" target="_blank" rel="noopener">JD ↗</a></div>`;
+  $('dx').onclick=closeDrawer;
+  const tabs=[['fit','Fit'],['resume','Resume angle'],['drill','Drill'+(dueCount(j)?` (${dueCount(j)})`:'')],['pitch','Pitch']];
+  $('dtabs').innerHTML=tabs.map(([k,l])=>`<button class="tab${openTab===k?' on':''}" data-t="${k}">${l}</button>`).join('');
+  $('dtabs').querySelectorAll('.tab').forEach(t=>t.onclick=()=>{openTab=t.dataset.t;renderDrawer();});
+  const B=$('dbody');
+  if(openTab==='fit') B.innerHTML=fitTab(j);
+  else if(openTab==='resume') B.innerHTML=resumeTab(j);
+  else if(openTab==='drill') drillTab(j,B);
+  else pitchTab(j,B);
+  if(openTab==='fit') wireFit(j);
+}
+
+function fitTab(j){
+  const s=stOf(j.id);
+  return `
+    <h4>Status</h4>
+    <div class="statusrow">${STATUSES.map(st=>
+      `<button class="chip${s.status===st?' st-on':''}" data-st="${st}">${st}</button>`).join('')}</div>
+    <textarea class="notes" id="noteTa" placeholder="Notes (referral date, contacts, deadlines…)">${esc(s.notes||'')}</textarea>
+    <h4>Why it fits</h4><p>${esc(j.why)}</p>
+    <h4>Biggest gap</h4><p>${esc(j.gap)}</p>
+    <h4>Details</h4>
+    <div class="kv">
+      <span class="k">Locations</span><span>${esc((j.locations||[]).join(' · '))||'—'}${j.remote?' · remote-ok':''}</span>
+      <span class="k">Comp</span><span>${compFmt(j.comp)||'not listed'}</span>
+      <span class="k">Posted</span><span>${esc(j.published||'—')}</span>
+      <span class="k">First seen</span><span>${esc(j.first_seen||'—')}</span>
+      <span class="k">Role-shape</span><span>${DIMS.map(d=>`${d} ${j.scores[d]}`).join(' · ')}</span>
+    </div>
+    <p class="calnote">prob = calibrated offer odds conditional on applying${j.group==='anthropic'?' with the referral':''};
+    even excellent fits rarely exceed ~25–30% at frontier-lab bars.</p>`;
+}
+function wireFit(j){
+  document.querySelectorAll('#dbody [data-st]').forEach(b=>b.onclick=()=>{
+    const cur=stOf(j.id);
+    const st=b.dataset.st===cur.status?null:b.dataset.st;   // toggle off
+    STATUS[j.id]={...cur,status:st||undefined,date:st?today():undefined};
+    if(!st) delete STATUS[j.id].status;
+    saveStatus(); renderDrawer();
+  });
+  const ta=$('noteTa');
+  ta.onchange=()=>{ STATUS[j.id]={...stOf(j.id),notes:ta.value}; saveStatus(); };
+}
+
+function resumeTab(j){
+  if(!j.prep) return '<p class="calnote">No prep block — this role didn\'t clear the fit bar for prep generation.</p>';
+  return `
+    <h4>Lead with (Ultralearning: prep maps straight to what this JD tests)</h4>
+    <ul>${j.prep.resume_angle.map(b=>`<li>${esc(b)}</li>`).join('')}</ul>
+    <h4>Mechanics</h4>
+    <p style="font-size:13px">Canonical CV lives in Overleaf (<span style="font-family:var(--mono)">cv_anthropic_tpm.tex</span> for
+    Anthropic roles). Reorder the career-highlight block to match the bullets above; keep it 2 pages; regenerate
+    cv.pdf/cv.txt afterward.</p>
+    ${BANK.hard_rules?`<h4>Hard rules (never violate on paper or aloud)</h4>
+    <ul style="font-size:13px">${BANK.hard_rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>`:''}`;
+}
+
+/* ---------- drill (retrieval practice, Leitner boxes) ---------- */
+function drillTab(j,B){
+  if(!j.prep){ B.innerHTML='<p class="calnote">No drill deck — role below prep bar.</p>'; return; }
+  const cards=j.prep.questions.map((q,i)=>({...q,cid:j.id+':'+i,i}));
+  const due=cards.filter(c=>{const d=DRILL[c.cid];return !d||d.due<=today();});
+  B.innerHTML=`<div class="drillmeta">${due.length} of ${cards.length} due ·
+    retrieval practice: answer OUT LOUD before revealing. Again = see it again tomorrow; Good = longer interval.</div>
+    <div id="deck"></div>`;
+  const deck=$('deck');
+  const queue=[...due, ...cards.filter(c=>!due.includes(c))];
+  queue.forEach(c=>{
+    const st=DRILL[c.cid], isDue=due.includes(c);
+    const el=document.createElement('div'); el.className='dcard'; el.style.opacity=isDue?1:.55;
+    el.innerHTML=`<div class="q">${esc(c.q)}</div>
+      <div class="meta">${isDue?'due':'next: '+(st?st.due:'')} ${st?'· box '+st.box:''}</div>
+      <div class="hidden-ans" style="display:none">
+        <div class="ans"><b>Angle:</b> ${esc(c.hint)}${storyHtml(c.story)}</div>
+        <div class="dbtns">
+          <button class="btn again">Again</button>
+          <button class="btn good">Good</button>
+        </div></div>
+      <div class="dbtns show-row"><button class="btn primary">Reveal</button></div>`;
+    el.querySelector('.show-row .btn').onclick=e=>{
+      el.querySelector('.hidden-ans').style.display='';
+      el.querySelector('.show-row').style.display='none';
+    };
+    el.querySelector('.again').onclick=()=>grade(c.cid,false);
+    el.querySelector('.good').onclick=()=>grade(c.cid,true);
+    deck.appendChild(el);
+  });
+  function grade(cid,good){
+    const cur=DRILL[cid]||{box:0};
+    const box=good?Math.min(3,cur.box+1):1;
+    const d=new Date(); d.setDate(d.getDate()+(good?INTERVALS[box-1]:1));
+    DRILL[cid]={box,due:d.toISOString().slice(0,10)};
+    saveDrill(); drillTab(j,B);
+  }
+}
+function storyHtml(key){
+  if(!key) return '';
+  const s=(BANK.star||[]).find(x=>x.key===key)||(BANK.hard_qs||[]).find(x=>x.key===key);
+  if(!s) return `<div class="story"><b>${esc(key)}</b></div>`;
+  return `<div class="story"><b>${esc(s.key)} — ${esc(s.title||s.q)}</b><br>${esc(s.gist)}</div>`;
+}
+
+/* ---------- pitch (Winston) + negotiation (Voss/Fisher) ---------- */
+function pitchTab(j,B){
+  if(!j.prep){ B.innerHTML='<p class="calnote">No pitch — role below prep bar.</p>'; return; }
+  B.innerHTML=`
+    <h4>30-second opener for this role</h4>
+    <div class="pitchbox">${esc(j.prep.pitch)}</div>
+    <div class="timer"><span class="t" id="tval">0:30</span>
+      <button class="btn primary" id="tgo">Start — say it out loud</button>
+      <button class="btn" id="treset">Reset</button></div>
+    <h4>Winston checklist</h4>
+    <ul class="winston">
+      <li><b>Promise first</b> — open with what they get from hiring you, not your history.</li>
+      <li><b>One idea, cycled</b> — the ambiguous-goal→shipped-program thesis, restated three ways.</li>
+      <li><b>Verbal punctuation</b> — enumerate ("three things"), signal transitions.</li>
+      <li><b>Concrete evidence</b> — numbers said slowly: 16 people, two campaigns, doubled team.</li>
+      <li><b>Finish with the delivery</b> — end on what you'll do for them; never trail into "…so yeah."</li>
+    </ul>
+    <h4>Negotiation line (Voss / Fisher–Ury)</h4>
+    <p style="font-size:13.5px">${esc(j.prep.negotiation)}</p>
+    ${BANK.negotiation_anchors?`<p class="calnote">BATNA: ${esc(BANK.negotiation_anchors.batna)}</p>`:''}`;
+  let left=30, iv=null;
+  const render=()=>{const t=$('tval');t.textContent='0:'+String(left).padStart(2,'0');t.classList.toggle('low',left<=5);};
+  $('tgo').onclick=()=>{ if(iv) return; iv=setInterval(()=>{left--;render();if(left<=0){clearInterval(iv);iv=null;}},1000); };
+  $('treset').onclick=()=>{ clearInterval(iv); iv=null; left=30; render(); };
+}
+
+/* ---------- export / import / lock ---------- */
+$('exportBtn').onclick=()=>{
+  const blob=new Blob([JSON.stringify({status:STATUS,drill:DRILL},null,1)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='jobs_state_'+today()+'.json'; a.click();
+};
+$('importInp').onchange=e=>{
+  const f=e.target.files[0]; if(!f) return;
+  f.text().then(t=>{ const d=JSON.parse(t);
+    STATUS={...STATUS,...(d.status||{})}; DRILL={...DRILL,...(d.drill||{})};
+    saveStatus(); saveDrill(); renderAll(); });
+};
+$('lockBtn').onclick=()=>{ localStorage.removeItem(LSPW); location.reload(); };
+</script>
+</body>
+</html>
