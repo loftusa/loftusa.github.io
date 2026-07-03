@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>STI risk, honestly</title>
+<style>
+@charset "UTF-8";
+
+/* Import ET Book styles
+   adapted from https://github.com/edwardtufte/et-book/blob/gh-pages/et-book.css */
+
+@font-face {
+    font-family: "et-book";
+    src: url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.eot");
+    src: url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.eot?#iefix") format("embedded-opentype"), url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff") format("woff"), url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.ttf") format("truetype"), url("et-book/et-book-roman-line-figures/et-book-roman-line-figures.svg#etbookromanosf") format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "et-book";
+    src: url("et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.eot");
+    src: url("et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.eot?#iefix") format("embedded-opentype"), url("et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff") format("woff"), url("et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.ttf") format("truetype"), url("et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.svg#etbookromanosf") format("svg");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "et-book";
+    src: url("et-book/et-book-bold-line-figures/et-book-bold-line-figures.eot");
+    src: url("et-book/et-book-bold-line-figures/et-book-bold-line-figures.eot?#iefix") format("embedded-opentype"), url("et-book/et-book-bold-line-figures/et-book-bold-line-figures.woff") format("woff"), url("et-book/et-book-bold-line-figures/et-book-bold-line-figures.ttf") format("truetype"), url("et-book/et-book-bold-line-figures/et-book-bold-line-figures.svg#etbookromanosf") format("svg");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "et-book-roman-old-style";
+    src: url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot");
+    src: url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot?#iefix") format("embedded-opentype"), url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff") format("woff"), url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.ttf") format("truetype"), url("et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.svg#etbookromanosf") format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Tufte CSS styles */
+html {
+    font-size: 15px;
+}
+
+body {
+    width: 87.5%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12.5%;
+    font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+    background-color: #fffff8;
+    color: #111;
+    max-width: 1400px;
+    counter-reset: sidenote-counter;
+}
+
+/* Adds dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #151515;
+        color: #ddd;
+    }
+}
+
+h1 {
+    font-weight: 400;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+    font-size: 3.2rem;
+    line-height: 1;
+}
+
+h2 {
+    font-style: italic;
+    font-weight: 400;
+    margin-top: 2.1rem;
+    margin-bottom: 1.4rem;
+    font-size: 2.2rem;
+    line-height: 1;
+}
+
+h3 {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.7rem;
+    margin-top: 2rem;
+    margin-bottom: 1.4rem;
+    line-height: 1;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    width: 55%;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+p.subtitle {
+    font-style: italic;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    display: block;
+    line-height: 1;
+}
+
+.numeral {
+    font-family: et-book-roman-old-style;
+}
+
+.danger {
+    color: red;
+}
+
+article {
+    padding: 5rem 0rem;
+}
+
+section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+p,
+dl,
+ol,
+ul {
+    font-size: 1.4rem;
+    line-height: 2rem;
+}
+
+p {
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+    padding-right: 0;
+    vertical-align: baseline;
+}
+
+sup {
+    line-height: 0;
+}
+
+/* Chapter Epigraphs */
+div.epigraph {
+    margin: 5em 0;
+}
+
+div.epigraph > blockquote {
+    margin-top: 3em;
+    margin-bottom: 3em;
+}
+
+div.epigraph > blockquote,
+div.epigraph > blockquote > p {
+    font-style: italic;
+}
+
+div.epigraph > blockquote > footer {
+    font-style: normal;
+}
+
+div.epigraph > blockquote > footer > cite {
+    font-style: italic;
+}
+/* end chapter epigraphs styles */
+
+blockquote {
+    font-size: 1.4rem;
+}
+
+blockquote p {
+    width: 55%;
+    margin-right: 40px;
+}
+
+blockquote footer {
+    width: 55%;
+    font-size: 1.1rem;
+    text-align: right;
+}
+
+section > p,
+section > footer,
+section > table {
+    width: 55%;
+}
+
+/* 50 + 5 == 55, to be the same width as paragraph */
+section > dl,
+section > ol,
+section > ul {
+    width: 50%;
+    -webkit-padding-start: 5%;
+}
+
+dt:not(:first-child),
+li:not(:first-child) {
+    margin-top: 0.25rem;
+}
+
+figure {
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    max-width: 55%;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    margin: 0 0 3em 0;
+}
+
+figcaption {
+    float: right;
+    clear: right;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    vertical-align: baseline;
+    position: relative;
+    max-width: 40%;
+}
+
+figure.fullwidth figcaption {
+    margin-right: 24%;
+}
+
+a:link,
+a:visited {
+    color: inherit;
+    text-underline-offset: 0.1em;
+    text-decoration-thickness: 0.05em;
+}
+
+/* Sidenotes, margin notes, figures, captions */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+figure.fullwidth img {
+    width: 100%;
+}
+
+.sidenote,
+.marginnote {
+    float: right;
+    clear: right;
+    margin-right: -60%;
+    width: 50%;
+    margin-top: 0.3rem;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    vertical-align: baseline;
+    position: relative;
+}
+
+.sidenote-number {
+    counter-increment: sidenote-counter;
+}
+
+.sidenote-number:after,
+.sidenote:before {
+    font-family: et-book-roman-old-style;
+    position: relative;
+    vertical-align: baseline;
+}
+
+.sidenote-number:after {
+    content: counter(sidenote-counter);
+    font-size: 1rem;
+    top: -0.5rem;
+    left: 0.1rem;
+}
+
+.sidenote:before {
+    content: counter(sidenote-counter) " ";
+    font-size: 1rem;
+    top: -0.5rem;
+}
+
+blockquote .sidenote,
+blockquote .marginnote {
+    margin-right: -82%;
+    min-width: 59%;
+    text-align: left;
+}
+
+div.fullwidth,
+table.fullwidth {
+    width: 100%;
+}
+
+div.table-wrapper {
+    overflow-x: auto;
+    font-family: "Trebuchet MS", "Gill Sans", "Gill Sans MT", sans-serif;
+}
+
+.sans {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    letter-spacing: .03em;
+}
+
+code, pre > code {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 1.0rem;
+    line-height: 1.42;
+    -webkit-text-size-adjust: 100%; /* Prevent adjustments of font size after orientation changes in iOS. See https://github.com/edwardtufte/tufte-css/issues/81#issuecomment-261953409 */
+}
+
+.sans > code {
+    font-size: 1.2rem;
+}
+
+h1 > code,
+h2 > code,
+h3 > code {
+    font-size: 0.80em;
+}
+
+.marginnote > code,
+.sidenote > code {
+    font-size: 1rem;
+}
+
+pre > code {
+    font-size: 0.9rem;
+    width: 52.5%;
+    margin-left: 2.5%;
+    overflow-x: auto;
+    display: block;
+}
+
+pre.fullwidth > code {
+    width: 90%;
+}
+
+.fullwidth {
+    max-width: 90%;
+    clear:both;
+}
+
+span.newthought {
+    font-variant: small-caps;
+    font-size: 1.2em;
+}
+
+input.margin-toggle {
+    display: none;
+}
+
+label.sidenote-number {
+    display: inline-block;
+    max-height: 2rem; /* should be less than or equal to paragraph line-height */
+}
+
+label.margin-toggle:not(.sidenote-number) {
+    display: none;
+}
+
+.iframe-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
+
+.iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 760px) {
+    body {
+        width: 84%;
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+    hr,
+    section > p,
+    section > footer,
+    section > table {
+        width: 100%;
+    }
+
+    pre > code {
+        width: 97%;
+    }
+
+    section > dl,
+    section > ol,
+    section > ul {
+        width: 90%;
+    }
+
+    figure {
+        max-width: 90%;
+    }
+
+    figcaption,
+    figure.fullwidth figcaption {
+        margin-right: 0%;
+        max-width: none;
+    }
+
+    blockquote {
+        margin-left: 1.5em;
+        margin-right: 0em;
+    }
+
+    blockquote p,
+    blockquote footer {
+        width: 100%;
+    }
+
+    label.margin-toggle:not(.sidenote-number) {
+        display: inline;
+    }
+
+    .sidenote,
+    .marginnote {
+        display: none;
+    }
+
+    .margin-toggle:checked + .sidenote,
+    .margin-toggle:checked + .marginnote {
+        display: block;
+        float: left;
+        left: 1rem;
+        clear: both;
+        width: 95%;
+        margin: 1rem 2.5%;
+        vertical-align: baseline;
+        position: relative;
+    }
+
+    label {
+        cursor: pointer;
+    }
+
+    div.table-wrapper,
+    table {
+        width: 85%;
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+article{padding:2rem 0}
+svg{max-width:100%;height:auto}
+figure.figure{margin:2.2rem 0 1.4rem;max-width:60rem}
+figure.figure svg{display:block;margin:0 auto}
+figure.figure figcaption{float:none;width:auto;max-width:52rem;margin:.5rem 0 0;clear:both;text-align:left}
+table.data{width:100%;max-width:62rem;border-collapse:collapse;font-size:1.02rem;line-height:1.35}
+table.data td,table.data th{padding:.42em .5em;border-bottom:1px solid #e6e6e6;vertical-align:top}
+table.data th{text-align:left;font-weight:600;border-bottom:1.5px solid #333}
+.key{font-size:.92rem;color:#555;font-style:italic}
+.key .sw{font-style:normal}
+table.data.rubric td{vertical-align:top}
+table.data.rubric td:first-child{white-space:nowrap;padding-right:1.2em}
+details.harms{max-width:62rem;border-bottom:1px solid #ececec;padding:.4rem 0}
+details.harms summary{cursor:pointer;font-size:1.06rem;list-style:none}
+details.harms summary::-webkit-details-marker{display:none}
+details.harms summary::before{content:"▸ ";color:#999}
+details.harms[open] summary::before{content:"▾ "}
+table.harmtable{margin:.7rem 0 1.1rem;font-size:.95rem;max-width:62rem}
+table.harmtable td:nth-child(2){white-space:normal;color:#444}
+pre.prompt{white-space:pre-wrap;background:#f4f2ec;border-left:3px solid #b0a999;padding:1rem 1.2rem;margin:.5rem 0 0;font-size:.9rem;line-height:1.55;max-width:60rem;overflow-x:auto;color:#333}
+pre.prompt code{font-family:Menlo,Consolas,monospace}
+</style></head>
+<body>
+<article>
+<h1>STI risk, honestly</h1>
+<p class="subtitle">What the data actually say about eleven infections — how likely a partner is to carry one, how likely it is to transmit, and how bad it really is if you get it. Stigma and moralizing stripped out.</p>
+
+<section>
+<p class="key" style="font-style:normal;margin-bottom:.3rem">Generated end-to-end from a single prompt, reproduced verbatim for transparency:</p>
+<pre class="prompt"><code>alright, I want you to do this instead. I want you to go to the internet and, as empirically as possible, grab data on STI risks for all major STIs. That means i want to know the probability of a random person I sleep with sampled from the population having it and also the probability of transmission if we have unprotected sex, for all STIs. I alo want data on the true risks associated - what STIs have cures and of what kind? what are the actual harms I can expect, what is the prevlaence/effect size of those hrams, and how bad actually is it if I have that thing all things considered? this is a heavily biased topic due to cultural discussion so I really want you to just objectively look at the data and basically ignore surrounding discussion and &quot;what everybody says&quot; so that you can get at the truth. Return to me with tufte-inspired plots that elegantly and cleanly give me this information. Then design a good way of presenting this information at alex-loftus.com/sti</code></pre>
+</section>
+
+<section>
+<p>This looks at two questions for each infection: <em>if I sleep with a random person, how likely are they to have it?</em> (prevalence), and <em>if they do and we don't use protection, how likely is it to pass to me?</em> (transmission). Then the part that gets buried under fear and shame: <em>how bad is it, really, given modern treatment?</em></p>
+<p>The numbers come from CDC surveillance, NHANES, WHO, and peer-reviewed meta-analyses; every figure below was gathered and then independently fact-checked against primary sources. Prevalence is US general-adult point prevalence. Transmission is shown per single act where the literature supports it, and per partnership where it doesn't — the two are labeled and <em>not</em> interchangeable. Where the data genuinely don't exist, it says so rather than inventing a number.</p>
+</section>
+
+<section>
+<h2>What "severity" means here</h2>
+<p>The severity number is a 1–10 judgment of how much harm the infection actually does <em>to you</em>, all things considered, assuming modern US treatment access. On its own the digit is meaningless, so here is what each level means in concrete terms, and which infections land there.</p>
+<table class="data rubric">
+<thead><tr><th>Level</th><th>What it actually means for you</th><th>Which ones</th></tr></thead>
+<tbody>
+<tr><td style='white-space:nowrap'><strong>1–2 · Trivial</strong></td><td>Usually silent. A single cheap dose cures it, or it clears on its own. No lasting damage.</td><td style='color:#555'>Trichomoniasis</td></tr>
+<tr><td style='white-space:nowrap'><strong>3 · Minor</strong></td><td>Curable or self-limiting. The real cost is recurrences, stigma, or complications only if it goes untreated.</td><td style='color:#555'>Chlamydia, HPV, Genital herpes (HSV-2), Oral herpes (HSV-1), Syphilis</td></tr>
+<tr><td style='white-space:nowrap'><strong>4 · Modest</strong></td><td>Curable, but with a real complication risk — rising antibiotic resistance, or pelvic infection and infertility if it is missed.</td><td style='color:#555'>Gonorrhea, M. genitalium</td></tr>
+<tr><td style='white-space:nowrap'><strong>5 · Notable</strong></td><td>A chronic infection that is now curable with a few weeks of pills; dangerous only if left untreated for years.</td><td style='color:#555'>Hepatitis C</td></tr>
+<tr><td style='white-space:nowrap'><strong>6 · Significant</strong></td><td>Lifelong management. Near-normal lifespan when treated, but permanent medication, cost and monitoring — and a serious course if untreated.</td><td style='color:#555'>HIV, Hepatitis B</td></tr>
+<tr><td style='white-space:nowrap'><strong>7–10 · Severe</strong></td><td>Life-shortening or disabling even with treatment.</td><td style='color:#555'><em>none — no common STI, with modern US care, lands here</em></td></tr>
+</tbody>
+</table>
+<p class="key" style="margin-top:.6rem">Two things this bakes in. The score assumes the infection is <em>found and treated</em> — untreated, several of these climb sharply. And hepatitis B and C are genuinely bimodal (trivial for most, serious for the chronic minority), so their single number is a blend.</p>
+</section>
+
+<section>
+<h2>How common × how bad</h2>
+<p>The single most clarifying view. Left-to-right: how likely a random adult partner is to carry it. Bottom-to-top: how much harm it does if you get it, all things considered, with modern US care.</p>
+<figure class="figure">
+<svg viewBox="0 0 780 560" xmlns="http://www.w3.org/2000/svg" font-family="et-book, Palatino, Georgia, serif" role="img" aria-label="Scatterplot of STI prevalence versus severity"><line x1="72" y1="486" x2="706" y2="486" stroke="#000" stroke-width="0.7"/><line x1="72" y1="44" x2="72" y2="486" stroke="#000" stroke-width="0.7"/><line x1="102.4" y1="486" x2="102.4" y2="491" stroke="#000" stroke-width="0.7"/><text x="102.4" y="505" font-size="12" text-anchor="middle" fill="#333">0.2%</text><line x1="199.4" y1="486" x2="199.4" y2="491" stroke="#000" stroke-width="0.7"/><text x="199.4" y="505" font-size="12" text-anchor="middle" fill="#333">0.5%</text><line x1="272.7" y1="486" x2="272.7" y2="491" stroke="#000" stroke-width="0.7"/><text x="272.7" y="505" font-size="12" text-anchor="middle" fill="#333">1%</text><line x1="346.1" y1="486" x2="346.1" y2="491" stroke="#000" stroke-width="0.7"/><text x="346.1" y="505" font-size="12" text-anchor="middle" fill="#333">2%</text><line x1="443.1" y1="486" x2="443.1" y2="491" stroke="#000" stroke-width="0.7"/><text x="443.1" y="505" font-size="12" text-anchor="middle" fill="#333">5%</text><line x1="516.4" y1="486" x2="516.4" y2="491" stroke="#000" stroke-width="0.7"/><text x="516.4" y="505" font-size="12" text-anchor="middle" fill="#333">10%</text><line x1="589.7" y1="486" x2="589.7" y2="491" stroke="#000" stroke-width="0.7"/><text x="589.7" y="505" font-size="12" text-anchor="middle" fill="#333">20%</text><line x1="686.7" y1="486" x2="686.7" y2="491" stroke="#000" stroke-width="0.7"/><text x="686.7" y="505" font-size="12" text-anchor="middle" fill="#333">50%</text><line x1="67" y1="486.0" x2="72" y2="486.0" stroke="#000" stroke-width="0.7"/><text x="63" y="490.0" font-size="12" text-anchor="end" fill="#333">1</text><line x1="67" y1="412.3" x2="72" y2="412.3" stroke="#000" stroke-width="0.7"/><text x="63" y="416.3" font-size="12" text-anchor="end" fill="#333">2</text><line x1="67" y1="338.7" x2="72" y2="338.7" stroke="#000" stroke-width="0.7"/><text x="63" y="342.7" font-size="12" text-anchor="end" fill="#333">3</text><line x1="67" y1="265.0" x2="72" y2="265.0" stroke="#000" stroke-width="0.7"/><text x="63" y="269.0" font-size="12" text-anchor="end" fill="#333">4</text><line x1="67" y1="191.3" x2="72" y2="191.3" stroke="#000" stroke-width="0.7"/><text x="63" y="195.3" font-size="12" text-anchor="end" fill="#333">5</text><line x1="67" y1="117.7" x2="72" y2="117.7" stroke="#000" stroke-width="0.7"/><text x="63" y="121.7" font-size="12" text-anchor="end" fill="#333">6</text><line x1="67" y1="44.0" x2="72" y2="44.0" stroke="#000" stroke-width="0.7"/><text x="63" y="48.0" font-size="12" text-anchor="end" fill="#333">7</text><text x="389" y="526" font-size="13.5" text-anchor="middle" fill="#111">Chance a random US adult partner already has it  (prevalence, log scale)</text><text x="22" y="265" font-size="13.5" text-anchor="middle" fill="#111" transform="rotate(-90 22 265)">How bad if you get it  (1 = trivial, 10 = severe)</text><text x="706" y="51" font-size="11.5" text-anchor="end" fill="#b00" opacity="0.75" font-style="italic">given modern US treatment, nothing common lands up here</text><circle cx="190.6" cy="117.7" r="6" fill="#33404d" stroke="#33404d" stroke-width="1.6"/><text x="190.6" y="104.7" font-size="13" text-anchor="middle" fill="#111">HIV</text><circle cx="98.1" cy="265.0" r="6" fill="#fff" stroke="#33404d" stroke-width="1.6"/><text x="88.1" y="260.0" font-size="13" text-anchor="end" fill="#111">Gonorrhea</text><circle cx="339.5" cy="338.7" r="6" fill="#fff" stroke="#33404d" stroke-width="1.6"/><text x="349.5" y="343.7" font-size="13" text-anchor="start" fill="#111">Chlamydia</text><circle cx="669.5" cy="338.7" r="9.2" fill="none" stroke="#2e7d32" stroke-width="1.4"/><circle cx="669.5" cy="338.7" r="6" fill="#33404d" stroke="#33404d" stroke-width="1.6"/><text x="669.5" y="324.7" font-size="13" text-anchor="middle" fill="#111">HPV</text><circle cx="534.8" cy="338.7" r="6" fill="#33404d" stroke="#33404d" stroke-width="1.6"/><text x="534.8" y="324.7" font-size="13" text-anchor="middle" fill="#111">Genital herpes (HSV-2)</text><circle cx="681.9" cy="338.7" r="6" fill="#33404d" stroke="#33404d" stroke-width="1.6"/><text x="681.9" y="360.7" font-size="13" text-anchor="middle" fill="#111">Oral herpes (HSV-1)</text><circle cx="236.5" cy="338.7" r="6" fill="#fff" stroke="#33404d" stroke-width="1.6"/><text x="226.5" y="342.7" font-size="13" text-anchor="end" fill="#111">Syphilis</text><circle cx="292.0" cy="375.5" r="6" fill="#fff" stroke="#33404d" stroke-width="1.6"/><text x="292.0" y="396.5" font-size="13" text-anchor="middle" fill="#111">Trichomoniasis</text><circle cx="170.4" cy="117.7" r="9.2" fill="none" stroke="#2e7d32" stroke-width="1.4"/><circle cx="170.4" cy="117.7" r="6" fill="#33404d" stroke="#33404d" stroke-width="1.6"/><text x="170.4" y="138.7" font-size="13" text-anchor="middle" fill="#111">Hepatitis B</text><circle cx="272.7" cy="191.3" r="6" fill="#fff" stroke="#33404d" stroke-width="1.6"/><text x="282.7" y="183.3" font-size="13" text-anchor="start" fill="#111">Hepatitis C</text><circle cx="328.9" cy="265.0" r="6" fill="#fff" stroke="#33404d" stroke-width="1.6"/><text x="338.9" y="257.0" font-size="13" text-anchor="start" fill="#111">M. genitalium</text></svg>
+<figcaption class="key">
+<span class="sw">●</span> managed for life &nbsp;·&nbsp; <span class="sw">○</span> curable &nbsp;·&nbsp; <span class="sw" style="color:#2e7d32">◎</span> vaccine exists. &nbsp;
+The two most stigmatized infections — oral and genital herpes, and HPV — sit at the <em>bottom right</em>: extremely common, medically mild. The genuinely serious ones — HIV, hepatitis B — sit at the <em>upper left</em>: rare. Nothing common, treated, reaches the top of the scale.
+</figcaption>
+</figure>
+</section>
+
+<section>
+<h2>Actual risk per unprotected act</h2>
+<p>Prevalence × per-act transmission = your real chance of acquiring it from one unprotected act with a <em>random</em> partner (most of whom don't have it). Only the five infections with defensible per-act data appear here.</p>
+<figure class="figure">
+<svg viewBox="0 0 780 300" xmlns="http://www.w3.org/2000/svg" font-family="et-book, Palatino, Georgia, serif" role="img" aria-label="Expected infections per 1000 unprotected acts"><line x1="150" y1="236" x2="690" y2="236" stroke="#000" stroke-width="0.7"/><line x1="150.0" y1="40" x2="150.0" y2="236" stroke="#ccc" stroke-width="0.6"/><text x="150.0" y="254" font-size="12" text-anchor="middle" fill="#333">0.001</text><line x1="263.0" y1="40" x2="263.0" y2="236" stroke="#ccc" stroke-width="0.6"/><text x="263.0" y="254" font-size="12" text-anchor="middle" fill="#333">0.01</text><line x1="376.0" y1="40" x2="376.0" y2="236" stroke="#ccc" stroke-width="0.6"/><text x="376.0" y="254" font-size="12" text-anchor="middle" fill="#333">0.1</text><line x1="489.0" y1="40" x2="489.0" y2="236" stroke="#ccc" stroke-width="0.6"/><text x="489.0" y="254" font-size="12" text-anchor="middle" fill="#333">1</text><line x1="602.1" y1="40" x2="602.1" y2="236" stroke="#ccc" stroke-width="0.6"/><text x="602.1" y="254" font-size="12" text-anchor="middle" fill="#333">10</text><line x1="150" y1="59.6" x2="662.1" y2="59.6" stroke="#e2e2e2" stroke-width="1"/><circle cx="662.1" cy="59.6" r="5.5" fill="#33404d"/><text x="140" y="63.6" font-size="13" text-anchor="end" fill="#111">HPV*</text><text x="672.1" y="63.6" font-size="12" text-anchor="start" fill="#555">34</text><line x1="150" y1="98.8" x2="442.1" y2="98.8" stroke="#e2e2e2" stroke-width="1"/><circle cx="442.1" cy="98.8" r="5.5" fill="#33404d"/><text x="140" y="102.8" font-size="13" text-anchor="end" fill="#111">Gonorrhea</text><text x="452.1" y="102.8" font-size="12" text-anchor="start" fill="#555">0.38</text><line x1="150" y1="138.0" x2="441.0" y2="138.0" stroke="#e2e2e2" stroke-width="1"/><circle cx="441.0" cy="138.0" r="5.5" fill="#33404d"/><text x="140" y="142.0" font-size="13" text-anchor="end" fill="#111">Chlamydia</text><text x="451.0" y="142.0" font-size="12" text-anchor="start" fill="#555">0.38</text><line x1="150" y1="177.2" x2="305.6" y2="177.2" stroke="#e2e2e2" stroke-width="1"/><circle cx="305.6" cy="177.2" r="5.5" fill="#33404d"/><text x="140" y="181.2" font-size="13" text-anchor="end" fill="#111">Genital herpes (HSV-2)</text><text x="315.6" y="181.2" font-size="12" text-anchor="start" fill="#555">0.024</text><line x1="150" y1="216.4" x2="179.9" y2="216.4" stroke="#e2e2e2" stroke-width="1"/><circle cx="179.9" cy="216.4" r="5.5" fill="#33404d"/><text x="140" y="220.4" font-size="13" text-anchor="end" fill="#111">HIV</text><text x="189.9" y="220.4" font-size="12" text-anchor="start" fill="#555">0.0018</text><text x="420" y="274" font-size="13.5" text-anchor="middle" fill="#111">Expected infections per 1,000 unprotected acts with an infected partner  (log scale)</text></svg>
+<figcaption class="key">Per 1,000 acts. HIV is the extreme case: about <strong>1 in 540,000</strong> per heterosexual act — and effectively zero if the partner is on treatment (U=U) or you're on PrEP. <span>*HPV mixes bases (any-type prevalence × high-risk-strain transmission), so treat it as an order-of-magnitude ceiling.</span> Herpes, syphilis, trich, hepatitis and M. genitalium lack per-act data and are omitted here — see the table.</figcaption>
+</figure>
+</section>
+
+<section>
+<h2>If you're a man who has sex with men</h2>
+<p>The general-population numbers understate risk substantially for MSM, for two compounding reasons: prevalence is higher — sometimes far higher — and receptive anal intercourse is the single highest-efficiency sexual route for HIV, roughly 12–18× the per-act risk of receptive vaginal sex. The two effects multiply.</p>
+<figure class="figure">
+<svg viewBox="0 0 780 470" xmlns="http://www.w3.org/2000/svg" font-family="et-book, Palatino, Georgia, serif" role="img" aria-label="General versus MSM prevalence"><line x1="178" y1="404" x2="660" y2="404" stroke="#000" stroke-width="0.7"/><line x1="200.1" y1="44" x2="200.1" y2="404" stroke="#eee" stroke-width="0.6"/><text x="200.1" y="422" font-size="12" text-anchor="middle" fill="#333">0.2%</text><line x1="270.4" y1="44" x2="270.4" y2="404" stroke="#eee" stroke-width="0.6"/><text x="270.4" y="422" font-size="12" text-anchor="middle" fill="#333">0.5%</text><line x1="323.6" y1="44" x2="323.6" y2="404" stroke="#eee" stroke-width="0.6"/><text x="323.6" y="422" font-size="12" text-anchor="middle" fill="#333">1%</text><line x1="376.8" y1="44" x2="376.8" y2="404" stroke="#eee" stroke-width="0.6"/><text x="376.8" y="422" font-size="12" text-anchor="middle" fill="#333">2%</text><line x1="447.2" y1="44" x2="447.2" y2="404" stroke="#eee" stroke-width="0.6"/><text x="447.2" y="422" font-size="12" text-anchor="middle" fill="#333">5%</text><line x1="500.4" y1="44" x2="500.4" y2="404" stroke="#eee" stroke-width="0.6"/><text x="500.4" y="422" font-size="12" text-anchor="middle" fill="#333">10%</text><line x1="553.6" y1="44" x2="553.6" y2="404" stroke="#eee" stroke-width="0.6"/><text x="553.6" y="422" font-size="12" text-anchor="middle" fill="#333">20%</text><line x1="623.9" y1="44" x2="623.9" y2="404" stroke="#eee" stroke-width="0.6"/><text x="623.9" y="422" font-size="12" text-anchor="middle" fill="#333">50%</text><line x1="611.4" y1="64.0" x2="634.0" y2="64.0" stroke="#c4b8b8" stroke-width="1.8"/><circle cx="611.4" cy="64.0" r="5" fill="#fff" stroke="#8a8a8a" stroke-width="1.5"/><circle cx="634.0" cy="64.0" r="5.5" fill="#7a2b2b"/><text x="166" y="68.0" font-size="13" text-anchor="end" fill="#111">HPV</text><text x="643.0" y="68.0" font-size="11.5" text-anchor="start" fill="#7a2b2b">42.5→57%</text><line x1="620.5" y1="104.0" x2="632.2" y2="104.0" stroke="#c4b8b8" stroke-width="1.8"/><circle cx="620.5" cy="104.0" r="5" fill="#fff" stroke="#8a8a8a" stroke-width="1.5"/><circle cx="632.2" cy="104.0" r="5.5" fill="#7a2b2b"/><text x="166" y="108.0" font-size="13" text-anchor="end" fill="#111">Oral herpes (HSV-1)</text><text x="641.2" y="108.0" font-size="11.5" text-anchor="start" fill="#7a2b2b">47.8→55.7%</text><line x1="513.7" y1="144.0" x2="547.2" y2="144.0" stroke="#c4b8b8" stroke-width="1.8"/><circle cx="513.7" cy="144.0" r="5" fill="#fff" stroke="#8a8a8a" stroke-width="1.5"/><circle cx="547.2" cy="144.0" r="5.5" fill="#7a2b2b"/><text x="166" y="148.0" font-size="13" text-anchor="end" fill="#111">Genital herpes (HSV-2)</text><text x="556.2" y="148.0" font-size="11.5" text-anchor="start" fill="#7a2b2b">11.9→18.4%</text><line x1="264.0" y1="184.0" x2="528.9" y2="184.0" stroke="#c4b8b8" stroke-width="1.8"/><circle cx="264.0" cy="184.0" r="5" fill="#fff" stroke="#8a8a8a" stroke-width="1.5"/><circle cx="528.9" cy="184.0" r="5.5" fill="#7a2b2b"/><text x="166" y="188.0" font-size="13" text-anchor="end" fill="#111">HIV</text><text x="537.9" y="188.0" font-size="11.5" text-anchor="start" fill="#7a2b2b">0.46→14.5%</text><line x1="297.3" y1="224.0" x2="480.7" y2="224.0" stroke="#c4b8b8" stroke-width="1.8"/><circle cx="297.3" cy="224.0" r="5" fill="#fff" stroke="#8a8a8a" stroke-width="1.5"/><circle cx="480.7" cy="224.0" r="5.5" fill="#7a2b2b"/><text x="166" y="228.0" font-size="13" text-anchor="end" fill="#111">Syphilis</text><text x="489.7" y="228.0" font-size="11.5" text-anchor="start" fill="#7a2b2b">0.71→7.74%</text><line x1="372.1" y1="264.0" x2="476.2" y2="264.0" stroke="#c4b8b8" stroke-width="1.8"/><circle cx="372.1" cy="264.0" r="5" fill="#fff" stroke="#8a8a8a" stroke-width="1.5"/><circle cx="476.2" cy="264.0" r="5.5" fill="#7a2b2b"/><text x="166" y="268.0" font-size="13" text-anchor="end" fill="#111">Chlamydia</text><text x="485.2" y="268.0" font-size="11.5" text-anchor="start" fill="#7a2b2b">1.88→7.3%</text><line x1="196.9" y1="304.0" x2="475.2" y2="304.0" stroke="#c4b8b8" stroke-width="1.8"/><circle cx="196.9" cy="304.0" r="5" fill="#fff" stroke="#8a8a8a" stroke-width="1.5"/><circle cx="475.2" cy="304.0" r="5.5" fill="#7a2b2b"/><text x="166" y="308.0" font-size="13" text-anchor="end" fill="#111">Gonorrhea</text><text x="484.2" y="308.0" font-size="11.5" text-anchor="start" fill="#7a2b2b">0.192→7.2%</text><line x1="364.4" y1="344.0" x2="424.1" y2="344.0" stroke="#c4b8b8" stroke-width="1.8"/><circle cx="364.4" cy="344.0" r="5" fill="#fff" stroke="#8a8a8a" stroke-width="1.5"/><circle cx="424.1" cy="344.0" r="5.5" fill="#7a2b2b"/><text x="166" y="348.0" font-size="13" text-anchor="end" fill="#111">M. genitalium</text><text x="433.1" y="348.0" font-size="11.5" text-anchor="start" fill="#7a2b2b">1.7→3.7%</text><line x1="323.6" y1="384.0" x2="337.6" y2="384.0" stroke="#c4b8b8" stroke-width="1.8"/><circle cx="323.6" cy="384.0" r="5" fill="#fff" stroke="#8a8a8a" stroke-width="1.5"/><circle cx="337.6" cy="384.0" r="5.5" fill="#7a2b2b"/><text x="166" y="388.0" font-size="13" text-anchor="end" fill="#111">Hepatitis C</text><text x="346.6" y="388.0" font-size="11.5" text-anchor="start" fill="#7a2b2b">1→1.2%</text><text x="419" y="442" font-size="13.5" text-anchor="middle" fill="#111">Prevalence: general US adults (○) vs men who have sex with men (●), log scale</text></svg>
+<figcaption class="key">Every infection with MSM-specific data shifts right (higher prevalence). HIV moves the most: from ~0.5% of general adults to ~14.5% of MSM. Syphilis and gonorrhea are also heavily concentrated. Trichomoniasis and hepatitis B lacked reliable MSM-specific prevalence and are omitted.</figcaption>
+</figure>
+<figure class="figure">
+<svg viewBox="0 0 780 260" xmlns="http://www.w3.org/2000/svg" font-family="et-book, Palatino, Georgia, serif" role="img" aria-label="MSM receptive anal per-act risk"><line x1="150" y1="196" x2="690" y2="196" stroke="#000" stroke-width="0.7"/><line x1="150.0" y1="38" x2="150.0" y2="196" stroke="#ccc" stroke-width="0.6"/><text x="150.0" y="214" font-size="12" text-anchor="middle" fill="#333">0.001</text><line x1="256.3" y1="38" x2="256.3" y2="196" stroke="#ccc" stroke-width="0.6"/><text x="256.3" y="214" font-size="12" text-anchor="middle" fill="#333">0.01</text><line x1="362.6" y1="38" x2="362.6" y2="196" stroke="#ccc" stroke-width="0.6"/><text x="362.6" y="214" font-size="12" text-anchor="middle" fill="#333">0.1</text><line x1="468.9" y1="38" x2="468.9" y2="196" stroke="#ccc" stroke-width="0.6"/><text x="468.9" y="214" font-size="12" text-anchor="middle" fill="#333">1</text><line x1="575.3" y1="38" x2="575.3" y2="196" stroke="#ccc" stroke-width="0.6"/><text x="575.3" y="214" font-size="12" text-anchor="middle" fill="#333">10</text><line x1="681.6" y1="38" x2="681.6" y2="196" stroke="#ccc" stroke-width="0.6"/><text x="681.6" y="214" font-size="12" text-anchor="middle" fill="#333">100</text><line x1="150" y1="57.8" x2="658.4" y2="57.8" stroke="#e2e2e2" stroke-width="1"/><circle cx="658.4" cy="57.8" r="5.5" fill="#7a2b2b"/><text x="140" y="61.8" font-size="13" text-anchor="end" fill="#111">Gonorrhea</text><text x="668.4" y="61.8" font-size="12" text-anchor="start" fill="#555">60</text><line x1="150" y1="97.2" x2="535.6" y2="97.2" stroke="#e2e2e2" stroke-width="1"/><circle cx="535.6" cy="97.2" r="5.5" fill="#7a2b2b"/><text x="140" y="101.2" font-size="13" text-anchor="end" fill="#111">Chlamydia</text><text x="545.6" y="101.2" font-size="12" text-anchor="start" fill="#555">4</text><line x1="150" y1="136.8" x2="501.0" y2="136.8" stroke="#e2e2e2" stroke-width="1"/><circle cx="501.0" cy="136.8" r="5.5" fill="#7a2b2b"/><text x="140" y="140.8" font-size="13" text-anchor="end" fill="#111">HIV</text><text x="511.0" y="140.8" font-size="12" text-anchor="start" fill="#555">2</text><line x1="150" y1="176.2" x2="472.7" y2="176.2" stroke="#e2e2e2" stroke-width="1"/><circle cx="472.7" cy="176.2" r="5.5" fill="#7a2b2b"/><text x="140" y="180.2" font-size="13" text-anchor="end" fill="#111">Syphilis</text><text x="482.7" y="180.2" font-size="12" text-anchor="start" fill="#555">1</text><text x="420" y="234" font-size="13.5" text-anchor="middle" fill="#111">Expected infections per 1,000 unprotected receptive anal acts with a random MSM partner (log scale)</text></svg>
+<figcaption class="key">MSM prevalence combined with the receptive-anal per-act rate. HIV per act jumps from about 1 in 540,000 (heterosexual, female→male) to roughly <strong>1 in 500</strong> — a ~1,000× increase — <em>before</em> accounting for PrEP, treatment-as-prevention (U=U), or condoms, each of which cuts it sharply. Gonorrhea is the most transmissible of this group per act.</figcaption>
+</figure>
+<p class="key" style="font-style:normal">Also elevated in MSM but not plotted: <strong>hepatitis C</strong> (negligible heterosexually, but meaningfully transmitted among HIV-positive MSM through rectal exposure) and <strong>anal HPV</strong> (near-universal in HIV-positive MSM, driving anal-cancer risk that is uncommon in the general population). The severity picture is otherwise the same as above — what changes for MSM is the <em>likelihood</em> of acquiring, not how bad each infection is once you have it.</p>
+</section>
+
+<section>
+<h2>The whole picture</h2>
+<table class="data">
+<thead><tr><th>Infection</th><th style="text-align:right">Prevalence</th><th>Transmission (unprotected)</th><th style="text-align:center">Severity</th><th>Cure &amp; treatment</th></tr></thead>
+<tbody>
+<tr><td style='text-align:left'><strong>HIV</strong></td><td style='text-align:right'>0.46%</td><td style='text-align:left'>0.04% per act (female→male); 1.4% receptive anal. ~0 if partner is treated (U=U); PrEP cuts risk ~99%</td><td style='text-align:center'>6</td><td style='text-align:left'>No cure — one daily pill, near-normal lifespan</td></tr>
+<tr><td style='text-align:left'><strong>Gonorrhea</strong></td><td style='text-align:right'>0.19%</td><td style='text-align:left'>~20% per act (female→male); ~50% (male→female)</td><td style='text-align:center'>4</td><td style='text-align:left'>Curable — single ceftriaxone shot (resistance rising)</td></tr>
+<tr><td style='text-align:left'><strong>Chlamydia</strong></td><td style='text-align:right'>1.88%</td><td style='text-align:left'>~2% per act; ~35% per partnership (male→female)</td><td style='text-align:center'>3</td><td style='text-align:left'>Curable — 7-day doxycycline</td></tr>
+<tr><td style='text-align:left'><strong>HPV</strong></td><td style='text-align:right'>42.50%</td><td style='text-align:left'>~7–9% per act for high-risk strains; skin-to-skin, so condoms only partly protect</td><td style='text-align:center'>3</td><td style='text-align:left'>No drug cure — ~90% clears itself in 2 yrs; vaccine prevents the dangerous strains</td></tr>
+<tr><td style='text-align:left'><strong>Genital herpes (HSV-2)</strong></td><td style='text-align:right'>11.90%</td><td style='text-align:left'>~0.02% per act (female→male); ~3.6% per 8-month partnership if untreated</td><td style='text-align:center'>3</td><td style='text-align:left'>No cure — episodic/suppressive antivirals, usually mild</td></tr>
+<tr><td style='text-align:left'><strong>Oral herpes (HSV-1)</strong></td><td style='text-align:right'>47.80%</td><td style='text-align:left'>Per-act rate not established; spreads mostly oral→genital. ~48% of adults already carry it</td><td style='text-align:center'>3</td><td style='text-align:left'>No cure — cold sores, mostly trivial</td></tr>
+<tr><td style='text-align:left'><strong>Syphilis</strong></td><td style='text-align:right'>0.71%</td><td style='text-align:left'>Per-act ~1% (oral/anal data); ~33% per partnership</td><td style='text-align:center'>3</td><td style='text-align:left'>Curable — a penicillin injection</td></tr>
+<tr><td style='text-align:left'><strong>Trichomoniasis</strong></td><td style='text-align:right'>1.20%</td><td style='text-align:left'>Per-act rate not established; 14–75% of male partners over a partnership</td><td style='text-align:center'>2</td><td style='text-align:left'>Curable — single metronidazole dose</td></tr>
+<tr><td style='text-align:left'><strong>Hepatitis B</strong></td><td style='text-align:right'>0.38%</td><td style='text-align:left'>Per-act rate not established but transmission is efficient; the vaccine removes the risk entirely</td><td style='text-align:center'>6</td><td style='text-align:left'>No cure once chronic — but adults clear ~90–95%; vaccine fully prevents</td></tr>
+<tr><td style='text-align:left'><strong>Hepatitis C</strong></td><td style='text-align:right'>1.00%</td><td style='text-align:left'>Sexual transmission is inefficient — negligible for heterosexual sex; higher among HIV+ MSM</td><td style='text-align:center'>5</td><td style='text-align:left'>Curable — 8–12 weeks of pills (&gt;95% cure)</td></tr>
+<tr><td style='text-align:left'><strong>M. genitalium</strong></td><td style='text-align:right'>1.70%</td><td style='text-align:left'>Per-act rate not established; ~40–50% partner concordance</td><td style='text-align:center'>4</td><td style='text-align:left'>Curable, but resistance narrows the options</td></tr>
+</tbody>
+</table>
+<p class="key" style="margin-top:.6rem">Severity is 1–10, all-things-considered given modern US treatment access. Hepatitis B and C are bimodal — trivial for most, serious for the chronic/untreated minority — and their single score reflects that blend.</p>
+</section>
+
+<section>
+<h2>How bad is each, really</h2>
+<p><strong>HIV</strong> — Feared as a death sentence. Treated, lifespan is near-normal and it becomes untransmittable. <span style='color:#555'>Without treatment, fatal immune collapse; on ART, a managed chronic illness.</span></p>
+<p><strong>Gonorrhea</strong> — Still curable in one visit — the genuine worry is escalating antibiotic resistance, not the infection itself. <span style='color:#555'>PID/infertility if untreated; drug-resistant strains are emerging.</span></p>
+<p><strong>Chlamydia</strong> — Common and fully curable; the danger is going undetected — a burden that falls mostly on women. <span style='color:#555'>Usually silent; untreated it can cause PID and infertility in women.</span></p>
+<p><strong>HPV</strong> — Ubiquitous and usually self-clearing; the real (cancer) risk is confined to a few strains the vaccine covers. <span style='color:#555'>A few strains cause cervical/throat/anal cancer — rare, and screen/vaccine-preventable.</span></p>
+<p><strong>Genital herpes (HSV-2)</strong> — Among the most stigmatized STIs, yet medically minor for nearly everyone who has it. <span style='color:#555'>Recurrent genital sores; for most, infrequent and mild.</span></p>
+<p><strong>Oral herpes (HSV-1)</strong> — So common it&#x27;s nearly universal by old age — effectively a background fact of being human. <span style='color:#555'>Cold sores; occasionally causes genital herpes.</span></p>
+<p><strong>Syphilis</strong> — Trivial to cure early, dangerous only if missed — and US cases are rising sharply, so it&#x27;s back on the table. <span style='color:#555'>Untreated → neurological/cardiac tertiary disease; congenital syphilis in newborns.</span></p>
+<p><strong>Trichomoniasis</strong> — The most common curable STI worldwide, and among the most medically trivial. <span style='color:#555'>Often asymptomatic; discharge and irritation when symptomatic.</span></p>
+<p><strong>Hepatitis B</strong> — Vaccine-preventable and cleared by most adults — the chronic minority carries essentially all the harm. <span style='color:#555'>The 5–10% of adults who stay chronic face cirrhosis / liver cancer.</span></p>
+<p><strong>Hepatitis C</strong> — Barely a sexually transmitted infection heterosexually — and now curable in a couple of months. <span style='color:#555'>Chronic infection → cirrhosis / liver cancer if left untreated for years.</span></p>
+<p><strong>M. genitalium</strong> — Only recently recognized; usually mild, but increasingly hard to treat as resistance spreads. <span style='color:#555'>Urethritis / cervicitis; macrolide resistance is now common.</span></p>
+<h3 style="margin-top:2.2rem">Every harm, in detail</h3>
+<p class="key">The full set of documented sequelae behind each severity score — click any infection to expand. Frequencies and affected groups as reported in the underlying sources.</p>
+<details class='harms'><summary><strong>HIV</strong> <span style='color:#777'>· severity 6 · No cure — one daily pill, near-normal lifespan</span></summary><table class='data harmtable'><thead><tr><th>Harm</th><th>How often</th><th>Severity</th><th>Who it hits</th></tr></thead><tbody><tr><td>AIDS-defining opportunistic infections (Pneumocystis jirovecii pneumonia, CMV retinitis, cryptococcal meningitis, cerebral toxoplasmosis, Mycobacterium avium complex, esophageal candidiasis)</td><td>~35/1,000 person-years in ART era cohorts (down from ~295/1,000 PY pre-ART, 1987–90). In US 2023, 21.6% of newly diagnosed HIV cases were already at AIDS stage at time of diagnosis (CDC NHSS).</td><td>Life-threatening without prompt treatment; most respond to targeted therapy plus ART-mediated immune reconstitution</td><td>HIV-positive adults with untreated HIV or late diagnosis (CD4 &lt;200 cells/µL); disproportionately affects those without access to care</td></tr><tr><td>Non-AIDS-defining cancers (anal cancer, Hodgkin lymphoma, lung cancer, liver cancer, head and neck cancers)</td><td>5.73/1,000 person-years (2006–2021) among 64,937 ART-treated individuals with 490,376 person-years follow-up, and increasing (4.99 → 6.55/1,000 PY from 2006–2007 to 2020–2021). General US population rate ~4.2–4.9/1,000 PY for comparison.</td><td>Serious to life-threatening; anal cancer risk ~20–30x elevated in HIV+ MSM relative to general population</td><td>All HIV-positive adults on ART; anal cancer especially elevated in MSM; infection-related cancers (HPV, HBV, HCV-linked) account for 3.42/1,000 PY</td></tr><tr><td>AIDS-defining cancers (Kaposi&#x27;s sarcoma, non-Hodgkin lymphoma, invasive cervical cancer)</td><td>1.94/1,000 person-years (2006–2021) and declining substantially (3.23/1,000 PY in 2006–2007 to 0.99/1,000 PY in 2020–2021) due to ART-era immune preservation</td><td>Potentially fatal; NHL and KS can be aggressive</td><td>Immunosuppressed HIV+ individuals; KS and NHL predominantly in those with low CD4 counts</td></tr><tr><td>HIV-associated neurocognitive disorders (HAND): ranges from asymptomatic neurocognitive impairment (ANI) to minor neurocognitive disorder (MND) to HIV-associated dementia (HAD)</td><td>Mild forms (ANI/MND) in ~30–50% of virally suppressed adults on ART. HAD (severe form) now rare, &lt;5%. Exact prevalence varies widely by definition and testing battery used.</td><td>Mild forms: minimal functional impact, often subclinical. HAD: severe and disabling. Even mild forms may affect quality of life, driving, and medication adherence.</td><td>All HIV-positive adults; greatest risk with low nadir CD4 count, older age, hepatitis C coinfection, and substance use</td></tr><tr><td>Accelerated cardiovascular disease (myocardial infarction, stroke, atherosclerosis) from chronic immune activation and inflammation</td><td>~2-fold higher CVD event rate vs. HIV-negative age-matched peers (ART era). Non-AIDS events including CVD: 1–2 per 100 person-years in ART-treated patients. CVD rose from negligible to ~16% of HIV-related deaths between 1996–2020 (as AIDS deaths fell from 49% to 16%).</td><td>Serious; cardiovascular events are now a leading cause of non-AIDS mortality in ART-treated adults</td><td>All HIV-positive adults; amplified by traditional CVD risk factors (smoking, dyslipidemia, ART drug effects); older patients at greatest risk</td></tr><tr><td>Perinatal (mother-to-child) HIV transmission during pregnancy, delivery, or breastfeeding</td><td>~25% mother-to-child transmission rate without antiretroviral prophylaxis; reduced to &lt;1% with maternal ART and neonatal prophylaxis in high-income settings</td><td>Fatal to the infant without treatment (same progressive disease course as adults)</td><td>Infants of HIV-positive mothers; risk primarily in untreated or late-diagnosed pregnancies</td></tr><tr><td>Shortened life expectancy and accelerated multi-system aging (osteoporosis, chronic kidney disease, metabolic syndrome, frailty)</td><td>Remaining life expectancy at age 40: ~37 years for ART-treated men and ~39 years for ART-treated women who started ART after 2015 in Europe/North America, vs. ~41 years (men) and ~46 years (women) in general population. Gap is larger for those with low CD4 nadir.</td><td>Moderate to severe depending on treatment history; persons with sustained viral suppression and high CD4 counts have the smallest gap</td><td>All HIV-positive adults; greatest burden in those with late diagnosis, treatment interruptions, or prior AIDS</td></tr></tbody></table></details>
+<details class='harms'><summary><strong>Gonorrhea</strong> <span style='color:#777'>· severity 4 · Curable — single ceftriaxone shot (resistance rising)</span></summary><table class='data harmtable'><thead><tr><th>Harm</th><th>How often</th><th>Severity</th><th>Who it hits</th></tr></thead><tbody><tr><td>Pelvic inflammatory disease (PID)</td><td>10–20% of untreated female genital infections; gonorrhea is implicated in approximately 40% of all PID cases</td><td>Moderate to severe; causes acute pain, hospitalization risk, and drives downstream reproductive sequelae</td><td>Women/people with uteri with untreated or inadequately treated cervical infection</td></tr><tr><td>Tubal factor infertility</td><td>~15% after one episode of PID; ~50–80% after three or more PID episodes</td><td>Severe; permanent impairment of fertility requiring IVF or surrogacy</td><td>Women with prior PID</td></tr><tr><td>Ectopic pregnancy</td><td>Included in PID sequelae; long-term PID complications (tubal scarring leading to ectopic) estimated in up to 25% of affected patients alongside infertility and chronic pelvic pain</td><td>Potentially life-threatening if rupture occurs; major morbidity</td><td>Women with prior PID/tubal scarring</td></tr><tr><td>Disseminated Gonococcal Infection (DGI) — arthritis-dermatitis syndrome</td><td>0.5–3% of untreated gonorrhea cases</td><td>Moderate to severe; fever, migratory polyarthritis, tenosynovitis, pustular skin lesions; rarely progresses to septic arthritis requiring joint washout</td><td>More common in women (due to menses/occult cervical infection) and immunocompromised individuals</td></tr><tr><td>Gonococcal endocarditis</td><td>1–2% of DGI cases (i.e., roughly 0.01–0.06% of all gonorrhea cases)</td><td>Severe; high mortality without treatment, prolonged IV antibiotic course required</td><td>Rare complication of DGI; persons with pre-existing valvular disease at higher risk</td></tr><tr><td>Neonatal ophthalmia neonatorum (gonococcal conjunctivitis)</td><td>Approximately 0.3 per 1,000 live births in the US; substantially higher in settings without routine prophylaxis</td><td>Severe if untreated; corneal scarring and blindness; responds rapidly to systemic antibiotics and ophthalmic prophylaxis</td><td>Neonates born to mothers with untreated cervical gonorrhea; vertical transmission during vaginal delivery</td></tr><tr><td>Epididymitis and orchitis (men)</td><td>Uncommon but documented; gonorrhea accounts for a significant minority of epididymitis cases in sexually active men under 35</td><td>Moderate; pain, fever, swelling; rarely causes male infertility from bilateral involvement</td><td>Men with untreated urethral infection</td></tr><tr><td>High asymptomatic burden driving delayed diagnosis and onward transmission</td><td>Up to 90% of cervical infections in women are asymptomatic; 56–87% of urethral infections in men are asymptomatic</td><td>Indirect harm — delays treatment, enables complications and transmission; not itself a clinical sequela</td><td>All infected persons but predominantly women (higher asymptomatic rate)</td></tr></tbody></table></details>
+<details class='harms'><summary><strong>Chlamydia</strong> <span style='color:#777'>· severity 3 · Curable — 7-day doxycycline</span></summary><table class='data harmtable'><thead><tr><th>Harm</th><th>How often</th><th>Severity</th><th>Who it hits</th></tr></thead><tbody><tr><td>Pelvic inflammatory disease (PID)</td><td>Approximately 14.8% (95% CrI 4.8-24.8%) of untreated CT-positive women develop PID, per multi-parameter Markov model of 8 prospective studies. A mathematical modeling estimate places this at ~22%. Prospective cohort data vary widely (3-33%) depending on population and follow-up method. Annual screening could prevent ~61% of CT-attributable PID.</td><td>Moderate to severe. PID causes acute pelvic pain, fever, and hospitalization risk, and is the primary gateway to long-term reproductive sequelae.</td><td>Women (receptive vaginal partners); risk increases with repeat infections</td></tr><tr><td>Tubal factor infertility (sequela of PID)</td><td>In a large retrospective cohort (n&gt;244,000, 10-year follow-up), women with chlamydia had adjusted HR 1.85 (95% CI not reported) for infertility vs. chlamydia-negative women. Risk increased with repeat positive tests. Up to 80% of women with tubal factor infertility report no prior PID diagnosis, suggesting substantial silent scarring from asymptomatic upper-tract spread.</td><td>Severe. Permanent tubal occlusion is irreversible without assisted reproduction.</td><td>Women; risk proportional to PID episode frequency and severity</td></tr><tr><td>Ectopic pregnancy</td><td>History of chlamydia infection associated with OR 3.03 (95% CI 2.37-3.89) for ectopic pregnancy, from meta-analysis of 25 studies (n=11,960). In the retrospective cohort, adjusted HR 1.87 for ectopic pregnancy. Salpingitis accounts for ~27% of all ectopic pregnancies (95% CrI 11-46%); CT specifically accounts for ~4.9% (95% CrI 1.2-12.1%).</td><td>Life-threatening if ruptured. Ectopic pregnancy is a leading cause of first-trimester maternal mortality in the US.</td><td>Women with prior PID or upper-genital-tract CT infection</td></tr><tr><td>Chronic pelvic pain</td><td>Occurs in approximately 20% of women following PID episodes (from PID long-term sequelae literature). Exact proportion attributable to CT-PID specifically is not cleanly separated from PID of other etiologies in available data.</td><td>Moderate. Can be debilitating and long-lasting; often requires ongoing pain management.</td><td>Women with history of PID</td></tr><tr><td>Neonatal ophthalmia neonatorum (conjunctivitis)</td><td>CT is the most common infectious cause of neonatal conjunctivitis in the US. Approximately 30-50% of neonates delivered vaginally by infected, untreated mothers develop conjunctivitis (commonly cited range; exact per-exposure figure not reported in the studies accessed). Onset 5-14 days after birth.</td><td>Moderate; can progress to corneal scarring and blindness if untreated. Promptly treatable with oral erythromycin/azithromycin.</td><td>Neonates born to infected mothers</td></tr><tr><td>Neonatal chlamydial pneumonia</td><td>Approximately 10-20% of neonates exposed at delivery develop pneumonia (commonly cited range; afebrile, staccato cough, onset 1-3 months postpartum). Exact per-exposure rate not cleanly established in sources accessed.</td><td>Moderate to severe in neonates. A significant cause of neonatal morbidity; treatable with macrolides but requires inpatient management.</td><td>Neonates born to infected mothers</td></tr><tr><td>Epididymitis</td><td>CT is a leading cause of epididymitis in sexually active men under 35. Specific proportion of infected men who develop epididymitis not quantified in sources accessed; described as uncommon but recognized complication.</td><td>Moderate. Causes scrotal pain, swelling, fever; rare progression to infertility from bilateral scarring.</td><td>Men (insertive/urethral infection)</td></tr><tr><td>Reactive arthritis (formerly Reiter syndrome)</td><td>Occurs in approximately 1-3% of CT-infected persons. One-third of reactive arthritis cases present with the classic triad (arthritis, urethritis, uveitis). CT antibodies detected in 36-62% of Reiter syndrome cases.</td><td>Moderate. Can be self-limiting (weeks to months) or progress to chronic inflammatory arthritis requiring DMARD therapy.</td><td>Predominantly men; HLA-B27 positive individuals at higher risk</td></tr><tr><td>Increased HIV susceptibility/transmissibility</td><td>CT infection causes genital mucosal inflammation and recruits CD4+ T cells, increasing HIV acquisition risk. Documented to amplify both HIV acquisition and transmission in both sexes. Specific relative risk estimate varies; approximately 2-5x increased HIV risk in infected individuals is cited in the STI co-infection literature.</td><td>Severe at the population level; individual risk depends on HIV exposure context.</td><td>Both sexes; population-level STI-HIV syndemic effect</td></tr></tbody></table></details>
+<details class='harms'><summary><strong>HPV</strong> <span style='color:#777'>· severity 3 · No drug cure — ~90% clears itself in 2 yrs; vaccine prevents the dangerous strains</span></summary><table class='data harmtable'><thead><tr><th>Harm</th><th>How often</th><th>Severity</th><th>Who it hits</th></tr></thead><tbody><tr><td>Spontaneous clearance without sequelae (dominant outcome)</td><td>~70% of infections resolve within 1 year; ~87-90% within 2 years across all types</td><td>none — trivial, asymptomatic</td><td>All infected persons; most common outcome by far</td></tr><tr><td>Anogenital warts (condylomata acuminata)</td><td>~194.5 per 100,000 person-years incidence (median, systematic review 2001-2012); ~360,000 US cases/year estimated; caused by low-risk types HPV 6/11 (not oncogenic)</td><td>low-moderate; benign, not life-threatening; recurrent in 20-30%; psychosocial distress common; pre-vaccination rates ~1.1-1.2 per 1,000; post-vaccination 67% decline in females 15-19</td><td>Both sexes; peak incidence age 24 (women), 25-29 (men)</td></tr><tr><td>Cervical intraepithelial neoplasia (CIN / cervical precancer)</td><td>~196,000 US cases/year; CIN1 regresses spontaneously in majority; CIN2/3 (HSIL) are true cancer precursors requiring treatment</td><td>moderate; CIN1 often self-resolving; CIN2/3 requires excisional treatment with risk of preterm birth in subsequent pregnancies; detected via Pap/HPV co-testing</td><td>Women and persons with a cervix; immunocompromised individuals (HIV+) have 4-5x higher incidence</td></tr><tr><td>Cervical cancer</td><td>~11,000 US cases/year; ~4,000 US deaths/year; 91% HPV-attributed; HPV-16 causes 61.7%, HPV-18 causes 15.3% of cases</td><td>high; lethal without treatment; US incidence declined from 9.7 to 6.8 per 100,000 (1998-2020) due to screening; globally 660,000 cases and 340,000 deaths/year (94% in LMIC)</td><td>Women/persons with cervix; unscreened populations at highest risk; HIV+ women have relative risk 5.4 vs HIV-negative</td></tr><tr><td>Oropharyngeal squamous cell carcinoma (OPSCC)</td><td>~14,000 US cases/year; 70% HPV-attributed (HPV-16 responsible for ~85-90%); US incidence increased 225% between 1984-2004; now exceeds cervical cancer in US case count</td><td>high; but HPV-positive OPSCC has substantially better prognosis than HPV-negative (median survival 131 months vs 20 months); no validated screening test available</td><td>Predominantly men (approximately 4:1 male-to-female ratio); MSM at elevated risk; no cervical-cancer-analog screening exists</td></tr><tr><td>Anal cancer</td><td>~6,500 US cases/year; 91% HPV-attributed; general population incidence 0.6-0.77 per 100,000/year; MSM with HIV: ~85 per 100,000/year; MSM with HIV over age 60: ~107.5 per 100,000/year; high-grade anal dysplasia present in up to 50% of MSM with HIV</td><td>high; disproportionate burden on HIV+ MSM; anal cancer screening (HRA) increasingly recommended for high-risk groups but not universal</td><td>MSM and HIV-positive individuals at greatly elevated risk; also women with HIV (22 per 100,000/year)</td></tr><tr><td>Vulvar, vaginal, and penile cancers</td><td>~3,500 US cases/year vulvar+vaginal combined (69-75% HPV-attributed); ~900 US penile cancer cases/year (63% HPV-attributed)</td><td>high individually; low absolute frequency</td><td>Women (vulvar/vaginal); men (penile); immunocompromised individuals have 2.2-7.3x elevated risk</td></tr><tr><td>Recurrent respiratory papillomatosis (RRP)</td><td>Rare; caused by HPV 6/11 via vertical (perinatal) transmission or oral sexual contact in adults</td><td>moderate-high; requires repeated surgical procedures (laser/microdebrider); rare malignant transformation; juvenile-onset form particularly burdensome</td><td>Neonates/children (vertical transmission from maternal genital HPV); adults via oral sexual exposure</td></tr></tbody></table></details>
+<details class='harms'><summary><strong>Genital herpes (HSV-2)</strong> <span style='color:#777'>· severity 3 · No cure — episodic/suppressive antivirals, usually mild</span></summary><table class='data harmtable'><thead><tr><th>Harm</th><th>How often</th><th>Severity</th><th>Who it hits</th></tr></thead><tbody><tr><td>Recurrent genital outbreaks (ulcers, dysuria, systemic symptoms during primary)</td><td>Symptomatic in roughly 20–30% of seropositive individuals; median ~4–6 recurrences in year 1 for those with symptoms, declining thereafter; many have 0–1/year after years 2–3</td><td>Mild to moderate; self-limited 5–10 days untreated, 2–4 days with episodic antivirals</td><td>Symptomatic seropositive adults; primary infection is most severe; subsequent recurrences progressively milder</td></tr><tr><td>Asymptomatic viral shedding enabling unknowing transmission to partners</td><td>Shedding occurs on ~10–20% of days in untreated HSV-2 seropositive individuals; reduced to ~2–3% with daily valacyclovir</td><td>No direct physical harm to carrier; enables onward transmission</td><td>All seropositive individuals, including those who have never had a recognized outbreak</td></tr><tr><td>Psychosocial burden: anxiety, depression, stigma, relationship and disclosure stress</td><td>Commonly reported in newly diagnosed individuals; attenuates over time but persists in a subset; no precise population-level estimate</td><td>Moderate; often described as exceeding the physical disease burden; can substantially affect quality of life and partnering behavior at diagnosis</td><td>All seropositive individuals, especially at time of diagnosis</td></tr><tr><td>Increased HIV-1 acquisition risk</td><td>Approximately 3-fold elevated risk of acquiring HIV in HSV-2 seropositive individuals vs. seronegative</td><td>High — the attributable fraction of HIV incidence from HSV-2 coinfection is estimated to be substantial in high-prevalence populations, though suppressive valacyclovir did not reduce HIV incidence in trials</td><td>HSV-2 seropositive individuals engaging in HIV risk behaviors; bidirectional: HSV-2 infection increases both HIV acquisition and HIV transmission from coinfected individuals</td></tr><tr><td>Neonatal herpes (mother-to-child transmission during delivery)</td><td>Historical US estimate ~1,500 cases/year; Florida capture-recapture study (2019 data) found 561 neonatal HSV cases nationally (15.7 per 100,000 live births). Risk of vertical transmission: 30–50% with primary maternal infection in late pregnancy vs. &lt;1–3% with recurrent maternal disease at delivery</td><td>Severe. Untreated disseminated neonatal herpes: ~85% mortality; untreated CNS disease: ~50% mortality. With antiviral treatment overall mortality fell to ~4.6% (2019 data), but neurologic sequelae persist in 40–70% of treated CNS disease survivors</td><td>Neonates; risk concentrated when mother acquires primary HSV-2 in third trimester (mother seronegative, so no transplacental antibody protection)</td></tr><tr><td>Pregnancy complications (miscarriage, preterm labor)</td><td>Elevated risk with primary infection during pregnancy; exact attributable frequency not well quantified for HSV-2 specifically</td><td>Moderate to high depending on outcome; CDC notes increased risk of miscarriage and preterm delivery with primary genital HSV in pregnancy</td><td>Pregnant individuals acquiring primary HSV-2 during pregnancy, especially first and second trimesters</td></tr><tr><td>HSV-2 meningitis (Mollaret meningitis) and rare encephalitis</td><td>Rare in immunocompetent adults; HSV-2 is the leading cause of recurrent aseptic (Mollaret) meningitis; encephalitis more often HSV-1 than HSV-2 in adults</td><td>Moderate to severe; meningitis typically self-limited over 1–2 weeks; encephalitis is severe with significant morbidity even treated</td><td>Rare complication in immunocompetent adults; more frequent in immunosuppressed (HIV-positive, transplant recipients)</td></tr></tbody></table></details>
+<details class='harms'><summary><strong>Oral herpes (HSV-1)</strong> <span style='color:#777'>· severity 3 · No cure — cold sores, mostly trivial</span></summary><table class='data harmtable'><thead><tr><th>Harm</th><th>How often</th><th>Severity</th><th>Who it hits</th></tr></thead><tbody><tr><td>Orolabial herpes (recurrent cold sores / fever blisters)</td><td>About one-third of HSV-1 seropositive individuals experience symptomatic recurrences; median roughly 1–2 episodes per year among symptomatic recurrers. The majority of seropositive people are asymptomatic or have unrecognized symptoms.</td><td>Mild; self-limiting vesicular lesions on lips or perioral skin lasting 7–10 days without treatment, shorter with episodic antivirals. Painful but not dangerous in immunocompetent individuals.</td><td>Any person with oral HSV-1 infection — nearly half the US adult population aged 14–49.</td></tr><tr><td>Primary genital HSV-1 episode (acquired via oral sex)</td><td>HSV-1 now accounts for 15–50%+ of new genital herpes diagnoses depending on population; highest in young women attending STI clinics. First-episode genital HSV-1 accounts for a rising fraction of all first-episode genital herpes.</td><td>Moderate; primary episode typically more severe than recurrences — bilateral painful lesions, dysuria, systemic flu-like symptoms, lasting 2–3 weeks without treatment.</td><td>Recipients of oral sex from a partner with oral HSV-1; disproportionately young adults, especially women.</td></tr><tr><td>Genital HSV-1 recurrences</td><td>Substantially less frequent than genital HSV-2 recurrences; typical rate ~1–2 per year in the first year, declining rapidly thereafter. Recurrent genital HSV-1 detection was 0.17-fold (83% lower) compared to first-episode cases in meta-regression, indicating HSV-1 reactivates much less often in genital tissue than in oral tissue.</td><td>Mild to moderate; shorter and milder than primary episode. Significant for quality of life and relationship disclosure obligations but medically manageable.</td><td>Individuals with genital HSV-1 infection.</td></tr><tr><td>Herpes simplex encephalitis (HSE)</td><td>~2–4 cases per million population per year in the US; HSV-1 causes approximately 90% of all HSE cases. Rare in absolute terms but the most common cause of fatal sporadic encephalitis.</td><td>Life-threatening; untreated mortality ~70%. With IV acyclovir, mortality remains 20–30%. Of survivors, ~70% have long-term neurological deficits including amnesia, aphasia, behavioral changes, and epilepsy; Swedish rehospitalization data show 87% of survivors required readmission.</td><td>Any age, but incidence peaks in children and adults over 50; no well-established predisposing sexual risk factors — most cases arise from reactivation, not new acquisition.</td></tr><tr><td>Neonatal herpes</td><td>~11–33 per 100,000 live births in the US. Globally, HSV-1 causes approximately 4,000 neonatal cases annually (HSV-2: ~10,000), but in the Americas and Western Pacific, HSV-1 is relatively more common as a neonatal pathogen. Risk highest when mother has a primary (unrecognized) genital infection at delivery.</td><td>Life-threatening in disseminated and CNS forms; untreated disseminated disease has ~85% mortality; untreated CNS disease ~50% mortality. With IV acyclovir, 40–70% of CNS disease survivors still have neurological sequelae (cognitive impairment, epilepsy, cerebral palsy). Skin-eye-mouth (SEM) disease has low mortality but untreated SEM can progress to CNS/disseminated.</td><td>Neonates, primarily those born to mothers with unrecognized primary genital infection at term. HSV-2 historically more common cause but HSV-1 fraction rising in high-income countries.</td></tr><tr><td>HSV keratitis (corneal infection)</td><td>~24 per 100,000 per year globally (epithelial keratitis ~16.1/100k; stromal keratitis ~4.9/100k); estimated 1.7 million annual cases globally. About 230,000 people globally experienced new HSV-related vision impairment in 2016. HSV-1 is the dominant cause of ocular HSV disease.</td><td>Moderate to severe; epithelial keratitis is acute and treatable; recurrent stromal keratitis causes progressive corneal scarring and is a leading cause of infectious corneal blindness worldwide. Can require corneal transplant.</td><td>Any HSV-1 seropositive individual; can occur via self-inoculation or reactivation. Most cases occur in adults.</td></tr><tr><td>Severe/disseminated disease in immunocompromised patients</td><td>Uncommon in general population; significant risk in HIV-infected individuals (especially CD4 &lt;100), solid organ or hematopoietic stem cell transplant recipients, and those on high-dose corticosteroids or chemotherapy.</td><td>Severe; manifestations include esophagitis, hepatitis, pneumonitis, adrenalitis, and encephalitis. Mortality risk substantially elevated compared to immunocompetent hosts.</td><td>Immunocompromised individuals; HIV/AIDS patients, transplant recipients.</td></tr></tbody></table></details>
+<details class='harms'><summary><strong>Syphilis</strong> <span style='color:#777'>· severity 3 · Curable — a penicillin injection</span></summary><table class='data harmtable'><thead><tr><th>Harm</th><th>How often</th><th>Severity</th><th>Who it hits</th></tr></thead><tbody><tr><td>Tertiary neurosyphilis (meningitis, tabes dorsalis, general paresis, dementia, stroke)</td><td>Symptomatic neurosyphilis in 5.0–9.4% of untreated cases (Oslo study: 5.0% women, 9.4% men); CSF abnormalities in ~30% of all untreated T. pallidum infections</td><td>Severe — irreversible neurological damage, cognitive decline, blindness, death if untreated</td><td>All sexes; higher rate in men in historical data; HIV co-infected individuals at elevated risk</td></tr><tr><td>Cardiovascular syphilis (aortitis, aortic insufficiency, aortic aneurysm)</td><td>7.6–13.6% of untreated cases (Oslo study: 7.6% women, 13.6% men); 80–85% of all tertiary syphilis manifestations at autopsy</td><td>Severe — aortic aneurysm rupture is fatal; aortic insufficiency causes chronic heart failure</td><td>Predominantly men; emerges 20–40 years after initial infection</td></tr><tr><td>Late benign syphilis / gummatous disease (granulomatous tissue destruction of skin, bone, liver)</td><td>14–17% of untreated cases (Oslo study: 14% men, 17% women)</td><td>Moderate — locally destructive but responds to penicillin even at late stage</td><td>All sexes</td></tr><tr><td>Congenital syphilis: stillbirth, neonatal death, prematurity, multi-organ disease, long-term sequelae (deafness, bone deformity, interstitial keratitis, intellectual disability)</td><td>3,941 cases in 2024 (109.6/100,000 live births); 149 CS-related stillbirths and infant deaths in 2020. Untreated early maternal infection: ~25% stillbirth, ~14% neonatal death, ~41% infected surviving infant. CS cases increased 700% over the decade to 2024</td><td>Severe — high mortality, permanent disability in survivors</td><td>Neonates; disproportionate burden in Black and Hispanic/Latino communities</td></tr><tr><td>Adverse pregnancy outcomes (spontaneous abortion, preterm birth, low birthweight) from untreated maternal infection</td><td>Early maternal syphilis: up to 40% stillbirth; late maternal infection: ~12% stillbirth, ~9% neonatal death</td><td>Severe</td><td>Pregnant women and fetuses; currently a major US public health crisis</td></tr><tr><td>Ocular syphilis (uveitis, chorioretinitis, optic neuritis, vision loss/blindness)</td><td>Increasingly recognized in current epidemic; not reported separately in national surveillance but documented in cluster reports; 16-state surveillance 2019 found neurologic/ocular/otic complications in a subset of reported cases</td><td>Moderate to severe — can cause permanent vision loss</td><td>MSM and HIV co-infected individuals disproportionately affected</td></tr><tr><td>Facilitation of HIV transmission and acquisition</td><td>Syphilis genital ulcers increase HIV transmission risk 2–5x (diluted risk ratio) and up to 11–112x during active ulcer episode</td><td>Moderate — indirect harm via co-infection dynamics</td><td>MSM primarily; also heterosexual contacts</td></tr><tr><td>All-cause excess mortality from untreated syphilis</td><td>Oslo study: 17% attributable mortality in men, 8% in women over decades of follow-up</td><td>Severe — pre-antibiotic era; largely preventable with treatment</td><td>Both sexes; higher in men</td></tr></tbody></table></details>
+<details class='harms'><summary><strong>Trichomoniasis</strong> <span style='color:#777'>· severity 2 · Curable — single metronidazole dose</span></summary><table class='data harmtable'><thead><tr><th>Harm</th><th>How often</th><th>Severity</th><th>Who it hits</th></tr></thead><tbody><tr><td>Facilitated HIV acquisition</td><td>1.5x increased relative risk; meta-analysis of 19 studies. Estimated to account for 6.2% of US women&#x27;s HIV infections attributable to T. vaginalis co-infection.</td><td>High — amplifies risk of a lifelong, currently incurable infection</td><td>Both sexes; persons with behavioral risk for HIV</td></tr><tr><td>Adverse perinatal outcomes (preterm birth, premature rupture of membranes, low birth weight)</td><td>Preterm birth OR 1.27 (meta-analysis); premature rupture of membranes OR 1.87; low birth weight OR 2.12. CDC STI Guidelines cite 1.4x greater likelihood of preterm birth.</td><td>High for neonate — prematurity carries risk of NICU admission, neurodevelopmental complications, and mortality</td><td>Pregnant women and their neonates</td></tr><tr><td>Cervical neoplasia risk increase</td><td>1.9-2.1x increased risk of cervical neoplasia; one Tanzanian study found 6.5x greater likelihood of high-risk HPV co-infection among TV-positive women.</td><td>Moderate-high if progression to cervical cancer; causality unestablished — likely confounded by HPV co-infection and shared sexual risk factors</td><td>Women with a cervix</td></tr><tr><td>Urogenital symptoms (vaginal discharge, dyspareunia, vulvovaginal pruritus, urethritis)</td><td>85% of women and 77% of men are asymptomatic at detection. Of those who are symptomatic: women present with frothy yellow-green vaginal discharge, pruritus, dyspareunia; men with urethral discharge or irritation. Up to half of asymptomatic women become symptomatic within 6 months.</td><td>Mild to moderate; fully resolves with treatment</td><td>Women more frequently symptomatic than men; men largely asymptomatic</td></tr><tr><td>Repeat infection and treatment failure</td><td>5-37% repeat infection rate post-treatment (higher in HIV-positive women: 18.3-36.9%). Metronidazole in vitro resistance in 4.3-10% of isolates.</td><td>Low-moderate; resistant cases typically respond to tinidazole or higher-dose regimens</td><td>All treated persons; disproportionate burden in HIV-positive women and persons with limited healthcare access</td></tr><tr><td>Neonatal/perinatal transmission</td><td>Uncommon; specific incidence not well-quantified</td><td>Moderate — can cause vaginal and respiratory infections in neonates</td><td>Neonates born to infected mothers</td></tr></tbody></table></details>
+<details class='harms'><summary><strong>Hepatitis B</strong> <span style='color:#777'>· severity 6 · No cure once chronic — but adults clear ~90–95%; vaccine fully prevents</span></summary><table class='data harmtable'><thead><tr><th>Harm</th><th>How often</th><th>Severity</th><th>Who it hits</th></tr></thead><tbody><tr><td>Cirrhosis (liver fibrosis/scarring)</td><td>30–40% lifetime risk in untreated chronic HBV; substantially reduced but not eliminated with antiviral therapy; annual HCC incidence in cirrhosis is 0.9–5.4%</td><td>High — decompensated cirrhosis causes liver failure and death; compensated cirrhosis is manageable but limits liver reserve</td><td>Persons with untreated or late-diagnosed chronic HBV, particularly those infected at birth or early childhood; more common in men</td></tr><tr><td>Hepatocellular carcinoma (HCC, liver cancer)</td><td>0.01–1.4% annually in non-cirrhotic chronic HBV; 0.9–5.4% annually in cirrhotic chronic HBV; 5-year cumulative HCC 2.2–14% in compensated cirrhosis depending on viral load; 7% of all chronic HBV patients in one long-term European cohort</td><td>Very high — HCC is often diagnosed late, 5-year survival remains low without transplant; HBV is the leading cause of HCC worldwide</td><td>Chronic HBV patients, especially men, those with genotype C, cirrhosis, high HBV DNA, older age, HCV or HIV co-infection</td></tr><tr><td>Fulminant hepatic failure (acute liver failure from acute HBV)</td><td>~0.1–1% of symptomatic acute HBV infections; rare but possible with superinfection or reactivation</td><td>Very high — case fatality rate &gt;50–80% without liver transplantation</td><td>Immunocompetent adults with acute infection; higher risk with delta virus superinfection or in immunosuppressed individuals</td></tr><tr><td>Mother-to-child (vertical) transmission leading to neonatal chronic infection</td><td>Without prophylaxis: ~90% transmission risk from HBeAg-positive mothers; ~10–40% from HBeAg-negative HBsAg-positive mothers; ~90% of perinatally infected neonates develop chronic HBV</td><td>High — perinatal infection has ~90% chronicity rate (vs 5–10% in adults), with lifelong cirrhosis and HCC risk starting in early adulthood</td><td>Neonates born to HBsAg-positive mothers; risk nearly eliminated with birth-dose vaccine + HBIG</td></tr><tr><td>Accelerated liver disease with HIV co-infection</td><td>HBV/HIV co-infection affects ~10% of people with HIV globally; co-infected individuals have faster fibrosis progression</td><td>Moderate-to-high — significantly higher rates of liver-related mortality in co-infected patients; standard HBV antivirals (TDF, entecavir) also have HIV activity and must be used carefully</td><td>MSM and PWID with HIV co-infection; particularly relevant in the US MSM population</td></tr></tbody></table></details>
+<details class='harms'><summary><strong>Hepatitis C</strong> <span style='color:#777'>· severity 5 · Curable — 8–12 weeks of pills (&gt;95% cure)</span></summary><table class='data harmtable'><thead><tr><th>Harm</th><th>How often</th><th>Severity</th><th>Who it hits</th></tr></thead><tbody><tr><td>Progression from acute to chronic HCV infection</td><td>~70% of acutely infected people (WHO); CDC states &#x27;more than half&#x27;; often asymptomatic for years to decades</td><td>Low at this stage alone, but establishes substrate for all downstream hepatic and extrahepatic disease</td><td>All acutely infected individuals regardless of transmission route</td></tr><tr><td>Cirrhosis (hepatic fibrosis progressing to structural liver failure)</td><td>5–25% of people with chronic HCV over 10–20 years; accelerated by alcohol use, male sex, genotype 3, older age at infection, HIV/HBV co-infection</td><td>High — irreversible structural liver damage; portal hypertension, esophageal varices, ascites, hepatic encephalopathy</td><td>Chronically infected adults; higher risk in males, those with alcohol use disorder, HIV/HBV co-infection</td></tr><tr><td>Hepatocellular carcinoma (HCC, primary liver cancer)</td><td>1–4% annual incidence per year among patients with established cirrhosis</td><td>Very high — 5-year survival &lt;20% without early-stage detection; leading cause of HCV-related mortality in cirrhotic patients</td><td>Patients with HCV-related cirrhosis; predominantly older adults (55+); persists at reduced rate even post-SVR in cirrhotic patients</td></tr><tr><td>Hepatitis C-attributable death (cirrhosis, liver cancer, liver failure combined)</td><td>11,194 deaths reported in US in 2023; age-adjusted rate 2.5 per 100,000 population</td><td>Fatal</td><td>Predominantly ages 55+; death rate 3.2x higher in Native American populations and 1.7x higher in non-Hispanic Black populations vs non-Hispanic White</td></tr><tr><td>Extrahepatic manifestations: essential mixed cryoglobulinemia, membranoproliferative glomerulonephritis, non-Hodgkin&#x27;s lymphoma, porphyria cutanea tarda, type 2 diabetes mellitus</td><td>Population-level frequencies not well quantified in authoritative sources; these are established causal or strong associations. Cryoglobulinemia is the most common (~10–15% of chronic HCV per broader literature, though not cited in primary sources retrieved here)</td><td>Moderate to high depending on manifestation; glomerulonephritis can cause end-stage renal disease; NHL is life-threatening</td><td>Long-standing chronic HCV infection; cryoglobulinemia more common in females and older patients</td></tr><tr><td>Vertical (perinatal) transmission to neonates leading to pediatric chronic HCV</td><td>5.8% (95% CI 4.2–7.8%) from HIV-negative HCV RNA+ mothers; 10.8% (95% CI 7.6–15.2%) from HIV-coinfected mothers — 2.56x higher odds with HIV co-infection</td><td>Moderate to high — infected infants face decades of chronic infection with same downstream risks as adult-acquired HCV</td><td>Neonates born to HCV RNA-positive mothers; risk amplified by maternal HIV co-infection and high maternal viral load (&gt;6 log IU/mL)</td></tr></tbody></table></details>
+<details class='harms'><summary><strong>M. genitalium</strong> <span style='color:#777'>· severity 4 · Curable, but resistance narrows the options</span></summary><table class='data harmtable'><thead><tr><th>Harm</th><th>How often</th><th>Severity</th><th>Who it hits</th></tr></thead><tbody><tr><td>Urethritis (non-gonococcal)</td><td>Causes 15-20% of NGU and 40% of persistent or recurrent urethritis in men; OR ~2-3 vs uninfected men</td><td>Moderate — dysuria, discharge; usually resolves with appropriate treatment</td><td>Men/insertive partners; the most consistent clinical association for Mg</td></tr><tr><td>Cervicitis</td><td>Detected in 10-30% of women with clinical cervicitis; pooled OR 1.66 in meta-analysis</td><td>Mild to moderate — mucopurulent discharge, intermenstrual bleeding; often asymptomatic</td><td>Women/persons with a cervix</td></tr><tr><td>Pelvic Inflammatory Disease (PID)</td><td>Pooled OR 2.14 (meta-analysis); present in 4-22% of PID cases; associated with endometritis adjusted OR 3.0; in women with endometrial Mg at baseline: 31% recurrent PID, 42% chronic pelvic pain</td><td>Moderate to severe — acute pain, fever; long-term sequelae include infertility and chronic pain</td><td>Women; Mg-associated PID responds poorly to standard cefoxitin+doxycycline PID regimens (treatment failure RR 4.6)</td></tr><tr><td>Tubal factor infertility</td><td>Women with Mg antibodies 4-5x more likely to have tubal factor infertility (seroepidemiological studies); pooled OR 2.43 in meta-analysis; 22% infertility rate in women with confirmed endometrial Mg at baseline</td><td>Severe — permanent reproductive impairment; causation not definitively proven but association robust</td><td>Women; mainly those with untreated or inadequately treated upper genital tract infection</td></tr><tr><td>Preterm birth and adverse pregnancy outcomes</td><td>Pooled OR 1.89 for preterm birth (&lt;37 weeks); approximately 2-fold increased odds; pooled OR 1.82 for spontaneous abortion (evidence mixed — more recent systematic reviews found no significant association)</td><td>Moderate to severe — neonatal morbidity risk; causal pathway not established; confounding cannot be excluded</td><td>Pregnant women and their neonates</td></tr><tr><td>Reduced fecundability</td><td>Per-menstrual-cycle probability of pregnancy 27% lower in Kenyan women with active Mg infection; time to conception 24% longer in US women with serologic evidence of prior infection</td><td>Moderate — subclinical impairment of fertility; data from limited geographic settings</td><td>Women trying to conceive</td></tr><tr><td>Proctitis</td><td>Detected in 1-26% of MSM with rectal symptoms; causal role uncertain; evidence for Mg as independent cause of proctitis is limited</td><td>Mild to moderate — rectal pain, discharge, tenesmus</td><td>Receptive anal partners (MSM, women)</td></tr><tr><td>Antimicrobial resistance and treatment failure</td><td>Macrolide resistance 44-90% across US and high-income country settings; quinolone resistance 11.5% in US and rising; dual resistance documented</td><td>Moderate to severe — treatment failure prolongs infection duration and increases transmission and complication risk; emerging threat to definitive cure</td><td>All infected persons; higher in MSM, PrEP users, those with prior STI or antibiotic exposure</td></tr></tbody></table></details>
+</section>
+
+<section>
+<h2>Caveats worth keeping in mind</h2>
+<p><strong>Prevalence is general-population.</strong> Your real partner pool may differ a lot from the US average — by age, region, orientation, and network. MSM, in particular, face substantially higher per-act and prevalence figures for HIV, syphilis, hepatitis C and anal HPV than the general-adult numbers shown here.</p>
+<p><strong>Per-act vs. per-partnership.</strong> For six of these, per-act transmission has never been cleanly measured; the honest best-available figure is the chance of transmission over an ongoing partnership, which is higher than any single act. Don't compare the two columns directly.</p>
+<p><strong>Severity assumes access to care.</strong> Almost every "how bad is it" score collapses toward trivial <em>if diagnosed and treated</em>. The real harm in this whole table lives in the gap between infection and treatment — asymptomatic infections that go undetected, and people without access. That gap falls disproportionately on women (PID, infertility, cervical cancer, neonatal transmission).</p>
+<p><strong>Directionality matters.</strong> Receptive partners generally face higher per-act risk than insertive partners. The headline per-act figures here use the female→male (insertive-male) direction where a choice was needed.</p>
+</section>
+
+<section>
+<h2>Sources</h2>
+<p class="key">Primary and peer-reviewed sources gathered per infection and independently verified. Non-exhaustive; key references listed.</p>
+<p style='margin-bottom:.3em'><strong>HIV</strong></p><ul style='margin-top:0'><li>CDC. Fast Facts: HIV in the United States (2022 data). https://www.cdc.gov/hiv/data-research/facts-stats/index.html</li><li>CDC National HIV Surveillance System (NHSS). Estimated HIV Incidence and Prevalence. https://www.cdc.gov/hiv-data/nhss/estimated-hiv-incidence-and-prevalence.html</li><li>CDC. HIV Diagnoses, Deaths, and Prevalence. https://www.cdc.gov/hiv-data/nhss/hiv-diagnoses-deaths-prevalence.html</li><li>hiv.gov. HIV and AIDS Trends and US Statistics Overview. https://www.hiv.gov/hiv-basics/overview/data-and-trends/statistics</li></ul>
+<p style='margin-bottom:.3em'><strong>Gonorrhea</strong></p><ul style='margin-top:0'><li>https://www.cdc.gov/sti-statistics/annual/index.html</li><li>https://pmc.ncbi.nlm.nih.gov/articles/PMC10006303/</li><li>https://pmc.ncbi.nlm.nih.gov/articles/PMC7064409/</li><li>https://www.cdc.gov/std/treatment-guidelines/gonorrhea-adults.htm</li></ul>
+<p style='margin-bottom:.3em'><strong>Chlamydia</strong></p><ul style='margin-top:0'><li>https://www.cdc.gov/mmwr/preview/mmwrhtml/mm6338a3.htm (CDC MMWR 2014: NHANES 2007-2012 prevalence)</li><li>https://pmc.ncbi.nlm.nih.gov/articles/PMC11116379/ (NHANES 2005-2016 trend analysis, Sexual Health 2024)</li><li>https://www.cdc.gov/sti-statistics/annual/index.html (CDC STI Surveillance 2024 provisional)</li><li>https://www.ncbi.nlm.nih.gov/books/NBK573159/ (NCBI Bookshelf: Patterns and Drivers of STIs in the US)</li></ul>
+<p style='margin-bottom:.3em'><strong>HPV</strong></p><ul style='margin-top:0'><li>CDC NCHS Data Brief No. 280 (NHANES 2011-2014 HPV prevalence): https://www.cdc.gov/nchs/products/databriefs/db280.htm</li><li>Chesson et al. 2021 — Estimated prevalence and incidence of disease-associated HPV, ages 15-59, US 2018: https://pmc.ncbi.nlm.nih.gov/articles/PMC10037549/</li><li>Gargano et al. 2017 — HPV prevalence and vaccination rates among US adult men, NHANES 2013-2014: https://pmc.ncbi.nlm.nih.gov/articles/PMC5540044/</li><li>Chesson et al. 2019 — Estimated lifetime probability of acquiring HPV in the United States: https://pmc.ncbi.nlm.nih.gov/articles/PMC6745688/</li></ul>
+<p style='margin-bottom:.3em'><strong>Genital herpes (HSV-2)</strong></p><ul style='margin-top:0'><li>CDC NCHS Data Brief No. 304: McQuillan G et al., Prevalence of Herpes Simplex Virus Type 1 and Type 2 in Persons Aged 14-49, United States, 2015-2016. February 2018. https://www.cdc.gov/nchs/products/databriefs/db304.htm</li><li>WHO Fact Sheet: Herpes simplex virus. Updated 2023. https://www.who.int/news-room/fact-sheets/detail/herpes-simplex-virus</li><li>Magaret AS, Mujugira A, Hughes JP, et al. Effect of Condom Use on Per-act HSV-2 Transmission Risk in HIV-1, HSV-2-discordant Couples. Clin Infect Dis. 2016;62(4):456-461. PMC4725379. https://pmc.ncbi.nlm.nih.gov/articles/PMC4725379/</li><li>Corey L, Wald A, Patel R, et al. Once-daily valacyclovir to reduce the risk of transmission of genital herpes. N Engl J Med. 2004;350(1):11-20. https://www.nejm.org/doi/full/10.1056/NEJMoa035144</li></ul>
+<p style='margin-bottom:.3em'><strong>Oral herpes (HSV-1)</strong></p><ul style='margin-top:0'><li>https://www.cdc.gov/nchs/products/databriefs/db304.htm</li><li>https://www.cdc.gov/mmwr/volumes/67/wr/mm6706a7.htm</li><li>https://pmc.ncbi.nlm.nih.gov/articles/PMC11367537/</li><li>https://pmc.ncbi.nlm.nih.gov/articles/PMC6410528/</li></ul>
+<p style='margin-bottom:.3em'><strong>Syphilis</strong></p><ul style='margin-top:0'><li>CDC STI Statistics 2024 Provisional: https://www.cdc.gov/sti-statistics/annual/index.html</li><li>CDC NCHHSTP Director Letter 2024 STI Data Release: https://www.cdc.gov/nchhstp/director-letters/release-2024-sti-data.html</li><li>Pillay A et al. NHANES 2001-2004 Syphilis Seroprevalence. PMID 18356772: https://pubmed.ncbi.nlm.nih.gov/18356772/</li><li>Denman JM et al. Infection risk in sexual contacts of syphilis: systematic review and meta-analysis. J Infect 2022. PMID 35447230: https://pubmed.ncbi.nlm.nih.gov/35447230/</li></ul>
+<p style='margin-bottom:.3em'><strong>Trichomoniasis</strong></p><ul style='margin-top:0'><li>Tompkins EL et al. (2020). Prevalence and risk factors for Trichomonas vaginalis infection among adults in the U.S., 2013-2014. PLoS One. https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0234704</li><li>CDC STI Treatment Guidelines 2021 — Trichomoniasis. https://www.cdc.gov/std/treatment-guidelines/trichomoniasis.htm</li><li>Muzny CA et al. (2022). Diagnosis and Management of Trichomonas vaginalis: Summary of Evidence Reviewed for the 2021 CDC STI Treatment Guidelines. PMC9006969. https://pmc.ncbi.nlm.nih.gov/articles/PMC9006969/</li><li>StatPearls: Trichomoniasis. NBK534826. https://www.ncbi.nlm.nih.gov/books/NBK534826/</li></ul>
+<p style='margin-bottom:.3em'><strong>Hepatitis B</strong></p><ul style='margin-top:0'><li>https://pmc.ncbi.nlm.nih.gov/articles/PMC9997714/ — CDC 2023 HBV Screening Recommendations (MMWR)</li><li>https://www.cdc.gov/nchs/products/databriefs/db361.htm — CDC NCHS Data Brief No. 361, NHANES 2015–2018 HBV prevalence</li><li>https://pmc.ncbi.nlm.nih.gov/articles/PMC9938648/ — Incidence and Prevalence of Sexually Transmitted Hepatitis B, United States 2013–2018</li><li>https://www.cdc.gov/hepatitis-surveillance-2023/hepatitis-b/index.html — CDC 2023 Hepatitis B Surveillance Report</li></ul>
+<p style='margin-bottom:.3em'><strong>Hepatitis C</strong></p><ul style='margin-top:0'><li>Blach S et al. &#x27;Estimating hepatitis C prevalence in the United States, 2017-2020.&#x27; PMC11557732. https://pmc.ncbi.nlm.nih.gov/articles/PMC11557732/</li><li>Hofmeister MG et al. &#x27;Estimated Prevalence and Awareness of HCV Infection Among US Adults, NHANES January 2017-March 2020.&#x27; PMID 37417196. https://pubmed.ncbi.nlm.nih.gov/37417196/</li><li>Rosenberg ES et al. &#x27;Hepatitis C Virus Prevalence in 50 U.S. States and D.C. by Sex, Birth Cohort, and Race: 2013-2016.&#x27; PMC7049678. https://pmc.ncbi.nlm.nih.gov/articles/PMC7049678/</li><li>Hofmeister MG et al. &#x27;Estimating prevalence of HCV infection in the United States, 2013-2016.&#x27; PMC6719781. https://pmc.ncbi.nlm.nih.gov/articles/PMC6719781/</li></ul>
+<p style='margin-bottom:.3em'><strong>M. genitalium</strong></p><ul style='margin-top:0'><li>https://pmc.ncbi.nlm.nih.gov/articles/PMC10955328/ — Mena et al. 2024 NHANES 2017-2018 US prevalence study (Annals of Internal Medicine)</li><li>https://www.cdc.gov/std/treatment-guidelines/mycoplasmagenitalium.htm — CDC 2021 STI Treatment Guidelines: Mycoplasma genitalium</li><li>https://www.ncbi.nlm.nih.gov/books/NBK583532/ — NCBI Bookshelf / NYC Health guidelines: Mycoplasma genitalium Management in Adults</li><li>https://www.std.uw.edu/go/comprehensive-study/mycoplasma-genitalium/core-concept/all — UW National STD Curriculum: Mycoplasma genitalium Core Concepts</li></ul>
+</section>
+
+</article>
+</body></html>

@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
       { source: "/talkmap", destination: "/talkmap/map.html" },
       // Bay Area rental scout — self-contained Leaflet page under public/houses/.
       { source: "/houses", destination: "/houses/index.html" },
+      // STI risk data page — self-contained Tufte page under public/sti/ (noindex, unlisted).
+      { source: "/sti", destination: "/sti/index.html" },
       // The 2 /perfumes/ pages are assembled from _pages/perfumes*.html into
       // public/_perfumes/ (see scripts/build_perfumes_html.mjs); assets already
       // live under public/assets/. atlas = fullscreen canvas app; analyses = text.
