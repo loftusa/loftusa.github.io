@@ -465,6 +465,12 @@ label.margin-toggle:not(.sidenote-number) {
     }
 }
 
+/* Always light — override Tufte's prefers-color-scheme:dark block (was flipping bg to #151515 on OS dark mode). */
+html{color-scheme:light}
+body{background-color:#fffff8;color:#111}
+@media (prefers-color-scheme: dark){
+  body{background-color:#fffff8;color:#111}
+}
 article{padding:2rem 0}
 svg{max-width:100%;height:auto}
 figure.figure{margin:2.2rem 0 1.4rem;max-width:60rem}
