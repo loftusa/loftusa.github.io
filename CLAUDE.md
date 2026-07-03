@@ -53,6 +53,10 @@ public/              Served verbatim: assets/{css,js,data,fonts}, files/ (cv.pdf
 public/_networks/    4 assembled D3 coauthorship pages (from _pages/coauthorship*.html).
 public/_perfumes/    2 assembled perfume-atlas pages (from _pages/perfumes*.html).
 public/houses/       Self-contained Leaflet rental scout.  public/talkmap/  Leaflet talk map.
+public/klist/        Partner preferences checklist (/klist, unlisted+noindex like /sti) + its
+                     bearer-gated viewer (/klist/admin; password = backend LOG_ACCESS_TOKEN).
+                     Submissions POST to the Fly backend (klist_submissions table on the volume,
+                     never in this repo). index.html and admin.html share item data by hand-sync.
 next.config.ts       trailingSlash + rewrites (clean URLs for the public/ static pages + the
                      /red-teaming proxy) + redirects (old Jekyll URL parity).
 scripts/             Build/util scripts (see below).

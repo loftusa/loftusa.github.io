@@ -38,7 +38,7 @@ backend/
     db.py            SQLAlchemy engine (SQLite WAL + busy_timeout) + session factory
     models.py        8 tables (events ×2, conversations, messages, logs, users, rate_limit, migration_state)
     deps.py          require_bearer, client_ip
-    routers/         chat, coauthorship, affiliations, admin  (HTTP layer + validation)
+    routers/         chat, coauthorship, affiliations, admin, houses, klist  (HTTP layer + validation)
     services/        events, rate_limit, conversations, llm, rag  (logic; llm/rag are lazy)
     scripts/import_jsonl.py   idempotent JSONL → SQLite backfill
   migrations/        Alembic (env.py reads url+metadata from the app)
