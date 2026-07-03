@@ -169,6 +169,23 @@ class MigrationState(Base):
     )
 
 
+class KlistSubmission(Base):
+    """Filled /klist checklists from potential partners. Private: write-only for
+    visitors, read only via the bearer-gated GET (see routers/klist.py); rows live
+    on the Fly volume, never in the public repo."""
+
+    __tablename__ = "klist_submissions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    ts: Mapped[str] = mapped_column(String(32), nullable=False, index=True)
+    name: Mapped[Optional[str]] = mapped_column(String(200))
+    payload: Mapped[dict] = mapped_column(JSON, nullable=False)
+    ip: Mapped[Optional[str]] = mapped_column(String(64))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=_utcnow, nullable=False
+    )
+
+
 class HouseReachedOut(Base):
     """Listings on the /houses page that Alex has reached out about.
 

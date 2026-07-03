@@ -70,6 +70,9 @@ TRANSLATE_RATE = (20, 600)  # at most 20 translations / 600s / client IP
 # --- /houses reached-out store -------------------------------------------------------------------
 HOUSES_RATE = (60, 600)  # at most 60 reached-out writes/deletes / 600s / client IP
 
+# --- /klist submissions store --------------------------------------------------------------------
+KLIST_RATE = (10, 600)  # at most 10 checklist submissions / 600s / client IP
+
 # --- housekeeping (P4) -------------------------------------------------------------------------
 HOUSEKEEPING_INTERVAL_SECONDS = int(os.getenv("HOUSEKEEPING_INTERVAL_SECONDS", "3600"))
 RATE_LIMIT_RETENTION_SECONDS = 7 * 24 * 3600  # prune rate-limit rows older than a week

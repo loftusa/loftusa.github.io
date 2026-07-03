@@ -20,6 +20,7 @@ from .routers import (
     chat,
     coauthorship,
     houses,
+    klist,
     search,
     translate,
     ws,
@@ -76,6 +77,7 @@ def create_app() -> FastAPI:
     app.include_router(translate.router)
     app.include_router(search.router)
     app.include_router(houses.router)
+    app.include_router(klist.router)
     app.include_router(ws.router)
     return app
 
