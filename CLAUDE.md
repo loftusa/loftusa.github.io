@@ -54,9 +54,12 @@ public/_networks/    4 assembled D3 coauthorship pages (from _pages/coauthorship
 public/_perfumes/    2 assembled perfume-atlas pages (from _pages/perfumes*.html).
 public/houses/       Self-contained Leaflet rental scout.  public/talkmap/  Leaflet talk map.
 public/klist/        Partner preferences checklist (/klist, unlisted+noindex like /sti) + its
-                     bearer-gated viewer (/klist/admin; password = backend LOG_ACCESS_TOKEN).
+                     bearer-gated viewer (/klist/admin; password = the KLIST_ACCESS_TOKEN Fly
+                     secret — separate from LOG_ACCESS_TOKEN, auth attempts rate-limited).
                      Submissions POST to the Fly backend (klist_submissions table on the volume,
-                     never in this repo). index.html and admin.html share item data by hand-sync.
+                     never in this repo). Visitors can permanently add sections/tiles (POST
+                     /klist/schema; klist_schema_items table; admin deletes via the viewer).
+                     index.html and admin.html share the BASE item data by hand-sync.
 next.config.ts       trailingSlash + rewrites (clean URLs for the public/ static pages + the
                      /red-teaming proxy) + redirects (old Jekyll URL parity).
 scripts/             Build/util scripts (see below).

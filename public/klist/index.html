@@ -78,6 +78,23 @@ textarea {
   border: 1px solid #bbb; border-radius: 2px; padding: .4rem .5rem; box-sizing: border-box;
 }
 
+/* add-a-tile / add-a-section controls */
+.addctl { margin: .2rem 0 .4rem; }
+.addlink {
+  font: inherit; font-size: .9rem; color: #777; background: none;
+  border: none; padding: 0; cursor: pointer; font-style: italic;
+}
+.addlink:hover { color: #111; }
+.addctl input {
+  font: inherit; font-size: .9rem; background: transparent;
+  border: none; border-bottom: 1px solid #bbb; outline: none; margin-right: .5rem; width: 11rem;
+}
+.addctl button:not(.addlink) {
+  font: inherit; font-size: .8rem; padding: .1rem .5rem; cursor: pointer;
+  background: #fffff8; border: 1px solid #999; border-radius: 3px; margin-right: .3rem;
+}
+.adderr { color: #b3261e; font-size: .85rem; }
+
 /* action bar */
 .bar {
   position: fixed; left: 0; right: 0; bottom: 0;
@@ -118,7 +135,9 @@ past <em>No</em> to clear it. Once something is rated, a small chip appears — 
 <strong>G</strong>ive, <strong>R</strong>eceive, or <strong>B</strong>oth. Nothing here is required;
 skip anything you like. Your answers stay on this device until you hit <em>Send to Alex</em>, which
 delivers them privately to him (they are not public anywhere). You can also
-<em>Print / save PDF</em> a copy for yourself — with or without sending.</p>
+<em>Print / save PDF</em> a copy for yourself — with or without sending. If something's missing,
+use <em>+ add a tile</em> (or add a whole section) — additions are permanent and become part of
+the checklist for everyone after you.</p>
 
 <div class="legend" id="legend">
   <strong>Colour code</strong>
@@ -349,25 +368,128 @@ function makeItem(getRM, setRM, labelNode) {
   return row;
 }
 
+/* ---------- sections (base + server-side additions; the list evolves) ---------- */
+
+function itemRow(sectionName, item) {
+  const key = sectionName + "/" + item;
+  const label = document.createElement("span"); label.className = "label"; label.textContent = item;
+  return makeItem(
+    () => state.ratings[key] || { r: null, m: null },
+    (rm) => { if (rm.r) state.ratings[key] = rm; else delete state.ratings[key]; },
+    label,
+  );
+}
+
+async function postSchema(section, item) {
+  const res = await fetch(API_BASE + "/klist/schema", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ section, item }),
+  });
+  if (res.status === 409) throw new Error("already on the list");
+  if (!res.ok) throw new Error("couldn't save (HTTP " + res.status + ")");
+}
+
+/* inline mini-form; onSave(values) must throw on failure to keep it open */
+function addControl(text, fields, onSave) {
+  const holder = document.createElement("div"); holder.className = "addctl no-print";
+  const link = document.createElement("button");
+  link.type = "button"; link.className = "addlink"; link.textContent = text;
+  const form = document.createElement("span"); form.hidden = true;
+  const inputs = fields.map((ph) => {
+    const inp = document.createElement("input");
+    inp.type = "text"; inp.placeholder = ph; inp.maxLength = 120;
+    return inp;
+  });
+  const save = document.createElement("button"); save.type = "button"; save.textContent = "add";
+  const cancel = document.createElement("button"); cancel.type = "button"; cancel.textContent = "cancel";
+  const err = document.createElement("span"); err.className = "adderr";
+  form.append(...inputs, save, cancel, err);
+  holder.append(link, form);
+
+  link.addEventListener("click", (ev) => {
+    ev.stopPropagation();
+    form.hidden = false; link.hidden = true; inputs[0].focus();
+  });
+  cancel.addEventListener("click", (ev) => {
+    ev.stopPropagation();
+    form.hidden = true; link.hidden = false; err.textContent = "";
+    inputs.forEach((i) => { i.value = ""; });
+  });
+  form.addEventListener("click", (ev) => ev.stopPropagation());
+  save.addEventListener("click", async (ev) => {
+    ev.stopPropagation();
+    const values = inputs.map((i) => i.value.trim());
+    if (values.some((v) => v.length < 2)) { err.textContent = "too short"; return; }
+    save.disabled = true; err.textContent = "";
+    try {
+      await onSave(values);
+      form.hidden = true; link.hidden = false;
+      inputs.forEach((i) => { i.value = ""; });
+    } catch (e) {
+      err.textContent = e.message;
+    } finally {
+      save.disabled = false;
+    }
+  });
+  return holder;
+}
+
 const sectionsEl = document.getElementById("sections");
-for (const sec of KLIST) {
+const sectionWraps = {};   // section name -> .items element
+
+function renderSection(sec) {
   const s = document.createElement("section");
   const h = document.createElement("h2");
   h.textContent = sec.section;
   if (sec.sup) { const sup = document.createElement("sup"); sup.textContent = sec.sup; h.append(sup); }
   const wrap = document.createElement("div"); wrap.className = "items";
-  for (const item of sec.items) {
-    const key = sec.section + "/" + item;
-    const label = document.createElement("span"); label.className = "label"; label.textContent = item;
-    wrap.append(makeItem(
-      () => state.ratings[key] || { r: null, m: null },
-      (rm) => { if (rm.r) state.ratings[key] = rm; else delete state.ratings[key]; },
-      label,
-    ));
-  }
-  s.append(h, wrap);
+  for (const item of sec.items) wrap.append(itemRow(sec.section, item));
+  sectionWraps[sec.section] = wrap;
+  const add = addControl("+ add a tile", ["new tile…"], async ([item]) => {
+    await postSchema(sec.section, item);
+    sec.items.push(item);
+    wrap.append(itemRow(sec.section, item));
+  });
+  s.append(h, wrap, add);
   sectionsEl.append(s);
 }
+
+for (const sec of KLIST) renderSection(sec);
+
+/* everyone with this link can grow the list — additions are permanent and shared */
+const addSectionCtl = addControl(
+  "+ add a whole new section",
+  ["section name…", "first tile…"],
+  async ([section, item]) => {
+    await postSchema(section, item);
+    const sec = { section, items: [item] };
+    KLIST.push(sec);
+    renderSection(sec);
+    sectionsEl.append(addSectionCtl); // keep the control last
+  },
+);
+sectionsEl.append(addSectionCtl);
+
+/* merge in previously added sections/tiles from the server */
+(async () => {
+  try {
+    const rows = await (await fetch(API_BASE + "/klist/schema")).json();
+    for (const row of rows) {
+      const sec = KLIST.find((x) => x.section.toLowerCase() === row.section.toLowerCase());
+      if (sec) {
+        if (sec.items.some((i) => i.toLowerCase() === row.item.toLowerCase())) continue;
+        sec.items.push(row.item);
+        sectionWraps[sec.section].append(itemRow(sec.section, row.item));
+      } else {
+        const created = { section: row.section, items: [row.item] };
+        KLIST.push(created);
+        renderSection(created);
+        sectionsEl.append(addSectionCtl); // keep the control last
+      }
+    }
+  } catch (e) { /* offline/backend down — base list still works */ }
+})();
 
 /* ---------- other kinks ---------- */
 

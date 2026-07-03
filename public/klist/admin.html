@@ -29,7 +29,7 @@ sup { color: #888; }
   flex: 1; font: inherit; background: transparent;
   border: none; border-bottom: 1px solid #bbb; padding: .1rem 0; outline: none;
 }
-#gate button, .toolbar button {
+#gate button, .toolbar button, #additions button {
   font: inherit; padding: .3rem .8rem; cursor: pointer;
   background: #fffff8; border: 1px solid #444; border-radius: 3px;
 }
@@ -88,6 +88,10 @@ pre.limits { font: inherit; white-space: pre-wrap; margin: .2rem 0 .6rem; }
     <span id="count" class="meta"></span>
   </div>
   <ul id="list" class="no-print"></ul>
+  <details class="no-print" style="margin: 0 0 1rem;">
+    <summary>Visitor-added tiles (manage)</summary>
+    <div id="additions" style="margin: .5rem 0 0;"></div>
+  </details>
   <div id="view"></div>
 </div>
 
@@ -153,6 +157,21 @@ const KLIST = [
 
 let submissions = [];
 let selected = null;
+let schemaRows = [];   // visitor-added tiles from GET /klist/schema
+
+/* base KLIST + visitor additions, in render order */
+function mergedKlist() {
+  const merged = KLIST.map((sec) => ({ ...sec, items: [...sec.items] }));
+  for (const row of schemaRows) {
+    const sec = merged.find((x) => x.section.toLowerCase() === row.section.toLowerCase());
+    if (sec) {
+      if (!sec.items.some((i) => i.toLowerCase() === row.item.toLowerCase())) sec.items.push(row.item);
+    } else {
+      merged.push({ section: row.section, items: [row.item] });
+    }
+  }
+  return merged;
+}
 
 function paintSwatch(el, r, m) {
   const c = RATINGS.find((x) => x.id === r)?.color;
@@ -219,13 +238,16 @@ function renderView() {
   feats.append(el("div", null, (p.features || []).join(", ") || "—"));
   view.append(feats);
 
-  for (const sec of KLIST) {
+  const unseenKeys = new Set(Object.keys(p.ratings || {}));
+  for (const sec of mergedKlist()) {
     const s = el("section");
     const h = el("h2", null, sec.section);
     if (sec.sup) h.append(el("sup", null, sec.sup));
     const wrap = el("div", "items");
     for (const item of sec.items) {
-      const rm = (p.ratings || {})[sec.section + "/" + item] || { r: null, m: null };
+      const key = sec.section + "/" + item;
+      unseenKeys.delete(key);
+      const rm = (p.ratings || {})[key] || { r: null, m: null };
       const row = el("div", "item" + (rm.r ? "" : " blank"));
       const sw = el("span", "sw");
       paintSwatch(sw, rm.r, rm.m);
@@ -234,6 +256,25 @@ function renderView() {
       wrap.append(row);
     }
     s.append(h, wrap);
+    view.append(s);
+  }
+
+  /* ratings whose tile has since been deleted from the evolving list */
+  if (unseenKeys.size) {
+    const s = el("section");
+    s.append(el("h2", null, "Rated items no longer on the list"));
+    const wrap = el("div", "items");
+    for (const key of unseenKeys) {
+      const rm = (p.ratings || {})[key];
+      const sep = key.indexOf("/");
+      const row = el("div", "item");
+      const sw = el("span", "sw");
+      paintSwatch(sw, rm.r, rm.m);
+      row.append(sw, el("span", "label", key.slice(sep + 1) + " (" + key.slice(0, sep) + ")"));
+      if (rm.m) row.append(el("span", "mod", MOD_LETTER[rm.m]));
+      wrap.append(row);
+    }
+    s.append(wrap);
     view.append(s);
   }
 
@@ -264,11 +305,37 @@ function renderView() {
   view.append(lim);
 }
 
+function renderAdditions() {
+  const box = document.getElementById("additions");
+  box.replaceChildren();
+  if (!schemaRows.length) { box.append(el("span", "meta", "No visitor-added tiles yet.")); return; }
+  for (const row of schemaRows) {
+    const line = el("div", "kv");
+    const del = el("button", null, "delete");
+    del.addEventListener("click", async () => {
+      del.disabled = true;
+      const res = await fetch(API_BASE + "/klist/schema/" + row.id, {
+        method: "DELETE",
+        headers: { Authorization: "Bearer " + sessionStorage.getItem(TOKEN_KEY) },
+      });
+      if (res.ok) {
+        schemaRows = schemaRows.filter((x) => x.id !== row.id);
+        renderAdditions(); renderView();
+      } else {
+        del.disabled = false;
+      }
+    });
+    line.append(el("b", null, row.section + " / "), document.createTextNode(row.item + " "), del);
+    box.append(line);
+  }
+}
+
 async function enter(token) {
   const gerr = document.getElementById("gerr");
   gerr.textContent = "";
   try {
     submissions = await fetchSubmissions(token);
+    schemaRows = await (await fetch(API_BASE + "/klist/schema")).json();
   } catch (e) {
     sessionStorage.removeItem(TOKEN_KEY);
     gerr.textContent = e.message === "unauthorized" ? "Wrong password." : "Error: " + e.message;
@@ -278,7 +345,7 @@ async function enter(token) {
   document.getElementById("gate").hidden = true;
   document.getElementById("app").hidden = false;
   selected = submissions[0] || null;
-  renderList(); renderView();
+  renderList(); renderAdditions(); renderView();
 }
 
 document.getElementById("enter").addEventListener("click", () => enter(document.getElementById("pw").value));
