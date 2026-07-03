@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Checklist submissions</title>
+<style>
+/* Same Tufte-flavored styling as index.html (the two files stay in sync by hand —
+   they are the only two consumers). */
+html { font-size: 15px; }
+body {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+  font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+  background-color: #fffff8;
+  color: #111;
+  line-height: 1.45;
+}
+h1 { font-weight: 400; font-size: 2.1rem; margin: 0 0 1rem; }
+section h2 {
+  font-weight: 400; font-size: 1.15rem; letter-spacing: .03em;
+  border-bottom: 1px solid #ccc; padding-bottom: .15rem; margin: 1.4rem 0 .5rem;
+}
+sup { color: #888; }
+
+/* gate */
+#gate label { display: flex; align-items: baseline; gap: .6rem; max-width: 26rem; }
+#gate input {
+  flex: 1; font: inherit; background: transparent;
+  border: none; border-bottom: 1px solid #bbb; padding: .1rem 0; outline: none;
+}
+#gate button, .toolbar button {
+  font: inherit; padding: .3rem .8rem; cursor: pointer;
+  background: #fffff8; border: 1px solid #444; border-radius: 3px;
+}
+#gerr { color: #b3261e; }
+
+/* submission list */
+.toolbar { display: flex; gap: .8rem; align-items: center; flex-wrap: wrap; margin: .6rem 0 1rem; }
+#list { list-style: none; padding: 0; margin: 0 0 1rem; }
+#list li { padding: .15rem 0; }
+#list a { color: #111; }
+#list a.sel { font-weight: bold; text-decoration: none; }
+.meta { color: #555; font-size: .92rem; }
+
+/* rendered submission */
+.legend { border: 1px solid #ccc; padding: .5rem .8rem; margin: .8rem 0; font-size: .92rem; }
+.legend .row { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; margin: .2rem 0; }
+.key { display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap; }
+.sw {
+  width: 1rem; height: 1rem; flex: none;
+  border: 1.5px solid #444; border-radius: 2px; background: #fffff8; display: inline-block;
+}
+.items { column-width: 15rem; column-gap: 2rem; }
+.item { break-inside: avoid; display: flex; align-items: center; gap: .5rem; padding: .1rem 0; }
+.item.blank { color: #999; }
+.item .label { flex: 1 1 auto; }
+.mod { font-size: .75rem; color: #555; }
+.kv { margin: .15rem 0; }
+.kv b { font-weight: bold; }
+pre.limits { font: inherit; white-space: pre-wrap; margin: .2rem 0 .6rem; }
+
+@media print {
+  @page { margin: 11mm; }
+  body { padding: 0; max-width: none; font-size: 8.2pt; line-height: 1.25; background: #fff; }
+  .no-print { display: none !important; }
+  h1 { font-size: 14pt; }
+  section h2 { font-size: 9.5pt; margin: .5rem 0 .2rem; }
+  .items { column-width: 13.5em; column-gap: 1.4em; }
+  .sw { width: .8em; height: .8em; border-width: 1px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .item.blank { color: #aaa; }
+  section { break-inside: avoid-column; }
+}
+</style></head>
+<body>
+
+<h1>Checklist submissions</h1>
+
+<div id="gate">
+  <label>Password: <input id="pw" type="password" autocomplete="current-password" autofocus></label>
+  <p><button id="enter" type="button">Enter</button> <span id="gerr"></span></p>
+</div>
+
+<div id="app" hidden>
+  <div class="toolbar no-print">
+    <button id="refresh" type="button">Refresh</button>
+    <button id="printsel" type="button" disabled>Print selected</button>
+    <span id="count" class="meta"></span>
+  </div>
+  <ul id="list" class="no-print"></ul>
+  <div id="view"></div>
+</div>
+
+<script>
+"use strict";
+
+const API_BASE = new URLSearchParams(location.search).get("api")
+  || (location.hostname === "localhost" || location.hostname === "127.0.0.1"
+    ? "http://localhost:8000"
+    : "https://llm-resume-restless-thunder-9259.fly.dev");
+const TOKEN_KEY = "klist-admin-token";
+
+/* Keep RATINGS/FEATURES/KLIST in sync with index.html. */
+const RATINGS = [
+  { id: "favourite", label: "Favourite",    color: "#29d3e2" },
+  { id: "yes",       label: "Yes",          color: "#35c759" },
+  { id: "maybe",     label: "Maybe",        color: "#f7d21b" },
+  { id: "fantasy",   label: "As a fantasy", color: "#7c3aed" },
+  { id: "no",        label: "No",           color: "#e5484d" },
+];
+const MOD_LETTER = { give: "G", receive: "R", both: "B" };
+const PROFILE_FIELDS = ["Age", "Gender", "Location", "Orientation", "Role", "Contact"];
+const FEATURES = [
+  "Tall","Short","Muscular","Fat","Chubby","Thin","Skinny","Petite","White","Black",
+  "Asian","Hispanic","Arabic","Gypsy","Indian","Native american","Hairy","Shaved",
+  "Trimmed","Bearded","Big boobs","Small boobs","Big cock","Small cock","Big ass","Small ass",
+];
+const KLIST = [
+  { section: "General", sup: "1", items: [
+    "Blowjobs","Cunnilingus","Handjobs","Fingering","Boobjobs","Hair pulling","Toys","Tickling",
+    "Face fucking","Face sitting","Vaginal fisting","Vaginal creampie","Facials","Rough sex",
+    "Swallowing","Blindfolds",
+  ]},
+  { section: "Group sex", items: [
+    "MFM","FMF","MMM","FFF","Orgy","Partner swap","Gangbang","Bukkake",
+  ]},
+  { section: "Kinks/Fetishes", sup: "2", items: [
+    "Incest","Impregnation","Pregnancy","Lactation","Exhibitionism","Voyeurism","Roleplay",
+    "Petplay","Dirty talking","Feet","Armpits","Public play","Hidden public play","Public sex",
+    "Hidden public sex","Ageplay","Taking pictures/videos","Phone sex",
+  ]},
+  { section: "BDSM", items: [
+    "Daddy/little","Dominant/submissive","Master/slave","Owner/pet","Femdom","Maledom",
+    "Power exchange","Humiliation","Degradation","Name-calling","Discipline","Light bondage",
+    "Heavy bondage","Shibari","Predicament bondage","Encasement","Caging","Chastity",
+    "Forced orgasms","Orgasm denial","Suspension","Spanking","Servitude",
+    "Masturbation instructions","Sensation play","Impact play","Breath play","Choking","E-stim",
+    "Human furniture","Gags","Begging","Teasing","Sounding","Collars","Leashes","Cock worship",
+    "Pussy worship","Feet worship","Ass worship","Body worship","Sensory deprivation",
+  ]},
+  { section: "Ass play", items: [
+    "Anal sex","Anal fisting","Anal fingering","Anal creampie","Rimming","Pegging","Anal toys","Enemas",
+  ]},
+  { section: "Clothing", items: [
+    "Clothed sex","Crossdressing","Forced clothing","Diapers","Lingerie","Locking clothes",
+    "Stockings","Heels","Leather","Latex","Uniforms","Zentai","Socks","Costumes",
+  ]},
+  { section: "Pain", items: [
+    "Mild pain","Strong pain","Nipple clamps","Genital slapping","Hard spanking","Caning",
+    "Wax play","Biting","Scratching","Clothespins","Flogging","Breast torture",
+  ]},
+];
+
+let submissions = [];
+let selected = null;
+
+function paintSwatch(el, r, m) {
+  const c = RATINGS.find((x) => x.id === r)?.color;
+  if (!c) { el.style.background = "#fffff8"; return; }
+  const bg = "#fffff8";
+  if (m === "give")         el.style.background = `linear-gradient(90deg, ${c} 50%, ${bg} 50%)`;
+  else if (m === "receive") el.style.background = `linear-gradient(90deg, ${bg} 50%, ${c} 50%)`;
+  else if (m === "both")    el.style.background =
+    `linear-gradient(90deg, ${c} 50%, ${bg} 50%) 0 0 / 100% 50% no-repeat, ` +
+    `linear-gradient(90deg, ${bg} 50%, ${c} 50%) 0 100% / 100% 50% no-repeat`;
+  else el.style.background = c;
+}
+
+async function fetchSubmissions(token) {
+  const res = await fetch(API_BASE + "/klist/submissions", {
+    headers: { Authorization: "Bearer " + token },
+  });
+  if (res.status === 401) throw new Error("unauthorized");
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  return res.json();
+}
+
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+function renderList() {
+  const ul = document.getElementById("list");
+  ul.replaceChildren();
+  document.getElementById("count").textContent =
+    submissions.length + " submission" + (submissions.length === 1 ? "" : "s");
+  for (const sub of submissions) {
+    const li = el("li");
+    const a = el("a", sub === selected ? "sel" : "", (sub.name || "(anonymous)"));
+    a.href = "#";
+    a.addEventListener("click", (ev) => { ev.preventDefault(); selected = sub; renderList(); renderView(); });
+    li.append(a, el("span", "meta", "  #" + sub.id + " — " + sub.ts.slice(0, 16).replace("T", " ")));
+    ul.append(li);
+  }
+  document.getElementById("printsel").disabled = !selected;
+}
+
+function renderView() {
+  const view = document.getElementById("view");
+  view.replaceChildren();
+  if (!selected) return;
+  const p = selected.payload || {};
+
+  const head = el("section");
+  head.append(el("h2", null, "Profile"));
+  for (const f of PROFILE_FIELDS) {
+    const v = (p.profile || {})[f.toLowerCase()];
+    const kv = el("div", "kv");
+    kv.append(el("b", null, f + ": "), document.createTextNode(v || "—"));
+    head.append(kv);
+  }
+  view.append(head);
+
+  const feats = el("section");
+  feats.append(el("h2", null, "Physical features"));
+  feats.append(el("div", null, (p.features || []).join(", ") || "—"));
+  view.append(feats);
+
+  for (const sec of KLIST) {
+    const s = el("section");
+    const h = el("h2", null, sec.section);
+    if (sec.sup) h.append(el("sup", null, sec.sup));
+    const wrap = el("div", "items");
+    for (const item of sec.items) {
+      const rm = (p.ratings || {})[sec.section + "/" + item] || { r: null, m: null };
+      const row = el("div", "item" + (rm.r ? "" : " blank"));
+      const sw = el("span", "sw");
+      paintSwatch(sw, rm.r, rm.m);
+      row.append(sw, el("span", "label", item));
+      if (rm.m) row.append(el("span", "mod", MOD_LETTER[rm.m]));
+      wrap.append(row);
+    }
+    s.append(h, wrap);
+    view.append(s);
+  }
+
+  const others = (p.other_kinks || []).filter((x) => x.label || x.r);
+  if (others.length) {
+    const s = el("section");
+    s.append(el("h2", null, "Other kinks"));
+    const wrap = el("div", "items");
+    for (const o of others) {
+      const row = el("div", "item");
+      const sw = el("span", "sw");
+      paintSwatch(sw, o.r, o.m);
+      row.append(sw, el("span", "label", o.label || "(unnamed)"));
+      if (o.m) row.append(el("span", "mod", MOD_LETTER[o.m]));
+      wrap.append(row);
+    }
+    s.append(wrap);
+    view.append(s);
+  }
+
+  const lim = el("section");
+  lim.append(el("h2", null, "Other limits"));
+  for (const [label, key] of [["Hard:", "hard"], ["Soft:", "soft"]]) {
+    const kv = el("div", "kv");
+    kv.append(el("b", null, label));
+    lim.append(kv, el("pre", "limits", (p.limits || {})[key] || "—"));
+  }
+  view.append(lim);
+}
+
+async function enter(token) {
+  const gerr = document.getElementById("gerr");
+  gerr.textContent = "";
+  try {
+    submissions = await fetchSubmissions(token);
+  } catch (e) {
+    sessionStorage.removeItem(TOKEN_KEY);
+    gerr.textContent = e.message === "unauthorized" ? "Wrong password." : "Error: " + e.message;
+    return;
+  }
+  sessionStorage.setItem(TOKEN_KEY, token);
+  document.getElementById("gate").hidden = true;
+  document.getElementById("app").hidden = false;
+  selected = submissions[0] || null;
+  renderList(); renderView();
+}
+
+document.getElementById("enter").addEventListener("click", () => enter(document.getElementById("pw").value));
+document.getElementById("pw").addEventListener("keydown", (ev) => {
+  if (ev.key === "Enter") enter(document.getElementById("pw").value);
+});
+document.getElementById("refresh").addEventListener("click", () => enter(sessionStorage.getItem(TOKEN_KEY) || ""));
+document.getElementById("printsel").addEventListener("click", () => window.print());
+
+const saved = sessionStorage.getItem(TOKEN_KEY);
+if (saved) enter(saved);
+</script>
+</body></html>
