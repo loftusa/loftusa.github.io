@@ -72,6 +72,11 @@ HOUSES_RATE = (60, 600)  # at most 60 reached-out writes/deletes / 600s / client
 
 # --- /klist submissions store --------------------------------------------------------------------
 KLIST_RATE = (10, 600)  # at most 10 checklist submissions / 600s / client IP
+KLIST_SCHEMA_RATE = (20, 600)  # at most 20 section/item additions / 600s / client IP
+KLIST_ADMIN_RATE = (30, 600)  # at most 30 admin-auth attempts / 600s / client IP (short PIN)
+# Separate from LOG_ACCESS_TOKEN so the (short, human-typable) checklist PIN never
+# unlocks the chat-log export.
+KLIST_ACCESS_TOKEN = os.getenv("KLIST_ACCESS_TOKEN")
 
 # --- housekeeping (P4) -------------------------------------------------------------------------
 HOUSEKEEPING_INTERVAL_SECONDS = int(os.getenv("HOUSEKEEPING_INTERVAL_SECONDS", "3600"))

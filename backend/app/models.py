@@ -186,6 +186,24 @@ class KlistSubmission(Base):
     )
 
 
+class KlistSchemaItem(Base):
+    """Visitor-added sections/tiles for the /klist checklist (the list evolves).
+
+    Each row is one added item; a new section exists once its first item does.
+    Anyone with the form link can add (rate-limited, deduped); only the admin
+    PIN can delete. Base sections/items live in the static pages, not here."""
+
+    __tablename__ = "klist_schema_items"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    section: Mapped[str] = mapped_column(String(80), nullable=False)
+    item: Mapped[str] = mapped_column(String(120), nullable=False)
+    ip: Mapped[Optional[str]] = mapped_column(String(64))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=_utcnow, nullable=False
+    )
+
+
 class HouseReachedOut(Base):
     """Listings on the /houses page that Alex has reached out about.
 
