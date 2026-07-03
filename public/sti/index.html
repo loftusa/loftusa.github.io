@@ -492,6 +492,16 @@ table.harmtable{margin:.7rem 0 1.1rem;font-size:.95rem;max-width:62rem}
 table.harmtable td:nth-child(2){white-space:normal;color:#444}
 pre.prompt{white-space:pre-wrap;background:#f4f2ec;border-left:3px solid #b0a999;padding:1rem 1.2rem;margin:.5rem 0 0;font-size:.9rem;line-height:1.55;max-width:60rem;overflow-x:auto;color:#333}
 pre.prompt code{font-family:Menlo,Consolas,monospace}
+/* Mobile: SVG charts scaled to phone width render their labels far too small.
+   Give each chart a readable minimum width and let it scroll sideways instead. */
+@media (max-width: 760px){
+  article{padding:1.2rem 0}
+  figure.figure{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;
+    background:linear-gradient(to left,rgba(0,0,0,.05),transparent 14px) right center / 22px 100% no-repeat}
+  figure.figure svg{min-width:700px;margin:0}
+  figure.figure figcaption{position:sticky;left:0}
+  table.data{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:normal}
+}
 </style></head>
 <body>
 <article>
