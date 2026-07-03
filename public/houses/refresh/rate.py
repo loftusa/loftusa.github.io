@@ -60,6 +60,30 @@ Then:
 
 Rate EVERY listing id you are given, once each."""
 
+GIO_RUBRIC = """You are rating SF rental listings for GIO, for the "For Gio" section of the live board at alex-loftus.com/houses.
+
+WHO IT'S FOR — Gio: works AT OpenAI's headquarters (1455 Third St, Mission Bay, San Francisco). His #1 criterion is a SHORT WALK to that office — each listing below states its computed walk time; treat it as ground truth and sanity-check any location claims in the text against it. Budget is flexible (rooms up to ~$3,500, apartments/studios up to ~$6,000) but he still wants his money's worth. He wants a place that looks genuinely nice; friendly housemates are a plus when it's a shared place — young-professional vibe welcome; he has NO networking agenda (he already works at OpenAI).
+
+Each listing below has a photo MONTAGE (a grid of ALL its photos) and its posting text. LOOK AT EVERY PHOTO in each montage before scoring that listing.
+
+Score each dimension as an integer 1-10, literally as defined:
+- nature — greenery/water nearby: bay waterfront, Mission Bay parks, street trees (text + what the photos show). 10 = right on a park/waterfront; 1 = bare concrete canyon.
+- quiet — residential calm; low traffic/noise; active construction (common in Mission Bay) counts against. 10 = quiet; 1 = above a bar / loud arterial / construction next door.
+- nice — how desirable/safe/well-kept the area & unit are, per the photos. 10 = clearly nice & good shape; 1 = rough/run-down.
+- social — housemate/vibe signal for a shared place: friendly, sociable, young-professional households HIGH (7-10); generic shared place with no signal MID (4-6); a solo studio/1BR with no housemates LOW (1-3) on this dimension — but that must NOT drag your overall read down (the final ranking handles it).
+- value — price vs. what you get (space/condition/location per the photos) for near-office San Francisco. 10 = underpriced for what it is; 1 = overpriced.
+- commute — your judgment of the walk to OpenAI HQ given the stated walk time and the text (a deterministic model recomputes this downstream; score it honestly anyway). 10 = a few minutes' stroll; 1 = not realistically walkable.
+- aesthetic — HOW GOOD THE PLACE LOOKS IN ITS PHOTOS, judged ONLY from the montage. Attractive, well-lit, tasteful, clean, good finishes/light/views? 10 = genuinely beautiful, magazine-quality photos of an attractive space. 5 = ordinary/plain but fine. 1-3 = ugly, dark, cluttered, grimy, low-effort/blurry photos, or a clearly unappealing space (or no usable photos). This is weighted into the ranking — do not give high aesthetic to a place whose pictures are bad.
+Then:
+- fit — overall 1-10 holistic fit for Gio (a deterministic model recomputes the final ranking; give your honest overall anyway). Short walk + nice-looking place = high fit; a gorgeous place 30+ minutes away is NOT high fit.
+- why — one line in Gio's terms, referencing what the photos/listing show and the walk time.
+- live — false if the post looks dead/expired/duplicate or like a scam (too cheap for the area, generic copy, off-platform payment).
+- commercial — true if it's an office/retail/parking/commercial space, not a home.
+
+Rate EVERY listing id you are given, once each."""
+
+RUBRICS = {"alex": RUBRIC, "gio": GIO_RUBRIC}
+
 SCORE = {"type": "integer"}  # 1-10 validated client-side (API schema rejects min/max)
 RATING_SCHEMA = {
     "type": "object",
@@ -149,11 +173,26 @@ def build_montage(listing, thumb=280, cols=4, max_imgs=24):
 
 def listing_text(r):
     body = (r.get("body") or "")[:1500]
+    if r.get("aud") == "gio":
+        place = f"~{r.get('walk_min', '?')} min walk to OpenAI HQ (1455 Third St) — {r.get('hood')}"
+    else:
+        place = f"{r.get('hood')} ({r.get('region')})"
     return (
-        f"### Listing {r['id']} — ${r['price']:,}/mo — {r.get('hood')} ({r.get('region')}) — "
+        f"### Listing {r['id']} — ${r['price']:,}/mo — {place} — "
         f"{'room in shared home' if r.get('bucket') == 'room' else 'apartment/studio'}\n"
         f"Title: {r.get('title')}\nPosting text: {body or '(no body scraped)'}"
     )
+
+
+def group_batches(sel, batch_size):
+    """[(aud, rows)] — batches never mix audiences; stable order within each."""
+    out = []
+    for aud in ("alex", "gio"):
+        rows = [r for r in sel if r.get("aud", "alex") == aud]
+        out += [
+            (aud, rows[i : i + batch_size]) for i in range(0, len(rows), batch_size)
+        ]
+    return out
 
 
 def validate(batch_ids, obj):
@@ -170,8 +209,8 @@ def validate(batch_ids, obj):
     return out
 
 
-def rate_batch(client, batch, montages):
-    content = [{"type": "text", "text": RUBRIC}]
+def rate_batch(client, batch, montages, rubric):
+    content = [{"type": "text", "text": rubric}]
     for r in batch:
         content.append({"type": "text", "text": listing_text(r)})
         b64 = montages.get(r["id"])
@@ -235,7 +274,11 @@ def main():
         sel = sel[: args.limit]
     assert sel, "shortlist.json is empty"
     ids = [r["id"] for r in sel]
-    print(f"rating {len(sel)} listings with {MODEL} (batch={args.batch_size})")
+    n_gio = sum(1 for r in sel if r.get("aud") == "gio")
+    print(
+        f"rating {len(sel)} listings ({len(sel) - n_gio} alex + {n_gio} gio) "
+        f"with {MODEL} (batch={args.batch_size})"
+    )
 
     print("building montages...")
     with ThreadPoolExecutor(max_workers=6) as ex:
@@ -245,10 +288,8 @@ def main():
 
     client = anthropic.Anthropic(max_retries=4)
     ratings, in_tok, out_tok = {}, 0, 0
-    batches = [
-        sel[i : i + args.batch_size] for i in range(0, len(sel), args.batch_size)
-    ]
-    for bi, batch in enumerate(batches):
+    batches = group_batches(sel, args.batch_size)
+    for bi, (aud, batch) in enumerate(batches):
         batch_ids = {r["id"] for r in batch}
         got = {}
         for attempt in (1, 2):
@@ -256,7 +297,7 @@ def main():
             if not todo:
                 break
             try:
-                obj, usage = rate_batch(client, todo, montages)
+                obj, usage = rate_batch(client, todo, montages, RUBRICS[aud])
                 got.update(validate({r["id"] for r in todo}, obj))
                 in_tok += usage.input_tokens
                 out_tok += usage.output_tokens
