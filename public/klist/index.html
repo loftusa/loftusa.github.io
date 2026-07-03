@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Preferences checklist</title>
+<style>
+/* Tufte-flavored, matching /sti. Color is reserved for data (the rating swatches). */
+html { font-size: 15px; }
+body {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 6rem;
+  font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+  background-color: #fffff8;
+  color: #111;
+  line-height: 1.45;
+}
+h1 { font-weight: 400; font-size: 2.1rem; margin: 0 0 .25rem; }
+.subtitle { font-style: italic; color: #555; margin: 0 0 1.4rem; }
+section h2 {
+  font-weight: 400; font-size: 1.15rem; letter-spacing: .03em;
+  border-bottom: 1px solid #ccc; padding-bottom: .15rem; margin: 1.6rem 0 .6rem;
+}
+sup { color: #888; }
+p.note { color: #555; font-size: .92rem; }
+
+/* legend */
+.legend {
+  border: 1px solid #ccc; padding: .7rem .9rem; margin: 1rem 0 0;
+  font-size: .95rem;
+}
+.legend .row { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; margin: .25rem 0; }
+.key { display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap; }
+
+/* rating swatch — the colored square from the paper sheet */
+.sw {
+  width: 1.05rem; height: 1.05rem; flex: none;
+  border: 1.5px solid #444; border-radius: 2px;
+  background: #fffff8;
+  display: inline-block;
+}
+
+/* item grid */
+.items { column-width: 15rem; column-gap: 2rem; margin: .2rem 0 .4rem; }
+.item {
+  break-inside: avoid; display: flex; align-items: center; gap: .5rem;
+  padding: .12rem 0; cursor: pointer; user-select: none; -webkit-user-select: none;
+}
+.item .sw { cursor: pointer; }
+.item .label { flex: 1 1 auto; }
+.grb {
+  flex: none; font-size: .7rem; line-height: 1; padding: .18rem .32rem;
+  border: 1px solid #bbb; border-radius: 2px; background: transparent; color: #555;
+  font-family: inherit; cursor: pointer; visibility: hidden;
+}
+.item.rated .grb { visibility: visible; }
+.grb.on { border-color: #444; color: #111; font-weight: bold; }
+
+/* profile + features */
+.profile { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .5rem 1.5rem; }
+.profile label { display: flex; align-items: baseline; gap: .5rem; }
+.profile input {
+  flex: 1; font: inherit; background: transparent;
+  border: none; border-bottom: 1px solid #bbb; padding: .1rem 0; outline: none;
+}
+.profile input:focus { border-bottom-color: #111; }
+.features { column-width: 11rem; column-gap: 2rem; }
+.features label { display: flex; align-items: center; gap: .5rem; break-inside: avoid; padding: .1rem 0; cursor: pointer; }
+.features input { accent-color: #111; }
+
+/* other kinks / limits */
+.otherkink input[type=text] {
+  flex: 1 1 auto; font: inherit; background: transparent;
+  border: none; border-bottom: 1px solid #bbb; outline: none;
+}
+textarea {
+  width: 100%; min-height: 3.2rem; font: inherit; background: transparent;
+  border: 1px solid #bbb; border-radius: 2px; padding: .4rem .5rem; box-sizing: border-box;
+}
+
+/* action bar */
+.bar {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  background: #fffff8ee; border-top: 1px solid #ccc;
+  padding: .6rem 1.25rem; display: flex; align-items: center; gap: .8rem; flex-wrap: wrap;
+  backdrop-filter: blur(3px);
+}
+.bar button {
+  font: inherit; padding: .35rem .9rem; cursor: pointer;
+  background: #fffff8; border: 1px solid #444; border-radius: 3px;
+}
+.bar button:hover { background: #f2f2e9; }
+.bar #status { font-size: .92rem; color: #555; }
+.bar #status.err { color: #b3261e; }
+
+@media print {
+  @page { margin: 11mm; }
+  body { padding: 0; max-width: none; font-size: 8.2pt; line-height: 1.25; background: #fff; }
+  .no-print, .bar, .grb { display: none !important; }
+  h1 { font-size: 14pt; }
+  section h2 { font-size: 9.5pt; margin: .5rem 0 .2rem; }
+  .items, .features { column-width: 13.5em; column-gap: 1.4em; }
+  .sw { width: .8em; height: .8em; border-width: 1px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .item.rated .grb { display: inline-block !important; visibility: visible; border: none; padding: 0; }
+  .legend { padding: .3rem .5rem; margin: .3rem 0; }
+  .profile input { border-bottom-color: #888; }
+  textarea { border-color: #888; min-height: 2.2rem; }
+  section, .legend { break-inside: avoid-column; }
+}
+</style></head>
+<body>
+
+<h1>Preferences checklist</h1>
+<p class="subtitle">so we can have better sex</p>
+
+<p class="no-print">Tap the square next to an item to cycle through the ratings below; tap again
+past <em>No</em> to clear it. Once something is rated, a small chip appears — tap it to mark
+<strong>G</strong>ive, <strong>R</strong>eceive, or <strong>B</strong>oth. Nothing here is required;
+skip anything you like. Your answers stay on this device until you hit <em>Send to Alex</em>, which
+delivers them privately to him (they are not public anywhere). You can also
+<em>Print / save PDF</em> a copy for yourself — with or without sending.</p>
+
+<div class="legend" id="legend">
+  <strong>Colour code</strong>
+  <div class="row" id="legend-ratings"></div>
+  <div class="row" id="legend-mods"></div>
+</div>
+
+<section>
+  <h2>Profile</h2>
+  <div class="profile" id="profile"></div>
+</section>
+
+<section>
+  <h2>Physical features</h2>
+  <p class="note no-print">What describes you (or what you like — interpret like the paper sheet).</p>
+  <div class="features" id="features"></div>
+</section>
+
+<div id="sections"></div>
+
+<section>
+  <h2>Other kinks</h2>
+  <p class="note no-print">Anything missing from the list above.</p>
+  <div class="items" id="otherkinks"></div>
+</section>
+
+<section>
+  <h2>Other limits</h2>
+  <label for="lim-hard"><strong>Hard:</strong></label>
+  <textarea id="lim-hard" placeholder="absolute no-gos"></textarea>
+  <label for="lim-soft"><strong>Soft:</strong></label>
+  <textarea id="lim-soft" placeholder="approach with care / discuss first"></textarea>
+</section>
+
+<section>
+  <h2>Footnotes</h2>
+  <p class="note">1) Common sexual practices, or things not exclusively/mostly associated with BDSM.<br>
+  2) Things that one likes (kinks) or needs (fetishes) and do not clearly belong elsewhere.</p>
+</section>
+
+<div class="bar">
+  <button id="print" type="button">Print / save PDF</button>
+  <button id="send" type="button">Send to Alex</button>
+  <span id="status"></span>
+</div>
+
+<script>
+"use strict";
+
+const API_BASE = new URLSearchParams(location.search).get("api")
+  || (location.hostname === "localhost" || location.hostname === "127.0.0.1"
+    ? "http://localhost:8000"
+    : "https://llm-resume-restless-thunder-9259.fly.dev");
+
+/* ---------- data (verbatim from the paper sheet) ---------- */
+
+const RATINGS = [
+  { id: "favourite", label: "Favourite",                     color: "#29d3e2" },
+  { id: "yes",       label: "Yes",                           color: "#35c759" },
+  { id: "maybe",     label: "Maybe",                         color: "#f7d21b" },
+  { id: "fantasy",   label: "As a fantasy",                  color: "#7c3aed" },
+  { id: "no",        label: "No",                            color: "#e5484d" },
+];
+const BLANK_LABEL = "Does not apply / do not care";
+const MODS = ["give", "receive", "both"];
+const MOD_LETTER = { give: "G", receive: "R", both: "B" };
+
+const PROFILE_FIELDS = ["Age", "Gender", "Location", "Orientation", "Role", "Contact"];
+
+const FEATURES = [
+  "Tall","Short","Muscular","Fat","Chubby","Thin","Skinny","Petite","White","Black",
+  "Asian","Hispanic","Arabic","Gypsy","Indian","Native american","Hairy","Shaved",
+  "Trimmed","Bearded","Big boobs","Small boobs","Big cock","Small cock","Big ass","Small ass",
+];
+
+const KLIST = [
+  { section: "General", sup: "1", items: [
+    "Blowjobs","Cunnilingus","Handjobs","Fingering","Boobjobs","Hair pulling","Toys","Tickling",
+    "Face fucking","Face sitting","Vaginal fisting","Vaginal creampie","Facials","Rough sex",
+    "Swallowing","Blindfolds",
+  ]},
+  { section: "Group sex", items: [
+    "MFM","FMF","MMM","FFF","Orgy","Partner swap","Gangbang","Bukkake",
+  ]},
+  { section: "Kinks/Fetishes", sup: "2", items: [
+    "Incest","Impregnation","Pregnancy","Lactation","Exhibitionism","Voyeurism","Roleplay",
+    "Petplay","Dirty talking","Feet","Armpits","Public play","Hidden public play","Public sex",
+    "Hidden public sex","Ageplay","Taking pictures/videos","Phone sex",
+  ]},
+  { section: "BDSM", items: [
+    "Daddy/little","Dominant/submissive","Master/slave","Owner/pet","Femdom","Maledom",
+    "Power exchange","Humiliation","Degradation","Name-calling","Discipline","Light bondage",
+    "Heavy bondage","Shibari","Predicament bondage","Encasement","Caging","Chastity",
+    "Forced orgasms","Orgasm denial","Suspension","Spanking","Servitude",
+    "Masturbation instructions","Sensation play","Impact play","Breath play","Choking","E-stim",
+    "Human furniture","Gags","Begging","Teasing","Sounding","Collars","Leashes","Cock worship",
+    "Pussy worship","Feet worship","Ass worship","Body worship","Sensory deprivation",
+  ]},
+  { section: "Ass play", items: [
+    "Anal sex","Anal fisting","Anal fingering","Anal creampie","Rimming","Pegging","Anal toys","Enemas",
+  ]},
+  { section: "Clothing", items: [
+    "Clothed sex","Crossdressing","Forced clothing","Diapers","Lingerie","Locking clothes",
+    "Stockings","Heels","Leather","Latex","Uniforms","Zentai","Socks","Costumes",
+  ]},
+  { section: "Pain", items: [
+    "Mild pain","Strong pain","Nipple clamps","Genital slapping","Hard spanking","Caning",
+    "Wax play","Biting","Scratching","Clothespins","Flogging","Breast torture",
+  ]},
+];
+
+const N_OTHER_ROWS = 5;
+const STORE_KEY = "klist-v1";
+
+/* ---------- state ---------- */
+
+let state = {
+  profile: {}, features: [], ratings: {},
+  other_kinks: Array.from({ length: N_OTHER_ROWS }, () => ({ label: "", r: null, m: null })),
+  limits: { hard: "", soft: "" },
+};
+try {
+  const saved = JSON.parse(localStorage.getItem(STORE_KEY));
+  if (saved && typeof saved === "object" && saved.ratings) state = { ...state, ...saved };
+} catch (e) { /* corrupted save — start fresh */ }
+
+function persist() { localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+
+/* ---------- swatch painting (paper fill codes: G = left half, R = right half, B = quarters) ---------- */
+
+function paintSwatch(el, r, m) {
+  const c = RATINGS.find((x) => x.id === r)?.color;
+  if (!c) { el.style.background = "#fffff8"; return; }
+  const bg = "#fffff8";
+  if (m === "give")         el.style.background = `linear-gradient(90deg, ${c} 50%, ${bg} 50%)`;
+  else if (m === "receive") el.style.background = `linear-gradient(90deg, ${bg} 50%, ${c} 50%)`;
+  else if (m === "both")    el.style.background =
+    `linear-gradient(90deg, ${c} 50%, ${bg} 50%) 0 0 / 100% 50% no-repeat, ` +
+    `linear-gradient(90deg, ${bg} 50%, ${c} 50%) 0 100% / 100% 50% no-repeat`;
+  else el.style.background = c;
+}
+
+/* ---------- legend ---------- */
+
+const legendRatings = document.getElementById("legend-ratings");
+for (const r of RATINGS.concat([{ id: null, label: BLANK_LABEL, color: null }])) {
+  const k = document.createElement("span"); k.className = "key";
+  const sw = document.createElement("span"); sw.className = "sw";
+  paintSwatch(sw, r.id, null);
+  k.append(sw, document.createTextNode(r.label));
+  legendRatings.append(k);
+}
+const legendMods = document.getElementById("legend-mods");
+for (const m of MODS) {
+  const k = document.createElement("span"); k.className = "key";
+  const sw = document.createElement("span"); sw.className = "sw";
+  paintSwatch(sw, "yes", m);
+  k.append(sw, document.createTextNode(m[0].toUpperCase() + m.slice(1)));
+  legendMods.append(k);
+}
+
+/* ---------- profile ---------- */
+
+const profileEl = document.getElementById("profile");
+for (const f of PROFILE_FIELDS) {
+  const key = f.toLowerCase();
+  const lab = document.createElement("label");
+  lab.append(document.createTextNode(f + ":"));
+  const inp = document.createElement("input");
+  inp.type = "text"; inp.autocomplete = "off"; inp.value = state.profile[key] || "";
+  inp.addEventListener("input", () => { state.profile[key] = inp.value; persist(); });
+  lab.append(inp);
+  profileEl.append(lab);
+}
+
+/* ---------- physical features ---------- */
+
+const featuresEl = document.getElementById("features");
+for (const f of FEATURES) {
+  const lab = document.createElement("label");
+  const cb = document.createElement("input");
+  cb.type = "checkbox"; cb.checked = state.features.includes(f);
+  cb.addEventListener("change", () => {
+    state.features = cb.checked
+      ? [...new Set([...state.features, f])]
+      : state.features.filter((x) => x !== f);
+    persist();
+  });
+  lab.append(cb, document.createTextNode(f));
+  featuresEl.append(lab);
+}
+
+/* ---------- rated items ---------- */
+
+function makeItem(getRM, setRM, labelNode) {
+  const row = document.createElement("div"); row.className = "item";
+  const sw = document.createElement("span"); sw.className = "sw";
+  const grb = document.createElement("button");
+  grb.className = "grb"; grb.type = "button"; grb.textContent = "–";
+  grb.title = "give / receive / both";
+
+  function refresh() {
+    const { r, m } = getRM();
+    paintSwatch(sw, r, m);
+    row.classList.toggle("rated", !!r);
+    grb.textContent = m ? MOD_LETTER[m] : "–";
+    grb.classList.toggle("on", !!m);
+  }
+  function cycleRating() {
+    const { r, m } = getRM();
+    const i = RATINGS.findIndex((x) => x.id === r);
+    const next = i + 1 < RATINGS.length ? RATINGS[i + 1].id : null; // wraps to blank
+    setRM({ r: next, m: next ? m : null });
+    refresh(); persist();
+  }
+  function cycleMod(ev) {
+    ev.stopPropagation();
+    const { r, m } = getRM();
+    if (!r) return;
+    const i = MODS.indexOf(m);
+    setRM({ r, m: i + 1 < MODS.length ? MODS[i + 1] : i === -1 ? MODS[0] : null });
+    refresh(); persist();
+  }
+  row.addEventListener("click", cycleRating);
+  grb.addEventListener("click", cycleMod);
+  row.append(sw, labelNode, grb);
+  refresh();
+  return row;
+}
+
+const sectionsEl = document.getElementById("sections");
+for (const sec of KLIST) {
+  const s = document.createElement("section");
+  const h = document.createElement("h2");
+  h.textContent = sec.section;
+  if (sec.sup) { const sup = document.createElement("sup"); sup.textContent = sec.sup; h.append(sup); }
+  const wrap = document.createElement("div"); wrap.className = "items";
+  for (const item of sec.items) {
+    const key = sec.section + "/" + item;
+    const label = document.createElement("span"); label.className = "label"; label.textContent = item;
+    wrap.append(makeItem(
+      () => state.ratings[key] || { r: null, m: null },
+      (rm) => { if (rm.r) state.ratings[key] = rm; else delete state.ratings[key]; },
+      label,
+    ));
+  }
+  s.append(h, wrap);
+  sectionsEl.append(s);
+}
+
+/* ---------- other kinks ---------- */
+
+const otherEl = document.getElementById("otherkinks");
+state.other_kinks.forEach((row, i) => {
+  const inp = document.createElement("input");
+  inp.type = "text"; inp.placeholder = "…"; inp.value = row.label || "";
+  inp.addEventListener("input", () => { state.other_kinks[i].label = inp.value; persist(); });
+  inp.addEventListener("click", (ev) => ev.stopPropagation()); // typing ≠ rating
+  otherEl.append(makeItem(
+    () => state.other_kinks[i],
+    (rm) => { state.other_kinks[i] = { ...state.other_kinks[i], ...rm }; },
+    inp,
+  ));
+});
+
+/* ---------- limits ---------- */
+
+for (const [id, key] of [["lim-hard", "hard"], ["lim-soft", "soft"]]) {
+  const ta = document.getElementById(id);
+  ta.value = state.limits[key] || "";
+  ta.addEventListener("input", () => { state.limits[key] = ta.value; persist(); });
+}
+
+/* ---------- actions ---------- */
+
+document.getElementById("print").addEventListener("click", () => window.print());
+
+const statusEl = document.getElementById("status");
+document.getElementById("send").addEventListener("click", async () => {
+  const btn = document.getElementById("send");
+  const name = state.profile.contact
+    || [state.profile.gender, state.profile.age].filter(Boolean).join(", ")
+    || null;
+  const body = {
+    name,
+    payload: {
+      profile: state.profile,
+      features: state.features,
+      ratings: state.ratings,
+      other_kinks: state.other_kinks.filter((x) => x.label || x.r),
+      limits: state.limits,
+    },
+  };
+  btn.disabled = true;
+  statusEl.className = ""; statusEl.textContent = "Sending…";
+  try {
+    const res = await fetch(API_BASE + "/klist/submissions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    statusEl.textContent = "Sent. You can still print a copy for yourself.";
+  } catch (e) {
+    statusEl.className = "err";
+    statusEl.textContent = "Couldn't send (" + e.message + "). Your answers are saved here — try again.";
+  } finally {
+    btn.disabled = false;
+  }
+});
+</script>
+</body></html>

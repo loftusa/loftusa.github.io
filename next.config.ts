@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
       { source: "/houses", destination: "/houses/index.html" },
       // STI risk data page — self-contained Tufte page under public/sti/ (noindex, unlisted).
       { source: "/sti", destination: "/sti/index.html" },
+      // Partner preferences checklist — self-contained page under public/klist/ (noindex,
+      // unlisted). Submissions POST to the Fly backend; /klist/admin is the bearer-gated viewer.
+      { source: "/klist", destination: "/klist/index.html" },
+      { source: "/klist/admin", destination: "/klist/admin.html" },
       // The 2 /perfumes/ pages are assembled from _pages/perfumes*.html into
       // public/_perfumes/ (see scripts/build_perfumes_html.mjs); assets already
       // live under public/assets/. atlas = fullscreen canvas app; analyses = text.
