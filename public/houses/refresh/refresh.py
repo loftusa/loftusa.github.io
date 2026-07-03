@@ -926,6 +926,96 @@ def do_sweep():
     )
 
 
+GIO_W = {"prox": 0.34, "aesthetic": 0.20, "nice": 0.16, "value": 0.14, "soft": 0.16}
+
+
+def gio_fit(scores, bucket, walk_min):
+    """(fit, prox) — deterministic Gio ranking: walk time first, then looks/value."""
+    prox = max(0.0, min(10.0, 10 - max(0, walk_min - 8) / 2.4))
+    soft = gs(scores, "quiet") if bucket == "apt" else gs(scores, "social")
+    fit = (
+        GIO_W["prox"] * prox
+        + GIO_W["aesthetic"] * gs(scores, "aesthetic")
+        + GIO_W["nice"] * gs(scores, "nice")
+        + GIO_W["value"] * gs(scores, "value")
+        + GIO_W["soft"] * soft
+    )
+    return round(min(10.0, fit), 1), round(prox, 1)
+
+
+def build_gio(gio_rows, ratings, stats):
+    """Assemble the data.gio object. Returns None when there is nothing fresh
+    (pull failed / zero G rows) so the caller carries the previous section forward."""
+    if not gio_rows:
+        return None
+    listings = []
+    for r in gio_rows:
+        rt = ratings.get(r["id"])
+        if rt is None or rt.get("live") is False or rt.get("commercial") is True:
+            continue
+        if (rt.get("fit") or 0) <= 2:
+            continue
+        src = rt.get("scores", rt)
+        scores = {
+            k: src.get(k)
+            for k in [
+                "nature",
+                "quiet",
+                "nice",
+                "social",
+                "value",
+                "commute",
+                "aesthetic",
+            ]
+        }
+        fit, prox = gio_fit(scores, r["bucket"], r["walk_min"])
+        scores["commute"] = prox
+        gallery = r.get("imgs") or ([r["img"]] if r.get("img") else [])
+        email, phone = extract_contact(r.get("body", ""))
+        listings.append(
+            {
+                "id": r["id"],
+                "price": r["price"],
+                "pdisp": r.get("pdisp") or f"${r['price']:,}",
+                "beds": r.get("beds"),
+                "bucket": r["bucket"],
+                "hood": r["hood"],
+                "lat": r["lat"],
+                "lon": r["lon"],
+                "url": r["url"],
+                "img": gallery[0] if gallery else r.get("img"),
+                "imgs": gallery,
+                "nimg": len(gallery),
+                "title": r.get("title", ""),
+                "walk_mi": r["walk_mi"],
+                "walk_min": r["walk_min"],
+                "fit": fit,
+                "scores": scores,
+                "rationale": rt.get("rationale") or rt.get("why") or "",
+                "contact_email": email,
+                "contact_phone": phone,
+            }
+        )
+    by_url = {}
+    for x in sorted(listings, key=lambda x: -(x["fit"] or 0)):
+        by_url.setdefault(x["url"], x)
+    listings = sorted(by_url.values(), key=lambda x: -(x["fit"] or 0))
+    prices = [x["price"] for x in listings]
+    return {
+        "office": dict(GIO_OFFICE),
+        "listings": listings,
+        "meta": {
+            "generated": datetime.date.today().isoformat(),
+            "n_scouted": stats.get("n_gio_raw", len(gio_rows)),
+            "n_shortlist": stats.get("n_gio", len(gio_rows)),
+            "n_shown": len(listings),
+            "price_min": min(prices) if prices else None,
+            "price_max": max(prices) if prices else None,
+            "price_med": int(statistics.median(prices)) if prices else None,
+        },
+    }
+
+
 def do_build():
     print("== BUILD ==")
     if not os.path.exists(SHORTLIST):
@@ -934,7 +1024,9 @@ def do_build():
         sys.exit(
             f"FATAL: {RATINGS} missing — the rating agent must write it before --build."
         )
-    sel = {r["id"]: r for r in json.load(open(SHORTLIST))}
+    rows_all = json.load(open(SHORTLIST))
+    sel = {r["id"]: r for r in rows_all if r.get("aud", "alex") == "alex"}
+    gio_rows = [r for r in rows_all if r.get("aud") == "gio"]
     rated = json.load(open(RATINGS))
     ratings = {rr["id"]: rr for rr in rated}
     print(f"shortlist={len(sel)} rated={len(ratings)}")
@@ -1071,6 +1163,11 @@ def do_build():
     stats = {}
     if os.path.exists(PULL_STATS):
         stats = json.load(open(PULL_STATS))
+    gio = build_gio(gio_rows, ratings, stats)
+    if gio is None:
+        gio = (load_data_js() or {}).get("gio")
+        if gio:
+            print("gio: no fresh data — carrying previous section forward")
     meta = {
         "generated": today,
         "n_scouted": stats.get("n_kept", len(sel)),
@@ -1090,10 +1187,13 @@ def do_build():
         "neighborhoods": neighborhoods,
         "searchlinks": SEARCHLINKS,
     }
+    if gio:
+        data["gio"] = gio
     write_data_js(data)
     picks = [x for x in listings if x["pick"]]
     print(
-        f"wrote {DATA_JS}: shown={len(listings)} picks={len(picks)} neighborhoods={len(neighborhoods)}"
+        f"wrote {DATA_JS}: shown={len(listings)} picks={len(picks)} "
+        f"neighborhoods={len(neighborhoods)} gio={len((gio or {}).get('listings', []))}"
     )
     print("top 6:", [(x["id"], x["hood"], x["fit"]) for x in listings[:6]])
 

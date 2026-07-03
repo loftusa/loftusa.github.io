@@ -166,3 +166,157 @@ def test_select_gio_single_bucket_not_starved():
     rows = [_gio_row(i, dlat=0.0002 * i, bucket="apt") for i in range(1, 31)]
     sel = refresh.select_gio(rows)
     assert len(sel) == refresh.GIO_BUCKET_CAP  # cap, not stalled at 8
+
+
+# ---- Gio build: fit formula, assembly, alex-invariance, carry-forward
+
+
+def test_gio_fit_formula():
+    scores = {
+        "nature": 5,
+        "quiet": 7,
+        "nice": 8,
+        "social": 4,
+        "value": 6,
+        "aesthetic": 9,
+    }
+    fit, prox = refresh.gio_fit(scores, "apt", 8)
+    assert prox == 10.0
+    assert fit == 8.4  # .34*10 + .20*9 + .16*8 + .14*6 + .16*7
+    fit_room, _ = refresh.gio_fit(scores, "room", 8)
+    assert fit_room == 8.0  # soft uses social(4) instead of quiet(7)
+    _, prox32 = refresh.gio_fit(scores, "apt", 32)
+    assert prox32 == 0.0
+    _, prox20 = refresh.gio_fit(scores, "apt", 20)
+    assert prox20 == 5.0
+
+
+def _rating(lid, fit=7):
+    return {
+        "id": lid,
+        "nature": 5,
+        "quiet": 6,
+        "nice": 7,
+        "social": 5,
+        "value": 6,
+        "commute": 8,
+        "aesthetic": 7,
+        "fit": fit,
+        "why": "fine",
+        "live": True,
+        "commercial": False,
+    }
+
+
+def _alex_row(i, hood="mission"):
+    return {
+        "id": f"L{i:02d}",
+        "aud": "alex",
+        "pid": i,
+        "price": 1500 + 10 * i,
+        "pdisp": None,
+        "beds": 1,
+        "bucket": "room" if i % 2 else "apt",
+        "hood": hood,
+        "lat": 37.76,
+        "lon": -122.42,
+        "url": f"https://www.craigslist.org/view/d/a/{1000 + i}",
+        "img": "https://images.craigslist.org/a_b_c_600x450.jpg",
+        "imgs": ["https://images.craigslist.org/a_b_c_600x450.jpg"],
+        "nimg": 1,
+        "title": f"alex listing {i}",
+        "body": "",
+        "region": "SF",
+        "drive_min": 11,
+    }
+
+
+def _gio_short_row(i, walk_min=10):
+    r = _gio_row(i, dlat=0.001 * i)
+    r.update(
+        id=f"G{i:02d}",
+        aud="gio",
+        walk_mi=round(walk_min / 26, 2),
+        walk_min=walk_min,
+        imgs=[r["img"]],
+        body="text me at 415-555-0142",
+        beds=0,
+    )
+    return r
+
+
+def _run_build(tmp_path, monkeypatch, shortlist, ratings, stats, prev_data=None):
+    import json as _json
+
+    tmp_path.mkdir(parents=True, exist_ok=True)
+    sl, rt, ps, dj = (tmp_path / n for n in ("s.json", "r.json", "p.json", "data.js"))
+    sl.write_text(_json.dumps(shortlist))
+    rt.write_text(_json.dumps(ratings))
+    ps.write_text(_json.dumps(stats))
+    if prev_data is not None:
+        dj.write_text("window.HOUSES_DATA = " + _json.dumps(prev_data) + ";\n")
+    for attr, p in [
+        ("SHORTLIST", sl),
+        ("RATINGS", rt),
+        ("PULL_STATS", ps),
+        ("DATA_JS", dj),
+    ]:
+        monkeypatch.setattr(refresh, attr, str(p))
+    monkeypatch.setattr(refresh, "fetch_reached_urls", lambda: set())
+    refresh.do_build()
+    return refresh.load_data_js()
+
+
+def test_build_gio_section_and_alex_invariance(tmp_path, monkeypatch):
+    alex = [_alex_row(i) for i in range(1, 17)]
+    gio = [_gio_short_row(1, walk_min=5), _gio_short_row(2, walk_min=25)]
+    ratings = [_rating(r["id"]) for r in alex + gio]
+    stats = {
+        "n_kept": 100,
+        "n_shortlist": 16,
+        "gio_pull_ok": True,
+        "n_gio_raw": 40,
+        "n_gio": 2,
+    }
+    d_both = _run_build(tmp_path / "a", monkeypatch, alex + gio, ratings, stats)
+    d_alex = _run_build(
+        tmp_path / "b",
+        monkeypatch,
+        alex,
+        [_rating(r["id"]) for r in alex],
+        {"n_kept": 100, "n_shortlist": 16},
+    )
+    assert (
+        d_both["listings"] == d_alex["listings"]
+    )  # Gio rows never perturb Alex's board
+    assert "gio" not in d_alex
+    g = d_both["gio"]
+    assert [x["id"] for x in g["listings"]] == [
+        "G01",
+        "G02",
+    ]  # closer walk -> higher fit
+    assert g["listings"][0]["fit"] > g["listings"][1]["fit"]
+    assert g["listings"][0]["scores"]["commute"] == 10.0
+    assert g["listings"][0]["contact_phone"] == "(415) 555-0142"
+    assert g["office"]["lat"] == refresh.GIO_LAT
+    assert g["meta"]["n_shown"] == 2 and g["meta"]["n_scouted"] == 40
+    assert not any(x["id"].startswith("G") for x in d_both["listings"])
+
+
+def test_build_gio_carry_forward_on_failed_pull(tmp_path, monkeypatch):
+    alex = [_alex_row(i) for i in range(1, 17)]
+    prev_gio = {
+        "office": dict(refresh.GIO_OFFICE),
+        "listings": [{"id": "G01", "url": "https://x", "fit": 7.0, "price": 3000}],
+        "meta": {"generated": "2026-07-02", "n_shown": 1},
+    }
+    prev = {"meta": {}, "listings": [], "neighborhoods": [], "gio": prev_gio}
+    d = _run_build(
+        tmp_path,
+        monkeypatch,
+        alex,
+        [_rating(r["id"]) for r in alex],
+        {"n_kept": 100, "n_shortlist": 16, "gio_pull_ok": False, "n_gio": 0},
+        prev_data=prev,
+    )
+    assert d["gio"] == prev_gio  # carried forward verbatim
