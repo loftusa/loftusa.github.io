@@ -74,7 +74,9 @@ so questions and document stay consistent across resumed sessions.
   on /sti points at missing files, so no font files), ~34rem measure, ink reserved for
   meaning, klist-style buttons. Mobile-first — she'll open it from WhatsApp on a phone.
 - State `localStorage["goals-v1"]`: `{ v, baseYear, cursor, answers: {qid: string},
-  startedAt, updatedAt }`. Stable string question IDs (`now.alive`, `y5.wake`, …) so
+  finished, startedAt, updatedAt }`. `cursor` is a frontier — revisiting an earlier
+  question (map edit, timeline jump) never rewinds "continue where you left off".
+  Stable string question IDs (`now.alive`, `y5.wake`, …) so
   content edits never orphan answers. Autosave on input; corrupted state → fresh start;
   localStorage unavailable → in-memory state + gentle "couldn't save on this device" notice.
 - Card transitions 200ms fade/translate, disabled under `prefers-reduced-motion`.

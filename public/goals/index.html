@@ -45,6 +45,7 @@ body {
 
 /* ---------- cards ---------- */
 #card { min-height: 16rem; }
+#card:focus { outline: none; }
 .fade { transition: opacity .2s ease, transform .2s ease; }
 .fade.out { opacity: 0; transform: translateY(.35rem); }
 @media (prefers-reduced-motion: reduce) { .fade { transition: none; } }
@@ -75,11 +76,11 @@ button.primary {
   background: #fffff8; border: 1px solid #444; border-radius: 3px; color: #111;
 }
 button.primary:hover { background: #f2f2e9; }
-button.ghost, a.ghost {
+button.ghost {
   font: inherit; font-size: .92rem; background: none; border: none; padding: 0;
   color: #777; cursor: pointer; text-decoration: none; font-style: italic;
 }
-button.ghost:hover, a.ghost:hover { color: #111; }
+button.ghost:hover { color: #111; }
 .stack { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; margin-top: 1.4rem; }
 .notice { font-size: .88rem; font-style: italic; color: #8a6d3b; margin-top: 1rem; }
 
@@ -90,13 +91,13 @@ button.ghost:hover, a.ghost:hover { color: #111; }
 }
 .doc .qa { margin: 0 0 .9rem; }
 .doc .q { font-style: italic; color: #555; font-size: .9rem; margin: 0 0 .1rem; }
-.doc .a { margin: 0; white-space: pre-wrap; }
+.doc .a { margin: 0; white-space: pre-wrap; overflow-wrap: break-word; }
 .doc .qa.editable { cursor: pointer; border-left: 2px solid transparent; padding-left: .5rem; margin-left: -.5rem; }
 .doc .qa.editable:hover { border-left-color: #bbb; }
 .doc .empty { color: #999; font-style: italic; }
 .epigraph {
   border-left: 2px solid #ccc; padding: .1rem 0 .1rem .8rem; margin: 0 0 1.3rem;
-  font-style: italic; white-space: pre-wrap;
+  font-style: italic; white-space: pre-wrap; overflow-wrap: break-word;
 }
 .epigraph-label { font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: #888; margin: 0 0 .3rem; }
 .actions { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin: 1.6rem 0 .8rem; }
@@ -105,15 +106,18 @@ button.ghost:hover, a.ghost:hover { color: #111; }
 
 @media print {
   @page { margin: 16mm; }
-  body { max-width: none; padding: 0; background: #fff; font-size: 10.5pt; }
+  /* pt override goes on html so rem-sized elements (.doc .q etc) scale with it */
+  html { font-size: 10.5pt; }
+  body { max-width: none; padding: 0; background: #fff; }
   .timeline, .actions, .no-print, .footnote { display: none !important; }
   .doc .qa.editable { border-left: none; padding-left: 0; margin-left: 0; }
 }
 </style></head>
 <body>
 
+<noscript><p style="font-style:italic">This little kit needs JavaScript — open it in your phone’s regular browser and it’ll work.</p></noscript>
 <nav class="timeline" id="timeline" aria-label="progress"></nav>
-<main id="card" class="fade" aria-live="polite"></main>
+<main id="card" class="fade" tabindex="-1"></main>
 
 <script>
 "use strict";
@@ -123,7 +127,6 @@ function assert(cond, msg) { if (!cond) throw new Error("goals: " + msg); }
 /* ---------- content ---------- */
 
 const STORE_KEY = "goals-v1";
-const DEFAULT_BASE_YEAR = 2026;
 
 function chapters(y) {
   return [
@@ -198,12 +201,11 @@ const INTRO_PARAS = [
 /* ---------- state ---------- */
 
 let storageOk = true;
-let state = { v: 1, baseYear: DEFAULT_BASE_YEAR, cursor: 0, answers: {}, finished: false,
+let state = { v: 1, baseYear: new Date().getFullYear(), cursor: 0, answers: {}, finished: false,
               startedAt: null, updatedAt: null };
 try {
   const saved = JSON.parse(localStorage.getItem(STORE_KEY));
   if (saved && saved.v === 1 && saved.answers && typeof saved.answers === "object") state = { ...state, ...saved };
-  else if (!saved) state.baseYear = new Date().getFullYear();
 } catch (e) { /* corrupted or blocked — fresh in-memory start */ }
 try { localStorage.setItem(STORE_KEY + "-probe", "1"); localStorage.removeItem(STORE_KEY + "-probe"); }
 catch (e) { storageOk = false; }
@@ -224,6 +226,8 @@ for (const ch of CH) {
 }
 assert(STEPS.filter(s => s.type === "q").length === 18, "expected 18 questions");
 assert(new Set(STEPS.filter(s => s.type === "q").map(s => s.q.id)).size === 18, "question ids must be unique");
+// hand-edited or corrupted cursor must not crash render
+if (!Number.isInteger(state.cursor) || state.cursor < 0 || state.cursor >= STEPS.length) state.cursor = 0;
 
 // screen = "landing" | "map" | step index into STEPS
 let screen = "landing";
@@ -247,12 +251,14 @@ function renderTimeline() {
     const lbl = document.createElement("span"); lbl.className = "lbl"; lbl.textContent = st.lbl;
     b.append(dot, lbl);
     if (st.ch) {
+      b.setAttribute("aria-label", st.ch.title);
       if (st.ch.qs.every((q) => answered(q.id))) b.classList.add("done");
-      if (curCh && curCh.id === st.ch.id) b.classList.add("here");
+      if (curCh && curCh.id === st.ch.id) { b.classList.add("here"); b.setAttribute("aria-current", "step"); }
       b.addEventListener("click", () => { returnToMap = false; go(STEPS.findIndex((s) => s.ch.id === st.ch.id)); });
     } else {
+      b.setAttribute("aria-label", "your map");
       if (state.finished) b.classList.add("done");
-      if (screen === "map") b.classList.add("here");
+      if (screen === "map") { b.classList.add("here"); b.setAttribute("aria-current", "step"); }
       b.addEventListener("click", () => go("map"));
     }
     timelineEl.append(b);
@@ -274,10 +280,14 @@ function go(next) {
   cardEl.classList.add("out");
   const after = () => {
     screen = next;
-    if (typeof next === "number") { state.cursor = next; persist(); }
+    // cursor is a frontier: revisiting an earlier question (map edit, timeline
+    // jump) must never rewind "continue where you left off"
+    if (typeof next === "number") { state.cursor = Math.max(state.cursor, next); persist(); }
     render();
     cardEl.classList.remove("out");
     window.scrollTo({ top: 0 });
+    // move focus with the screen change unless the textarea already took it
+    if (!cardEl.contains(document.activeElement)) cardEl.focus({ preventScroll: true });
   };
   matchMedia("(prefers-reduced-motion: reduce)").matches ? after() : setTimeout(after, 200);
 }
@@ -312,9 +322,10 @@ function renderLanding() {
   if (!anyProgress()) {
     begin.textContent = "begin";
     begin.addEventListener("click", () => go(0));
+    stack.append(begin);
   } else if (!state.finished) {
     begin.textContent = "continue where you left off";
-    begin.addEventListener("click", () => go(Math.min(state.cursor, STEPS.length - 1)));
+    begin.addEventListener("click", () => go(state.cursor));
     const peek = el("button", "ghost", "your map so far");
     peek.type = "button";
     peek.addEventListener("click", () => go("map"));
@@ -324,10 +335,9 @@ function renderLanding() {
     begin.addEventListener("click", () => go("map"));
     const again = el("button", "ghost", "walk it again — your answers stay put");
     again.type = "button";
-    again.addEventListener("click", () => go(0));
+    again.addEventListener("click", () => { state.cursor = 0; go(0); });
     stack.append(begin, again);
   }
-  if (!stack.childElementCount) stack.append(begin);
   cardEl.append(stack);
 
   if (!storageOk) cardEl.append(el("p", "notice",
@@ -392,6 +402,8 @@ function renderQuestion(step) {
   next.addEventListener("click", () => (returnToMap ? endEdit() : goForward()));
   nav.append(back, next);
   cardEl.append(nav);
+  if (!storageOk) cardEl.append(el("p", "notice",
+    "This browser isn’t letting the page save — finish in one sitting and print or download at the end."));
 
   requestAnimationFrame(grow);
   if (matchMedia("(pointer: fine)").matches) ta.focus();
@@ -480,7 +492,10 @@ function renderMap() {
     try { await navigator.clipboard.writeText(docText()); copied.textContent = "copied"; }
     catch (e) {
       const t = document.createElement("textarea");
-      t.value = docText(); document.body.append(t); t.select();
+      t.value = docText();
+      t.style.cssText = "position:fixed;left:-9999px;top:0";
+      document.body.append(t);
+      t.focus(); t.setSelectionRange(0, t.value.length);
       copied.textContent = document.execCommand("copy") ? "copied" : "couldn’t copy";
       t.remove();
     }
@@ -498,11 +513,8 @@ function renderMap() {
   let armed = false;
   reset.addEventListener("click", () => {
     if (!armed) { armed = true; reset.textContent = "this erases everything — tap again if you’re sure"; return; }
-    if (storageOk) try { localStorage.removeItem(STORE_KEY); } catch (e) { /* best effort */ }
-    state = { v: 1, baseYear: new Date().getFullYear(), cursor: 0, answers: {}, finished: false,
-              startedAt: null, updatedAt: null };
-    returnToMap = false;
-    go("landing");
+    try { localStorage.removeItem(STORE_KEY); } catch (e) { /* best effort */ }
+    location.reload(); // full reset: fresh state, fresh baseYear, fresh questions
   });
   const resetWrap = el("div", "stack no-print");
   resetWrap.append(reset);
