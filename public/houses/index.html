@@ -11,7 +11,7 @@
   :root{
     --paper:#faf9f5; --panel:#fffdf8; --ink:#23201b; --muted:#6f6a60; --faint:#928c80;
     --rule:#e6e0d2; --rule2:#efeadd;
-    --apt:#2f7d75; --room:#b06a1a; --pick:#977a1c;
+    --apt:#2f7d75; --room:#b06a1a; --pick:#977a1c; --gio:#5a5f9e;
     --nature:#4f8a55; --quiet:#5f7189; --nice:#7b6091; --social:#bd8a3a; --value:#3f867e; --commute:#8a8378; --aesthetic:#b0654d;
     --good:#3f7d4e; --warn:#b0573c;
   }
@@ -262,6 +262,25 @@
   </div>
   <div class="grid" id="grid"></div>
 
+  <h2 id="gio">For Gio — walkable to OpenAI HQ</h2>
+  <p class="h2note">Gio works at OpenAI's Mission Bay HQ (1455 Third St — the ◆ on the map). Everything here is a
+    ≤30-minute walk from the office, refreshed and rated daily with Gio's own rubric: walk time first, then how
+    good the place looks, then value. Prices run higher than Alex's caps on purpose — toggle below.</p>
+  <div class="controls ui" id="gioControls">
+    <div class="cgroup"><span class="lbl">Max price</span><span id="gPrice"></span></div>
+    <div class="cgroup"><span class="lbl">Type</span><span id="gBkt"></span></div>
+    <div class="cgroup"><span class="lbl">Walk</span><span id="gWalk"></span></div>
+    <div class="cgroup"><span class="lbl">Sort</span>
+      <select id="gioSort">
+        <option value="fit">Best fit</option>
+        <option value="walk">Walk time ↑</option>
+        <option value="price">Price ↑</option>
+        <option value="aesthetic">Best photos</option>
+      </select></div>
+    <div class="cgroup"><span id="gioCount" class="lbl"></span></div>
+  </div>
+  <div class="grid" id="gioGrid"></div>
+
   <h2>Neighborhood scorecards</h2>
   <p class="h2note">Independent read on each area Alex's listings cluster in — drive time, nature, quiet, niceness, and social/networking scene.</p>
   <div class="hoodgrid" id="hoods"><div class="empty">Neighborhood ratings populate once the review agents finish.</div></div>
@@ -303,6 +322,7 @@ document.getElementById("stats").innerHTML = [
   ["Shown here", m.n_shown+" <small>of "+m.n_shortlist+" shortlisted</small>"],
   ["Price range", money(m.price_min)+"–"+money(m.price_max)+" <small>med "+money(m.price_med)+"</small>"],
   ["Commute anchors", "<small>downtown SF + Berkeley (FAR Labs)</small>"],
+  ...((D.gio&&D.gio.listings&&D.gio.listings.length)?[["For Gio", D.gio.listings.length+" <small>walkable to OpenAI</small>"]]:[]),
   ["Move by", "<small>"+m.move_by+"</small>"],
 ].map(([k,v])=>`<div class="stat"><span class="k">${k}</span><span class="v">${v}</span></div>`).join("");
 
@@ -431,6 +451,71 @@ function renderGrid(){
   wireGalleries(document.getElementById("grid"));
 }
 
+/* ---- For Gio: walkable to OpenAI HQ ---- */
+const GIO = (D.gio && Array.isArray(D.gio.listings)) ? D.gio : {office:null, listings:[], meta:null};
+const GRANK = {};
+[...GIO.listings].sort((a,b)=>(b.fit||0)-(a.fit||0)).forEach((x,i)=>{ GRANK[x.id]=i+1; });
+const gstate = {price:"All", bucket:"All", walk:"All", sort:"fit"};
+const GPRICES=[["2000","≤$2k"],["3000","≤$3k"],["4500","≤$4.5k"],["All","all ≤$6k"]];
+const GWALKS=[["10","≤10 min"],["20","≤20 min"],["All","≤30 min"]];
+function gioCard(x){
+  const imgs=(x.imgs&&x.imgs.length)?x.imgs:[x.img||FALLBACK];
+  IMAGES[x.id]=imgs; IDX[x.id]=0; const n=imgs.length;
+  const nav=n>1?`
+      <button class="gnav gprev" data-id="${x.id}" data-dir="-1" aria-label="Previous photo" title="Previous photo">‹</button>
+      <button class="gnav gnext" data-id="${x.id}" data-dir="1" aria-label="Next photo" title="Next photo">›</button>
+      <span class="gcount" data-id="${x.id}">1/${n}</span>`:"";
+  return `<article class="card ${x.gone?'gone':''}" data-id="${x.id}">
+    <div class="ph" data-id="${x.id}">
+      <img class="gimg" loading="lazy" src="${imgs[0]}" onerror="this.src='${FALLBACK}'" alt="">
+      <span class="badge ${x.bucket==='apt'?'b-apt':'b-room'}">${x.bucket==='apt'?'Apartment':'Room'}</span>
+      ${x.gone?'<span class="gone-badge">no longer listed</span>':''}${nav}
+    </div>
+    <div class="body">
+      <div class="row1">
+        <span class="price num">${money(x.price)}<small>/mo</small></span>
+        <span class="fit num"><span class="rk" title="rank in Gio's section">#${GRANK[x.id]}</span><b style="color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b><span class="s">FIT</span></span>
+      </div>
+      <div class="metaline">${bedsLabel(x.beds)} · ${x.hood||"Mission Bay area"}<br>
+        <span class="drv"><b class="num">${x.walk_min} min walk</b> to OpenAI HQ · <span class="num">${x.walk_mi} mi</span></span></div>
+      ${glyphRow(x.scores)}
+      <p class="rat">${x.rationale||""}</p>
+      <div class="actions"><a class="view" href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div>
+    </div>
+  </article>`;
+}
+function gioFiltered(){
+  let a=GIO.listings.filter(x=>
+    (gstate.price==="All"||x.price<=+gstate.price) &&
+    (gstate.bucket==="All"||x.bucket===gstate.bucket) &&
+    (gstate.walk==="All"||x.walk_min<=+gstate.walk));
+  const s=gstate.sort;
+  a.sort((p,q)=> s==="price"? p.price-q.price : s==="walk"? p.walk_min-q.walk_min
+      : s==="aesthetic"? (q.scores.aesthetic||0)-(p.scores.aesthetic||0) : (q.fit||0)-(p.fit||0));
+  return a;
+}
+function renderGio(){
+  if(!GIO.listings.length){
+    document.getElementById("gioControls").style.display="none";
+    document.getElementById("gioGrid").innerHTML =
+      `<div class="empty">No walkable listings right now — this section refreshes daily at 7am PT.</div>`;
+    return;
+  }
+  chips(document.getElementById("gPrice"),GPRICES,gstate.price,v=>{gstate.price=v;renderGio();});
+  chips(document.getElementById("gBkt"),BUCKETS,gstate.bucket,v=>{gstate.bucket=v;renderGio();});
+  chips(document.getElementById("gWalk"),GWALKS,gstate.walk,v=>{gstate.walk=v;renderGio();});
+  const a=gioFiltered();
+  document.getElementById("gioGrid").innerHTML=a.map(gioCard).join("")||`<div class="empty">Nothing matches these filters.</div>`;
+  document.getElementById("gioCount").textContent=a.length+" shown";
+  wireGalleries(document.getElementById("gioGrid"));
+  document.querySelectorAll("#gioGrid .card").forEach(c=>{
+    c.onmouseenter=()=>highlightMarker(c.dataset.id,true);
+    c.onmouseleave=()=>highlightMarker(c.dataset.id,false);
+    c.onclick=e=>{ if(e.target.closest("a,.gnav,.gcount"))return; flyToListing(c.dataset.id); };
+  });
+}
+document.getElementById("gioSort").onchange=e=>{gstate.sort=e.target.value;renderGio();};
+
 /* ---- neighborhoods ---- */
 function track(v,varn){const w=Math.max(3,(v||0)*10);return `<div class="track"><i style="width:${w}%;background:${css(varn)}"></i></div>`;}
 function renderHoods(){
@@ -467,7 +552,9 @@ document.getElementById("foot").innerHTML = `
   <b>Ferry note:</b> Sausalito/Marin have a ~30-min ferry to the SF Ferry Building (great car-free link to SF), but there's
   <b>no direct ferry to Berkeley</b> — you'd ferry to SF then BART, so the ferry helps the SF side only.
   Drive times are off-peak estimates (bridges run much worse at rush hour); ratings are my judgment on your stated
-  preferences, not gospel; some map pins are approximate to the neighborhood. Data mode: <b>${m.mode}</b>.`;
+  preferences, not gospel; some map pins are approximate to the neighborhood. Data mode: <b>${m.mode}</b>.
+  ${GIO.listings.length?` <b>For Gio:</b> the “walkable to OpenAI” section is pulled the same way but rated with Gio's
+  own rubric — walk time to 1455 Third St first, then photo quality and value.`:""}`;
 
 /* ================= MAP ================= */
 const map = L.map("map",{scrollWheelZoom:false}).setView([37.82,-122.30],11);
@@ -482,6 +569,7 @@ function anchor(lat,lon,label){
 }
 anchor(37.7935,-122.3970,"Downtown SF").addTo(map);
 anchor(37.8703,-122.2680,"Berkeley · FAR Labs").addTo(map);
+if(GIO.office) anchor(GIO.office.lat,GIO.office.lon,"OpenAI HQ").addTo(map);
 
 function shortHood(h){ if(!h)return"";
   let s=h.replace(/\s*\/\s*/g,"/").replace(/\b\w/g,c=>c.toUpperCase());
@@ -516,6 +604,34 @@ function drawMarkers(list){
     if(x.lat==null||x.lon==null) return;
     const mk=L.marker([x.lat,x.lon],{icon:markerIcon(x),riseOnHover:true});
     mk.bindPopup(()=>popupInner(x),{maxWidth:236,minWidth:220});
+    mk.addTo(map); markerById[x.id]=mk;
+  });
+}
+/* Gio's listings share markerById (G-ids are disjoint), so hover/fly wiring is shared */
+function gioPopup(x){
+  const imgs=IMAGES[x.id]||[x.img||FALLBACK]; const i=IDX[x.id]||0; const n=imgs.length;
+  const nav=n>1?`<button class="gnav gprev" data-id="${x.id}" data-dir="-1" aria-label="Previous photo">‹</button>
+    <button class="gnav gnext" data-id="${x.id}" data-dir="1" aria-label="Next photo">›</button>
+    <span class="gcount" data-id="${x.id}">${i+1}/${n}</span>`:"";
+  return `<div class="popup">
+    <div class="ph pop-ph" data-id="${x.id}"><img class="gimg" src="${imgs[i]}" onerror="this.src='${FALLBACK}'">${nav}</div>
+    <div class="pp num">G#${GRANK[x.id]} · ${money(x.price)} <span style="font-size:12px;color:#777">${bedsLabel(x.beds)}</span>
+      <b style="float:right;color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b></div>
+    <div class="ph2">${x.hood||"Mission Bay area"}<br><b class="num">${x.walk_min} min walk</b> to OpenAI HQ</div>
+    <div style="font-size:12px;margin:5px 0 4px">${x.rationale||""}</div>
+    <div class="actions"><a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div></div>`;
+}
+function gioMarkerIcon(x){
+  const size=Math.round(18+(x.fit||5)*1.4);
+  const fs=GRANK[x.id]>9?10:12;
+  return L.divIcon({className:"rankmark-wrap",iconSize:[size,size],iconAnchor:[size/2,size/2],
+    html:`<div class="rankmark ${x.gone?'gone-mk':''}" style="width:${size}px;height:${size}px;background:${css('--gio')};box-shadow:0 1px 3px rgba(0,0,0,.4);font-size:${fs}px">${GRANK[x.id]}</div>`});
+}
+function drawGioMarkers(list){
+  list.slice().sort((a,b)=>(a.fit||0)-(b.fit||0)).forEach(x=>{
+    if(x.lat==null||x.lon==null) return;
+    const mk=L.marker([x.lat,x.lon],{icon:gioMarkerIcon(x),riseOnHover:true});
+    mk.bindPopup(()=>gioPopup(x),{maxWidth:236,minWidth:220});
     mk.addTo(map); markerById[x.id]=mk;
   });
 }
@@ -571,6 +687,7 @@ legend.onAdd=function(){const d=L.DomUtil.create("div","legend");
   d.innerHTML=`<span class="dot" style="background:${css('--apt')}"></span>Apartment / studio<br>
     <span class="dot" style="background:${css('--room')}"></span>Room / share (housemates)<br>
     <span class="dot ring" style="background:#bbb"></span>Top pick<br>
+    ${GIO.listings.length?`<span class="dot" style="background:${css('--gio')}"></span>Gio · walkable to OpenAI<br>`:""}
     <span style="color:var(--muted)">number = overall rank · bigger = better fit</span><br>
     <span class="anchor" style="font-size:11px">◆</span> commute anchors (SF &amp; Berkeley)`;
   return d;};
@@ -595,7 +712,7 @@ function toast(msg){
 function refreshReachedUI(){ renderGrid(); renderLeaderboard();
   Object.values(markerById).forEach(m=>map.removeLayer(m));
   for(const k in markerById) delete markerById[k];
-  drawMarkers(D.listings); }
+  drawMarkers(D.listings); drawGioMarkers(GIO.listings); }
 
 /* localStorage mirror: reach-out marks survive a dead backend / offline use.
    Server wins on conflicts; local-only entries are pushed up when it's back. */
@@ -684,8 +801,10 @@ document.addEventListener("click",e=>{
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeReach(); });
 
 drawMarkers(D.listings);   // map + leaderboard show ALL listings, ranked
+drawGioMarkers(GIO.listings);
 renderLeaderboard();
 renderGrid();
+renderGio();
 renderHoods();
 loadReached();             // then overlay reached-out state from the backend
 </script>
