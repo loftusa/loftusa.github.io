@@ -891,9 +891,13 @@ def do_sweep():
     if data is None:
         sys.exit("FATAL: no parseable data.js to sweep.")
     listings = data["listings"]
+    gio = data.get("gio") or {}
+    gio_listings = gio.get("listings") or []
     reached = fetch_reached_urls()
     with ThreadPoolExecutor(max_workers=4) as ex:
-        alive = dict(ex.map(lambda x: (x["url"], check_live(x["url"])), listings))
+        alive = dict(
+            ex.map(lambda x: (x["url"], check_live(x["url"])), listings + gio_listings)
+        )
 
     kept, pruned, newly_gone = [], [], 0
     for x in listings:
@@ -911,7 +915,17 @@ def do_sweep():
             f"FATAL: sweep would leave only {len(kept)} listings — mass-death is "
             f"more likely a scrape problem than reality. Not writing."
         )
-    if not pruned and not newly_gone:
+    # Gio: prune positive-dead only. A >60% single-sweep wipe is more likely a
+    # scrape problem than reality — skip Gio changes entirely in that case.
+    g_kept = [x for x in gio_listings if alive.get(x["url"]) is not False]
+    n_gdead = len(gio_listings) - len(g_kept)
+    if n_gdead and len(g_kept) < 0.4 * len(gio_listings):
+        print(
+            f"gio sweep: {n_gdead}/{len(gio_listings)} flagged dead at once — "
+            f"likely a scrape problem, keeping gio unchanged."
+        )
+        g_kept, n_gdead = gio_listings, 0
+    if not pruned and not newly_gone and not n_gdead:
         print(f"sweep: all {len(kept)} listings still live; no changes.")
         return
 
@@ -919,10 +933,14 @@ def do_sweep():
     data["neighborhoods"] = build_neighborhoods([x for x in kept if not x.get("gone")])
     data["meta"]["n_shown"] = len(kept)
     data["meta"]["swept"] = datetime.date.today().isoformat()
+    if n_gdead:
+        gio["listings"] = g_kept
+        gio.setdefault("meta", {})["n_shown"] = len(g_kept)
+        data["gio"] = gio
     write_data_js(data)
     print(
         f"sweep: pruned {len(pruned)} dead {pruned}, flagged {newly_gone} contacted-as-gone, "
-        f"kept {len(kept)}."
+        f"pruned {n_gdead} gio, kept {len(kept)}."
     )
 
 

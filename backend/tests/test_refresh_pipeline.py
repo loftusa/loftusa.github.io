@@ -320,3 +320,71 @@ def test_build_gio_carry_forward_on_failed_pull(tmp_path, monkeypatch):
         prev_data=prev,
     )
     assert d["gio"] == prev_gio  # carried forward verbatim
+
+
+# ---- Gio sweep: prune dead, mass-death guard
+
+
+def _sweep_fixture(tmp_path, monkeypatch, n_alex=12, gio_urls=()):
+    import json as _json
+
+    listings = [
+        dict(_alex_row(i), fit=6.0, scores={}, pick=False) for i in range(1, n_alex + 1)
+    ]
+    gio_listings = [
+        {"id": f"G{j:02d}", "url": u, "fit": 7.0, "price": 3000, "hood": "mission bay"}
+        for j, u in enumerate(gio_urls, 1)
+    ]
+    data = {
+        "meta": {"n_shown": n_alex},
+        "listings": listings,
+        "neighborhoods": [],
+        "searchlinks": [],
+        "gio": {
+            "office": dict(refresh.GIO_OFFICE),
+            "listings": gio_listings,
+            "meta": {"generated": "2026-07-03", "n_shown": len(gio_listings)},
+        },
+    }
+    dj = tmp_path / "data.js"
+    dj.write_text("window.HOUSES_DATA = " + _json.dumps(data) + ";\n")
+    monkeypatch.setattr(refresh, "DATA_JS", str(dj))
+    monkeypatch.setattr(refresh, "fetch_reached_urls", lambda: set())
+    monkeypatch.setattr(refresh, "check_live", lambda url: not url.endswith("dead"))
+    return dj
+
+
+def test_sweep_prunes_dead_gio_listing(tmp_path, monkeypatch):
+    _sweep_fixture(
+        tmp_path,
+        monkeypatch,
+        gio_urls=[
+            "https://g/1",
+            "https://g/2dead",
+            "https://g/3",
+            "https://g/4",
+            "https://g/5",
+        ],
+    )
+    refresh.do_sweep()
+    d = refresh.load_data_js()
+    assert [x["id"] for x in d["gio"]["listings"]] == ["G01", "G03", "G04", "G05"]
+    assert d["gio"]["meta"]["n_shown"] == 4
+    assert len(d["listings"]) == 12  # alex untouched
+
+
+def test_sweep_gio_mass_death_guard(tmp_path, monkeypatch):
+    dj = _sweep_fixture(
+        tmp_path,
+        monkeypatch,
+        gio_urls=[
+            "https://g/1dead",
+            "https://g/2dead",
+            "https://g/3dead",
+            "https://g/4dead",
+            "https://g/5",
+        ],
+    )
+    before = dj.read_text()
+    refresh.do_sweep()
+    assert dj.read_text() == before  # 80% dead at once -> scrape problem, no write
