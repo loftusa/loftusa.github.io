@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>Jobs — private board</title>
+<title>Jobs — Alex Loftus</title>
 <style>
 :root{
   --paper:#faf7f1; --card:#fffdf9; --ink:#2b2320; --muted:#8a7f74;
@@ -22,17 +21,6 @@ a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
 .wrap{max-width:1280px;margin:0 auto;padding:28px 22px 80px}
 
-/* ---------- password gate ---------- */
-#gate{position:fixed;inset:0;background:var(--paper);z-index:50;display:flex;align-items:center;justify-content:center}
-#gate .box{text-align:center;max-width:340px}
-#gate h1{font-size:22px;font-weight:600;letter-spacing:.01em;margin-bottom:6px}
-#gate p{color:var(--muted);font-size:13.5px;margin-bottom:18px}
-#gate input{width:100%;padding:10px 12px;font:15px var(--mono);border:1px solid var(--line);
-  border-radius:6px;background:var(--card);color:var(--ink);text-align:center;outline:none}
-#gate input:focus{border-color:var(--accent)}
-#gate .err{color:var(--bad);font-size:12.5px;margin-top:10px;min-height:16px;font-family:var(--sans)}
-@keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
-#gate .shake{animation:shake .35s}
 
 /* ---------- header ---------- */
 header{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}
@@ -158,14 +146,8 @@ footer{margin-top:36px;color:var(--muted);font:12px var(--sans);display:flex;gap
 </head>
 <body>
 
-<div id="gate"><div class="box">
-  <h1>Jobs</h1>
-  <p>Private board. Enter the password.</p>
-  <input id="pw" type="password" autocomplete="current-password" autofocus>
-  <div class="err" id="gerr"></div>
-</div></div>
 
-<div class="wrap" id="app" style="display:none">
+<div class="wrap" id="app">
   <header>
     <h1>Jobs</h1>
     <span class="meta" id="hmeta"></span>
@@ -180,7 +162,6 @@ footer{margin-top:36px;color:var(--muted);font:12px var(--sans);display:flex;gap
     <span id="fmeta"></span>
     <button class="btn" id="exportBtn">Export status + drill</button>
     <label class="btn" style="cursor:pointer">Import<input id="importInp" type="file" accept=".json" style="display:none"></label>
-    <button class="btn" id="lockBtn">Lock</button>
   </footer>
 </div>
 
@@ -191,46 +172,12 @@ footer{margin-top:36px;color:var(--muted);font:12px var(--sans);display:flex;gap
   <div class="dbody" id="dbody"></div>
 </aside>
 
-<script src="data.enc.js"></script>
+<script src="data.js"></script>
 <script>
 'use strict';
-/* ================= crypto gate ================= */
-const enc = new TextEncoder(), dec = new TextDecoder();
-const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
-async function decrypt(password){
-  const B = window.JOBS_ENC;
-  const km = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
-  const key = await crypto.subtle.deriveKey(
-    {name:'PBKDF2', salt:b64(B.salt), iterations:B.iter, hash:'SHA-256'},
-    km, {name:'AES-GCM', length:256}, false, ['decrypt']);
-  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(B.iv)}, key, b64(B.ct));
-  return JSON.parse(dec.decode(pt));
-}
-
-let DATA=null, BANK=null;
-const LSPW='jobs_pw_v1', LSST='jobs_status_v1', LSDR='jobs_drill_v1';
+const DATA = window.JOBS_DATA, BANK = DATA.bank || {};
+const LSST='jobs_status_v1', LSDR='jobs_drill_v1';
 const $=id=>document.getElementById(id);
-
-async function tryUnlock(pw, silent){
-  try{
-    DATA = await decrypt(pw);
-    BANK = DATA.bank || {};
-    localStorage.setItem(LSPW, pw);
-    $('gate').style.display='none';
-    $('app').style.display='';
-    boot();
-  }catch(e){
-    localStorage.removeItem(LSPW);
-    if(!silent){
-      $('gerr').textContent='Wrong password.';
-      const box=document.querySelector('#gate .box');
-      box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake');
-    }
-  }
-}
-$('pw').addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock($('pw').value,false); });
-const saved = localStorage.getItem(LSPW);
-if(saved) tryUnlock(saved, true);
 
 /* ================= state ================= */
 const STATUSES=['watching','referral','applied','interview','offer','rejected'];
@@ -529,7 +476,7 @@ $('importInp').onchange=e=>{
     STATUS={...STATUS,...(d.status||{})}; DRILL={...DRILL,...(d.drill||{})};
     saveStatus(); saveDrill(); renderAll(); });
 };
-$('lockBtn').onclick=()=>{ localStorage.removeItem(LSPW); location.reload(); };
+boot();
 </script>
 </body>
 </html>

@@ -1,34 +1,22 @@
-# /// script
-# dependencies = ["cryptography>=42.0"]
-# ///
-"""Refresh pipeline for alex-loftus.com/jobs — the password-gated job board.
+"""Refresh pipeline for alex-loftus.com/jobs — the public job board.
 
 Phases (mirrors public/houses/refresh/refresh.py):
 
   --pull   Fetch every configured ATS board (Greenhouse / Ashby / Lever JSON
            APIs, no auth). Normalize to one record shape, keyword-prefilter
-           non-Anthropic boards, diff against the previous encrypted payload,
-           and write shortlist.json = roles that still need LLM scoring
-           (new ids, or title changed). Fails loud if Anthropic < 200 jobs so
-           a blocked/broken pull can never publish a degraded board.
+           non-Anthropic boards, diff against the previous data.js, and write
+           shortlist.json = roles that still need LLM scoring (new ids, or
+           title changed). Fails loud if Anthropic < 200 jobs so a
+           blocked/broken pull can never publish a degraded board.
 
   --build  Merge ratings.json (written by rate.py) into the previous payload,
-           compute deterministic fit, rank, and write data.enc.js — an
-           AES-256-GCM blob the page decrypts client-side with the password.
+           compute deterministic fit, rank, and write data.js.
 
-  --sweep  Keyless refresh: re-pull boards, update open/closed + last_seen on
-           already-rated roles, re-encrypt. No LLM, no new roles scored.
-
-  --encrypt-prep-bank FILE   Encrypt the personal prep bank (STAR titles,
-           hard-Q rebuttals, pitch parts) to prep_bank.enc.json with the same
-           password. The plaintext file must NOT be committed.
-
-Env: JOBS_PAGE_PASSWORD (required for build/sweep/encrypt; and for pull when a
-previous data.enc.js exists, to diff against it).
+  --sweep  Re-pull boards, update open/closed + last_seen on already-rated
+           roles, rewrite data.js. No LLM, no new roles scored.
 """
 
 import argparse
-import base64
 import html
 import json
 import os
@@ -36,14 +24,14 @@ import re
 import sys
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-DATA_ENC = os.path.join(HERE, "..", "data.enc.js")
+DATA = os.path.join(HERE, "..", "data.js")
 SHORTLIST = os.path.join(HERE, "shortlist.json")
 RATINGS = os.path.join(HERE, "ratings.json")
 PULL_STATS = os.path.join(HERE, "pull_stats.json")
-PREP_BANK_ENC = os.path.join(HERE, "prep_bank.enc.json")
+PREP_BANK = os.path.join(HERE, "prep_bank.json")
 
 TODAY = date.today().isoformat()
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) jobs-refresh/1.0"
@@ -109,71 +97,26 @@ def fit_score(scores):
     return min(10.0, round(f, 1))
 
 
-# ---------------------------------------------------------------- crypto ----
-def _derive(password: str, salt: bytes):
-    from cryptography.hazmat.primitives import hashes
-    from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-
-    return PBKDF2HMAC(
-        algorithm=hashes.SHA256(), length=32, salt=salt, iterations=210_000
-    ).derive(password.encode())
-
-
-def encrypt_blob(obj, password: str) -> dict:
-    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
-
-    salt, iv = os.urandom(16), os.urandom(12)
-    ct = AESGCM(_derive(password, salt)).encrypt(
-        iv, json.dumps(obj, separators=(",", ":")).encode(), None
-    )
-    b64 = lambda b: base64.b64encode(b).decode()
-    return {
-        "v": 1,
-        "kdf": "PBKDF2-SHA256",
-        "iter": 210_000,
-        "salt": b64(salt),
-        "iv": b64(iv),
-        "ct": b64(ct),
-    }
-
-
-def decrypt_blob(blob: dict, password: str):
-    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
-
-    b64 = base64.b64decode
-    pt = AESGCM(_derive(password, b64(blob["salt"]))).decrypt(
-        b64(blob["iv"]), b64(blob["ct"]), None
-    )
-    return json.loads(pt)
-
-
-def need_password() -> str:
-    pw = os.environ.get("JOBS_PAGE_PASSWORD", "")
-    if not pw:
-        sys.exit("JOBS_PAGE_PASSWORD env var is required")
-    return pw
-
-
-def load_prev_payload(password):
-    """Previous decrypted payload from data.enc.js, or None on first run."""
-    if not os.path.exists(DATA_ENC):
+# ----------------------------------------------------------------- payload --
+def load_prev_payload():
+    """Previous payload from data.js, or None on first run."""
+    if not os.path.exists(DATA):
         return None
-    src = open(DATA_ENC).read()
-    m = re.search(r"window\.JOBS_ENC\s*=\s*(\{.*\});?\s*$", src, re.S)
-    assert m, "data.enc.js exists but has no window.JOBS_ENC blob"
-    return decrypt_blob(json.loads(m.group(1)), password)
+    src = open(DATA).read()
+    m = re.search(r"window\.JOBS_DATA\s*=\s*(\{.*\});?\s*$", src, re.S)
+    assert m, "data.js exists but has no window.JOBS_DATA blob"
+    return json.loads(m.group(1))
 
 
-def write_payload(payload, password):
-    blob = encrypt_blob(payload, password)
-    with open(DATA_ENC, "w") as f:
+def write_payload(payload):
+    with open(DATA, "w") as f:
         f.write(
-            "// Encrypted payload for alex-loftus.com/jobs — decrypted "
-            "client-side.\nwindow.JOBS_ENC = " + json.dumps(blob) + ";\n"
+            "// Data for alex-loftus.com/jobs — generated by refresh/refresh.py.\n"
+            "window.JOBS_DATA = " + json.dumps(payload, separators=(",", ":")) + ";\n"
         )
     print(
-        f"wrote {os.path.relpath(DATA_ENC, HERE)} "
-        f"({len(payload['jobs'])} roles, {os.path.getsize(DATA_ENC)//1024} KB)"
+        f"wrote {os.path.relpath(DATA, HERE)} "
+        f"({len(payload['jobs'])} roles, {os.path.getsize(DATA)//1024} KB)"
     )
 
 
@@ -189,7 +132,8 @@ COMP_RE = re.compile(r"\$(\d{3}),(\d{3})\s*(?:—|–|−|-|to)\s*\$(\d{3}),(\d{
 
 
 def strip_html(s):
-    return html.unescape(TAG_RE.sub(" ", s or "")).replace("\xa0", " ")
+    # unescape FIRST: Greenhouse ?content=true returns entity-escaped HTML
+    return TAG_RE.sub(" ", html.unescape(s or "")).replace("\xa0", " ")
 
 
 def parse_comp(text):
@@ -274,7 +218,7 @@ def fetch_lever(b):
         locs = [cats.get("location") or ""] + (cats.get("allLocations") or [])
         locs = sorted({s for s in locs if s})
         pub = j.get("createdAt")
-        pub = datetime.utcfromtimestamp(pub / 1000).date().isoformat() if pub else ""
+        pub = datetime.fromtimestamp(pub / 1000, timezone.utc).date().isoformat() if pub else ""
         wt = (j.get("workplaceType") or "").lower()
         out.append(
             _norm(
@@ -297,6 +241,12 @@ def fetch_lever(b):
 FETCHERS = {"greenhouse": fetch_greenhouse, "ashby": fetch_ashby, "lever": fetch_lever}
 
 
+def failed_companies(stats):
+    """Companies whose board fetch failed this run — their roles must not be
+    closed/tombstoned off the board (an API outage is not a closed req)."""
+    return {c for c, v in stats.items() if isinstance(v, str) and not c.startswith("_")}
+
+
 def pull_boards():
     """Fetch all boards in parallel. A dead board logs and skips."""
     results, stats = [], {}
@@ -315,9 +265,10 @@ def pull_boards():
         for roles in ex.map(one, BOARDS):
             results.extend(roles)
     n_anthropic = sum(1 for r in results if r["company"] == "Anthropic")
-    assert (
-        n_anthropic >= 200
-    ), f"Anthropic pull returned only {n_anthropic} jobs — refusing to publish a degraded board"
+    assert n_anthropic >= 200, (
+        f"Anthropic pull returned only {n_anthropic} jobs — "
+        "refusing to publish a degraded board"
+    )
     kept = [
         r for r in results if r["group"] == "anthropic" or PREFILTER.search(r["title"])
     ]
@@ -327,10 +278,7 @@ def pull_boards():
 
 # ---------------------------------------------------------------- phases ----
 def cmd_pull():
-    password = os.environ.get("JOBS_PAGE_PASSWORD", "")
-    prev = (
-        load_prev_payload(password) if password and os.path.exists(DATA_ENC) else None
-    )
+    prev = load_prev_payload()
     prev_jobs = {j["id"]: j for j in (prev or {}).get("jobs", [])}
 
     live, stats = pull_boards()
@@ -340,6 +288,7 @@ def cmd_pull():
         if r["id"] not in prev_jobs
         or prev_jobs[r["id"]].get("title") != r["title"]
         or "scores" not in prev_jobs[r["id"]]
+        or (prev_jobs[r["id"]].get("fit", 0) >= 6.0 and "prep" not in prev_jobs[r["id"]])
     ]
     with open(SHORTLIST, "w") as f:
         json.dump(need, f, indent=1)
@@ -372,8 +321,7 @@ def cmd_pull():
 
 
 def cmd_build():
-    password = need_password()
-    prev = load_prev_payload(password)
+    prev = load_prev_payload()
     prev_jobs = {j["id"]: j for j in (prev or {}).get("jobs", [])}
     live = json.load(open(os.path.join(HERE, "live_index.json")))
     ratings = {}
@@ -400,9 +348,14 @@ def cmd_build():
         jobs.append(rec)
 
     # tombstones: rated roles that vanished from their board
+    stats = json.load(open(PULL_STATS)) if os.path.exists(PULL_STATS) else {}
+    failed = failed_companies(stats)
     cutoff = (date.today() - timedelta(days=TOMBSTONE_DAYS)).isoformat()
     for rid, rec in prev_jobs.items():
         if rid in live or not rec.get("scores"):
+            continue
+        if rec.get("company") in failed:
+            jobs.append(rec)  # board unreachable this run — keep state as-is
             continue
         rec["closed"] = True
         rec.setdefault("closed_on", rec.get("last_seen", TODAY))
@@ -415,11 +368,7 @@ def cmd_build():
     n_shown = sum(1 for j in jobs if not j.get("hidden") and not j["closed"])
     assert n_shown >= 15, f"only {n_shown} visible roles — refusing to publish"
 
-    bank = {}
-    if os.path.exists(PREP_BANK_ENC):
-        bank = decrypt_blob(json.load(open(PREP_BANK_ENC)), password)
     payload = {
-        "bank": bank,
         "meta": {
             "generated": datetime.now().isoformat(timespec="minutes"),
             "date": TODAY,
@@ -432,23 +381,25 @@ def cmd_build():
         },
         "jobs": jobs,
     }
-    # ship the prep bank inside the (already encrypted) payload so the page
-    # can show STAR gists / hard-Q rebuttals on drill cards
-    if os.path.exists(PREP_BANK_ENC):
-        payload["bank"] = decrypt_blob(json.load(open(PREP_BANK_ENC)), password)
-    write_payload(payload, password)
+    # ship the prep bank inside the payload so the page can show STAR gists /
+    # hard-Q rebuttals on drill cards
+    if os.path.exists(PREP_BANK):
+        payload["bank"] = json.load(open(PREP_BANK))
+    write_payload(payload)
 
 
 def cmd_sweep():
-    """Keyless: refresh open/closed + locations, no LLM."""
-    password = need_password()
-    prev = load_prev_payload(password)
-    assert prev, "sweep needs an existing data.enc.js"
+    """Refresh open/closed + locations, no LLM."""
+    prev = load_prev_payload()
+    assert prev, "sweep needs an existing data.js"
     live, stats = pull_boards()
+    failed = failed_companies(stats)
     live_ids = {r["id"] for r in live}
     live_by_id = {r["id"]: r for r in live}
     changed = 0
     for j in prev["jobs"]:
+        if j.get("company") in failed:
+            continue  # board unreachable this run — do not touch these roles
         was_closed = j.get("closed", False)
         if j["id"] in live_ids:
             j["closed"] = False
@@ -460,17 +411,10 @@ def cmd_sweep():
             j.setdefault("closed_on", j.get("last_seen", TODAY))
         changed += was_closed != j["closed"]
     prev["meta"]["generated"] = datetime.now().isoformat(timespec="minutes")
+    prev["meta"]["date"] = TODAY
     prev["meta"]["swept"] = TODAY
-    write_payload(prev, password)
+    write_payload(prev)
     print(f"sweep: {changed} roles changed open/closed state")
-
-
-def cmd_encrypt_prep_bank(path):
-    password = need_password()
-    bank = json.load(open(path))
-    with open(PREP_BANK_ENC, "w") as f:
-        json.dump(encrypt_blob(bank, password), f)
-    print(f"encrypted {path} -> {os.path.relpath(PREP_BANK_ENC, HERE)}")
 
 
 if __name__ == "__main__":
@@ -479,13 +423,10 @@ if __name__ == "__main__":
     g.add_argument("--pull", action="store_true")
     g.add_argument("--build", action="store_true")
     g.add_argument("--sweep", action="store_true")
-    g.add_argument("--encrypt-prep-bank", metavar="FILE")
     a = ap.parse_args()
     if a.pull:
         cmd_pull()
     elif a.build:
         cmd_build()
-    elif a.sweep:
-        cmd_sweep()
     else:
-        cmd_encrypt_prep_bank(a.encrypt_prep_bank)
+        cmd_sweep()

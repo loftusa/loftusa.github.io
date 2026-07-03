@@ -1,5 +1,5 @@
 # /// script
-# dependencies = ["anthropic>=0.92.0", "cryptography>=42.0"]
+# dependencies = ["anthropic>=0.92.0"]
 # ///
 """Score shortlisted roles with the Claude API and generate per-role prep.
 
@@ -15,7 +15,6 @@ exits non-zero unless EVERY shortlisted id gets a valid score, so a partial
 rating run can never silently publish a degraded board.
 
 Env:  ANTHROPIC_API_KEY   (required)
-      JOBS_PAGE_PASSWORD  (required — decrypts prep_bank.enc.json)
       RATE_MODEL          (default claude-sonnet-4-6)
 Usage: python3 rate.py [--limit N] [--score-only]
 """
@@ -26,7 +25,7 @@ import os
 import sys
 
 import anthropic
-from refresh import PREP_BANK_ENC, decrypt_blob, fit_score
+from refresh import PREP_BANK, fit_score
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SHORTLIST = os.path.join(HERE, "shortlist.json")
@@ -214,8 +213,6 @@ def main():
     args = ap.parse_args()
 
     assert os.environ.get("ANTHROPIC_API_KEY"), "ANTHROPIC_API_KEY required"
-    password = os.environ.get("JOBS_PAGE_PASSWORD", "")
-    assert password, "JOBS_PAGE_PASSWORD required"
 
     roles = json.load(open(SHORTLIST))
     if args.limit:
@@ -225,7 +222,7 @@ def main():
         print("shortlist empty — nothing to score")
         return
 
-    bank = decrypt_blob(json.load(open(PREP_BANK_ENC)), password)
+    bank = json.load(open(PREP_BANK))
     client = anthropic.Anthropic()
 
     scored = pass_score(client, roles)

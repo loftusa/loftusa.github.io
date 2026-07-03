@@ -1,12 +1,12 @@
-# Keeps alex-loftus.com/jobs fresh (password-gated job board).
+# Keeps alex-loftus.com/jobs fresh (public job board).
 #
 #   full  — pull all ATS boards -> score new/changed roles with the Claude API
-#           (needs ANTHROPIC_API_KEY + JOBS_PAGE_PASSWORD secrets) -> build ->
-#           commit data.enc.js. Runs daily at 7:20am PT, after houses.
-#   sweep — keyless-ish re-pull to flag closed roles (needs only the password
-#           secret, no LLM). Runs every 8h between fulls.
+#           (needs the ANTHROPIC_API_KEY secret) -> build -> commit data.js.
+#           Runs daily at 7:20am PT, after houses.
+#   sweep — keyless re-pull to flag closed roles (no LLM). Runs every 8h
+#           between fulls.
 #
-# Pushing data.enc.js auto-deploys via Vercel; deploy.yml is paths-filtered so
+# Pushing data.js auto-deploys via Vercel; deploy.yml is paths-filtered so
 # these commits do NOT redeploy the Fly backend.
 name: jobs-refresh
 on:
@@ -50,16 +50,15 @@ jobs:
           python-version: "3.12"
 
       - name: install deps
-        run: pip install --quiet anthropic cryptography
+        run: pip install --quiet anthropic
 
       - name: full refresh (pull + score + build)
         if: steps.mode.outputs.mode == 'full'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          JOBS_PAGE_PASSWORD: ${{ secrets.JOBS_PAGE_PASSWORD }}
         run: |
-          if [ -z "$ANTHROPIC_API_KEY" ] || [ -z "$JOBS_PAGE_PASSWORD" ]; then
-            echo "::warning::missing ANTHROPIC_API_KEY or JOBS_PAGE_PASSWORD secret — degrading to sweep."
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::warning::missing ANTHROPIC_API_KEY secret — degrading to sweep."
             python3 public/jobs/refresh/refresh.py --sweep
           else
             python3 public/jobs/refresh/refresh.py --pull
@@ -69,15 +68,13 @@ jobs:
 
       - name: sweep (flag closed roles)
         if: steps.mode.outputs.mode == 'sweep'
-        env:
-          JOBS_PAGE_PASSWORD: ${{ secrets.JOBS_PAGE_PASSWORD }}
         run: python3 public/jobs/refresh/refresh.py --sweep
 
       - name: commit & push if changed
         run: |
           git config user.name "jobs-refresh bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/jobs/data.enc.js
+          git add public/jobs/data.js
           if git diff --cached --quiet; then
             echo "no changes to publish"
             exit 0

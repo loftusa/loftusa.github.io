@@ -1,0 +1,59 @@
+{
+  "_comment": "PLAINTEXT prep bank - gitignored, never commit. Encrypt with: JOBS_PAGE_PASSWORD=... python3 refresh.py --encrypt-prep-bank prep_bank.json. Distilled from applications/anthropic_tpm/INTERVIEW_PREP.md (2026-07-01). NDA line: methodology/infrastructure public via Agents of Chaos paper; findings delivered to OpenAI stay out entirely.",
+  "hard_rules": [
+    "Title is 'Red-Teaming Program Lead, OpenAI (contract via Handshake)' - never 'TPM at OpenAI'",
+    "No view-count claims; approved phrasing is 'went viral on X'. Never cite IEEE Spectrum.",
+    "Never name OpenAI individuals - say 'the OpenAI program owner'",
+    "Agents of Chaos is 'our paper' (middle author, 8 of 37) - never 'my paper'",
+    "Specific findings delivered to OpenAI are under NDA - deflect cleanly, once, as a trust signal"
+  ],
+  "pitch_core": "PhD researcher in LLM interpretability and evals (David Bau lab); leads red-teaming campaigns for OpenAI on contract. Took the program from zero: wrote the proposal OpenAI greenlit, recruited and led a 16-person team, designed the harm taxonomy, built ~17K lines of infrastructure in under two weeks (50+ isolated agent VMs, zero-downtime hotpatching, redundant pipelines), sole on-call through a live two-week campaign. OpenAI doubled the team for a second campaign. Before that: co-first-author ICLR 2025 paper (NNsight/NDIF, led team of six), 524-page Cambridge UP textbook, 200-person interpretability conference organized end-to-end. Best at: taking an ambiguous research goal and building the program, team, and operations that ship it.",
+  "star": [
+    {"key": "S1", "title": "The Exit Code That Lied", "gist": "Remote config pushes reported success (exit 0) but wrote nothing - fly ssh -C skips the shell. Root-caused, wrapped in bash -c, instituted fleet rule: every remote write verified by reading state back. Lesson: success messages are claims, not evidence.", "use_for": "being wrong, verification discipline, hardest bug"},
+    {"key": "S2", "title": "Continuous Backups After Data Loss", "gist": "Entrypoint clobbered participant files + a deleted Discord channel destroyed data before the daily scrape. Blameless postmortem -> hourly snapshots, 5-min incremental backups, raw archive cron, install-on-first-boot fix, commit-before-touching-state rule; corrective actions closed in ~24h. Lesson: when actors can destroy state anytime, backups must be continuous - your backup interval is your blast radius.", "use_for": "postmortems, corrective actions, firefighting vs long-term"},
+    {"key": "S3", "title": "Reading the Vendor's Minified Source", "gist": "Dynamic agents crash-looped: vendor's doctor --fix stripped a required config field; gateway also ran it internally. Diagnosed by reading minified JS; bypassed entrypoint, verified PID 1 cmdline. Lesson: validate configs against what's actually running.", "use_for": "technical depth, incident response backup"},
+    {"key": "S4", "title": "Platform Field Names Lie", "gist": "Cloned agents booted with the template's identity: Fly's init.cmd maps to Docker CMD not the command, and the entrypoint ignored $@ so init never ran. Switched to init.entrypoint, added boot-time env checks. Lesson: verify what PID 1 executes, not what the field name implies.", "use_for": "hardest bug"},
+    {"key": "S5", "title": "Sunday OOM", "gist": "Agent-management proxy OOM-crashed on a Sunday mid-experiment; sole on-call. Restored in minutes, then root-caused memory pressure and right-sized the machine - cause, not symptom. No recurrence. Literal match to 'incident response on short notice, including weekends'.", "use_for": "incident response, weekends on-call"},
+    {"key": "S6", "title": "Hotpatch Over Redeploy", "gist": "Redeploys drop live conversations - unacceptable mid-experiment. Built zero-downtime hotpatch path + rollout doctrine: test on one agent, verify in logs, then fleet-wide; snapshot before touching state. Zero dropped conversations all campaign. Lesson: derive change management from user impact, not operator convenience.", "use_for": "change management, prioritization under pressure"},
+    {"key": "S7", "title": "Bots Replying Uninvited", "gist": "Agents replied when not mentioned - looked like emergent behavior, threatened validity. Traced framework's mention gate through minified JS: bare-name patterns matched ordinary words. Fixed fleet-wide via hotpatch. Lesson: 'emergent' agent behavior usually has a boring, findable mechanism - the right epistemic stance for evals.", "use_for": "root-causing, evals epistemics"},
+    {"key": "S8", "title": "Proposal to Doubled Team", "gist": "0-to-1: OpenAI wanted multi-agent red-teaming after Agents of Chaos; nothing existed. Wrote the greenlit proposal, recruited 16 across research+eng, designed harm taxonomy, built infra in 11 days, daily automated LLM-summarized monitoring to the whole team, translated emergent risk signals into structured findings for stakeholders. Result: second campaign with double the team. The follow-on contract is the customer-satisfaction metric.", "use_for": "0-to-1, ambiguity, influence without authority, program story"}
+  ],
+  "question_story_map": {
+    "incident response / firefighting": ["S5", "S3"],
+    "postmortems / corrective actions": ["S2", "S1"],
+    "ambiguity / 0-to-1": ["S8", "S6"],
+    "influence without authority": ["S8", "S6"],
+    "prioritization under pressure": ["S6", "S5"],
+    "hardest bug / technical depth": ["S3", "S4"],
+    "time you were wrong": ["S1", "S2"],
+    "explaining tech to non-technical": ["S8-daily-reports, DARPA demos, textbook"]
+  },
+  "hard_qs": [
+    {"key": "HQ-phd", "q": "You're a PhD student - are you quitting?", "gist": "One decided answer, no hedging: discussed with advisor, would take a leave of absence - decision is made, Anthropic gets all of me. Other commitments are bounded and wind down before starting."},
+    {"key": "HQ-bored", "q": "You're a researcher - you'll be bored as a TPM and leave.", "gist": "Evidence points the other way: dropped into a research environment, what I built was the program - and that's where I did my best work and had the most fun. Research background is what makes embedding with researchers credible; it's not the job I'm asking for."},
+    {"key": "HQ-track", "q": "Your TPM track record is one three-month contract.", "gist": "At a company, yes. Long-horizon evidence with different labels: NNsight/NDIF multi-quarter program (team of six, ICLR deadline), NEMI months of planning ($17K budget, 200+ people), textbook = multi-year Cambridge UP milestones. Closest-equivalent framing + demonstrated gap-closing rate of days."},
+    {"key": "HQ-nda", "q": "What did you find red-teaming for OpenAI?", "gist": "Verbatim: 'The methodology and infrastructure are public via the Agents of Chaos paper and project site; the specific findings I delivered to OpenAI are under NDA - and I'll hold Anthropic's information to exactly the same standard.' Deflecting the detail-trap once IS the trust signal."},
+    {"key": "HQ-competitor", "q": "You're mid-engagement for our chief competitor.", "gist": "Contracted via Handshake (HR layer). The work is adversarial safety testing - the part of OpenAI most aligned with Anthropic's mission. Both labs' safety orgs trusting me with adversarial work, and watching me handle each side's information cleanly, is the best evidence I'll handle yours the same way."},
+    {"key": "HQ-budget", "q": "Largest budget/headcount owned?", "gist": "16 people recruited and led (doubled for campaign 2); $17K conference budget end-to-end; campaign infra spend. Not multi-million - but full end-to-end accountability at every scale I've had access to; the failure modes are the same shape."},
+    {"key": "HQ-author", "q": "8th author but 'designed from scratch'?", "gist": "Volunteer before they find it: senior authors led the science - I claim exactly my share. Mine was the program on the follow-on campaigns: proposal, 16-person team, taxonomy, infra, operations. OpenAI's follow-on contract is the receipt."},
+    {"key": "HQ-claude", "q": "17K lines in 11 days - you or Claude?", "gist": "Own it: built heavily with Claude Code, exactly how I'd work at Anthropic - my job was architecture, review, and keeping it sound under live fire. LOC is the vanity metric; the real number is 50+ isolated VMs with redundant pipelines and zero-downtime patching operated through a live campaign."},
+    {"key": "HQ-compute", "q": "Ever planned GPU allocation or babysat a training run?", "gist": "Honest no on frontier scale - almost nobody outside labs has. Bridges: NDIF shared GPU-serving infra; hands-on pre-training/fine-tuning at Creyon. Demonstrated: operational ownership of unfamiliar infra domains, competent in days - the actual job of a 0-to-1 TPM."},
+    {"key": "HQ-findings", "q": "What did your study find wrong with our model?", "gist": "Paper's framing (Clark endorsed): ecology and integration failures, not model-level indictments - they emerge from autonomy + tools + persistent memory + multiple interlocutors + delegated authority. That's why ecosystem-level evaluation matters."}
+  ],
+  "values_round": "Anti-STAR: the culture round rewards reasoning, acknowledged uncertainty, second-order thinking - show decision points and what you were unsure of, not polished narratives. Prepare: values conflicting with work; pushing back and losing; a belief you changed; a GENUINE reservation about Anthropic (e.g. the live tension of calling Mythos-class models dangerous while expanding access - as a real question, not a gotcha).",
+  "fluency": [
+    "RSP v3.0 (Feb 2026): capability->ASL mapping, Frontier Safety Roadmap, Risk Reports every 3-6 months; candid that thresholds proved 'more ambiguous than anticipated'",
+    "ASL-3 live since May 2025 (Opus 4, precautionary): CBRN deployment safeguards + weight-security (egress throttling)",
+    "Constitutional Classifiers: jailbreak success 86%->4.4%, +0.38% benign refusals, ~23.7% compute overhead; HackerOne bounty",
+    "Fable 5 / Mythos 5 (June 9, 2026): one Mythos-class model, two safeguard tiers; conservative classifiers falling back to Opus 4.8; Mythos vetted-access with 30-day retention + human review; 1,000+ hours external testing",
+    "Evals blog vocabulary: hub-and-spoke (evals team owns infra, domain teams contribute tasks); pass@k vs pass^k; 20-50 tasks from real failures; read transcripts; watch saturation",
+    "Compute: heterogeneous fleet (Trainium/TPU/NVIDIA), capacity in waves - allocation, porting, bring-up are standing programs",
+    "Import AI #447 covered our paper; his header: 'agent ecologies are the frontier, and we barely understand them' - my follow-on campaigns operationalize exactly that ecosystem-level testing"
+  ],
+  "negotiation_anchors": {
+    "batna": "Current OpenAI contract (active, renewed once), PhD seat to return to, and parallel processes at other labs",
+    "anthropic_tpm_research_band": "$365-435K",
+    "anthropic_tpm_safeguards_band": "$290-365K",
+    "style": "Voss: calibrated questions ('How can we bridge...'), label their constraints, never split the difference on the first number; Fisher/Ury: negotiate on interests (scope, level, start date) not just base"
+  }
+}
