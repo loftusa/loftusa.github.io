@@ -20,6 +20,9 @@ const nextConfig: NextConfig = {
       // unlisted). Submissions POST to the Fly backend; /klist/admin is the bearer-gated viewer.
       { source: "/klist", destination: "/klist/index.html" },
       { source: "/klist/admin", destination: "/klist/admin.html" },
+      // Guided 5/10/20/40-year life-visioning exercise — self-contained, fully client-side
+      // page under public/goals/ (noindex, unlisted; answers live in localStorage only).
+      { source: "/goals", destination: "/goals/index.html" },
       // The 2 /perfumes/ pages are assembled from _pages/perfumes*.html into
       // public/_perfumes/ (see scripts/build_perfumes_html.mjs); assets already
       // live under public/assets/. atlas = fullscreen canvas app; analyses = text.

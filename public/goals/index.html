@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg">
+<title>where am I even headed?</title>
+<style>
+/* Tufte-flavored, matching /sti and /klist. One graphic (the timeline); ink is for words. */
+html { font-size: 16px; }
+body {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 1.6rem 1.25rem 4rem;
+  font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+  background-color: #fffff8;
+  color: #111;
+  line-height: 1.5;
+}
+
+/* ---------- timeline (the only graphic) ---------- */
+.timeline {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  position: relative; margin: 0 .2rem 2.2rem; padding: 0;
+  -webkit-user-select: none; user-select: none;
+}
+.timeline::before {
+  content: ""; position: absolute; left: .45rem; right: .45rem; top: .32rem;
+  border-top: 1px solid #ccc;
+}
+.station {
+  position: relative; z-index: 1; background: none; border: none; padding: 0; margin: 0;
+  font: inherit; color: #999; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: .3rem;
+  min-width: .9rem;
+}
+.station .dot {
+  width: .65rem; height: .65rem; border-radius: 50%;
+  border: 1.5px solid #999; background: #fffff8; box-sizing: border-box;
+}
+.station .lbl { font-size: .7rem; letter-spacing: .04em; }
+.station.done .dot { background: #999; border-color: #999; }
+.station.here { color: #111; }
+.station.here .dot { background: #111; border-color: #111; }
+.station:hover { color: #111; }
+
+/* ---------- cards ---------- */
+#card { min-height: 16rem; }
+.fade { transition: opacity .2s ease, transform .2s ease; }
+.fade.out { opacity: 0; transform: translateY(.35rem); }
+@media (prefers-reduced-motion: reduce) { .fade { transition: none; } }
+
+h1 { font-weight: 400; font-size: 1.9rem; margin: 0 0 .2rem; font-style: italic; }
+.subtitle { font-style: italic; color: #555; margin: 0 0 1.3rem; }
+.kicker {
+  font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+  color: #888; margin: 0 0 .9rem;
+}
+.question { font-size: 1.3rem; line-height: 1.35; margin: 0 0 .5rem; }
+.hint { font-style: italic; color: #555; font-size: .95rem; margin: 0 0 1.1rem; }
+.prose p { margin: 0 0 .85rem; }
+.prose .sig { font-style: italic; margin-top: 1.2rem; }
+
+textarea {
+  width: 100%; min-height: 7.5rem; box-sizing: border-box; resize: none;
+  font: inherit; line-height: 1.5; color: #111; background: transparent;
+  border: 1px solid #bbb; border-radius: 2px; padding: .6rem .7rem;
+  outline: none; overflow: hidden;
+}
+textarea:focus { border-color: #444; }
+
+/* ---------- nav ---------- */
+.nav { display: flex; align-items: center; justify-content: space-between; margin-top: 1.1rem; gap: 1rem; }
+button.primary {
+  font: inherit; padding: .4rem 1.1rem; cursor: pointer;
+  background: #fffff8; border: 1px solid #444; border-radius: 3px; color: #111;
+}
+button.primary:hover { background: #f2f2e9; }
+button.ghost, a.ghost {
+  font: inherit; font-size: .92rem; background: none; border: none; padding: 0;
+  color: #777; cursor: pointer; text-decoration: none; font-style: italic;
+}
+button.ghost:hover, a.ghost:hover { color: #111; }
+.stack { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; margin-top: 1.4rem; }
+.notice { font-size: .88rem; font-style: italic; color: #8a6d3b; margin-top: 1rem; }
+
+/* ---------- read-back + map document ---------- */
+.doc h2 {
+  font-weight: 400; font-size: 1.05rem; letter-spacing: .05em;
+  border-bottom: 1px solid #ccc; padding-bottom: .15rem; margin: 1.5rem 0 .6rem;
+}
+.doc .qa { margin: 0 0 .9rem; }
+.doc .q { font-style: italic; color: #555; font-size: .9rem; margin: 0 0 .1rem; }
+.doc .a { margin: 0; white-space: pre-wrap; }
+.doc .qa.editable { cursor: pointer; border-left: 2px solid transparent; padding-left: .5rem; margin-left: -.5rem; }
+.doc .qa.editable:hover { border-left-color: #bbb; }
+.doc .empty { color: #999; font-style: italic; }
+.epigraph {
+  border-left: 2px solid #ccc; padding: .1rem 0 .1rem .8rem; margin: 0 0 1.3rem;
+  font-style: italic; white-space: pre-wrap;
+}
+.epigraph-label { font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: #888; margin: 0 0 .3rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; margin: 1.6rem 0 .8rem; }
+#copied { font-size: .9rem; color: #555; font-style: italic; }
+.footnote { font-size: .9rem; font-style: italic; color: #555; margin-top: 1.2rem; }
+
+@media print {
+  @page { margin: 16mm; }
+  body { max-width: none; padding: 0; background: #fff; font-size: 10.5pt; }
+  .timeline, .actions, .no-print, .footnote { display: none !important; }
+  .doc .qa.editable { border-left: none; padding-left: 0; margin-left: 0; }
+}
+</style></head>
+<body>
+
+<nav class="timeline" id="timeline" aria-label="progress"></nav>
+<main id="card" class="fade" aria-live="polite"></main>
+
+<script>
+"use strict";
+
+function assert(cond, msg) { if (!cond) throw new Error("goals: " + msg); }
+
+/* ---------- content ---------- */
+
+const STORE_KEY = "goals-v1";
+const DEFAULT_BASE_YEAR = 2026;
+
+function chapters(y) {
+  return [
+    { id: "now", dot: "now", title: "The ground", kicker: "the ground — now",
+      intro: null,
+      qs: [
+        { id: "now.alive", q: "What in your life right now makes you feel most alive?",
+          hint: "You said you’re as happy as you’ve ever been. Where does that actually live — which moments, which people, which hours of the day?" },
+        { id: "now.keep", q: "What do you already have that you’d want every version of the future to keep?",
+          hint: "The things that go on every map, no matter where the map leads." },
+        { id: "now.fog", q: "When the where-am-I-even-headed feeling shows up, what does it usually attach itself to?",
+          hint: "Work? Place? People? Money? Just name it — named fog is smaller than nameless fog." },
+      ]},
+    { id: "y5", dot: "+5", title: "Five years — " + (y + 5), kicker: "five years — " + (y + 5),
+      intro: "It’s an ordinary Tuesday in the summer of " + (y + 5) + ". Not a special day — a good normal one, in the life you’d pick if the picking were up to you. (It mostly is.)\n\nWalk through that day. Be specific — specific is the whole trick.",
+      qs: [
+        { id: "y5.wake", q: "You wake up. Where are you?",
+          hint: "Which city, which country, what kind of home — and what’s outside the window?" },
+        { id: "y5.people", q: "Who’s around?",
+          hint: "In your home, down the street, on your phone. Who’s part of an ordinary day?" },
+        { id: "y5.work", q: "The middle of the day — the work part. What are you actually doing?",
+          hint: "Not the job title — the actual Tuesday activity. And how does it feel while you’re doing it?" },
+        { id: "y5.evening", q: "Evening. How does the day end?",
+          hint: "What’s for dinner, who’s at the table, what happens before you sleep?" },
+        { id: "y5.proud", q: "From that Tuesday, look back over the past year. What’s one thing you’re proud of?" },
+      ]},
+    { id: "y10", dot: "+10", title: "Ten years — " + (y + 10), kicker: "ten years — " + (y + 10),
+      intro: "Wider brush now: " + (y + 10) + ". Less detail, more shape.",
+      qs: [
+        { id: "y10.contains", q: "What does your life contain in " + (y + 10) + " that it doesn’t contain today?",
+          hint: "Things, people, skills, places, habits — whatever surfaces first." },
+        { id: "y10.knownfor", q: "What are you known for by then?",
+          hint: "What do people come to you for? What’s your name attached to?" },
+        { id: "y10.stopped", q: "What have you stopped doing?",
+          hint: "Something you put down on purpose — and feel lighter without." },
+      ]},
+    { id: "y20", dot: "+20", title: "Twenty years — " + (y + 20), kicker: "twenty years — " + (y + 20),
+      intro: (y + 20) + " is far enough out that the picture goes soft. That’s fine. Paint the feeling, not the pixels.",
+      qs: [
+        { id: "y20.home", q: "You walk into your home in " + (y + 20) + ". What does it feel like?",
+          hint: "What’s on the walls, what smells like dinner, who has keys?" },
+        { id: "y20.body", q: "Twenty years of doing adds up to a body of work. What did you make?",
+          hint: "Built, taught, raised, written, healed, grown — a body of work doesn’t have to be a career." },
+      ]},
+    { id: "y40", dot: "+40", title: "Forty years — " + (y + 40), kicker: "forty years — " + (y + 40),
+      intro: (y + 40) + ". The long view. Two questions, and they’re the easy kind — you just have to be honest.",
+      qs: [
+        { id: "y40.chair", q: "Someone young asks what you did with your life, and you get a few sentences to answer. What do you hope you get to say?" },
+        { id: "y40.list", q: "What’s still on the list?",
+          hint: "The thing you’re still looking forward to, even then. It’s a good sign if there is one." },
+      ]},
+    { id: "thr", dot: "threads", title: "The threads", kicker: "the threads",
+      intro: "READBACK", // special: rendered as the read-everything-back screen
+      qs: [
+        { id: "thr.threads", q: "What keeps showing up?",
+          hint: "Name two or three threads that run through everything you wrote." },
+        { id: "thr.inch", q: "Pick a thread. What’s one thing small enough to do within a month that moves you an inch along it?",
+          hint: "An inch counts. A map doesn’t need speed — it needs a direction." },
+        { id: "thr.note", q: "Last one. Someday the fog rolls back in — it does that. Write the note you want future-you to find here when it does.",
+          hint: "She’ll be scared and spiraling a little. You know her better than anyone. Say what helps." },
+      ]},
+  ];
+}
+
+const INTRO_PARAS = [
+  "You told me the where-am-I-headed exercise is worth doing — and that you don’t see it happening anymore. Fair. Sitting down alone with a blank page and the biggest question in the world is a terrible plan.",
+  "So I took away the blank page. This walks you through it — five, ten, twenty, forty years out — one small question at a time. Guessing is allowed. Skipping is allowed. Two words or two paragraphs, both fine. None of it is a commitment: it’s a sketch, not a contract. Fog is scary; a hand-drawn map isn’t, because you can redraw it.",
+  "Everything you write stays on your phone. Nothing is sent anywhere — not to me, not to anyone. At the end it assembles into one document that’s yours to keep, share, or burn.",
+  "It saves as you go, so stop whenever you want — it’ll be here. Half an hour, give or take, and it doesn’t have to be one sitting.",
+];
+
+/* ---------- state ---------- */
+
+let storageOk = true;
+let state = { v: 1, baseYear: DEFAULT_BASE_YEAR, cursor: 0, answers: {}, finished: false,
+              startedAt: null, updatedAt: null };
+try {
+  const saved = JSON.parse(localStorage.getItem(STORE_KEY));
+  if (saved && saved.v === 1 && saved.answers && typeof saved.answers === "object") state = { ...state, ...saved };
+  else if (!saved) state.baseYear = new Date().getFullYear();
+} catch (e) { /* corrupted or blocked — fresh in-memory start */ }
+try { localStorage.setItem(STORE_KEY + "-probe", "1"); localStorage.removeItem(STORE_KEY + "-probe"); }
+catch (e) { storageOk = false; }
+
+function persist() {
+  state.updatedAt = new Date().toISOString();
+  if (!state.startedAt) state.startedAt = state.updatedAt;
+  if (storageOk) try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) { storageOk = false; }
+}
+
+/* ---------- steps (flattened flow) ---------- */
+
+const CH = chapters(state.baseYear);
+const STEPS = [];   // { type: "intro"|"q", ch, q? , idxInCh?, nOfCh? }
+for (const ch of CH) {
+  if (ch.intro) STEPS.push({ type: "intro", ch });
+  ch.qs.forEach((q, i) => STEPS.push({ type: "q", ch, q, idxInCh: i + 1, nOfCh: ch.qs.length }));
+}
+assert(STEPS.filter(s => s.type === "q").length === 18, "expected 18 questions");
+assert(new Set(STEPS.filter(s => s.type === "q").map(s => s.q.id)).size === 18, "question ids must be unique");
+
+// screen = "landing" | "map" | step index into STEPS
+let screen = "landing";
+let returnToMap = false;   // set when jumping to a question from the map
+
+const answered = (id) => (state.answers[id] || "").trim().length > 0;
+const anyProgress = () => state.cursor > 0 || Object.keys(state.answers).some(answered);
+
+/* ---------- timeline ---------- */
+
+const timelineEl = document.getElementById("timeline");
+function renderTimeline() {
+  timelineEl.replaceChildren();
+  const stations = CH.map((ch) => ({ lbl: ch.dot, ch }));
+  stations.push({ lbl: "map", ch: null });
+  const curCh = typeof screen === "number" ? STEPS[screen].ch : null;
+  for (const st of stations) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "station";
+    const dot = document.createElement("span"); dot.className = "dot";
+    const lbl = document.createElement("span"); lbl.className = "lbl"; lbl.textContent = st.lbl;
+    b.append(dot, lbl);
+    if (st.ch) {
+      if (st.ch.qs.every((q) => answered(q.id))) b.classList.add("done");
+      if (curCh && curCh.id === st.ch.id) b.classList.add("here");
+      b.addEventListener("click", () => { returnToMap = false; go(STEPS.findIndex((s) => s.ch.id === st.ch.id)); });
+    } else {
+      if (state.finished) b.classList.add("done");
+      if (screen === "map") b.classList.add("here");
+      b.addEventListener("click", () => go("map"));
+    }
+    timelineEl.append(b);
+  }
+}
+
+/* ---------- rendering ---------- */
+
+const cardEl = document.getElementById("card");
+
+function el(tag, cls, text) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+
+function go(next) {
+  cardEl.classList.add("out");
+  const after = () => {
+    screen = next;
+    if (typeof next === "number") { state.cursor = next; persist(); }
+    render();
+    cardEl.classList.remove("out");
+    window.scrollTo({ top: 0 });
+  };
+  matchMedia("(prefers-reduced-motion: reduce)").matches ? after() : setTimeout(after, 200);
+}
+
+function render() {
+  renderTimeline();
+  cardEl.replaceChildren();
+  if (screen === "landing") renderLanding();
+  else if (screen === "map") renderMap();
+  else if (STEPS[screen].type === "intro") renderIntro(STEPS[screen]);
+  else renderQuestion(STEPS[screen]);
+}
+
+function renderLanding() {
+  cardEl.append(el("h1", null, "where am I even headed?"));
+  cardEl.append(el("p", "subtitle", "a map-drawing kit · built for Karin"));
+
+  if (state.finished && answered("thr.note")) {
+    const label = el("p", "epigraph-label", "you left yourself a note");
+    const note = el("blockquote", "epigraph", state.answers["thr.note"].trim());
+    cardEl.append(label, note);
+  }
+
+  const prose = el("div", "prose");
+  for (const p of INTRO_PARAS) prose.append(el("p", null, p));
+  prose.append(el("p", "sig", "— Alex"));
+  cardEl.append(prose);
+
+  const stack = el("div", "stack");
+  const begin = el("button", "primary");
+  begin.type = "button";
+  if (!anyProgress()) {
+    begin.textContent = "begin";
+    begin.addEventListener("click", () => go(0));
+  } else if (!state.finished) {
+    begin.textContent = "continue where you left off";
+    begin.addEventListener("click", () => go(Math.min(state.cursor, STEPS.length - 1)));
+    const peek = el("button", "ghost", "your map so far");
+    peek.type = "button";
+    peek.addEventListener("click", () => go("map"));
+    stack.append(begin, peek);
+  } else {
+    begin.textContent = "open your map";
+    begin.addEventListener("click", () => go("map"));
+    const again = el("button", "ghost", "walk it again — your answers stay put");
+    again.type = "button";
+    again.addEventListener("click", () => go(0));
+    stack.append(begin, again);
+  }
+  if (!stack.childElementCount) stack.append(begin);
+  cardEl.append(stack);
+
+  if (!storageOk) cardEl.append(el("p", "notice",
+    "Heads up: this browser won’t let the page save. It all still works — just finish in one sitting and print or download at the end."));
+}
+
+function renderIntro(step) {
+  cardEl.append(el("p", "kicker", step.ch.kicker));
+  if (step.ch.intro === "READBACK") {
+    cardEl.append(el("p", "question", "Before the last three questions: read yourself back."));
+    cardEl.append(el("p", "hint", "This is everything you just wrote."));
+    cardEl.append(buildDoc({ editable: false, upToChapter: "thr" }));
+  } else {
+    const prose = el("div", "prose");
+    for (const para of step.ch.intro.split("\n\n")) prose.append(el("p", "question", para));
+    cardEl.append(prose);
+  }
+  const nav = el("div", "nav");
+  const back = el("button", "ghost", "back"); back.type = "button";
+  back.addEventListener("click", () => goBack());
+  const next = el("button", "primary", "continue"); next.type = "button";
+  next.addEventListener("click", () => goForward());
+  nav.append(back, next);
+  cardEl.append(nav);
+}
+
+function renderQuestion(step) {
+  const { ch, q } = step;
+  cardEl.append(el("p", "kicker", ch.kicker + " · " + step.idxInCh + " of " + step.nOfCh));
+  cardEl.append(el("p", "question", q.q));
+  if (q.hint) cardEl.append(el("p", "hint", q.hint));
+
+  const ta = document.createElement("textarea");
+  ta.value = state.answers[q.id] || "";
+  ta.setAttribute("aria-label", q.q);
+  ta.placeholder = "…";
+  cardEl.append(ta);
+
+  const nav = el("div", "nav");
+  const back = el("button", "ghost", returnToMap ? "back to your map" : "back");
+  back.type = "button";
+  back.addEventListener("click", () => (returnToMap ? endEdit() : goBack()));
+  const next = el("button", "primary");
+  next.type = "button";
+  const lastQ = STEPS.indexOf(step) === STEPS.length - 1;
+  const relabel = () => {
+    const has = ta.value.trim().length > 0;
+    if (returnToMap) next.textContent = "back to your map";
+    else if (lastQ) next.textContent = has ? "finish — see your map" : "skip — see your map";
+    else next.textContent = has ? "next" : "skip for now";
+  };
+  relabel();
+
+  const grow = () => { ta.style.height = "auto"; ta.style.height = Math.max(ta.scrollHeight, 120) + "px"; };
+  ta.addEventListener("input", () => {
+    state.answers[q.id] = ta.value;
+    persist(); relabel(); grow();
+  });
+  ta.addEventListener("keydown", (ev) => {
+    if ((ev.metaKey || ev.ctrlKey) && ev.key === "Enter") { ev.preventDefault(); next.click(); }
+  });
+  next.addEventListener("click", () => (returnToMap ? endEdit() : goForward()));
+  nav.append(back, next);
+  cardEl.append(nav);
+
+  requestAnimationFrame(grow);
+  if (matchMedia("(pointer: fine)").matches) ta.focus();
+}
+
+function goForward() {
+  const i = typeof screen === "number" ? screen : -1;
+  if (i + 1 < STEPS.length) go(i + 1);
+  else { state.finished = true; persist(); go("map"); }
+}
+function goBack() {
+  const i = typeof screen === "number" ? screen : 0;
+  i <= 0 ? go("landing") : go(i - 1);
+}
+function endEdit() { returnToMap = false; go("map"); }
+
+/* ---------- the map (read-back + document + export) ---------- */
+
+function docSections(upToChapter) {
+  const out = [];
+  for (const ch of CH) {
+    if (upToChapter && ch.id === upToChapter) break;
+    const items = ch.qs.filter((q) => answered(q.id))
+      .map((q) => ({ q, a: state.answers[q.id].trim(), step: STEPS.findIndex((s) => s.type === "q" && s.q.id === q.id) }));
+    if (items.length) out.push({ ch, items });
+  }
+  return out;
+}
+
+function buildDoc(opts) {
+  const wrap = el("div", "doc");
+  const sections = docSections(opts.upToChapter);
+  if (!sections.length) {
+    wrap.append(el("p", "empty", "Nothing here yet — the map fills in as you answer."));
+    return wrap;
+  }
+  for (const { ch, items } of sections) {
+    wrap.append(el("h2", null, ch.title));
+    for (const it of items) {
+      const qa = el("div", "qa" + (opts.editable ? " editable" : ""));
+      qa.append(el("p", "q", it.q.q));
+      qa.append(el("p", "a", it.a));
+      if (opts.editable) {
+        qa.title = "tap to change this answer";
+        qa.addEventListener("click", () => { returnToMap = true; go(it.step); });
+      }
+      wrap.append(qa);
+    }
+  }
+  return wrap;
+}
+
+function docText() {
+  const drafted = new Date(state.startedAt || Date.now())
+    .toLocaleDateString("en-US", { month: "long", year: "numeric" });
+  const lines = ["WHERE I’M HEADED — A MAP", "drafted " + drafted + " · redrawn whenever", ""];
+  for (const { ch, items } of docSections()) {
+    lines.push(ch.title.toUpperCase(), "");
+    for (const it of items) lines.push(it.q.q, "", it.a, "");
+  }
+  return lines.join("\n");
+}
+
+function renderMap() {
+  const drafted = state.startedAt
+    ? new Date(state.startedAt).toLocaleDateString("en-US", { month: "long", year: "numeric" })
+    : null;
+  cardEl.append(el("h1", null, "where I’m headed"));
+  cardEl.append(el("p", "subtitle", (drafted ? "a map, drafted " + drafted : "a map") + " · redrawn whenever"));
+  cardEl.append(buildDoc({ editable: true }));
+
+  const actions = el("div", "actions");
+  const printBtn = el("button", "primary", "print / save as PDF"); printBtn.type = "button";
+  printBtn.addEventListener("click", () => window.print());
+  const dlBtn = el("button", "primary", "download"); dlBtn.type = "button";
+  dlBtn.addEventListener("click", () => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([docText()], { type: "text/plain;charset=utf-8" }));
+    a.download = "where-im-headed.txt";
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+  });
+  const copyBtn = el("button", "primary", "copy"); copyBtn.type = "button";
+  const copied = el("span", null, ""); copied.id = "copied";
+  copyBtn.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(docText()); copied.textContent = "copied"; }
+    catch (e) {
+      const t = document.createElement("textarea");
+      t.value = docText(); document.body.append(t); t.select();
+      copied.textContent = document.execCommand("copy") ? "copied" : "couldn’t copy";
+      t.remove();
+    }
+    setTimeout(() => { copied.textContent = ""; }, 2500);
+  });
+  actions.append(printBtn, dlBtn, copyBtn, copied);
+  cardEl.append(actions);
+
+  cardEl.append(el("p", "footnote",
+    "Tap any answer to change it. This lives on this device only — nothing was sent anywhere. " +
+    "Come back when the fog does, or before. Maps are for redrawing."));
+
+  const reset = el("button", "ghost no-print", "start over from nothing");
+  reset.type = "button";
+  let armed = false;
+  reset.addEventListener("click", () => {
+    if (!armed) { armed = true; reset.textContent = "this erases everything — tap again if you’re sure"; return; }
+    if (storageOk) try { localStorage.removeItem(STORE_KEY); } catch (e) { /* best effort */ }
+    state = { v: 1, baseYear: new Date().getFullYear(), cursor: 0, answers: {}, finished: false,
+              startedAt: null, updatedAt: null };
+    returnToMap = false;
+    go("landing");
+  });
+  const resetWrap = el("div", "stack no-print");
+  resetWrap.append(reset);
+  cardEl.append(resetWrap);
+}
+
+/* ---------- start ---------- */
+
+render();
+</script>
+</body></html>

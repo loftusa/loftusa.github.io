@@ -60,6 +60,10 @@ public/klist/        Partner preferences checklist (/klist, unlisted+noindex lik
                      never in this repo). Visitors can permanently add sections/tiles (POST
                      /klist/schema; klist_schema_items table; admin deletes via the viewer).
                      index.html and admin.html share the BASE item data by hand-sync.
+public/goals/        Guided 5/10/20/40-year life-visioning exercise for Karin (/goals, unlisted+
+                     noindex). Fully client-side by design — answers live in localStorage only,
+                     zero network calls (the page promises "nothing is sent anywhere"; keep that
+                     true). Spec: docs/superpowers/specs/2026-07-03-goals-page-design.md.
 next.config.ts       trailingSlash + rewrites (clean URLs for the public/ static pages + the
                      /red-teaming proxy) + redirects (old Jekyll URL parity).
 scripts/             Build/util scripts (see below).
