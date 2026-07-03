@@ -163,6 +163,8 @@ let schemaRows = [];   // visitor-added tiles from GET /klist/schema
 function mergedKlist() {
   const merged = KLIST.map((sec) => ({ ...sec, items: [...sec.items] }));
   for (const row of schemaRows) {
+    if (row.section.toLowerCase() === "physical features") continue; // checkbox grid, not rated tiles
+
     const sec = merged.find((x) => x.section.toLowerCase() === row.section.toLowerCase());
     if (sec) {
       if (!sec.items.some((i) => i.toLowerCase() === row.item.toLowerCase())) sec.items.push(row.item);
