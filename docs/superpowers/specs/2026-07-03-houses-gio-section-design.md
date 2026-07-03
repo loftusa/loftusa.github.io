@@ -46,8 +46,8 @@ rate.py  batches grouped by aud; RUBRICS[aud]        ─> ratings.json    (same 
 - `pull_raw` is parameterized over (centers, queries) — default args preserve existing behavior.
 - Per listing: `walk_min = haversine_mi(office) × 1.3 (route factor) × 20 (min/mi)`; keep
   `walk_min <= 32`, price ≥ 700, has photos + lat/lon.
-- Selection: sort by walk_min ascending; per-bucket cap so neither rooms nor apts exceed
-  ~60% once ≥8 selected; take up to 24. Scrape galleries/bodies with the existing
+- Selection: sort by walk_min ascending; per-bucket cap of 16 (~2/3 of 24 — cannot starve
+  the section when one bucket has no inventory); take up to 24. Scrape galleries/bodies with the existing
   `scrape_page`. Ids `G01…`; `aud: "gio"` on every row (Alex rows default `alex` when absent).
 - **Failure isolation:** the whole Gio pull is wrapped; on error, `pull_stats.json` gets
   `gio_pull_ok: false`, shortlist carries zero G rows, and Alex's pipeline proceeds

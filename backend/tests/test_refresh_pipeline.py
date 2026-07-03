@@ -101,3 +101,68 @@ def test_extract_contact_no_false_phone_from_specs():
 def test_extract_contact_empty_body():
     assert refresh.extract_contact("") == (None, None)
     assert refresh.extract_contact(None) == (None, None)
+
+
+# ---- Gio section: walk math + selection (spec 2026-07-03-houses-gio-section)
+
+
+def _gio_row(i, dlat=0.0, dlon=0.0, bucket="apt", price=3000, nimg=3):
+    return {
+        "pid": 9000 + i,
+        "price": price,
+        "pdisp": None,
+        "beds": 1,
+        "bucket": bucket,
+        "hood": "mission bay",
+        "lat": refresh.GIO_LAT + dlat,
+        "lon": refresh.GIO_LON + dlon,
+        "title": f"gio listing {i}",
+        "url": f"https://www.craigslist.org/view/d/g/{9000 + i}",
+        "img": "https://images.craigslist.org/a_b_c_600x450.jpg",
+        "nimg": nimg,
+    }
+
+
+def test_gio_walk_min_zero_at_office():
+    assert refresh.gio_walk_min(refresh.GIO_LAT, refresh.GIO_LON) == 0
+
+
+def test_gio_walk_min_matches_haversine_model():
+    lat, lon = refresh.GIO_LAT + 0.01, refresh.GIO_LON  # ~0.69 straight mi north
+    mi = refresh.haversine_mi(lat, lon, refresh.GIO_LAT, refresh.GIO_LON)
+    assert refresh.gio_walk_min(lat, lon) == round(mi * 1.3 * 20)
+    assert 17 <= refresh.gio_walk_min(lat, lon) <= 19
+
+
+def test_select_gio_filters_and_sorts():
+    rows = [
+        _gio_row(1, dlat=0.001),  # ~2 min
+        _gio_row(2, dlat=0.015),  # ~27 min
+        _gio_row(3, dlat=0.030),  # ~54 min -> dropped (too far)
+        _gio_row(4, dlat=0.002, nimg=0),  # dropped (no photos)
+        dict(_gio_row(5, dlat=0.002), lat=None),  # dropped (no geo)
+        _gio_row(6, dlat=0.002, price=500),  # dropped (< $700)
+    ]
+    sel = refresh.select_gio(rows)
+    assert [r["pid"] for r in sel] == [9001, 9002]
+    assert sel[0]["walk_min"] <= sel[1]["walk_min"]
+    assert all(r["aud"] == "gio" for r in sel)
+    assert [r["id"] for r in sel] == ["G01", "G02"]
+    assert all(0 < r["walk_mi"] < 2 for r in sel)
+
+
+def test_select_gio_bucket_cap_and_max():
+    rows = [_gio_row(i, dlat=0.0002 * i, bucket="apt") for i in range(1, 31)]
+    rows += [_gio_row(40 + i, dlat=0.0002 * i, bucket="room") for i in range(1, 6)]
+    sel = refresh.select_gio(rows)
+    n_apt = sum(1 for r in sel if r["bucket"] == "apt")
+    n_room = sum(1 for r in sel if r["bucket"] == "room")
+    assert len(sel) <= refresh.GIO_MAX
+    assert n_apt <= refresh.GIO_BUCKET_CAP  # rooms not crowded out
+    assert n_room == 5
+
+
+def test_select_gio_single_bucket_not_starved():
+    rows = [_gio_row(i, dlat=0.0002 * i, bucket="apt") for i in range(1, 31)]
+    sel = refresh.select_gio(rows)
+    assert len(sel) == refresh.GIO_BUCKET_CAP  # cap, not stalled at 8

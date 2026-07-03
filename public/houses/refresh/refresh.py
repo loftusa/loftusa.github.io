@@ -54,6 +54,23 @@ SAPI = "https://sapi.craigslist.org/web/v8/postings/search/full"
 # Downtown SF (Financial District) commute anchor
 DT_LAT, DT_LON = 37.7935, -122.3970
 
+# OpenAI HQ (1455 Third St, Mission Bay) — anchor for the "For Gio" section.
+# Geocoded via OSM Nominatim ("Uber Headquarters Building 1, 1455, 3rd Street").
+GIO_LAT, GIO_LON = 37.7700, -122.3888
+GIO_OFFICE = {
+    "name": "OpenAI HQ",
+    "addr": "1455 Third St, Mission Bay",
+    "lat": GIO_LAT,
+    "lon": GIO_LON,
+}
+GIO_CENTERS = [("gio_openai", GIO_LAT, GIO_LON, 2)]
+# (category, min_price, max_price, bucket) — Gio's budget, NOT Alex's
+GIO_QUERIES = [("apa", 1400, 6000, "apt"), ("roo", 700, 3500, "room")]
+GIO_WALK_FACTOR = 1.3 * 20  # straight-line mi -> minutes (route factor x 20 min/mi)
+GIO_WALK_MAX_MIN = 32
+GIO_MAX = 24  # shortlist slots for the Gio section
+GIO_BUCKET_CAP = 16  # neither bucket may fill more than 2/3 of the section
+
 # (name, lat, lon, radius_mi) search centers covering the whole zone
 CENTERS = [
     ("sf_inner_bay", 37.78, -122.42, 12),  # SF + Daly City + inner East Bay + Sausalito
@@ -189,10 +206,10 @@ def parse_item(it, locs):
     )
 
 
-def pull_raw():
+def pull_raw(centers=CENTERS, queries=QUERIES):
     seen = {}
-    for cname, lat, lon, dist in CENTERS:
-        for cat, pmin, pmax, bucket in QUERIES:
+    for cname, lat, lon, dist in centers:
+        for cat, pmin, pmax, bucket in queries:
             params = {
                 "batch": "1-0-360-0-0",
                 "cc": "US",
@@ -435,6 +452,38 @@ def select_shortlist(rows):
     return keep, sel
 
 
+def gio_walk_min(lat, lon):
+    """Estimated walking minutes from (lat, lon) to the OpenAI office."""
+    return round(haversine_mi(lat, lon, GIO_LAT, GIO_LON) * GIO_WALK_FACTOR)
+
+
+def select_gio(rows):
+    """Walkable-to-OpenAI candidates: filter, walk-sort, bucket-cap, assign G-ids."""
+    keep = []
+    for r in rows:
+        if not (r["lat"] and r["lon"]) or r["nimg"] == 0 or r["price"] < 700:
+            continue
+        wm = gio_walk_min(r["lat"], r["lon"])
+        if wm > GIO_WALK_MAX_MIN:
+            continue
+        r["walk_mi"] = round(haversine_mi(r["lat"], r["lon"], GIO_LAT, GIO_LON), 2)
+        r["walk_min"] = wm
+        keep.append(r)
+    keep.sort(key=lambda r: r["walk_min"])
+    sel, nbucket = [], collections.Counter()
+    for r in keep:
+        if len(sel) >= GIO_MAX:
+            break
+        if nbucket[r["bucket"]] >= GIO_BUCKET_CAP:
+            continue
+        sel.append(r)
+        nbucket[r["bucket"]] += 1
+    for i, r in enumerate(sel):
+        r["id"] = f"G{i + 1:02d}"
+        r["aud"] = "gio"
+    return sel
+
+
 def scrape_page(r):
     """Fetch a listing page; extract full photo gallery + posting body text."""
     try:
@@ -485,11 +534,24 @@ def do_pull():
     # stable ids, then scrape galleries + bodies in parallel
     for i, r in enumerate(sel):
         r["id"] = f"L{i + 1:02d}"
-    print(f"scraping {len(sel)} listing pages (photos + body)...")
+        r["aud"] = "alex"
+    # Gio section: office-centered pull. Failure must never block Alex's pipeline.
+    gio_sel, gio_ok, n_gio_raw = [], True, 0
+    try:
+        gio_rows = pull_raw(GIO_CENTERS, GIO_QUERIES)
+        n_gio_raw = len(gio_rows)
+        gio_sel = select_gio(gio_rows)
+    except Exception as e:
+        gio_ok = False
+        print(
+            f"warn: gio pull failed ({e}) — continuing without a Gio refresh",
+            file=sys.stderr,
+        )
+    print(f"scraping {len(sel) + len(gio_sel)} listing pages (photos + body)...")
     with ThreadPoolExecutor(max_workers=8) as ex:
-        scraped = dict(ex.map(scrape_page, sel))
+        scraped = dict(ex.map(scrape_page, sel + gio_sel))
     n_dead = n_body = 0
-    for r in sel:
+    for r in sel + gio_sel:
         info = scraped.get(r["id"], {})
         gallery = info.get("imgs") or ([r["img"]] if r["img"] else [])
         r["imgs"] = gallery
@@ -501,19 +563,25 @@ def do_pull():
             n_dead += 1
         if r["body"]:
             n_body += 1
-    json.dump(sel, open(SHORTLIST, "w"), indent=1)
+    json.dump(sel + gio_sel, open(SHORTLIST, "w"), indent=1)
     json.dump(
         {
             "n_raw": len(rows),
             "n_kept": len(keep),
             "n_shortlist": len(sel),
+            "gio_pull_ok": gio_ok,
+            "n_gio_raw": n_gio_raw,
+            "n_gio": len(gio_sel),
             "pulled": datetime.date.today().isoformat(),
         },
         open(PULL_STATS, "w"),
     )
     print(
-        f"wrote {SHORTLIST}: {len(sel)} candidates "
+        f"wrote {SHORTLIST}: {len(sel)} candidates + {len(gio_sel)} gio "
         f"(raw={len(rows)} kept={len(keep)}) | bodies={n_body} dead={n_dead}"
+    )
+    print(
+        f"gio: {'ok' if gio_ok else 'PULL FAILED'} — {len(gio_sel)} walkable (raw={n_gio_raw})"
     )
     print("by region:", dict(collections.Counter(r["region"] for r in sel)))
     print("by bucket:", dict(collections.Counter(r["bucket"] for r in sel)))
