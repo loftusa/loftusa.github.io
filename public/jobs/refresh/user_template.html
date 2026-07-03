@@ -1,10 +1,13 @@
 <!DOCTYPE html>
+<!-- user_template.html — per-user password-gated board.
+     make_user.py fills in the slug placeholder and copies this file to public/jobs/u/<slug>/index.html
+     next to data.enc.js (loaded relative). Private page: noindex, nofollow. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Frontier AI Jobs — Alex Loftus</title>
-<meta name="description" content="Open roles across frontier AI labs and safety orgs — Anthropic, OpenAI, xAI, Mistral, Goodfire, Apollo Research, METR, DeepMind. Refreshed daily.">
+<meta name="robots" content="noindex, nofollow">
+<title>Jobs — __SLUG__</title>
 <style>
 :root{
   --paper:#faf7f1; --card:#fffdf9; --ink:#2b2320; --muted:#8a7f74;
@@ -22,47 +25,33 @@ a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
 .wrap{max-width:1280px;margin:0 auto;padding:28px 22px 80px}
 
-/* ---------- header ---------- */
-header{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px}
-header h1{font-size:26px;font-weight:600}
-header .tag{color:var(--muted);font-size:14.5px;margin-top:2px}
-.stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px;font:13px var(--sans);color:var(--muted)}
-.stats b{color:var(--ink);font-weight:600;font-family:var(--mono)}
-.newpill{background:var(--accent);color:#fff;border-radius:9px;padding:1px 8px;font:600 11px var(--sans);align-self:center}
+/* ---------- password gate ---------- */
+#gate{position:fixed;inset:0;background:var(--paper);z-index:50;display:flex;align-items:center;justify-content:center}
+#gate .box{text-align:center;max-width:340px}
+#gate h1{font-size:22px;font-weight:600;letter-spacing:.01em;margin-bottom:6px}
+#gate p{color:var(--muted);font-size:13.5px;margin-bottom:18px}
+#gate input{width:100%;padding:10px 12px;font:15px var(--mono);border:1px solid var(--line);
+  border-radius:6px;background:var(--card);color:var(--ink);text-align:center;outline:none}
+#gate input:focus{border-color:var(--accent)}
+#gate .err{color:var(--bad);font-size:12.5px;margin-top:10px;min-height:16px;font-family:var(--sans)}
+@keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+#gate .shake{animation:shake .35s}
 
-/* ---------- view toggle ---------- */
-.views{display:flex;gap:8px;margin:16px 0 14px;font-family:var(--sans)}
-.viewbtn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:7px 16px;
-  font:600 13px var(--sans);cursor:pointer;color:var(--muted)}
-.viewbtn.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.viewbtn .sub{display:block;font:400 10.5px var(--sans);margin-top:1px}
-.probanner{margin-left:auto;align-self:center;font:12.5px var(--sans);color:var(--muted)}
+/* ---------- header ---------- */
+header{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}
+header h1{font-size:24px;font-weight:600}
+header .meta{color:var(--muted);font-size:13px;font-family:var(--sans)}
+header .meta b{color:var(--ink);font-weight:600}
+.newpill{background:var(--accent);color:#fff;border-radius:9px;padding:1px 8px;font:600 11px var(--sans)}
 
 /* ---------- controls ---------- */
-.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;font-family:var(--sans)}
+.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px;font-family:var(--sans)}
 .chip{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:4px 12px;
   font-size:12.5px;cursor:pointer;color:var(--muted);user-select:none}
 .chip.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.controls select,.controls input[type=search]{border:1px solid var(--line);background:var(--card);border-radius:6px;
-  padding:5px 9px;font:12.5px var(--sans);color:var(--ink)}
-.controls input[type=search]{width:200px}
+.controls select{border:1px solid var(--line);background:var(--card);border-radius:6px;
+  padding:4px 8px;font:12.5px var(--sans);color:var(--ink)}
 .count{color:var(--muted);font-size:12.5px;margin-left:auto}
-
-/* ---------- browse rows ---------- */
-.rows{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.row{display:grid;grid-template-columns:110px 1fr 92px 220px 110px 78px;gap:12px;align-items:baseline;
-  padding:8px 14px;border-bottom:1px solid var(--line);font-family:var(--sans)}
-.row:last-child{border-bottom:none}
-.row:hover{background:var(--paper)}
-.row .co{justify-self:start}
-.row .t{font:14px var(--serif);color:var(--ink)}
-.row .t a{color:var(--ink)} .row .t a:hover{color:var(--accent)}
-.row .cat{font:11px var(--sans);color:var(--muted)}
-.row .loc{font:11.5px var(--sans);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.row .cmp{font:11.5px var(--mono);text-align:right;color:var(--ink)}
-.row .dt{font:11px var(--mono);color:var(--muted);text-align:right}
-.morebar{text-align:center;padding:12px}
-@media (max-width:900px){ .row{grid-template-columns:90px 1fr 90px;} .row .loc,.row .cat,.row .dt{display:none} }
 
 /* ---------- leaderboard ---------- */
 .leader{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:26px}
@@ -154,7 +143,6 @@ textarea.notes{width:100%;min-height:64px;border:1px solid var(--line);border-ra
 .btn{border:1px solid var(--line);background:var(--card);border-radius:6px;padding:5px 14px;
   font:600 12px var(--sans);cursor:pointer;color:var(--ink)}
 .btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.btn.accent{background:var(--accent);color:#fff;border-color:var(--accent)}
 .btn.good{border-color:var(--good);color:var(--good)}
 .btn.again{border-color:var(--bad);color:var(--bad)}
 .drillmeta{font:12px var(--sans);color:var(--muted);margin-bottom:12px}
@@ -167,103 +155,35 @@ textarea.notes{width:100%;min-height:64px;border:1px solid var(--line);border-ra
 .timer .t.low{color:var(--bad)}
 .winston{font-size:13px}
 .winston li{margin-bottom:5px}
-
-/* ---------- pro section ---------- */
-#pro{margin-top:48px;border-top:2px solid var(--ink);padding-top:26px}
-#pro h2{font-size:21px;font-weight:600}
-#pro .lede{font-size:15px;max-width:720px;margin:8px 0 4px}
-#pro .lede2{font-size:13.5px;color:var(--muted);max-width:720px;margin-bottom:20px}
-.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,380px));gap:16px;margin-bottom:24px}
-.tier{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px}
-.tier.hl{border-color:var(--accent)}
-.tier h3{font:600 15px var(--sans)}
-.tier .price{font:700 26px var(--mono);margin:6px 0}
-.tier .price small{font:400 12px var(--sans);color:var(--muted)}
-.tier ul{padding-left:18px;font-size:13.5px;margin:10px 0}
-.tier li{margin-bottom:6px}
-.profrm{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;max-width:560px}
-.profrm h3{font:600 15px var(--sans);margin-bottom:10px}
-.profrm label{display:block;font:600 11.5px var(--sans);color:var(--muted);text-transform:uppercase;
-  letter-spacing:.05em;margin:12px 0 4px}
-.profrm input[type=email],.profrm input[type=text],.profrm textarea,.profrm select{width:100%;border:1px solid var(--line);
-  border-radius:6px;background:var(--paper);padding:8px 10px;font:13.5px var(--sans);color:var(--ink)}
-.profrm textarea{min-height:70px;resize:vertical}
-.profrm .send{margin-top:16px}
-.profrm .note{font:12px var(--sans);color:var(--muted);margin-top:10px}
-#proMsg{font:600 13px var(--sans);margin-top:12px;min-height:18px}
-#proMsg.ok{color:var(--good)} #proMsg.err{color:var(--bad)}
-
-footer{margin-top:36px;color:var(--muted);font:12px var(--sans);display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+footer{margin-top:36px;color:var(--muted);font:12px var(--sans);display:flex;gap:14px;align-items:center}
+@media (max-width:720px){ .lrow{grid-template-columns:22px minmax(120px,200px) 1fr 40px} }
 </style>
 </head>
 <body>
 
-<div class="wrap" id="app">
+<div id="gate"><div class="box">
+  <h1>Jobs — __SLUG__</h1>
+  <p>Private board. Enter the password.</p>
+  <input id="pw" type="password" autocomplete="current-password" autofocus>
+  <div class="err" id="gerr"></div>
+</div></div>
+
+<div class="wrap" id="app" style="display:none">
   <header>
-    <h1>Frontier AI Jobs</h1>
-    <div class="tag">Open roles across the frontier AI labs and safety orgs — Anthropic, OpenAI, xAI, Mistral, Goodfire, Apollo Research, METR, and DeepMind’s (partial) public board — pulled straight from their hiring systems. Refreshed daily, closures tracked.</div>
-    <div class="stats" id="hstats"></div>
+    <h1>Jobs — __SLUG__</h1>
+    <span class="meta" id="hmeta"></span>
+    <span class="newpill" id="hnew" style="display:none"></span>
   </header>
 
-  <div class="views">
-    <button class="viewbtn" id="vbrowse">All roles<span class="sub" id="vbrowseN"></span></button>
-    <button class="viewbtn" id="vscored">Scored: my search<span class="sub">the Pro layer, live</span></button>
-    <span class="probanner">Want this scored against <i>your</i> profile? <a href="#pro">Jobs&nbsp;Pro ↓</a></span>
-  </div>
-
   <div class="controls" id="controls"></div>
-  <div class="rows" id="rows" style="display:none"></div>
-  <div class="leader" id="leader" style="display:none"></div>
-  <div class="grid" id="grid" style="display:none"></div>
-
-  <section id="pro">
-    <h2>Jobs Pro — this board, scored for you</h2>
-    <p class="lede">The public board tells you what's open. The scored layer tells you <b>where you'd actually land</b>: every role rated against your background on five dimensions, an offer-probability estimate, and a prep deck per role — which resume bullets to lead with, the six questions they'll ask you (as drill flashcards mapped to your own stories), a 30-second pitch script, and a negotiation anchor.</p>
-    <p class="lede2">Flip to "Scored: my search" above to see it running live on my own job hunt — same engine, my profile. Concierge setup: I build each board personally from your background, so onboarding is limited.</p>
-    <div class="tiers">
-      <div class="tier hl">
-        <h3>Pro — personal scored board</h3>
-        <div class="price">$39<small>/month</small></div>
-        <ul>
-          <li>Private board at a gated URL — re-scored weekly and on request (v1 is concierge-run)</li>
-          <li>Fit scores + offer-probability estimates across every role in your target lane (tuned to you; ~500 roles for a typical profile)</li>
-          <li>Prep decks for your 45 best-fit roles, refreshed as the market moves</li>
-          <li>Your STAR stories wired into the drill flashcards</li>
-        </ul>
-      </div>
-      <div class="tier">
-        <h3>Interview Dossier — one role</h3>
-        <div class="price">$149<small> one-off</small></div>
-        <ul>
-          <li>You have a screen scheduled; I build the deck for that JD</li>
-          <li>Resume angle, likely questions, pitch script, negotiation anchor</li>
-          <li>Delivered within 48 hours</li>
-        </ul>
-      </div>
-    </div>
-    <div class="profrm">
-      <h3>Get set up</h3>
-      <form id="proForm">
-        <label>Email</label>
-        <input type="email" id="pfEmail" required placeholder="you@example.com">
-        <label>Name</label>
-        <input type="text" id="pfName" placeholder="optional">
-        <label>Tier</label>
-        <select id="pfTier"><option value="pro">Pro — $39/mo</option><option value="dossier">Interview Dossier — $149</option></select>
-        <label>Target roles / background (a few lines)</label>
-        <textarea id="pfNotes" placeholder="e.g. 5 yrs ML infra, aiming at research-engineer roles at Anthropic/DeepMind; or paste a LinkedIn URL"></textarea>
-        <button class="btn accent send" type="submit">Request setup</button>
-        <div id="proMsg"></div>
-        <div class="note">No card needed now — I reply within a day with next steps. Payment on setup.</div>
-      </form>
-    </div>
-  </section>
+  <div class="leader" id="leader"></div>
+  <div class="grid" id="grid"></div>
 
   <footer>
     <span id="fmeta"></span>
-    <span>Built by <a href="/">Alex Loftus</a> · boards pulled from Greenhouse/Ashby/Lever · scoring via Claude</span>
     <button class="btn" id="exportBtn">Export status + drill</button>
     <label class="btn" style="cursor:pointer">Import<input id="importInp" type="file" accept=".json" style="display:none"></label>
+    <button class="btn" id="lockBtn">Lock</button>
   </footer>
 </div>
 
@@ -274,25 +194,58 @@ footer{margin-top:36px;color:var(--muted);font:12px var(--sans);display:flex;gap
   <div class="dbody" id="dbody"></div>
 </aside>
 
-<script src="data.js"></script>
+<script src="data.enc.js"></script>
 <script>
 'use strict';
-const DATA = window.JOBS_DATA, BANK = DATA.bank || {};
-const API = 'https://llm-resume-restless-thunder-9259.fly.dev';
-const LSST='jobs_status_v1', LSDR='jobs_drill_v1';
+/* ================= crypto gate ================= */
+const enc = new TextEncoder(), dec = new TextDecoder();
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+async function decrypt(password){
+  const B = window.JOBS_ENC;
+  const km = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey(
+    {name:'PBKDF2', salt:b64(B.salt), iterations:B.iter, hash:'SHA-256'},
+    km, {name:'AES-GCM', length:256}, false, ['decrypt']);
+  const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv:b64(B.iv)}, key, b64(B.ct));
+  return JSON.parse(dec.decode(pt));
+}
+
+let DATA=null, BANK=null;
+const SLUG='__SLUG__';
+const LSPW='jobs_u_'+SLUG+'_pw_v1', LSST='jobs_u_'+SLUG+'_status_v1', LSDR='jobs_u_'+SLUG+'_drill_v1';
 const $=id=>document.getElementById(id);
+
+async function tryUnlock(pw, silent){
+  try{
+    DATA = await decrypt(pw);
+    BANK = DATA.bank || {};
+    localStorage.setItem(LSPW, pw);
+    $('gate').style.display='none';
+    $('app').style.display='';
+    boot();
+  }catch(e){
+    localStorage.removeItem(LSPW);
+    if(!silent){
+      $('gerr').textContent='Wrong password.';
+      const box=document.querySelector('#gate .box');
+      box.classList.remove('shake'); void box.offsetWidth; box.classList.add('shake');
+    }
+  }
+}
+$('pw').addEventListener('keydown', e=>{ if(e.key==='Enter') tryUnlock($('pw').value,false); });
+const saved = localStorage.getItem(LSPW);
+if(saved) tryUnlock(saved, true);
 
 /* ================= state ================= */
 const STATUSES=['watching','referral','applied','interview','offer','rejected'];
 const DIMS=['people','stage','social','technical','domain'];
 const DIMCOLORS={people:'var(--people)',stage:'var(--stage)',social:'var(--social)',technical:'var(--technical)',domain:'var(--domain)'};
+const GROUPLABEL={anthropic:'Anthropic',interp:'Interp orgs',frontier:'Frontier labs'};
 const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}};
 let STATUS=load(LSST,{}), DRILL=load(LSDR,{});
 const saveStatus=()=>localStorage.setItem(LSST,JSON.stringify(STATUS));
 const saveDrill=()=>localStorage.setItem(LSDR,JSON.stringify(DRILL));
-let F={view:'browse', company:'all', cat:'all', q:'', remote:false, newonly:false, bsort:'newest',
-       group:'all', status:'all', closed:false, belowbar:false, sort:'fit'};
-let browseLimit=250;
+let F={group:'all', remote:false, status:'all', closed:false, belowbar:false, sort:'fit'};
 let openJob=null, openTab='fit';
 
 const fitCls=f=>f>=7?'g':f>=5.5?'m':'b';
@@ -300,9 +253,6 @@ const today=()=>new Date().toISOString().slice(0,10);
 const stOf=id=>STATUS[id]||{};
 const compFmt=c=>c?('$'+Math.round(c[0]/1000)+'–'+Math.round(c[1]/1000)+'K'):'';
 const INTERVALS=[1,3,7];  // Leitner box -> days until due
-const esc=s=>String(s??'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const safeUrl=u=>/^https?:\/\//i.test(u||'')?u:'#';
-const isNew=j=>(DATA.meta.new_ids||[]).includes(j.id);
 
 function dueCount(job){
   if(!job.prep) return 0;
@@ -313,24 +263,8 @@ function dueCount(job){
   });
   return n;
 }
-
-/* ================= filtering ================= */
-function browseJobs(){
-  let js=DATA.jobs.filter(j=>!j.closed);
-  if(F.company!=='all') js=js.filter(j=>j.company===F.company);
-  if(F.cat!=='all') js=js.filter(j=>(j.category||'Other')===F.cat);
-  if(F.remote) js=js.filter(j=>j.remote);
-  if(F.newonly) js=js.filter(isNew);
-  if(F.q){const q=F.q.toLowerCase(); js=js.filter(j=>(j.title+' '+j.company).toLowerCase().includes(q));}
-  const key=F.bsort;
-  if(key==='newest') js.sort((a,b)=>((b.published||b.first_seen||'')).localeCompare(a.published||a.first_seen||''));
-  else if(key==='comp') js.sort((a,b)=>((b.comp?b.comp[1]:0)-(a.comp?a.comp[1]:0)));
-  else js.sort((a,b)=>a.company.localeCompare(b.company)||a.title.localeCompare(b.title));
-  return js;
-}
-function scoredJobs(){
-  let js=DATA.jobs.filter(j=>j.scores);
-  js=js.filter(j=>{
+function visibleJobs(){
+  let js=DATA.jobs.filter(j=>{
     if(j.hidden && !F.belowbar) return false;
     if(j.closed && !F.closed) return false;
     if(F.group!=='all' && j.group!==F.group) return false;
@@ -341,101 +275,42 @@ function scoredJobs(){
     }
     return true;
   });
+  const key={fit:j=>-j.fit, prob:j=>-(j.prob||0),
+             newest:j=>-(j.first_seen||'').localeCompare('9999'),
+             comp:j=>-(j.comp?j.comp[1]:0)}[F.sort];
   if(F.sort==='newest') js.sort((a,b)=>(b.first_seen||'').localeCompare(a.first_seen||'')||b.fit-a.fit);
-  else if(F.sort==='prob') js.sort((a,b)=>(b.prob||0)-(a.prob||0));
-  else if(F.sort==='comp') js.sort((a,b)=>((b.comp?b.comp[1]:0)-(a.comp?a.comp[1]:0)));
-  else js.sort((a,b)=>b.fit-a.fit||(b.prob||0)-(a.prob||0));
+  else js.sort((a,b)=>key(a)-key(b));
   return js;
 }
 
 /* ================= render ================= */
-function boot(){ renderHeader(); renderViews(); renderControls(); renderAll(); }
-function renderAll(){
-  if(F.view==='browse'){
-    $('rows').style.display=''; $('leader').style.display='none'; $('grid').style.display='none';
-    renderRows(browseJobs());
-  } else {
-    const js=scoredJobs();
-    $('rows').style.display='none'; $('leader').style.display=''; $('grid').style.display='';
-    renderLeader(js); renderGrid(js);
-  }
-}
-function renderHeader(){
+function boot(){ renderControls(); renderAll(); }
+function renderAll(){ const js=visibleJobs(); renderHeader(js); renderLeader(js); renderGrid(js); }
+
+function renderHeader(js){
   const m=DATA.meta;
-  $('hstats').innerHTML=
-    `<span><b>${m.open??m.total}</b> open roles</span><span><b>${(m.companies||[]).length}</b> labs</span>`+
-    `<span>refreshed <b>${esc(m.date)}</b></span>`+
-    (m.new_today>0?`<span class="newpill">${m.new_today} new today</span>`:'');
-  $('vbrowseN').textContent=(m.open??m.total)+' open';
-  $('fmeta').textContent=`scored layer: fit = ${DIMS.map(d=>Math.round(m.fit_weights[d]*100)+'% '+d).join(' + ')} · prob = model-estimated offer odds`;
-}
-function renderViews(){
-  $('vbrowse').classList.toggle('on',F.view==='browse');
-  $('vscored').classList.toggle('on',F.view==='scored');
-  $('vbrowse').onclick=()=>{F.view='browse';renderViews();renderControls();renderAll();};
-  $('vscored').onclick=()=>{F.view='scored';renderViews();renderControls();renderAll();};
+  const inflight=DATA.jobs.filter(j=>['referral','applied','interview','offer'].includes(stOf(j.id).status)).length;
+  $('hmeta').innerHTML=`refreshed <b>${m.date}</b> · <b>${m.shown}</b> open roles scored · <b>${inflight}</b> in flight`;
+  if(m.new_today>0){ $('hnew').style.display=''; $('hnew').textContent=m.new_today+' new today'; }
+  $('fmeta').textContent=`fit = ${DIMS.map(d=>Math.round(DATA.meta.fit_weights[d]*100)+'% '+d).join(' + ')} · prob = model-estimated offer odds`;
 }
 
 function renderControls(){
   const c=$('controls'); c.innerHTML='';
   const chip=(lbl,on,fn)=>{const b=document.createElement('button');b.className='chip'+(on?' on':'');b.textContent=lbl;b.onclick=fn;c.appendChild(b);return b};
-  if(F.view==='browse'){
-    chip('All labs',F.company==='all',()=>{F.company='all';rerender();});
-    (DATA.meta.companies||[]).forEach(co=>chip(co,F.company===co,()=>{F.company=co;rerender();}));
-    const cat=document.createElement('select');
-    cat.innerHTML='<option value="all">All categories</option>'+
-      (DATA.meta.categories||[]).map(x=>`<option${F.cat===x?' selected':''}>${x}</option>`).join('');
-    cat.onchange=()=>{F.cat=cat.value;rerender();}; c.appendChild(cat);
-    chip('Remote',F.remote,()=>{F.remote=!F.remote;rerender();});
-    chip('New',F.newonly,()=>{F.newonly=!F.newonly;rerender();});
-    const q=document.createElement('input'); q.type='search'; q.placeholder='Search titles…'; q.value=F.q;
-    q.oninput=()=>{F.q=q.value;browseLimit=250;renderAll();updateCount();}; c.appendChild(q);
-    const so=document.createElement('select');
-    so.innerHTML='<option value="newest">Newest</option><option value="comp">Comp ↓</option><option value="company">Company</option>';
-    so.value=F.bsort; so.onchange=()=>{F.bsort=so.value;renderAll();}; c.appendChild(so);
-  } else {
-    [['all','All'],['anthropic','Anthropic'],['interp','Interp orgs'],['frontier','Frontier labs']]
-      .forEach(([g,l])=>chip(l,F.group===g,()=>{F.group=g;rerender();}));
-    chip('Remote',F.remote,()=>{F.remote=!F.remote;rerender();});
-    chip('Show closed',F.closed,()=>{F.closed=!F.closed;rerender();});
-    chip('Below bar',F.belowbar,()=>{F.belowbar=!F.belowbar;rerender();});
-    const st=document.createElement('select');
-    st.innerHTML='<option value="all">Any status</option><option value="none">Untracked</option>'+
-      STATUSES.map(s=>`<option value="${s}">${s[0].toUpperCase()+s.slice(1)}</option>`).join('');
-    st.value=F.status; st.onchange=()=>{F.status=st.value;renderAll();updateCount();}; c.appendChild(st);
-    const so=document.createElement('select');
-    so.innerHTML='<option value="fit">Best fit</option><option value="prob">Highest prob</option><option value="newest">Newest</option><option value="comp">Comp ↓</option>';
-    so.value=F.sort; so.onchange=()=>{F.sort=so.value;renderAll();}; c.appendChild(so);
-  }
+  [['all','All'],['anthropic','Anthropic'],['interp','Interp orgs'],['frontier','Frontier labs']]
+    .forEach(([g,l])=>chip(l,F.group===g,()=>{F.group=g;renderControls();renderAll();}));
+  chip('Remote',F.remote,()=>{F.remote=!F.remote;renderControls();renderAll();});
+  chip('Show closed',F.closed,()=>{F.closed=!F.closed;renderControls();renderAll();});
+  chip('Below bar',F.belowbar,()=>{F.belowbar=!F.belowbar;renderControls();renderAll();});
+  const st=document.createElement('select');
+  st.innerHTML='<option value="all">Any status</option><option value="none">Untracked</option>'+
+    STATUSES.map(s=>`<option value="${s}">${s[0].toUpperCase()+s.slice(1)}</option>`).join('');
+  st.value=F.status; st.onchange=()=>{F.status=st.value;renderAll();}; c.appendChild(st);
+  const so=document.createElement('select');
+  so.innerHTML='<option value="fit">Best fit</option><option value="prob">Highest prob</option><option value="newest">Newest</option><option value="comp">Comp ↓</option>';
+  so.value=F.sort; so.onchange=()=>{F.sort=so.value;renderAll();}; c.appendChild(so);
   const n=document.createElement('span'); n.className='count'; n.id='shownCount'; c.appendChild(n);
-  function rerender(){renderControls();renderAll();}
-}
-function updateCount(){
-  const el=$('shownCount'); if(el) el.textContent=(F.view==='browse'?browseJobs():scoredJobs()).length+' shown';
-}
-
-function renderRows(js){
-  updateCount();
-  const R=$('rows'); R.innerHTML='';
-  js.slice(0,browseLimit).forEach(j=>{
-    const el=document.createElement('div'); el.className='row';
-    el.innerHTML=
-      `<span class="co ${j.group||'frontier'}">${esc(j.company)}</span>`+
-      `<span class="t"><a href="${esc(safeUrl(j.url))}" target="_blank" rel="noopener">${esc(j.title)}</a>`+
-      `${isNew(j)?' <span class="newb">NEW</span>':''}${j.scores?` <span class="prob" title="scored on my board">fit ${j.fit.toFixed(1)}</span>`:''}</span>`+
-      `<span class="cat">${esc(j.category||'Other')}</span>`+
-      `<span class="loc">${esc((j.locations||[]).slice(0,2).join(' · '))||'—'}${j.remote?' · remote':''}</span>`+
-      `<span class="cmp">${compFmt(j.comp)}</span>`+
-      `<span class="dt">${esc((j.published||j.first_seen||'').slice(5))}</span>`;
-    if(j.scores){ el.style.cursor='pointer'; el.onclick=e=>{ if(e.target.tagName!=='A') openDrawer(j.id); }; }
-    R.appendChild(el);
-  });
-  if(js.length>browseLimit){
-    const m=document.createElement('div'); m.className='morebar';
-    const b=document.createElement('button'); b.className='btn'; b.textContent=`Show all ${js.length}`;
-    b.onclick=()=>{browseLimit=js.length;renderRows(js);};
-    m.appendChild(b); R.appendChild(m);
-  }
 }
 
 function renderLeader(js){
@@ -465,8 +340,8 @@ function renderLeader(js){
 }
 
 function renderGrid(js){
-  updateCount();
   const g=$('grid'); g.innerHTML='';
+  $('shownCount').textContent=js.length+' shown';
   js.forEach(j=>{
     const s=stOf(j.id), due=dueCount(j);
     const el=document.createElement('div');
@@ -496,6 +371,8 @@ function renderGrid(js){
 function hi(id,on){
   document.querySelectorAll(`[data-id="${CSS.escape(id)}"]`).forEach(e=>e.classList.toggle('hi',on));
 }
+function isNew(j){ return (DATA.meta.new_ids||[]).includes(j.id); }
+function esc(s){ return String(s??'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 
 /* ================= drawer ================= */
 function openDrawer(id){
@@ -515,7 +392,7 @@ function renderDrawer(){
       <button class="x" id="dx">×</button></div>
     <h2>${esc(j.title)}</h2>
     <div class="sub">fit <b>${j.fit.toFixed(1)}</b> · ${j.prob!=null?j.prob+'% offer prob':''} ·
-      <a href="${esc(safeUrl(j.url))}" target="_blank" rel="noopener">JD ↗</a></div>`;
+      <a href="${esc(j.url)}" target="_blank" rel="noopener">JD ↗</a></div>`;
   $('dx').onclick=closeDrawer;
   const tabs=[['fit','Fit'],['resume','Resume angle'],['drill','Drill'+(dueCount(j)?` (${dueCount(j)})`:'')],['pitch','Pitch']];
   $('dtabs').innerHTML=tabs.map(([k,l])=>`<button class="tab${openTab===k?' on':''}" data-t="${k}">${l}</button>`).join('');
@@ -541,12 +418,11 @@ function fitTab(j){
     <div class="kv">
       <span class="k">Locations</span><span>${esc((j.locations||[]).join(' · '))||'—'}${j.remote?' · remote-ok':''}</span>
       <span class="k">Comp</span><span>${compFmt(j.comp)||'not listed'}</span>
-      <span class="k">Category</span><span>${esc(j.category||'Other')}</span>
       <span class="k">Posted</span><span>${esc(j.published||'—')}</span>
       <span class="k">First seen</span><span>${esc(j.first_seen||'—')}</span>
       <span class="k">Role-shape</span><span>${DIMS.map(d=>`${d} ${j.scores[d]}`).join(' · ')}</span>
     </div>
-    <p class="calnote">prob = calibrated offer odds conditional on applying${j.group==='anthropic'?' with the referral':''};
+    <p class="calnote">prob = model-estimated offer odds conditional on applying;
     even excellent fits rarely exceed ~25–30% at frontier-lab bars.</p>`;
 }
 function wireFit(j){
@@ -567,9 +443,8 @@ function resumeTab(j){
     <h4>Lead with (Ultralearning: prep maps straight to what this JD tests)</h4>
     <ul>${j.prep.resume_angle.map(b=>`<li>${esc(b)}</li>`).join('')}</ul>
     <h4>Mechanics</h4>
-    <p style="font-size:13px">Canonical CV lives in Overleaf (<span style="font-family:var(--mono)">cv_anthropic_tpm.tex</span> for
-    Anthropic roles). Reorder the career-highlight block to match the bullets above; keep it 2 pages; regenerate
-    cv.pdf/cv.txt afterward.</p>
+    <p style="font-size:13px">Reorder your resume's highlight block to lead with the bullets above; keep it to
+    2 pages; re-export the PDF before every application.</p>
     ${BANK.hard_rules?`<h4>Hard rules (never violate on paper or aloud)</h4>
     <ul style="font-size:13px">${BANK.hard_rules.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>`:''}`;
 }
@@ -631,43 +506,21 @@ function pitchTab(j,B){
     <h4>Winston checklist</h4>
     <ul class="winston">
       <li><b>Promise first</b> — open with what they get from hiring you, not your history.</li>
-      <li><b>One idea, cycled</b> — the ambiguous-goal→shipped-program thesis, restated three ways.</li>
+      <li><b>One idea, cycled</b> — your core thesis, restated three ways.</li>
       <li><b>Verbal punctuation</b> — enumerate ("three things"), signal transitions.</li>
-      <li><b>Concrete evidence</b> — numbers said slowly: 16 people, two campaigns, doubled team.</li>
+      <li><b>Concrete evidence</b> — your numbers, said slowly and concretely.</li>
       <li><b>Finish with the delivery</b> — end on what you'll do for them; never trail into "…so yeah."</li>
     </ul>
     <h4>Negotiation line (Voss / Fisher–Ury)</h4>
     <p style="font-size:13.5px">${esc(j.prep.negotiation)}</p>
     ${BANK.negotiation_anchors?`<p class="calnote">BATNA: ${esc(BANK.negotiation_anchors.batna)}</p>`:''}`;
   let left=30, iv=null;
-  const render=()=>{const t=$('tval');
-    if(!t){ clearInterval(iv); iv=null; return; }  // drawer closed / tab switched
-    t.textContent='0:'+String(left).padStart(2,'0');t.classList.toggle('low',left<=5);};
+  const render=()=>{const t=$('tval');t.textContent='0:'+String(left).padStart(2,'0');t.classList.toggle('low',left<=5);};
   $('tgo').onclick=()=>{ if(iv) return; iv=setInterval(()=>{left--;render();if(left<=0){clearInterval(iv);iv=null;}},1000); };
   $('treset').onclick=()=>{ clearInterval(iv); iv=null; left=30; render(); };
 }
 
-/* ---------- pro intake form ---------- */
-$('proForm').onsubmit=async e=>{
-  e.preventDefault();
-  const msg=$('proMsg'); msg.className=''; msg.textContent='Sending…';
-  const body={email:$('pfEmail').value.trim(), name:$('pfName').value.trim(),
-              tier:$('pfTier').value, target_roles:$('pfNotes').value.trim()};
-  try{
-    const r=await fetch(API+'/jobs/interest',{method:'POST',
-      headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
-    if(r.status===429){ msg.className='err'; msg.textContent='Too many requests from your network — try again in a few minutes.'; return; }
-    if(r.status===422||r.status===400){ msg.className='err'; msg.textContent='That email didn\'t validate — double-check it (needs a full address like you@domain.com).'; return; }
-    if(!r.ok) throw new Error(r.status);
-    msg.className='ok'; msg.textContent='Got it — I\'ll be in touch within a day.';
-    $('proForm').reset();
-  }catch(err){
-    msg.className='err';
-    msg.innerHTML='Couldn\'t reach the server — email me instead: <a href="mailto:alexloftus2004@gmail.com?subject=Jobs%20Pro">alexloftus2004@gmail.com</a>';
-  }
-};
-
-/* ---------- export / import ---------- */
+/* ---------- export / import / lock ---------- */
 $('exportBtn').onclick=()=>{
   const blob=new Blob([JSON.stringify({status:STATUS,drill:DRILL},null,1)],{type:'application/json'});
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
@@ -679,7 +532,7 @@ $('importInp').onchange=e=>{
     STATUS={...STATUS,...(d.status||{})}; DRILL={...DRILL,...(d.drill||{})};
     saveStatus(); saveDrill(); renderAll(); });
 };
-boot();
+$('lockBtn').onclick=()=>{ localStorage.removeItem(LSPW); location.reload(); };
 </script>
 </body>
 </html>

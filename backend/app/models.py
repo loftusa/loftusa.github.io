@@ -204,6 +204,26 @@ class KlistSchemaItem(Base):
     )
 
 
+class JobsInterest(Base):
+    """Pro/dossier interest submissions from the /jobs board. Private: write-only
+    for visitors, read only via the token-gated GET (see routers/jobs.py); rows
+    live on the Fly volume, never in the public repo."""
+
+    __tablename__ = "jobs_interest"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    ts: Mapped[str] = mapped_column(String(32), nullable=False, index=True)
+    email: Mapped[str] = mapped_column(String(320), nullable=False)
+    name: Mapped[Optional[str]] = mapped_column(String(200))
+    tier: Mapped[str] = mapped_column(String(16), nullable=False)  # pro | dossier
+    target_roles: Mapped[Optional[str]] = mapped_column(Text)
+    notes: Mapped[Optional[str]] = mapped_column(Text)
+    ip: Mapped[Optional[str]] = mapped_column(String(64))
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime, default=_utcnow, nullable=False
+    )
+
+
 class HouseReachedOut(Base):
     """Listings on the /houses page that Alex has reached out about.
 

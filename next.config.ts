@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
       { source: "/talkmap", destination: "/talkmap/map.html" },
       // Bay Area rental scout — self-contained Leaflet page under public/houses/.
       { source: "/houses", destination: "/houses/index.html" },
+      // Frontier AI Jobs board — self-contained page under public/jobs/.
+      { source: "/jobs", destination: "/jobs/index.html" },
+      // Gated per-customer boards (Jobs Pro) — make_user.py emits these dirs.
+      { source: "/jobs/u/:slug", destination: "/jobs/u/:slug/index.html" },
       // STI risk data page — self-contained Tufte page under public/sti/ (noindex, unlisted).
       { source: "/sti", destination: "/sti/index.html" },
       // Partner preferences checklist — self-contained page under public/klist/ (noindex,

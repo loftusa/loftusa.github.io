@@ -17,6 +17,15 @@ rating run can never silently publish a degraded board.
 Env:  ANTHROPIC_API_KEY   (required)
       RATE_MODEL          (default claude-sonnet-4-6)
 Usage: python3 rate.py [--limit N] [--score-only]
+                       [--profile PATH] [--prep-bank PATH]
+                       [--shortlist PATH] [--out PATH]
+
+The four path flags exist so make_user.py can score a *different* person's
+profile against a *different* shortlist without touching the daily pipeline's
+files. With no flags, behavior is identical to before: profile.md /
+prep_bank.json / shortlist.json / ratings.json next to this script. If the
+prep-bank file does not exist, the prep pass runs WITHOUT personal-bank
+context (questions get story='') — nothing else is skipped.
 """
 
 import argparse
@@ -125,12 +134,12 @@ def role_snippet(r, jd_chars):
     )
 
 
-def pass_score(client, roles):
+def pass_score(client, roles, profile=PROFILE):
     system = (
         "You are scoring job openings for one specific candidate, for his "
         "private job board. Score each role EXACTLY per the rubric in the "
         "profile below — dimensions describe the ROLE-SHAPE and his realistic "
-        "clearance of its bar, not generic prestige.\n\n" + PROFILE
+        "clearance of its bar, not generic prestige.\n\n" + profile
     )
     out = {}
     for i in range(0, len(roles), SCORE_BATCH):
@@ -154,7 +163,7 @@ def pass_score(client, roles):
     return out
 
 
-def pass_prep(client, roles, scored, bank):
+def pass_prep(client, roles, scored, bank, profile=PROFILE):
     # deterministic fit decides who earns prep
     def fit_of(rid):
         return fit_score({d: scored[rid][d] for d in DIMS})
@@ -165,13 +174,19 @@ def pass_prep(client, roles, scored, bank):
     )[:PREP_CAP]
     if not eligible:
         return {}
+    bank_txt = (
+        "\n\nPERSONAL PREP BANK (STAR stories, hard-question rebuttals, pitch "
+        "components — reference stories by their exact `key`):\n"
+        + json.dumps(bank, indent=1)
+        if bank
+        else "\n\n(No personal prep bank provided — set `story` to '' for every "
+        "question and base hints on the profile alone.)"
+    )
     system = (
         "You are building interview-prep blocks for one candidate's private "
         "job board. Use his profile and his PERSONAL PREP BANK below.\n\n"
-        + PROFILE
-        + "\n\nPERSONAL PREP BANK (STAR stories, hard-question rebuttals, pitch "
-        "components — reference stories by their exact `key`):\n"
-        + json.dumps(bank, indent=1)
+        + profile
+        + bank_txt
         + "\n\nFor EACH role produce:\n"
         "- resume_angle: exactly 3 bullets — which of his career highlights to "
         "LEAD with for THIS role and why, concrete (name the highlight, tie it "
@@ -187,7 +202,9 @@ def pass_prep(client, roles, scored, bank):
         "open with a promise (what he'll do for them), one cycled key idea, "
         "concrete evidence, no throat-clearing. First person, natural speech.\n"
         "- negotiation: one line — realistic comp anchor for this role/level and "
-        "his leverage (BATNA: current OpenAI contract + PhD; competing processes)."
+        "the candidate's actual leverage, drawn ONLY from the profile and prep "
+        "bank above (e.g. its negotiation_anchors); if no leverage info exists, "
+        "state the comp anchor alone."
     )
     out = {}
     for i in range(0, len(eligible), PREP_BATCH):
@@ -210,22 +227,50 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0, help="score only first N (testing)")
     ap.add_argument("--score-only", action="store_true")
+    ap.add_argument(
+        "--profile",
+        default=None,
+        help="candidate profile md (default: profile.md next to script)",
+    )
+    ap.add_argument(
+        "--prep-bank",
+        dest="prep_bank",
+        default=None,
+        help="personal prep bank json (default: prep_bank.json; missing file = run without bank)",
+    )
+    ap.add_argument(
+        "--shortlist",
+        default=None,
+        help="roles-to-score json (default: shortlist.json)",
+    )
+    ap.add_argument(
+        "--out", default=None, help="output ratings json (default: ratings.json)"
+    )
     args = ap.parse_args()
 
     assert os.environ.get("ANTHROPIC_API_KEY"), "ANTHROPIC_API_KEY required"
 
-    roles = json.load(open(SHORTLIST))
+    shortlist_path = args.shortlist or SHORTLIST
+    out_path = args.out or RATINGS
+    profile = open(args.profile).read() if args.profile else PROFILE
+    bank_path = args.prep_bank or PREP_BANK
+
+    roles = json.load(open(shortlist_path))
     if args.limit:
         roles = roles[: args.limit]
     if not roles:
-        json.dump({"ratings": []}, open(RATINGS, "w"))
+        json.dump({"ratings": []}, open(out_path, "w"))
         print("shortlist empty — nothing to score")
         return
 
-    bank = json.load(open(PREP_BANK))
+    if os.path.exists(bank_path):
+        bank = json.load(open(bank_path))
+    else:
+        bank = {}
+        print(f"prep bank not found at {bank_path} — running without bank context")
     client = anthropic.Anthropic()
 
-    scored = pass_score(client, roles)
+    scored = pass_score(client, roles, profile)
     missing = [r["id"] for r in roles if r["id"] not in scored]
     if missing:
         sys.exit(
@@ -233,7 +278,7 @@ def main():
             f"(e.g. {missing[:5]}) — refusing to write partial ratings"
         )
 
-    preps = {} if args.score_only else pass_prep(client, roles, scored, bank)
+    preps = {} if args.score_only else pass_prep(client, roles, scored, bank, profile)
 
     ratings = []
     for r in roles:
@@ -241,6 +286,7 @@ def main():
         rec = {
             "id": r["id"],
             "group": r["group"],
+            "scored_title": r["title"],
             "scores": {d: s[d] for d in DIMS},
             "prob": s["prob"],
             "why": s["why"],
@@ -252,8 +298,11 @@ def main():
                 for k in ("resume_angle", "questions", "pitch", "negotiation")
             }
         ratings.append(rec)
-    json.dump({"ratings": ratings}, open(RATINGS, "w"), indent=1)
-    print(f"wrote ratings.json: {len(ratings)} scored, {len(preps)} with prep")
+    json.dump({"ratings": ratings}, open(out_path, "w"), indent=1)
+    print(
+        f"wrote {os.path.basename(out_path)}: "
+        f"{len(ratings)} scored, {len(preps)} with prep"
+    )
 
 
 if __name__ == "__main__":

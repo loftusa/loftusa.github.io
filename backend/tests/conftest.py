@@ -19,6 +19,7 @@ os.environ.setdefault("DATABASE_URL", "sqlite://")  # in-memory, shared via Stat
 os.environ.setdefault("DATA_DIR", tempfile.mkdtemp())
 os.environ.setdefault("LOG_ACCESS_TOKEN", "test-token")
 os.environ.setdefault("KLIST_ACCESS_TOKEN", "test-klist-token")
+os.environ.setdefault("JOBS_ACCESS_TOKEN", "test-jobs-token")
 os.environ.setdefault("CEREBRAS_API_KEY", "test-key")
 
 from backend.app import models  # noqa: E402
