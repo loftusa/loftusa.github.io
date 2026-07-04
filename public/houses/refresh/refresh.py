@@ -945,6 +945,30 @@ def do_sweep():
 
 
 GIO_W = {"prox": 0.34, "aesthetic": 0.20, "nice": 0.16, "value": 0.14, "soft": 0.16}
+# Alex's fit weights — also shipped to the frontend via meta.fit_weights, where the
+# map colors each dot by its dominant driver. Change them HERE only.
+ALEX_W = {
+    "nice": 0.17,
+    "nature": 0.15,
+    "soft": 0.13,
+    "value": 0.13,
+    "commute": 0.26,
+    "aesthetic": 0.16,
+}
+
+
+def alex_fit(scores, bucket, dual_commute):
+    """Unrounded, uncapped weighted sum (soft = quiet for apt, social for room).
+    The loved bonus, 10.0 cap, and rounding stay at the call site."""
+    soft = gs(scores, "quiet") if bucket == "apt" else gs(scores, "social")
+    return (
+        ALEX_W["nice"] * gs(scores, "nice")
+        + ALEX_W["nature"] * gs(scores, "nature")
+        + ALEX_W["soft"] * soft
+        + ALEX_W["value"] * gs(scores, "value")
+        + ALEX_W["commute"] * dual_commute
+        + ALEX_W["aesthetic"] * gs(scores, "aesthetic")
+    )
 
 
 def gio_fit(scores, bucket, walk_min):
@@ -1110,18 +1134,9 @@ def do_build():
         x["ferry_sf"] = any(k in (x["hood"] or "").lower() for k in FERRY_SF)
         x["loved"] = any(k in (x["hood"] or "").lower() for k in LOVED)
         s = x["scores"]
-        soft = gs(s, "quiet") if x["bucket"] == "apt" else gs(s, "social")
-        # aesthetic = how good the place looks in its photos (weighted so listings
-        # with ugly/low-effort photos don't rank high on looks alone). gs() defaults
-        # missing scores to 5 (neutral) for backward compat with pre-aesthetic ratings.
-        fit = (
-            0.17 * gs(s, "nice")
-            + 0.15 * gs(s, "nature")
-            + 0.13 * soft
-            + 0.13 * gs(s, "value")
-            + 0.26 * x["dual_commute"]
-            + 0.16 * gs(s, "aesthetic")
-        )
+        # aesthetic is weighted so listings with ugly/low-effort photos don't rank
+        # high on looks alone; gs() defaults missing scores to 5 for backward compat.
+        fit = alex_fit(s, x["bucket"], x["dual_commute"])
         if x["loved"]:
             fit += 0.8
         x["fit"] = round(min(10.0, fit), 1)
@@ -1198,6 +1213,7 @@ def do_build():
         "price_med": int(statistics.median(x["price"] for x in listings)),
         "move_by": "~late July 2026",
         "mode": "FINAL",
+        "fit_weights": {"alex": ALEX_W, "gio": GIO_W},
     }
     data = {
         "meta": meta,

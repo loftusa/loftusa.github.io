@@ -388,3 +388,40 @@ def test_sweep_gio_mass_death_guard(tmp_path, monkeypatch):
     before = dj.read_text()
     refresh.do_sweep()
     assert dj.read_text() == before  # 80% dead at once -> scrape problem, no write
+
+
+# ---- fit weights: alex_fit refactor must not move anyone's fit; build emits weights
+
+
+def test_alex_fit_formula():
+    scores = {
+        "nice": 8,
+        "nature": 9,
+        "quiet": 9,
+        "social": 4,
+        "value": 9,
+        "aesthetic": 8,
+    }
+    # apt uses quiet for soft: .17*8+.15*9+.13*9+.13*9+.26*8+.16*8 = 8.41
+    assert round(min(10.0, refresh.alex_fit(scores, "apt", 8.0)), 1) == 8.4
+    # room swaps soft to social(4): 8.41 - .13*9 + .13*4 = 7.76
+    assert round(min(10.0, refresh.alex_fit(scores, "room", 8.0)), 1) == 7.8
+
+
+def test_build_emits_fit_weights_and_pins_fit_values(tmp_path, monkeypatch):
+    alex = [_alex_row(i) for i in range(1, 17)]
+    d = _run_build(
+        tmp_path,
+        monkeypatch,
+        alex,
+        [_rating(r["id"]) for r in alex],
+        {"n_kept": 100, "n_shortlist": 16},
+    )
+    fw = d["meta"]["fit_weights"]
+    assert fw["alex"] == refresh.ALEX_W
+    assert fw["gio"] == refresh.GIO_W
+    assert abs(sum(refresh.ALEX_W.values()) - 1.0) < 1e-9
+    assert abs(sum(refresh.GIO_W.values()) - 1.0) < 1e-9
+    # hood "mission" (SF): dual = round(.65*cscore(29)+.35*cscore(20), 1) = 8.1;
+    # _rating scores -> apt fit 6.7 (soft=quiet 6), room fit 6.6 (soft=social 5).
+    assert {x["fit"] for x in d["listings"]} == {6.7, 6.6}
