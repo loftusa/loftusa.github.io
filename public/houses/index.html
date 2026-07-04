@@ -232,7 +232,10 @@
   </header>
 
   <h2>The map &amp; ranking</h2>
-  <p class="h2note">Each node is numbered by <b>overall rank</b> (1 = best fit), sized by fit, colored by type. The two ◆ are the commute anchors: <b>downtown SF</b> and <b>Berkeley (FAR Labs)</b>. The list on the right is every listing as a dot on a 0→10 fit scale, sorted best→worst — hover to find it on the map, click to fly there.</p>
+  <p class="h2note">Each node is numbered by <b>overall rank</b> (1 = best fit) and sized by fit; its <b>color is the
+    component that most lifts it above the field</b> — green dots rank on nature, gray on commute, rust on photos
+    (outline = type; key on the map). <b>Zoom in</b> and dots become six-petal score profiles. The ◆ are the commute
+    anchors. The list on the right is every listing on a 0→10 fit scale — hover to find it, click to fly there.</p>
   <div class="mapwrap">
     <div id="map"></div>
     <aside id="leaderboard">
@@ -517,6 +520,43 @@ function renderGio(){
 }
 document.getElementById("gioSort").onchange=e=>{gstate.sort=e.target.value;renderGio();};
 
+/* ---- ranking drivers: which component most lifts a listing above the field ----
+   Weights come from the build via meta.fit_weights (single source of truth in
+   refresh.py); the literals below are a fallback for data.js written before that. */
+const FW = (D.meta && D.meta.fit_weights) || {
+  alex:{nice:.17, nature:.15, soft:.13, value:.13, commute:.26, aesthetic:.16},
+  gio:{commute:.34, aesthetic:.20, nice:.16, soft:.16, value:.14, nature:0}};
+function compScores(x){
+  const s = x.scores||{};
+  return {commute:s.commute??5, nice:s.nice??5, aesthetic:s.aesthetic??5,
+          nature:s.nature??5, value:s.value??5,
+          soft: x.bucket==="apt" ? (s.quiet??5) : (s.social??5)};
+}
+const DRIVER_KEYS = ["commute","nice","aesthetic","nature","value","soft"];
+const DRIVER_MEANS = {};
+[["alex", D.listings], ["gio", GIO.listings]].forEach(([aud, ls])=>{
+  const rs = ls.filter(x=>!x.gone).map(compScores), m = {};
+  DRIVER_KEYS.forEach(k=> m[k] = rs.reduce((t,r)=>t+r[k],0)/Math.max(1,rs.length));
+  DRIVER_MEANS[aud] = m;
+});
+function driverInfo(k, x){
+  return k==="soft"
+    ? (x.bucket==="apt" ? ["Quiet", css("--quiet")] : ["Social", css("--social")])
+    : {commute:["Commute",css("--commute")], nice:["Nice area",css("--nice")],
+       aesthetic:["Photos",css("--aesthetic")], nature:["Nature",css("--nature")],
+       value:["Value",css("--value")]}[k];
+}
+function driver(x){
+  const aud = x.id[0]==="G" ? "gio" : "alex";
+  const w = FW[aud]||FW.alex, sc = compScores(x), m = DRIVER_MEANS[aud];
+  let bk = null, bv = -1e9;
+  DRIVER_KEYS.forEach(k=>{ const wi = w[k]??0; if(!wi) return;
+    const d = wi*(sc[k]-m[k]); if(d>bv){bv=d; bk=k;} });
+  if(bv <= 0.02) return {label:"nothing above average", color:"#a39c8d"};
+  const [label, color] = driverInfo(bk, x);
+  return {label, color};
+}
+
 /* ---- neighborhoods ---- */
 function track(v,varn){const w=Math.max(3,(v||0)*10);return `<div class="track"><i style="width:${w}%;background:${css(varn)}"></i></div>`;}
 function renderHoods(){
@@ -585,20 +625,40 @@ function popupInner(x){
     <div class="pp num">#${RANK[x.id]} · ${money(x.price)} <span style="font-size:12px;color:#777">${bedsLabel(x.beds)}</span>
       <b style="float:right;color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b></div>
     <div class="ph2">${x.loved?'♥ ':''}${x.hood} · ${x.region}<br>SF ${x.drive_sf}m · Berkeley ${x.drive_berk}m${x.ferry_sf?' · ⛴ ferry to SF':''}</div>
+    <div style="font-size:11px;color:#8a8378;margin-top:3px">strongest vs field: <b style="color:${driver(x).color}">${driver(x).label}</b></div>
     <div style="font-size:12px;margin:5px 0 4px">${x.rationale||""}</div>
     <div class="actions"><a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a>
       <button class="reach-btn" data-id="${x.id}">${isReached(x)?'Reached out ✓':'Reach out'}</button></div></div>`;
 }
 
 const markerById = {};
+const GLYPH_ZOOM = 13;  // >= this: dots swap to coxcomb score-profile petals
+function typeColor(x){ return x.id[0]==="G" ? css("--gio") : (x.bucket==="apt"?css("--apt"):css("--room")); }
+function coxIcon(x){
+  // coxcomb: six fixed 60° wedges from 12 o'clock (commute, nice, photos, nature,
+  // value, quiet/social), radius = raw score; center disc keeps rank + type hue.
+  const R=17, size=R*2, rank = x.id[0]==="G" ? GRANK[x.id] : RANK[x.id];
+  const sc = compScores(x);
+  const wedge=(i,s,c)=>{
+    const rr=4+(s/10)*(R-4), a0=(i*60-90)*Math.PI/180, a1=((i+1)*60-90)*Math.PI/180;
+    return `<path d="M${R},${R} L${(R+rr*Math.cos(a0)).toFixed(2)},${(R+rr*Math.sin(a0)).toFixed(2)} A${rr.toFixed(2)},${rr.toFixed(2)} 0 0 1 ${(R+rr*Math.cos(a1)).toFixed(2)},${(R+rr*Math.sin(a1)).toFixed(2)} Z" fill="${c}" stroke="#fffdf8" stroke-width="0.7"/>`;
+  };
+  const ringCol = x.pick ? css("--pick") : (isReached(x) ? css("--nature") : null);
+  const svg = `<svg width="${size}" height="${size}" style="filter:drop-shadow(0 1px 2px rgba(0,0,0,.35));${x.gone?'opacity:.45':''}">
+    ${DRIVER_KEYS.map((k,i)=>wedge(i, sc[k], k==="soft"?driverInfo("soft",x)[1]:driverInfo(k,x)[1])).join("")}
+    ${ringCol?`<circle cx="${R}" cy="${R}" r="${R-1.2}" fill="none" stroke="${ringCol}" stroke-width="2.2"/>`:""}
+    <circle cx="${R}" cy="${R}" r="6" fill="${typeColor(x)}"/>
+    <text x="${R}" y="${R+2.7}" text-anchor="middle" font-family="ui-monospace,monospace" font-size="8" font-weight="700" fill="#fff">${rank}</text></svg>`;
+  return L.divIcon({className:"rankmark-wrap",iconSize:[size,size],iconAnchor:[R,R],html:svg});
+}
 function markerIcon(x){
+  if(map.getZoom() >= GLYPH_ZOOM) return coxIcon(x);
   const size=Math.round(20+(x.fit||5)*1.6);
-  const bg=x.bucket==="apt"?css("--apt"):css("--room");
   const ring=x.pick?`box-shadow:0 0 0 2.5px ${css('--pick')},0 1px 3px rgba(0,0,0,.4);`:"box-shadow:0 1px 3px rgba(0,0,0,.4);";
-  const fs=RANK[x.id]>9?11:13;
+  const fs=RANK[x.id]>9?10:12;
   const rc=(isReached(x)?"reached-mk ":"")+(x.gone?"gone-mk":"");
   return L.divIcon({className:"rankmark-wrap",iconSize:[size,size],iconAnchor:[size/2,size/2],
-    html:`<div class="rankmark ${rc}" style="width:${size}px;height:${size}px;background:${bg};${ring}font-size:${fs}px">${RANK[x.id]}</div>`});
+    html:`<div class="rankmark ${rc}" style="width:${size}px;height:${size}px;background:${driver(x).color};border:2.5px solid ${typeColor(x)};${ring}font-size:${fs}px">${RANK[x.id]}</div>`});
 }
 function drawMarkers(list){
   list.slice().sort((a,b)=>(a.fit||0)-(b.fit||0)).forEach(x=>{  // best fit drawn last = on top
@@ -619,14 +679,16 @@ function gioPopup(x){
     <div class="pp num">G#${GRANK[x.id]} · ${money(x.price)} <span style="font-size:12px;color:#777">${bedsLabel(x.beds)}</span>
       <b style="float:right;color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b></div>
     <div class="ph2">${x.hood||"Mission Bay area"}<br><b class="num">${x.walk_min} min walk</b> to OpenAI HQ</div>
+    <div style="font-size:11px;color:#8a8378;margin-top:3px">strongest vs field: <b style="color:${driver(x).color}">${driver(x).label}</b></div>
     <div style="font-size:12px;margin:5px 0 4px">${x.rationale||""}</div>
     <div class="actions"><a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div></div>`;
 }
 function gioMarkerIcon(x){
+  if(map.getZoom() >= GLYPH_ZOOM) return coxIcon(x);
   const size=Math.round(18+(x.fit||5)*1.4);
   const fs=GRANK[x.id]>9?10:12;
   return L.divIcon({className:"rankmark-wrap",iconSize:[size,size],iconAnchor:[size/2,size/2],
-    html:`<div class="rankmark ${x.gone?'gone-mk':''}" style="width:${size}px;height:${size}px;background:${css('--gio')};box-shadow:0 1px 3px rgba(0,0,0,.4);font-size:${fs}px">${GRANK[x.id]}</div>`});
+    html:`<div class="rankmark ${x.gone?'gone-mk':''}" style="width:${size}px;height:${size}px;background:${driver(x).color};border:2.5px solid ${css('--gio')};box-shadow:0 1px 3px rgba(0,0,0,.4);font-size:${fs}px">${GRANK[x.id]}</div>`});
 }
 function drawGioMarkers(list){
   list.slice().sort((a,b)=>(a.fit||0)-(b.fit||0)).forEach(x=>{
@@ -636,6 +698,17 @@ function drawGioMarkers(list){
     mk.addTo(map); markerById[x.id]=mk;
   });
 }
+/* swap every marker's glyph when crossing the coxcomb zoom threshold */
+let glyphZoomed = false;
+map.on("zoomend", ()=>{
+  const now = map.getZoom() >= GLYPH_ZOOM;
+  if(now === glyphZoomed) return;
+  glyphZoomed = now;
+  for(const id in markerById){
+    const x = id[0]==="G" ? GIO.listings.find(l=>l.id===id) : byId(id);
+    if(x) markerById[id].setIcon(id[0]==="G" ? gioMarkerIcon(x) : markerIcon(x));
+  }
+});
 map.on("popupopen",e=>{
   const el=e.popup.getElement(); if(el) wireGalleries(el);
   const id=(el&&el.querySelector(".pop-ph"))?el.querySelector(".pop-ph").dataset.id:null;
@@ -685,12 +758,13 @@ function renderLeaderboard(){
 /* legend */
 const legend = L.control({position:"bottomright"});
 legend.onAdd=function(){const d=L.DomUtil.create("div","legend");
-  d.innerHTML=`<span class="dot" style="background:${css('--apt')}"></span>Apartment / studio<br>
-    <span class="dot" style="background:${css('--room')}"></span>Room / share (housemates)<br>
-    <span class="dot ring" style="background:#bbb"></span>Top pick<br>
-    ${GIO.listings.length?`<span class="dot" style="background:${css('--gio')}"></span>Gio · walkable to OpenAI<br>`:""}
-    <span style="color:var(--muted)">number = overall rank · bigger = better fit</span><br>
-    <span class="anchor" style="font-size:11px">◆</span> commute anchors (SF &amp; Berkeley)`;
+  d.innerHTML=`<b class="ui" style="font-size:11px">Fill = what most lifts it vs the field</b><br>
+    ${[["Commute","--commute"],["Nice area","--nice"],["Photos","--aesthetic"],["Nature","--nature"],["Value","--value"]]
+      .map(([l,v])=>`<span class="dot" style="background:${css(v)}"></span>${l}<br>`).join("")}
+    <span class="dot" style="background:${css('--quiet')}"></span><span class="dot" style="background:${css('--social')}"></span>Quiet (apt) / Social (room)<br>
+    <span class="dot" style="background:#a39c8d"></span>nothing above average<br>
+    outline: <b style="color:${css('--apt')}">apt</b> · <b style="color:${css('--room')}">room</b>${GIO.listings.length?` · <b style="color:${css('--gio')}">Gio</b>`:""} — gold ring = pick<br>
+    <span style="color:var(--muted)">number = rank · bigger = better fit<br>zoom in for full score petals · ◆ anchors</span>`;
   return d;};
 legend.addTo(map);
 
