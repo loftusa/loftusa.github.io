@@ -45,6 +45,12 @@ export function extractHouses(data) {
   if (!weights || Object.keys(weights).length === 0) throw new Error("houses: meta.fit_weights.alex missing");
   const live = listings.filter((x) => !x.gone);
   if (live.length === 0) throw new Error("houses: all listings gone");
+  // Validate all live listings before sorting to catch bad coordinates/fit on any listing.
+  for (const x of live) {
+    num(x.lat, `houses lat of ${x.id}`);
+    num(x.lon, `houses lon of ${x.id}`);
+    num(x.fit, `houses fit of ${x.id}`);
+  }
   const scored = live.map(compScores);
   const means = {};
   for (const k of DRIVER_KEYS) {
@@ -62,9 +68,9 @@ export function extractHouses(data) {
     return bestKey;
   };
   const top = [...live].sort((a, b) => b.fit - a.fit).slice(0, 25).map((x) => ({
-    lat: num(x.lat, `houses lat of ${x.id}`),
-    lon: num(x.lon, `houses lon of ${x.id}`),
-    fit: num(x.fit, `houses fit of ${x.id}`),
+    lat: x.lat,
+    lon: x.lon,
+    fit: x.fit,
     pdisp: String(x.pdisp ?? `$${x.price}`),
     hood: String(x.hood ?? "").trim() || "unknown",
     driver: driver(x),

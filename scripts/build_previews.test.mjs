@@ -61,7 +61,9 @@ test("parseWindowData throws when the marker is missing", () => {
 test("extractHouses sorts by fit desc and drops gone listings", () => {
   const h = extractHouses(HOUSES);
   assert.deepEqual(h.listings.map((l) => l.fit), [9.1, 7.0, 5.5]);
-  assert.equal(h.listings.some((l) => l.hood === ""), false);
+  assert.equal(h.listings.length, 3);
+  // L3 (fit 8.0, gone: true) must not appear
+  assert.equal(h.listings.some((l) => l.fit === 8.0), false);
 });
 test("extractHouses computes drivers: lifted component wins; soft maps by bucket", () => {
   const h = extractHouses(HOUSES);
@@ -82,6 +84,18 @@ test("extractHouses throws on non-finite coordinates", () => {
   const bad = { meta: HOUSES.meta, listings: [listing({ lat: null })] };
   assert.throws(() => extractHouses(bad), /lat/);
 });
+test("extractHouses throws on bad coordinates in non-top-ranked listings", () => {
+  // Create a fixture: one good high-fit listing, one bad low-fit listing.
+  // Without pre-validation, bad listing would be dropped by slice(0, 25).
+  const bad = {
+    meta: HOUSES.meta,
+    listings: [
+      listing({ id: "L_good", fit: 9.0 }),
+      listing({ id: "L_bad", fit: 1.0, lon: NaN }),
+    ],
+  };
+  assert.throws(() => extractHouses(bad), /lon of L_bad/);
+});
 
 // ---------- extractJobs ----------
 test("extractJobs filters closed and orders newest-first like the jobs page", () => {
@@ -96,6 +110,9 @@ test("extractJobs keeps comp null when absent and counts open roles per lab", ()
 });
 test("extractJobs throws when meta.companies is missing", () => {
   assert.throws(() => extractJobs({ meta: { open: 1 }, jobs: JOBS.jobs }), /companies/);
+});
+test("extractJobs throws on empty jobs array", () => {
+  assert.throws(() => extractJobs({ meta: JOBS.meta, jobs: [] }), /jobs empty/);
 });
 
 // ---------- extractNetworks ----------
