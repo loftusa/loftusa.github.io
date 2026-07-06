@@ -48,6 +48,9 @@ const nextConfig: NextConfig = {
       { source: "/about", destination: "/", permanent: true },
       { source: "/about.html", destination: "/", permanent: true },
       { source: "/resume", destination: "/cv/", permanent: true },
+      // Printed inside the submitted thesis PDF as loftusa.github.io/thesis —
+      // can never be updated at the source, so this redirect must live forever.
+      { source: "/thesis", destination: "/files/submitted_thesis.pdf", permanent: true },
       { source: "/coauthorship", destination: "/networks/", permanent: true },
       { source: "/coauthorship/affiliations", destination: "/networks/affiliations/", permanent: true },
       { source: "/coauthorship/analyses", destination: "/networks/analyses/", permanent: true },
