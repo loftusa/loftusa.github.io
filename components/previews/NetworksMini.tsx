@@ -30,10 +30,11 @@ export default function NetworksMini({ data }: { data: NetworksPreview }) {
   if (data.nodes.length === 0) throw new Error("NetworksMini: empty nodes");
   const nodesRef = useRef<SimNode[]>([]);
   const [, setTick] = useState(0);
-  const [hover, setHover] = useState<number | null>(null);
+  const [tip, setTip] = useState<{ x: number; y: number; i: number } | null>(null);
   const dragRef = useRef<number | null>(null);
   const rafRef = useRef<number | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
+  const boxRef = useRef<HTMLDivElement | null>(null);
   const reducedRef = useRef(false);
 
   // Initialize once (and if data identity ever changes)
@@ -68,9 +69,20 @@ export default function NetworksMini({ data }: { data: NetworksPreview }) {
     return { x: p.x, y: p.y };
   }
 
+  // Anchor the tooltip to the node's rendered rect (immune to viewBox letterboxing).
+  function showTip(i: number, e: React.PointerEvent<SVGCircleElement>) {
+    if (dragRef.current != null) return; // no tooltip while dragging
+    const box = boxRef.current;
+    if (!box) return;
+    const b = box.getBoundingClientRect();
+    const c = e.currentTarget.getBoundingClientRect();
+    setTip({ x: c.x + c.width / 2 - b.x, y: c.y - b.y, i });
+  }
+
   function onNodeDown(i: number, e: React.PointerEvent) {
     if (reducedRef.current) return;
     e.preventDefault();
+    setTip(null);
     dragRef.current = i;
     nodesRef.current[i].pinned = true;
     (e.target as Element).setPointerCapture(e.pointerId);
@@ -91,46 +103,50 @@ export default function NetworksMini({ data }: { data: NetworksPreview }) {
   }
 
   const nodes = nodesRef.current;
-  const hovered = hover != null ? data.nodes[hover] : null;
-  const hoveredGroup = hovered ? data.communities.find((c) => c.id === hovered.community)?.label : null;
+  const tipNode = tip != null ? data.nodes[tip.i] : null;
+  const tipGroup = tipNode ? data.communities.find((c) => c.id === tipNode.community)?.label : null;
 
   return (
     <div className={styles.svgWrap}>
-      <svg
-        ref={svgRef}
-        viewBox={`0 0 ${W} ${H}`}
-        role="img"
-        aria-label="Co-authorship network of researchers Alex has worked with"
-      >
-        {data.links.map(([s, t], i) => (
-          <line
-            key={i}
-            x1={nodes[s].x} y1={nodes[s].y}
-            x2={nodes[t].x} y2={nodes[t].y}
-            className={styles.netLink}
-          />
-        ))}
-        {nodes.map((n, i) => (
-          <circle
-            key={i}
-            cx={n.x} cy={n.y} r={hover === i ? 3.6 : 2.4}
-            fill={COMMUNITY_COLORS[data.nodes[i].community] ?? "var(--muted)"}
-            fillOpacity={0.85}
-            className={dragRef.current === i ? `${styles.netNode} ${styles.netNodeDragging}` : styles.netNode}
-            onPointerDown={(e) => onNodeDown(i, e)}
-            onPointerMove={onNodeMove}
-            onPointerUp={onNodeUp}
-            onPointerCancel={onNodeUp}
-            onPointerEnter={() => setHover(i)}
-            onPointerLeave={() => setHover(null)}
-          />
-        ))}
-      </svg>
-      <p className={styles.caption}>
-        {hovered
-          ? `${hovered.label}${hoveredGroup ? ` · ${hoveredGroup}` : ""}`
-          : "co-authors, linked by papers — drag a node"}
-      </p>
+      <div className={styles.svgBox} ref={boxRef}>
+        <svg
+          ref={svgRef}
+          viewBox={`0 0 ${W} ${H}`}
+          role="img"
+          aria-label="Co-authorship network of researchers Alex has worked with"
+        >
+          {data.links.map(([s, t], i) => (
+            <line
+              key={i}
+              x1={nodes[s].x} y1={nodes[s].y}
+              x2={nodes[t].x} y2={nodes[t].y}
+              className={styles.netLink}
+            />
+          ))}
+          {nodes.map((n, i) => (
+            <circle
+              key={i}
+              cx={n.x} cy={n.y} r={tip?.i === i ? 3.6 : 2.4}
+              fill={COMMUNITY_COLORS[data.nodes[i].community] ?? "var(--muted)"}
+              fillOpacity={0.85}
+              className={dragRef.current === i ? `${styles.netNode} ${styles.netNodeDragging}` : styles.netNode}
+              onPointerDown={(e) => onNodeDown(i, e)}
+              onPointerMove={onNodeMove}
+              onPointerUp={onNodeUp}
+              onPointerCancel={onNodeUp}
+              onPointerEnter={(e) => showTip(i, e)}
+              onPointerLeave={() => setTip(null)}
+            />
+          ))}
+        </svg>
+        {tip && tipNode && (
+          <div className={styles.tip} style={{ left: tip.x, top: tip.y }}>
+            <div className={styles.tipName}>{tipNode.label}</div>
+            {tipGroup && <div className={styles.tipSub}>{tipGroup}</div>}
+          </div>
+        )}
+      </div>
+      <p className={styles.caption}>co-authors, linked by papers — drag a node</p>
     </div>
   );
 }
