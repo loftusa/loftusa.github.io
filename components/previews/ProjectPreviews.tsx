@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import HousesMini from "./HousesMini";
 import JobsMini from "./JobsMini";
+import NetworksMini from "./NetworksMini";
 import type { PreviewsData } from "./types";
 import styles from "./ProjectPreviews.module.css";
 
@@ -45,8 +46,7 @@ export default function ProjectPreviews({ data }: { data: PreviewsData }) {
           title="Networks"
           foot={`${networks.meta.n_nodes} researchers · ${networks.meta.n_links} co-authorships`}
         >
-          {/* NetworksMini lands in Task 7 */}
-          <div />
+          <NetworksMini data={networks} />
         </Card>
       </div>
     </section>
