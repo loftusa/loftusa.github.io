@@ -19,17 +19,17 @@ Approaches considered and rejected: scaled live iframes (1.5 MB+ page weight, un
 
 ## Data flow: build-time extraction
 
-New script `scripts/build_previews.mjs` (same pattern as `scripts/build_networks_html.mjs`), run as an npm `prebuild` step so every Vercel build regenerates it.
+New script `scripts/build_previews.mjs` (same pattern as `scripts/build_networks_html.mjs`), invoked inline at the start of the `build` and `dev` npm scripts (`node scripts/build_previews.mjs && next build`) — pnpm, which Vercel uses here, does not run `prebuild`/`predev` hooks by default.
 
 **Inputs** (committed artifacts, always present):
 - `public/houses/data.js` — `window.HOUSES_DATA` (~106 KB)
 - `public/jobs/data.js` — `window.JOBS_DATA` (~1.3 MB)
 - `public/assets/data/coauthorship.json` (~320 KB; 132 nodes, 368 links)
 
-**Output:** `lib/previews.json` (~8 KB, generated and gitignored — the committed data artifacts stay the single source of truth). The script runs as both `prebuild` and `predev` so a fresh clone's `next dev` never hits a missing import.
+**Output:** `lib/previews.json` (~18 KB, generated and gitignored — the committed data artifacts stay the single source of truth). Because it runs inside both the `build` and `dev` scripts, a fresh clone never hits a missing file.
 - `houses`: top ~25 listings by fit — `{lat, lon, fit, price, hood}` — plus meta `{n_scouted, price_min, price_max, price_med, generated}`.
 - `jobs`: 6 newest open roles — `{company, title, comp, date}` — plus open-count per lab and meta `{open, companies, generated}`.
-- `networks`: all nodes `{id, name, initials, group}` and links `{source, target}` (communities preserved for color).
+- `networks`: all nodes `{label, community, x, y}` (precomputed layout positions ship with the data — the mini seeds from them, so it settles instantly), links as node-index pairs, and the community id→label list for hover captions and color.
 
 The home page server component imports `previews.json` statically and passes slices as props. Zero client-side fetches; the big data files are never loaded by the front page.
 
@@ -49,7 +49,7 @@ Footer numbers come from meta, never hard-coded.
 
 **Interaction rules:**
 - Desktop: hover for tooltips; drag for graph nodes (drag/tooltip handlers stop propagation so they don't trigger navigation); any other click navigates.
-- Touch: tap shows tooltip; navigation only via the explicit "open →" link.
+- Touch: tapping a dot/node shows its caption; taps elsewhere on the card navigate, as does the explicit "open →" link.
 - `prefers-reduced-motion`: force sim renders pre-settled; no animation anywhere.
 - Minis assert non-empty props at render.
 
@@ -61,9 +61,11 @@ Footer numbers come from meta, never hard-coded.
 
 Software mode: TDD per superpowers.
 
+The repo has no test framework; tests use Node's built-in `node --test` (zero new dependencies), wired as `pnpm test`.
+
 - **Extraction script:** real tests — fixture data.js/json → expected slice; malformed/missing fields → throws. This is the highest-drift-risk unit.
-- **Components:** render tests with fixture props (non-empty output, correct counts); assert-on-empty behavior.
-- **Visual verification:** build + inspect the strip at desktop and mobile widths before handoff.
+- **Force simulation** (`lib/force-sim.mjs`): tested pure — rest stays at rest, pinned nodes fixed, neighbors follow a drag, relaxes home after release, stays finite.
+- **Components:** verified by the type-checked `next build` plus visual inspection at desktop and mobile widths (adding a DOM test framework would violate the no-new-dependencies constraint); components throw on empty props.
 
 ## Decisions made (flag if wrong later)
 
