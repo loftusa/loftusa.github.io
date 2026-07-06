@@ -21,7 +21,7 @@ function focusChat(prompt?: string) {
 function ChatIcon() {
   return (
     <svg
-      className={styles.titleIcon}
+      className={styles.chatIcon}
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

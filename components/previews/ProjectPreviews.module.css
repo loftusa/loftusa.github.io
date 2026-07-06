@@ -77,6 +77,13 @@
   transition: box-shadow 140ms ease, border-color 140ms ease;
 }
 .chatCard:hover { box-shadow: var(--shadow-soft); border-color: var(--rule-soft); }
+.chatIcon {
+  width: 0.95em;
+  height: 0.95em;
+  margin-right: 0.45em;
+  vertical-align: -0.12em;
+  opacity: 0.65;
+}
 .chatMain { min-width: 0; }
 .chatLede {
   font-family: var(--font-serif-text);
