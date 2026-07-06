@@ -114,7 +114,7 @@ export default function NetworksMini({ data }: { data: NetworksPreview }) {
           <circle
             key={i}
             cx={n.x} cy={n.y} r={hover === i ? 3.6 : 2.4}
-            fill={COMMUNITY_COLORS[data.nodes[i].community % COMMUNITY_COLORS.length]}
+            fill={COMMUNITY_COLORS[data.nodes[i].community] ?? "var(--muted)"}
             fillOpacity={0.85}
             className={dragRef.current === i ? `${styles.netNode} ${styles.netNodeDragging}` : styles.netNode}
             onPointerDown={(e) => onNodeDown(i, e)}

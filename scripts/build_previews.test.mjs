@@ -25,7 +25,7 @@ const HOUSES = {
 };
 const job = (over = {}) => ({
   company: "Anthropic", group: "anthropic", title: "Research Engineer",
-  comp: "$300–405K", published: "2026-07-01", first_seen: "2026-07-01", closed: false,
+  comp: [300000, 405000], published: "2026-07-01", first_seen: "2026-07-01", closed: false,
   ...over,
 });
 const JOBS = {
@@ -104,7 +104,8 @@ test("extractJobs filters closed and orders newest-first like the jobs page", ()
 });
 test("extractJobs keeps comp null when absent and counts open roles per lab", () => {
   const j = extractJobs(JOBS);
-  assert.equal(j.latest[0].comp, null);
+  assert.equal(j.latest[0].comp, null);                  // "Newest" has comp: null
+  assert.equal(j.latest[1].comp, "$300–405K");           // array [300000,405000] formatted like jobs page
   assert.deepEqual(j.byLab, [{ company: "Anthropic", n: 2 }, { company: "OpenAI", n: 1 }]);
   assert.equal(j.meta.n_labs, 2);
 });

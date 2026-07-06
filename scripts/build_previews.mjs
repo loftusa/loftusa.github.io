@@ -107,7 +107,9 @@ export function extractJobs(data) {
       company: String(j.company),
       group: String(j.group || "frontier"),
       title: String(j.title),
-      comp: j.comp ? String(j.comp) : null,
+      comp: Array.isArray(j.comp) && j.comp.length === 2
+        ? `$${Math.round(j.comp[0] / 1000)}–${Math.round(j.comp[1] / 1000)}K`
+        : null,
       date: String(j.published || j.first_seen || ""),
     }));
   return {
