@@ -754,7 +754,7 @@ function highlightMarker(id,on){
 }
 function flyToListing(id){
   const mk=markerById[id]; if(!mk)return;
-  map.setView(mk.getLatLng(),14,{animate:true}); mk.openPopup();
+  map.setView(mk.getLatLng(),map.getZoom(),{animate:true}); mk.openPopup();  // pan only — never change zoom
   window.scrollTo({top:document.getElementById("map").getBoundingClientRect().top+window.scrollY-12,behavior:"smooth"});
 }
 function wireCardHover(){
