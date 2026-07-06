@@ -802,10 +802,10 @@ legend.addTo(map);
 /* ============ reach-out ============ */
 function draftMessage(x){
   const when = (D.meta && D.meta.move_by) ? D.meta.move_by.replace(/^~\s*/,'') : "this summer";
-  return `Hi! I'm really interested in your listing "${x.title||'your place'}" (${money(x.price)}/mo`+
-    `${x.hood?', '+x.hood:''}). I'm a quiet, tidy ML researcher relocating to the Bay Area `+
-    `around ${when}, with stable income and solid references. `+
-    `Is it still available? I'd love to set up a time to see it. Thank you!\n\n— Alex`;
+  return `Hi! I (Alex, 32M) am interested in your listing "${x.title||'your place'}" (${money(x.price)}/mo`+
+    `${x.hood?', '+x.hood:''}). I'm an extroverted + social AI/ML researcher + founder relocating to `+
+    `the Bay Area around ${when}. Is it still available? I'd love to set up a time to see it. `+
+    `More about me: https://alex-loftus.com\n\n— Alex`;
 }
 
 function toast(msg){
