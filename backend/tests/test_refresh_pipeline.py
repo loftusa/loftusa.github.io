@@ -402,10 +402,52 @@ def test_alex_fit_formula():
         "value": 9,
         "aesthetic": 8,
     }
-    # apt uses quiet for soft: .17*8+.15*9+.13*9+.13*9+.26*8+.16*8 = 8.41
-    assert round(min(10.0, refresh.alex_fit(scores, "apt", 8.0)), 1) == 8.4
-    # room swaps soft to social(4): 8.41 - .13*9 + .13*4 = 7.76
-    assert round(min(10.0, refresh.alex_fit(scores, "room", 8.0)), 1) == 7.8
+    # apt uses quiet for soft: .16*8+.14*9+.12*9+.12*9+.24*8+.14*8+.08*6 = 8.22
+    assert round(min(10.0, refresh.alex_fit(scores, "apt", 8.0, 6.0)), 1) == 8.2
+    # room swaps soft to social(4): 8.22 - .12*9 + .12*4 = 7.62
+    assert round(min(10.0, refresh.alex_fit(scores, "room", 8.0, 6.0)), 1) == 7.6
+
+
+def test_gym_score_curve():
+    assert refresh.gym_score(0) == 10.0
+    assert refresh.gym_score(4) == 10.0  # within a 4-min walk is perfect
+    assert refresh.gym_score(14) == 5.0
+    assert refresh.gym_score(24) == 0.0
+    assert refresh.gym_score(None) == 5.0  # unknown -> neutral, never punitive
+    vals = [refresh.gym_score(m) for m in range(0, 30, 2)]
+    assert all(a >= b for a, b in zip(vals, vals[1:]))
+
+
+def test_nearest_gym_min():
+    gyms = [[refresh.GIO_LAT, refresh.GIO_LON], [37.9, -122.5]]
+    assert refresh.nearest_gym_min(refresh.GIO_LAT, refresh.GIO_LON, gyms) == 0
+    wm = refresh.nearest_gym_min(refresh.GIO_LAT + 0.01, refresh.GIO_LON, gyms)
+    assert wm == refresh.gio_walk_min(refresh.GIO_LAT + 0.01, refresh.GIO_LON)
+    assert refresh.nearest_gym_min(37.77, -122.4, []) is None
+    assert refresh.nearest_gym_min(None, None, gyms) is None
+
+
+def test_fetch_gyms_fallback_chain(tmp_path, monkeypatch):
+    import json as _json
+
+    snap = tmp_path / "gyms.json"
+    monkeypatch.setattr(refresh, "GYMS_JSON", str(snap))
+
+    def boom():
+        raise RuntimeError("overpass down")
+
+    # overpass dead + snapshot present -> snapshot
+    snap.write_text(_json.dumps([[37.77, -122.4]]))
+    monkeypatch.setattr(refresh, "_overpass_gyms", boom)
+    assert refresh.fetch_gyms() == [[37.77, -122.4]]
+    # overpass dead + no snapshot -> [] (neutral scoring)
+    snap.unlink()
+    assert refresh.fetch_gyms() == []
+    # overpass healthy -> returns AND refreshes the snapshot
+    pts = [[37.7 + i * 1e-4, -122.4] for i in range(150)]
+    monkeypatch.setattr(refresh, "_overpass_gyms", lambda: pts)
+    assert refresh.fetch_gyms() == pts
+    assert _json.loads(snap.read_text()) == pts
 
 
 def test_build_emits_fit_weights_and_pins_fit_values(tmp_path, monkeypatch):
@@ -423,5 +465,6 @@ def test_build_emits_fit_weights_and_pins_fit_values(tmp_path, monkeypatch):
     assert abs(sum(refresh.ALEX_W.values()) - 1.0) < 1e-9
     assert abs(sum(refresh.GIO_W.values()) - 1.0) < 1e-9
     # hood "mission" (SF): dual = round(.65*cscore(29)+.35*cscore(20), 1) = 8.1;
-    # _rating scores -> apt fit 6.7 (soft=quiet 6), room fit 6.6 (soft=social 5).
-    assert {x["fit"] for x in d["listings"]} == {6.7, 6.6}
+    # no gym_min on the rows -> gym neutral 5.0. _rating scores -> apt 6.6, room 6.5.
+    assert {x["fit"] for x in d["listings"]} == {6.6, 6.5}
+    assert all(x["scores"]["gym"] == 5.0 for x in d["listings"])

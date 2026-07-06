@@ -484,6 +484,99 @@ def select_gio(rows):
     return sel
 
 
+# --------------------------------------------------------------------------- #
+# gyms — "gyms are important to me": walk distance to the nearest gym feeds
+# Alex's fit (weight in ALEX_W); Gio's cards show it but his ranking ignores it.
+# --------------------------------------------------------------------------- #
+GYMS_JSON = os.path.join(HERE, "gyms.json")
+OVERPASS_MIRRORS = [
+    "https://overpass-api.de/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter",
+    "https://lz4.overpass-api.de/api/interpreter",
+    "https://overpass.private.coffee/api/interpreter",
+]
+GYM_QUERY = (
+    "[out:json][timeout:45];("
+    'node["leisure"="fitness_centre"](37.55,-122.60,38.05,-122.10);'
+    'way["leisure"="fitness_centre"](37.55,-122.60,38.05,-122.10);'
+    'node["leisure"="sports_centre"]["sport"~"climbing|fitness"](37.55,-122.60,38.05,-122.10);'
+    'way["leisure"="sports_centre"]["sport"~"climbing|fitness"](37.55,-122.60,38.05,-122.10);'
+    ");out center;"
+)
+
+
+def _overpass_gyms():
+    d, last_err = None, None
+    for url in OVERPASS_MIRRORS:
+        out = subprocess.run(
+            [
+                "curl",
+                "-sS",
+                "--max-time",
+                "60",
+                url,
+                "--data-urlencode",
+                "data=" + GYM_QUERY,
+            ],
+            capture_output=True,
+            text=True,
+            timeout=70,
+        )
+        try:
+            d = json.loads(out.stdout)
+            break
+        except Exception as e:  # rate-limited / HTML error page — try the next mirror
+            last_err = e
+            print(f"warn: overpass mirror {url} unusable ({e})", file=sys.stderr)
+    if d is None:
+        raise RuntimeError(f"all overpass mirrors failed: {last_err}")
+    pts = []
+    for e in d.get("elements", []):
+        lat = e.get("lat") or e.get("center", {}).get("lat")
+        lon = e.get("lon") or e.get("center", {}).get("lon")
+        if lat and lon:
+            pts.append([round(lat, 5), round(lon, 5)])
+    return pts
+
+
+def fetch_gyms():
+    """Gym coords for the whole zone. Overpass first (and refresh the committed
+    snapshot); fall back to the snapshot, then to [] (gym scoring goes neutral)."""
+    try:
+        pts = _overpass_gyms()
+        if len(pts) >= 100:
+            json.dump(pts, open(GYMS_JSON, "w"))
+            return pts
+        print(
+            f"warn: overpass returned only {len(pts)} gyms — using snapshot",
+            file=sys.stderr,
+        )
+    except Exception as e:
+        print(
+            f"warn: overpass gyms fetch failed ({e}) — using snapshot", file=sys.stderr
+        )
+    try:
+        return json.load(open(GYMS_JSON))
+    except Exception:
+        print("warn: no gyms snapshot — gym scoring neutral this run", file=sys.stderr)
+        return []
+
+
+def nearest_gym_min(lat, lon, gyms):
+    """Walk minutes to the closest known gym; None when unknowable."""
+    if not gyms or lat is None or lon is None:
+        return None
+    best = min(haversine_mi(lat, lon, g[0], g[1]) for g in gyms)
+    return round(best * GIO_WALK_FACTOR)
+
+
+def gym_score(gym_min):
+    """10 within a ~4-min walk, 0 at 24+; unknown -> neutral 5 (never punitive)."""
+    if gym_min is None:
+        return 5.0
+    return max(0.0, min(10.0, 10 - max(0, gym_min - 4) / 2.0))
+
+
 def scrape_page(r):
     """Fetch a listing page; extract full photo gallery + posting body text."""
     try:
@@ -563,6 +656,14 @@ def do_pull():
             n_dead += 1
         if r["body"]:
             n_body += 1
+    gyms = fetch_gyms()
+    for r in sel + gio_sel:
+        r["gym_min"] = nearest_gym_min(r["lat"], r["lon"], gyms)
+    with_gym = [r["gym_min"] for r in sel + gio_sel if r.get("gym_min") is not None]
+    print(
+        f"gyms: {len(gyms)} known; median walk "
+        f"{int(statistics.median(with_gym)) if with_gym else '?'} min"
+    )
     json.dump(sel + gio_sel, open(SHORTLIST, "w"), indent=1)
     json.dump(
         {
@@ -944,25 +1045,34 @@ def do_sweep():
     )
 
 
-GIO_W = {"prox": 0.34, "aesthetic": 0.20, "nice": 0.16, "value": 0.14, "soft": 0.16}
+GIO_W = {
+    "prox": 0.34,
+    "aesthetic": 0.20,
+    "nice": 0.16,
+    "value": 0.14,
+    "soft": 0.16,
+    "gym": 0,
+}
 # Alex's fit weights — also shipped to the frontend via meta.fit_weights, where the
 # map colors each dot by its dominant driver. Change them HERE only.
 ALEX_W = {
-    "nice": 0.17,
-    "nature": 0.15,
-    "soft": 0.13,
-    "value": 0.13,
-    "commute": 0.26,
-    "aesthetic": 0.16,
+    "nice": 0.16,
+    "nature": 0.14,
+    "soft": 0.12,
+    "value": 0.12,
+    "commute": 0.24,
+    "aesthetic": 0.14,
+    "gym": 0.08,
 }
 
 
-def alex_fit(scores, bucket, dual_commute):
-    """Unrounded, uncapped weighted sum (soft = quiet for apt, social for room).
-    The loved bonus, 10.0 cap, and rounding stay at the call site."""
+def alex_fit(scores, bucket, dual_commute, gym):
+    """Unrounded, uncapped weighted sum (soft = quiet for apt, social for room;
+    gym = deterministic gym_score). Loved bonus, cap, rounding stay at the call site."""
     soft = gs(scores, "quiet") if bucket == "apt" else gs(scores, "social")
     return (
-        ALEX_W["nice"] * gs(scores, "nice")
+        ALEX_W["gym"] * gym
+        + ALEX_W["nice"] * gs(scores, "nice")
         + ALEX_W["nature"] * gs(scores, "nature")
         + ALEX_W["soft"] * soft
         + ALEX_W["value"] * gs(scores, "value")
@@ -1012,6 +1122,9 @@ def build_gio(gio_rows, ratings, stats):
         }
         fit, prox = gio_fit(scores, r["bucket"], r["walk_min"])
         scores["commute"] = prox
+        scores["gym"] = round(
+            gym_score(r.get("gym_min")), 1
+        )  # display only; GIO_W["gym"]=0
         gallery = r.get("imgs") or ([r["img"]] if r.get("img") else [])
         email, phone = extract_contact(r.get("body", ""))
         listings.append(
@@ -1031,6 +1144,7 @@ def build_gio(gio_rows, ratings, stats):
                 "title": r.get("title", ""),
                 "walk_mi": r["walk_mi"],
                 "walk_min": r["walk_min"],
+                "gym_min": r.get("gym_min"),
                 "fit": fit,
                 "scores": scores,
                 "rationale": rt.get("rationale") or rt.get("why") or "",
@@ -1115,6 +1229,7 @@ def do_build():
                 "imgs": gallery,
                 "nimg": len(gallery),
                 "drive_min": r["drive_min"],
+                "gym_min": r.get("gym_min"),
                 "title": r.get("title", ""),
                 "fit": rt.get("fit"),
                 "scores": scores,
@@ -1136,11 +1251,13 @@ def do_build():
         s = x["scores"]
         # aesthetic is weighted so listings with ugly/low-effort photos don't rank
         # high on looks alone; gs() defaults missing scores to 5 for backward compat.
-        fit = alex_fit(s, x["bucket"], x["dual_commute"])
+        gymsc = gym_score(x.get("gym_min"))
+        fit = alex_fit(s, x["bucket"], x["dual_commute"], gymsc)
         if x["loved"]:
             fit += 0.8
         x["fit"] = round(min(10.0, fit), 1)
         s["commute"] = round(x["dual_commute"], 1)
+        s["gym"] = round(gymsc, 1)
 
     # dedupe by URL (keep higher fit)
     by_url = {}

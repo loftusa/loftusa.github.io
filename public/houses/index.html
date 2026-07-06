@@ -12,7 +12,7 @@
     --paper:#faf9f5; --panel:#fffdf8; --ink:#23201b; --muted:#6f6a60; --faint:#928c80;
     --rule:#e6e0d2; --rule2:#efeadd;
     --apt:#2f7d75; --room:#b06a1a; --pick:#977a1c; --gio:#5a5f9e;
-    --nature:#4f8a55; --quiet:#5f7189; --nice:#7b6091; --social:#bd8a3a; --value:#3f867e; --commute:#8a8378; --aesthetic:#b0654d;
+    --nature:#4f8a55; --quiet:#5f7189; --nice:#7b6091; --social:#bd8a3a; --value:#3f867e; --commute:#8a8378; --aesthetic:#b0654d; --gym:#8d4a62;
     --good:#3f7d4e; --warn:#b0573c;
   }
   *{box-sizing:border-box}
@@ -323,7 +323,7 @@ const RANK = {};
 [...D.listings].sort((a,b)=>(b.fit||0)-(a.fit||0)).forEach((x,i)=>{ RANK[x.id]=i+1; });
 const SC = [["nature","Nat","--nature"],["quiet","Qt","--quiet"],["nice","Nice","--nice"],
             ["social","Soc","--social"],["value","Val","--value"],["commute","Cmt","--commute"],
-            ["aesthetic","Pics","--aesthetic"]];
+            ["aesthetic","Pics","--aesthetic"],["gym","Gym","--gym"]];
 const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
 const money = n => "$"+Number(n).toLocaleString();
 const bedsLabel = b => b===0?"Studio":(b==null?"":b+" BR");
@@ -351,7 +351,7 @@ function glyph(s){
   }).join("");
   return `<div style="display:flex;gap:5px">${cols}</div>`;
 }
-const SCNAME = {nature:"Nature",quiet:"Quiet",nice:"Nice area",social:"Social",value:"Value",commute:"Commute",aesthetic:"Photo quality"};
+const SCNAME = {nature:"Nature",quiet:"Quiet",nice:"Nice area",social:"Social",value:"Value",commute:"Commute",aesthetic:"Photo quality",gym:"Gym walk"};
 function glyphRow(s){
   const bars = SC.map(([key,cap,varn])=>{
     const v = s && s[key]!=null ? s[key] : null;
@@ -391,7 +391,7 @@ function card(x){
         <span class="fit num"><span class="rk" title="overall rank">#${RANK[x.id]}</span><b style="color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b><span class="s">FIT</span></span>
       </div>
       <div class="metaline">${bedsLabel(x.beds)} · ${x.hood} · ${x.region}${x.loved?' <span class="love" title="you love this area">♥</span>':''}<br>
-        <span class="drv"><b class="num">SF ${x.drive_sf}m</b> · <b class="num">Berkeley ${x.drive_berk}m</b>${x.ferry_sf?' · <span class="fer" title="~30-min ferry to SF Ferry Building nearby">⛴ ferry to SF</span>':''}</span></div>
+        <span class="drv"><b class="num">SF ${x.drive_sf}m</b> · <b class="num">Berkeley ${x.drive_berk}m</b>${x.gym_min!=null?` · gym <b class="num">${x.gym_min}m</b> walk`:''}${x.ferry_sf?' · <span class="fer" title="~30-min ferry to SF Ferry Building nearby">⛴ ferry to SF</span>':''}</span></div>
       ${glyphRow(x.scores)}
       <div class="flags">${flags}${red}</div>
       <p class="rat">${x.rationale||""}</p>
@@ -497,7 +497,7 @@ function gioCard(x){
         <span class="fit num"><span class="rk" title="rank in Gio's section">#${GRANK[x.id]}</span><b style="color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b><span class="s">FIT</span></span>
       </div>
       <div class="metaline">${bedsLabel(x.beds)} · ${x.hood||"Mission Bay area"}<br>
-        <span class="drv"><b class="num">${x.walk_min} min walk</b> to OpenAI HQ · <span class="num">${x.walk_mi} mi</span></span></div>
+        <span class="drv"><b class="num">${x.walk_min} min walk</b> to OpenAI HQ · <span class="num">${x.walk_mi} mi</span>${x.gym_min!=null?` · gym <b class="num">${x.gym_min}m</b>`:''}</span></div>
       ${glyphRow(x.scores)}
       <p class="rat">${x.rationale||""}</p>
       <div class="actions"><a class="view" href="${x.url}" target="_blank" rel="noopener">View listing ↗</a>
@@ -543,15 +543,15 @@ document.getElementById("gioSort").onchange=e=>{gstate.sort=e.target.value;rende
    Weights come from the build via meta.fit_weights (single source of truth in
    refresh.py); the literals below are a fallback for data.js written before that. */
 const FW = (D.meta && D.meta.fit_weights) || {
-  alex:{nice:.17, nature:.15, soft:.13, value:.13, commute:.26, aesthetic:.16},
-  gio:{commute:.34, aesthetic:.20, nice:.16, soft:.16, value:.14, nature:0}};
+  alex:{nice:.16, nature:.14, soft:.12, value:.12, commute:.24, aesthetic:.14, gym:.08},
+  gio:{commute:.34, aesthetic:.20, nice:.16, soft:.16, value:.14, nature:0, gym:0}};
 function compScores(x){
   const s = x.scores||{};
   return {commute:s.commute??5, nice:s.nice??5, aesthetic:s.aesthetic??5,
-          nature:s.nature??5, value:s.value??5,
+          nature:s.nature??5, value:s.value??5, gym:s.gym??5,
           soft: x.bucket==="apt" ? (s.quiet??5) : (s.social??5)};
 }
-const DRIVER_KEYS = ["commute","nice","aesthetic","nature","value","soft"];
+const DRIVER_KEYS = ["commute","nice","aesthetic","nature","value","gym","soft"];
 const DRIVER_MEANS = {};
 [["alex", D.listings], ["gio", GIO.listings]].forEach(([aud, ls])=>{
   const rs = ls.filter(x=>!x.gone).map(compScores), m = {};
@@ -563,7 +563,7 @@ function driverInfo(k, x){
     ? (x.bucket==="apt" ? ["Quiet", css("--quiet")] : ["Social", css("--social")])
     : {commute:["Commute",css("--commute")], nice:["Nice area",css("--nice")],
        aesthetic:["Photos",css("--aesthetic")], nature:["Nature",css("--nature")],
-       value:["Value",css("--value")]}[k];
+       value:["Value",css("--value")], gym:["Gym",css("--gym")]}[k];
 }
 function driver(x){
   const aud = x.id[0]==="G" ? "gio" : "alex";
@@ -607,6 +607,7 @@ document.getElementById("foot").innerHTML = `
   <b>How this was built.</b> I pulled ${m.n_scouted.toLocaleString()} real, currently-listed rentals from Craigslist's
   live API on ${m.generated} across San Francisco, the East Bay, North Bay and Peninsula ($800–$3,000). Review agents
   opened each posting, confirmed it was still live, and scored it 1–10 on nature, quiet, niceness, social/networking and value.
+  <b>Gym proximity</b> is measured, not guessed: walk time to the nearest OpenStreetMap gym feeds the ranking (perfect within a ~4-min walk).
   <b>Dual-anchor commute:</b> every listing is now rated on driving to <b>both</b> downtown SF and downtown Berkeley (FAR Labs),
   and the overall rank rewards being reachable to both — while Mill Valley and Sausalito get a nudge because you love them (♥).
   <b>Ferry note:</b> Sausalito/Marin have a ~30-min ferry to the SF Ferry Building (great car-free link to SF), but there's
@@ -653,7 +654,7 @@ function popupInner(x){
     <div class="ph pop-ph" data-id="${x.id}"><img class="gimg" src="${imgs[i]}" onerror="this.src='${FALLBACK}'">${nav}</div>
     <div class="pp num">#${RANK[x.id]} · ${money(x.price)} <span style="font-size:12px;color:#777">${bedsLabel(x.beds)}</span>
       <b style="float:right;color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b></div>
-    <div class="ph2">${x.loved?'♥ ':''}${x.hood} · ${x.region}<br>SF ${x.drive_sf}m · Berkeley ${x.drive_berk}m${x.ferry_sf?' · ⛴ ferry to SF':''}</div>
+    <div class="ph2">${x.loved?'♥ ':''}${x.hood} · ${x.region}<br>SF ${x.drive_sf}m · Berkeley ${x.drive_berk}m${x.gym_min!=null?` · gym ${x.gym_min}m`:''}${x.ferry_sf?' · ⛴ ferry to SF':''}</div>
     <div style="font-size:11px;color:#8a8378;margin-top:3px">strongest vs field: <b style="color:${driver(x).color}">${driver(x).label}</b></div>
     <div style="font-size:12px;margin:5px 0 4px">${x.rationale||""}</div>
     <div class="actions"><a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a>
@@ -669,8 +670,9 @@ function coxIcon(x){
   // value, quiet/social), radius = raw score; center disc keeps rank + type hue.
   const R=17, size=R*2, rank = x.id[0]==="G" ? GRANK[x.id] : RANK[x.id];
   const sc = compScores(x);
+  const step=360/DRIVER_KEYS.length;
   const wedge=(i,s,c)=>{
-    const rr=4+(s/10)*(R-4), a0=(i*60-90)*Math.PI/180, a1=((i+1)*60-90)*Math.PI/180;
+    const rr=4+(s/10)*(R-4), a0=(i*step-90)*Math.PI/180, a1=((i+1)*step-90)*Math.PI/180;
     return `<path d="M${R},${R} L${(R+rr*Math.cos(a0)).toFixed(2)},${(R+rr*Math.sin(a0)).toFixed(2)} A${rr.toFixed(2)},${rr.toFixed(2)} 0 0 1 ${(R+rr*Math.cos(a1)).toFixed(2)},${(R+rr*Math.sin(a1)).toFixed(2)} Z" fill="${c}" stroke="#fffdf8" stroke-width="0.7"/>`;
   };
   const ringCol = x.pick ? css("--pick") : (isReached(x) ? css("--nature") : null);
@@ -708,7 +710,7 @@ function gioPopup(x){
     <div class="ph pop-ph" data-id="${x.id}"><img class="gimg" src="${imgs[i]}" onerror="this.src='${FALLBACK}'">${nav}</div>
     <div class="pp num">G#${GRANK[x.id]} · ${money(x.price)} <span style="font-size:12px;color:#777">${bedsLabel(x.beds)}</span>
       <b style="float:right;color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b></div>
-    <div class="ph2">${x.hood||"Mission Bay area"}<br><b class="num">${x.walk_min} min walk</b> to OpenAI HQ</div>
+    <div class="ph2">${x.hood||"Mission Bay area"}<br><b class="num">${x.walk_min} min walk</b> to OpenAI HQ${x.gym_min!=null?` · gym ${x.gym_min}m`:''}</div>
     <div style="font-size:11px;color:#8a8378;margin-top:3px">strongest vs field: <b style="color:${driver(x).color}">${driver(x).label}</b></div>
     <div style="font-size:12px;margin:5px 0 4px">${x.rationale||""}</div>
     <div class="actions"><a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a>
@@ -790,7 +792,7 @@ function renderLeaderboard(){
 const legend = L.control({position:"bottomright"});
 legend.onAdd=function(){const d=L.DomUtil.create("div","legend");
   d.innerHTML=`<b class="ui" style="font-size:11px">Fill = what most lifts it vs the field</b><br>
-    ${[["Commute","--commute"],["Nice area","--nice"],["Photos","--aesthetic"],["Nature","--nature"],["Value","--value"]]
+    ${[["Commute","--commute"],["Nice area","--nice"],["Photos","--aesthetic"],["Nature","--nature"],["Value","--value"],["Gym","--gym"]]
       .map(([l,v])=>`<span class="dot" style="background:${css(v)}"></span>${l}<br>`).join("")}
     <span class="dot" style="background:${css('--quiet')}"></span><span class="dot" style="background:${css('--social')}"></span>Quiet (apt) / Social (room)<br>
     <span class="dot" style="background:#a39c8d"></span>nothing above average<br>
