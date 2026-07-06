@@ -60,7 +60,7 @@
   .lbscalerow{display:flex;gap:0;width:104px;justify-content:space-between;font-family:ui-monospace,monospace;
     letter-spacing:0;color:var(--faint);font-size:9.5px}
   #lbrows{overflow-y:auto;flex:1}
-  .lbrow{display:grid;grid-template-columns:20px 1fr 104px 26px;align-items:center;gap:7px;
+  .lbrow{display:grid;grid-template-columns:20px 1fr 104px 26px 16px;align-items:center;gap:7px;
     padding:4px 10px;border-bottom:1px solid var(--rule2);cursor:pointer;transition:background .1s}
   .lbrow:hover,.lbrow.hl{background:#f3eede}
   .lbrow.pick{box-shadow:inset 3px 0 0 var(--pick)}
@@ -779,12 +779,13 @@ function renderLeaderboard(){
         <span class="lbsub num">${money(x.price)} · SF ${x.drive_sf} · Bk ${x.drive_berk}</span></span>
       <span class="lbaxis"><i class="lbtick"></i><i class="lbdot" style="left:${left}%;background:${col}"></i></span>
       <span class="lbfit num" style="color:${fitColor(x.fit)}">${x.fit}</span>
+      <button class="hide-btn" data-id="${x.id}" title="Hide — not for me">✕</button>
     </div>`;
   }).join("");
   document.querySelectorAll(".lbrow").forEach(r=>{
     r.onmouseenter=()=>highlightMarker(r.dataset.id,true);
     r.onmouseleave=()=>highlightMarker(r.dataset.id,false);
-    r.onclick=()=>flyToListing(r.dataset.id);
+    r.onclick=e=>{ if(e.target.closest("button"))return; flyToListing(r.dataset.id); };
   });
 }
 
