@@ -10,7 +10,7 @@ I've been fortunate to work with a number of brilliant people over the years. He
 - We developed an open-source project, [Graspologic](https://www.github.com/microsoft/graspologic), which was acquired by Microsoft and used to measure collaboration changes in their workforce during COVID.
 - I made a [linear algebra tutoring series](https://youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh&si=iYEkHZXhZbq2jrQC) for my friend, which builds up the mathematical machinery of neural networks starting from the absolute foundations: dot product geometry and linear algebra.
 
-I have a number of academic side-interests, including spectral theory, information geometry, the history of science and mathematics, the mechanics of the visual system, constitutional law, various causal relationships between geography and history, and ethics (I am a big fan of Kant, Hume, Ross, and some modern ethicists like Susan Wolf). I am an avid traveler and am (slowly) learning Spanish.
+I have a number of academic side-interests, including spectral theory, information geometry, the history of science and mathematics, the mechanics of the visual system, constitutional law, various causal relationships between geography and history, and ethics (I am a big fan of Kant, Hume, Ross, and some modern ethicists like Susan Wolf). I am an avid traveler and am (slowly) learning Spanish. If you want to go deeper, my [submitted PhD thesis](/files/submitted_thesis.pdf) is available as a PDF.
 
 ### Misc
 

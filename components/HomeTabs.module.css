@@ -1,43 +1,5 @@
 .wrap {
-  margin-top: 2rem;
-}
-
-.tabBar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0;
-  border-bottom: 1.5px solid var(--ink);
-  margin-bottom: 1.6em;
-}
-
-.tabBar button,
-.tabBar a {
-  background: none;
-  border: none;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1.5px;
-  padding: 0.5em 0.95em;
-  font-family: var(--font-serif-text);
-  font-variant: small-caps;
-  letter-spacing: 0.045em;
-  font-size: 0.98em;
-  white-space: nowrap;
-  color: var(--muted);
-  cursor: pointer;
-  transition: color 0.15s;
-}
-.tabBar button:first-child {
-  padding-left: 0;
-}
-.tabBar button:hover,
-.tabBar a:hover {
-  color: var(--ink);
-  text-decoration: none;
-}
-.tabBar button.active {
-  color: var(--ink);
-  border-bottom-color: var(--accent);
+  margin-top: 1.4rem;
 }
 
 .panel {
@@ -46,43 +8,4 @@
 @keyframes fade {
   from { opacity: 0; transform: translateY(2px); }
   to { opacity: 1; transform: none; }
-}
-
-.postList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.postItem {
-  margin: 0 0 1.5em;
-}
-.postDate {
-  display: block;
-  font-variant: small-caps;
-  letter-spacing: 0.04em;
-  color: var(--muted);
-  font-size: 0.85em;
-  margin-bottom: 0.1em;
-}
-.postTitle {
-  font-family: var(--font-serif-display);
-  font-size: 1.2rem;
-  font-weight: 540;
-  color: var(--ink);
-}
-.postTitle:hover {
-  color: var(--accent);
-  text-decoration: none;
-}
-.postExcerpt {
-  color: var(--ink-soft);
-  font-size: 0.95em;
-  margin: 0.25em 0 0;
-}
-.viewAll {
-  display: inline-block;
-  margin-top: 0.5em;
-  font-variant: small-caps;
-  letter-spacing: 0.045em;
-  color: var(--accent);
 }

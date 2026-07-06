@@ -32,8 +32,20 @@
 
 .nav {
   display: flex;
-  gap: 1.5rem;
+  flex-wrap: wrap; /* 7 items: wrap to a second line instead of overflowing */
+  justify-content: flex-end;
+  row-gap: 0.1rem;
+  gap: 1.35rem;
   align-items: baseline;
+}
+
+/* thin divider between site sections and project apps */
+.navSep {
+  align-self: center;
+  width: 1px;
+  height: 0.95em;
+  background: var(--rule);
+  margin: 0 -0.25rem;
 }
 
 .link {
@@ -57,7 +69,8 @@
 }
 
 @media (max-width: 480px) {
-  .nav { gap: 1.05rem; }
+  .nav { gap: 0.85rem; }
   .link { font-size: 0.9rem; }
   .navIcon { display: none; }
+  .navSep { display: none; }
 }

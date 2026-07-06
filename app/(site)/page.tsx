@@ -4,7 +4,7 @@ import AuthorHeader from "@/components/AuthorHeader";
 import HomeTabs from "@/components/HomeTabs";
 import ProjectPreviews from "@/components/previews/ProjectPreviews";
 import type { PreviewsData } from "@/components/previews/types";
-import { renderMarkdown, getAllPostsMeta } from "@/lib/content";
+import { renderMarkdown } from "@/lib/content";
 import styles from "./home.module.css";
 
 function readContent(file: string): string {
@@ -22,9 +22,6 @@ export default async function HomePage() {
     renderMarkdown(readContent("home-about-rest.md")),
     renderMarkdown(readContent("publications.md")),
   ]);
-  const posts = getAllPostsMeta()
-    .slice(0, 8)
-    .map((p) => ({ permalink: p.permalink, title: p.title, date: p.date, excerpt: p.excerpt }));
   const previews = readPreviews();
 
   return (
@@ -35,7 +32,6 @@ export default async function HomePage() {
         aboutRestHtml={aboutRestHtml}
         previews={<ProjectPreviews data={previews} />}
         pubsHtml={pubsHtml}
-        posts={posts}
       />
     </main>
   );
