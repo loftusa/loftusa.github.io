@@ -13,7 +13,9 @@
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* minmax(0, 1fr): tracks must not grow to content min-width — content-sized
+     tracks overflow the column AND resize on hover-driven text changes */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.9rem;
 }
 @media (max-width: 640px) {
@@ -40,6 +42,13 @@
   text-transform: uppercase;
   color: var(--ink-soft);
   margin: 0 0 0.45rem;
+}
+.titleIcon {
+  width: 0.95em;
+  height: 0.95em;
+  margin-right: 0.45em;
+  vertical-align: -0.12em;
+  opacity: 0.65;
 }
 .mini { height: 10.5rem; }
 .foot {
@@ -70,7 +79,29 @@
   flex-direction: column;
   height: 100%;
 }
-.svgWrap svg { flex: 1; width: 100%; min-height: 0; }
+.svgBox {
+  position: relative; /* anchor for the hover tooltip */
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+.svgBox svg { flex: 1; width: 100%; min-height: 0; }
+/* hover tooltip — mirrors .tooltip on the real networks page */
+.tip {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 6px));
+  background: #fff;
+  border: 1px solid #d8d2c6;
+  border-radius: 5px;
+  padding: 4px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+  font-family: var(--font-serif-text);
+}
+.tipName { font-size: 0.72rem; font-weight: 600; color: var(--ink); }
+.tipSub { font-size: 0.65rem; color: var(--muted); margin-top: 1px; }
 .caption {
   font-family: var(--font-serif-text);
   font-style: italic;

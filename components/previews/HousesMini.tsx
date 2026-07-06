@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { HousesPreview } from "./types";
 import styles from "./ProjectPreviews.module.css";
 
@@ -16,7 +16,8 @@ const PAD = 10;
 
 export default function HousesMini({ data }: { data: HousesPreview }) {
   if (data.listings.length === 0) throw new Error("HousesMini: empty listings");
-  const [hover, setHover] = useState<number | null>(null);
+  const boxRef = useRef<HTMLDivElement | null>(null);
+  const [tip, setTip] = useState<{ x: number; y: number; i: number } | null>(null);
 
   const { sx, sy } = useMemo(() => {
     const pts = [...data.listings, ...data.anchors];
@@ -33,32 +34,45 @@ export default function HousesMini({ data }: { data: HousesPreview }) {
     };
   }, [data]);
 
-  const hovered = hover != null ? data.listings[hover] : null;
+  // Anchor the tooltip to the dot's rendered rect (immune to viewBox letterboxing).
+  function showTip(i: number, e: React.PointerEvent<SVGCircleElement>) {
+    const box = boxRef.current;
+    if (!box) return;
+    const b = box.getBoundingClientRect();
+    const c = e.currentTarget.getBoundingClientRect();
+    setTip({ x: c.x + c.width / 2 - b.x, y: c.y - b.y, i });
+  }
+
+  const tipListing = tip != null ? data.listings[tip.i] : null;
   return (
     <div className={styles.svgWrap}>
-      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Dot map of shortlisted Bay Area rentals">
-        {data.anchors.map((a) => (
-          <text key={a.label} x={sx(a.lon)} y={sy(a.lat)} className={styles.anchorMark}>▲</text>
-        ))}
-        {data.listings.map((l, i) => (
-          <circle
-            key={i}
-            cx={sx(l.lon)}
-            cy={sy(l.lat)}
-            r={1.8 + (l.fit / 10) * 3.2}
-            fill={DRIVER_COLORS[l.driver] ?? DRIVER_COLORS.commute}
-            fillOpacity={hover === i ? 1 : 0.72}
-            className={styles.dot}
-            onPointerEnter={() => setHover(i)}
-            onPointerLeave={() => setHover(null)}
-          />
-        ))}
-      </svg>
-      <p className={styles.caption}>
-        {hovered
-          ? `${hovered.hood} · ${hovered.pdisp} · fit ${hovered.fit}`
-          : "the rental shortlist, mapped — hover a dot"}
-      </p>
+      <div className={styles.svgBox} ref={boxRef}>
+        <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Dot map of shortlisted Bay Area rentals">
+          {data.anchors.map((a) => (
+            <text key={a.label} x={sx(a.lon)} y={sy(a.lat)} className={styles.anchorMark}>▲</text>
+          ))}
+          {data.listings.map((l, i) => (
+            <circle
+              key={i}
+              cx={sx(l.lon)}
+              cy={sy(l.lat)}
+              r={1.8 + (l.fit / 10) * 3.2}
+              fill={DRIVER_COLORS[l.driver] ?? DRIVER_COLORS.commute}
+              fillOpacity={tip?.i === i ? 1 : 0.72}
+              className={styles.dot}
+              onPointerEnter={(e) => showTip(i, e)}
+              onPointerLeave={() => setTip(null)}
+            />
+          ))}
+        </svg>
+        {tipListing && tip && (
+          <div className={styles.tip} style={{ left: tip.x, top: tip.y }}>
+            <div className={styles.tipName}>{tipListing.hood}</div>
+            <div className={styles.tipSub}>{tipListing.pdisp} · fit {tipListing.fit}</div>
+          </div>
+        )}
+      </div>
+      <p className={styles.caption}>the rental shortlist, mapped — hover a dot</p>
     </div>
   );
 }

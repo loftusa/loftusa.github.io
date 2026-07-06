@@ -48,8 +48,9 @@ The home page server component imports `previews.json` statically and passes sli
 Footer numbers come from meta, never hard-coded.
 
 **Interaction rules:**
-- Desktop: hover for tooltips; drag for graph nodes (drag/tooltip handlers stop propagation so they don't trigger navigation); any other click navigates.
-- Touch: tapping a dot/node shows its caption; taps elsewhere on the card navigate, as does the explicit "open →" link.
+- Desktop: hovering a dot/node shows a cursor-anchored popup (same styling as the real networks page's `.tooltip`: name + muted sub-line) anchored to the mark's rendered rect; the caption line under each mini is a static hint and never changes (a changing caption resized content-sized grid tracks and made the whole strip jolt — the grid uses `minmax(0, 1fr)` tracks for the same reason). Dragging graph nodes works as before; any other click navigates.
+- Touch: tapping a dot/node shows its popup; taps elsewhere on the card navigate, as does the explicit "open →" link.
+- Card titles carry small minimal line icons (house / briefcase / network glyph, currentColor).
 - `prefers-reduced-motion`: force sim renders pre-settled; no animation anywhere.
 - Minis assert non-empty props at render.
 
