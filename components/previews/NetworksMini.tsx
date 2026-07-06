@@ -61,11 +61,11 @@ export default function NetworksMini({ data }: { data: NetworksPreview }) {
   }
 
   function toLocal(e: React.PointerEvent): { x: number; y: number } {
-    const rect = svgRef.current!.getBoundingClientRect();
-    return {
-      x: ((e.clientX - rect.left) / rect.width) * W,
-      y: ((e.clientY - rect.top) / rect.height) * H,
-    };
+    const svg = svgRef.current!;
+    const ctm = svg.getScreenCTM();
+    if (!ctm) return { x: W / 2, y: H / 2 };
+    const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(ctm.inverse());
+    return { x: p.x, y: p.y };
   }
 
   function onNodeDown(i: number, e: React.PointerEvent) {
@@ -120,6 +120,7 @@ export default function NetworksMini({ data }: { data: NetworksPreview }) {
             onPointerDown={(e) => onNodeDown(i, e)}
             onPointerMove={onNodeMove}
             onPointerUp={onNodeUp}
+            onPointerCancel={onNodeUp}
             onPointerEnter={() => setHover(i)}
             onPointerLeave={() => setHover(null)}
           />
