@@ -81,6 +81,11 @@ _pages/ _posts/      LEGACY Jekyll. Unused by Next EXCEPT the sources the build 
 - `build_perfumes_html.mjs` — assemble `public/_perfumes/{atlas,analyses}.html` from
   `_pages/perfumes*.html` (wraps each body in the fullscreen / bare shell). Re-run after editing
   those sources: `node scripts/build_perfumes_html.mjs`.
+- `build_previews.mjs` — slice `public/houses/data.js` + `public/jobs/data.js` +
+  `public/assets/data/coauthorship.json` into the gitignored `lib/previews.json` that feeds the
+  front page's "Projects, live" strip (`components/previews/`). Runs automatically at the start of
+  `pnpm build` / `pnpm dev`; shape drift in those artifacts fails the build on purpose. Tests:
+  `pnpm test` (node --test, also covers `lib/force-sim.mjs`).
 - `fetch_scholar.py` / `update_scholar_cron.sh` — Google Scholar sync. ⚠ STALE: writes the old
   `_pages/about.md`, NOT `content/publications.md`, so it no longer updates the live site. Fix the
   target before relying on it. Run via `uv run scripts/fetch_scholar.py`.
