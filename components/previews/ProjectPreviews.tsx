@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import HousesMini from "./HousesMini";
 import JobsMini from "./JobsMini";
 import type { PreviewsData } from "./types";
 import styles from "./ProjectPreviews.module.css";
@@ -30,8 +31,7 @@ export default function ProjectPreviews({ data }: { data: PreviewsData }) {
           title="Houses"
           foot={`${fmt(houses.meta.n_scouted)} scouted · $${fmt(houses.meta.price_min)}–$${fmt(houses.meta.price_max)} · med $${fmt(houses.meta.price_med)}`}
         >
-          {/* HousesMini lands in Task 6 */}
-          <div />
+          <HousesMini data={houses} />
         </Card>
         <Card
           href="/jobs/"
