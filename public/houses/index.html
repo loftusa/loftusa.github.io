@@ -186,6 +186,9 @@
   .card.reached{box-shadow:inset 3px 0 0 var(--nature)}
   .card.reached .reach-btn{border-color:var(--nature);color:var(--nature)}
   .card.reached .reach-btn:hover{background:var(--nature);color:#fff}
+  .hide-btn{font:12px -apple-system,sans-serif;cursor:pointer;border:none;background:none;
+    color:var(--faint);padding:4px 4px;margin-left:auto;border-radius:4px;transition:.12s}
+  .hide-btn:hover{color:var(--warn);background:#f6ede7}
   .reached-badge{position:absolute;top:8px;left:8px;z-index:2;background:var(--nature);color:#fff;
     font:600 11px -apple-system,sans-serif;padding:3px 8px;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.3)}
   .rankmark.reached-mk{box-shadow:0 0 0 2.5px var(--nature),0 1px 3px rgba(0,0,0,.4)!important}
@@ -274,6 +277,7 @@
     <div class="cgroup"><span class="lbl">Max price</span><span id="gPrice"></span></div>
     <div class="cgroup"><span class="lbl">Type</span><span id="gBkt"></span></div>
     <div class="cgroup"><span class="lbl">Walk</span><span id="gWalk"></span></div>
+    <div class="cgroup"><span class="lbl">Show</span><span id="gHid"></span></div>
     <div class="cgroup"><span class="lbl">Sort</span>
       <select id="gioSort">
         <option value="fit">Best fit</option>
@@ -306,6 +310,11 @@ const API_BASE = "https://llm-resume-restless-thunder-9259.fly.dev";
 const REACHED = new Map();            // url -> {url,title,message,channel,updated_at}
 const byId = id => D.listings.find(x=>x.id===id);
 function isReached(x){ return x && REACHED.has(x.url); }
+/* hidden ("not for me") state — localStorage only, keyed by url so it survives refreshes */
+const HID_KEY = "housesHidden.v1";
+const HIDDEN = new Set(JSON.parse(localStorage.getItem(HID_KEY)||"[]"));
+const hidSave = ()=>{ try{ localStorage.setItem(HID_KEY, JSON.stringify([...HIDDEN])); }catch(e){} };
+const isHidden = x => x && HIDDEN.has(x.url);
 const IMAGES = {};   // listing id -> [photo urls]
 const IDX = {};      // listing id -> current photo index
 // global ranking (1 = best) by dual-anchor fit
@@ -389,6 +398,7 @@ function card(x){
       <div class="actions">
         <a class="view" href="${x.url}" target="_blank" rel="noopener">View listing ↗</a>
         <button class="reach-btn" data-id="${x.id}">${isReached(x)?'Reached out ✓':'Reach out'}</button>
+        <button class="hide-btn" data-id="${x.id}" title="${isHidden(x)?'Show this listing again':'Hide — not for me'}">${isHidden(x)?'↩ Restore':'✕'}</button>
       </div>
     </div>
   </article>`;
@@ -412,17 +422,20 @@ function wireGalleries(root){
 }
 
 /* ---- render picks ---- */
-const picks = D.listings.filter(x=>x.pick);
-document.getElementById("picks").innerHTML = picks.map(card).join("");
-wireGalleries(document.getElementById("picks"));
-document.getElementById("picknote").innerHTML =
-  `My ${picks.length} favorites, spanning both worlds: central SF (easy to both), your beloved Marin (♥, great to SF via drive or ferry), and the inner East Bay (short hop to Berkeley). Balancing nature, a nice/quiet feel, price, and both commutes.`;
+function renderPicks(){
+  const picks = D.listings.filter(x=>x.pick && !isHidden(x));
+  document.getElementById("picks").innerHTML = picks.map(card).join("") || `<div class="empty">All picks hidden.</div>`;
+  wireGalleries(document.getElementById("picks"));
+  document.getElementById("picknote").innerHTML =
+    `My ${picks.length} favorites, spanning both worlds: central SF (easy to both), your beloved Marin (♥, great to SF via drive or ferry), and the inner East Bay (short hop to Berkeley). Balancing nature, a nice/quiet feel, price, and both commutes.`;
+}
+renderPicks();
 
 /* ---- filters + grid ---- */
 const state = {region:"All", bucket:"All", ro:"All", sort:"fit"};
 const REGIONS = ["All","SF","EastBay","NorthBay","Peninsula"];
 const BUCKETS = [["All","All"],["apt","Apartments"],["room","Rooms"]];
-const ROFILTER = [["All","All"],["reached","Reached out ✓"]];
+const ROFILTER = [["All","All"],["reached","Reached out ✓"],["hidden","Hidden ✕"]];
 function chips(el, items, cur, on){
   el.innerHTML = items.map(it=>{const[v,l]=Array.isArray(it)?it:[it,it];
     return `<span class="chip ${v===cur?'on':''}" data-v="${v}">${l}</span>`}).join("");
@@ -437,7 +450,8 @@ function filtered(){
   let a = D.listings.filter(x=>
     (state.region==="All"||x.region===state.region) &&
     (state.bucket==="All"||x.bucket===state.bucket) &&
-    (state.ro==="All"||isReached(x)));
+    (state.ro==="hidden" ? isHidden(x)
+      : (state.ro==="All"||isReached(x)) && !isHidden(x)));
   const s = state.sort;
   a.sort((p,q)=> s==="price"? p.price-q.price : s==="drive"? p.drive_min-q.drive_min
       : s==="nature"? (q.scores.nature||0)-(p.scores.nature||0)
@@ -459,9 +473,10 @@ function renderGrid(){
 const GIO = (D.gio && Array.isArray(D.gio.listings)) ? D.gio : {office:null, listings:[], meta:null};
 const GRANK = {};
 [...GIO.listings].sort((a,b)=>(b.fit||0)-(a.fit||0)).forEach((x,i)=>{ GRANK[x.id]=i+1; });
-const gstate = {price:"All", bucket:"All", walk:"All", sort:"fit"};
+const gstate = {price:"All", bucket:"All", walk:"All", hid:"All", sort:"fit"};
 const GPRICES=[["2000","≤$2k"],["3000","≤$3k"],["4500","≤$4.5k"],["All","all ≤$6k"]];
 const GWALKS=[["10","≤10 min"],["20","≤20 min"],["All","≤30 min"]];
+const GHID=[["All","Active"],["hidden","Hidden ✕"]];
 function gioCard(x){
   const imgs=(x.imgs&&x.imgs.length)?x.imgs:[x.img||FALLBACK];
   IMAGES[x.id]=imgs; IDX[x.id]=0; const n=imgs.length;
@@ -484,12 +499,14 @@ function gioCard(x){
         <span class="drv"><b class="num">${x.walk_min} min walk</b> to OpenAI HQ · <span class="num">${x.walk_mi} mi</span></span></div>
       ${glyphRow(x.scores)}
       <p class="rat">${x.rationale||""}</p>
-      <div class="actions"><a class="view" href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div>
+      <div class="actions"><a class="view" href="${x.url}" target="_blank" rel="noopener">View listing ↗</a>
+        <button class="hide-btn" data-id="${x.id}" title="${isHidden(x)?'Show this listing again':'Hide — not for me'}">${isHidden(x)?'↩ Restore':'✕'}</button></div>
     </div>
   </article>`;
 }
 function gioFiltered(){
   let a=GIO.listings.filter(x=>
+    (gstate.hid==="hidden" ? isHidden(x) : !isHidden(x)) &&
     (gstate.price==="All"||x.price<=+gstate.price) &&
     (gstate.bucket==="All"||x.bucket===gstate.bucket) &&
     (gstate.walk==="All"||x.walk_min<=+gstate.walk));
@@ -508,6 +525,7 @@ function renderGio(){
   chips(document.getElementById("gPrice"),GPRICES,gstate.price,v=>{gstate.price=v;renderGio();});
   chips(document.getElementById("gBkt"),BUCKETS,gstate.bucket,v=>{gstate.bucket=v;renderGio();});
   chips(document.getElementById("gWalk"),GWALKS,gstate.walk,v=>{gstate.walk=v;renderGio();});
+  chips(document.getElementById("gHid"),GHID,gstate.hid,v=>{gstate.hid=v;renderGio();});
   const a=gioFiltered();
   document.getElementById("gioGrid").innerHTML=a.map(gioCard).join("")||`<div class="empty">Nothing matches these filters.</div>`;
   document.getElementById("gioCount").textContent=a.length+" shown";
@@ -515,7 +533,7 @@ function renderGio(){
   document.querySelectorAll("#gioGrid .card").forEach(c=>{
     c.onmouseenter=()=>highlightMarker(c.dataset.id,true);
     c.onmouseleave=()=>highlightMarker(c.dataset.id,false);
-    c.onclick=e=>{ if(e.target.closest("a,.gnav,.gcount"))return; flyToListing(c.dataset.id); };
+    c.onclick=e=>{ if(e.target.closest("a,button,.gnav,.gcount"))return; flyToListing(c.dataset.id); };
   });
 }
 document.getElementById("gioSort").onchange=e=>{gstate.sort=e.target.value;renderGio();};
@@ -730,13 +748,13 @@ function wireCardHover(){
   document.querySelectorAll("#grid .card, #picks .card").forEach(c=>{
     c.onmouseenter=()=>highlightMarker(c.dataset.id,true);
     c.onmouseleave=()=>highlightMarker(c.dataset.id,false);
-    c.onclick=e=>{ if(e.target.closest("a,.gnav,.gcount"))return; flyToListing(c.dataset.id); };
+    c.onclick=e=>{ if(e.target.closest("a,button,.gnav,.gcount"))return; flyToListing(c.dataset.id); };
   });
 }
 
 /* ---- ranked leaderboard (Tufte dot-plot, descending by fit) ---- */
 function renderLeaderboard(){
-  const rows=[...D.listings].sort((a,b)=>(b.fit||0)-(a.fit||0));
+  const rows=[...D.listings].filter(x=>!isHidden(x)).sort((a,b)=>(b.fit||0)-(a.fit||0));
   document.getElementById("lbrows").innerHTML = rows.map(x=>{
     const left=Math.max(2,Math.min(98,(x.fit||0)*10));
     const col=x.bucket==="apt"?css("--apt"):css("--room");
@@ -784,10 +802,10 @@ function toast(msg){
   t._h=setTimeout(()=>t.classList.remove("show"),2200);
 }
 
-function refreshReachedUI(){ renderGrid(); renderLeaderboard();
+function refreshReachedUI(){ renderGrid(); renderLeaderboard(); renderPicks(); renderGio();
   Object.values(markerById).forEach(m=>map.removeLayer(m));
   for(const k in markerById) delete markerById[k];
-  drawMarkers(D.listings); drawGioMarkers(GIO.listings); }
+  drawMarkers(D.listings.filter(x=>!isHidden(x))); drawGioMarkers(GIO.listings.filter(x=>!isHidden(x))); }
 
 /* localStorage mirror: reach-out marks survive a dead backend / offline use.
    Server wins on conflicts; local-only entries are pushed up when it's back. */
@@ -871,12 +889,25 @@ function closeReach(){ document.getElementById("reachModal").classList.remove("o
 /* event delegation for all reach buttons (cards + popups) */
 document.addEventListener("click",e=>{
   const b=e.target.closest(".reach-btn"); if(b){ e.preventDefault(); openReach(b.dataset.id); return; }
+  const hb=e.target.closest(".hide-btn");
+  if(hb){
+    e.preventDefault(); e.stopPropagation();
+    const id=hb.dataset.id;
+    const x = id[0]==="G" ? GIO.listings.find(l=>l.id===id) : byId(id);
+    if(x){
+      const was = isHidden(x);
+      was ? HIDDEN.delete(x.url) : HIDDEN.add(x.url);
+      hidSave(); refreshReachedUI();
+      toast(was ? "Restored" : "Hidden — find it under the Hidden ✕ filter");
+    }
+    return;
+  }
   if(e.target.id==="reachModal") closeReach();  // click backdrop
 });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeReach(); });
 
-drawMarkers(D.listings);   // map + leaderboard show ALL listings, ranked
-drawGioMarkers(GIO.listings);
+drawMarkers(D.listings.filter(x=>!isHidden(x)));   // map + leaderboard show all non-hidden listings
+drawGioMarkers(GIO.listings.filter(x=>!isHidden(x)));
 renderLeaderboard();
 renderGrid();
 renderGio();
