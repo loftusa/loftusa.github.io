@@ -144,10 +144,11 @@ function laplacianLambdaMax(nNodes, links) {
     for (const [s, t] of links) { w[s] -= v[t]; w[t] -= v[s]; }
     // Manual sqrt-of-sum-of-squares (safe for large arrays; avoids Math.hypot argument limits)
     let sumSq = 0;
-    for (let i = 0; i < nNodes; i++) sumSq += w[i] * w[i];
+    let dot = 0;
+    for (let i = 0; i < nNodes; i++) { sumSq += w[i] * w[i]; dot += v[i] * w[i]; }
     const norm = Math.sqrt(sumSq);
     if (norm === 0) return 0;
-    lambda = norm; // ||L v|| with ||v|| = 1 converges to λ_max
+    lambda = dot; // Rayleigh quotient v·(Lv) with ||v|| = 1 — tighter λ_max estimate than ||Lv||
     for (let i = 0; i < nNodes; i++) v[i] = w[i] / norm;
   }
   return lambda;
