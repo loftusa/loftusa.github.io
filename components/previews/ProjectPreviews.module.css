@@ -131,10 +131,10 @@
   height: 1.5rem;
   margin-top: 0.35rem;
   border-bottom: 1px solid var(--rule);
+  pointer-events: auto;
 }
 .labBarCol { flex: 1; display: flex; align-items: flex-end; height: 100%; }
 .labBar { width: 100%; background: var(--rule); }
-.labBarCol:first-child .labBar { background: var(--accent-soft); } /* Anthropic first in meta.companies */
 
 /* ---- houses mini ---- */
 .dot { pointer-events: all; cursor: pointer; }

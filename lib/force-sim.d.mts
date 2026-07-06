@@ -1,3 +1,5 @@
+export declare const SPRING_DEFAULT: number;
+export declare const HOME_DEFAULT: number;
 export type SimNode = { x: number; y: number; x0: number; y0: number; pinned?: boolean };
 export function relax(
   nodes: SimNode[],

@@ -124,9 +124,34 @@ test("extractNetworks maps links to node-index pairs and keeps communities", () 
   assert.deepEqual(n.communities[1], { id: 1, label: "David Bau" });
 });
 test("extractNetworks throws on unresolvable link endpoints and non-finite positions", () => {
-  assert.throws(() => extractNetworks({ ...NET, links: [{ source: "a", target: "zzz" }] }), /zzz/);
+  // Override meta counts to match the overridden arrays so the meta check passes first
+  assert.throws(
+    () => extractNetworks({ ...NET, meta: { n_nodes: 3, n_links: 1 }, links: [{ source: "a", target: "zzz" }] }),
+    /zzz/,
+  );
   const badNodes = [{ ...NET.nodes[0], x: undefined }, ...NET.nodes.slice(1)];
   assert.throws(() => extractNetworks({ ...NET, nodes: badNodes }), /x of/);
+});
+test("extractNetworks throws when meta counts disagree with array lengths", () => {
+  assert.throws(
+    () => extractNetworks({ ...NET, meta: { n_nodes: 99, n_links: 2 } }),
+    /n_nodes/,
+  );
+  assert.throws(
+    () => extractNetworks({ ...NET, meta: { n_nodes: 3, n_links: 99 } }),
+    /n_links/,
+  );
+});
+test("extractNetworks throws on a star graph that exhausts the force-sim stability margin", () => {
+  // K_{1,40}: hub (node 0) linked to 40 leaves → λ_max ≈ 41, gain ≈ 2.56 > 1.9
+  const starNodes = Array.from({ length: 41 }, (_, i) => ({
+    id: String(i), label: `N${i}`, community: 0,
+    x: i === 0 ? 0 : Math.cos((2 * Math.PI * i) / 40),
+    y: i === 0 ? 0 : Math.sin((2 * Math.PI * i) / 40),
+  }));
+  const starLinks = Array.from({ length: 40 }, (_, i) => ({ source: "0", target: String(i + 1) }));
+  const STAR_NET = { meta: { n_nodes: 41, n_links: 40 }, communities: [], nodes: starNodes, links: starLinks };
+  assert.throws(() => extractNetworks(STAR_NET), /stability/);
 });
 
 // ---------- buildPreviews ----------

@@ -34,7 +34,10 @@ export default function JobsMini({ data }: { data: JobsPreview }) {
           <div key={l.company} className={styles.labBarCol} title={`${l.company}: ${l.n} open`}>
             <div
               className={styles.labBar}
-              style={{ height: `${Math.max(8, Math.round((l.n / max) * 100))}%` }}
+              style={{
+                height: `${Math.max(8, Math.round((l.n / max) * 100))}%`,
+                background: l.company === "Anthropic" ? "var(--accent-soft)" : undefined,
+              }}
             />
           </div>
         ))}

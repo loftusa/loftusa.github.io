@@ -6,6 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { SPRING_DEFAULT, HOME_DEFAULT } from "../lib/force-sim.mjs";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -123,11 +124,68 @@ export function extractJobs(data) {
   };
 }
 
+// Power-iteration estimate of the largest eigenvalue of the graph Laplacian.
+// The networks mini relaxes positions with x ← x − (spring·L + home·I)(x − x0);
+// that iteration diverges once spring·λ_max(L) + home ≥ 2. Assert a margin so
+// graph densification fails the build here instead of exploding drags at runtime.
+function laplacianLambdaMax(nNodes, links) {
+  const deg = new Float64Array(nNodes);
+  for (const [s, t] of links) { deg[s]++; deg[t]++; }
+  let v = Float64Array.from({ length: nNodes }, (_, i) => 1 + (i % 7)); // fixed, non-uniform seed
+  // Normalise initial vector
+  let initSumSq = 0;
+  for (let i = 0; i < nNodes; i++) initSumSq += v[i] * v[i];
+  const initNorm = Math.sqrt(initSumSq);
+  for (let i = 0; i < nNodes; i++) v[i] /= initNorm;
+  let lambda = 0;
+  for (let it = 0; it < 100; it++) {
+    const w = new Float64Array(nNodes);
+    for (let i = 0; i < nNodes; i++) w[i] = deg[i] * v[i];
+    for (const [s, t] of links) { w[s] -= v[t]; w[t] -= v[s]; }
+    // Manual sqrt-of-sum-of-squares (safe for large arrays; avoids Math.hypot argument limits)
+    let sumSq = 0;
+    for (let i = 0; i < nNodes; i++) sumSq += w[i] * w[i];
+    const norm = Math.sqrt(sumSq);
+    if (norm === 0) return 0;
+    lambda = norm; // ||L v|| with ||v|| = 1 converges to λ_max
+    for (let i = 0; i < nNodes; i++) v[i] = w[i] / norm;
+  }
+  return lambda;
+}
+
 export function extractNetworks(data) {
   const { nodes, links, communities, meta } = data;
   if (!Array.isArray(nodes) || nodes.length === 0) throw new Error("networks: nodes empty");
   if (!Array.isArray(links) || links.length === 0) throw new Error("networks: links empty");
+
+  // Meta cross-check: footer numbers must not lie
+  if (meta.n_nodes !== nodes.length) {
+    throw new Error(`networks: meta.n_nodes=${meta.n_nodes} but nodes.length=${nodes.length}`);
+  }
+  if (meta.n_links !== links.length) {
+    throw new Error(`networks: meta.n_links=${meta.n_links} but links.length=${links.length}`);
+  }
+
   const index = new Map(nodes.map((n, i) => [n.id, i]));
+  const outLinks = links.map((l) => {
+    const s = index.get(l.source);
+    const t = index.get(l.target);
+    if (s === undefined || t === undefined) {
+      throw new Error(`networks: link endpoint not found: ${l.source} -> ${l.target}`);
+    }
+    return [s, t];
+  });
+
+  // Stability guard: build fails here rather than producing an exploding drag at runtime
+  const lambdaMax = laplacianLambdaMax(nodes.length, outLinks);
+  const gain = SPRING_DEFAULT * lambdaMax + HOME_DEFAULT;
+  if (gain >= 1.9) {
+    throw new Error(
+      `networks: force-sim stability margin exhausted — spring·λ_max + home = ${gain.toFixed(3)} ` +
+      `(divergence at 2.0). Lower SPRING_DEFAULT in lib/force-sim.mjs or thin the graph.`,
+    );
+  }
+
   return {
     meta: { n_nodes: num(meta.n_nodes, "networks n_nodes"), n_links: num(meta.n_links, "networks n_links") },
     communities: (communities ?? []).map((c) => ({ id: c.id, label: String(c.label) })),
@@ -137,14 +195,7 @@ export function extractNetworks(data) {
       x: num(n.x, `x of ${n.id}`),
       y: num(n.y, `y of ${n.id}`),
     })),
-    links: links.map((l) => {
-      const s = index.get(l.source);
-      const t = index.get(l.target);
-      if (s === undefined || t === undefined) {
-        throw new Error(`networks: link endpoint not found: ${l.source} -> ${l.target}`);
-      }
-      return [s, t];
-    }),
+    links: outLinks,
   };
 }
 
