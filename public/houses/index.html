@@ -694,7 +694,7 @@ function drawMarkers(list){
   list.slice().sort((a,b)=>(a.fit||0)-(b.fit||0)).forEach(x=>{  // best fit drawn last = on top
     if(x.lat==null||x.lon==null) return;
     const mk=L.marker([x.lat,x.lon],{icon:markerIcon(x),riseOnHover:true});
-    mk.bindPopup(()=>popupInner(x),{maxWidth:236,minWidth:220});
+    mk.bindPopup(()=>popupInner(x),{maxWidth:236,minWidth:220,autoPan:false});
     mk.addTo(map); markerById[x.id]=mk;
   });
 }
@@ -725,7 +725,7 @@ function drawGioMarkers(list){
   list.slice().sort((a,b)=>(a.fit||0)-(b.fit||0)).forEach(x=>{
     if(x.lat==null||x.lon==null) return;
     const mk=L.marker([x.lat,x.lon],{icon:gioMarkerIcon(x),riseOnHover:true});
-    mk.bindPopup(()=>gioPopup(x),{maxWidth:236,minWidth:220});
+    mk.bindPopup(()=>gioPopup(x),{maxWidth:236,minWidth:220,autoPan:false});
     mk.addTo(map); markerById[x.id]=mk;
   });
 }
@@ -753,9 +753,9 @@ function highlightMarker(id,on){
   const row=document.querySelector(`.lbrow[data-id="${id}"]`); if(row)row.classList.toggle("hl",on);
 }
 function flyToListing(id){
+  // no pan, no zoom, no page scroll — just open the popup and highlight the marker
   const mk=markerById[id]; if(!mk)return;
-  map.setView(mk.getLatLng(),map.getZoom(),{animate:true}); mk.openPopup();  // pan only — never change zoom
-  window.scrollTo({top:document.getElementById("map").getBoundingClientRect().top+window.scrollY-12,behavior:"smooth"});
+  mk.openPopup();
 }
 function wireCardHover(){
   document.querySelectorAll("#grid .card, #picks .card").forEach(c=>{
