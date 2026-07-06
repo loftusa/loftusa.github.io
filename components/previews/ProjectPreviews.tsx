@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import HousesMini from "./HousesMini";
 import JobsMini from "./JobsMini";
 import NetworksMini from "./NetworksMini";
+import ChatCard from "./ChatCard";
 import type { PreviewsData } from "./types";
 import styles from "./ProjectPreviews.module.css";
 
@@ -92,6 +93,7 @@ export default function ProjectPreviews({ data }: { data: PreviewsData }) {
           <NetworksMini data={networks} />
         </Card>
       </div>
+      <ChatCard />
     </section>
   );
 }

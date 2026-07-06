@@ -40,6 +40,23 @@ export default function ChatWidget() {
     fetch(API_BASE + "/health").catch(() => {});
   }, []);
 
+  // The "Ask me anything" card lower on the page points back up to this one
+  // widget: it dispatches `site-chat-focus` (optionally with a suggested
+  // prompt) instead of rendering a second, confusing chat box.
+  useEffect(() => {
+    function onFocus(e: Event) {
+      const prompt = (e as CustomEvent<{ prompt?: string }>).detail?.prompt;
+      if (prompt) setInput(prompt);
+      const el = inputRef.current;
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.focus({ preventScroll: true });
+      }
+    }
+    window.addEventListener("site-chat-focus", onFocus);
+    return () => window.removeEventListener("site-chat-focus", onFocus);
+  }, []);
+
   function scrollToBottom() {
     const el = messagesRef.current;
     if (el) el.scrollTop = el.scrollHeight;

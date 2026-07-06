@@ -69,6 +69,72 @@
 /* stretched link: the whole card navigates */
 .open::after { content: ""; position: absolute; inset: 0; }
 
+/* ---- chat card: full-width slim signpost under the 3-card row.
+       Points back up to the single ChatWidget rather than duplicating it. ---- */
+.chatCard {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-top: 0.9rem;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.85rem 0.65rem;
+  transition: box-shadow 140ms ease, border-color 140ms ease;
+}
+.chatCard:hover { box-shadow: var(--shadow-soft); border-color: var(--rule-soft); }
+.chatMain { min-width: 0; }
+.chatLede {
+  font-family: var(--font-serif-text);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  margin: 0 0 0.5rem;
+  max-width: 34rem;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip {
+  font-family: var(--font-serif-text);
+  font-size: 0.74rem;
+  color: var(--accent);
+  background: var(--accent-wash);
+  border: 1px solid var(--rule-soft);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  cursor: pointer;
+  transition: border-color 120ms ease;
+}
+.chip:hover { border-color: var(--accent-soft); }
+.chatAside {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  text-align: right;
+}
+.chatStat {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.66rem;
+  color: var(--muted);
+  margin: 0;
+  white-space: nowrap;
+}
+.chatOpen {
+  font-family: var(--font-serif-text);
+  font-size: var(--text-sm);
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+@media (max-width: 640px) {
+  .chatCard { flex-direction: column; align-items: stretch; gap: 0.6rem; }
+  .chatAside { flex-direction: row; align-items: center; justify-content: space-between; text-align: left; }
+}
+
 /* ---- interactive layers sit above the stretched link; only marked
        elements catch the pointer, everything else falls through ---- */
 .svgWrap {
