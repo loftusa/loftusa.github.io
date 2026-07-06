@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import styles from "./ProjectPreviews.module.css";
 
 // Real, honest suggested prompts — the RAG bot answers these from my CV,
@@ -63,13 +64,9 @@ export default function ChatCard() {
       </div>
       <div className={styles.chatAside}>
         <p className={styles.chatStat}>zai-glm-4.7 · RAG over my CV &amp; papers</p>
-        <button
-          type="button"
-          className={styles.chatOpen}
-          onClick={() => focusChat()}
-        >
-          ask ↑
-        </button>
+        <Link href="/chat/" className={styles.chatOpen}>
+          open the chat →
+        </Link>
       </div>
     </article>
   );
