@@ -83,7 +83,7 @@ _pages/ _posts/      LEGACY Jekyll. Unused by Next EXCEPT the sources the build 
   those sources: `node scripts/build_perfumes_html.mjs`.
 - `build_previews.mjs` — slice `public/houses/data.js` + `public/jobs/data.js` +
   `public/assets/data/coauthorship.json` into the gitignored `lib/previews.json` that feeds the
-  front page's "Projects, live" strip (`components/previews/`). Runs automatically at the start of
+  front page's "Recent Projects" strip (`components/previews/`). Runs automatically at the start of
   `pnpm build` / `pnpm dev`; shape drift in those artifacts fails the build on purpose. Tests:
   `pnpm test` (node --test, also covers `lib/force-sim.mjs`).
 - `fetch_scholar.py` / `update_scholar_cron.sh` — Google Scholar sync. ⚠ STALE: writes the old

@@ -26,7 +26,7 @@ export default function ProjectPreviews({ data }: { data: PreviewsData }) {
   const { houses, jobs, networks } = data;
   return (
     <section className={styles.strip} aria-label="Live previews of Alex's project pages">
-      <h2 className={styles.label}>Projects, live</h2>
+      <h2 className={styles.label}>Recent Projects</h2>
       <div className={styles.grid}>
         <Card
           href="/houses/"
