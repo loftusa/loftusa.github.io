@@ -238,7 +238,8 @@
   <p class="h2note">Each node is numbered by <b>overall rank</b> (1 = best fit) and sized by fit; its <b>color is the
     component that most lifts it above the field</b> — green dots rank on nature, gray on commute, rust on photos
     (outline = type; key on the map). <b>Zoom in</b> and dots become six-petal score profiles. The ◆ are the commute
-    anchors. The list on the right is every listing on a 0→10 fit scale — hover to find it, click to fly there.</p>
+    anchors. The list on the right is every listing on a 0→10 fit scale — hover to find it, click to fly there.
+    <span style="color:var(--faint)">⌘-scroll zooms the map.</span></p>
   <div class="mapwrap">
     <div id="map"></div>
     <aside id="leaderboard">
@@ -617,6 +618,16 @@ document.getElementById("foot").innerHTML = `
 
 /* ================= MAP ================= */
 const map = L.map("map",{scrollWheelZoom:false}).setView([37.82,-122.30],11);
+/* plain scroll keeps scrolling the page; ⌘-scroll (or ctrl/pinch) zooms the map */
+let lastWheelZoom = 0;
+document.getElementById("map").addEventListener("wheel", e=>{
+  if(!(e.metaKey || e.ctrlKey)) return;
+  e.preventDefault();
+  const now = Date.now();
+  if(now - lastWheelZoom < 140) return;   // trackpads fire fast — gate the rate
+  lastWheelZoom = now;
+  map.setZoomAround(map.mouseEventToLatLng(e), map.getZoom() + (e.deltaY < 0 ? 1 : -1));
+}, {passive:false});
 L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",{
   attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:"abcd", maxZoom:19}).addTo(map);
 
