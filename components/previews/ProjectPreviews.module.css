@@ -1,0 +1,151 @@
+/* ---- strip ---- */
+.strip { margin: 2.1rem 0 2.4rem; }
+.label {
+  font-family: var(--font-serif-text);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.35rem;
+  margin: 0 0 0.9rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* ---- card ---- */
+.card {
+  position: relative; /* containing block for the stretched .open link */
+  display: flex;
+  flex-direction: column;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 0.65rem 0.7rem 0.55rem;
+  transition: box-shadow 140ms ease, border-color 140ms ease;
+}
+.card:hover { box-shadow: var(--shadow-soft); border-color: var(--rule-soft); }
+.cardTitle {
+  font-family: var(--font-serif-text);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 0.45rem;
+}
+.mini { height: 10.5rem; }
+.foot {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin: 0.45rem 0 0;
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 0.4rem;
+}
+.open {
+  font-family: var(--font-serif-text);
+  font-size: var(--text-xs);
+  color: var(--accent);
+  text-decoration: none;
+  margin-top: 0.15rem;
+}
+/* stretched link: the whole card navigates */
+.open::after { content: ""; position: absolute; inset: 0; }
+
+/* ---- interactive layers sit above the stretched link; only marked
+       elements catch the pointer, everything else falls through ---- */
+.svgWrap {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.svgWrap svg { flex: 1; width: 100%; min-height: 0; }
+.caption {
+  font-family: var(--font-serif-text);
+  font-style: italic;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin: 0.25rem 0 0;
+  min-height: 1.05rem; /* reserve the line: no layout shift on hover */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---- jobs mini (non-interactive: clicks fall through to the card link) ---- */
+.jobsMini {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  pointer-events: none;
+}
+.jobsList { list-style: none; margin: 0; padding: 0; flex: 1; }
+.jobRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  line-height: 1.15;
+  padding: 0.14rem 0;
+}
+.jobRow + .jobRow { border-top: 1px solid var(--rule-soft); }
+.jobCo {
+  flex: none;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.05rem 0.45rem;
+}
+.jobTitle {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-serif-text);
+  color: var(--ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.jobComp {
+  flex: none;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.62rem;
+  color: var(--muted);
+}
+.labBars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 1.5rem;
+  margin-top: 0.35rem;
+  border-bottom: 1px solid var(--rule);
+}
+.labBarCol { flex: 1; display: flex; align-items: flex-end; height: 100%; }
+.labBar { width: 100%; background: var(--rule); }
+.labBarCol:first-child .labBar { background: var(--accent-soft); } /* Anthropic first in meta.companies */
+
+/* ---- houses mini ---- */
+.dot { pointer-events: all; cursor: pointer; }
+.anchorMark {
+  font-size: 7px;
+  fill: var(--ink);
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* ---- networks mini ---- */
+.netLink { stroke: var(--muted); stroke-opacity: 0.16; stroke-width: 0.6; }
+.netNode { pointer-events: all; cursor: grab; }
+.netNodeDragging { cursor: grabbing; }
