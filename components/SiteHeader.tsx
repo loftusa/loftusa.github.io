@@ -1,12 +1,13 @@
 import Link from "next/link";
 import styles from "./SiteHeader.module.css";
+import { NetworkIcon, HouseIcon, BriefcaseIcon } from "./icons";
 
 const NAV = [
-  { href: "/networks/", label: "Networks" },
-  { href: "/houses/", label: "Houses" },
-  { href: "/jobs/", label: "Jobs" },
-  { href: "/year-archive/", label: "Writing" },
-  { href: "/cv/", label: "CV" },
+  { href: "/networks/", label: "Networks", Icon: NetworkIcon },
+  { href: "/houses/", label: "Houses", Icon: HouseIcon },
+  { href: "/jobs/", label: "Jobs", Icon: BriefcaseIcon },
+  { href: "/year-archive/", label: "Writing", Icon: null },
+  { href: "/cv/", label: "CV", Icon: null },
 ];
 
 export default function SiteHeader() {
@@ -19,6 +20,7 @@ export default function SiteHeader() {
         <nav className={styles.nav} aria-label="Primary">
           {NAV.map((n) => (
             <Link key={n.href} href={n.href} className={styles.link}>
+              {n.Icon && <n.Icon className={styles.navIcon} />}
               {n.label}
             </Link>
           ))}

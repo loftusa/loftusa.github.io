@@ -43,13 +43,6 @@
   color: var(--ink-soft);
   margin: 0 0 0.45rem;
 }
-.titleIcon {
-  width: 0.95em;
-  height: 0.95em;
-  margin-right: 0.45em;
-  vertical-align: -0.12em;
-  opacity: 0.65;
-}
 .mini { height: 10.5rem; }
 .foot {
   font-family: ui-monospace, "SF Mono", Menlo, monospace;

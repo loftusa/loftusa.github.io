@@ -48,7 +48,16 @@
   text-decoration: none;
 }
 
+.navIcon {
+  width: 0.82em;
+  height: 0.82em;
+  margin-right: 0.38em;
+  vertical-align: -0.06em;
+  opacity: 0.7;
+}
+
 @media (max-width: 480px) {
   .nav { gap: 1.05rem; }
   .link { font-size: 0.9rem; }
+  .navIcon { display: none; }
 }
