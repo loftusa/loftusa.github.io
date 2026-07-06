@@ -646,7 +646,8 @@ function popupInner(x){
     <div style="font-size:11px;color:#8a8378;margin-top:3px">strongest vs field: <b style="color:${driver(x).color}">${driver(x).label}</b></div>
     <div style="font-size:12px;margin:5px 0 4px">${x.rationale||""}</div>
     <div class="actions"><a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a>
-      <button class="reach-btn" data-id="${x.id}">${isReached(x)?'Reached out ✓':'Reach out'}</button></div></div>`;
+      <button class="reach-btn" data-id="${x.id}">${isReached(x)?'Reached out ✓':'Reach out'}</button>
+      <button class="hide-btn" data-id="${x.id}" title="Hide — not for me">✕</button></div></div>`;
 }
 
 const markerById = {};
@@ -699,7 +700,8 @@ function gioPopup(x){
     <div class="ph2">${x.hood||"Mission Bay area"}<br><b class="num">${x.walk_min} min walk</b> to OpenAI HQ</div>
     <div style="font-size:11px;color:#8a8378;margin-top:3px">strongest vs field: <b style="color:${driver(x).color}">${driver(x).label}</b></div>
     <div style="font-size:12px;margin:5px 0 4px">${x.rationale||""}</div>
-    <div class="actions"><a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a></div></div>`;
+    <div class="actions"><a href="${x.url}" target="_blank" rel="noopener">View listing ↗</a>
+      <button class="hide-btn" data-id="${x.id}" title="Hide — not for me">✕</button></div></div>`;
 }
 function gioMarkerIcon(x){
   if(map.getZoom() >= GLYPH_ZOOM) return coxIcon(x);
