@@ -1,5 +1,3 @@
-Hi, I'm **Alex Loftus**. I build and run 0-to-1 technical programs at the intersection of AI safety research and engineering — most recently leading multi-agent red-teaming campaigns for OpenAI: recruiting the team, designing the research, building the evaluation infrastructure, and running live operations end-to-end. I'm also a textbook author, Kaggle competition winner, and PhD researcher with [David Bau's group](https://baulab.info/), where I study interpretability and evaluation for large language models. Before this I worked as a data scientist, a machine learning engineer, and a master's student in biomedical machine learning at Johns Hopkins University.
-
 I've been fortunate to work with a number of brilliant people over the years. Here are some fun projects which resulted:
 
 - I designed and led an internal red-teaming campaign for OpenAI — writing the proposal, recruiting the 16-person team, and building ~17K lines of evaluation infrastructure in under two weeks. The project was successful enough that a second campaign is now underway, with double the team size.

@@ -10,8 +10,9 @@ function readContent(file: string): string {
 }
 
 export default async function HomePage() {
-  const [aboutHtml, pubsHtml] = await Promise.all([
-    renderMarkdown(readContent("home-about.md")),
+  const [aboutIntroHtml, aboutRestHtml, pubsHtml] = await Promise.all([
+    renderMarkdown(readContent("home-about-intro.md")),
+    renderMarkdown(readContent("home-about-rest.md")),
     renderMarkdown(readContent("publications.md")),
   ]);
   const posts = getAllPostsMeta()
@@ -21,7 +22,12 @@ export default async function HomePage() {
   return (
     <main className={`page-main ${styles.home}`}>
       <AuthorHeader />
-      <HomeTabs aboutHtml={aboutHtml} pubsHtml={pubsHtml} posts={posts} />
+      <HomeTabs
+        aboutIntroHtml={aboutIntroHtml}
+        aboutRestHtml={aboutRestHtml}
+        pubsHtml={pubsHtml}
+        posts={posts}
+      />
     </main>
   );
 }

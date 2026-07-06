@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import Link from "next/link";
 import ChatWidget from "./ChatWidget";
 import { formatDate } from "@/lib/date";
@@ -19,11 +19,15 @@ const EXTERNAL = [
 ];
 
 export default function HomeTabs({
-  aboutHtml,
+  aboutIntroHtml,
+  aboutRestHtml,
+  previews,
   pubsHtml,
   posts,
 }: {
-  aboutHtml: string;
+  aboutIntroHtml: string;
+  aboutRestHtml: string;
+  previews?: ReactNode;
   pubsHtml: string;
   posts: PostMeta[];
 }) {
@@ -63,7 +67,9 @@ export default function HomeTabs({
       {tab === "about" && (
         <div className={styles.panel}>
           <ChatWidget />
-          <div className="prose" dangerouslySetInnerHTML={{ __html: aboutHtml }} />
+          <div className="prose" dangerouslySetInnerHTML={{ __html: aboutIntroHtml }} />
+          {previews}
+          <div className="prose" dangerouslySetInnerHTML={{ __html: aboutRestHtml }} />
         </div>
       )}
 
