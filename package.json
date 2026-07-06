@@ -4,10 +4,11 @@
   "private": true,
   "description": "alex-loftus.com — Next.js (App Router) frontend",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/build_previews.mjs && next dev",
+    "build": "node scripts/build_previews.mjs && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --test \"scripts/**/*.test.mjs\" \"lib/**/*.test.mjs\""
   },
   "dependencies": {
     "dompurify": "^3.4.11",
