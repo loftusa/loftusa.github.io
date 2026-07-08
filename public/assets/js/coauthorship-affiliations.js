@@ -1036,17 +1036,23 @@
       finderQ.value = "";
     }
 
-    finderQ.addEventListener("input", () => {
-      clearTimeout(finderTimer);
-      const q = finderQ.value.trim();
-      if (q.length < 3) { finderRes.hidden = true; return; }
-      finderTimer = setTimeout(() => runFinder(q), 250);
-    });
-    finderQ.addEventListener("keydown", (ev) => { if (ev.key === "Escape") closeFinder(); });
-    finderQ.addEventListener("blur", () => setTimeout(() => (finderRes.hidden = true), 200));
+    // finder + add-person are optional chrome; if the page markup is missing them
+    // (e.g. a stale HTML build), skip wiring rather than throwing and aborting init()
+    // before render() — the graph must always draw.
+    if (finderQ && finderRes) {
+      finderQ.addEventListener("input", () => {
+        clearTimeout(finderTimer);
+        const q = finderQ.value.trim();
+        if (q.length < 3) { finderRes.hidden = true; return; }
+        finderTimer = setTimeout(() => runFinder(q), 250);
+      });
+      finderQ.addEventListener("keydown", (ev) => { if (ev.key === "Escape") closeFinder(); });
+      finderQ.addEventListener("blur", () => setTimeout(() => (finderRes.hidden = true), 200));
+    }
 
     // "+" floating top-right of the graph: straight into the add-a-person form
-    document.getElementById("add-person").addEventListener("click", () => {
+    const addPersonBtn = document.getElementById("add-person");
+    if (addPersonBtn) addPersonBtn.addEventListener("click", () => {
       editPanel.hidden = false;
       editToggle.classList.add("on");
       showPicker(true);
