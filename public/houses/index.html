@@ -73,9 +73,10 @@
   .lbaxis::before{content:"";position:absolute;left:2%;right:2%;top:50%;height:1px;background:var(--rule)}
   .lbdot{position:absolute;top:50%;width:8px;height:8px;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 1.5px var(--panel)}
   .lbfit{font-size:12px;font-weight:600;text-align:right}
-  .legend{background:rgba(255,253,248,.94);padding:9px 11px;border:1px solid var(--rule);border-radius:5px;
-    font-size:12px;line-height:1.7;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08);max-width:210px}
-  .legend .dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+  .legend{background:rgba(255,253,248,.88);padding:5px 8px;border:1px solid rgba(0,0,0,.06);border-radius:4px;
+    font-size:10px;line-height:1.6;color:var(--muted);max-width:250px}
+  .legend .li{margin-right:7px;white-space:nowrap}
+  .legend .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:3px}
   .legend .ring{box-shadow:0 0 0 2px var(--pick)}
   /* rank markers (nodes) */
   .rankmark-wrap{background:none!important;border:none!important}
@@ -792,13 +793,10 @@ function renderLeaderboard(){
 /* legend */
 const legend = L.control({position:"bottomright"});
 legend.onAdd=function(){const d=L.DomUtil.create("div","legend");
-  d.innerHTML=`<b class="ui" style="font-size:11px">Fill = what most lifts it vs the field</b><br>
-    ${[["Commute","--commute"],["Nice area","--nice"],["Photos","--aesthetic"],["Nature","--nature"],["Value","--value"],["Gym","--gym"]]
-      .map(([l,v])=>`<span class="dot" style="background:${css(v)}"></span>${l}<br>`).join("")}
-    <span class="dot" style="background:${css('--quiet')}"></span><span class="dot" style="background:${css('--social')}"></span>Quiet (apt) / Social (room)<br>
-    <span class="dot" style="background:#a39c8d"></span>nothing above average<br>
-    outline: <b style="color:${css('--apt')}">apt</b> · <b style="color:${css('--room')}">room</b>${GIO.listings.length?` · <b style="color:${css('--gio')}">Gio</b>`:""} — gold ring = pick<br>
-    <span style="color:var(--muted)">number = rank · bigger = better fit<br>zoom in for full score petals · ◆ anchors</span>`;
+  const it=(c,l)=>`<span class="li"><span class="dot" style="background:${c}"></span>${l}</span>`;
+  d.innerHTML=`${[["--commute","Commute"],["--nice","Nice"],["--aesthetic","Photos"],["--nature","Nature"],["--value","Value"],["--gym","Gym"]]
+      .map(([v,l])=>it(css(v),l)).join("")}${it(css('--quiet'),"Quiet")}${it(css('--social'),"Social")}${it("#a39c8d","none")}<br>
+    <span style="color:var(--faint)">fill = strongest trait · outline = type · gold ring = pick</span>`;
   return d;};
 legend.addTo(map);
 
