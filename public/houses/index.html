@@ -715,8 +715,8 @@ document.getElementById("links").innerHTML = D.searchlinks.map(g=>`<div class="l
 document.getElementById("foot").innerHTML = `
   <div class="callout"><b>Before you contact anyone:</b> rentals move in days, so open the live link and confirm it's still up.
   Never wire money or pay a deposit before seeing a unit in person. A price that looks too good usually is.</div>
-  <b>How this was built.</b> I pulled ${m.n_scouted.toLocaleString()} real, currently-listed rentals from Craigslist's
-  live API on ${m.generated} across San Francisco, the East Bay, North Bay and Peninsula ($800–$3,000). Review agents
+  <b>How this was built.</b> I pulled ${m.n_scouted.toLocaleString()} real, currently-listed rentals from
+  ${(m.source||"Craigslist (live API)").split(", refreshed")[0]} on ${m.generated} across San Francisco, the East Bay, North Bay and Peninsula ($800–$3,000). Review agents
   opened each posting, confirmed it was still live, and scored it 1–10 on nature, quiet, niceness, social/networking and value.
   <b>Gym proximity</b> is measured, not guessed: walk time to the nearest OpenStreetMap gym feeds the ranking (perfect within a ~4-min walk).
   <b>Dual-anchor commute:</b> every listing is now rated on driving to <b>both</b> downtown SF and downtown Berkeley (FAR Labs),
