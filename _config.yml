@@ -145,6 +145,19 @@ exclude:
   - package.json
   - tmp
   - vendor
+  # Non-site source dirs from the Next.js/agent era — internal markdown here contains
+  # code ({{, {%) that Liquid fatally mis-parses (broke every Pages build since 2026-07-06).
+  - docs
+  - backend
+  - experiments
+  - tests
+  - scripts
+  - components
+  - lib
+  - app
+  - content
+  - CLAUDE.md
+  - AGENTS.md
 keep_files:
   - .git
   - .svn
