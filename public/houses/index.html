@@ -39,6 +39,8 @@
   .h2note{color:var(--muted);font-size:14px;margin:6px 0 16px}
 
   /* controls */
+  .lbcut{border-top:1px dashed var(--rule);margin:5px 0 3px}
+  .lbrow.offboard{opacity:.45}
   #wpanel{margin:16px 0 4px;padding:12px 14px;border:1px solid var(--rule);border-radius:8px;background:var(--panel)}
   .wtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
   .wtitle{font-weight:600;font-size:13px;letter-spacing:.02em}
@@ -349,9 +351,11 @@ const hidSave = ()=>{ try{ localStorage.setItem(HID_KEY, JSON.stringify([...HIDD
 const isHidden = x => x && HIDDEN.has(x.url);
 const IMAGES = {};   // listing id -> [photo urls]
 const IDX = {};      // listing id -> current photo index
-// global ranking (1 = best) by dual-anchor fit
+// global ranking (1 = best) under the CURRENT slider weights — filled by recomputeAll()
 const RANK = {};
-[...D.listings].sort((a,b)=>(b.fit||0)-(a.fit||0)).forEach((x,i)=>{ RANK[x.id]=i+1; });
+let BOARD = new Set();                       // ids visible on map + grid (top-N after price cap)
+const onBoard = x => BOARD.has(x.id);
+const rk = x => RANK[x.id] ?? "–";
 const SC = [["nature","Nat","--nature"],["quiet","Qt","--quiet"],["nice","Nice","--nice"],
             ["social","Soc","--social"],["value","Val","--value"],["commute","Cmt","--commute"],
             ["aesthetic","Pics","--aesthetic"],["gym","Gym","--gym"]];
@@ -473,7 +477,7 @@ function card(x){
     <div class="body">
       <div class="row1">
         <span class="price num">${money(x.price)}<small>/mo</small></span>
-        <span class="fit num"><span class="rk" title="overall rank">#${RANK[x.id]}</span><b style="color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b><span class="s">FIT</span></span>
+        <span class="fit num"><span class="rk" title="overall rank">#${rk(x)}</span><b style="color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b><span class="s">FIT</span></span>
       </div>
       <div class="metaline">${bedsLabel(x.beds)} · ${x.hood} · ${x.region}${x.loved?' <span class="love" title="you love this area">♥</span>':''}<br>
         <span class="drv"><b class="num">SF ${x.drive_sf}m</b> · <b class="num">Berkeley ${x.drive_berk}m</b>${x.gym_min!=null?` · gym <b class="num">${x.gym_min}m</b> walk`:''}${x.ferry_sf?' · <span class="fer" title="~30-min ferry to SF Ferry Building nearby">⛴ ferry to SF</span>':''}</span></div>
@@ -507,15 +511,15 @@ function wireGalleries(root){
   });
 }
 
-/* ---- render picks ---- */
+/* ---- render picks: top 3 under the current sliders ---- */
 function renderPicks(){
-  const picks = D.listings.filter(x=>x.pick && !isHidden(x));
-  document.getElementById("picks").innerHTML = picks.map(card).join("") || `<div class="empty">All picks hidden.</div>`;
+  const top = D.listings.filter(x=>RANK[x.id]>=1 && RANK[x.id]<=3).sort((a,b)=>RANK[a.id]-RANK[b.id]);
+  document.getElementById("picks").innerHTML = top.map(card).join("") || `<div class="empty">Nothing clears the current filters.</div>`;
   wireGalleries(document.getElementById("picks"));
   document.getElementById("picknote").innerHTML =
-    `My ${picks.length} favorites, spanning both worlds: central SF (easy to both), your beloved Marin (♥, great to SF via drive or ferry), and the inner East Bay (short hop to Berkeley). Balancing nature, a nice/quiet feel, price, and both commutes.`;
+    `The ${top.length} best fits under your current sliders — move a slider and these swap.
+     The gold ring marks the daily rater's own pick.`;
 }
-renderPicks();
 
 /* ---- filters + grid ---- */
 const state = {region:"All", bucket:"All", ro:"All", sort:"fit"};
@@ -536,8 +540,9 @@ function filtered(){
   let a = D.listings.filter(x=>
     (state.region==="All"||x.region===state.region) &&
     (state.bucket==="All"||x.bucket===state.bucket) &&
-    (state.ro==="hidden" ? isHidden(x)
-      : (state.ro==="All"||isReached(x)) && !isHidden(x)));
+    (state.ro==="hidden" ? isHidden(x)                          // bookkeeping views bypass the top-N board
+      : state.ro==="reached" ? isReached(x) && !isHidden(x)
+      : onBoard(x)));
   const s = state.sort;
   a.sort((p,q)=> s==="price"? p.price-q.price : s==="drive"? p.drive_min-q.drive_min
       : s==="nature"? (q.scores.nature||0)-(p.scores.nature||0)
@@ -549,7 +554,7 @@ function renderGrid(){
   chips(document.getElementById("fBkt"),BUCKETS,state.bucket,v=>{state.bucket=v;renderGrid();});
   chips(document.getElementById("fRo"),ROFILTER,state.ro,v=>{state.ro=v;renderGrid();});
   const a = filtered();
-  document.getElementById("grid").innerHTML = a.map(card).join("");
+  document.getElementById("grid").innerHTML = a.map(card).join("") || `<div class="empty">Nothing matches — raise the price cap, show more, or loosen the filters.</div>`;
   document.getElementById("count").textContent = a.length+" shown";
   wireCardHover();
   wireGalleries(document.getElementById("grid"));
@@ -661,6 +666,21 @@ function driver(x){
   return {label, color};
 }
 
+/* ---- live re-ranking: single source of truth for fit / rank / board ---- */
+function recomputeAll(){
+  const nw = FitMath.normWeights(WSTATE.w);
+  D.listings.forEach(x => { x.fit = FitMath.fitOf(x, nw); });   // gone/hidden too — honest everywhere
+  const cands = D.listings.filter(x => !x.gone && !isHidden(x));
+  const { ranked, boardIds } = FitMath.rankBoard(cands, nw, WSTATE.cap, WSTATE.topN);
+  Object.keys(RANK).forEach(k => delete RANK[k]);
+  ranked.forEach((x,i) => RANK[x.id] = i+1);
+  BOARD = boardIds;
+  FW.alex = nw;                                                  // map driver hues follow the sliders
+  const rs = cands.map(compScores), m = {};
+  DRIVER_KEYS.forEach(k => m[k] = rs.reduce((t,r)=>t+r[k],0)/Math.max(1,rs.length));
+  DRIVER_MEANS.alex = m;
+}
+
 /* ---- neighborhoods ---- */
 function track(v,varn){const w=Math.max(3,(v||0)*10);return `<div class="track"><i style="width:${w}%;background:${css(varn)}"></i></div>`;}
 function renderHoods(){
@@ -737,7 +757,7 @@ function popupInner(x){
     <span class="gcount" data-id="${x.id}">${i+1}/${n}</span>`:"";
   return `<div class="popup">
     <div class="ph pop-ph" data-id="${x.id}"><img class="gimg" src="${imgs[i]}" onerror="this.src='${FALLBACK}'">${nav}</div>
-    <div class="pp num">#${RANK[x.id]} · ${money(x.price)} <span style="font-size:12px;color:#777">${bedsLabel(x.beds)}</span>
+    <div class="pp num">#${rk(x)} · ${money(x.price)} <span style="font-size:12px;color:#777">${bedsLabel(x.beds)}</span>
       <b style="float:right;color:${fitColor(x.fit)}">${x.fit==null?'–':x.fit}</b></div>
     <div class="ph2">${x.loved?'♥ ':''}${x.hood} · ${x.region}<br>SF ${x.drive_sf}m · Berkeley ${x.drive_berk}m${x.gym_min!=null?` · gym ${x.gym_min}m`:''}${x.ferry_sf?' · ⛴ ferry to SF':''}</div>
     <div style="font-size:11px;color:#8a8378;margin-top:3px">strongest vs field: <b style="color:${driver(x).color}">${driver(x).label}</b></div>
@@ -854,12 +874,18 @@ function wireCardHover(){
 
 /* ---- ranked leaderboard (Tufte dot-plot, descending by fit) ---- */
 function renderLeaderboard(){
-  const rows=[...D.listings].filter(x=>!isHidden(x)).sort((a,b)=>(b.fit||0)-(a.fit||0));
-  document.getElementById("lbrows").innerHTML = rows.map(x=>{
+  // ranked candidates first (hairline rule at the top-N visibility cutoff), then over-cap + gone rows faded
+  const ranked=[...D.listings].filter(x=>RANK[x.id]).sort((a,b)=>RANK[a.id]-RANK[b.id]);
+  const rest=D.listings.filter(x=>!RANK[x.id] && !isHidden(x));
+  const N = WSTATE.topN==="all" ? Infinity : WSTATE.topN;
+  const rows=[...ranked,...rest];
+  document.getElementById("lbrows").innerHTML = rows.map((x,i)=>{
+    const off = i>=N || !RANK[x.id];
+    const cut = i===N && N<rows.length ? `<div class="lbcut" title="only the top ${N} show on the map"></div>` : "";
     const left=Math.max(2,Math.min(98,(x.fit||0)*10));
     const col=x.bucket==="apt"?css("--apt"):css("--room");
-    return `<div class="lbrow ${x.pick?'pick':''} ${isReached(x)?'reached':''} ${x.gone?'gone':''}" data-id="${x.id}">
-      <span class="lbrank num">${RANK[x.id]}</span>
+    return `${cut}<div class="lbrow ${x.pick?'pick':''} ${isReached(x)?'reached':''} ${x.gone?'gone':''} ${off?'offboard':''}" data-id="${x.id}">
+      <span class="lbrank num">${rk(x)}</span>
       <span class="lbname">${x.loved?'<span class="love">♥</span> ':''}${shortHood(x.hood)}
         <span class="lbsub num">${money(x.price)} · SF ${x.drive_sf} · Bk ${x.drive_berk}</span></span>
       <span class="lbaxis"><i class="lbtick"></i><i class="lbdot" style="left:${left}%;background:${col}"></i></span>
@@ -900,10 +926,10 @@ function toast(msg){
   t._h=setTimeout(()=>t.classList.remove("show"),2200);
 }
 
-function refreshReachedUI(){ renderGrid(); renderLeaderboard(); renderPicks(); renderGio();
+function refreshReachedUI(){ recomputeAll(); renderGrid(); renderLeaderboard(); renderPicks(); renderGio();
   Object.values(markerById).forEach(m=>map.removeLayer(m));
   for(const k in markerById) delete markerById[k];
-  drawMarkers(D.listings.filter(x=>!isHidden(x))); drawGioMarkers(GIO.listings.filter(x=>!isHidden(x))); }
+  drawMarkers(D.listings.filter(onBoard)); drawGioMarkers(GIO.listings.filter(x=>!isHidden(x))); }
 
 /* localStorage mirror: reach-out marks survive a dead backend / offline use.
    Server wins on conflicts; local-only entries are pushed up when it's back. */
@@ -1004,12 +1030,15 @@ document.addEventListener("click",e=>{
 });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeReach(); });
 
-drawMarkers(D.listings.filter(x=>!isHidden(x)));   // map + leaderboard show all non-hidden listings
+recomputeAll();                                     // fit/rank/board under current sliders, before first paint
+drawMarkers(D.listings.filter(onBoard));            // map + grid show the top-N board; full ranking lives in the list
 drawGioMarkers(GIO.listings.filter(x=>!isHidden(x)));
 renderLeaderboard();
 renderGrid();
+renderPicks();
 renderGio();
 renderHoods();
+onWeightsChanged(refreshReachedUI);                 // sliders re-rank everything (debounced 80ms)
 loadReached();             // then overlay reached-out state from the backend
 </script>
 <div class="modal-bg" id="reachModal">
