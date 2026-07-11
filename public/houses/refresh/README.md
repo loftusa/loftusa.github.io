@@ -1,24 +1,30 @@
 # /houses refresh pipeline
 
-Keeps **alex-loftus.com/houses** fresh from live Craigslist data. Runs on
-GitHub Actions (`.github/workflows/houses-refresh.yml`) — Craigslist is
-reachable from Actions runners (verified: sapi/pages/images all 200).
+Keeps **alex-loftus.com/houses** fresh from live Craigslist data, enriched
+with Rent.com managed-complex listings. Runs on GitHub Actions
+(`.github/workflows/houses-refresh.yml`) — Craigslist and Rent.com (page +
+`i.rent.com` photo CDN) are both reachable from Actions runners (verified
+2026-07-11: all 200).
 Pushing `data.js` auto-deploys via Vercel; `deploy.yml` is paths-filtered so
 these commits don't redeploy the Fly backend.
 
 ## Modes
 
 ```bash
-python3 public/houses/refresh/refresh.py --pull    # Craigslist -> refresh/shortlist.json
+python3 public/houses/refresh/refresh.py --pull    # Craigslist + Rent.com -> refresh/shortlist.json
 python3 public/houses/refresh/rate.py              # Claude API rates every listing -> ratings.json
 python3 public/houses/refresh/refresh.py --build   # merge + rank -> public/houses/data.js
 python3 public/houses/refresh/refresh.py --sweep   # keyless: prune dead listings from data.js
 ```
 
 - **full** (daily, 7am PT): `--pull` scrapes the sapi JSON API across SF /
-  East Bay / North Bay, filters to Alex's zone/budget, attaches neighborhood
+  East Bay / North Bay, plus Rent.com city pages (SF/Berkeley/Oakland/Sausalito,
+  `__NEXT_DATA__` JSON — best-effort: a blocked source only warns; rows carry
+  `src: "cl"|"rent"`), cross-source-dedupes (~50m + ~3% price keeps the
+  Craigslist copy), filters to Alex's zone/budget, attaches neighborhood
   vibe + dual-anchor (SF **and** Berkeley) commute priors, selects ~55 diverse
-  candidates, scrapes photo galleries + posting bodies. `rate.py` tiles each
+  candidates, scrapes Craigslist photo galleries + posting bodies (Rent.com
+  rows ship theirs in the blob). `rate.py` tiles each
   listing's photos into a montage and rates batches via the Messages API
   (structured JSON output, full-coverage validation, fails loud; needs
   `ANTHROPIC_API_KEY`; `RATE_MODEL` env overrides the model — default
@@ -50,7 +56,8 @@ in `rate.py`.
 ## Tests
 
 Pure-function regressions (priors incl. the marina/Marin substring bug,
-berk_drive, cscore, contact extraction) live in
+berk_drive, cscore, contact extraction, Rent.com parsing against a committed
+`__NEXT_DATA__` fixture, cross-source dedupe, source-failure tolerance) live in
 `backend/tests/test_refresh_pipeline.py` and run with the backend suite:
 `uv run pytest backend/tests/`.
 
@@ -60,6 +67,9 @@ berk_drive, cscore, contact extraction) live in
   and git-ignored; only `public/houses/data.js` is committed/deployed.
 - Output schema must match what `public/houses/index.html` reads
   (`listings[].{scores{...aesthetic},fit,rationale,drive_sf,drive_berk,ferry_sf,loved,pick,pinned,gone,imgs,contact_email,contact_phone}`,
-  `neighborhoods[]`, `meta.{n_scouted,n_shown,generated,price_med,move_by}`).
+  `neighborhoods[]`, `meta.{n_scouted,n_shown,generated,price_med,move_by}`);
+  additive multi-source fields: `listings[].src`, `meta.sources` (per-source
+  counts), and `meta.source` mentions Rent.com only when rent rows are shown.
+  Design: `docs/superpowers/specs/2026-07-11-houses-multisource-scraping-design.md`.
 - Reach-out state lives in the Fly backend (`/houses/reached-out`, craigslist-
   URL-validated + per-IP rate-limited) with a localStorage mirror in the page.

@@ -2,7 +2,9 @@
 """Daily refresh pipeline for alex-loftus.com/houses.
 
 Two modes:
-  --pull   Pull live Craigslist rentals (sapi JSON API), dedupe, filter to Alex's
+  --pull   Pull live Craigslist rentals (sapi JSON API) + Rent.com complexes
+           (__NEXT_DATA__ JSON; best-effort, see pull_extra_sources), dedupe
+           (incl. cross-source by proximity), filter to Alex's
            zone/budget, attach neighborhood vibe + dual-anchor commute priors,
            select ~50 diverse candidates, scrape each one's photo gallery AND
            posting body text -> writes houses/refresh/shortlist.json.
@@ -203,6 +205,7 @@ def parse_item(it, locs):
         url=url,
         img=img,
         nimg=len(imgs),
+        src="cl",
     )
 
 
@@ -245,6 +248,180 @@ def pull_raw(centers=CENTERS, queries=QUERIES):
             )
             time.sleep(1.2)  # be polite
     return list(seen.values())
+
+
+# --------------------------------------------------------------------------- #
+# extra sources (non-Craigslist). Craigslist is the backbone; everything here
+# is best-effort — a blocked/broken source warns and contributes nothing.
+# Spec: docs/superpowers/specs/2026-07-11-houses-multisource-scraping-design.md
+# --------------------------------------------------------------------------- #
+NEXT_DATA_RE = re.compile(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', re.S)
+RENT_IMG = "https://i.rent.com/t_3x2_fixed_webp_lg/{}"
+# One GET per city page per run (~30 listings each; max-price matches Alex's
+# apt ceiling). Managed complexes only -> enriches the "apt" bucket.
+RENT_URLS = [
+    ("sf", "https://www.rent.com/california/san-francisco-apartments/max-price-3000"),
+    ("berkeley", "https://www.rent.com/california/berkeley-apartments/max-price-3000"),
+    ("oakland", "https://www.rent.com/california/oakland-apartments/max-price-3000"),
+    (
+        "sausalito",
+        "https://www.rent.com/california/sausalito-apartments/max-price-3000",
+    ),
+]
+
+
+def curl_text(url):
+    out = subprocess.run(
+        ["curl", "-sSL", "--max-time", "45", "-A", UA, url],
+        capture_output=True,
+        text=True,
+    )
+    if out.returncode != 0 or not out.stdout:
+        print(
+            f"  curl failed rc={out.returncode} err={out.stderr[:120]}", file=sys.stderr
+        )
+        return None
+    return out.stdout
+
+
+def parse_rent_listing(lst):
+    """One Rent.com __NEXT_DATA__ listing -> normalized row (None = unusable).
+
+    Rows without coords (map), price, or photos (montage/cards) are dropped —
+    no geocoder by design. hood = city (the blob has only numeric hood ids);
+    the street address rides in title/body for the LLM rater. body is
+    synthesized so extract_contact() picks up the leasing-office phone.
+    """
+    loc = lst.get("location") or {}
+    lat, lon = loc.get("lat"), loc.get("lng")
+    price = lst.get("price")
+    imgs = [
+        RENT_IMG.format(p["id"])
+        for p in (lst.get("optimizedPhotos") or [])
+        if p.get("id")
+    ][:24]
+    if not (lat and lon and lst.get("urlPathname")):
+        return None
+    if not isinstance(price, (int, float)) or not 100 < price < 20000:
+        return None
+    if not imgs:
+        return None
+    bcd = [
+        b
+        for b in (lst.get("bedCountData") or [])
+        if isinstance((b.get("prices") or {}).get("low"), (int, float))
+    ]
+    beds = min(bcd, key=lambda b: b["prices"]["low"])["beds"] if bcd else None
+    name = lst.get("name") or ""
+    addr = lst.get("addressFull") or ""
+    parts = ["Managed apartment complex (via Rent.com)."]
+    facts = " · ".join(
+        x
+        for x in (
+            lst.get("bedText"),
+            lst.get("bathText"),
+            lst.get("squareFeetText"),
+            lst.get("unitsAvailableText"),
+        )
+        if x
+    )
+    if facts:
+        parts.append(facts + ".")
+    amenities = lst.get("amenitiesHighlighted") or []
+    if amenities:
+        parts.append("Amenities: " + ", ".join(amenities[:10]) + ".")
+    if lst.get("phoneDesktopText"):
+        parts.append(f"Leasing office: {lst['phoneDesktopText']}.")
+    return dict(
+        pid=lst.get("id"),
+        price=int(price),
+        pdisp=lst.get("priceText"),
+        beds=beds,
+        bucket="apt",
+        hood=(loc.get("city") or "").lower() or None,
+        lat=lat,
+        lon=lon,
+        title=f"{name} — {addr}" if addr else name,
+        url="https://www.rent.com" + lst["urlPathname"],
+        img=imgs[0],
+        imgs=imgs,
+        nimg=len(imgs),
+        body=" ".join(parts)[:1600],
+        scrape_status="src",  # gallery+body ship with the row; no page scrape
+        src="rent",
+    )
+
+
+def pull_rent():
+    seen = {}
+    for cname, url in RENT_URLS:
+        txt = curl_text(url)
+        m = NEXT_DATA_RE.search(txt or "")
+        if not m:
+            print(f"[rent/{cname}] no __NEXT_DATA__ (blocked or layout change)")
+            continue
+        d = json.loads(m.group(1))
+        items = d["props"]["pageProps"]["pageData"]["location"]["listingSearch"][
+            "listings"
+        ]
+        n_new = 0
+        for raw in items:
+            r = parse_rent_listing(raw)
+            if r is None:
+                continue
+            if r["pid"] not in seen:
+                seen[r["pid"]] = r
+                n_new += 1
+        print(f"[rent/{cname}] pulled {len(items)}; +{n_new} new; unique={len(seen)}")
+        time.sleep(1.2)  # be polite
+    return list(seen.values())
+
+
+EXTRA_SOURCES = [("rent", pull_rent)]
+
+
+def pull_extra_sources(sources=None):
+    """Best-effort rows from every non-Craigslist source; failures only warn."""
+    rows = []
+    for name, fn in EXTRA_SOURCES if sources is None else sources:
+        try:
+            got = fn()
+            print(f"[{name}] {len(got)} usable rows")
+            rows.extend(got)
+        except Exception as e:
+            print(
+                f"warn: {name} pull failed ({e}) — continuing without it",
+                file=sys.stderr,
+            )
+    return rows
+
+
+DUP_RADIUS_MI = 0.031  # ~50 m
+DUP_PRICE_FRAC = 0.03
+
+
+def dedupe_cross_source(cl_rows, extra_rows):
+    """Same unit on Craigslist AND an extra source -> keep the Craigslist row
+    (established ids + contact flow). Match = within ~50m and ~3% on price."""
+    anchors = [c for c in cl_rows if c.get("lat") and c.get("lon") and c.get("price")]
+    out, n_dropped = list(cl_rows), 0
+    for r in extra_rows:
+        if not (r.get("lat") and r.get("lon") and r.get("price")):
+            out.append(r)  # select_shortlist drops coordless rows anyway
+            continue
+        dup = any(
+            haversine_mi(r["lat"], r["lon"], c["lat"], c["lon"]) <= DUP_RADIUS_MI
+            and abs(r["price"] - c["price"])
+            <= DUP_PRICE_FRAC * max(r["price"], c["price"])
+            for c in anchors
+        )
+        if dup:
+            n_dropped += 1
+        else:
+            out.append(r)
+    if n_dropped:
+        print(f"cross-source dedupe: dropped {n_dropped} rows already on Craigslist")
+    return out
 
 
 # keyword -> (region, offpeak_drive_min_to_downtownSF, nature, quiet, nice, social) 0-5
@@ -611,13 +788,15 @@ def scrape_page(r):
 
 def do_pull():
     print("== PULL ==")
-    rows = pull_raw()
-    if len(rows) < MIN_KEPT:
+    cl_rows = pull_raw()
+    if len(cl_rows) < MIN_KEPT:
         sys.exit(
-            f"FATAL: only {len(rows)} raw listings pulled from Craigslist "
+            f"FATAL: only {len(cl_rows)} raw listings pulled from Craigslist "
             f"(expected many). The datacenter IP was likely blocked/rate-limited. "
             f"Refusing to build a degraded page."
         )
+    extra = pull_extra_sources()
+    rows = dedupe_cross_source(cl_rows, extra)
     keep, sel = select_shortlist(rows)
     if len(sel) < MIN_KEPT:
         sys.exit(
@@ -640,11 +819,16 @@ def do_pull():
             f"warn: gio pull failed ({e}) — continuing without a Gio refresh",
             file=sys.stderr,
         )
-    print(f"scraping {len(sel) + len(gio_sel)} listing pages (photos + body)...")
+    to_scrape = [r for r in sel + gio_sel if r.get("src", "cl") == "cl"]
+    print(f"scraping {len(to_scrape)} craigslist listing pages (photos + body)...")
     with ThreadPoolExecutor(max_workers=8) as ex:
-        scraped = dict(ex.map(scrape_page, sel + gio_sel))
+        scraped = dict(ex.map(scrape_page, to_scrape))
     n_dead = n_body = 0
     for r in sel + gio_sel:
+        if r.get("src", "cl") != "cl":
+            if r.get("body"):
+                n_body += 1
+            continue  # non-CL rows arrive with full gallery + body
         info = scraped.get(r["id"], {})
         gallery = info.get("imgs") or ([r["img"]] if r["img"] else [])
         r["imgs"] = gallery
@@ -667,7 +851,9 @@ def do_pull():
     json.dump(sel + gio_sel, open(SHORTLIST, "w"), indent=1)
     json.dump(
         {
-            "n_raw": len(rows),
+            "n_raw": len(cl_rows),
+            "n_extra_raw": len(extra),
+            "n_extra_kept": len(rows) - len(cl_rows),
             "n_kept": len(keep),
             "n_shortlist": len(sel),
             "gio_pull_ok": gio_ok,
@@ -686,6 +872,7 @@ def do_pull():
     )
     print("by region:", dict(collections.Counter(r["region"] for r in sel)))
     print("by bucket:", dict(collections.Counter(r["bucket"] for r in sel)))
+    print("by source:", dict(collections.Counter(r.get("src", "cl") for r in sel)))
 
 
 # --------------------------------------------------------------------------- #
@@ -764,6 +951,7 @@ def gs(scores, k, d=5):
     return d if v is None else v
 
 
+SRC_LABELS = {"cl": "Craigslist (live API)", "rent": "Rent.com"}
 LOVED = ("mill valley", "sausalito")
 FERRY_SF = ("sausalito", "mill valley", "tiburon", "larkspur", "corte madera")
 
@@ -1231,6 +1419,7 @@ def do_build():
                 "drive_min": r["drive_min"],
                 "gym_min": r.get("gym_min"),
                 "title": r.get("title", ""),
+                "src": r.get("src", "cl"),
                 "fit": rt.get("fit"),
                 "scores": scores,
                 "rationale": rationale,
@@ -1318,12 +1507,16 @@ def do_build():
         gio = (load_data_js() or {}).get("gio")
         if gio:
             print("gio: no fresh data — carrying previous section forward")
+    src_counts = dict(collections.Counter(x.get("src", "cl") for x in listings))
+    src_order = ["cl", "rent"] + sorted(set(src_counts) - {"cl", "rent"})
+    src_str = " + ".join(SRC_LABELS.get(k, k) for k in src_order if k in src_counts)
     meta = {
         "generated": today,
         "n_scouted": stats.get("n_kept", len(sel)),
         "n_shortlist": stats.get("n_shortlist", len(sel)),
         "n_shown": len(listings),
-        "source": f"Craigslist (live API), refreshed {today}",
+        "sources": src_counts,
+        "source": f"{src_str}, refreshed {today}",
         "anchors": "downtown SF + downtown Berkeley (FAR Labs)",
         "price_min": min(x["price"] for x in listings),
         "price_max": max(x["price"] for x in listings),

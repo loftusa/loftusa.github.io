@@ -1,0 +1,323 @@
+{
+ "props": {
+  "pageProps": {
+   "pageData": {
+    "location": {
+     "listingSearch": {
+      "listings": [
+       {
+        "name": "Lakewood Apartments At Lake Merced",
+        "id": "lc6069711",
+        "location": {
+         "lat": 37.716523,
+         "lng": -122.4982,
+         "city": "San Francisco",
+         "state": "California",
+         "stateAbbr": "CA",
+         "zip": "94132"
+        },
+        "price": 2998,
+        "priceText": "$2,998+",
+        "bedCountData": [
+         {
+          "beds": 1,
+          "prices": {
+           "low": 2998
+          }
+         },
+         {
+          "beds": 2,
+          "prices": {
+           "low": 4099
+          }
+         }
+        ],
+        "bedText": "1\u20132 Beds",
+        "bathText": "1\u20132 Baths",
+        "squareFeetText": "761\u20131115 Sqft",
+        "unitsAvailableText": "3 Units Available",
+        "amenitiesHighlighted": [
+         "Air Conditioning",
+         "Patio",
+         "Dishwasher",
+         "Fitness Center",
+         "Elevator"
+        ],
+        "optimizedPhotos": [
+         {
+          "id": "9025650a9b33296a1915817f489e040d"
+         },
+         {
+          "id": "3fb5528fa850a59b8be888500ec3ba78"
+         },
+         {
+          "id": "6136b33d6a2cd041a9f729200e3547d1"
+         },
+         {
+          "id": "2c815ec33d37f76f02c6351929ba715b"
+         }
+        ],
+        "urlPathname": "/apartment/lakewood-apartments-at-lake-merced-san-francisco-ca-lc6069711",
+        "phoneDesktopText": "(628) 222-1909",
+        "addressFull": "511-695 John Muir Dr, San Francisco, CA 94132",
+        "propertyType": "APARTMENTS",
+        "offMarket": false,
+        "updatedAt": "2026-07-10T00:00:00.000Z"
+       },
+       {
+        "name": "1257 Bush Street",
+        "id": "lc5915238",
+        "location": {
+         "lat": 37.788703,
+         "lng": -122.41796,
+         "city": "San Francisco",
+         "state": "California",
+         "stateAbbr": "CA",
+         "zip": "94109"
+        },
+        "price": 2500,
+        "priceText": "$2,500",
+        "bedCountData": [
+         {
+          "beds": 0,
+          "prices": {
+           "low": 2500
+          }
+         }
+        ],
+        "bedText": "Studio",
+        "bathText": "1 Bath",
+        "squareFeetText": "400 Sqft",
+        "unitsAvailableText": "1 Unit Available",
+        "amenitiesHighlighted": [
+         "Deck",
+         "Dishwasher",
+         "Elevator"
+        ],
+        "optimizedPhotos": [
+         {
+          "id": "7c5fb5adb33bbf30e01b1580b8042db5"
+         },
+         {
+          "id": "49a314f53e1b2856345d524107db680d"
+         },
+         {
+          "id": "293475abfffa6c8f3e72472eb9d421e5"
+         },
+         {
+          "id": "54b60c2288a5bfb0fb15b11e31fab186"
+         }
+        ],
+        "urlPathname": "/apartment/1257-bush-street-san-francisco-ca-lc5915238",
+        "phoneDesktopText": "(628) 600-7919",
+        "addressFull": "1257 Bush St, San Francisco, CA 94109",
+        "propertyType": "APARTMENTS",
+        "offMarket": false,
+        "updatedAt": "2026-06-16T00:00:00.000Z"
+       },
+       {
+        "name": "2605 Haste Street",
+        "id": "lc5932591",
+        "location": {
+         "lat": 37.866527,
+         "lng": -122.25606,
+         "city": "Berkeley",
+         "state": "California",
+         "stateAbbr": "CA",
+         "zip": "94704"
+        },
+        "price": 2795,
+        "priceText": "$2,795+",
+        "bedCountData": [
+         {
+          "beds": 0,
+          "prices": {
+           "low": 2795
+          }
+         },
+         {
+          "beds": 2,
+          "prices": {
+           "low": 3495
+          }
+         }
+        ],
+        "bedText": "Studio\u20132 Beds",
+        "bathText": "1 Bath",
+        "squareFeetText": "474\u2013867 Sqft",
+        "unitsAvailableText": "1 Unit Available",
+        "amenitiesHighlighted": [
+         "Pet Friendly",
+         "Dishwasher",
+         "Elevator"
+        ],
+        "optimizedPhotos": [
+         {
+          "id": "93ec4bbdb60d9aec7222bfbe2ab2a8dd"
+         },
+         {
+          "id": "948840a325af8eaee41a8713f831927e"
+         },
+         {
+          "id": "4cc0567654aded3a1ba381279f4cdac6"
+         },
+         {
+          "id": "fa615036fe20255fc9cbc9339dac2979"
+         }
+        ],
+        "urlPathname": "/apartment/2605-haste-street-berkeley-ca-lc5932591",
+        "phoneDesktopText": "(925) 871-1598",
+        "addressFull": "2605 Haste St, Berkeley, CA 94704",
+        "propertyType": "APARTMENTS",
+        "offMarket": false,
+        "updatedAt": "2026-07-09T00:00:00.000Z"
+       },
+       {
+        "name": "1060 Bush Street",
+        "id": "lcNOGEO",
+        "location": {
+         "city": "San Francisco",
+         "state": "California",
+         "stateAbbr": "CA",
+         "zip": "94109"
+        },
+        "price": 2550,
+        "priceText": "$2,550",
+        "bedCountData": [
+         {
+          "beds": 0,
+          "prices": {
+           "low": 2550
+          }
+         }
+        ],
+        "bedText": "Studio",
+        "bathText": "1 Bath",
+        "squareFeetText": null,
+        "unitsAvailableText": "2 Units Available",
+        "amenitiesHighlighted": [
+         "Pet Friendly",
+         "Patio",
+         "Dishwasher",
+         "Hardwood Flooring",
+         "Elevator"
+        ],
+        "optimizedPhotos": [
+         {
+          "id": "8f6bd48ce0199f2da247fe5dd2d83bdb"
+         },
+         {
+          "id": "7b8c926e44d4f9e597d14bfe00d2a540"
+         },
+         {
+          "id": "102607df35e98a9ced7dea876c1d1034"
+         },
+         {
+          "id": "114430716c52f12b042eb74ae229efee"
+         }
+        ],
+        "urlPathname": "/apartment/1060-bush-street-san-francisco-ca-lc6528011",
+        "phoneDesktopText": "(628) 225-4829",
+        "addressFull": "1060 Bush St, San Francisco, CA 94109",
+        "propertyType": "APARTMENTS",
+        "offMarket": false,
+        "updatedAt": "2026-07-09T00:00:00.000Z"
+       },
+       {
+        "name": "516 Ellis",
+        "id": "lcNOPHOTO",
+        "location": {
+         "lat": 37.784804,
+         "lng": -122.41471,
+         "city": "San Francisco",
+         "state": "California",
+         "stateAbbr": "CA",
+         "zip": "94109"
+        },
+        "price": 2695,
+        "priceText": "$2,695+",
+        "bedCountData": [
+         {
+          "beds": 0,
+          "prices": {
+           "low": null
+          }
+         },
+         {
+          "beds": 1,
+          "prices": {
+           "low": 2695
+          }
+         }
+        ],
+        "bedText": "Studio\u20131 Beds",
+        "bathText": "1 Bath",
+        "squareFeetText": "424 Sqft",
+        "unitsAvailableText": "1 Unit Available",
+        "amenitiesHighlighted": [
+         "Pet Friendly"
+        ],
+        "optimizedPhotos": [],
+        "urlPathname": "/apartment/516-ellis-san-francisco-ca-lc6189319",
+        "phoneDesktopText": "(628) 900-0559",
+        "addressFull": "516 Ellis St, San Francisco, CA 94109",
+        "propertyType": "APARTMENTS",
+        "offMarket": false,
+        "updatedAt": "2026-07-09T00:00:00.000Z"
+       },
+       {
+        "name": "1346 Pine St",
+        "id": "lcNOPRICE",
+        "location": {
+         "lat": 37.790228,
+         "lng": -122.41794,
+         "city": "San Francisco",
+         "state": "California",
+         "stateAbbr": "CA",
+         "zip": "94109"
+        },
+        "price": null,
+        "priceText": "$2,499",
+        "bedCountData": [
+         {
+          "beds": 0,
+          "prices": {
+           "low": 2499
+          }
+         }
+        ],
+        "bedText": "Studio",
+        "bathText": "1 Bath",
+        "squareFeetText": null,
+        "unitsAvailableText": "Available Now",
+        "amenitiesHighlighted": [
+         "Elevator"
+        ],
+        "optimizedPhotos": [
+         {
+          "id": "eb872455cbdffca6d770dac71bd4e768"
+         },
+         {
+          "id": "4b33819af1a57815527ac80b1114ed56"
+         },
+         {
+          "id": "355dbb949122b4588ae365fd26fd3e17"
+         },
+         {
+          "id": "0dcc201b2c12588ab852615533931c7d"
+         }
+        ],
+        "urlPathname": "/apartment/1346-pine-st-san-francisco-ca-lc5892403",
+        "phoneDesktopText": "(628) 626-7423",
+        "addressFull": "1346 Pine St, San Francisco, CA 94109",
+        "propertyType": "APARTMENTS",
+        "offMarket": false,
+        "updatedAt": "2026-07-03T00:00:00.000Z"
+       }
+      ]
+     }
+    }
+   }
+  }
+ }
+}

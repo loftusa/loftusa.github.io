@@ -468,3 +468,165 @@ def test_build_emits_fit_weights_and_pins_fit_values(tmp_path, monkeypatch):
     # no gym_min on the rows -> gym neutral 5.0. _rating scores -> apt 6.6, room 6.5.
     assert {x["fit"] for x in d["listings"]} == {6.6, 6.5}
     assert all(x["scores"]["gym"] == 5.0 for x in d["listings"])
+
+
+# ---- multi-source: Rent.com parsing, cross-source dedupe, failure tolerance
+#      (spec 2026-07-11-houses-multisource-scraping-design)
+
+_RENT_FIXTURE = (
+    Path(__file__).resolve().parent / "fixtures" / "rent_next_data_sample.json"
+)
+
+
+def _rent_fixture_listings():
+    import json as _json
+
+    d = _json.loads(_RENT_FIXTURE.read_text())
+    # the same nesting pull_rent() navigates in the live __NEXT_DATA__ blob
+    return d["props"]["pageProps"]["pageData"]["location"]["listingSearch"]["listings"]
+
+
+def test_parse_rent_listing_normalizes_real_blob():
+    ls = _rent_fixture_listings()
+    r = refresh.parse_rent_listing(ls[0])  # Lakewood Apartments (real data)
+    assert r["pid"] == "lc6069711"
+    assert r["src"] == "rent" and r["bucket"] == "apt"
+    assert r["price"] == 2998 and r["pdisp"] == "$2,998+"
+    assert r["beds"] == 1  # cheapest bedCountData entry is the 1BR
+    assert r["hood"] == "san francisco"
+    assert abs(r["lat"] - 37.716523) < 1e-6 and abs(r["lon"] - (-122.4982)) < 1e-6
+    assert r["url"].startswith("https://www.rent.com/apartment/")
+    assert r["imgs"] and all(u.startswith("https://i.rent.com/") for u in r["imgs"])
+    assert r["img"] == r["imgs"][0] and r["nimg"] == len(r["imgs"])
+    assert "Lakewood" in r["title"] and "John Muir Dr" in r["title"]
+    # synthesized body must surface the leasing-office phone to extract_contact
+    email, phone = refresh.extract_contact(r["body"])
+    assert phone == "(628) 222-1909" and email is None
+    assert r["scrape_status"] == "src"  # do_pull must not page-scrape this row
+
+
+def test_parse_rent_listing_drops_unusable_rows():
+    by_id = {x["id"]: x for x in _rent_fixture_listings()}
+    assert refresh.parse_rent_listing(by_id["lcNOGEO"]) is None  # map needs coords
+    assert (
+        refresh.parse_rent_listing(by_id["lcNOPHOTO"]) is None
+    )  # montage needs photos
+    assert refresh.parse_rent_listing(by_id["lcNOPRICE"]) is None
+    # all normal rows parse
+    good = [x for k, x in by_id.items() if not k.startswith("lcNO")]
+    assert all(refresh.parse_rent_listing(x) is not None for x in good)
+
+
+def test_parse_rent_listing_city_becomes_hood_with_working_priors():
+    by_id = {x["id"]: x for x in _rent_fixture_listings()}
+    r = refresh.parse_rent_listing(by_id["lc5932591"])  # Berkeley listing
+    assert r["hood"] == "berkeley"
+    assert refresh.priors(r["hood"])[0] == "EastBay"
+
+
+def _cl_anchor(price=2000, lat=37.78, lon=-122.42):
+    return {
+        "pid": 1,
+        "src": "cl",
+        "price": price,
+        "lat": lat,
+        "lon": lon,
+        "url": "https://www.craigslist.org/view/d/x/1",
+    }
+
+
+def _rent_near(price=2000, dlat=0.0, dlon=0.0):
+    return {
+        "pid": "lc1",
+        "src": "rent",
+        "price": price,
+        "lat": 37.78 + dlat,
+        "lon": -122.42 + dlon,
+        "url": "https://www.rent.com/apartment/x-lc1",
+    }
+
+
+def test_dedupe_cross_source_drops_same_unit_keeps_cl():
+    cl = [_cl_anchor()]
+    out = refresh.dedupe_cross_source(cl, [_rent_near(price=2040)])  # 2% off, same spot
+    assert out == cl  # rent copy dropped, craigslist row kept
+
+
+def test_dedupe_cross_source_keeps_distinct_rows():
+    cl = [_cl_anchor()]
+    far = _rent_near(dlat=0.01)  # ~0.7 mi away
+    pricey = _rent_near(price=2300)  # same spot, 15% price gap
+    out = refresh.dedupe_cross_source(cl, [far, pricey])
+    assert len(out) == 3
+
+
+def test_dedupe_cross_source_coordless_rows_pass_through():
+    coordless = dict(_rent_near(), lat=None, lon=None)
+    out = refresh.dedupe_cross_source([_cl_anchor()], [coordless])
+    assert coordless in out  # select_shortlist drops it later; dedupe never crashes
+
+
+def test_pull_extra_sources_source_failure_never_raises():
+    def boom():
+        raise RuntimeError("blocked by WAF")
+
+    def fine():
+        return [_rent_near()]
+
+    rows = refresh.pull_extra_sources([("bad", boom), ("rent", fine)])
+    assert rows == [_rent_near()]  # bad source warned + skipped, good one kept
+    assert refresh.pull_extra_sources([("bad", boom)]) == []
+
+
+# ---- build: src carried into data.js, per-source meta counts, source string
+
+
+def _rent_build_row(i):
+    return dict(
+        _alex_row(i, hood="berkeley"),
+        src="rent",
+        bucket="apt",
+        region="EastBay",
+        url=f"https://www.rent.com/apartment/complex-{i}-lc{i}",
+        body="Managed apartment complex (via Rent.com). Leasing office: (628) 222-1909.",
+    )
+
+
+def test_build_carries_src_and_per_source_meta(tmp_path, monkeypatch):
+    alex = [_alex_row(i) for i in range(1, 17)]
+    rent = [_rent_build_row(i) for i in range(17, 20)]
+    d = _run_build(
+        tmp_path,
+        monkeypatch,
+        alex + rent,
+        [_rating(r["id"]) for r in alex + rent],
+        {"n_kept": 100, "n_shortlist": 19},
+    )
+    by_src = {}
+    for x in d["listings"]:
+        by_src[x["src"]] = by_src.get(x["src"], 0) + 1
+    assert by_src == {"cl": 16, "rent": 3}
+    assert d["meta"]["sources"] == by_src
+    assert d["meta"]["source"].startswith(
+        "Craigslist (live API) + Rent.com, refreshed "
+    )
+    rent_shown = [x for x in d["listings"] if x["src"] == "rent"]
+    assert all(x["contact_phone"] == "(628) 222-1909" for x in rent_shown)
+
+
+def test_build_craigslist_only_output_unchanged(tmp_path, monkeypatch):
+    # zero extra sources reachable -> meta.source string identical to before
+    alex = [_alex_row(i) for i in range(1, 17)]  # no src key at all (old shape)
+    d = _run_build(
+        tmp_path,
+        monkeypatch,
+        alex,
+        [_rating(r["id"]) for r in alex],
+        {"n_kept": 100, "n_shortlist": 16},
+    )
+    import datetime as _dt
+
+    today = _dt.date.today().isoformat()
+    assert d["meta"]["source"] == f"Craigslist (live API), refreshed {today}"
+    assert d["meta"]["sources"] == {"cl": 16}
+    assert all(x["src"] == "cl" for x in d["listings"])
