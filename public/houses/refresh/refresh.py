@@ -1476,6 +1476,18 @@ def do_build():
         )
     listings.sort(key=lambda x: -(x["fit"] or 0))
 
+    # first_seen: stamp when each URL first appeared on the board so the UI can
+    # flag same-day arrivals. Carried forward by URL across builds; None means
+    # the row predates this field (old, exact date unknown) — deliberately NOT
+    # backfilled so rollout day doesn't flag the whole board as new.
+    prev_seen = {
+        x["url"]: x.get("first_seen")
+        for x in (load_data_js() or {}).get("listings", [])
+    }
+    today = datetime.date.today().isoformat()
+    for x in listings:
+        x["first_seen"] = prev_seen.get(x["url"]) if x["url"] in prev_seen else today
+
     if len(listings) < MIN_SHOWN:
         sys.exit(
             f"FATAL: only {len(listings)} listings survived rating/filtering "
@@ -1498,7 +1510,6 @@ def do_build():
             x["pick"] = False
 
     neighborhoods = build_neighborhoods(listings)
-    today = datetime.date.today().isoformat()
     stats = {}
     if os.path.exists(PULL_STATS):
         stats = json.load(open(PULL_STATS))

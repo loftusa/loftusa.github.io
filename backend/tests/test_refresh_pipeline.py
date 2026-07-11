@@ -630,3 +630,37 @@ def test_build_craigslist_only_output_unchanged(tmp_path, monkeypatch):
     assert d["meta"]["source"] == f"Craigslist (live API), refreshed {today}"
     assert d["meta"]["sources"] == {"cl": 16}
     assert all(x["src"] == "cl" for x in d["listings"])
+
+
+def test_build_stamps_first_seen_new_vs_carried(tmp_path, monkeypatch):
+    """first_seen: new URLs stamp today; URLs already on the board carry their
+    date forward (None when the previous board predates the field), so the UI
+    can flag same-day arrivals without a false 'new' flood on rollout."""
+    import datetime as _dt
+
+    alex = [_alex_row(i) for i in range(1, 17)]
+    ratings = [_rating(r["id"]) for r in alex]
+    stats = {"n_kept": 100, "n_shortlist": 16}
+    today = _dt.date.today().isoformat()
+
+    # bootstrap: no previous data.js at all -> everything is genuinely new
+    d1 = _run_build(tmp_path / "a", monkeypatch, alex, ratings, stats)
+    assert all(x["first_seen"] == today for x in d1["listings"])
+
+    # carried board: known url keeps its date; known url without the field
+    # stays None (old, date unknown); unseen urls stamp today
+    prev = {
+        "meta": {"generated": "2026-07-01"},
+        "listings": [
+            {"url": alex[0]["url"], "first_seen": "2026-07-01"},
+            {"url": alex[1]["url"]},
+        ],
+    }
+    d2 = _run_build(tmp_path / "b", monkeypatch, alex, ratings, stats, prev_data=prev)
+    by_url = {x["url"]: x for x in d2["listings"]}
+    assert by_url[alex[0]["url"]]["first_seen"] == "2026-07-01"
+    assert by_url[alex[1]["url"]]["first_seen"] is None
+    fresh = [
+        x for x in d2["listings"] if x["url"] not in (alex[0]["url"], alex[1]["url"])
+    ]
+    assert fresh and all(x["first_seen"] == today for x in fresh)

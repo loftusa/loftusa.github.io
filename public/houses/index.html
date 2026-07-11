@@ -85,6 +85,7 @@
   .lbname{font-size:12px;line-height:1.2;overflow:hidden}
   .lbname .lbsub{display:block;font-size:9.5px;color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .lbname .love{color:#b5573f}
+  .lbname .lbnew{font-size:8px;font-family:-apple-system,sans-serif;font-weight:700;letter-spacing:.04em;color:var(--good);margin-left:3px;text-transform:uppercase}
   .lbaxis{position:relative;height:16px}
   .lbaxis .lbtick{position:absolute;left:50%;top:2px;bottom:2px;width:1px;background:var(--rule)}
   .lbaxis::before{content:"";position:absolute;left:2%;right:2%;top:50%;height:1px;background:var(--rule)}
@@ -890,7 +891,7 @@ function renderLeaderboard(){
     const col=x.bucket==="apt"?css("--apt"):css("--room");
     return `${cut}<div class="lbrow ${x.pick?'pick':''} ${isReached(x)?'reached':''} ${x.gone?'gone':''} ${off?'offboard':''}" data-id="${x.id}">
       <span class="lbrank num">${rk(x)}</span>
-      <span class="lbname">${x.loved?'<span class="love">♥</span> ':''}${shortHood(x.hood)}
+      <span class="lbname">${x.loved?'<span class="love">♥</span> ':''}${shortHood(x.hood)}${x.first_seen===D.meta.generated?'<sup class="lbnew" title="first appeared in today\'s refresh">new</sup>':''}
         <span class="lbsub num">${money(x.price)} · SF ${x.drive_sf} · Bk ${x.drive_berk}</span></span>
       <span class="lbaxis"><i class="lbtick"></i><i class="lbdot" style="left:${left}%;background:${col}"></i></span>
       <span class="lbfit num" style="color:${fitColor(x.fit)}">${x.fit}</span>
