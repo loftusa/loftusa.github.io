@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Bay Area rental scout — where Alex should live</title>
+<title>Bay Area rental scout</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 <style>
@@ -245,10 +245,10 @@
 <body>
 <div class="wrap">
   <header class="masthead">
-    <h1>Where should Alex live?</h1>
-    <p class="sub">A scout of real, currently-listed Bay Area rentals — mapped, photographed, and rated
-      against what Alex actually wants: a nice, quiet, tree-lined spot (or housemates worth networking with),
-      up to ~35&nbsp;min from downtown SF, aiming near&nbsp;$2,000.</p>
+    <h1>Bay Area rental scout</h1>
+    <p class="sub">Real, currently-listed Bay Area rentals — scraped, mapped, photographed, and LLM-rated
+      daily. Set what matters to you below and the whole board re-ranks: the map, the ranking, and the
+      top picks all follow your sliders.</p>
     <div class="statstrip num" id="stats"></div>
   </header>
 
@@ -267,11 +267,11 @@
   </section>
 
   <h2>The map &amp; ranking</h2>
-  <p class="h2note">Each node is numbered by <b>overall rank</b> (1 = best fit) and sized by fit; its <b>color is the
+  <p class="h2note">Each node is numbered by <b>rank under your sliders</b> (1 = best fit) and sized by fit; its <b>color is the
     component that most lifts it above the field</b> — green dots rank on nature, gray on commute, rust on photos
-    (outline = type; key on the map). <b>Zoom in</b> and dots become six-petal score profiles. The ◆ are the commute
-    anchors. The list on the right is every listing on a 0→10 fit scale — hover to find it, click to fly there.
-    <span style="color:var(--faint)">⌘-scroll zooms the map.</span></p>
+    (outline = type; key on the map). Only the top&nbsp;N you've chosen appear here — the full ranking stays in the
+    list on the right (hover to find a dot, click to open it). <b>Zoom in</b> and dots become petal score profiles.
+    The ◆ are the commute anchors. <span style="color:var(--faint)">⌘-scroll zooms the map.</span></p>
   <div class="mapwrap">
     <div id="map"></div>
     <aside id="leaderboard">
@@ -280,7 +280,7 @@
     </aside>
   </div>
 
-  <h2>Top picks</h2>
+  <h2>Top 3 right now</h2>
   <p class="h2note" id="picknote"></p>
   <div class="scorekey" id="scorekey"></div>
   <div class="grid" id="picks"></div>
@@ -323,7 +323,7 @@
   <div class="grid" id="gioGrid"></div>
 
   <h2>Neighborhood scorecards</h2>
-  <p class="h2note">Independent read on each area Alex's listings cluster in — drive time, nature, quiet, niceness, and social/networking scene.</p>
+  <p class="h2note">Independent read on each area the listings cluster in — drive time, nature, quiet, niceness, and social/networking scene.</p>
   <div class="hoodgrid" id="hoods"><div class="empty">Neighborhood ratings populate once the review agents finish.</div></div>
 
   <h2>Browse it yourself</h2>
@@ -717,8 +717,7 @@ document.getElementById("foot").innerHTML = `
   and the overall rank rewards being reachable to both — while Mill Valley and Sausalito get a nudge because you love them (♥).
   <b>Ferry note:</b> Sausalito/Marin have a ~30-min ferry to the SF Ferry Building (great car-free link to SF), but there's
   <b>no direct ferry to Berkeley</b> — you'd ferry to SF then BART, so the ferry helps the SF side only.
-  Drive times are off-peak estimates (bridges run much worse at rush hour); ratings are my judgment on your stated
-  preferences, not gospel; some map pins are approximate to the neighborhood. Data mode: <b>${m.mode}</b>.
+  Drive times are off-peak estimates (bridges run much worse at rush hour); component scores are the daily rater's judgment, not gospel — the weighting is yours via the sliders; some map pins are approximate to the neighborhood. Data mode: <b>${m.mode}</b>.
   ${GIO.listings.length?` <b>For Gio:</b> the “walkable to OpenAI” section is pulled the same way but rated with Gio's
   own rubric — walk time to 1455 Third St first, then photo quality and value.`:""}`;
 
