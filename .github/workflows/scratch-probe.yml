@@ -27,3 +27,5 @@ jobs:
             rooms=$(grep -c 'listing-result\|panel-listing' /tmp/page.html || true)
             echo "PROBE url=$url http=$code bytes=$size next_data_len=$nd room_markers=$rooms"
           done
+          icode=$(curl -sS -A "$UA" --max-time 30 -o /tmp/img -w '%{http_code}' "https://i.rent.com/t_3x2_fixed_webp_lg/9025650a9b33296a1915817f489e040d" || echo FAIL)
+          echo "PROBE url=i.rent.com-image http=$icode bytes=$(wc -c < /tmp/img | tr -d ' ')"
