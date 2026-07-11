@@ -369,8 +369,11 @@ const WCOMP = [
   ["commute","commute","--commute"], ["nice","nice area","--nice"],
   ["aesthetic","photos","--aesthetic"], ["nature","nature","--nature"],
   ["value","value","--value"], ["soft","quiet/social","--quiet"], ["gym","gym","--gym"]];
+/* snapshot the shipped defaults ONCE — D.meta must stay pristine (reset ↺ reads this) */
+const ALEX_W0 = Object.assign({}, D.meta.fit_weights?.alex ||
+  {nice:.16, nature:.14, soft:.12, value:.12, commute:.24, aesthetic:.14, gym:.08});
 const defaultRawW = () => Object.fromEntries(FitMath.COMP_KEYS.map(k =>
-  [k, Math.round((D.meta.fit_weights?.alex?.[k] ?? 1/7) * 100)]));
+  [k, Math.round((ALEX_W0[k] ?? 1/7) * 100)]));
 let WSTATE = { w: defaultRawW(), cap: null, topN: 20 };
 try {
   const s = JSON.parse(localStorage.getItem(WKEY) || "null");
@@ -632,6 +635,7 @@ document.getElementById("gioSort").onchange=e=>{gstate.sort=e.target.value;rende
 /* ---- ranking drivers: which component most lifts a listing above the field ----
    Weights come from the build via meta.fit_weights (single source of truth in
    refresh.py); the literals below are a fallback for data.js written before that. */
+let ALEX_LIVE_W = null;   // normalized slider weights, set by recomputeAll(); FW stays pristine
 const FW = (D.meta && D.meta.fit_weights) || {
   alex:{nice:.16, nature:.14, soft:.12, value:.12, commute:.24, aesthetic:.14, gym:.08},
   gio:{commute:.34, aesthetic:.20, nice:.16, soft:.16, value:.14, nature:0, gym:0}};
@@ -657,7 +661,8 @@ function driverInfo(k, x){
 }
 function driver(x){
   const aud = x.id[0]==="G" ? "gio" : "alex";
-  const w = FW[aud]||FW.alex, sc = compScores(x), m = DRIVER_MEANS[aud];
+  const w = aud==="alex" ? (ALEX_LIVE_W || FW.alex) : (FW[aud]||FW.alex);
+  const sc = compScores(x), m = DRIVER_MEANS[aud];
   let bk = null, bv = -1e9;
   DRIVER_KEYS.forEach(k=>{ const wi = w[k]??0; if(!wi) return;
     const d = wi*(sc[k]-m[k]); if(d>bv){bv=d; bk=k;} });
@@ -675,7 +680,7 @@ function recomputeAll(){
   Object.keys(RANK).forEach(k => delete RANK[k]);
   ranked.forEach((x,i) => RANK[x.id] = i+1);
   BOARD = boardIds;
-  FW.alex = nw;                                                  // map driver hues follow the sliders
+  ALEX_LIVE_W = nw;                                              // map driver hues follow the sliders (never mutate FW/D.meta)
   const rs = cands.map(compScores), m = {};
   DRIVER_KEYS.forEach(k => m[k] = rs.reduce((t,r)=>t+r[k],0)/Math.max(1,rs.length));
   DRIVER_MEANS.alex = m;
