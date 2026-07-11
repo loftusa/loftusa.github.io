@@ -39,6 +39,21 @@
   .h2note{color:var(--muted);font-size:14px;margin:6px 0 16px}
 
   /* controls */
+  #wpanel{margin:16px 0 4px;padding:12px 14px;border:1px solid var(--rule);border-radius:8px;background:var(--panel)}
+  .wtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .wtitle{font-weight:600;font-size:13px;letter-spacing:.02em}
+  #wreset{font:11px -apple-system,sans-serif;border:none;background:none;color:var(--muted);cursor:pointer;padding:0}
+  #wreset:hover{color:var(--ink)}
+  #wbar{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-bottom:10px;background:var(--rule2)}
+  #wbar i{transition:width .25s ease}
+  #wsliders{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:2px 20px}
+  .wsl{display:grid;grid-template-columns:70px 1fr 34px;align-items:center;gap:8px;font-size:11.5px;color:var(--muted)}
+  .wsl input[type=range]{width:100%;height:3px;margin:0}
+  .wsl .wpct{text-align:right;font-variant-numeric:tabular-nums}
+  .wrow2{display:flex;gap:24px;align-items:center;margin-top:10px;font-size:11.5px;color:var(--muted)}
+  .wrow2 input[type=range]{width:130px;vertical-align:middle;accent-color:var(--ink)}
+  .wrow2 select{font:11.5px -apple-system,sans-serif;color:var(--ink)}
+  @media(max-width:860px){#wsliders{grid-template-columns:1fr 1fr}}
   .controls{display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center;margin:14px 0 18px;
     font-size:13px}
   .cgroup{display:flex;align-items:center;gap:7px}
@@ -235,6 +250,20 @@
     <div class="statstrip num" id="stats"></div>
   </header>
 
+  <section id="wpanel" class="ui">
+    <div class="wtop"><span class="wtitle">What matters to you</span>
+      <button id="wreset" title="Restore default weights">reset ↺</button></div>
+    <div id="wbar"></div>
+    <div id="wsliders"></div>
+    <div class="wrow2">
+      <label class="wprice-lab">max price <input type="range" id="wprice">
+        <span id="wpriceval" class="num"></span></label>
+      <label>show top <select id="wtopn">
+        <option value="10">10</option><option value="20" selected>20</option>
+        <option value="35">35</option><option value="all">all</option></select></label>
+    </div>
+  </section>
+
   <h2>The map &amp; ranking</h2>
   <p class="h2note">Each node is numbered by <b>overall rank</b> (1 = best fit) and sized by fit; its <b>color is the
     component that most lifts it above the field</b> — green dots rank on nature, gray on commute, rust on photos
@@ -305,6 +334,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="/houses/data.js"></script>
+<script src="/houses/fitmath.js"></script>
 <script>
 const D = window.HOUSES_DATA;
 /* reach-out state — declared first so render templates can call isReached() safely */
@@ -328,6 +358,60 @@ const SC = [["nature","Nat","--nature"],["quiet","Qt","--quiet"],["nice","Nice",
 const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
 const money = n => "$"+Number(n).toLocaleString();
 const bedsLabel = b => b===0?"Studio":(b==null?"":b+" BR");
+
+/* ---- weight sliders ("what matters to you") — state + panel ---- */
+const WKEY = "housesWeights.v1";
+const WCOMP = [
+  ["commute","commute","--commute"], ["nice","nice area","--nice"],
+  ["aesthetic","photos","--aesthetic"], ["nature","nature","--nature"],
+  ["value","value","--value"], ["soft","quiet/social","--quiet"], ["gym","gym","--gym"]];
+const defaultRawW = () => Object.fromEntries(FitMath.COMP_KEYS.map(k =>
+  [k, Math.round((D.meta.fit_weights?.alex?.[k] ?? 1/7) * 100)]));
+let WSTATE = { w: defaultRawW(), cap: null, topN: 20 };
+try {
+  const s = JSON.parse(localStorage.getItem(WKEY) || "null");
+  if (s && s.w && FitMath.COMP_KEYS.every(k => typeof s.w[k] === "number"))
+    WSTATE = { w: s.w, cap: s.cap ?? null, topN: s.topN ?? 20 };
+} catch(e) {}
+const wSave = () => { try{ localStorage.setItem(WKEY, JSON.stringify(WSTATE)); }catch(e){} };
+
+let wCb = null, wTimer = null;
+function onWeightsChanged(cb){ wCb = cb; }
+function wFire(){ clearTimeout(wTimer); wTimer = setTimeout(()=>{ wSave(); wCb && wCb(); }, 80); }
+
+const PMIN = Math.floor((D.meta.price_min ?? 500)/50)*50;
+const PMAX = Math.ceil((D.meta.price_max ?? 4000)/50)*50;
+
+function renderWeightPanel(){
+  const nw = FitMath.normWeights(WSTATE.w);
+  document.getElementById("wbar").innerHTML = WCOMP.map(([k,,v]) =>
+    `<i style="width:${(nw[k]*100).toFixed(1)}%;background:${css(v)}"></i>`).join("");
+  document.querySelectorAll("#wsliders .wpct").forEach(el =>
+    el.textContent = Math.round(nw[el.dataset.k]*100) + "%");
+  document.getElementById("wpriceval").textContent = WSTATE.cap == null ? "any" : money(WSTATE.cap);
+}
+
+(function initWeightPanel(){
+  document.getElementById("wsliders").innerHTML = WCOMP.map(([k,label,v]) =>
+    `<label class="wsl"><span>${label}</span>
+      <input type="range" min="0" max="100" value="${WSTATE.w[k]}" data-k="${k}" style="accent-color:${css(v)}">
+      <span class="wpct" data-k="${k}"></span></label>`).join("");
+  document.querySelectorAll("#wsliders input").forEach(inp =>
+    inp.oninput = () => { WSTATE.w[inp.dataset.k] = +inp.value; renderWeightPanel(); wFire(); });
+  const pr = document.getElementById("wprice");
+  pr.min = PMIN; pr.max = PMAX; pr.step = 50; pr.value = WSTATE.cap ?? PMAX;
+  pr.oninput = () => { WSTATE.cap = +pr.value >= PMAX ? null : +pr.value; renderWeightPanel(); wFire(); };
+  const tn = document.getElementById("wtopn");
+  tn.value = String(WSTATE.topN);
+  tn.onchange = () => { WSTATE.topN = tn.value === "all" ? "all" : +tn.value; wFire(); };
+  document.getElementById("wreset").onclick = () => {
+    WSTATE = { w: defaultRawW(), cap: null, topN: 20 };
+    document.querySelectorAll("#wsliders input").forEach(i => i.value = WSTATE.w[i.dataset.k]);
+    pr.value = PMAX; tn.value = "20";
+    renderWeightPanel(); wFire();
+  };
+  renderWeightPanel();
+})();
 const FALLBACK = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><rect width='40' height='40' fill='%23ece7db'/><text x='20' y='24' font-size='9' fill='%23999' text-anchor='middle'>no photo</text></svg>";
 
 /* ---- stats strip ---- */
