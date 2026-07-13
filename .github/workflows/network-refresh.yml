@@ -77,9 +77,22 @@ jobs:
           git config --global user.name "coauthorship-bot"
           git config --global user.email "alexloftus2004@gmail.com"
 
+      - name: API key canary
+        if: steps.gate.outputs.mode != 'skip'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          echo "key length: ${#ANTHROPIC_API_KEY}"
+          curl -s -o /tmp/canary.json -w "http %{http_code}\n" https://api.anthropic.com/v1/messages \
+            -H "x-api-key: $ANTHROPIC_API_KEY" -H "anthropic-version: 2023-06-01" \
+            -H "content-type: application/json" \
+            -d '{"model":"claude-sonnet-5","max_tokens":1,"messages":[{"role":"user","content":"hi"}]}'
+          python3 -c "import json;d=json.load(open('/tmp/canary.json'));print(d.get('type'), d.get('error',{}).get('type',''), d.get('error',{}).get('message','')[:200])"
+
       - uses: anthropics/claude-code-action@v1
         if: steps.gate.outputs.mode != 'skip'
         with:
+          show_full_output: true
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           claude_args: >-
