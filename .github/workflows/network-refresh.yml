@@ -83,6 +83,7 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           claude_args: >-
+            --model claude-sonnet-5
             --max-turns 80
             --allowedTools 'Edit,MultiEdit,Write,Read,Glob,Grep,LS,WebFetch,WebSearch,Bash(git:*),Bash(uv:*),Bash(python3:*),Bash(curl:*),Bash(date:*),Bash(ls:*),Bash(cat:*),Bash(which:*)'
           prompt: |
