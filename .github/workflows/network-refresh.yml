@@ -1,0 +1,213 @@
+# Keeps alex-loftus.com/networks fresh (co-authorship graph + affiliation graph
+# + analysis panels).
+#
+# Ported 2026-07-13 from the claude.ai cloud routine "Network data refresh
+# (hourly join-bake + nightly full)" after Anthropic's cloud egress policy
+# started blocking Semantic Scholar / OpenAlex / the Fly overlay API. GitHub
+# runners reach all three fine (same story as houses-refresh).
+#
+# Two tiers, same economics as the old routine:
+#   gate  — every hour, plain curl+python, free: fetch the affiliation overlay
+#           and diff its joins against roster.json. Proceed only at the 11:00
+#           UTC nightly or when a new self-join is pending.
+#   agent — a Claude agent (claude-code-action, ANTHROPIC_API_KEY repo secret)
+#           runs the actual merge/research/rebuild/test/push pipeline.
+#
+# Pushing the data auto-deploys via Vercel's git connection.
+name: network-refresh
+on:
+  schedule:
+    - cron: "5 * * * *" # hourly join-bake check; 11:05 UTC run is the full nightly
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "auto = gate decides; nightly = force the full nightly"
+        type: choice
+        options: [auto, nightly]
+        default: auto
+concurrency:
+  group: network-refresh
+  cancel-in-progress: false
+permissions:
+  contents: write
+  id-token: write
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: gate — is this run needed?
+        id: gate
+        run: |
+          set -euo pipefail
+          HOUR=$(date -u +%H)
+          FORCED="${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'nightly' }}"
+          OVERLAY=$(curl -sf --max-time 30 https://llm-resume-restless-thunder-9259.fly.dev/affiliations/overlay || echo '')
+          if [ -z "$OVERLAY" ]; then
+            if [ "$HOUR" = "11" ] || [ "$FORCED" = "true" ]; then
+              echo "::warning::overlay fetch failed — nightly proceeds without join info"
+              echo "mode=nightly" >> "$GITHUB_OUTPUT"; exit 0
+            fi
+            echo "overlay fetch failed outside the nightly window — stopping quietly"
+            echo "mode=skip" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          PENDING=$(echo "$OVERLAY" | python3 -c '
+          import json, re, sys
+          norm = lambda s: re.sub(r"[^a-z0-9]+", " ", str(s).lower()).strip()  # affiliation_events.norm_person
+          overlay = json.load(sys.stdin)
+          roster = json.load(open("experiments/coauthorship/roster.json"))
+          known = {norm(n) for n in roster.get("core", []) + roster.get("self_joined", [])}
+          print(",".join(sorted(p for p in overlay.get("join", {}) if norm(p) not in known)))
+          ')
+          if [ "$HOUR" = "11" ] || [ "$FORCED" = "true" ]; then MODE=nightly
+          elif [ -n "$PENDING" ]; then MODE=join-bake
+          else MODE=skip; fi
+          echo "mode=$MODE" >> "$GITHUB_OUTPUT"
+          echo "pending=$PENDING" >> "$GITHUB_OUTPUT"
+          echo "gate: mode=$MODE pending=[$PENDING]"
+
+      - uses: astral-sh/setup-uv@v5
+        if: steps.gate.outputs.mode != 'skip'
+
+      - name: configure git identity
+        if: steps.gate.outputs.mode != 'skip'
+        run: |
+          git config --global user.name "coauthorship-bot"
+          git config --global user.email "alexloftus2004@gmail.com"
+
+      - uses: anthropics/claude-code-action@v1
+        if: steps.gate.outputs.mode != 'skip'
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: >-
+            --max-turns 80
+            --allowedTools 'Edit,MultiEdit,Write,Read,Glob,Grep,LS,WebFetch,WebSearch,Bash(git:*),Bash(uv:*),Bash(python3:*),Bash(curl:*),Bash(date:*),Bash(ls:*),Bash(cat:*),Bash(which:*)'
+          prompt: |
+            You are an unattended job that refreshes the network data for
+            alex-loftus.com/networks (the co-authorship graph AND the affiliation graph +
+            its analysis panels) and pushes the result. This run's mode is
+            "${{ steps.gate.outputs.mode }}" (nightly = full refresh; join-bake =
+            on-demand bake for pending join(s): ${{ steps.gate.outputs.pending }} — say
+            which in your report). Work only in this fresh git checkout; there is no
+            local cache (experiments/coauthorship/raw/ is gitignored), so the build
+            fetches fresh data from Semantic Scholar automatically. uv is already
+            installed and git identity is configured. All commands run from
+            experiments/coauthorship/ unless stated otherwise; all scripts are PEP-723
+            inline-scripts, so `uv run` handles their dependencies itself. Follow these
+            steps exactly and report what happened.
+
+            1. Pull pending crowd corrections (papers graph): `cd
+            experiments/coauthorship && uv run merge_corrections.py`. Fail-safe by
+            design: on ANY fetch failure it warns, leaves overrides.json untouched, and
+            exits 0. A warning is NOT a build failure — note it and continue.
+
+            2. Pull affiliation self-service events: `uv run merge_affiliations.py`.
+            This fetches the affiliation overlay, rewrites
+            experiments/coauthorship/affiliation_overrides.json, and syncs self-joined
+            member stubs in seeds.json and roster.json (it only ever adds/removes
+            entries tagged "self_joined": true — it never touches hand-verified seeds).
+            Same fail-safe contract. Note any joins added or removed, by name.
+
+            3. AUTO-RESEARCH new joiners — ONLY those with an anchor URL. For each join
+            that step 2 ADDED today, check its overlay record under "join" (curl -s
+            https://llm-resume-restless-thunder-9259.fly.dev/affiliations/overlay): if
+            it has a non-null homepage or scholar_url, research that person's career; if
+            BOTH are null, SKIP this step for them entirely (identity cannot be pinned
+            from a bare name — the homonym failure mode published a geographer's career
+            under a chat member's name once; never again). For anchored joiners:
+               a. Use WebFetch/WebSearch starting FROM the anchor URL. Only record
+               affiliations supported by a page that is clearly about the anchored
+               person (their own site/CV, a lab people page naming them, a company team
+               page). 3-6 entries max: current employer/lab, degrees, notable
+               programs/communities. Type vocabulary: lab, program, company, university,
+               community.
+               b. Before writing org names, read the canonical org labels: `python3 -c
+               "import json; print([o['label'] for o in
+               json.load(open('../../assets/data/affiliations.json'))['orgs']])"` —
+               reuse an existing label EXACTLY when the org matches; otherwise use a
+               clean short name.
+               c. Submit each finding as an event through the public API (revertible +
+               provenance-marked; NEVER write experiments/coauthorship/affiliations.json
+               directly):
+                  curl -s -X POST https://llm-resume-restless-thunder-9259.fly.dev/affiliations/corrections -H 'Content-Type: application/json' -d '{"type":"aff_entry_set","payload":{"person":"<join name>","org":"<org>","type":"<type>","role":"<role>","years":"<years or empty>","current":<bool>,"source":"<the URL that shows it>"},"editor":"nightly auto-research"}'
+                  Also POST aff_city if their city is publicly stated. Then re-run `uv
+                  run merge_affiliations.py` so this build includes the findings.
+               d. Publication profile (papers map): search Semantic Scholar
+               (https://api.semanticscholar.org/graph/v1/author/search?query=<name>&fields=name,affiliations,paperCount,externalIds.ORCID
+               plus the author's papers endpoint) and OpenAlex
+               (https://api.openalex.org/authors?search=<name>&mailto=alexloftus2004@gmail.com).
+               Auto-pin ONLY when the evidence corroborates: the S2 pick's
+               papers/affiliation match the anchor page, AND (the S2 and OpenAlex picks
+               share an ORCID OR share a top paper title). If corroborated, edit ONLY
+               this person's self_joined-tagged stub in seeds.json: set s2_id (+url)
+               with verified true, and oa_id (+oa_url) with oa_verified true. If NOT
+               corroborated, leave the stub untouched (hollow node) and note it for
+               Alex. Never touch any seeds entry that lacks "self_joined": true.
+
+            4. Rebuild the papers graph: `uv run build_graph.py`. Reads seeds.json (new
+            self-joined members appear as hollow no-papers nodes, or with their papers
+            if step 3 pinned them), fetches papers from Semantic Scholar (shared pool,
+            429 backoff is normal, may take several minutes), applies overrides.json,
+            writes ../../assets/data/coauthorship.json. If this FAILS (non-zero exit /
+            traceback / no output file): commit NOTHING, report the error, and stop.
+            EXCEPTION: if it fails only after step 3 pinned a new id, revert that stub
+            edit (`git checkout -- seeds.json`, then re-run `uv run
+            merge_affiliations.py` to restore the plain stub) and retry the build once
+            before giving up.
+
+            5. Rebuild the affiliation artifacts: `uv run build_affiliations.py`. Writes
+            ../../assets/data/affiliations.json,
+            ../../assets/data/analyses-affiliations/shared.json, and the per-person stub
+            pages under ../../networks/ (new joiners get one automatically; stale ones
+            are removed). Its stdout may include 'new org ... needs a CANON line'
+            warnings — copy those into your report and the commit message verbatim (they
+            are Alex's review queue). If this FAILS: run `git checkout --
+            ../../assets/data/affiliations.json ../../assets/data/analyses-affiliations/
+            ../../networks/`, skip steps 6-7, but still proceed to commit the
+            papers-graph artifacts, and put the full error in the commit message and
+            report.
+
+            6. Rebuild the seven analysis panels INDIVIDUALLY (one `uv run` per script
+            under analyses-affiliations/). Panel headlines are computed from the data,
+            so joins and edits flow through automatically. If a panel exits non-zero:
+            restore just its output with `git checkout --
+            ../../assets/data/analyses-affiliations/<panel>.json` (keep the previous
+            one), record '<panel>: rebuild failed — needs a look', and continue. Do NOT
+            try to fix panel code yourself.
+
+            7. Test gate: `uv run --with pytest --with click --with httpx pytest
+            tests/test_affiliations_data.py tests/test_affiliation_events.py -q`. If any
+            panel was restored in step 6, add `-k "not test_panels_fresh"`. If the tests
+            fail for any other reason: restore ALL affiliation artifacts as in step 5's
+            failure branch, still ship the papers-graph artifacts, and surface the
+            pytest output.
+
+            8. Check what changed: `git status --porcelain`. The ONLY files you may
+            stage (each only if changed): assets/data/coauthorship.json,
+            experiments/coauthorship/overrides.json,
+            experiments/coauthorship/affiliation_overrides.json,
+            experiments/coauthorship/seeds.json, experiments/coauthorship/roster.json,
+            assets/data/affiliations.json, files under
+            assets/data/analyses-affiliations/, and files under networks/ (the
+            per-person stub pages). If NOTHING changed, report 'No change in network
+            data today.' and stop. Otherwise stage exactly those paths, verify nothing
+            else is staged, then:
+                git commit -m '<one-line summary>' -m '<details>'
+                git push origin HEAD:master
+            The commit message must summarize: overrides merged, affiliation edits/joins
+            applied (joins BY NAME), auto-research performed (who, how many entries,
+            anchor URL, whether the publication profile was pinned or left for Alex),
+            any 'needs a CANON line' warnings, and any panels restored. If the push is
+            rejected because the remote moved, `git pull --rebase origin master` and
+            push again once; if it still fails, report rather than force-pushing.
+
+            9. Final report: committed+pushed or no change; whether this was the nightly
+            or an on-demand join bake; counts from both merges; build summaries; joins
+            by name; auto-research outcomes; CANON warnings; any panel failures. Never
+            commit files outside the step-8 list. Never force-push. Never write
+            affiliations.json directly (events only). Never modify hand-verified seeds
+            entries (only self_joined-tagged stubs, only as specified in step 3). Never
+            modify the build or merge scripts.
