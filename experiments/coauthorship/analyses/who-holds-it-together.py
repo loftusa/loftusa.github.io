@@ -13,9 +13,9 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
 DERIVED = HERE / "_derived"  # unused here; kept per contract template
-OUT = REPO / "assets/data/analyses" / "who-holds-it-together.json"
+OUT = REPO / "public/assets/data/analyses" / "who-holds-it-together.json"
 
 SLUG = "who-holds-it-together"
 PAIRS = [(0, 1), (0, 2), (1, 2)]

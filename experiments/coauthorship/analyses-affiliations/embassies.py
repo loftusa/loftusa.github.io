@@ -8,11 +8,11 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
-assert (REPO / "assets").exists(), f"REPO mis-resolved: {REPO}"
+assert (REPO / "public" / "assets").exists(), f"REPO mis-resolved: {REPO}"
 
-AFF = json.loads((REPO / "assets/data/affiliations.json").read_text())
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
-OUT = REPO / "assets/data/analyses-affiliations" / "embassies.json"
+AFF = json.loads((REPO / "public/assets/data/affiliations.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
+OUT = REPO / "public/assets/data/analyses-affiliations" / "embassies.json"
 
 GRAPH_IDS = {n["id"] for n in GRAPH["nodes"]}
 ORG_BY_ID = {o["id"]: o for o in AFF["orgs"]}

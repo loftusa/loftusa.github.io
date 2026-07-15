@@ -11,9 +11,9 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
 DERIVED = HERE / "_derived"
-OUT = REPO / "assets/data/analyses" / "bands-not-duets.json"
+OUT = REPO / "public/assets/data/analyses" / "bands-not-duets.json"
 
 SLUG = "bands-not-duets"
 N_SHIP = 10  # ship top ~10 bands

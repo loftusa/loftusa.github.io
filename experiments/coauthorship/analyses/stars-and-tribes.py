@@ -17,9 +17,9 @@ from sklearn.mixture import GaussianMixture
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
 DERIVED = HERE / "_derived"  # unused here; kept per contract template
-OUT = REPO / "assets/data/analyses" / "stars-and-tribes.json"
+OUT = REPO / "public/assets/data/analyses" / "stars-and-tribes.json"
 
 SLUG = "stars-and-tribes"
 N_DIMS = 7  # was 6; bumped with build_graph.EMBED_DIM=7 once the graph grew (antonio+eric) — dim 6 dropped LSE-vs-labs ARI below 0.8

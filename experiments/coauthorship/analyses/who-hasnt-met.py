@@ -15,9 +15,9 @@ from hyppo.independence import Dcorr
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
 DERIVED = HERE / "_derived"  # papers.json / yearly.json / layers.json / tfidf.json (read-only)
-OUT = REPO / "assets/data/analyses" / "who-hasnt-met.json"
+OUT = REPO / "public/assets/data/analyses" / "who-hasnt-met.json"
 
 SLUG = "who-hasnt-met"
 N_NOMINATIONS = 8

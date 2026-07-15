@@ -16,7 +16,7 @@ from collections import deque
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
-DATA = REPO / "assets/data/coauthorship.json"
+DATA = REPO / "public/assets/data/coauthorship.json"
 
 data = json.loads(DATA.read_text())
 nodes = data["nodes"]

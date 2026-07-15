@@ -140,7 +140,7 @@ jobs:
                community.
                b. Before writing org names, read the canonical org labels: `python3 -c
                "import json; print([o['label'] for o in
-               json.load(open('../../assets/data/affiliations.json'))['orgs']])"` —
+               json.load(open('../../public/assets/data/affiliations.json'))['orgs']])"` —
                reuse an existing label EXACTLY when the org matches; otherwise use a
                clean short name.
                c. Submit each finding as an event through the public API (revertible +
@@ -165,7 +165,7 @@ jobs:
             self-joined members appear as hollow no-papers nodes, or with their papers
             if step 3 pinned them), fetches papers from Semantic Scholar (shared pool,
             429 backoff is normal, may take several minutes), applies overrides.json,
-            writes ../../assets/data/coauthorship.json. If this FAILS (non-zero exit /
+            writes ../../public/assets/data/coauthorship.json. If this FAILS (non-zero exit /
             traceback / no output file): commit NOTHING, report the error, and stop.
             EXCEPTION: if it fails only after step 3 pinned a new id, revert that stub
             edit (`git checkout -- seeds.json`, then re-run `uv run
@@ -173,13 +173,13 @@ jobs:
             before giving up.
 
             5. Rebuild the affiliation artifacts: `uv run build_affiliations.py`. Writes
-            ../../assets/data/affiliations.json,
-            ../../assets/data/analyses-affiliations/shared.json, and the per-person stub
+            ../../public/assets/data/affiliations.json,
+            ../../public/assets/data/analyses-affiliations/shared.json, and the per-person stub
             pages under ../../networks/ (new joiners get one automatically; stale ones
             are removed). Its stdout may include 'new org ... needs a CANON line'
             warnings — copy those into your report and the commit message verbatim (they
             are Alex's review queue). If this FAILS: run `git checkout --
-            ../../assets/data/affiliations.json ../../assets/data/analyses-affiliations/
+            ../../public/assets/data/affiliations.json ../../public/assets/data/analyses-affiliations/
             ../../networks/`, skip steps 6-7, but still proceed to commit the
             papers-graph artifacts, and put the full error in the commit message and
             report.
@@ -188,7 +188,7 @@ jobs:
             under analyses-affiliations/). Panel headlines are computed from the data,
             so joins and edits flow through automatically. If a panel exits non-zero:
             restore just its output with `git checkout --
-            ../../assets/data/analyses-affiliations/<panel>.json` (keep the previous
+            ../../public/assets/data/analyses-affiliations/<panel>.json` (keep the previous
             one), record '<panel>: rebuild failed — needs a look', and continue. Do NOT
             try to fix panel code yourself.
 
@@ -200,12 +200,12 @@ jobs:
             pytest output.
 
             8. Check what changed: `git status --porcelain`. The ONLY files you may
-            stage (each only if changed): assets/data/coauthorship.json,
+            stage (each only if changed): public/assets/data/coauthorship.json,
             experiments/coauthorship/overrides.json,
             experiments/coauthorship/affiliation_overrides.json,
             experiments/coauthorship/seeds.json, experiments/coauthorship/roster.json,
-            assets/data/affiliations.json, files under
-            assets/data/analyses-affiliations/, and files under networks/ (the
+            public/assets/data/affiliations.json, files under
+            public/assets/data/analyses-affiliations/, and files under networks/ (the
             per-person stub pages). If NOTHING changed, report 'No change in network
             data today.' and stop. Otherwise stage exactly those paths, verify nothing
             else is staged, then:

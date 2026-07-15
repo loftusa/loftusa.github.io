@@ -46,9 +46,9 @@ def distinct_count(titles: list[str]) -> int:
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
 DERIVED = HERE / "_derived"
-OUT = REPO / "assets/data/analyses" / "heating-up.json"
+OUT = REPO / "public/assets/data/analyses" / "heating-up.json"
 
 SLUG = "heating-up"
 SCAN_YEARS = (2024, 2025, 2026)  # the "recent" window the scan maximizes over

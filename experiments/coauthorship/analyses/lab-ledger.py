@@ -11,9 +11,9 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
 DERIVED = HERE / "_derived"  # unused here; kept per contract template
-OUT = REPO / "assets/data/analyses" / "lab-ledger.json"
+OUT = REPO / "public/assets/data/analyses" / "lab-ledger.json"
 
 SLUG = "lab-ledger"
 LABS = [0, 1, 2]

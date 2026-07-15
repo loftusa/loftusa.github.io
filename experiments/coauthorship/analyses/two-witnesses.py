@@ -17,9 +17,9 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
 DERIVED = HERE / "_derived"  # layers.json + papers.json (read-only)
-OUT = REPO / "assets/data/analyses" / "two-witnesses.json"
+OUT = REPO / "public/assets/data/analyses" / "two-witnesses.json"
 
 SLUG = "two-witnesses"
 N_BOOT = 200

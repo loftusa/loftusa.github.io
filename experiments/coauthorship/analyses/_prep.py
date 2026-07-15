@@ -11,7 +11,7 @@ logic as build_graph.py, then emits the derived inputs every panel shares:
     _derived/yearly.json    per-year + cumulative weighted edge stacks on a fixed vertex order
     _derived/layers.json    s2-only / openalex-only edge slices (same vertex order)
     _derived/tfidf.json     title TF-IDF vectors per list member
-    ../../../assets/data/analyses/shared.json   small browser lookup (labels/communities/degree)
+    ../../../public/assets/data/analyses/shared.json   small browser lookup (labels/communities/degree)
 
 Cache-first: reads the same v2 cache pages build_graph.py writes; a missing page is fetched
 from the live API (same fields, same backoff) and cached, so the first run populates and
@@ -37,8 +37,8 @@ RAW = COAUTH / "raw"
 SEEDS = COAUTH / "seeds.json"
 DERIVED = HERE / "_derived"
 DERIVED.mkdir(exist_ok=True)
-SHARED_OUT = REPO / "assets" / "data" / "analyses" / "shared.json"
-GRAPH = json.loads((REPO / "assets" / "data" / "coauthorship.json").read_text())
+SHARED_OUT = REPO / "public" / "assets" / "data" / "analyses" / "shared.json"
+GRAPH = json.loads((REPO / "public" / "assets" / "data" / "coauthorship.json").read_text())
 
 # ---- vendored from build_graph.py (lines 49-136) — KEEP IN SYNC -----------------------------
 MAX_AUTHORS = 25

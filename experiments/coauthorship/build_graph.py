@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["httpx", "networkx", "numpy", "graspologic", "scikit-learn", "setuptools<81"]
+# dependencies = ["httpx", "networkx", "numpy", "graspologic>=3.4", "scikit-learn", "setuptools<81"]
 # ///
 """Build the co-authorship graph JSON for /coauthorship/ from a hand-verified Semantic Scholar seed.
 
@@ -14,7 +14,7 @@ and write a static JSON the page loads directly (no live API calls at view time)
     cd experiments/coauthorship && uv run build_seeds.py   # once, then hand-verify seeds.json
     cd experiments/coauthorship && uv run build_graph.py   # rebuild the graph from verified seeds
 
-Output: ../../assets/data/coauthorship.json. Raw S2 paper responses cached under raw/ (offline re-runs).
+Output: ../../public/assets/data/coauthorship.json. Raw S2 paper responses cached under raw/ (offline re-runs).
 """
 import html
 import json
@@ -44,9 +44,9 @@ SEEDS = HERE / "seeds.json"
 OVERRIDES = HERE / "overrides.json"   # post-build human/crowd corrections (see overrides.py)
 RAW = HERE / "raw"
 RAW.mkdir(exist_ok=True)
-OUT = REPO / "assets" / "data" / "coauthorship.json"
+OUT = REPO / "public" / "assets" / "data" / "coauthorship.json"
 # drop <slug>.jpg|png|webp here (slug = lowercase name, spaces -> hyphens) to fill a node's avatar
-PHOTO_DIR = REPO / "assets" / "images" / "coauthors"
+PHOTO_DIR = REPO / "public" / "assets" / "images" / "coauthors"
 
 # connectors with these (common) names are dropped to avoid name-collision false bridges
 COMMON_STOP = {

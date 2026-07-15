@@ -11,11 +11,11 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-assert (REPO / "assets").exists(), f"REPO mis-resolved: {REPO}"
+assert (REPO / "public" / "assets").exists(), f"REPO mis-resolved: {REPO}"
 
-AFF = json.loads((REPO / "assets/data/affiliations.json").read_text())
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
-OUT = REPO / "assets/data/analyses-affiliations" / "range.json"
+AFF = json.loads((REPO / "public/assets/data/affiliations.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
+OUT = REPO / "public/assets/data/analyses-affiliations" / "range.json"
 
 SLUG = "range"
 TYPES = {"lab", "program", "company", "community", "university"}

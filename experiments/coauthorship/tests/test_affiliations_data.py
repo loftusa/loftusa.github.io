@@ -16,8 +16,8 @@ import pytest
 
 HERE = Path(__file__).resolve().parent.parent
 REPO = HERE.parents[1]
-OUT = REPO / "assets" / "data" / "affiliations.json"
-SHARED_OUT = REPO / "assets" / "data" / "analyses-affiliations" / "shared.json"
+OUT = REPO / "public" / "assets" / "data" / "affiliations.json"
+SHARED_OUT = REPO / "public" / "assets" / "data" / "analyses-affiliations" / "shared.json"
 
 sys.path.insert(0, str(HERE))
 from build_affiliations import PARENT, TYPE_WEIGHT, load_src, norm, normalize_years, slug  # noqa: E402
@@ -42,7 +42,7 @@ def test_build_is_deterministic():
 
 def test_people_complete(data):
     """People ship under the map's canonical node ids; the source names map onto them 1:1."""
-    graph = json.loads((REPO / "assets" / "data" / "coauthorship.json").read_text())
+    graph = json.loads((REPO / "public" / "assets" / "data" / "coauthorship.json").read_text())
     listed = {n["id"] for n in graph["nodes"] if n.get("is_list")}
     ids = {p["id"] for p in data["people"]}
     assert ids <= listed, ids - listed
@@ -131,7 +131,7 @@ def test_panels_fresh():
     """The six affiliation panels' committed JSON must match a fresh re-run — this is the only
     gate that re-fires every panel's internal headline asserts after a data edit."""
     panel_dir = HERE / "analyses-affiliations"
-    out_dir = REPO / "assets" / "data" / "analyses-affiliations"
+    out_dir = REPO / "public" / "assets" / "data" / "analyses-affiliations"
     scripts = sorted(panel_dir.glob("*.py"))
     assert len(scripts) == 7, [s.name for s in scripts]
     for script in scripts:

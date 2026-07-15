@@ -11,7 +11,7 @@ People keep the map page's identity (label, community colour) by joining on coau
 
     cd experiments/coauthorship && uv run build_affiliations.py
 
-Output: ../../assets/data/affiliations.json — people, orgs, person→org links (role/years/source
+Output: ../../public/assets/data/affiliations.json — people, orgs, person→org links (role/years/source
 kept for the UI), and a person–person projection (type-weighted shared-org ties). Deterministic:
 running twice must be byte-identical.
 """
@@ -31,9 +31,9 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 SRC = HERE / "affiliations.json"
 OVERRIDES = HERE / "affiliation_overrides.json"   # folded self-service events (merge_affiliations.py)
-GRAPH = REPO / "assets" / "data" / "coauthorship.json"
-OUT = REPO / "assets" / "data" / "affiliations.json"
-SHARED_OUT = REPO / "assets" / "data" / "analyses-affiliations" / "shared.json"
+GRAPH = REPO / "public" / "assets" / "data" / "coauthorship.json"
+OUT = REPO / "public" / "assets" / "data" / "affiliations.json"
+SHARED_OUT = REPO / "public" / "assets" / "data" / "analyses-affiliations" / "shared.json"
 
 # how strongly a shared org ties two people in the person–person projection
 TYPE_WEIGHT = {"lab": 3.0, "program": 2.0, "company": 2.0, "community": 1.0, "university": 1.0}

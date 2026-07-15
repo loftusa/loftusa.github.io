@@ -14,9 +14,9 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
 DERIVED = HERE / "_derived"  # unused here; kept per contract template
-OUT = REPO / "assets/data/analyses" / "small-world.json"
+OUT = REPO / "public/assets/data/analyses" / "small-world.json"
 
 SLUG = "small-world"
 N_RAND = 20  # seeded random-null ensemble size

@@ -27,7 +27,7 @@ import click
 import httpx
 
 HERE = Path(__file__).resolve().parent
-AFF = HERE.parents[1] / "assets" / "data" / "affiliations.json"
+AFF = HERE.parents[1] / "public" / "assets" / "data" / "affiliations.json"
 SEEDS = HERE / "seeds.json"
 CACHE = HERE / "raw" / "github"
 OUT_DIR = HERE / "hop_sources"

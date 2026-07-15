@@ -12,11 +12,11 @@ orcid) merge from hop_sources/*.json when present, with the same link schema.
 
     cd experiments/coauthorship && uv run build_hops.py
 
-Reads:  ../../assets/data/affiliations.json   (canonical orgs + member ids — build first)
+Reads:  ../../public/assets/data/affiliations.json   (canonical orgs + member ids — build first)
         seeds.json                            (member -> trusted OpenAlex author ids)
         raw/oa_works_v2_*.json                (cached works; no network calls here)
         hop_sources/*.json                    (optional extra sources, same link schema)
-Writes: ../../assets/data/affiliations-hops.json. Deterministic: byte-identical on re-run.
+Writes: ../../public/assets/data/affiliations-hops.json. Deterministic: byte-identical on re-run.
 """
 import json
 import re
@@ -29,12 +29,12 @@ from build_affiliations import CANON, slug  # noqa: E402  (one org-identity laye
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
-AFF = REPO / "assets" / "data" / "affiliations.json"
+AFF = REPO / "public" / "assets" / "data" / "affiliations.json"
 SEEDS = HERE / "seeds.json"
 RAW = HERE / "raw"
 SOURCES_DIR = HERE / "hop_sources"
-OUT = REPO / "assets" / "data" / "affiliations-hops.json"
-INDEX_OUT = REPO / "assets" / "data" / "guest-index.json"
+OUT = REPO / "public" / "assets" / "data" / "affiliations-hops.json"
+INDEX_OUT = REPO / "public" / "assets" / "data" / "guest-index.json"
 
 INDEX_CAP = 300          # most-collaborating outside coauthors shipped to the finder
 OA_TYPE = {"education": "university", "company": "company", "facility": "lab",

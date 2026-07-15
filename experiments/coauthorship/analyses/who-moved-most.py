@@ -12,9 +12,9 @@ from graspologic.embed import OmnibusEmbed
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
 DERIVED = HERE / "_derived"
-OUT = REPO / "assets/data/analyses" / "who-moved-most.json"
+OUT = REPO / "public/assets/data/analyses" / "who-moved-most.json"
 
 SLUG = "who-moved-most"
 N_COMPONENTS = 4

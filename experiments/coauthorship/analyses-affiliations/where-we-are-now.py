@@ -11,11 +11,11 @@ from collections import Counter
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
-assert (REPO / "assets").exists(), f"REPO mis-resolved: {REPO}"
+assert (REPO / "public" / "assets").exists(), f"REPO mis-resolved: {REPO}"
 
-AFF = json.loads((REPO / "assets/data/affiliations.json").read_text())
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
-OUT = REPO / "assets/data/analyses-affiliations" / "where-we-are-now.json"
+AFF = json.loads((REPO / "public/assets/data/affiliations.json").read_text())
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
+OUT = REPO / "public/assets/data/analyses-affiliations" / "where-we-are-now.json"
 
 # org canon (CANON/DROP/slug) imported read-only from the build script — never copied
 _spec = importlib.util.spec_from_file_location(

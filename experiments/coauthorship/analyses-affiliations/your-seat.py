@@ -10,10 +10,10 @@ from collections import defaultdict
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[3]
-assert (REPO / "assets").exists(), f"REPO mis-resolved: {REPO}"
+assert (REPO / "public" / "assets").exists(), f"REPO mis-resolved: {REPO}"
 
-AFF = json.loads((REPO / "assets/data/affiliations.json").read_text())
-PANELS = REPO / "assets/data/analyses-affiliations"
+AFF = json.loads((REPO / "public/assets/data/affiliations.json").read_text())
+PANELS = REPO / "public/assets/data/analyses-affiliations"
 SRP = json.loads((PANELS / "same-rooms-no-paper.json").read_text())["data"]
 ERAS = json.loads((PANELS / "eras.json").read_text())["data"]
 PIPE = json.loads((PANELS / "the-pipeline.json").read_text())["data"]

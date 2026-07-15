@@ -15,7 +15,7 @@ Two steps: resolve identities **once** (hand-verified), then build the graph fro
 cd experiments/coauthorship
 uv run build_seeds.py        # resolve names -> S2 + OpenAlex authors, cross-check, writes seeds.json
 #   ... then hand-verify seeds.json (see below) ...
-uv run build_graph.py        # union papers from pinned IDs -> ../../assets/data/coauthorship.json
+uv run build_graph.py        # union papers from pinned IDs -> ../../public/assets/data/coauthorship.json
 ```
 
 Raw API responses are cached under `raw/` so re-runs are instant and offline. Set `S2_API_KEY` in
@@ -294,7 +294,7 @@ invariants, and that the Bau-lab/NeuroData org-string variants actually merged).
   delete/add per entry, saves after every person); `--stats` prints coverage; `--person "name"`
   jumps to one person; `--all` revisits reviewed people.
 
-### Off-map hop layer (`build_hops.py` → `assets/data/affiliations-hops.json`)
+### Off-map hop layer (`build_hops.py` → `public/assets/data/affiliations-hops.json`)
 
 The reach slider's *steps* mode reveals people OUTSIDE the map who verifiably shared a room
 with a member — hollow dashed nodes, the careers-map analogue of the papers map's hop reveal.
@@ -434,7 +434,7 @@ explainer for ML readers. Architecture (everything under `analyses/`):
 analyses/_prep.py      shared derivation: re-keys per-paper records from the raw cache with the SAME
                        vendored identity logic as build_graph.py (keep-in-sync header), then emits
                        _derived/{papers,yearly,layers,tfidf}.json (committed, never published) and
-                       ../../assets/data/analyses/shared.json (browser lookup). Gate: re-derived link
+                       ../../public/assets/data/analyses/shared.json (browser lookup). Gate: re-derived link
                        weights must match the shipped graph >=95% (currently 100%).
 analyses/<slug>.py     one deterministic compute script per panel (PEP-723; uv run <slug>.py)
                        -> assets/data/analyses/<slug>.json  ({slug,title,headline,data}, <300KB)

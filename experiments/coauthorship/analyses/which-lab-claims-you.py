@@ -11,8 +11,8 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
-OUT = REPO / "assets/data/analyses" / "which-lab-claims-you.json"
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
+OUT = REPO / "public/assets/data/analyses" / "which-lab-claims-you.json"
 
 SLUG = "which-lab-claims-you"
 LABS = [c["label"] for c in GRAPH["communities"]]

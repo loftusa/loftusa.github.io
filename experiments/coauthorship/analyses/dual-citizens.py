@@ -16,8 +16,8 @@ from sklearn.mixture import GaussianMixture
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[2]
-GRAPH = json.loads((REPO / "assets/data/coauthorship.json").read_text())
-OUT = REPO / "assets/data/analyses" / "dual-citizens.json"
+GRAPH = json.loads((REPO / "public/assets/data/coauthorship.json").read_text())
+OUT = REPO / "public/assets/data/analyses" / "dual-citizens.json"
 
 SLUG = "dual-citizens"
 N_MIXED = 16  # everyone whose runner-up share is >= 1e-11 under fractional weights
