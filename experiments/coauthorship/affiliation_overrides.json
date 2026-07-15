@@ -1,8 +1,30 @@
 {
  "city": {},
- "confirmed": {},
+ "confirmed": {
+  "alex loftus": "2026-06-15T03:19:15.335636",
+  "allan deutsch": "2026-06-14T01:04:37.522333",
+  "anton alyakin": "2026-06-14T02:12:04.379445",
+  "brandon duderstadt": "2026-06-26T06:02:09.153321",
+  "cat khor": "2026-06-29T11:32:47.462545",
+  "chris wendler": "2026-06-14T16:10:36.763427",
+  "jacopo teneggi": "2026-06-14T04:02:40.038948",
+  "karl kaiser": "2026-06-14T02:23:44.601365",
+  "stella biderman": "2026-07-01T23:47:22.681656"
+ },
  "entry_remove": {},
- "entry_set": {},
+ "entry_set": {
+  "roy rinberg": {
+   "harvard university": {
+    "current": true,
+    "org": "Harvard University",
+    "role": "PhD student, Computer Science (trustworthy ML / differential privacy), advised by Boaz Barak and Salil Vadhan",
+    "source": "",
+    "ts": "2026-06-16T03:58:37.738026",
+    "type": "university",
+    "years": "2023\u2013"
+   }
+  }
+ },
  "join": {},
  "version": 1
 }

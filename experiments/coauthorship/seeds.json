@@ -1,3096 +1,3096 @@
 [
- {
-  "name": "alex loftus",
-  "s2_id": "2312324860",
-  "url": "https://www.semanticscholar.org/author/2312324860",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 5,
-  "h_index": 3,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "NNsight and NDIF: Democratizing Access to Foundation Model Internals (2024)",
-   "NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals (2024)",
-   "Agents of Chaos (2026)",
-   "Hands-On Network Machine Learning with Python (2025)",
-   "A Saliency-based Clustering Framework for Identifying Aberrant Predictions (2023)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_verified": true,
-  "oa_id": "A5115703055",
-  "oa_url": "https://openalex.org/A5115703055",
-  "oa_affiliation": "",
-  "oa_n_works": 1,
-  "oa_orcid": null,
-  "oa_titles": [
-   "NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals (2024)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 1,
-   "title_overlap_frac": 1.0,
-   "agree": true
-  }
- },
- {
-  "name": "daniel brown",
-  "s2_id": null,
-  "url": null,
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": null,
-  "h_index": null,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_verified": true,
-  "oa_id": null,
-  "oa_url": null,
-  "oa_affiliation": "",
-  "oa_n_works": null,
-  "oa_orcid": null,
-  "oa_titles": [],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "zeno kujawa",
-  "s2_id": "2265752952",
-  "url": "https://www.semanticscholar.org/author/2265752952",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 2,
-  "h_index": 2,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "Accelerated Shapley Value Approximation for Data Evaluation (2023)",
-   "Neural Algorithmic Reasoning with Multiple Correct Solutions (2024)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5093241685",
-  "oa_url": "https://openalex.org/A5093241685",
-  "oa_affiliation": "",
-  "oa_n_works": 1,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Accelerated Shapley Value Approximation for Data Evaluation (2023)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5114353277",
-    "url": "https://openalex.org/A5114353277",
+  {
+    "name": "alex loftus",
+    "s2_id": "2312324860",
+    "url": "https://www.semanticscholar.org/author/2312324860",
     "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 1,
-   "title_overlap_frac": 1.0,
-   "agree": true
-  }
- },
- {
-  "name": "alice rigg",
-  "s2_id": "2304951205",
-  "url": "https://www.semanticscholar.org/author/2304951205",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 6,
-  "h_index": 2,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "Bilinear MLPs enable weight-based mechanistic interpretability (2024)",
-   "Weight-based Decomposition: A Case for Bilinear MLPs (2024)",
-   "Distribution-Aware Feature Selection for SAEs (2025)",
-   "Detecting and Characterizing Planning in Language Models (2025)",
-   "Converting MLPs into Polynomials in Closed Form (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5099057747",
-  "oa_url": "https://openalex.org/A5099057747",
-  "oa_affiliation": "",
-  "oa_n_works": 4,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Distribution-Aware Feature Selection for SAEs (2025)",
-   "Bilinear Convolution Decomposition for Causal RL Interpretability (2024)",
-   "Bilinear MLPs enable weight-based mechanistic interpretability (2024)",
-   "Weight-based Decomposition: A Case for Bilinear MLPs (2024)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5116144113",
-    "url": "https://openalex.org/A5116144113",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 5,
+    "h_index": 3,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "NNsight and NDIF: Democratizing Access to Foundation Model Internals (2024)",
+      "NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals (2024)",
+      "Agents of Chaos (2026)",
+      "Hands-On Network Machine Learning with Python (2025)",
+      "A Saliency-based Clustering Framework for Identifying Aberrant Predictions (2023)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_verified": true,
+    "oa_id": "A5115703055",
+    "oa_url": "https://openalex.org/A5115703055",
+    "oa_affiliation": "",
+    "oa_n_works": 1,
+    "oa_orcid": null,
+    "oa_titles": [
+      "NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals (2024)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 1,
+      "title_overlap_frac": 1.0,
+      "agree": true
+    }
+  },
+  {
+    "name": "daniel brown",
+    "s2_id": null,
+    "url": null,
     "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 0.75,
-   "agree": true
-  }
- },
- {
-  "name": "allan deutsch",
-  "s2_id": null,
-  "url": "https://www.semanticscholar.org/author/2055626371",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 1,
-  "h_index": 0,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Agent de scellement de canal radiculaire exempt d'huile et a base d'epoxyde (2006)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5054263737",
-  "oa_url": "https://openalex.org/A5054263737",
-  "oa_affiliation": "",
-  "oa_n_works": 88,
-  "oa_orcid": null,
-  "oa_titles": [
-   "A Review of Failure Modes in Teeth Restored with Adhesively Luted Endodontic Dowels (2010)",
-   "Interaction between Chlorhexidine Digluconate and EDTA (2008)",
-   "Radiopacity of dental materials using a digital X-ray system (2005)",
-   "Prevalence of Middle Mesial Canals in Mandibular Molars after Guided Troughing under High Magnification: An In Vivo Investigation (2014)",
-   "An In Vitro Study of the Cytotoxicity of Two Root Canal Sealers (2000)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5111857946",
-    "url": "https://openalex.org/A5111857946",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": null,
+    "h_index": null,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_verified": true,
+    "oa_id": null,
+    "oa_url": null,
+    "oa_affiliation": "",
+    "oa_n_works": null,
+    "oa_orcid": null,
+    "oa_titles": [],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "zeno kujawa",
+    "s2_id": "2265752952",
+    "url": "https://www.semanticscholar.org/author/2265752952",
     "affiliation": "",
-    "n_works": 2,
-    "cited_by": 11,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5074882933",
-    "url": "https://openalex.org/A5074882933",
-    "affiliation": "Brown University",
-    "n_works": 2,
-    "cited_by": 6,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5027555325",
-    "url": "https://openalex.org/A5027555325",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 2,
+    "h_index": 2,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "Accelerated Shapley Value Approximation for Data Evaluation (2023)",
+      "Neural Algorithmic Reasoning with Multiple Correct Solutions (2024)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5093241685",
+    "oa_url": "https://openalex.org/A5093241685",
+    "oa_affiliation": "",
+    "oa_n_works": 1,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Accelerated Shapley Value Approximation for Data Evaluation (2023)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5114353277",
+        "url": "https://openalex.org/A5114353277",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 1,
+      "title_overlap_frac": 1.0,
+      "agree": true
+    }
+  },
+  {
+    "name": "alice rigg",
+    "s2_id": "2304951205",
+    "url": "https://www.semanticscholar.org/author/2304951205",
     "affiliation": "",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "anton alyakin",
-  "s2_id": "1432235257",
-  "url": "https://www.semanticscholar.org/author/1432235257",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 7,
-  "h_index": 4,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Using Machine Learning for Early Prediction of Cardiogenic Shock in Patients With Acute Heart Failure (2021)",
-   "Exploration of Residual Confounding in Analyses of Associations of Metformin Use and Outcomes in Adults With Type 2 Diabetes (2022)",
-   "Valid two‐sample graph testing via optimal transport Procrustes and multiscale graph correlation with applications in connectomics (2019)",
-   "Correcting a nonparametric two-sample graph hypothesis test for graphs with different numbers of vertices with applications to connectomics (2020)",
-   "LqRT: Robust Hypothesis Testing of Location Parameters using Lq-Likelihood-Ratio-Type Test in Python (2019)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5016320486",
-  "oa_url": "https://openalex.org/A5016320486",
-  "oa_affiliation": "Saint Louis University",
-  "oa_n_works": 43,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Medical large language models are vulnerable to data-poisoning attacks (2025)",
-   "LLM-assisted systematic review of large language models in clinical medicine (2026)",
-   "Using Machine Learning for Early Prediction of Cardiogenic Shock in Patients with Acute Heart Failure (2021)",
-   "Using Machine Learning for Early Prediction of Cardiogenic Shock in Patients With Acute Heart Failure (2022)",
-   "Exploration of Residual Confounding in Analyses of Associations of Metformin Use and Outcomes in Adults With Type 2 Diabetes (2022)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5138015394",
-    "url": "https://openalex.org/A5138015394",
-    "affiliation": "Washington University in St. Louis",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5135217538",
-    "url": "https://openalex.org/A5135217538",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5120997086",
-    "url": "https://openalex.org/A5120997086",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 2,
-   "title_overlap_frac": 0.5,
-   "agree": true
-  }
- },
- {
-  "name": "arman ohmid",
-  "s2_id": null,
-  "url": "https://www.semanticscholar.org/author/2315904481",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 2,
-  "h_index": 2,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Implications of the Gut Microbiota for Brain Function and Behavior in Schizophrenia (2024)",
-   "Outcomes of dietary interventions in the prevention and progression of Parkinson's disease: A literature review (2024)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5103308166",
-  "oa_url": "https://openalex.org/A5103308166",
-  "oa_affiliation": "California Northstate University",
-  "oa_n_works": 2,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Implications of the Gut Microbiota for Brain Function and Behavior in Schizophrenia (2024)",
-   "Outcomes of dietary interventions in the prevention and progression of Parkinson's disease: A literature review (2024)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 2,
-   "title_overlap_frac": 1.0,
-   "agree": true
-  }
- },
- {
-  "name": "arnab sen sharma",
-  "s2_id": "1429844787",
-  "url": "https://www.semanticscholar.org/author/1429844787",
-  "affiliation": "Northeastern University",
-  "homepage": "https://arnab-api.github.io/",
-  "orcid": "0000-0002-0407-6526",
-  "n_papers": 22,
-  "h_index": 12,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "Mass-Editing Memory in a Transformer (2022)",
-   "Function Vectors in Large Language Models (2023)",
-   "Linearity of Relation Decoding in Transformer Language Models (2023)",
-   "The Quest for the Right Mediator: A History, Survey, and Theoretical Grounding of Causal Interpretability (2024)",
-   "BD-SHS: A Benchmark Dataset for Learning to Detect Online Bangla Hate Speech in Different Social Contexts (2022)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5076301518",
-  "oa_url": "https://openalex.org/A5076301518",
-  "oa_affiliation": "Universidad del Noreste",
-  "oa_n_works": 22,
-  "oa_orcid": "0000-0002-0407-6526",
-  "oa_titles": [
-   "Mass-Editing Memory in a Transformer (2022)",
-   "Vio-Lens: A Novel Dataset of Annotated Social Network Posts Leading to Different Forms of Communal Violence and its Evaluation (2023)",
-   "BD-SHS: A Benchmark Dataset for Learning to Detect Online Bangla Hate Speech in Different Social Contexts (2022)",
-   "A Deep CNN Model for Student Learning Pedagogy Detection Data Collection Using OCR (2018)",
-   "HS-BAN: A Benchmark Dataset of Social Media Comments for Hate Speech Detection in Bangla (2021)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": "0000-0002-0407-6526",
-   "orcid_oa": "0000-0002-0407-6526",
-   "orcid_match": true,
-   "orcid_conflict": false,
-   "title_overlap_n": 2,
-   "title_overlap_frac": 0.4,
-   "agree": true
-  }
- },
- {
-  "name": "bijan varjavand",
-  "s2_id": "46785719",
-  "url": "https://www.semanticscholar.org/author/46785719",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 8,
-  "h_index": 4,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "Declining complication rates with flow diversion of anterior circulation aneurysms after introduction of the Pipeline Flex: analysis of a single-institution series of 568 cases. (2018)",
-   "GraSPy: Graph Statistics in Python (2019)",
-   "Jailbreaking to Jailbreak (2025)",
-   "Valid two‐sample graph testing via optimal transport Procrustes and multiscale graph correlation with applications in connectomics (2019)",
-   "Relevance Isn't All You Need: Scaling RAG Systems With Inference-Time Compute Via Multi-Criteria Reranking (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5008672296",
-  "oa_url": "https://openalex.org/A5008672296",
-  "oa_affiliation": "Johns Hopkins University",
-  "oa_n_works": 8,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Declining complication rates with flow diversion of anterior circulation aneurysms after introduction of the Pipeline Flex: analysis of a single-institution series of 568 cases (2018)",
-   "GraSPy: Graph Statistics in Python (2019)",
-   "GraSPy: Graph Statistics in Python (2019)",
-   "Valid Two-Sample Graph Testing via Optimal Transport Procrustes and Multiscale Graph Correlation with Applications in Connectomics (2019)",
-   "Valid two‐sample graph testing via optimal transport Procrustes and multiscale graph correlation with applications in connectomics (2021)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5116292985",
-    "url": "https://openalex.org/A5116292985",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 0.75,
-   "agree": true
-  }
- },
- {
-  "name": "brandon duderstadt",
-  "s2_id": "2265755425",
-  "url": "https://www.semanticscholar.org/author/2265755425",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 12,
-  "h_index": 7,
-  "confidence": "low",
-  "verified": false,
-  "sample_titles": [
-   "Nomic Embed: Training a Reproducible Long Context Text Embedder (2024)",
-   "Training Sparse Mixture Of Experts Text Embedding Models (2025)",
-   "CoRNStack: High-Quality Contrastive Data for Better Code Retrieval and Reranking (2024)",
-   "GPT4All: An Ecosystem of Open Source Compressed Language Models (2023)",
-   "Nomic Embed Vision: Expanding the Latent Space (2024)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "37839741",
-    "url": "https://www.semanticscholar.org/author/37839741",
-    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
     "n_papers": 6,
-    "h_index": 3
-   }
-  ],
-  "oa_id": "A5007090620",
-  "oa_url": "https://openalex.org/A5007090620",
-  "oa_affiliation": "Johns Hopkins University",
-  "oa_n_works": 19,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Discovery architecture for cultural heritage: layered retrieval, institutional authority, and the limits of keyword search (2024)",
-   "GPT4All: An Ecosystem of Open Source Compressed Language Models (2023)",
-   "RETRACTED: Repurposing the Scientific Literature with Vision-Language Models (2025)",
-   "Training Sparse Mixture Of Experts Text Embedding Models (2025)",
-   "Nomic Embed Vision: Expanding the Latent Space (2024)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 0.6,
-   "agree": true
-  }
- },
- {
-  "name": "can rager",
-  "s2_id": "2243239884",
-  "url": "https://www.semanticscholar.org/author/2243239884",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 6,
-  "h_index": 4,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "A Configurable Library for Generating and Manipulating Maze Datasets (2023)",
-   "Structured World Representations in Maze-Solving Transformers (2023)",
-   "Linearly Structured World Representations in Maze-Solving Transformers (2023)",
-   "Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior (2026)",
-   "Do Sparse Autoencoders Capture Concept Manifolds? (2026)"
-  ],
-  "merge_ids": [
-   "2257034392"
-  ],
-  "alternatives": [
-   {
-    "s2_id": "2386533097",
-    "url": "https://www.semanticscholar.org/author/2386533097",
+    "h_index": 2,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "Bilinear MLPs enable weight-based mechanistic interpretability (2024)",
+      "Weight-based Decomposition: A Case for Bilinear MLPs (2024)",
+      "Distribution-Aware Feature Selection for SAEs (2025)",
+      "Detecting and Characterizing Planning in Language Models (2025)",
+      "Converting MLPs into Polynomials in Closed Form (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5099057747",
+    "oa_url": "https://openalex.org/A5099057747",
+    "oa_affiliation": "",
+    "oa_n_works": 4,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Distribution-Aware Feature Selection for SAEs (2025)",
+      "Bilinear Convolution Decomposition for Causal RL Interpretability (2024)",
+      "Bilinear MLPs enable weight-based mechanistic interpretability (2024)",
+      "Weight-based Decomposition: A Case for Bilinear MLPs (2024)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5116144113",
+        "url": "https://openalex.org/A5116144113",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 0.75,
+      "agree": true
+    }
+  },
+  {
+    "name": "allan deutsch",
+    "s2_id": null,
+    "url": "https://www.semanticscholar.org/author/2055626371",
     "affiliation": "",
+    "homepage": null,
+    "orcid": null,
     "n_papers": 1,
-    "h_index": 0
-   }
-  ],
-  "exclude_titles": [
-   "reactions to rubella immunizations",
-   "cardiac accidents during pregnancy in mitral stenosis"
-  ],
-  "oa_id": "A5063383301",
-  "oa_url": "https://openalex.org/A5063383301",
-  "oa_affiliation": "",
-  "oa_n_works": 29,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Attribution Patching Outperforms Automated Circuit Discovery (2024)",
-   "Agents of Chaos (2026)",
-   "Sparse Feature Circuits: Discovering and Editing Interpretable Causal Graphs in Language Models (2024)",
-   "NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals (2024)",
-   "A Configurable Library for Generating and Manipulating Maze Datasets (2023)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 1,
-   "title_overlap_frac": 0.2,
-   "agree": true
-  }
- },
- {
-  "name": "cat khor",
-  "s2_id": null,
-  "url": null,
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": null,
-  "h_index": null,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_verified": true,
-  "oa_id": null,
-  "oa_url": null,
-  "oa_affiliation": "",
-  "oa_n_works": null,
-  "oa_orcid": null,
-  "oa_titles": [],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "chris wendler",
-  "s2_id": "1387986830",
-  "url": "https://www.semanticscholar.org/author/1387986830",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 21,
-  "h_index": 10,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Do Llamas Work in English? On the Latent Language of Multilingual Transformers (2024)",
-   "Causal Fourier Analysis on Directed Acyclic Graphs and Posets (2022)",
-   "Powerset Convolutional Neural Networks (2019)",
-   "Discrete Signal Processing on Meet/Join Lattices (2020)",
-   "Discrete Signal Processing with Set Functions (2020)"
-  ],
-  "merge_ids": [
-   "2328311036"
-  ],
-  "alternatives": [],
-  "exclude_titles": [
-   "palm and hand surface area in approximating burn extent"
-  ],
-  "oa_id": "A5073622492",
-  "oa_url": "https://openalex.org/A5073622492",
-  "oa_affiliation": "",
-  "oa_n_works": 18,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Causal Fourier Analysis on Directed Acyclic Graphs and Posets (2023)",
-   "Discrete Signal Processing on Meet/Join Lattices (2021)",
-   "Discrete Signal Processing with Set Functions (2020)",
-   "Fourier Analysis-based Iterative Combinatorial Auctions (2022)",
-   "Learning Set Functions that are Sparse in Non-Orthogonal Fourier Bases (2021)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5093957971",
-    "url": "https://openalex.org/A5093957971",
+    "h_index": 0,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Agent de scellement de canal radiculaire exempt d'huile et a base d'epoxyde (2006)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5054263737",
+    "oa_url": "https://openalex.org/A5054263737",
+    "oa_affiliation": "",
+    "oa_n_works": 88,
+    "oa_orcid": null,
+    "oa_titles": [
+      "A Review of Failure Modes in Teeth Restored with Adhesively Luted Endodontic Dowels (2010)",
+      "Interaction between Chlorhexidine Digluconate and EDTA (2008)",
+      "Radiopacity of dental materials using a digital X-ray system (2005)",
+      "Prevalence of Middle Mesial Canals in Mandibular Molars after Guided Troughing under High Magnification: An In Vivo Investigation (2014)",
+      "An In Vitro Study of the Cytotoxicity of Two Root Canal Sealers (2000)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5111857946",
+        "url": "https://openalex.org/A5111857946",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 11,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5074882933",
+        "url": "https://openalex.org/A5074882933",
+        "affiliation": "Brown University",
+        "n_works": 2,
+        "cited_by": 6,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5027555325",
+        "url": "https://openalex.org/A5027555325",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "anton alyakin",
+    "s2_id": "1432235257",
+    "url": "https://www.semanticscholar.org/author/1432235257",
     "affiliation": "",
-    "n_works": 11,
-    "cited_by": 47,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5126679488",
-    "url": "https://openalex.org/A5126679488",
-    "affiliation": "",
-    "n_works": 3,
-    "cited_by": 5,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5125138273",
-    "url": "https://openalex.org/A5125138273",
-    "affiliation": "",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5126603717",
-    "url": "https://openalex.org/A5126603717",
-    "affiliation": "",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5119911765",
-    "url": "https://openalex.org/A5119911765",
-    "affiliation": "",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 0.6,
-   "agree": true
-  }
- },
- {
-  "name": "clement dumas",
-  "s2_id": "2330398835",
-  "url": "https://www.semanticscholar.org/author/2330398835",
-  "affiliation": "",
-  "homepage": "https://butanium.github.io",
-  "orcid": null,
-  "n_papers": 8,
-  "h_index": 5,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Separating Tongue from Thought: Activation Patching Reveals Language-Agnostic Concept Representations in Transformers (2024)",
-   "Overcoming Sparsity Artifacts in Crosscoders to Interpret Chat-Tuning (2025)",
-   "Activation Oracles: Training and Evaluating LLMs as General-Purpose Activation Explainers (2025)",
-   "Narrow Finetuning Leaves Clearly Readable Traces in Activation Differences (2025)",
-   "Believe It or Not: How Deeply do LLMs Believe Implanted Facts? (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "exclude_titles": [
-   "internationalisation and modern sport",
-   "the intelligence of an actress machine"
-  ],
-  "oa_id": "A5066590882",
-  "oa_url": "https://openalex.org/A5066590882",
-  "oa_affiliation": "",
-  "oa_n_works": 31,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Des moines aux troubadours IXe-XIIIe siècle: La musique médiévale en Languedoc et en Catalogne (2004)",
-   "La Circulation de la musique et des musiciens d'église: (2017)",
-   "Les musiques médiévales : revivalismes, patrimonialisation, institutionnalisation (2015)",
-   "Saint Guilhem : modèle et prophète au temps de la Reconquista (2015)",
-   "Divine metamorphosis: The Transfiguration as song and meditation in the motet In talem transfiguratur/Jubar lustrat radiosum from MS Turin J.II.9 (2013)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5037981504",
-    "url": "https://openalex.org/A5037981504",
-    "affiliation": "Université Clermont Auvergne",
-    "n_works": 20,
-    "cited_by": 36,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5049788825",
-    "url": "https://openalex.org/A5049788825",
-    "affiliation": "",
-    "n_works": 16,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5120324517",
-    "url": "https://openalex.org/A5120324517",
-    "affiliation": "Maison des Sciences sociales et des Humanités - Lyon St-Étienne",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5095873571",
-    "url": "https://openalex.org/A5095873571",
-    "affiliation": "Territoires",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5106348149",
-    "url": "https://openalex.org/A5106348149",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "devin crowley",
-  "s2_id": "2071955555",
-  "url": "https://www.semanticscholar.org/author/2071955555",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 4,
-  "h_index": 2,
-  "confidence": "low",
-  "verified": true,
-  "sample_titles": [
-   "CloudReg: automatic terabyte-scale cross-modal brain volume registration (2021)",
-   "Localization and Registration of 2D Histological Mouse Brain Images in 3D Atlas Space (2023)",
-   "Variable strain rate properties of rammed Earth (2024)",
-   "neurodata/brainlit: FIRM Release (2020)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2221122876",
-    "url": "https://www.semanticscholar.org/author/2221122876",
-    "affiliation": "",
-    "n_papers": 2,
-    "h_index": 1
-   }
-  ],
-  "exclude_titles": [
-   "variable strain rate properties of rammed earth"
-  ],
-  "oa_id": "A5087840110",
-  "oa_url": "https://openalex.org/A5087840110",
-  "oa_affiliation": "Johns Hopkins University",
-  "oa_n_works": 5,
-  "oa_orcid": null,
-  "oa_titles": [
-   "CloudReg: automatic terabyte-scale cross-modal brain volume registration (2021)",
-   "Localization and Registration of 2D Histological Mouse Brain Images in 3D Atlas Space (2023)",
-   "CloudReg: Automatic Terabyte-Scale Cross-Modal Brain Volume Registration (2021)",
-   "Effects of Contact Interactions in Molecular Bose-Einstein Condensates (2017)",
-   "neurodata/brainlit: FIRM Release (2020)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5109620125",
-    "url": "https://openalex.org/A5109620125",
-    "affiliation": "Oregon State University",
-    "n_works": 3,
-    "cited_by": 30,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 0.75,
-   "agree": true
-  }
- },
- {
-  "name": "eric bridgeford",
-  "s2_id": "5470543",
-  "url": "https://www.semanticscholar.org/author/5470543",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 53,
-  "h_index": 15,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "Small-World Propensity and Weighted Brain Networks (2016)",
-   "On a two-truths phenomenon in spectral graph clustering (2018)",
-   "Supervised dimensionality reduction for big data (2021)",
-   "Standardizing human brain parcellations (2019)",
-   "A community-developed open-source computational ecosystem for big neuro data (2018)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "1388817300",
-    "url": "https://www.semanticscholar.org/author/1388817300",
-    "affiliation": "",
-    "n_papers": 2,
-    "h_index": 1
-   },
-   {
-    "s2_id": "2396371077",
-    "url": "https://www.semanticscholar.org/author/2396371077",
-    "affiliation": "",
-    "n_papers": 1,
-    "h_index": 1
-   },
-   {
-    "s2_id": "2363536516",
-    "url": "https://www.semanticscholar.org/author/2363536516",
-    "affiliation": "",
-    "n_papers": 1,
-    "h_index": 1
-   }
-  ],
-  "oa_id": "A5085717731",
-  "oa_url": "https://openalex.org/A5085717731",
-  "oa_affiliation": "Johns Hopkins University",
-  "oa_n_works": 74,
-  "oa_orcid": "0000-0001-6115-719X",
-  "oa_titles": [
-   "Small-World Propensity and Weighted Brain Networks (2016)",
-   "On a two-truths phenomenon in spectral graph clustering (2019)",
-   "Standardizing human brain parcellations (2021)",
-   "A community-developed open-source computational ecosystem for big neuro data (2018)",
-   "Eliminating accidental deviations to minimize generalization error and maximize replicability: Applications in connectomics and genomics (2021)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5078997336",
-    "url": "https://openalex.org/A5078997336",
-    "affiliation": "",
-    "n_works": 3,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5123772921",
-    "url": "https://openalex.org/A5123772921",
-    "affiliation": "",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5125575493",
-    "url": "https://openalex.org/A5125575493",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0000-0001-6115-719X",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 4,
-   "title_overlap_frac": 0.8,
-   "agree": true
-  }
- },
- {
-  "name": "eric michaud",
-  "s2_id": "2064378938",
-  "url": "https://www.semanticscholar.org/author/2064378938",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 16,
-  "h_index": 11,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback (2023)",
-   "Towards Understanding Grokking: An Effective Theory of Representation Learning (2022)",
-   "Not All Language Model Features Are One-Dimensionally Linear (2024)",
-   "The Quantization Model of Neural Scaling (2023)",
-   "Omnigrok: Grokking Beyond Algorithmic Data (2022)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_verified": true,
-  "oa_id": "A5071048251",
-  "oa_url": "https://openalex.org/A5071048251",
-  "oa_affiliation": "Flatiron Health (United States)",
-  "oa_n_works": 24,
-  "oa_orcid": "0000-0001-7912-1953",
-  "oa_titles": [
-   "Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback (2023)",
-   "Precision Machine Learning (2023)",
-   "Towards Understanding Grokking: An Effective Theory of Representation Learning (2022)",
-   "Examining the Causal Structures of Deep Neural Networks Using Information Theory (2020)",
-   "The Geometry of Concepts: Sparse Autoencoder Feature Structure (2025)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0000-0001-7912-1953",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 2,
-   "title_overlap_frac": 0.4,
-   "agree": true
-  }
- },
- {
-  "name": "fred heiding",
-  "s2_id": "2333395518",
-  "url": "https://www.semanticscholar.org/author/2333395518",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 4,
-  "h_index": 2,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "Devising and Detecting Phishing: Large Language Models vs. Smaller Human Models (2023)",
-   "Evaluating Large Language Models' Capability to Launch Fully Automated Spear Phishing Campaigns: Validated on Human Subjects (2024)",
-   "Evaluating large language models' ability to automate spear phishing (2026)",
-   "Can AI Models be Jailbroken to Phish Elderly Victims? An End-to-End Evaluation (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2397486270",
-    "url": "https://www.semanticscholar.org/author/2397486270",
-    "affiliation": "",
-    "n_papers": 1,
-    "h_index": 1
-   }
-  ],
-  "oa_id": "A5115003586",
-  "oa_url": "https://openalex.org/A5115003586",
-  "oa_affiliation": "John F. Kennedy University",
-  "oa_n_works": 2,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Evaluating Large Language Models' Capability to Launch Fully Automated Spear Phishing Campaigns: Validated on Human Subjects (2024)",
-   "Evaluating large language models’ ability to automate spear phishing (2026)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5120510554",
-    "url": "https://openalex.org/A5120510554",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 2,
-   "title_overlap_frac": 1.0,
-   "agree": true
-  }
- },
- {
-  "name": "goncalo paulo",
-  "s2_id": "2411011624",
-  "url": "https://www.semanticscholar.org/author/2411011624",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 3,
-  "h_index": 1,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Do Transformer Interpretability Methods Transfer to RNNs? (2025)",
-   "Concept Influence: Leveraging Interpretability to Improve Performance and Efficiency in Training Data Attribution (2026)",
-   "Visualizing Loss Landscapes with Adaptive Sampling and Gradient Free Slicing (?)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5061676638",
-  "oa_url": "https://openalex.org/A5061676638",
-  "oa_affiliation": "Universidade Federal Rural do Semi-Árido",
-  "oa_n_works": 31,
-  "oa_orcid": "0000-0001-5714-2008",
-  "oa_titles": [
-   "Controle e autorregulação da aprendizagem na teoria de P. Ya. Galperin (2019)",
-   "PRÁTICAS ETNOMATEMÁTICAS NA MEDIÇÃO DE TERRAS: UM ESTUDO SOBRE O CÁLCULO DE ÁREAS (2020)",
-   "Pesquisas em Etnomatemática e suas contribuições para o contexto escolar: Um olhar para os anais dos CBEM (2015)",
-   "compreensão de professores sobre a autorregulação da aprendizagem (2021)",
-   "A Teoria de P. Ya. Galperin nas pesquisas em Educação Matemática (2017)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5103016167",
-    "url": "https://openalex.org/A5103016167",
-    "affiliation": "",
-    "n_works": 23,
-    "cited_by": 467,
-    "orcid": "0000-0003-3138-1443"
-   },
-   {
-    "oa_id": "A5087158690",
-    "url": "https://openalex.org/A5087158690",
-    "affiliation": "",
-    "n_works": 20,
-    "cited_by": 154,
-    "orcid": "0000-0002-2002-884X"
-   },
-   {
-    "oa_id": "A5095335132",
-    "url": "https://openalex.org/A5095335132",
-    "affiliation": "",
-    "n_works": 10,
-    "cited_by": 9,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5008985169",
-    "url": "https://openalex.org/A5008985169",
-    "affiliation": "",
-    "n_works": 3,
-    "cited_by": 36,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5060806394",
-    "url": "https://openalex.org/A5060806394",
-    "affiliation": "",
-    "n_works": 2,
-    "cited_by": 1,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0000-0001-5714-2008",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "grace proebsting",
-  "s2_id": "2325727065",
-  "url": "https://www.semanticscholar.org/author/2325727065",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 3,
-  "h_index": 2,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "Magentic-One: A Generalist Multi-Agent System for Solving Complex Tasks (2024)",
-   "Hypothesis-only Biases in Large Language Model-Elicited Natural Language Inference (2024)",
-   "Biases in Large Language Model-Elicited Text: A Case Study in Natural Language Inference (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2387995364",
-    "url": "https://www.semanticscholar.org/author/2387995364",
-    "affiliation": "",
-    "n_papers": 1,
-    "h_index": 1
-   }
-  ],
-  "oa_id": "A5114285284",
-  "oa_url": "https://openalex.org/A5114285284",
-  "oa_affiliation": "Haverford College",
-  "oa_n_works": 2,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Hypothesis-only Biases in Large Language Model-Elicited Natural Language Inference (2024)",
-   "Identity-related Speech Suppression in Generative AI Content Moderation (2025)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5114655670",
-    "url": "https://openalex.org/A5114655670",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 13,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 1,
-   "title_overlap_frac": 0.5,
-   "agree": true
-  }
- },
- {
-  "name": "hayden helm",
-  "s2_id": "134059919",
-  "url": "https://www.semanticscholar.org/author/134059919",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 36,
-  "h_index": 10,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "GraSPy: Graph Statistics in Python (2019)",
-   "MedFuzz: Exploring the Robustness of Large Language Models in Medical Question Answering (2024)",
-   "Towards a theory of out-of-distribution learning (2021)",
-   "Tracking the perspectives of interacting language models (2024)",
-   "Comparing Foundation Models using Data Kernels (2023)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5091316872",
-  "oa_url": "https://openalex.org/A5091316872",
-  "oa_affiliation": "Johns Hopkins University",
-  "oa_n_works": 41,
-  "oa_orcid": "0000-0001-9475-8100",
-  "oa_titles": [
-   "GraSPy: Graph Statistics in Python (2019)",
-   "GraSPy: Graph Statistics in Python (2019)",
-   "Distance-based positive and unlabeled learning for ranking (2022)",
-   "A general approach to progressive learning (2020)",
-   "Mental State Classification Using Multi-Graph Features (2022)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5135869967",
-    "url": "https://openalex.org/A5135869967",
-    "affiliation": "Johns Hopkins University",
-    "n_works": 10,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0000-0001-9475-8100",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 1,
-   "title_overlap_frac": 0.25,
-   "agree": true
-  }
- },
- {
-  "name": "jack merullo",
-  "s2_id": "1405408066",
-  "url": "https://www.semanticscholar.org/author/1405408066",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 26,
-  "h_index": 10,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Linearly Mapping from Image to Text Space (2022)",
-   "Circuit Component Reuse Across Tasks in Transformer Language Models (2023)",
-   "Does CLIP Bind Concepts? Probing Compositionality in Large Image Models (2022)",
-   "Language Models Implement Simple Word2Vec-style Vector Arithmetic (2023)",
-   "Characterizing Mechanisms for Factual Recall in Language Models (2023)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2366073668",
-    "url": "https://www.semanticscholar.org/author/2366073668",
-    "affiliation": "",
-    "n_papers": 3,
-    "h_index": 2
-   }
-  ],
-  "exclude_titles": [
-   "system for coating semiconductor wafers"
-  ],
-  "oa_id": "A5062612448",
-  "oa_url": "https://openalex.org/A5062612448",
-  "oa_affiliation": "",
-  "oa_n_works": 41,
-  "oa_orcid": "0009-0005-9673-6809",
-  "oa_titles": [
-   "Investigating Sports Commentator Bias within a Large Corpus of American Football Broadcasts (2019)",
-   "Linearly Mapping from Image to Text Space (2022)",
-   "Axiomatic Causal Interventions for Reverse Engineering Relevance Computation in Neural Retrieval Models (2024)",
-   "Language Models Implement Simple Word2Vec-style Vector Arithmetic (2024)",
-   "Does CLIP Bind Concepts? Probing Compositionality in Large Image Models (2022)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0009-0005-9673-6809",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 0.6,
-   "agree": true
-  }
- },
- {
-  "name": "jacopo teneggi",
-  "s2_id": "2064606668",
-  "url": "https://www.semanticscholar.org/author/2064606668",
-  "affiliation": "Johns Hopkins University Mathematical Institute for Data Science",
-  "homepage": "https://jacopoteneggi.github.io",
-  "orcid": "0000-0003-2189-5192",
-  "n_papers": 11,
-  "h_index": 6,
-  "confidence": "low",
-  "verified": false,
-  "sample_titles": [
-   "How to Trust Your Diffusion Model: A Convex Optimization Approach to Conformal Risk Control (2023)",
-   "Fast Hierarchical Games for Image Explanations (2021)",
-   "Fourier Diffusion Models: A Method to Control MTF and NPS in Score-Based Stochastic Image Generation. (2023)",
-   "Examination-Level Supervision for Deep Learning-based Intracranial Hemorrhage Detection on Head CT Scans. (2023)",
-   "SHAP-XRT: The Shapley Value Meets Conditional Independence Testing (2022)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2344839915",
-    "url": "https://www.semanticscholar.org/author/2344839915",
-    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
     "n_papers": 7,
-    "h_index": 2
-   }
-  ],
-  "oa_id": "A5004205287",
-  "oa_url": "https://openalex.org/A5004205287",
-  "oa_affiliation": "",
-  "oa_n_works": 27,
-  "oa_orcid": "0000-0003-2189-5192",
-  "oa_titles": [
-   "Examination-Level Supervision for Deep Learning–based Intracranial Hemorrhage Detection on Head CT Scans (2023)",
-   "Fast Hierarchical Games for Image Explanations (2022)",
-   "Notice of Removal: Fourier Diffusion Models: A Method to Control MTF and NPS in Score-Based Stochastic Image Generation (2023)",
-   "Fourier Diffusion Models: A Method to Control MTF and NPS in Score-Based Stochastic Image Generation (2023)",
-   "Fitting Splines to Axonal Arbors Quantifies Relationship Between Branch Order and Geometry (2021)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": "0000-0003-2189-5192",
-   "orcid_oa": "0000-0003-2189-5192",
-   "orcid_match": true,
-   "orcid_conflict": false,
-   "title_overlap_n": 2,
-   "title_overlap_frac": 0.4,
-   "agree": true
-  }
- },
- {
-  "name": "jannik brinkmann",
-  "s2_id": "2228224955",
-  "url": "https://www.semanticscholar.org/author/2228224955",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 16,
-  "h_index": 9,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Measuring Progress in Dictionary Learning for Language Model Interpretability with Board Game Models (2024)",
-   "A Mechanistic Analysis of a Transformer Trained on a Symbolic Multi-Step Reasoning Task (2024)",
-   "The Quest for the Right Mediator: A History, Survey, and Theoretical Grounding of Causal Interpretability (2024)",
-   "Large Language Models Share Representations of Latent Grammatical Concepts Across Typologically Diverse Languages (2025)",
-   "NNsight and NDIF: Democratizing Access to Foundation Model Internals (2024)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2380534385",
-    "url": "https://www.semanticscholar.org/author/2380534385",
+    "h_index": 4,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Using Machine Learning for Early Prediction of Cardiogenic Shock in Patients With Acute Heart Failure (2021)",
+      "Exploration of Residual Confounding in Analyses of Associations of Metformin Use and Outcomes in Adults With Type 2 Diabetes (2022)",
+      "Valid two‐sample graph testing via optimal transport Procrustes and multiscale graph correlation with applications in connectomics (2019)",
+      "Correcting a nonparametric two-sample graph hypothesis test for graphs with different numbers of vertices with applications to connectomics (2020)",
+      "LqRT: Robust Hypothesis Testing of Location Parameters using Lq-Likelihood-Ratio-Type Test in Python (2019)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5016320486",
+    "oa_url": "https://openalex.org/A5016320486",
+    "oa_affiliation": "Saint Louis University",
+    "oa_n_works": 43,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Medical large language models are vulnerable to data-poisoning attacks (2025)",
+      "LLM-assisted systematic review of large language models in clinical medicine (2026)",
+      "Using Machine Learning for Early Prediction of Cardiogenic Shock in Patients with Acute Heart Failure (2021)",
+      "Using Machine Learning for Early Prediction of Cardiogenic Shock in Patients With Acute Heart Failure (2022)",
+      "Exploration of Residual Confounding in Analyses of Associations of Metformin Use and Outcomes in Adults With Type 2 Diabetes (2022)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5138015394",
+        "url": "https://openalex.org/A5138015394",
+        "affiliation": "Washington University in St. Louis",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5135217538",
+        "url": "https://openalex.org/A5135217538",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5120997086",
+        "url": "https://openalex.org/A5120997086",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 2,
+      "title_overlap_frac": 0.5,
+      "agree": true
+    }
+  },
+  {
+    "name": "arman ohmid",
+    "s2_id": null,
+    "url": "https://www.semanticscholar.org/author/2315904481",
     "affiliation": "",
-    "n_papers": 3,
-    "h_index": 1
-   }
-  ],
-  "exclude_titles": [
-   "control of ground vibration from colliery blasting",
-   "blast design parameters on ground vibrations",
-   "lead storage battery cell",
-   "high speed photography to explosive rock breaking",
-   "rock fragmentation and heave from stoping blastholes",
-   "battery cell cooling system",
-   "intermodales hitchhike",
-   "experiment m410"
-  ],
-  "oa_id": "A5111504093",
-  "oa_url": "https://openalex.org/A5111504093",
-  "oa_affiliation": "University of Mannheim",
-  "oa_n_works": 41,
-  "oa_orcid": null,
-  "oa_titles": [
-   "The control of ground vibration from colliery blasting during the undermining of residential areas (1987)",
-   "Agents of Chaos (2026)",
-   "A Multidimensional Analysis of Social Biases in Vision Transformers (2023)",
-   "Effects of some blast design parameters on ground vibrations at short scaled distances (1991)",
-   "Large Language Models Share Representations of Latent Grammatical Concepts Across Typologically Diverse Languages (2025)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 1,
-   "title_overlap_frac": 0.2,
-   "agree": true
-  }
- },
- {
-  "name": "jeremy howard",
-  "s2_id": "2093348519",
-  "url": "https://www.semanticscholar.org/author/2093348519",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 16,
-  "h_index": 8,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Universal Language Model Fine-tuning for Text Classification (2018)",
-   "fastai: A Layered API for Deep Learning (2020)",
-   "Fine-tuned Language Models for Text Classification (2018)",
-   "Deep Learning-Based Point-Scanning Super-Resolution Imaging (2019)",
-   "MultiFiT: Efficient Multi-lingual Language Model Fine-tuning (2019)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "exclude_titles": [
-   "glenrothes",
-   "non-blind walls",
-   "pollen limitation in apples",
-   "journal of urban learning",
-   "point-scanning super-resolution"
-  ],
-  "oa_id": "A5007075789",
-  "oa_url": "https://openalex.org/A5007075789",
-  "oa_affiliation": "",
-  "oa_n_works": 129,
-  "oa_orcid": "0000-0002-3102-9282",
-  "oa_titles": [
-   "An evidence review of face masks against COVID-19 (2021)",
-   "Fastai: A Layered API for Deep Learning (2020)",
-   "Fine-tuned Language Models for Text Classification. (2018)",
-   "Unique Seminal Quality in the South African Cheetah and a Comparative Evaluation in the Domestic Cat (1983)",
-   "Face Masks Against COVID-19: An Evidence Review (2020)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5102749721",
-    "url": "https://openalex.org/A5102749721",
-    "affiliation": "Smith Institute",
-    "n_works": 97,
-    "cited_by": 1779,
-    "orcid": "0000-0001-6216-3540"
-   },
-   {
-    "oa_id": "A5061962752",
-    "url": "https://openalex.org/A5061962752",
-    "affiliation": "University of St Andrews",
-    "n_works": 35,
-    "cited_by": 30,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5108785327",
-    "url": "https://openalex.org/A5108785327",
-    "affiliation": "",
-    "n_works": 18,
-    "cited_by": 212,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5107296411",
-    "url": "https://openalex.org/A5107296411",
-    "affiliation": "",
-    "n_works": 14,
-    "cited_by": 137,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5103359756",
-    "url": "https://openalex.org/A5103359756",
-    "affiliation": "Massachusetts Institute of Technology",
-    "n_works": 6,
-    "cited_by": 287,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0000-0002-3102-9282",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 2,
-   "title_overlap_frac": 0.4,
-   "agree": true
-  }
- },
- {
-  "name": "jeremy kritz",
-  "s2_id": "2342686324",
-  "url": "https://www.semanticscholar.org/author/2342686324",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 3,
-  "h_index": 3,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "MultiChallenge: A Realistic Multi-Turn Conversation Evaluation Benchmark Challenging to Frontier LLMs (2025)",
-   "Jailbreaking to Jailbreak (2025)",
-   "A Red Teaming Roadmap Towards System-Level Safety (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5116082873",
-  "oa_url": "https://openalex.org/A5116082873",
-  "oa_affiliation": "",
-  "oa_n_works": 4,
-  "oa_orcid": null,
-  "oa_titles": [
-   "MultiChallenge: A Realistic Multi-Turn Conversation Evaluation Benchmark Challenging to Frontier LLMs (2025)",
-   "MultiChallenge: A Realistic Multi-Turn Conversation Evaluation Benchmark Challenging to Frontier LLMs (2025)",
-   "A Red Teaming Roadmap Towards System-Level Safety (2025)",
-   "Jailbreaking to Jailbreak (2025)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 1.0,
-   "agree": true
-  }
- },
- {
-  "name": "jesse hoogland",
-  "s2_id": "2282535402",
-  "url": "https://www.semanticscholar.org/author/2282535402",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 10,
-  "h_index": 7,
-  "confidence": "low",
-  "verified": false,
-  "sample_titles": [
-   "Open Problems in Mechanistic Interpretability (2025)",
-   "Differentiation and Specialization of Attention Heads via the Refined Local Learning Coefficient (2024)",
-   "Loss Landscape Degeneracy and Stagewise Development in Transformers (2024)",
-   "Dynamics of Transient Structure in In-Context Linear Regression Transformers (2025)",
-   "You Are What You Eat - AI Alignment Requires Understanding How Data Shapes Structure and Generalisation (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2382990271",
-    "url": "https://www.semanticscholar.org/author/2382990271",
-    "affiliation": "",
-    "n_papers": 4,
-    "h_index": 3
-   }
-  ],
-  "oa_id": "A5104240187",
-  "oa_url": "https://openalex.org/A5104240187",
-  "oa_affiliation": "",
-  "oa_n_works": 8,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Open Problems in Mechanistic Interpretability (2025)",
-   "You Are What You Eat -- AI Alignment Requires Understanding How Data Shapes Structure and Generalisation (2025)",
-   "Differentiation and Specialization of Attention Heads via the Refined Local Learning Coefficient (2024)",
-   "Structural Inference: Interpreting Small Language Models with Susceptibilities (2025)",
-   "The Loss Kernel: A Geometric Probe for Deep Learning Interpretability (2025)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5120028682",
-    "url": "https://openalex.org/A5120028682",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 0.6,
-   "agree": true
-  }
- },
- {
-  "name": "josh ying",
-  "s2_id": "1601443232",
-  "url": "https://www.semanticscholar.org/author/1601443232",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 5,
-  "h_index": 3,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "VisFIS: Visual Feature Importance Supervision with Right-for-the-Right-Reason Objectives (2022)",
-   "Can Deep Learning Recognize Subtle Human Activities? (2020)",
-   "The Truthfulness Spectrum Hypothesis (2026)",
-   "How attention saves energy in vision (2026)",
-   "Adaptive Contextual Perception: How to Generalize to New Backgrounds and Ambiguous Objects (2023)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5073373951",
-  "oa_url": "https://openalex.org/A5073373951",
-  "oa_affiliation": "",
-  "oa_n_works": 64,
-  "oa_orcid": "0000-0002-7873-4018",
-  "oa_titles": [
-   "Semantic trajectory mining for location prediction (2011)",
-   "Mining user similarity from semantic trajectories (2010)",
-   "Mining geographic-temporal-semantic patterns in trajectories for location prediction (2013)",
-   "Urban point-of-interest recommendation by mining user check-in behaviors (2012)",
-   "Spatio-attention embedded recurrent neural network for air quality prediction (2021)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5136163812",
-    "url": "https://openalex.org/A5136163812",
-    "affiliation": "",
-    "n_works": 4,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5126796898",
-    "url": "https://openalex.org/A5126796898",
-    "affiliation": "",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5084364624",
-    "url": "https://openalex.org/A5084364624",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0000-0002-7873-4018",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "karl kaiser",
-  "s2_id": null,
-  "url": "https://www.semanticscholar.org/author/121064986",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 15,
-  "h_index": 4,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Die neue Weltpolitik (1995)",
-   "Weltpolitik im neuen Jahrhundert (2000)",
-   "Weltpolitik : Strukturen, Akteure, Perspektiven (1988)",
-   "Osteuropa auf dem Weg zur Marktwirtschaft : zehn Fallstudien mit Lösungsansätzen (1992)",
-   "Osteuropa auf dem Weg zur Marktwirtschaft (1992)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2267940641",
-    "url": "https://www.semanticscholar.org/author/2267940641",
-    "affiliation": "",
-    "n_papers": 6,
-    "h_index": 3
-   }
-  ],
-  "oa_id": "A5013623861",
-  "oa_url": "https://openalex.org/A5013623861",
-  "oa_affiliation": "Texas A&M University at Galveston",
-  "oa_n_works": 272,
-  "oa_orcid": "0000-0002-4951-4665",
-  "oa_titles": [
-   "Characterization of a major refractory component of marine dissolved organic matter (2006)",
-   "Production of Refractory Dissolved Organic Matter by Bacteria (2001)",
-   "Expert assessment of future vulnerability of the global peatland carbon sink (2020)",
-   "A molecular perspective on the ageing of marine dissolved organic matter (2012)",
-   "Biochemical composition and size distribution of organic matter at the Pacific and Atlantic time-series stations (2008)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5091243083",
-    "url": "https://openalex.org/A5091243083",
-    "affiliation": "University of Ouargla",
-    "n_works": 23,
-    "cited_by": 18,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5023319972",
-    "url": "https://openalex.org/A5023319972",
-    "affiliation": "META Health",
-    "n_works": 12,
-    "cited_by": 29,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5102240772",
-    "url": "https://openalex.org/A5102240772",
-    "affiliation": "German Council on Foreign Relations",
-    "n_works": 9,
-    "cited_by": 17,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5086208500",
-    "url": "https://openalex.org/A5086208500",
-    "affiliation": "Johannes Gutenberg University Mainz",
-    "n_works": 5,
-    "cited_by": 43,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5066959294",
-    "url": "https://openalex.org/A5066959294",
-    "affiliation": "TU Wien",
-    "n_works": 3,
-    "cited_by": 41,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0000-0002-4951-4665",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "kayo yin",
-  "s2_id": "1602993448",
-  "url": "https://www.semanticscholar.org/author/1602993448",
-  "affiliation": "École Polytechnique",
-  "homepage": "http://kayoyin.github.io/",
-  "orcid": null,
-  "n_papers": 13,
-  "h_index": 10,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Better Sign Language Translation with STMC-Transformer (2020)",
-   "Including Signed Languages in Natural Language Processing (2021)",
-   "Interpreting Language Models with Contrastive Explanations (2022)",
-   "Data Augmentation for Sign Language Gloss Translation (2021)",
-   "Measuring and Increasing Context Usage in Context-Aware Machine Translation (2021)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2329737021",
-    "url": "https://www.semanticscholar.org/author/2329737021",
-    "affiliation": "",
-    "n_papers": 4,
-    "h_index": 3
-   },
-   {
-    "s2_id": "2346324583",
-    "url": "https://www.semanticscholar.org/author/2346324583",
-    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
     "n_papers": 2,
-    "h_index": 2
-   }
-  ],
-  "exclude_titles": [
-   "using turbo prolog"
-  ],
-  "oa_id": "A5070907404",
-  "oa_url": "https://openalex.org/A5070907404",
-  "oa_affiliation": "",
-  "oa_n_works": 30,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Better Sign Language Translation with STMC-Transformer (2020)",
-   "Including Signed Languages in Natural Language Processing (2021)",
-   "Interpreting Language Models with Contrastive Explanations (2022)",
-   "Do Context-Aware Translation Models Pay the Right Attention? (2021)",
-   "Sign Language Translation with Transformers. (2020)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 0.6,
-   "agree": true
-  }
- },
- {
-  "name": "kola ayonrinde",
-  "s2_id": "2325947690",
-  "url": "https://www.semanticscholar.org/author/2325947690",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 9,
-  "h_index": 5,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "SAEBench: A Comprehensive Benchmark for Sparse Autoencoders in Language Model Interpretability (2025)",
-   "Interpretability as Compression: Reconsidering SAE Explanations of Neural Activations with MDL-SAEs (2024)",
-   "Auditing Games for Sandbagging (2025)",
-   "Adaptive Sparse Allocation with Mutual Choice & Feature Choice Sparse Autoencoders (2024)",
-   "A Mathematical Philosophy of Explanations in Mechanistic Interpretability - The Strange Science Part I.i (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "exclude_titles": [
-   "legislation for mental health in nigeria"
-  ],
-  "oa_id": "A5114336088",
-  "oa_url": "https://openalex.org/A5114336088",
-  "oa_affiliation": "",
-  "oa_n_works": 8,
-  "oa_orcid": null,
-  "oa_titles": [
-   "SAEBench: A Comprehensive Benchmark for Sparse Autoencoders in Language Model Interpretability (2025)",
-   "Adaptive Sparse Allocation with Mutual Choice &amp; Feature Choice Sparse Autoencoders (2024)",
-   "A Mathematical Philosophy of Explanations in Mechanistic Interpretability (2025)",
-   "Evaluating Explanations: An Explanatory Virtues Framework for Mechanistic Interpretability -- The Strange Science Part I.ii (2025)",
-   "From Mechanistic to Compositional Interpretability (2026)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 1,
-   "title_overlap_frac": 0.2,
-   "agree": true
-  }
- },
- {
-  "name": "leo mckee-reid",
-  "s2_id": "2370996004",
-  "url": "https://www.semanticscholar.org/author/2370996004",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 8,
-  "h_index": 3,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Honesty to Subterfuge: In-Context Reinforcement Learning Can Make Honest Models Reward Hack (2024)",
-   "Manual versus automatic analysis of microglial density and distribution: a comparison in the hippocampus of healthy and lipopolysaccharide-challenged mature male mice. (2022)",
-   "The Discovery Engine (?)",
-   "Benchmarking the Discovery Engine (2025)",
-   "Explaining Surface Layer Theory Departures in Marine Flux Profiles with Data-Driven Discovery (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "exclude_titles": [
-   "microglial density",
-   "discovery engine",
-   "receptor physicochemical",
-   "marine flux",
-   "root system optimization"
-  ],
-  "oa_id": "A5118906368",
-  "oa_url": "https://openalex.org/A5118906368",
-  "oa_affiliation": "Learning Through an Expanded Arts Program",
-  "oa_n_works": 4,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Growth Cost and Transport Efficiency Tradeoffs Define Root System Optimization Across Varying Developmental Stages and Environments in Arabidopsis (2025)",
-   "Automated Discovery of Patterns in T-Cell Receptor Physicochemical Signatures (2025)",
-   "Benchmarking the Discovery Engine (2025)",
-   "Explaining Surface Layer Theory Departures in Marine Flux Profiles with Data-Driven Discovery (2025)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5088606207",
-    "url": "https://openalex.org/A5088606207",
-    "affiliation": "University of Victoria",
-    "n_works": 1,
-    "cited_by": 9,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5109819074",
-    "url": "https://openalex.org/A5109819074",
+    "h_index": 2,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Implications of the Gut Microbiota for Brain Function and Behavior in Schizophrenia (2024)",
+      "Outcomes of dietary interventions in the prevention and progression of Parkinson's disease: A literature review (2024)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5103308166",
+    "oa_url": "https://openalex.org/A5103308166",
+    "oa_affiliation": "California Northstate University",
+    "oa_n_works": 2,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Implications of the Gut Microbiota for Brain Function and Behavior in Schizophrenia (2024)",
+      "Outcomes of dietary interventions in the prevention and progression of Parkinson's disease: A literature review (2024)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 2,
+      "title_overlap_frac": 1.0,
+      "agree": true
+    }
+  },
+  {
+    "name": "arnab sen sharma",
+    "s2_id": "1429844787",
+    "url": "https://www.semanticscholar.org/author/1429844787",
+    "affiliation": "Northeastern University",
+    "homepage": "https://arnab-api.github.io/",
+    "orcid": "0000-0002-0407-6526",
+    "n_papers": 22,
+    "h_index": 12,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "Mass-Editing Memory in a Transformer (2022)",
+      "Function Vectors in Large Language Models (2023)",
+      "Linearity of Relation Decoding in Transformer Language Models (2023)",
+      "The Quest for the Right Mediator: A History, Survey, and Theoretical Grounding of Causal Interpretability (2024)",
+      "BD-SHS: A Benchmark Dataset for Learning to Detect Online Bangla Hate Speech in Different Social Contexts (2022)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5076301518",
+    "oa_url": "https://openalex.org/A5076301518",
+    "oa_affiliation": "Universidad del Noreste",
+    "oa_n_works": 22,
+    "oa_orcid": "0000-0002-0407-6526",
+    "oa_titles": [
+      "Mass-Editing Memory in a Transformer (2022)",
+      "Vio-Lens: A Novel Dataset of Annotated Social Network Posts Leading to Different Forms of Communal Violence and its Evaluation (2023)",
+      "BD-SHS: A Benchmark Dataset for Learning to Detect Online Bangla Hate Speech in Different Social Contexts (2022)",
+      "A Deep CNN Model for Student Learning Pedagogy Detection Data Collection Using OCR (2018)",
+      "HS-BAN: A Benchmark Dataset of Social Media Comments for Hate Speech Detection in Bangla (2021)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": "0000-0002-0407-6526",
+      "orcid_oa": "0000-0002-0407-6526",
+      "orcid_match": true,
+      "orcid_conflict": false,
+      "title_overlap_n": 2,
+      "title_overlap_frac": 0.4,
+      "agree": true
+    }
+  },
+  {
+    "name": "bijan varjavand",
+    "s2_id": "46785719",
+    "url": "https://www.semanticscholar.org/author/46785719",
     "affiliation": "",
-    "n_works": 1,
-    "cited_by": 1,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5120550085",
-    "url": "https://openalex.org/A5120550085",
-    "affiliation": "Learning Through an Expanded Arts Program",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 2,
-   "title_overlap_frac": 0.5,
-   "agree": true
-  }
- },
- {
-  "name": "liv gorton",
-  "s2_id": "2328412434",
-  "url": "https://www.semanticscholar.org/author/2328412434",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 4,
-  "h_index": 2,
-  "confidence": "low",
-  "verified": false,
-  "sample_titles": [
-   "The Missing Curve Detectors of InceptionV1: Applying Sparse Autoencoders to InceptionV1 Early Vision (2024)",
-   "Adversarial Examples Are Not Bugs, They Are Superposition (2025)",
-   "Group Crosscoders for Mechanistic Analysis of Symmetry (2024)",
-   "Measuring the Representational Alignment of Neural Systems in Superposition (2026)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2346936846",
-    "url": "https://www.semanticscholar.org/author/2346936846",
-    "affiliation": "",
-    "n_papers": 3,
-    "h_index": 3
-   }
-  ],
-  "oa_id": "A5132769007",
-  "oa_url": "https://openalex.org/A5132769007",
-  "oa_affiliation": "Cold Spring Harbor Laboratory",
-  "oa_n_works": 2,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Measuring the Representational Alignment of Neural Systems in Superposition (2026)",
-   "Measuring the Representational Alignment of Neural Systems in Superposition (2026)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5116367399",
-    "url": "https://openalex.org/A5116367399",
-    "affiliation": "Sunfire (Germany)",
-    "n_works": 1,
-    "cited_by": 194,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5128107299",
-    "url": "https://openalex.org/A5128107299",
-    "affiliation": "Emodo (United States)",
-    "n_works": 1,
-    "cited_by": 46,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5099056976",
-    "url": "https://openalex.org/A5099056976",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 1,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5114634570",
-    "url": "https://openalex.org/A5114634570",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 1,
-   "title_overlap_frac": 1.0,
-   "agree": true
-  }
- },
- {
-  "name": "lucia quirke",
-  "s2_id": "2243240285",
-  "url": "https://www.semanticscholar.org/author/2243240285",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 7,
-  "h_index": 5,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "Neural Networks Learn Statistics of Increasing Complexity (2024)",
-   "A Configurable Library for Generating and Manipulating Maze Datasets (2023)",
-   "Structured World Representations in Maze-Solving Transformers (2023)",
-   "Linearly Structured World Representations in Maze-Solving Transformers (2023)",
-   "Training Dynamics of Contextual N-Grams in Language Models (2023)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5092912338",
-  "oa_url": "https://openalex.org/A5092912338",
-  "oa_affiliation": "",
-  "oa_n_works": 8,
-  "oa_orcid": null,
-  "oa_titles": [
-   "A Configurable Library for Generating and Manipulating Maze Datasets (2023)",
-   "Structured World Representations in Maze-Solving Transformers (2023)",
-   "Neural Networks Learn Statistics of Increasing Complexity (2024)",
-   "Bergson: An Open Source Library for Data Attribution (2026)",
-   "EleutherAI/bergson: v0.8.0 (2026)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 0.6,
-   "agree": true
-  }
- },
- {
-  "name": "madi kusmonov",
-  "s2_id": "1711209306",
-  "url": null,
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": null,
-  "h_index": null,
-  "confidence": "none",
-  "verified": true,
-  "sample_titles": [],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_verified": true,
-  "oa_id": "A5056760376",
-  "oa_url": "https://openalex.org/A5056760376",
-  "oa_affiliation": "",
-  "oa_n_works": 5,
-  "oa_orcid": null,
-  "oa_titles": [
-   "When are Deep Networks really better than Decision Forests at small sample sizes, and how? (2021)",
-   "When are Deep Networks really better than Random Forests at small sample sizes (2021)",
-   "PREDICTION OF PHYSIOLOGICAL DETERIORATION AND MORTALITY IN MECHANICALLY VENTILATED PATIENTS ADMITTED TO THE ICU (2021)",
-   "Effects of Increased Hemoglobin Oxygen Affinity on Cerebrovascular Reserve Capacity in Sickle Cell Disease (2020)",
-   "Decision Forests vs. Deep Networks: Conceptual Similarities and Empirical Differences at Small Sample Sizes (2021)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "maya deen",
-  "s2_id": null,
-  "url": "https://www.semanticscholar.org/author/2422508432",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 1,
-  "h_index": 0,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Exploring Ghanaian fathers’ involvement in parenting children with neurodevelopmental disorders (2026)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5083167078",
-  "oa_url": "https://openalex.org/A5083167078",
-  "oa_affiliation": "University of New Mexico",
-  "oa_n_works": 3,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Black Placemaking under Environmental Stressors (2022)",
-   "<em>Arabidopsis thaliana</em> trait plasticity (F-ratio) dataset across fertilizer and competition gradients (2026)",
-   "Phenotypic Plasticity in <i>Arabidopsis thaliana</i> Is Fitness‐Neutral, and Costs Are Lacking Across Experimental Environments (2026)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5099521796",
-    "url": "https://openalex.org/A5099521796",
-    "affiliation": "University of Ghana",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "michael ripa",
-  "s2_id": "2312327038",
-  "url": "https://www.semanticscholar.org/author/2312327038",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 5,
-  "h_index": 3,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "NNsight and NDIF: Democratizing Access to Foundation Model Internals (2024)",
-   "NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals (2024)",
-   "Agents of Chaos (2026)",
-   "CounterMoral: Editing Morals in Language Models (2026)",
-   "APPLICATION OF LAGUERRE-VORONOI DIAGRAMS FOR CONSTRUCTION AND OPTIMIZATION OF THE EMERGENCY NOTIFICATION SYSTEM INFRASTRUCTURE FOR THE POPULATION (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "exclude_titles": [
-   "laguerre voronoi diagrams"
-  ],
-  "oa_id": "A5115703057",
-  "oa_url": "https://openalex.org/A5115703057",
-  "oa_affiliation": "",
-  "oa_n_works": 6,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Agents of Chaos (2026)",
-   "NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals (2024)",
-   "Agents of Chaos (2026)",
-   "Agents of Chaos (2026)",
-   "Agents of Chaos (2026)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5132570468",
-    "url": "https://openalex.org/A5132570468",
-    "affiliation": "Carleton University",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5048573413",
-    "url": "https://openalex.org/A5048573413",
-    "affiliation": "",
-    "n_works": 1,
-    "cited_by": 11,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 2,
-   "title_overlap_frac": 1.0,
-   "agree": true
-  }
- },
- {
-  "name": "rod moshtagi",
-  "s2_id": "2222896946",
-  "url": "https://www.semanticscholar.org/author/2222896946",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 1,
-  "h_index": 0,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "Towards determining the criticality of AI applications: A model risk management perspective (2023)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5092098993",
-  "oa_url": "https://openalex.org/A5092098993",
-  "oa_affiliation": "PricewaterhouseCoopers (Canada)",
-  "oa_n_works": 1,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Towards determining the criticality of AI applications: A model risk management perspective (2023)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 1,
-   "title_overlap_frac": 1.0,
-   "agree": true
-  }
- },
- {
-  "name": "ronak mehta",
-  "s2_id": "1410508372",
-  "url": "https://www.semanticscholar.org/author/7689277",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 22,
-  "h_index": 6,
-  "confidence": "low",
-  "verified": true,
-  "sample_titles": [
-   "Deep Unlearning via Randomized Conditionally Independent Hessians (2022)",
-   "DUAL-GLOW: Conditional Flow-Based Generative Model for Modality Transfer (2019)",
-   "Resource Constrained Neural Network Architecture Search: Will a Submodularity Assumption Help? (2019)",
-   "hyppo: A Comprehensive Multivariate Hypothesis Testing Python Package (2019)",
-   "Stochastic Optimization for Spectral Risk Measures (2022)"
-  ],
-  "merge_ids": [
-   "2261287914"
-  ],
-  "alternatives": [
-   {
-    "s2_id": "1410508372",
-    "url": "https://www.semanticscholar.org/author/1410508372",
-    "affiliation": "",
-    "n_papers": 13,
-    "h_index": 6
-   },
-   {
-    "s2_id": "2261287914",
-    "url": "https://www.semanticscholar.org/author/2261287914",
-    "affiliation": "",
-    "n_papers": 13,
-    "h_index": 2
-   },
-   {
-    "s2_id": "2067925456",
-    "url": "https://www.semanticscholar.org/author/2067925456",
-    "affiliation": "",
-    "n_papers": 5,
-    "h_index": 1
-   },
-   {
-    "s2_id": "2211931181",
-    "url": "https://www.semanticscholar.org/author/2211931181",
-    "affiliation": "",
-    "n_papers": 5,
-    "h_index": 1
-   },
-   {
-    "s2_id": "2156523979",
-    "url": "https://www.semanticscholar.org/author/2156523979",
-    "affiliation": "",
-    "n_papers": 2,
-    "h_index": 0
-   }
-  ],
-  "exclude_titles": [
-   "photoacoustic spectroscopy"
-  ],
-  "oa_id": "A5001083519",
-  "oa_url": "https://openalex.org/A5001083519",
-  "oa_affiliation": "Johns Hopkins University",
-  "oa_n_works": 47,
-  "oa_orcid": null,
-  "oa_titles": [
-   "hyppo: A Multivariate Hypothesis Testing Python Package (2019)",
-   "hyppo: A Comprehensive Multivariate Hypothesis Testing Python Package (2019)",
-   "A general approach to progressive learning (2020)",
-   "Deep Unlearning via Randomized Conditionally Independent Hessians (2022)",
-   "Simple Lifelong Learning Machines (2020)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5089308107",
-    "url": "https://openalex.org/A5089308107",
-    "affiliation": "",
-    "n_works": 17,
-    "cited_by": 165,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5000396195",
-    "url": "https://openalex.org/A5000396195",
-    "affiliation": "Department of Commerce",
-    "n_works": 5,
-    "cited_by": 4,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5118595758",
-    "url": "https://openalex.org/A5118595758",
-    "affiliation": "Film Independent",
-    "n_works": 1,
-    "cited_by": 2,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5066966364",
-    "url": "https://openalex.org/A5066966364",
-    "affiliation": "University of Maryland, Baltimore County",
-    "n_works": 1,
-    "cited_by": 2,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5126185692",
-    "url": "https://openalex.org/A5126185692",
-    "affiliation": "University of Washington",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 2,
-   "title_overlap_frac": 0.4,
-   "agree": true
-  }
- },
- {
-  "name": "ross lawrence",
-  "s2_id": "1907313644",
-  "url": "https://www.semanticscholar.org/author/50638356",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 5,
-  "h_index": 2,
-  "confidence": "low",
-  "verified": true,
-  "sample_titles": [
-   "A Murine Model of Robotic Training to Evaluate Skeletal Muscle Recovery after Injury (2017)",
-   "Can the music industry adapt to the digital future (2010)",
-   "The effects of local demographic characteristics and state-level legislation on foreclosure rates (2010)",
-   "Research spotlight: What immigration means for the economy (2010)",
-   "Continental divide: how did the European debt crisis become so severe? (2010)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2058153652",
-    "url": "https://www.semanticscholar.org/author/2058153652",
-    "affiliation": "",
-    "n_papers": 4,
-    "h_index": 1
-   },
-   {
-    "s2_id": "2367302016",
-    "url": "https://www.semanticscholar.org/author/2367302016",
-    "affiliation": "",
-    "n_papers": 2,
-    "h_index": 2
-   },
-   {
-    "s2_id": "2261299995",
-    "url": "https://www.semanticscholar.org/author/2261299995",
-    "affiliation": "",
-    "n_papers": 2,
-    "h_index": 0
-   }
-  ],
-  "exclude_titles": [
-   "continental divide",
-   "foreclosure rates",
-   "naturopathic paradigm"
-  ],
-  "oa_verified": true,
-  "oa_id": "A5022061990",
-  "oa_url": "https://openalex.org/A5022061990",
-  "oa_affiliation": "Johns Hopkins University",
-  "oa_n_works": 15,
-  "oa_orcid": "0000-0001-6194-0328",
-  "oa_titles": [
-   "Standardizing human brain parcellations (2021)",
-   "The developmental trajectory of 1H-MRS brain metabolites from childhood to adulthood (2024)",
-   "Development of self-referential effect on memory recollection (2022)",
-   "Standardizing Human Brain Parcellations (2019)",
-   "Self-referential encoding of source information in recollection memory (2021)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0000-0001-6194-0328",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "roy rinberg",
-  "s2_id": "2051503911",
-  "url": "https://www.semanticscholar.org/author/2051503911",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 6,
-  "h_index": 4,
-  "confidence": "low",
-  "verified": false,
-  "sample_titles": [
-   "NL-Augmenter: A Framework for Task-Sensitive Natural Language Augmentation (2021)",
-   "Have it your way: Individualized Privacy Assignment for DP-SGD (2023)",
-   "Individualized PATE: Differentially Private Machine Learning with Individual Privacy Guarantees (2022)",
-   "How to Prepare for the Deluge of Generative AI on Social Media (2023)",
-   "Beyond Laplace and Gaussian: Exploring the Generalized Gaussian Mechanism for Private Machine Learning (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2390495739",
-    "url": "https://www.semanticscholar.org/author/2390495739",
-    "affiliation": "",
-    "n_papers": 4,
-    "h_index": 1
-   },
-   {
-    "s2_id": "2328331125",
-    "url": "https://www.semanticscholar.org/author/2328331125",
-    "affiliation": "",
-    "n_papers": 4,
-    "h_index": 2
-   }
-  ],
-  "oa_id": "A5070949025",
-  "oa_url": "https://openalex.org/A5070949025",
-  "oa_affiliation": "",
-  "oa_n_works": 3,
-  "oa_orcid": null,
-  "oa_titles": [
-   "Easy Data Unlearning Bench (2026)",
-   "Attribute-to-Delete: Machine Unlearning via Datamodel Matching (2024)",
-   "Easy Data Unlearning Bench (2026)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5070773666",
-    "url": "https://openalex.org/A5070773666",
-    "affiliation": "",
-    "n_works": 2,
-    "cited_by": 31,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5050164180",
-    "url": "https://openalex.org/A5050164180",
-    "affiliation": "Columbia University",
-    "n_works": 2,
-    "cited_by": 19,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5046256924",
-    "url": "https://openalex.org/A5046256924",
-    "affiliation": "",
-    "n_works": 2,
-    "cited_by": 5,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5133014080",
-    "url": "https://openalex.org/A5133014080",
-    "affiliation": "",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5042159970",
-    "url": "https://openalex.org/A5042159970",
-    "affiliation": "",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "ryan chesler",
-  "s2_id": "2220099634",
-  "url": "https://www.semanticscholar.org/author/2220099634",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 3,
-  "h_index": 3,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "H2OVL-Mississippi Vision Language Models Technical Report (2024)",
-   "h2oGPT: Democratizing Large Language Models (2023)",
-   "Nemotron ColEmbed V2: Top-Performing Late Interaction embedding models for Visual Document Retrieval (2026)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5092189493",
-  "oa_url": "https://openalex.org/A5092189493",
-  "oa_affiliation": "",
-  "oa_n_works": 4,
-  "oa_orcid": null,
-  "oa_titles": [
-   "h2oGPT: Democratizing Large Language Models (2023)",
-   "Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval (2026)",
-   "Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval (2026)",
-   "H2OVL-Mississippi Vision Language Models Technical Report (2024)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 1.0,
-   "agree": true
-  }
- },
- {
-  "name": "sarah schwettman",
-  "s2_id": "5478802",
-  "url": "https://www.semanticscholar.org/author/5478802",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 31,
-  "h_index": 9,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "Natural Language Descriptions of Deep Visual Features (2022)",
-   "Invariant representations of mass in the human brain (2019)",
-   "A Multimodal Automated Interpretability Agent (2024)",
-   "Multimodal Neurons in Pretrained Text-Only Transformers (2023)",
-   "FIND: A Function Description Benchmark for Evaluating Interpretability Methods (2023)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2343632085",
-    "url": "https://www.semanticscholar.org/author/2343632085",
-    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
     "n_papers": 8,
-    "h_index": 5
-   }
-  ],
-  "oa_id": "A5074026640",
-  "oa_url": "https://openalex.org/A5074026640",
-  "oa_affiliation": "",
-  "oa_n_works": 43,
-  "oa_orcid": "0000-0001-6385-1396",
-  "oa_titles": [
-   "Invariant representations of mass in the human brain (2019)",
-   "The Role of Multiple Neuromodulators in Reinforcement Learning That Is Based on Competition between Eligibility Traces (2016)",
-   "Natural Language Descriptions of Deep Visual Features (2022)",
-   "Multimodal Neurons in Pretrained Text-Only Transformers (2023)",
-   "Stable reinforcement learning via temporal competition between LTP and LTD traces (2014)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0000-0001-6385-1396",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 0.6,
-   "agree": true
-  }
- },
- {
-  "name": "sheridan feucht",
-  "s2_id": "2140009998",
-  "url": "https://www.semanticscholar.org/author/2140009998",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 14,
-  "h_index": 5,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "NEWTS: A Corpus for News Topic-Focused Summarization (2022)",
-   "Erasing Conceptual Knowledge from Language Models (2024)",
-   "The Dual-Route Model of Induction (2025)",
-   "Token Erasure as a Footprint of Implicit Vocabulary Items in LLMs (2024)",
-   "Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior (2026)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5063601771",
-  "oa_url": "https://openalex.org/A5063601771",
-  "oa_affiliation": "",
-  "oa_n_works": 12,
-  "oa_orcid": null,
-  "oa_titles": [
-   "NEWTS: A Corpus for News Topic-Focused Summarization (2022)",
-   "Deep Neural Networks Can Learn Generalizable Same-Different Visual Relations (2023)",
-   "Can computers tell a story? Discourse Structure in Computer-generated Text and Humans (2021)",
-   "Deep neural networks can learn generalizable same-different visual relations (2025)",
-   "Arithmetic in the Wild: Llama uses Base-10 Addition to Reason About Cyclic Concepts (2026)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5099801431",
-    "url": "https://openalex.org/A5099801431",
+    "h_index": 4,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "Declining complication rates with flow diversion of anterior circulation aneurysms after introduction of the Pipeline Flex: analysis of a single-institution series of 568 cases. (2018)",
+      "GraSPy: Graph Statistics in Python (2019)",
+      "Jailbreaking to Jailbreak (2025)",
+      "Valid two‐sample graph testing via optimal transport Procrustes and multiscale graph correlation with applications in connectomics (2019)",
+      "Relevance Isn't All You Need: Scaling RAG Systems With Inference-Time Compute Via Multi-Criteria Reranking (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5008672296",
+    "oa_url": "https://openalex.org/A5008672296",
+    "oa_affiliation": "Johns Hopkins University",
+    "oa_n_works": 8,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Declining complication rates with flow diversion of anterior circulation aneurysms after introduction of the Pipeline Flex: analysis of a single-institution series of 568 cases (2018)",
+      "GraSPy: Graph Statistics in Python (2019)",
+      "GraSPy: Graph Statistics in Python (2019)",
+      "Valid Two-Sample Graph Testing via Optimal Transport Procrustes and Multiscale Graph Correlation with Applications in Connectomics (2019)",
+      "Valid two‐sample graph testing via optimal transport Procrustes and multiscale graph correlation with applications in connectomics (2021)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5116292985",
+        "url": "https://openalex.org/A5116292985",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 0.75,
+      "agree": true
+    }
+  },
+  {
+    "name": "brandon duderstadt",
+    "s2_id": "2265755425",
+    "url": "https://www.semanticscholar.org/author/2265755425",
     "affiliation": "",
-    "n_works": 2,
-    "cited_by": 4,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5134966905",
-    "url": "https://openalex.org/A5134966905",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 12,
+    "h_index": 7,
+    "confidence": "low",
+    "verified": false,
+    "sample_titles": [
+      "Nomic Embed: Training a Reproducible Long Context Text Embedder (2024)",
+      "Training Sparse Mixture Of Experts Text Embedding Models (2025)",
+      "CoRNStack: High-Quality Contrastive Data for Better Code Retrieval and Reranking (2024)",
+      "GPT4All: An Ecosystem of Open Source Compressed Language Models (2023)",
+      "Nomic Embed Vision: Expanding the Latent Space (2024)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "37839741",
+        "url": "https://www.semanticscholar.org/author/37839741",
+        "affiliation": "",
+        "n_papers": 6,
+        "h_index": 3
+      }
+    ],
+    "oa_id": "A5007090620",
+    "oa_url": "https://openalex.org/A5007090620",
+    "oa_affiliation": "Johns Hopkins University",
+    "oa_n_works": 19,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Discovery architecture for cultural heritage: layered retrieval, institutional authority, and the limits of keyword search (2024)",
+      "GPT4All: An Ecosystem of Open Source Compressed Language Models (2023)",
+      "RETRACTED: Repurposing the Scientific Literature with Vision-Language Models (2025)",
+      "Training Sparse Mixture Of Experts Text Embedding Models (2025)",
+      "Nomic Embed Vision: Expanding the Latent Space (2024)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 0.6,
+      "agree": true
+    }
+  },
+  {
+    "name": "can rager",
+    "s2_id": "2243239884",
+    "url": "https://www.semanticscholar.org/author/2243239884",
     "affiliation": "",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 1,
-   "title_overlap_frac": 0.25,
-   "agree": true
-  }
- },
- {
-  "name": "stella biderman",
-  "s2_id": "103476203",
-  "url": "https://www.semanticscholar.org/author/103476203",
-  "affiliation": "Booz Allen Hamilton; EleutherAI",
-  "homepage": "www.stellabiderman.com",
-  "orcid": null,
-  "n_papers": 50,
-  "h_index": 32,
-  "confidence": "low",
-  "verified": false,
-  "sample_titles": [
-   "BLOOM: A 176B-Parameter Open-Access Multilingual Language Model (2022)",
-   "The Pile: An 800GB Dataset of Diverse Text for Language Modeling (2020)",
-   "Beyond the Imitation Game: Quantifying and extrapolating the capabilities of language models (2022)",
-   "Multitask Prompted Training Enables Zero-Shot Task Generalization (2021)",
-   "Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling (2023)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2273535086",
-    "url": "https://www.semanticscholar.org/author/2273535086",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 6,
+    "h_index": 4,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "A Configurable Library for Generating and Manipulating Maze Datasets (2023)",
+      "Structured World Representations in Maze-Solving Transformers (2023)",
+      "Linearly Structured World Representations in Maze-Solving Transformers (2023)",
+      "Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior (2026)",
+      "Do Sparse Autoencoders Capture Concept Manifolds? (2026)"
+    ],
+    "merge_ids": [
+      "2257034392"
+    ],
+    "alternatives": [
+      {
+        "s2_id": "2386533097",
+        "url": "https://www.semanticscholar.org/author/2386533097",
+        "affiliation": "",
+        "n_papers": 1,
+        "h_index": 0
+      }
+    ],
+    "exclude_titles": [
+      "reactions to rubella immunizations",
+      "cardiac accidents during pregnancy in mitral stenosis"
+    ],
+    "oa_id": "A5063383301",
+    "oa_url": "https://openalex.org/A5063383301",
+    "oa_affiliation": "",
+    "oa_n_works": 29,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Attribution Patching Outperforms Automated Circuit Discovery (2024)",
+      "Agents of Chaos (2026)",
+      "Sparse Feature Circuits: Discovering and Editing Interpretable Causal Graphs in Language Models (2024)",
+      "NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals (2024)",
+      "A Configurable Library for Generating and Manipulating Maze Datasets (2023)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 1,
+      "title_overlap_frac": 0.2,
+      "agree": true
+    }
+  },
+  {
+    "name": "cat khor",
+    "s2_id": null,
+    "url": null,
     "affiliation": "",
-    "n_papers": 25,
-    "h_index": 10
-   },
-   {
-    "s2_id": "2402608706",
-    "url": "https://www.semanticscholar.org/author/2402608706",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": null,
+    "h_index": null,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_verified": true,
+    "oa_id": null,
+    "oa_url": null,
+    "oa_affiliation": "",
+    "oa_n_works": null,
+    "oa_orcid": null,
+    "oa_titles": [],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "chris wendler",
+    "s2_id": "1387986830",
+    "url": "https://www.semanticscholar.org/author/1387986830",
     "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 21,
+    "h_index": 10,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Do Llamas Work in English? On the Latent Language of Multilingual Transformers (2024)",
+      "Causal Fourier Analysis on Directed Acyclic Graphs and Posets (2022)",
+      "Powerset Convolutional Neural Networks (2019)",
+      "Discrete Signal Processing on Meet/Join Lattices (2020)",
+      "Discrete Signal Processing with Set Functions (2020)"
+    ],
+    "merge_ids": [
+      "2328311036"
+    ],
+    "alternatives": [],
+    "exclude_titles": [
+      "palm and hand surface area in approximating burn extent"
+    ],
+    "oa_id": "A5073622492",
+    "oa_url": "https://openalex.org/A5073622492",
+    "oa_affiliation": "",
+    "oa_n_works": 18,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Causal Fourier Analysis on Directed Acyclic Graphs and Posets (2023)",
+      "Discrete Signal Processing on Meet/Join Lattices (2021)",
+      "Discrete Signal Processing with Set Functions (2020)",
+      "Fourier Analysis-based Iterative Combinatorial Auctions (2022)",
+      "Learning Set Functions that are Sparse in Non-Orthogonal Fourier Bases (2021)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5093957971",
+        "url": "https://openalex.org/A5093957971",
+        "affiliation": "",
+        "n_works": 11,
+        "cited_by": 47,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5126679488",
+        "url": "https://openalex.org/A5126679488",
+        "affiliation": "",
+        "n_works": 3,
+        "cited_by": 5,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5125138273",
+        "url": "https://openalex.org/A5125138273",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5126603717",
+        "url": "https://openalex.org/A5126603717",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5119911765",
+        "url": "https://openalex.org/A5119911765",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 0.6,
+      "agree": true
+    }
+  },
+  {
+    "name": "clement dumas",
+    "s2_id": "2330398835",
+    "url": "https://www.semanticscholar.org/author/2330398835",
+    "affiliation": "",
+    "homepage": "https://butanium.github.io",
+    "orcid": null,
+    "n_papers": 8,
+    "h_index": 5,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Separating Tongue from Thought: Activation Patching Reveals Language-Agnostic Concept Representations in Transformers (2024)",
+      "Overcoming Sparsity Artifacts in Crosscoders to Interpret Chat-Tuning (2025)",
+      "Activation Oracles: Training and Evaluating LLMs as General-Purpose Activation Explainers (2025)",
+      "Narrow Finetuning Leaves Clearly Readable Traces in Activation Differences (2025)",
+      "Believe It or Not: How Deeply do LLMs Believe Implanted Facts? (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "exclude_titles": [
+      "internationalisation and modern sport",
+      "the intelligence of an actress machine"
+    ],
+    "oa_id": "A5066590882",
+    "oa_url": "https://openalex.org/A5066590882",
+    "oa_affiliation": "",
+    "oa_n_works": 31,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Des moines aux troubadours IXe-XIIIe siècle: La musique médiévale en Languedoc et en Catalogne (2004)",
+      "La Circulation de la musique et des musiciens d'église: (2017)",
+      "Les musiques médiévales : revivalismes, patrimonialisation, institutionnalisation (2015)",
+      "Saint Guilhem : modèle et prophète au temps de la Reconquista (2015)",
+      "Divine metamorphosis: The Transfiguration as song and meditation in the motet In talem transfiguratur/Jubar lustrat radiosum from MS Turin J.II.9 (2013)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5037981504",
+        "url": "https://openalex.org/A5037981504",
+        "affiliation": "Université Clermont Auvergne",
+        "n_works": 20,
+        "cited_by": 36,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5049788825",
+        "url": "https://openalex.org/A5049788825",
+        "affiliation": "",
+        "n_works": 16,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5120324517",
+        "url": "https://openalex.org/A5120324517",
+        "affiliation": "Maison des Sciences sociales et des Humanités - Lyon St-Étienne",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5095873571",
+        "url": "https://openalex.org/A5095873571",
+        "affiliation": "Territoires",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5106348149",
+        "url": "https://openalex.org/A5106348149",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "devin crowley",
+    "s2_id": "2071955555",
+    "url": "https://www.semanticscholar.org/author/2071955555",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 4,
+    "h_index": 2,
+    "confidence": "low",
+    "verified": true,
+    "sample_titles": [
+      "CloudReg: automatic terabyte-scale cross-modal brain volume registration (2021)",
+      "Localization and Registration of 2D Histological Mouse Brain Images in 3D Atlas Space (2023)",
+      "Variable strain rate properties of rammed Earth (2024)",
+      "neurodata/brainlit: FIRM Release (2020)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2221122876",
+        "url": "https://www.semanticscholar.org/author/2221122876",
+        "affiliation": "",
+        "n_papers": 2,
+        "h_index": 1
+      }
+    ],
+    "exclude_titles": [
+      "variable strain rate properties of rammed earth"
+    ],
+    "oa_id": "A5087840110",
+    "oa_url": "https://openalex.org/A5087840110",
+    "oa_affiliation": "Johns Hopkins University",
+    "oa_n_works": 5,
+    "oa_orcid": null,
+    "oa_titles": [
+      "CloudReg: automatic terabyte-scale cross-modal brain volume registration (2021)",
+      "Localization and Registration of 2D Histological Mouse Brain Images in 3D Atlas Space (2023)",
+      "CloudReg: Automatic Terabyte-Scale Cross-Modal Brain Volume Registration (2021)",
+      "Effects of Contact Interactions in Molecular Bose-Einstein Condensates (2017)",
+      "neurodata/brainlit: FIRM Release (2020)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5109620125",
+        "url": "https://openalex.org/A5109620125",
+        "affiliation": "Oregon State University",
+        "n_works": 3,
+        "cited_by": 30,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 0.75,
+      "agree": true
+    }
+  },
+  {
+    "name": "eric bridgeford",
+    "s2_id": "5470543",
+    "url": "https://www.semanticscholar.org/author/5470543",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 53,
+    "h_index": 15,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "Small-World Propensity and Weighted Brain Networks (2016)",
+      "On a two-truths phenomenon in spectral graph clustering (2018)",
+      "Supervised dimensionality reduction for big data (2021)",
+      "Standardizing human brain parcellations (2019)",
+      "A community-developed open-source computational ecosystem for big neuro data (2018)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "1388817300",
+        "url": "https://www.semanticscholar.org/author/1388817300",
+        "affiliation": "",
+        "n_papers": 2,
+        "h_index": 1
+      },
+      {
+        "s2_id": "2396371077",
+        "url": "https://www.semanticscholar.org/author/2396371077",
+        "affiliation": "",
+        "n_papers": 1,
+        "h_index": 1
+      },
+      {
+        "s2_id": "2363536516",
+        "url": "https://www.semanticscholar.org/author/2363536516",
+        "affiliation": "",
+        "n_papers": 1,
+        "h_index": 1
+      }
+    ],
+    "oa_id": "A5085717731",
+    "oa_url": "https://openalex.org/A5085717731",
+    "oa_affiliation": "Johns Hopkins University",
+    "oa_n_works": 74,
+    "oa_orcid": "0000-0001-6115-719X",
+    "oa_titles": [
+      "Small-World Propensity and Weighted Brain Networks (2016)",
+      "On a two-truths phenomenon in spectral graph clustering (2019)",
+      "Standardizing human brain parcellations (2021)",
+      "A community-developed open-source computational ecosystem for big neuro data (2018)",
+      "Eliminating accidental deviations to minimize generalization error and maximize replicability: Applications in connectomics and genomics (2021)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5078997336",
+        "url": "https://openalex.org/A5078997336",
+        "affiliation": "",
+        "n_works": 3,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5123772921",
+        "url": "https://openalex.org/A5123772921",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5125575493",
+        "url": "https://openalex.org/A5125575493",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0000-0001-6115-719X",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 4,
+      "title_overlap_frac": 0.8,
+      "agree": true
+    }
+  },
+  {
+    "name": "eric michaud",
+    "s2_id": "2064378938",
+    "url": "https://www.semanticscholar.org/author/2064378938",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 16,
+    "h_index": 11,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback (2023)",
+      "Towards Understanding Grokking: An Effective Theory of Representation Learning (2022)",
+      "Not All Language Model Features Are One-Dimensionally Linear (2024)",
+      "The Quantization Model of Neural Scaling (2023)",
+      "Omnigrok: Grokking Beyond Algorithmic Data (2022)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_verified": true,
+    "oa_id": "A5071048251",
+    "oa_url": "https://openalex.org/A5071048251",
+    "oa_affiliation": "Flatiron Health (United States)",
+    "oa_n_works": 24,
+    "oa_orcid": "0000-0001-7912-1953",
+    "oa_titles": [
+      "Open Problems and Fundamental Limitations of Reinforcement Learning from Human Feedback (2023)",
+      "Precision Machine Learning (2023)",
+      "Towards Understanding Grokking: An Effective Theory of Representation Learning (2022)",
+      "Examining the Causal Structures of Deep Neural Networks Using Information Theory (2020)",
+      "The Geometry of Concepts: Sparse Autoencoder Feature Structure (2025)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0000-0001-7912-1953",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 2,
+      "title_overlap_frac": 0.4,
+      "agree": true
+    }
+  },
+  {
+    "name": "fred heiding",
+    "s2_id": "2333395518",
+    "url": "https://www.semanticscholar.org/author/2333395518",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 4,
+    "h_index": 2,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "Devising and Detecting Phishing: Large Language Models vs. Smaller Human Models (2023)",
+      "Evaluating Large Language Models' Capability to Launch Fully Automated Spear Phishing Campaigns: Validated on Human Subjects (2024)",
+      "Evaluating large language models' ability to automate spear phishing (2026)",
+      "Can AI Models be Jailbroken to Phish Elderly Victims? An End-to-End Evaluation (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2397486270",
+        "url": "https://www.semanticscholar.org/author/2397486270",
+        "affiliation": "",
+        "n_papers": 1,
+        "h_index": 1
+      }
+    ],
+    "oa_id": "A5115003586",
+    "oa_url": "https://openalex.org/A5115003586",
+    "oa_affiliation": "John F. Kennedy University",
+    "oa_n_works": 2,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Evaluating Large Language Models' Capability to Launch Fully Automated Spear Phishing Campaigns: Validated on Human Subjects (2024)",
+      "Evaluating large language models’ ability to automate spear phishing (2026)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5120510554",
+        "url": "https://openalex.org/A5120510554",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 2,
+      "title_overlap_frac": 1.0,
+      "agree": true
+    }
+  },
+  {
+    "name": "goncalo paulo",
+    "s2_id": "2411011624",
+    "url": "https://www.semanticscholar.org/author/2411011624",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 3,
+    "h_index": 1,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Do Transformer Interpretability Methods Transfer to RNNs? (2025)",
+      "Concept Influence: Leveraging Interpretability to Improve Performance and Efficiency in Training Data Attribution (2026)",
+      "Visualizing Loss Landscapes with Adaptive Sampling and Gradient Free Slicing (?)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5061676638",
+    "oa_url": "https://openalex.org/A5061676638",
+    "oa_affiliation": "Universidade Federal Rural do Semi-Árido",
+    "oa_n_works": 31,
+    "oa_orcid": "0000-0001-5714-2008",
+    "oa_titles": [
+      "Controle e autorregulação da aprendizagem na teoria de P. Ya. Galperin (2019)",
+      "PRÁTICAS ETNOMATEMÁTICAS NA MEDIÇÃO DE TERRAS: UM ESTUDO SOBRE O CÁLCULO DE ÁREAS (2020)",
+      "Pesquisas em Etnomatemática e suas contribuições para o contexto escolar: Um olhar para os anais dos CBEM (2015)",
+      "compreensão de professores sobre a autorregulação da aprendizagem (2021)",
+      "A Teoria de P. Ya. Galperin nas pesquisas em Educação Matemática (2017)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5103016167",
+        "url": "https://openalex.org/A5103016167",
+        "affiliation": "",
+        "n_works": 23,
+        "cited_by": 467,
+        "orcid": "0000-0003-3138-1443"
+      },
+      {
+        "oa_id": "A5087158690",
+        "url": "https://openalex.org/A5087158690",
+        "affiliation": "",
+        "n_works": 20,
+        "cited_by": 154,
+        "orcid": "0000-0002-2002-884X"
+      },
+      {
+        "oa_id": "A5095335132",
+        "url": "https://openalex.org/A5095335132",
+        "affiliation": "",
+        "n_works": 10,
+        "cited_by": 9,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5008985169",
+        "url": "https://openalex.org/A5008985169",
+        "affiliation": "",
+        "n_works": 3,
+        "cited_by": 36,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5060806394",
+        "url": "https://openalex.org/A5060806394",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 1,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0000-0001-5714-2008",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "grace proebsting",
+    "s2_id": "2325727065",
+    "url": "https://www.semanticscholar.org/author/2325727065",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 3,
+    "h_index": 2,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "Magentic-One: A Generalist Multi-Agent System for Solving Complex Tasks (2024)",
+      "Hypothesis-only Biases in Large Language Model-Elicited Natural Language Inference (2024)",
+      "Biases in Large Language Model-Elicited Text: A Case Study in Natural Language Inference (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2387995364",
+        "url": "https://www.semanticscholar.org/author/2387995364",
+        "affiliation": "",
+        "n_papers": 1,
+        "h_index": 1
+      }
+    ],
+    "oa_id": "A5114285284",
+    "oa_url": "https://openalex.org/A5114285284",
+    "oa_affiliation": "Haverford College",
+    "oa_n_works": 2,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Hypothesis-only Biases in Large Language Model-Elicited Natural Language Inference (2024)",
+      "Identity-related Speech Suppression in Generative AI Content Moderation (2025)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5114655670",
+        "url": "https://openalex.org/A5114655670",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 13,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 1,
+      "title_overlap_frac": 0.5,
+      "agree": true
+    }
+  },
+  {
+    "name": "hayden helm",
+    "s2_id": "134059919",
+    "url": "https://www.semanticscholar.org/author/134059919",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 36,
+    "h_index": 10,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "GraSPy: Graph Statistics in Python (2019)",
+      "MedFuzz: Exploring the Robustness of Large Language Models in Medical Question Answering (2024)",
+      "Towards a theory of out-of-distribution learning (2021)",
+      "Tracking the perspectives of interacting language models (2024)",
+      "Comparing Foundation Models using Data Kernels (2023)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5091316872",
+    "oa_url": "https://openalex.org/A5091316872",
+    "oa_affiliation": "Johns Hopkins University",
+    "oa_n_works": 41,
+    "oa_orcid": "0000-0001-9475-8100",
+    "oa_titles": [
+      "GraSPy: Graph Statistics in Python (2019)",
+      "GraSPy: Graph Statistics in Python (2019)",
+      "Distance-based positive and unlabeled learning for ranking (2022)",
+      "A general approach to progressive learning (2020)",
+      "Mental State Classification Using Multi-Graph Features (2022)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5135869967",
+        "url": "https://openalex.org/A5135869967",
+        "affiliation": "Johns Hopkins University",
+        "n_works": 10,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0000-0001-9475-8100",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 1,
+      "title_overlap_frac": 0.25,
+      "agree": true
+    }
+  },
+  {
+    "name": "jack merullo",
+    "s2_id": "1405408066",
+    "url": "https://www.semanticscholar.org/author/1405408066",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 26,
+    "h_index": 10,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Linearly Mapping from Image to Text Space (2022)",
+      "Circuit Component Reuse Across Tasks in Transformer Language Models (2023)",
+      "Does CLIP Bind Concepts? Probing Compositionality in Large Image Models (2022)",
+      "Language Models Implement Simple Word2Vec-style Vector Arithmetic (2023)",
+      "Characterizing Mechanisms for Factual Recall in Language Models (2023)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2366073668",
+        "url": "https://www.semanticscholar.org/author/2366073668",
+        "affiliation": "",
+        "n_papers": 3,
+        "h_index": 2
+      }
+    ],
+    "exclude_titles": [
+      "system for coating semiconductor wafers"
+    ],
+    "oa_id": "A5062612448",
+    "oa_url": "https://openalex.org/A5062612448",
+    "oa_affiliation": "",
+    "oa_n_works": 41,
+    "oa_orcid": "0009-0005-9673-6809",
+    "oa_titles": [
+      "Investigating Sports Commentator Bias within a Large Corpus of American Football Broadcasts (2019)",
+      "Linearly Mapping from Image to Text Space (2022)",
+      "Axiomatic Causal Interventions for Reverse Engineering Relevance Computation in Neural Retrieval Models (2024)",
+      "Language Models Implement Simple Word2Vec-style Vector Arithmetic (2024)",
+      "Does CLIP Bind Concepts? Probing Compositionality in Large Image Models (2022)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0009-0005-9673-6809",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 0.6,
+      "agree": true
+    }
+  },
+  {
+    "name": "jacopo teneggi",
+    "s2_id": "2064606668",
+    "url": "https://www.semanticscholar.org/author/2064606668",
+    "affiliation": "Johns Hopkins University Mathematical Institute for Data Science",
+    "homepage": "https://jacopoteneggi.github.io",
+    "orcid": "0000-0003-2189-5192",
+    "n_papers": 11,
+    "h_index": 6,
+    "confidence": "low",
+    "verified": false,
+    "sample_titles": [
+      "How to Trust Your Diffusion Model: A Convex Optimization Approach to Conformal Risk Control (2023)",
+      "Fast Hierarchical Games for Image Explanations (2021)",
+      "Fourier Diffusion Models: A Method to Control MTF and NPS in Score-Based Stochastic Image Generation. (2023)",
+      "Examination-Level Supervision for Deep Learning-based Intracranial Hemorrhage Detection on Head CT Scans. (2023)",
+      "SHAP-XRT: The Shapley Value Meets Conditional Independence Testing (2022)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2344839915",
+        "url": "https://www.semanticscholar.org/author/2344839915",
+        "affiliation": "",
+        "n_papers": 7,
+        "h_index": 2
+      }
+    ],
+    "oa_id": "A5004205287",
+    "oa_url": "https://openalex.org/A5004205287",
+    "oa_affiliation": "",
+    "oa_n_works": 27,
+    "oa_orcid": "0000-0003-2189-5192",
+    "oa_titles": [
+      "Examination-Level Supervision for Deep Learning–based Intracranial Hemorrhage Detection on Head CT Scans (2023)",
+      "Fast Hierarchical Games for Image Explanations (2022)",
+      "Notice of Removal: Fourier Diffusion Models: A Method to Control MTF and NPS in Score-Based Stochastic Image Generation (2023)",
+      "Fourier Diffusion Models: A Method to Control MTF and NPS in Score-Based Stochastic Image Generation (2023)",
+      "Fitting Splines to Axonal Arbors Quantifies Relationship Between Branch Order and Geometry (2021)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": "0000-0003-2189-5192",
+      "orcid_oa": "0000-0003-2189-5192",
+      "orcid_match": true,
+      "orcid_conflict": false,
+      "title_overlap_n": 2,
+      "title_overlap_frac": 0.4,
+      "agree": true
+    }
+  },
+  {
+    "name": "jannik brinkmann",
+    "s2_id": "2228224955",
+    "url": "https://www.semanticscholar.org/author/2228224955",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 16,
+    "h_index": 9,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Measuring Progress in Dictionary Learning for Language Model Interpretability with Board Game Models (2024)",
+      "A Mechanistic Analysis of a Transformer Trained on a Symbolic Multi-Step Reasoning Task (2024)",
+      "The Quest for the Right Mediator: A History, Survey, and Theoretical Grounding of Causal Interpretability (2024)",
+      "Large Language Models Share Representations of Latent Grammatical Concepts Across Typologically Diverse Languages (2025)",
+      "NNsight and NDIF: Democratizing Access to Foundation Model Internals (2024)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2380534385",
+        "url": "https://www.semanticscholar.org/author/2380534385",
+        "affiliation": "",
+        "n_papers": 3,
+        "h_index": 1
+      }
+    ],
+    "exclude_titles": [
+      "control of ground vibration from colliery blasting",
+      "blast design parameters on ground vibrations",
+      "lead storage battery cell",
+      "high speed photography to explosive rock breaking",
+      "rock fragmentation and heave from stoping blastholes",
+      "battery cell cooling system",
+      "intermodales hitchhike",
+      "experiment m410"
+    ],
+    "oa_id": "A5111504093",
+    "oa_url": "https://openalex.org/A5111504093",
+    "oa_affiliation": "University of Mannheim",
+    "oa_n_works": 41,
+    "oa_orcid": null,
+    "oa_titles": [
+      "The control of ground vibration from colliery blasting during the undermining of residential areas (1987)",
+      "Agents of Chaos (2026)",
+      "A Multidimensional Analysis of Social Biases in Vision Transformers (2023)",
+      "Effects of some blast design parameters on ground vibrations at short scaled distances (1991)",
+      "Large Language Models Share Representations of Latent Grammatical Concepts Across Typologically Diverse Languages (2025)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 1,
+      "title_overlap_frac": 0.2,
+      "agree": true
+    }
+  },
+  {
+    "name": "jeremy howard",
+    "s2_id": "2093348519",
+    "url": "https://www.semanticscholar.org/author/2093348519",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 16,
+    "h_index": 8,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Universal Language Model Fine-tuning for Text Classification (2018)",
+      "fastai: A Layered API for Deep Learning (2020)",
+      "Fine-tuned Language Models for Text Classification (2018)",
+      "Deep Learning-Based Point-Scanning Super-Resolution Imaging (2019)",
+      "MultiFiT: Efficient Multi-lingual Language Model Fine-tuning (2019)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "exclude_titles": [
+      "glenrothes",
+      "non-blind walls",
+      "pollen limitation in apples",
+      "journal of urban learning",
+      "point-scanning super-resolution"
+    ],
+    "oa_id": "A5007075789",
+    "oa_url": "https://openalex.org/A5007075789",
+    "oa_affiliation": "",
+    "oa_n_works": 129,
+    "oa_orcid": "0000-0002-3102-9282",
+    "oa_titles": [
+      "An evidence review of face masks against COVID-19 (2021)",
+      "Fastai: A Layered API for Deep Learning (2020)",
+      "Fine-tuned Language Models for Text Classification. (2018)",
+      "Unique Seminal Quality in the South African Cheetah and a Comparative Evaluation in the Domestic Cat (1983)",
+      "Face Masks Against COVID-19: An Evidence Review (2020)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5102749721",
+        "url": "https://openalex.org/A5102749721",
+        "affiliation": "Smith Institute",
+        "n_works": 97,
+        "cited_by": 1779,
+        "orcid": "0000-0001-6216-3540"
+      },
+      {
+        "oa_id": "A5061962752",
+        "url": "https://openalex.org/A5061962752",
+        "affiliation": "University of St Andrews",
+        "n_works": 35,
+        "cited_by": 30,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5108785327",
+        "url": "https://openalex.org/A5108785327",
+        "affiliation": "",
+        "n_works": 18,
+        "cited_by": 212,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5107296411",
+        "url": "https://openalex.org/A5107296411",
+        "affiliation": "",
+        "n_works": 14,
+        "cited_by": 137,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5103359756",
+        "url": "https://openalex.org/A5103359756",
+        "affiliation": "Massachusetts Institute of Technology",
+        "n_works": 6,
+        "cited_by": 287,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0000-0002-3102-9282",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 2,
+      "title_overlap_frac": 0.4,
+      "agree": true
+    }
+  },
+  {
+    "name": "jeremy kritz",
+    "s2_id": "2342686324",
+    "url": "https://www.semanticscholar.org/author/2342686324",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 3,
+    "h_index": 3,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "MultiChallenge: A Realistic Multi-Turn Conversation Evaluation Benchmark Challenging to Frontier LLMs (2025)",
+      "Jailbreaking to Jailbreak (2025)",
+      "A Red Teaming Roadmap Towards System-Level Safety (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5116082873",
+    "oa_url": "https://openalex.org/A5116082873",
+    "oa_affiliation": "",
+    "oa_n_works": 4,
+    "oa_orcid": null,
+    "oa_titles": [
+      "MultiChallenge: A Realistic Multi-Turn Conversation Evaluation Benchmark Challenging to Frontier LLMs (2025)",
+      "MultiChallenge: A Realistic Multi-Turn Conversation Evaluation Benchmark Challenging to Frontier LLMs (2025)",
+      "A Red Teaming Roadmap Towards System-Level Safety (2025)",
+      "Jailbreaking to Jailbreak (2025)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 1.0,
+      "agree": true
+    }
+  },
+  {
+    "name": "jesse hoogland",
+    "s2_id": "2282535402",
+    "url": "https://www.semanticscholar.org/author/2282535402",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 10,
+    "h_index": 7,
+    "confidence": "low",
+    "verified": false,
+    "sample_titles": [
+      "Open Problems in Mechanistic Interpretability (2025)",
+      "Differentiation and Specialization of Attention Heads via the Refined Local Learning Coefficient (2024)",
+      "Loss Landscape Degeneracy and Stagewise Development in Transformers (2024)",
+      "Dynamics of Transient Structure in In-Context Linear Regression Transformers (2025)",
+      "You Are What You Eat - AI Alignment Requires Understanding How Data Shapes Structure and Generalisation (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2382990271",
+        "url": "https://www.semanticscholar.org/author/2382990271",
+        "affiliation": "",
+        "n_papers": 4,
+        "h_index": 3
+      }
+    ],
+    "oa_id": "A5104240187",
+    "oa_url": "https://openalex.org/A5104240187",
+    "oa_affiliation": "",
+    "oa_n_works": 8,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Open Problems in Mechanistic Interpretability (2025)",
+      "You Are What You Eat -- AI Alignment Requires Understanding How Data Shapes Structure and Generalisation (2025)",
+      "Differentiation and Specialization of Attention Heads via the Refined Local Learning Coefficient (2024)",
+      "Structural Inference: Interpreting Small Language Models with Susceptibilities (2025)",
+      "The Loss Kernel: A Geometric Probe for Deep Learning Interpretability (2025)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5120028682",
+        "url": "https://openalex.org/A5120028682",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 0.6,
+      "agree": true
+    }
+  },
+  {
+    "name": "josh ying",
+    "s2_id": "1601443232",
+    "url": "https://www.semanticscholar.org/author/1601443232",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 5,
+    "h_index": 3,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "VisFIS: Visual Feature Importance Supervision with Right-for-the-Right-Reason Objectives (2022)",
+      "Can Deep Learning Recognize Subtle Human Activities? (2020)",
+      "The Truthfulness Spectrum Hypothesis (2026)",
+      "How attention saves energy in vision (2026)",
+      "Adaptive Contextual Perception: How to Generalize to New Backgrounds and Ambiguous Objects (2023)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5073373951",
+    "oa_url": "https://openalex.org/A5073373951",
+    "oa_affiliation": "",
+    "oa_n_works": 64,
+    "oa_orcid": "0000-0002-7873-4018",
+    "oa_titles": [
+      "Semantic trajectory mining for location prediction (2011)",
+      "Mining user similarity from semantic trajectories (2010)",
+      "Mining geographic-temporal-semantic patterns in trajectories for location prediction (2013)",
+      "Urban point-of-interest recommendation by mining user check-in behaviors (2012)",
+      "Spatio-attention embedded recurrent neural network for air quality prediction (2021)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5136163812",
+        "url": "https://openalex.org/A5136163812",
+        "affiliation": "",
+        "n_works": 4,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5126796898",
+        "url": "https://openalex.org/A5126796898",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5084364624",
+        "url": "https://openalex.org/A5084364624",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0000-0002-7873-4018",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "karl kaiser",
+    "s2_id": null,
+    "url": "https://www.semanticscholar.org/author/121064986",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 15,
+    "h_index": 4,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Die neue Weltpolitik (1995)",
+      "Weltpolitik im neuen Jahrhundert (2000)",
+      "Weltpolitik : Strukturen, Akteure, Perspektiven (1988)",
+      "Osteuropa auf dem Weg zur Marktwirtschaft : zehn Fallstudien mit Lösungsansätzen (1992)",
+      "Osteuropa auf dem Weg zur Marktwirtschaft (1992)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2267940641",
+        "url": "https://www.semanticscholar.org/author/2267940641",
+        "affiliation": "",
+        "n_papers": 6,
+        "h_index": 3
+      }
+    ],
+    "oa_id": "A5013623861",
+    "oa_url": "https://openalex.org/A5013623861",
+    "oa_affiliation": "Texas A&M University at Galveston",
+    "oa_n_works": 272,
+    "oa_orcid": "0000-0002-4951-4665",
+    "oa_titles": [
+      "Characterization of a major refractory component of marine dissolved organic matter (2006)",
+      "Production of Refractory Dissolved Organic Matter by Bacteria (2001)",
+      "Expert assessment of future vulnerability of the global peatland carbon sink (2020)",
+      "A molecular perspective on the ageing of marine dissolved organic matter (2012)",
+      "Biochemical composition and size distribution of organic matter at the Pacific and Atlantic time-series stations (2008)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5091243083",
+        "url": "https://openalex.org/A5091243083",
+        "affiliation": "University of Ouargla",
+        "n_works": 23,
+        "cited_by": 18,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5023319972",
+        "url": "https://openalex.org/A5023319972",
+        "affiliation": "META Health",
+        "n_works": 12,
+        "cited_by": 29,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5102240772",
+        "url": "https://openalex.org/A5102240772",
+        "affiliation": "German Council on Foreign Relations",
+        "n_works": 9,
+        "cited_by": 17,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5086208500",
+        "url": "https://openalex.org/A5086208500",
+        "affiliation": "Johannes Gutenberg University Mainz",
+        "n_works": 5,
+        "cited_by": 43,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5066959294",
+        "url": "https://openalex.org/A5066959294",
+        "affiliation": "TU Wien",
+        "n_works": 3,
+        "cited_by": 41,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0000-0002-4951-4665",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "kayo yin",
+    "s2_id": "1602993448",
+    "url": "https://www.semanticscholar.org/author/1602993448",
+    "affiliation": "École Polytechnique",
+    "homepage": "http://kayoyin.github.io/",
+    "orcid": null,
+    "n_papers": 13,
+    "h_index": 10,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Better Sign Language Translation with STMC-Transformer (2020)",
+      "Including Signed Languages in Natural Language Processing (2021)",
+      "Interpreting Language Models with Contrastive Explanations (2022)",
+      "Data Augmentation for Sign Language Gloss Translation (2021)",
+      "Measuring and Increasing Context Usage in Context-Aware Machine Translation (2021)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2329737021",
+        "url": "https://www.semanticscholar.org/author/2329737021",
+        "affiliation": "",
+        "n_papers": 4,
+        "h_index": 3
+      },
+      {
+        "s2_id": "2346324583",
+        "url": "https://www.semanticscholar.org/author/2346324583",
+        "affiliation": "",
+        "n_papers": 2,
+        "h_index": 2
+      }
+    ],
+    "exclude_titles": [
+      "using turbo prolog"
+    ],
+    "oa_id": "A5070907404",
+    "oa_url": "https://openalex.org/A5070907404",
+    "oa_affiliation": "",
+    "oa_n_works": 30,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Better Sign Language Translation with STMC-Transformer (2020)",
+      "Including Signed Languages in Natural Language Processing (2021)",
+      "Interpreting Language Models with Contrastive Explanations (2022)",
+      "Do Context-Aware Translation Models Pay the Right Attention? (2021)",
+      "Sign Language Translation with Transformers. (2020)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 0.6,
+      "agree": true
+    }
+  },
+  {
+    "name": "kola ayonrinde",
+    "s2_id": "2325947690",
+    "url": "https://www.semanticscholar.org/author/2325947690",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 9,
+    "h_index": 5,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "SAEBench: A Comprehensive Benchmark for Sparse Autoencoders in Language Model Interpretability (2025)",
+      "Interpretability as Compression: Reconsidering SAE Explanations of Neural Activations with MDL-SAEs (2024)",
+      "Auditing Games for Sandbagging (2025)",
+      "Adaptive Sparse Allocation with Mutual Choice & Feature Choice Sparse Autoencoders (2024)",
+      "A Mathematical Philosophy of Explanations in Mechanistic Interpretability - The Strange Science Part I.i (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "exclude_titles": [
+      "legislation for mental health in nigeria"
+    ],
+    "oa_id": "A5114336088",
+    "oa_url": "https://openalex.org/A5114336088",
+    "oa_affiliation": "",
+    "oa_n_works": 8,
+    "oa_orcid": null,
+    "oa_titles": [
+      "SAEBench: A Comprehensive Benchmark for Sparse Autoencoders in Language Model Interpretability (2025)",
+      "Adaptive Sparse Allocation with Mutual Choice &amp; Feature Choice Sparse Autoencoders (2024)",
+      "A Mathematical Philosophy of Explanations in Mechanistic Interpretability (2025)",
+      "Evaluating Explanations: An Explanatory Virtues Framework for Mechanistic Interpretability -- The Strange Science Part I.ii (2025)",
+      "From Mechanistic to Compositional Interpretability (2026)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 1,
+      "title_overlap_frac": 0.2,
+      "agree": true
+    }
+  },
+  {
+    "name": "leo mckee-reid",
+    "s2_id": "2370996004",
+    "url": "https://www.semanticscholar.org/author/2370996004",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 8,
+    "h_index": 3,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Honesty to Subterfuge: In-Context Reinforcement Learning Can Make Honest Models Reward Hack (2024)",
+      "Manual versus automatic analysis of microglial density and distribution: a comparison in the hippocampus of healthy and lipopolysaccharide-challenged mature male mice. (2022)",
+      "The Discovery Engine (?)",
+      "Benchmarking the Discovery Engine (2025)",
+      "Explaining Surface Layer Theory Departures in Marine Flux Profiles with Data-Driven Discovery (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "exclude_titles": [
+      "microglial density",
+      "discovery engine",
+      "receptor physicochemical",
+      "marine flux",
+      "root system optimization"
+    ],
+    "oa_id": "A5118906368",
+    "oa_url": "https://openalex.org/A5118906368",
+    "oa_affiliation": "Learning Through an Expanded Arts Program",
+    "oa_n_works": 4,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Growth Cost and Transport Efficiency Tradeoffs Define Root System Optimization Across Varying Developmental Stages and Environments in Arabidopsis (2025)",
+      "Automated Discovery of Patterns in T-Cell Receptor Physicochemical Signatures (2025)",
+      "Benchmarking the Discovery Engine (2025)",
+      "Explaining Surface Layer Theory Departures in Marine Flux Profiles with Data-Driven Discovery (2025)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5088606207",
+        "url": "https://openalex.org/A5088606207",
+        "affiliation": "University of Victoria",
+        "n_works": 1,
+        "cited_by": 9,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5109819074",
+        "url": "https://openalex.org/A5109819074",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 1,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5120550085",
+        "url": "https://openalex.org/A5120550085",
+        "affiliation": "Learning Through an Expanded Arts Program",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 2,
+      "title_overlap_frac": 0.5,
+      "agree": true
+    }
+  },
+  {
+    "name": "liv gorton",
+    "s2_id": "2328412434",
+    "url": "https://www.semanticscholar.org/author/2328412434",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 4,
+    "h_index": 2,
+    "confidence": "low",
+    "verified": false,
+    "sample_titles": [
+      "The Missing Curve Detectors of InceptionV1: Applying Sparse Autoencoders to InceptionV1 Early Vision (2024)",
+      "Adversarial Examples Are Not Bugs, They Are Superposition (2025)",
+      "Group Crosscoders for Mechanistic Analysis of Symmetry (2024)",
+      "Measuring the Representational Alignment of Neural Systems in Superposition (2026)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2346936846",
+        "url": "https://www.semanticscholar.org/author/2346936846",
+        "affiliation": "",
+        "n_papers": 3,
+        "h_index": 3
+      }
+    ],
+    "oa_id": "A5132769007",
+    "oa_url": "https://openalex.org/A5132769007",
+    "oa_affiliation": "Cold Spring Harbor Laboratory",
+    "oa_n_works": 2,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Measuring the Representational Alignment of Neural Systems in Superposition (2026)",
+      "Measuring the Representational Alignment of Neural Systems in Superposition (2026)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5116367399",
+        "url": "https://openalex.org/A5116367399",
+        "affiliation": "Sunfire (Germany)",
+        "n_works": 1,
+        "cited_by": 194,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5128107299",
+        "url": "https://openalex.org/A5128107299",
+        "affiliation": "Emodo (United States)",
+        "n_works": 1,
+        "cited_by": 46,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5099056976",
+        "url": "https://openalex.org/A5099056976",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 1,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5114634570",
+        "url": "https://openalex.org/A5114634570",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 1,
+      "title_overlap_frac": 1.0,
+      "agree": true
+    }
+  },
+  {
+    "name": "lucia quirke",
+    "s2_id": "2243240285",
+    "url": "https://www.semanticscholar.org/author/2243240285",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
     "n_papers": 7,
-    "h_index": 2
-   },
-   {
-    "s2_id": "2398809603",
-    "url": "https://www.semanticscholar.org/author/2398809603",
+    "h_index": 5,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "Neural Networks Learn Statistics of Increasing Complexity (2024)",
+      "A Configurable Library for Generating and Manipulating Maze Datasets (2023)",
+      "Structured World Representations in Maze-Solving Transformers (2023)",
+      "Linearly Structured World Representations in Maze-Solving Transformers (2023)",
+      "Training Dynamics of Contextual N-Grams in Language Models (2023)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5092912338",
+    "oa_url": "https://openalex.org/A5092912338",
+    "oa_affiliation": "",
+    "oa_n_works": 8,
+    "oa_orcid": null,
+    "oa_titles": [
+      "A Configurable Library for Generating and Manipulating Maze Datasets (2023)",
+      "Structured World Representations in Maze-Solving Transformers (2023)",
+      "Neural Networks Learn Statistics of Increasing Complexity (2024)",
+      "Bergson: An Open Source Library for Data Attribution (2026)",
+      "EleutherAI/bergson: v0.8.0 (2026)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 0.6,
+      "agree": true
+    }
+  },
+  {
+    "name": "madi kusmonov",
+    "s2_id": "1711209306",
+    "url": null,
     "affiliation": "",
-    "n_papers": 6,
-    "h_index": 4
-   },
-   {
-    "s2_id": "2319131355",
-    "url": "https://www.semanticscholar.org/author/2319131355",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": null,
+    "h_index": null,
+    "confidence": "none",
+    "verified": true,
+    "sample_titles": [],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_verified": true,
+    "oa_id": "A5056760376",
+    "oa_url": "https://openalex.org/A5056760376",
+    "oa_affiliation": "",
+    "oa_n_works": 5,
+    "oa_orcid": null,
+    "oa_titles": [
+      "When are Deep Networks really better than Decision Forests at small sample sizes, and how? (2021)",
+      "When are Deep Networks really better than Random Forests at small sample sizes (2021)",
+      "PREDICTION OF PHYSIOLOGICAL DETERIORATION AND MORTALITY IN MECHANICALLY VENTILATED PATIENTS ADMITTED TO THE ICU (2021)",
+      "Effects of Increased Hemoglobin Oxygen Affinity on Cerebrovascular Reserve Capacity in Sickle Cell Disease (2020)",
+      "Decision Forests vs. Deep Networks: Conceptual Similarities and Empirical Differences at Small Sample Sizes (2021)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "maya deen",
+    "s2_id": null,
+    "url": "https://www.semanticscholar.org/author/2422508432",
     "affiliation": "",
-    "n_papers": 6,
-    "h_index": 4
-   },
-   {
-    "s2_id": "2403486776",
-    "url": "https://www.semanticscholar.org/author/2403486776",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 1,
+    "h_index": 0,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Exploring Ghanaian fathers’ involvement in parenting children with neurodevelopmental disorders (2026)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5083167078",
+    "oa_url": "https://openalex.org/A5083167078",
+    "oa_affiliation": "University of New Mexico",
+    "oa_n_works": 3,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Black Placemaking under Environmental Stressors (2022)",
+      "<em>Arabidopsis thaliana</em> trait plasticity (F-ratio) dataset across fertilizer and competition gradients (2026)",
+      "Phenotypic Plasticity in <i>Arabidopsis thaliana</i> Is Fitness‐Neutral, and Costs Are Lacking Across Experimental Environments (2026)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5099521796",
+        "url": "https://openalex.org/A5099521796",
+        "affiliation": "University of Ghana",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "michael ripa",
+    "s2_id": "2312327038",
+    "url": "https://www.semanticscholar.org/author/2312327038",
     "affiliation": "",
+    "homepage": null,
+    "orcid": null,
     "n_papers": 5,
-    "h_index": 4
-   }
-  ],
-  "oa_id": "A5076733732",
-  "oa_url": "https://openalex.org/A5076733732",
-  "oa_affiliation": "",
-  "oa_n_works": 87,
-  "oa_orcid": "0000-0001-8228-1042",
-  "oa_titles": [
-   "Multitask Prompted Training Enables Zero-Shot Task Generalization (2021)",
-   "The Pile: An 800GB Dataset of Diverse Text for Language Modeling (2020)",
-   "GPT-NeoX-20B: An Open-Source Autoregressive Language Model (2022)",
-   "Crosslingual Generalization through Multitask Finetuning (2023)",
-   "GPT-Neo: Large Scale Autoregressive Language Modeling with Mesh-Tensorflow (2021)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [
-   {
-    "oa_id": "A5126462114",
-    "url": "https://openalex.org/A5126462114",
+    "h_index": 3,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "NNsight and NDIF: Democratizing Access to Foundation Model Internals (2024)",
+      "NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals (2024)",
+      "Agents of Chaos (2026)",
+      "CounterMoral: Editing Morals in Language Models (2026)",
+      "APPLICATION OF LAGUERRE-VORONOI DIAGRAMS FOR CONSTRUCTION AND OPTIMIZATION OF THE EMERGENCY NOTIFICATION SYSTEM INFRASTRUCTURE FOR THE POPULATION (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "exclude_titles": [
+      "laguerre voronoi diagrams"
+    ],
+    "oa_id": "A5115703057",
+    "oa_url": "https://openalex.org/A5115703057",
+    "oa_affiliation": "",
+    "oa_n_works": 6,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Agents of Chaos (2026)",
+      "NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals (2024)",
+      "Agents of Chaos (2026)",
+      "Agents of Chaos (2026)",
+      "Agents of Chaos (2026)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5132570468",
+        "url": "https://openalex.org/A5132570468",
+        "affiliation": "Carleton University",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5048573413",
+        "url": "https://openalex.org/A5048573413",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 11,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 2,
+      "title_overlap_frac": 1.0,
+      "agree": true
+    }
+  },
+  {
+    "name": "rod moshtagi",
+    "s2_id": "2222896946",
+    "url": "https://www.semanticscholar.org/author/2222896946",
     "affiliation": "",
-    "n_works": 5,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5068115835",
-    "url": "https://openalex.org/A5068115835",
-    "affiliation": "Georgia Institute of Technology",
-    "n_works": 3,
-    "cited_by": 20,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5123904698",
-    "url": "https://openalex.org/A5123904698",
-    "affiliation": "Booz Allen Hamilton (United States)",
-    "n_works": 2,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5122113306",
-    "url": "https://openalex.org/A5122113306",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 1,
+    "h_index": 0,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "Towards determining the criticality of AI applications: A model risk management perspective (2023)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5092098993",
+    "oa_url": "https://openalex.org/A5092098993",
+    "oa_affiliation": "PricewaterhouseCoopers (Canada)",
+    "oa_n_works": 1,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Towards determining the criticality of AI applications: A model risk management perspective (2023)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 1,
+      "title_overlap_frac": 1.0,
+      "agree": true
+    }
+  },
+  {
+    "name": "ronak mehta",
+    "s2_id": "1410508372",
+    "url": "https://www.semanticscholar.org/author/7689277",
     "affiliation": "",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   },
-   {
-    "oa_id": "A5125907586",
-    "url": "https://openalex.org/A5125907586",
-    "affiliation": "Booz Allen Hamilton (United States)",
-    "n_works": 1,
-    "cited_by": 0,
-    "orcid": null
-   }
-  ],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0000-0001-8228-1042",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 2,
-   "title_overlap_frac": 0.4,
-   "agree": true
-  }
- },
- {
-  "name": "ted kyi",
-  "s2_id": null,
-  "url": null,
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": null,
-  "h_index": null,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": null,
-  "oa_url": null,
-  "oa_affiliation": "",
-  "oa_n_works": null,
-  "oa_orcid": null,
-  "oa_titles": [],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "tommy atthey",
-  "s2_id": "150317407",
-  "url": "https://www.semanticscholar.org/author/150317407",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 18,
-  "h_index": 7,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "SLAM Endoscopy enhanced by adversarial depth prediction (2019)",
-   "Multiscale Coupling of an Agent-Based Model of Tissue Fibrosis and a Logic-Based Model of Intracellular Signaling (2019)",
-   "A guide to the BRAIN Initiative Cell Census Network data ecosystem (2023)",
-   "Is Neuroscience FAIR? A Call for Collaborative Standardisation of Neuroscience Data (2022)",
-   "AutoGMM: Automatic Gaussian Mixture Modeling in Python (2019)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": null,
-  "oa_url": null,
-  "oa_affiliation": "",
-  "oa_n_works": null,
-  "oa_orcid": null,
-  "oa_titles": [],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "will levine",
-  "s2_id": "2268397730",
-  "url": "https://www.semanticscholar.org/author/2268397730",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 4,
-  "h_index": 2,
-  "confidence": "high",
-  "verified": false,
-  "sample_titles": [
-   "A Baseline Analysis of Reward Models' Ability To Accurately Analyze Foundation Models Under Distribution Shift (2023)",
-   "Relevance Isn't All You Need: Scaling RAG Systems With Inference-Time Compute Via Multi-Criteria Reranking (2025)",
-   "Out-of-Distribution Detection & Applications With Ablated Learned Temperature Energy (2024)",
-   "RubricRefine: Improving Tool-Use Agent Reliability with Training-Free Pre-Execution Refinement (2026)"
-  ],
-  "merge_ids": [],
-  "alternatives": [],
-  "oa_id": "A5074030713",
-  "oa_url": "https://openalex.org/A5074030713",
-  "oa_affiliation": "",
-  "oa_n_works": 13,
-  "oa_orcid": null,
-  "oa_titles": [
-   "When are Deep Networks really better than Decision Forests at small sample sizes, and how? (2021)",
-   "A general approach to progressive learning (2020)",
-   "Simple Lifelong Learning Machines (2020)",
-   "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
-   "Enabling Calibration In The Zero-Shot Inference of Large Vision-Language Models (2023)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "rohit gandikota",
-  "s2_id": "52017367",
-  "url": "https://www.semanticscholar.org/author/52017367",
-  "affiliation": "",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 26,
-  "h_index": 8,
-  "confidence": "high",
-  "verified": true,
-  "sample_titles": [
-   "Erasing Concepts from Diffusion Models (2023)",
-   "Unified Concept Editing in Diffusion Models (2023)",
-   "Concept Sliders: LoRA Adaptors for Precise Control in Diffusion Models (2023)",
-   "Erasing Conceptual Knowledge from Language Models (2024)",
-   "SliderSpace: Decomposing the Visual Capabilities of Diffusion Models (2025)"
-  ],
-  "merge_ids": [],
-  "alternatives": [
-   {
-    "s2_id": "2344759248",
-    "url": "https://www.semanticscholar.org/author/2344759248",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 22,
+    "h_index": 6,
+    "confidence": "low",
+    "verified": true,
+    "sample_titles": [
+      "Deep Unlearning via Randomized Conditionally Independent Hessians (2022)",
+      "DUAL-GLOW: Conditional Flow-Based Generative Model for Modality Transfer (2019)",
+      "Resource Constrained Neural Network Architecture Search: Will a Submodularity Assumption Help? (2019)",
+      "hyppo: A Comprehensive Multivariate Hypothesis Testing Python Package (2019)",
+      "Stochastic Optimization for Spectral Risk Measures (2022)"
+    ],
+    "merge_ids": [
+      "2261287914"
+    ],
+    "alternatives": [
+      {
+        "s2_id": "1410508372",
+        "url": "https://www.semanticscholar.org/author/1410508372",
+        "affiliation": "",
+        "n_papers": 13,
+        "h_index": 6
+      },
+      {
+        "s2_id": "2261287914",
+        "url": "https://www.semanticscholar.org/author/2261287914",
+        "affiliation": "",
+        "n_papers": 13,
+        "h_index": 2
+      },
+      {
+        "s2_id": "2067925456",
+        "url": "https://www.semanticscholar.org/author/2067925456",
+        "affiliation": "",
+        "n_papers": 5,
+        "h_index": 1
+      },
+      {
+        "s2_id": "2211931181",
+        "url": "https://www.semanticscholar.org/author/2211931181",
+        "affiliation": "",
+        "n_papers": 5,
+        "h_index": 1
+      },
+      {
+        "s2_id": "2156523979",
+        "url": "https://www.semanticscholar.org/author/2156523979",
+        "affiliation": "",
+        "n_papers": 2,
+        "h_index": 0
+      }
+    ],
+    "exclude_titles": [
+      "photoacoustic spectroscopy"
+    ],
+    "oa_id": "A5001083519",
+    "oa_url": "https://openalex.org/A5001083519",
+    "oa_affiliation": "Johns Hopkins University",
+    "oa_n_works": 47,
+    "oa_orcid": null,
+    "oa_titles": [
+      "hyppo: A Multivariate Hypothesis Testing Python Package (2019)",
+      "hyppo: A Comprehensive Multivariate Hypothesis Testing Python Package (2019)",
+      "A general approach to progressive learning (2020)",
+      "Deep Unlearning via Randomized Conditionally Independent Hessians (2022)",
+      "Simple Lifelong Learning Machines (2020)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5089308107",
+        "url": "https://openalex.org/A5089308107",
+        "affiliation": "",
+        "n_works": 17,
+        "cited_by": 165,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5000396195",
+        "url": "https://openalex.org/A5000396195",
+        "affiliation": "Department of Commerce",
+        "n_works": 5,
+        "cited_by": 4,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5118595758",
+        "url": "https://openalex.org/A5118595758",
+        "affiliation": "Film Independent",
+        "n_works": 1,
+        "cited_by": 2,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5066966364",
+        "url": "https://openalex.org/A5066966364",
+        "affiliation": "University of Maryland, Baltimore County",
+        "n_works": 1,
+        "cited_by": 2,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5126185692",
+        "url": "https://openalex.org/A5126185692",
+        "affiliation": "University of Washington",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 2,
+      "title_overlap_frac": 0.4,
+      "agree": true
+    }
+  },
+  {
+    "name": "ross lawrence",
+    "s2_id": "1907313644",
+    "url": "https://www.semanticscholar.org/author/50638356",
     "affiliation": "",
+    "homepage": null,
+    "orcid": null,
     "n_papers": 5,
-    "h_index": 3
-   }
-  ],
-  "oa_verified": true,
-  "oa_id": "A5075064156",
-  "oa_url": "https://openalex.org/A5075064156",
-  "oa_affiliation": "Universidad del Noreste",
-  "oa_n_works": 26,
-  "oa_orcid": "0000-0003-0581-6810",
-  "oa_titles": [
-   "Erasing Concepts from Diffusion Models (2023)",
-   "Unified Concept Editing in Diffusion Models (2024)",
-   "Concept Sliders: LoRA Adaptors for Precise Control in Diffusion Models (2024)",
-   "Hiding Audio in Images: A Deep Learning Approach (2019)",
-   "Computer Vision for Autonomous Vehicles (2018)"
-  ],
-  "oa_merge_ids": [],
-  "oa_alternatives": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": "0000-0003-0581-6810",
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 3,
-   "title_overlap_frac": 0.6,
-   "agree": true
+    "h_index": 2,
+    "confidence": "low",
+    "verified": true,
+    "sample_titles": [
+      "A Murine Model of Robotic Training to Evaluate Skeletal Muscle Recovery after Injury (2017)",
+      "Can the music industry adapt to the digital future (2010)",
+      "The effects of local demographic characteristics and state-level legislation on foreclosure rates (2010)",
+      "Research spotlight: What immigration means for the economy (2010)",
+      "Continental divide: how did the European debt crisis become so severe? (2010)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2058153652",
+        "url": "https://www.semanticscholar.org/author/2058153652",
+        "affiliation": "",
+        "n_papers": 4,
+        "h_index": 1
+      },
+      {
+        "s2_id": "2367302016",
+        "url": "https://www.semanticscholar.org/author/2367302016",
+        "affiliation": "",
+        "n_papers": 2,
+        "h_index": 2
+      },
+      {
+        "s2_id": "2261299995",
+        "url": "https://www.semanticscholar.org/author/2261299995",
+        "affiliation": "",
+        "n_papers": 2,
+        "h_index": 0
+      }
+    ],
+    "exclude_titles": [
+      "continental divide",
+      "foreclosure rates",
+      "naturopathic paradigm"
+    ],
+    "oa_verified": true,
+    "oa_id": "A5022061990",
+    "oa_url": "https://openalex.org/A5022061990",
+    "oa_affiliation": "Johns Hopkins University",
+    "oa_n_works": 15,
+    "oa_orcid": "0000-0001-6194-0328",
+    "oa_titles": [
+      "Standardizing human brain parcellations (2021)",
+      "The developmental trajectory of 1H-MRS brain metabolites from childhood to adulthood (2024)",
+      "Development of self-referential effect on memory recollection (2022)",
+      "Standardizing Human Brain Parcellations (2019)",
+      "Self-referential encoding of source information in recollection memory (2021)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0000-0001-6194-0328",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "roy rinberg",
+    "s2_id": "2051503911",
+    "url": "https://www.semanticscholar.org/author/2051503911",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 6,
+    "h_index": 4,
+    "confidence": "low",
+    "verified": false,
+    "sample_titles": [
+      "NL-Augmenter: A Framework for Task-Sensitive Natural Language Augmentation (2021)",
+      "Have it your way: Individualized Privacy Assignment for DP-SGD (2023)",
+      "Individualized PATE: Differentially Private Machine Learning with Individual Privacy Guarantees (2022)",
+      "How to Prepare for the Deluge of Generative AI on Social Media (2023)",
+      "Beyond Laplace and Gaussian: Exploring the Generalized Gaussian Mechanism for Private Machine Learning (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2390495739",
+        "url": "https://www.semanticscholar.org/author/2390495739",
+        "affiliation": "",
+        "n_papers": 4,
+        "h_index": 1
+      },
+      {
+        "s2_id": "2328331125",
+        "url": "https://www.semanticscholar.org/author/2328331125",
+        "affiliation": "",
+        "n_papers": 4,
+        "h_index": 2
+      }
+    ],
+    "oa_id": "A5070949025",
+    "oa_url": "https://openalex.org/A5070949025",
+    "oa_affiliation": "",
+    "oa_n_works": 3,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Easy Data Unlearning Bench (2026)",
+      "Attribute-to-Delete: Machine Unlearning via Datamodel Matching (2024)",
+      "Easy Data Unlearning Bench (2026)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5070773666",
+        "url": "https://openalex.org/A5070773666",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 31,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5050164180",
+        "url": "https://openalex.org/A5050164180",
+        "affiliation": "Columbia University",
+        "n_works": 2,
+        "cited_by": 19,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5046256924",
+        "url": "https://openalex.org/A5046256924",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 5,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5133014080",
+        "url": "https://openalex.org/A5133014080",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5042159970",
+        "url": "https://openalex.org/A5042159970",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "ryan chesler",
+    "s2_id": "2220099634",
+    "url": "https://www.semanticscholar.org/author/2220099634",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 3,
+    "h_index": 3,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "H2OVL-Mississippi Vision Language Models Technical Report (2024)",
+      "h2oGPT: Democratizing Large Language Models (2023)",
+      "Nemotron ColEmbed V2: Top-Performing Late Interaction embedding models for Visual Document Retrieval (2026)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5092189493",
+    "oa_url": "https://openalex.org/A5092189493",
+    "oa_affiliation": "",
+    "oa_n_works": 4,
+    "oa_orcid": null,
+    "oa_titles": [
+      "h2oGPT: Democratizing Large Language Models (2023)",
+      "Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval (2026)",
+      "Nemotron ColEmbed V2: Top-Performing Late Interaction Embedding Models for Visual Document Retrieval (2026)",
+      "H2OVL-Mississippi Vision Language Models Technical Report (2024)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 1.0,
+      "agree": true
+    }
+  },
+  {
+    "name": "sarah schwettman",
+    "s2_id": "5478802",
+    "url": "https://www.semanticscholar.org/author/5478802",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 31,
+    "h_index": 9,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "Natural Language Descriptions of Deep Visual Features (2022)",
+      "Invariant representations of mass in the human brain (2019)",
+      "A Multimodal Automated Interpretability Agent (2024)",
+      "Multimodal Neurons in Pretrained Text-Only Transformers (2023)",
+      "FIND: A Function Description Benchmark for Evaluating Interpretability Methods (2023)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2343632085",
+        "url": "https://www.semanticscholar.org/author/2343632085",
+        "affiliation": "",
+        "n_papers": 8,
+        "h_index": 5
+      }
+    ],
+    "oa_id": "A5074026640",
+    "oa_url": "https://openalex.org/A5074026640",
+    "oa_affiliation": "",
+    "oa_n_works": 43,
+    "oa_orcid": "0000-0001-6385-1396",
+    "oa_titles": [
+      "Invariant representations of mass in the human brain (2019)",
+      "The Role of Multiple Neuromodulators in Reinforcement Learning That Is Based on Competition between Eligibility Traces (2016)",
+      "Natural Language Descriptions of Deep Visual Features (2022)",
+      "Multimodal Neurons in Pretrained Text-Only Transformers (2023)",
+      "Stable reinforcement learning via temporal competition between LTP and LTD traces (2014)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0000-0001-6385-1396",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 0.6,
+      "agree": true
+    }
+  },
+  {
+    "name": "sheridan feucht",
+    "s2_id": "2140009998",
+    "url": "https://www.semanticscholar.org/author/2140009998",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 14,
+    "h_index": 5,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "NEWTS: A Corpus for News Topic-Focused Summarization (2022)",
+      "Erasing Conceptual Knowledge from Language Models (2024)",
+      "The Dual-Route Model of Induction (2025)",
+      "Token Erasure as a Footprint of Implicit Vocabulary Items in LLMs (2024)",
+      "Manifold Steering Reveals the Shared Geometry of Neural Network Representation and Behavior (2026)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5063601771",
+    "oa_url": "https://openalex.org/A5063601771",
+    "oa_affiliation": "",
+    "oa_n_works": 12,
+    "oa_orcid": null,
+    "oa_titles": [
+      "NEWTS: A Corpus for News Topic-Focused Summarization (2022)",
+      "Deep Neural Networks Can Learn Generalizable Same-Different Visual Relations (2023)",
+      "Can computers tell a story? Discourse Structure in Computer-generated Text and Humans (2021)",
+      "Deep neural networks can learn generalizable same-different visual relations (2025)",
+      "Arithmetic in the Wild: Llama uses Base-10 Addition to Reason About Cyclic Concepts (2026)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5099801431",
+        "url": "https://openalex.org/A5099801431",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 4,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5134966905",
+        "url": "https://openalex.org/A5134966905",
+        "affiliation": "",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 1,
+      "title_overlap_frac": 0.25,
+      "agree": true
+    }
+  },
+  {
+    "name": "stella biderman",
+    "s2_id": "103476203",
+    "url": "https://www.semanticscholar.org/author/103476203",
+    "affiliation": "Booz Allen Hamilton; EleutherAI",
+    "homepage": "www.stellabiderman.com",
+    "orcid": null,
+    "n_papers": 50,
+    "h_index": 32,
+    "confidence": "low",
+    "verified": false,
+    "sample_titles": [
+      "BLOOM: A 176B-Parameter Open-Access Multilingual Language Model (2022)",
+      "The Pile: An 800GB Dataset of Diverse Text for Language Modeling (2020)",
+      "Beyond the Imitation Game: Quantifying and extrapolating the capabilities of language models (2022)",
+      "Multitask Prompted Training Enables Zero-Shot Task Generalization (2021)",
+      "Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling (2023)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2273535086",
+        "url": "https://www.semanticscholar.org/author/2273535086",
+        "affiliation": "",
+        "n_papers": 25,
+        "h_index": 10
+      },
+      {
+        "s2_id": "2402608706",
+        "url": "https://www.semanticscholar.org/author/2402608706",
+        "affiliation": "",
+        "n_papers": 7,
+        "h_index": 2
+      },
+      {
+        "s2_id": "2398809603",
+        "url": "https://www.semanticscholar.org/author/2398809603",
+        "affiliation": "",
+        "n_papers": 6,
+        "h_index": 4
+      },
+      {
+        "s2_id": "2319131355",
+        "url": "https://www.semanticscholar.org/author/2319131355",
+        "affiliation": "",
+        "n_papers": 6,
+        "h_index": 4
+      },
+      {
+        "s2_id": "2403486776",
+        "url": "https://www.semanticscholar.org/author/2403486776",
+        "affiliation": "",
+        "n_papers": 5,
+        "h_index": 4
+      }
+    ],
+    "oa_id": "A5076733732",
+    "oa_url": "https://openalex.org/A5076733732",
+    "oa_affiliation": "",
+    "oa_n_works": 87,
+    "oa_orcid": "0000-0001-8228-1042",
+    "oa_titles": [
+      "Multitask Prompted Training Enables Zero-Shot Task Generalization (2021)",
+      "The Pile: An 800GB Dataset of Diverse Text for Language Modeling (2020)",
+      "GPT-NeoX-20B: An Open-Source Autoregressive Language Model (2022)",
+      "Crosslingual Generalization through Multitask Finetuning (2023)",
+      "GPT-Neo: Large Scale Autoregressive Language Modeling with Mesh-Tensorflow (2021)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [
+      {
+        "oa_id": "A5126462114",
+        "url": "https://openalex.org/A5126462114",
+        "affiliation": "",
+        "n_works": 5,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5068115835",
+        "url": "https://openalex.org/A5068115835",
+        "affiliation": "Georgia Institute of Technology",
+        "n_works": 3,
+        "cited_by": 20,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5123904698",
+        "url": "https://openalex.org/A5123904698",
+        "affiliation": "Booz Allen Hamilton (United States)",
+        "n_works": 2,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5122113306",
+        "url": "https://openalex.org/A5122113306",
+        "affiliation": "",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      },
+      {
+        "oa_id": "A5125907586",
+        "url": "https://openalex.org/A5125907586",
+        "affiliation": "Booz Allen Hamilton (United States)",
+        "n_works": 1,
+        "cited_by": 0,
+        "orcid": null
+      }
+    ],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0000-0001-8228-1042",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 2,
+      "title_overlap_frac": 0.4,
+      "agree": true
+    }
+  },
+  {
+    "name": "ted kyi",
+    "s2_id": null,
+    "url": null,
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": null,
+    "h_index": null,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": null,
+    "oa_url": null,
+    "oa_affiliation": "",
+    "oa_n_works": null,
+    "oa_orcid": null,
+    "oa_titles": [],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "tommy atthey",
+    "s2_id": "150317407",
+    "url": "https://www.semanticscholar.org/author/150317407",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 18,
+    "h_index": 7,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "SLAM Endoscopy enhanced by adversarial depth prediction (2019)",
+      "Multiscale Coupling of an Agent-Based Model of Tissue Fibrosis and a Logic-Based Model of Intracellular Signaling (2019)",
+      "A guide to the BRAIN Initiative Cell Census Network data ecosystem (2023)",
+      "Is Neuroscience FAIR? A Call for Collaborative Standardisation of Neuroscience Data (2022)",
+      "AutoGMM: Automatic Gaussian Mixture Modeling in Python (2019)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": null,
+    "oa_url": null,
+    "oa_affiliation": "",
+    "oa_n_works": null,
+    "oa_orcid": null,
+    "oa_titles": [],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "will levine",
+    "s2_id": "2268397730",
+    "url": "https://www.semanticscholar.org/author/2268397730",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 4,
+    "h_index": 2,
+    "confidence": "high",
+    "verified": false,
+    "sample_titles": [
+      "A Baseline Analysis of Reward Models' Ability To Accurately Analyze Foundation Models Under Distribution Shift (2023)",
+      "Relevance Isn't All You Need: Scaling RAG Systems With Inference-Time Compute Via Multi-Criteria Reranking (2025)",
+      "Out-of-Distribution Detection & Applications With Ablated Learned Temperature Energy (2024)",
+      "RubricRefine: Improving Tool-Use Agent Reliability with Training-Free Pre-Execution Refinement (2026)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": "A5074030713",
+    "oa_url": "https://openalex.org/A5074030713",
+    "oa_affiliation": "",
+    "oa_n_works": 13,
+    "oa_orcid": null,
+    "oa_titles": [
+      "When are Deep Networks really better than Decision Forests at small sample sizes, and how? (2021)",
+      "A general approach to progressive learning (2020)",
+      "Simple Lifelong Learning Machines (2020)",
+      "Omnidirectional Transfer for Quasilinear Lifelong Learning (2021)",
+      "Enabling Calibration In The Zero-Shot Inference of Large Vision-Language Models (2023)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "rohit gandikota",
+    "s2_id": "52017367",
+    "url": "https://www.semanticscholar.org/author/52017367",
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 26,
+    "h_index": 8,
+    "confidence": "high",
+    "verified": true,
+    "sample_titles": [
+      "Erasing Concepts from Diffusion Models (2023)",
+      "Unified Concept Editing in Diffusion Models (2023)",
+      "Concept Sliders: LoRA Adaptors for Precise Control in Diffusion Models (2023)",
+      "Erasing Conceptual Knowledge from Language Models (2024)",
+      "SliderSpace: Decomposing the Visual Capabilities of Diffusion Models (2025)"
+    ],
+    "merge_ids": [],
+    "alternatives": [
+      {
+        "s2_id": "2344759248",
+        "url": "https://www.semanticscholar.org/author/2344759248",
+        "affiliation": "",
+        "n_papers": 5,
+        "h_index": 3
+      }
+    ],
+    "oa_verified": true,
+    "oa_id": "A5075064156",
+    "oa_url": "https://openalex.org/A5075064156",
+    "oa_affiliation": "Universidad del Noreste",
+    "oa_n_works": 26,
+    "oa_orcid": "0000-0003-0581-6810",
+    "oa_titles": [
+      "Erasing Concepts from Diffusion Models (2023)",
+      "Unified Concept Editing in Diffusion Models (2024)",
+      "Concept Sliders: LoRA Adaptors for Precise Control in Diffusion Models (2024)",
+      "Hiding Audio in Images: A Deep Learning Approach (2019)",
+      "Computer Vision for Autonomous Vehicles (2018)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": "0000-0003-0581-6810",
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 3,
+      "title_overlap_frac": 0.6,
+      "agree": true
+    }
+  },
+  {
+    "name": "antonio mari",
+    "s2_id": "2237239406",
+    "url": "https://www.semanticscholar.org/author/2237239406",
+    "affiliation": "ETH Zurich",
+    "homepage": "https://scholar.google.com/citations?user=VL62tXMAAAAJ",
+    "orcid": null,
+    "n_papers": 1,
+    "h_index": 1,
+    "confidence": "high",
+    "verified": true,
+    "exclude_titles": [
+      "robot",
+      "neobladder",
+      "cystectomy",
+      "prostat",
+      "nephrectomy",
+      "renal",
+      "urinary",
+      "urolog",
+      "continence",
+      "bladder",
+      "ileal",
+      "florin",
+      "rapn",
+      "mpmri",
+      "psma",
+      "kidney",
+      "tumor",
+      "tumour",
+      "oncolog",
+      "surg",
+      "diversion",
+      "ureter",
+      "pelvic",
+      "stent",
+      "biopsy",
+      "radical",
+      "cancer",
+      "clamp",
+      "nerve",
+      "holep",
+      "urethroplasty",
+      "catheter",
+      "laser",
+      "graft"
+    ],
+    "note": "ETH Zurich ML (probabilistic circuits, SAE interpretability). Identity verified via the co-event paper 'One-Step is Enough: Sparse Autoencoders for Text-to-Image Diffusion Models' with Chris Wendler + David Bau. S2 mis-merged that single ML paper into a prolific UROLOGIST's profile (2237239406, 49 papers); exclude_titles strips the 48 urology papers so only the SAE co-event remains. OpenAlex has no clean profile (raw 'Mari, Antonio' on the SAE work; bare-name search resolves to a UPC-Barcelona concrete engineer), so the OA side is intentionally null.",
+    "merge_ids": [],
+    "oa_id": null,
+    "oa_url": null,
+    "oa_affiliation": null,
+    "oa_n_works": 0,
+    "oa_orcid": null,
+    "oa_titles": [],
+    "oa_merge_ids": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "eric todd",
+    "s2_id": "145290788",
+    "url": "https://www.semanticscholar.org/author/145290788",
+    "affiliation": "Northeastern University",
+    "homepage": "https://ericwtodd.github.io",
+    "orcid": null,
+    "n_papers": 16,
+    "h_index": 8,
+    "confidence": "high",
+    "verified": true,
+    "note": "Northeastern PhD (4th yr, advisor David Bau); undergrad ACME at BYU. Mechanistic interpretability — Function Vectors, NNsight/NDIF, Open Problems in Mech Interp, The Quest for the Right Mediator. Clean S2 profile (145290788), verified via 22 in-network co-event appearances in the cache + homepage ericwtodd.github.io. The 6 'basketball crowd noise' acoustics papers in the profile are his BYU undergrad work (kept; their non-roster coauthors prune out of the reveal graph). OpenAlex has no clean disambiguated profile (author search returns unrelated people), so the OA side is null; his S2 coverage is rich enough alone.",
+    "merge_ids": [],
+    "oa_id": null,
+    "oa_url": null,
+    "oa_affiliation": null,
+    "oa_n_works": 0,
+    "oa_orcid": null,
+    "oa_titles": [],
+    "oa_merge_ids": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "giordano rogers",
+    "s2_id": "2388980977",
+    "url": "https://www.semanticscholar.org/author/2388980977",
+    "affiliation": "Northeastern University",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": 3,
+    "h_index": 3,
+    "confidence": "high",
+    "verified": true,
+    "note": "Northeastern University, mechanistic interpretability (Google Scholar vkcZSNAAAAAJ, verified email northeastern.edu). In David Bau's lab orbit — co-author on the Bau Lab 'LLMs Process Lists With General Filter Heads' (with Arnab Sen Sharma, Natalie Shapira, David Bau) and 'Agents of Chaos' (Wendler, Pal, Belfki, Loftus, Prakash, Brinkmann, Rager, Ripa, Gandikota, Fiotto-Kaufman, Bau). Clean S2 profile (2388980977), 3 papers all 2025-26, verified via these in-network co-event appearances; single S2 match, no homonym fight. OpenAlex (A5009093200) is contaminated — it over-merges a 2003 'robotic surgery force feedback' paper by a different Giordano Rogers and duplicates Agents of Chaos, so the OA side is null; S2 alone is clean.",
+    "merge_ids": [],
+    "oa_id": null,
+    "oa_url": null,
+    "oa_affiliation": null,
+    "oa_n_works": 0,
+    "oa_orcid": null,
+    "oa_titles": [],
+    "oa_merge_ids": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
   }
- },
- {
-  "name": "antonio mari",
-  "s2_id": "2237239406",
-  "url": "https://www.semanticscholar.org/author/2237239406",
-  "affiliation": "ETH Zurich",
-  "homepage": "https://scholar.google.com/citations?user=VL62tXMAAAAJ",
-  "orcid": null,
-  "n_papers": 1,
-  "h_index": 1,
-  "confidence": "high",
-  "verified": true,
-  "exclude_titles": [
-   "robot",
-   "neobladder",
-   "cystectomy",
-   "prostat",
-   "nephrectomy",
-   "renal",
-   "urinary",
-   "urolog",
-   "continence",
-   "bladder",
-   "ileal",
-   "florin",
-   "rapn",
-   "mpmri",
-   "psma",
-   "kidney",
-   "tumor",
-   "tumour",
-   "oncolog",
-   "surg",
-   "diversion",
-   "ureter",
-   "pelvic",
-   "stent",
-   "biopsy",
-   "radical",
-   "cancer",
-   "clamp",
-   "nerve",
-   "holep",
-   "urethroplasty",
-   "catheter",
-   "laser",
-   "graft"
-  ],
-  "note": "ETH Zurich ML (probabilistic circuits, SAE interpretability). Identity verified via the co-event paper 'One-Step is Enough: Sparse Autoencoders for Text-to-Image Diffusion Models' with Chris Wendler + David Bau. S2 mis-merged that single ML paper into a prolific UROLOGIST's profile (2237239406, 49 papers); exclude_titles strips the 48 urology papers so only the SAE co-event remains. OpenAlex has no clean profile (raw 'Mari, Antonio' on the SAE work; bare-name search resolves to a UPC-Barcelona concrete engineer), so the OA side is intentionally null.",
-  "merge_ids": [],
-  "oa_id": null,
-  "oa_url": null,
-  "oa_affiliation": null,
-  "oa_n_works": 0,
-  "oa_orcid": null,
-  "oa_titles": [],
-  "oa_merge_ids": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "eric todd",
-  "s2_id": "145290788",
-  "url": "https://www.semanticscholar.org/author/145290788",
-  "affiliation": "Northeastern University",
-  "homepage": "https://ericwtodd.github.io",
-  "orcid": null,
-  "n_papers": 16,
-  "h_index": 8,
-  "confidence": "high",
-  "verified": true,
-  "note": "Northeastern PhD (4th yr, advisor David Bau); undergrad ACME at BYU. Mechanistic interpretability — Function Vectors, NNsight/NDIF, Open Problems in Mech Interp, The Quest for the Right Mediator. Clean S2 profile (145290788), verified via 22 in-network co-event appearances in the cache + homepage ericwtodd.github.io. The 6 'basketball crowd noise' acoustics papers in the profile are his BYU undergrad work (kept; their non-roster coauthors prune out of the reveal graph). OpenAlex has no clean disambiguated profile (author search returns unrelated people), so the OA side is null; his S2 coverage is rich enough alone.",
-  "merge_ids": [],
-  "oa_id": null,
-  "oa_url": null,
-  "oa_affiliation": null,
-  "oa_n_works": 0,
-  "oa_orcid": null,
-  "oa_titles": [],
-  "oa_merge_ids": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- },
- {
-  "name": "giordano rogers",
-  "s2_id": "2388980977",
-  "url": "https://www.semanticscholar.org/author/2388980977",
-  "affiliation": "Northeastern University",
-  "homepage": null,
-  "orcid": null,
-  "n_papers": 3,
-  "h_index": 3,
-  "confidence": "high",
-  "verified": true,
-  "note": "Northeastern University, mechanistic interpretability (Google Scholar vkcZSNAAAAAJ, verified email northeastern.edu). In David Bau's lab orbit — co-author on the Bau Lab 'LLMs Process Lists With General Filter Heads' (with Arnab Sen Sharma, Natalie Shapira, David Bau) and 'Agents of Chaos' (Wendler, Pal, Belfki, Loftus, Prakash, Brinkmann, Rager, Ripa, Gandikota, Fiotto-Kaufman, Bau). Clean S2 profile (2388980977), 3 papers all 2025-26, verified via these in-network co-event appearances; single S2 match, no homonym fight. OpenAlex (A5009093200) is contaminated — it over-merges a 2003 'robotic surgery force feedback' paper by a different Giordano Rogers and duplicates Agents of Chaos, so the OA side is null; S2 alone is clean.",
-  "merge_ids": [],
-  "oa_id": null,
-  "oa_url": null,
-  "oa_affiliation": null,
-  "oa_n_works": 0,
-  "oa_orcid": null,
-  "oa_titles": [],
-  "oa_merge_ids": [],
-  "crosscheck": {
-   "orcid_s2": null,
-   "orcid_oa": null,
-   "orcid_match": false,
-   "orcid_conflict": false,
-   "title_overlap_n": 0,
-   "title_overlap_frac": 0.0,
-   "agree": false
-  }
- }
 ]
