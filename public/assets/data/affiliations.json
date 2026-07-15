@@ -165,7 +165,7 @@
    "id": "jack merullo",
    "label": "Jack Merullo",
    "initials": "JM",
-   "community": 1,
+   "community": 0,
    "city": "San Francisco"
   },
   {
@@ -205,7 +205,7 @@
   },
   {
    "id": "josh ying",
-   "label": "Zhuofan Ying",
+   "label": "Z. Ying",
    "initials": "ZY",
    "community": 0,
    "city": "New York"
@@ -242,7 +242,7 @@
    "id": "liv gorton",
    "label": "Liv Gorton",
    "initials": "LG",
-   "community": 1,
+   "community": 0,
    "city": "San Francisco"
   },
   {
@@ -345,7 +345,7 @@
   },
   {
    "id": "tommy atthey",
-   "label": "Thomas L. Athey",
+   "label": "T. Athey",
    "initials": "TA",
    "community": 2,
    "city": "Cambridge, Massachusetts"
