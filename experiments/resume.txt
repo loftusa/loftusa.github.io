@@ -23,7 +23,7 @@ CAREER HIGHLIGHTS
 
 Red-Teaming Program Leadership: Designed and ran two multi-agent red-teaming campaigns for OpenAI from scratch: wrote the proposal, recruited and led a 16-person team (doubled for the second campaign), developed the harm taxonomy, set the research direction, and delivered findings and recommendations to stakeholders.
 
-Operational Ownership: Built ~17K lines of campaign infrastructure in under two weeks (~45K lines of code by campaign end), then owned its day-to-day operation through the live campaign, keeping it running reliably under continuous load.
+Operational Ownership: Built ~17K lines of campaign infrastructure in under two weeks (~45K lines of code by campaign end), then operated it 24/7 through the live two-week campaign, keeping it running reliably under continuous load.
 
 Textbook Authorship: Authored a 524-page technical book on statistical network ML (Cambridge University Press, November 2025).
   Link: https://a.co/d/9r4BFkX
@@ -88,9 +88,9 @@ Machine Learning Research Engineer — BlueHalo | Rockville, MD | 2022–2023
 - Geometric Multi-Resolution Analysis: Led infra for document clustering & analysis method.
 
 Research Software Engineer — NeuroData Lab, Johns Hopkins University | Dr. Joshua Vogelstein | Baltimore, MD | 2018–2020
-- MRI-to-Graphs: Optimized a diffusion MRI pipeline with docker and AWS Batch. Halved runtime and cut cloud costs by 40%.
+- MRI-to-Graphs: Optimized a diffusion MRI pipeline with docker and AWS Batch. Halved runtime and cut cloud costs by 40%. Open-sourced and adopted by multiple research groups.
   Link: https://neurodata.io/m2g/
-- Graspologic: Worked on an open-source graph statistics library. Later adopted by Microsoft Research for large-scale network analysis.
+- Graspologic: Core contributor to an open-source graph statistics library. Later adopted by Microsoft Research for large-scale network analysis.
   Link: https://microsoft.github.io/graspologic/latest/
 
 Assistant Director — iD Tech Camps | University of Washington | Seattle, WA | 2014–2018 summers
@@ -108,7 +108,7 @@ Languages: Python (advanced), Bash (intermediate), R, JavaScript, SQL
 
 Tools & Frameworks: PyTorch, NumPy, scikit-learn, transformers, nnsight, inspect-evals, lm-evaluation-harness, pandas, Polars, matplotlib, seaborn, Weights & Biases, PyTorch Lightning, vLLM, Docker, CI/CD, AWS, AWS Batch, Google Cloud (GCP), Fly.io, Firebase, FastAPI, Photoshop, Linux, Cursor, Codex CLI, Claude Code, LaTeX
 
-Areas of Expertise: red-teaming, model evaluation, harm taxonomy design, attack-surface analysis, prompt engineering, LLMs for code, interpretability, transformers, GPUs and CUDA, linear algebra, probability & statistics, deep learning, information theory, diffusion models, convolutional autoencoders, natural language processing, computer vision, capacity planning, cloud cost optimization
+Areas of Expertise: red-teaming, model evaluation, harm taxonomy design, attack-surface analysis, prompt engineering, LLMs for code, interpretability, transformers, GPUs and CUDA, linear algebra, probability & statistics, deep learning, information theory, diffusion models, convolutional autoencoders, natural language processing, computer vision, agent-environment fleet operations, capacity planning, cloud cost optimization, backup and recovery design (5-minute recovery-point objective), automated data pipelines, real-time monitoring dashboards
 
 Soft Skills: Leadership, project design, extracting and presenting useful information to stakeholders, delegation, public speaking, technical writing, mentorship, community-building
 
@@ -141,7 +141,7 @@ Investigation on token entanglement in LLMs. Featured in Welch Labs video on You
 
 NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals
 A.R. Loftus*, J.Fiotto-Kaufman*, et al. ICLR 2025.
-Open source fabric for probing & manipulating LLM weights without engineering overhead.
+Open source infrastructure for probing & manipulating LLM internals at scale, without engineering overhead.
   Paper: https://arxiv.org/abs/2407.14561
 
 [Best Poster] A Saliency-based Clustering Framework for Identifying Aberrant Predictions
