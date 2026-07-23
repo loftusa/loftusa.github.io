@@ -113,7 +113,7 @@ for pid in sorted(people):
     ch.sort(key=lambda c: (c["start"] if c["start"] is not None else 9999,
                            c["end"] if c["end"] is not None else 9999, c["org"]))
     chapters_of[pid] = ch
-assert sum(map(len, chapters_of.values())) == len(AFF["links"]) == 237
+assert sum(map(len, chapters_of.values())) == len(AFF["links"]) == 249
 
 # ---- pipeline: dated type sequence in career order; next from the published probs row ------
 TYPES = PIPE["types"]
@@ -148,7 +148,7 @@ def quadrant(r: dict) -> str | None:
 
 # ---- embassies: solo-org labels per holder --------------------------------------------------
 solo_rows = [t for t in EMB["tally"] if t["n"] == 1]
-assert len(solo_rows) == 1 and len(solo_rows[0]["orgs"]) == EMB["n_solo"] == 125
+assert len(solo_rows) == 1 and len(solo_rows[0]["orgs"]) == EMB["n_solo"] == 124
 solo_by: dict[str, list[str]] = defaultdict(list)
 for o in solo_rows[0]["orgs"]:
     assert len(o["members"]) == 1 and o["label"] in org_types

@@ -2922,5 +2922,53 @@
   "identity_confident": true,
   "notes": "Added 2026-06-25 to the core roster (Alex). No-publication person (AI/ML engineer + VC scout) — isolated hollow node on the papers map (no co-events), seated on the careers map by shared orgs. Identity + career provided by Alex via LinkedIn (linkedin.com/in/kiraks); per Alex's instruction the LinkedIn URL is NOT published — entries are sourced 'self-reported (provided by Alex)'. No public academic profile exists (the S2 'Kiran Sidhu' is a cardiologist; the OA 'Kira Sidhu' is a pain/opioid researcher — both homonyms). All four mapped orgs are PAST roles; her current role is an unnamed stealth startup (not mapped), so she has no current chapter. City unknown (current location not stated) — left blank, refine when known. Shares DeepMind with kayo yin, Google with liv gorton, Stanford with eric bridgeford, Columbia with josh ying + roy rinberg.",
   "reviewed": true
+ },
+ "kyle o'brien": {
+  "entries": [
+   {
+    "org": "Geodesic Research",
+    "type": "company",
+    "role": "Founding Member of Technical Staff (leads the alignment-pretraining agenda)",
+    "years": "2025–",
+    "current": true,
+    "source": "https://manifund.org/projects/seed-funding-for-geodesic-research",
+    "evidence": "Geodesic's Manifund page: 'Kyle O'Brien — Founding Member of Technical Staff', leads the alignment pretraining agenda; 'Geodesic was founded July 2025'; 'joined Geodesic through the ERA fellowship'. kyleobrien.io lists Geodesic as his current role.",
+    "verified": false
+   },
+   {
+    "org": "Microsoft",
+    "type": "company",
+    "role": "Software Engineer, then Applied Scientist II",
+    "years": "2020–2025",
+    "current": false,
+    "source": "https://kyleobrien.io/",
+    "evidence": "kyleobrien.io: applied scientist and software engineer at Microsoft before moving into AI safety research. Years per his LinkedIn as indexed by RocketReach (SWE 2020–22, Applied Scientist II 2022–25) — approximate, not independently confirmed.",
+    "verified": false
+   },
+   {
+    "org": "EleutherAI",
+    "type": "community",
+    "role": "Researcher (Pythia; Deep Ignorance)",
+    "years": "2023–2025",
+    "current": false,
+    "source": "https://kyleobrien.io/",
+    "evidence": "kyleobrien.io lists EleutherAI among past roles ('scientist and engineer at EleutherAI and Microsoft'); co-author on EleutherAI's Pythia (ICML 2023) and Deep Ignorance (2025), both with stella biderman. Years span the attested papers.",
+    "verified": false
+   },
+   {
+    "org": "ERA: AI Fellowship (Cambridge)",
+    "type": "program",
+    "role": "Fellow, then Research Manager",
+    "years": "2025",
+    "current": false,
+    "source": "https://kyleobrien.io/",
+    "evidence": "kyleobrien.io lists ERA Cambridge Research Manager (mentored junior researchers, matched mentors, ran empirical projects); Geodesic's Manifund bio: 'joined Geodesic through the ERA fellowship'.",
+    "verified": false
+   }
+  ],
+  "city": "",
+  "identity_confident": true,
+  "notes": "Added 2026-07-23 to the core roster (Alex's request). AI safety researcher; papers flow through the papers map (S2 2212970046 — Pythia + Deep Ignorance with stella biderman). Careers researched from his own pages (kyleobrien.io; Geodesic's Manifund page); Microsoft years are LinkedIn-derived (RocketReach index) — approximate. Education (RocketReach claims UCSC B.A. CS 2018–20) left OUT pending confirmation. City left blank: GitHub profile says Seattle while Geodesic Research is Cambridge, UK — unclear which is current. Shares Microsoft with allan deutsch + will levine, EleutherAI with stella biderman, alice rigg, goncalo paulo, lucia quirke, alex loftus.",
+  "reviewed": false
  }
 }
