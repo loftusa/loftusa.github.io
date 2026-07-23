@@ -9,6 +9,8 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<link rel="stylesheet" href="https://unpkg.com/leaflet-velocity@2.1.4/dist/leaflet-velocity.min.css"
+      integrity="sha256-M2GksIxiyP3cpwMSJed56ChJE0wDoGhesQnU1FnfGd8=" crossorigin="">
 <style>
   :root{
     --paper:#faf7f2; --card:#ffffff; --ink:#211c16; --ink2:#5b5347; --ink3:#8a8070;
@@ -42,6 +44,11 @@
   #banner.L2{background:var(--l2bg);border-color:var(--l2)} #banner.L2 .lvl{color:#9a4a0f}
   #banner.L3{background:var(--l3bg);border-color:var(--l3)} #banner.L3 .lvl{color:var(--l3)}
   #banner.L0{background:var(--okbg);border-color:var(--ok)} #banner.L0 .lvl{color:var(--ok)}
+  .prow{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;padding:9px 0;border-top:1px solid rgba(0,0,0,.09)}
+  .prow:first-of-type{border-top:none}
+  .prow .pname{font-weight:750;font-size:16px;min-width:10.5em}
+  .prow .pchip{font-size:14px;font-weight:800;border-radius:7px;padding:2px 10px;white-space:nowrap}
+  .prow .pnote{font-size:13px;color:var(--ink2);flex-basis:100%;margin-top:-2px}
   /* stat strip */
   .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
   @media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
@@ -99,7 +106,7 @@
 
 <header>
   <div class="kicker">Live fire tracker · Unofficial · Auto-refreshes every 5 min</div>
-  <h1>Akawa Butte Fire — Camp Sherman</h1>
+  <h1>Akawa Butte Fire — Camp Sherman &amp; Black Butte Ranch</h1>
   <p class="sub"><span id="lastCheck">Loading live data…</span><span class="dot">·</span>
      <button id="refreshBtn" type="button">↻ Refresh now</button></p>
 </header>
@@ -110,7 +117,7 @@
 <div class="stats" id="stats">
   <div class="stat"><div class="n" id="stAcres">—</div><div class="l">acres burned</div><div class="s" id="stAcresS"></div></div>
   <div class="stat"><div class="n" id="stCont">—</div><div class="l">contained</div><div class="s" id="stContS"></div></div>
-  <div class="stat"><div class="n" id="stDist">—</div><div class="l">fire edge → Camp&nbsp;Sherman store</div><div class="s" id="stDistS"></div></div>
+  <div class="stat"><div class="n" id="stDist">—</div><div class="l">fire edge → nearest family spot</div><div class="s" id="stDistS"></div></div>
   <div class="stat"><div class="n" id="stAqi">—</div><div class="l">air quality (US&nbsp;AQI)</div><div class="s" id="stAqiS"></div></div>
 </div>
 
@@ -162,8 +169,10 @@
 </div>
 
 <footer id="foot">
+  Tracking two family spots: the Camp Sherman store and Black Butte Ranch.
   Data: fire perimeter &amp; stats — NIFC/WFIGS · evacuation zones — Oregon Dept. of Emergency Management (statewide live layer)
-  · hotspots — NASA VIIRS via Esri Living Atlas · weather — National Weather Service · air quality — Open-Meteo (US AQI).
+  · heat detections — NASA VIIRS via Esri Living Atlas · daily satellite photo — NASA GIBS/Worldview
+  · weather &amp; air flow — National Weather Service + Open-Meteo · air quality — Open-Meteo (US AQI).
   All times Pacific. Satellite hotspots show where satellites detected heat in the last 24 h — edges of the cluster are
   the most recently active fire line, but detections lag reality by up to a few hours and can include cool burned areas.
   Made with ❤️ for the Loftus family by Alex's computer. <span id="buildStamp"></span>
@@ -172,11 +181,16 @@
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-velocity@2.1.4/dist/leaflet-velocity.min.js"
+        integrity="sha256-TpmNTyB+ACOS5pMIYgAMzQvCDl1KU4xULsb2/Jjej74=" crossorigin=""></script>
 <script>
 "use strict";
 /* ================= constants ================= */
-const CS = [44.4646, -121.6392];                    // Camp Sherman store (community center point)
-const KM = 60000;                                    // search radius, meters
+const CS  = [44.4646, -121.6392];                   // Camp Sherman store (community center point)
+const BBR = [44.37734, -121.65366];                 // Black Butte Ranch
+const PLACES = [ {name:"Camp Sherman (store)", short:"store", ll:CS},
+                 {name:"Black Butte Ranch",    short:"BBR",   ll:BBR} ];
+const KM = 60000;                                    // search radius, meters (covers both places + both fires)
 const PERIM = "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/WFIGS_Interagency_Perimeters_Current/FeatureServer/0/query";
 const EVAC  = "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Fire_Evacuation_Areas_Public/FeatureServer/0/query";
 const VIIRS = "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/Satellite_VIIRS_Thermal_Hotspots_and_Fire_Activity/FeatureServer/0/query";
@@ -250,17 +264,34 @@ const topo = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/W
   {maxZoom:17, attribution:"Esri, USGS, NOAA"}).addTo(map);
 const sat = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   {maxZoom:17, attribution:"Esri, Maxar"});
-L.control.layers({"Terrain":topo,"Satellite":sat},null,{position:"topleft"}).addTo(map);
+const layersCtl = L.control.layers({"Terrain":topo,"Satellite (sharp)":sat},null,{position:"topleft"}).addTo(map);
 L.control.scale({imperial:true, metric:false}).addTo(map);
+
+// NASA GIBS daily true-color photo (smoke plume is visible on it). Today's image
+// appears mid-day; probe a tiny tile and fall back to yesterday until it exists.
+(async function addNasaLayer(){
+  const day = ms => new Date(ms).toISOString().slice(0,10);
+  const tileUrl = d => "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/VIIRS_SNPP_CorrectedReflectance_TrueColor/default/"
+                       + d + "/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg";
+  let d = day(Date.now());
+  try {
+    const probe = await fetch(tileUrl(d).replace("{z}/{y}/{x}","6/23/10"), {method:"GET"});
+    if(!probe.ok) d = day(Date.now() - 86400000);
+  } catch(e){ d = day(Date.now() - 86400000); }
+  const nasa = L.tileLayer(tileUrl(d), {maxZoom:17, maxNativeZoom:9, attribution:"NASA GIBS / VIIRS"});
+  layersCtl.addBaseLayer(nasa, "NASA daily photo — smoke ("+d+")");
+})();
 map.createPane("evacPane");  map.getPane("evacPane").style.zIndex = 410;
 map.createPane("firePane");  map.getPane("firePane").style.zIndex = 420;
 map.createPane("hotPane");   map.getPane("hotPane").style.zIndex  = 430;
 const evacLayer = L.layerGroup().addTo(map), fireLayer = L.layerGroup().addTo(map),
       hotLayer  = L.layerGroup().addTo(map);
-L.marker(CS, {icon: L.divIcon({className:"", html:
-  "<div style='background:#211c16;color:#fff;font:600 11.5px -apple-system,sans-serif;padding:3px 8px;border-radius:6px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4)'>Camp Sherman store</div>",
-  iconAnchor:[52,32]})}).addTo(map);
-L.circleMarker(CS,{radius:6,color:"#fff",weight:2,fillColor:"#211c16",fillOpacity:1,pane:"hotPane"}).addTo(map);
+for(const pl of PLACES){
+  L.marker(pl.ll, {icon: L.divIcon({className:"", html:
+    "<div style='background:#211c16;color:#fff;font:600 11.5px -apple-system,sans-serif;padding:3px 8px;border-radius:6px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4)'>"+pl.name+"</div>",
+    iconAnchor:[52,32]})}).addTo(map);
+  L.circleMarker(pl.ll,{radius:6,color:"#fff",weight:2,fillColor:"#211c16",fillOpacity:1,pane:"hotPane"}).addTo(map);
+}
 
 const legend = L.control({position:"bottomleft"});
 legend.onAdd = () => {
@@ -272,7 +303,8 @@ legend.onAdd = () => {
     '<span class="sw" style="background:#8b1a0f45;border-color:#8b1a0f"></span>Fire perimeter (mapped)<br>' +
     '<span class="hs" style="background:#ff2000"></span>Satellite heat &lt; 6 h<br>' +
     '<span class="hs" style="background:#ff9d2e"></span>Heat 6–12 h ago<br>' +
-    '<span class="hs" style="background:#b0a08e"></span>Heat 12–24 h ago';
+    '<span class="hs" style="background:#b0a08e"></span>Heat 12–24 h ago<br>' +
+    '<span class="hs" style="background:linear-gradient(90deg,#5d7d9e,#b91c1c);border-radius:2px"></span>Moving streaks = live air flow';
   return d;
 };
 legend.addTo(map);
@@ -296,22 +328,25 @@ $("locBtn").onclick = () => {
 /* ================= data refresh ================= */
 const state = {evacFeatures:[], failures:{}};
 
-async function card(id, fn, isRetry){
-  try { await fn(); state.failures[id]=0; }
+async function card(id, fn, attempt){
+  try {
+    await fn(); state.failures[id]=0;
+    const el=$(id), d=el&&el.querySelector(".failed"); if(d) d.remove();
+  }
   catch(e){
     console.error(id, e);
     state.failures[id]=(state.failures[id]||0)+1;
     const el=$(id); if(el && !el.querySelector(".failed")){ const d=document.createElement("div"); d.className="failed";
       d.textContent="Couldn't load this section ("+e.message+"). Retrying shortly…"; el.prepend(d);
       setTimeout(()=>d.remove(), 290000);}
-    if(!isRetry) setTimeout(()=>card(id, fn, true).then(()=>{   // one quick retry beats waiting 5 min on flaky cell service
-      const el2=$(id), d2=el2&&el2.querySelector(".failed"); if(d2&&!state.failures[id]) d2.remove();
-    }), 12000);
+    const n=attempt||0;                 // the federal feeds 429 in bursts during fire season — staggered retries ride it out
+    if(n<2) setTimeout(()=>card(id, fn, n+1), [15000,45000][n]);
   }
 }
 
 async function loadFire(){
-  const j = await arc(PERIM, {outFields:"poly_IncidentName,attr_IncidentSize,poly_GISAcres,attr_PercentContained,poly_DateCurrent,attr_FireDiscoveryDateTime,attr_IncidentShortDescription"});
+  const j = await arc(PERIM, {outFields:"poly_IncidentName,attr_IncidentSize,poly_GISAcres,attr_PercentContained,poly_DateCurrent,attr_FireDiscoveryDateTime,attr_IncidentShortDescription",
+                              maxAllowableOffset:0.0001});   // ~10 m simplification — big payload/speed win, ±10 m on a 5 mi distance
   if(!j.features.length) throw new Error("no perimeter returned");
   fireLayer.clearLayers();
   // primary = the fire whose mapped edge is CLOSEST to Camp Sherman (not the largest —
@@ -330,12 +365,15 @@ async function loadFire(){
   $("stAcresS").textContent = "perimeter mapped "+pdt(p.poly_DateCurrent);
   $("stCont").textContent = (p.attr_PercentContained??"—")+"%";
   $("stContS").textContent = "of "+(p.poly_IncidentName||"fire")+" Fire";
-  const near = minDistToGeom(CS, primary.geometry);
-  const dir = compass(bearing(CS, near.at));
-  $("stDist").textContent = near.mi<0.05 ? "AT" : near.mi.toFixed(1)+" mi";
-  $("stDistS").textContent = "nearest mapped edge, to the "+dir+" — may lag hours behind the real fire line";
+  const dists = PLACES.map(pl=>{ const d=minDistToGeom(pl.ll, primary.geometry);
+    return {pl, mi:d.mi, dir:compass(bearing(pl.ll, d.at))}; });
+  const nearest = dists.slice().sort((a,b)=>a.mi-b.mi)[0];
+  $("stDist").textContent = nearest.mi<0.05 ? "AT" : nearest.mi.toFixed(1)+" mi";
+  $("stDistS").textContent = dists.map(d=>d.pl.short+" "+d.mi.toFixed(1)+" mi "+d.dir).join(" · ")+
+    " — mapped edge can lag hours behind the real fire line";
   state.fireBounds = L.geoJSON(primary).getBounds();
-  if(!state.fitted){ map.fitBounds(state.fireBounds.extend(L.latLng(CS)).pad(.12)); state.fitted=true; }
+  if(!state.fitted){ map.fitBounds(state.fireBounds.extend(L.latLng(CS)).extend(L.latLng(BBR)).pad(.12)); state.fitted=true; }
+  state.fireOkAt = Date.now();
 }
 
 async function loadEvac(){
@@ -355,29 +393,35 @@ async function loadEvac(){
   }
   $("zonesAsof").textContent = "zones last edited "+pdt(newest);
 
-  // ----- banner: what level is Camp Sherman? -----
-  const containing = state.evacFeatures.filter(f=>pointInGeom(CS[0],CS[1],f.geometry))
-        .sort((a,b)=>b.properties.Fire_Evacuation_Level-a.properties.Fire_Evacuation_Level);
+  // ----- banner: what level is each family place? -----
   const b=$("banner");
-  if(containing.length){
-    const f=containing[0], lv=LVL[f.properties.Fire_Evacuation_Level];
-    b.className="card L"+f.properties.Fire_Evacuation_Level;
-    let zoneNote = "Zone “"+(f.properties.Evac_Area_Name||"").trim()+"” · updated "+pdt(f.properties.last_edited_date);
-    // nearest zone with a HIGHER level
-    const higher = state.evacFeatures.filter(g=>g.properties.Fire_Evacuation_Level>f.properties.Fire_Evacuation_Level);
+  let worst=0;
+  const prows = PLACES.map(pl=>{
+    const containing = state.evacFeatures.filter(f=>pointInGeom(pl.ll[0],pl.ll[1],f.geometry))
+          .sort((x,y)=>y.properties.Fire_Evacuation_Level-x.properties.Fire_Evacuation_Level);
+    const lvl = containing.length ? containing[0].properties.Fire_Evacuation_Level : 0;
+    worst = Math.max(worst, lvl);
+    let chip, note;
+    if(lvl){
+      const f=containing[0], lv=LVL[lvl];
+      chip = '<span class="pchip" style="background:rgba(255,255,255,.6);color:'+lv.color+';border:1.5px solid '+lv.color+'">'+lv.name+'</span>';
+      note = "Zone “"+(f.properties.Evac_Area_Name||"").trim()+"” · updated "+pdt(f.properties.last_edited_date)+".";
+    } else {
+      chip = '<span class="pchip" style="background:rgba(255,255,255,.6);color:var(--ok);border:1.5px solid var(--ok)">NO EVACUATION ORDER</span>';
+      note = "Not inside any posted evacuation zone right now.";
+    }
+    const higher = state.evacFeatures.filter(g=>g.properties.Fire_Evacuation_Level>lvl);
     if(higher.length){
       let best={mi:Infinity}, bf=null;
-      for(const g of higher){ const d=minDistToGeom(CS,g.geometry); if(d.mi<best.mi){best=d;bf=g;} }
-      if(bf) zoneNote += "<br>Nearest <b>"+LVL[bf.properties.Fire_Evacuation_Level].short+"</b> zone (“"+
-        (bf.properties.Evac_Area_Name||"").trim()+"”) is ~"+best.mi.toFixed(1)+" mi "+compass(bearing(CS,best.at))+" of the store.";
+      for(const g of higher){ const d=minDistToGeom(pl.ll,g.geometry); if(d.mi<best.mi){best=d;bf=g;} }
+      if(bf) note += " Nearest <b>"+LVL[bf.properties.Fire_Evacuation_Level].short+"</b> zone: ~"+
+        best.mi.toFixed(1)+" mi "+compass(bearing(pl.ll,best.at))+".";
     }
-    b.innerHTML = '<div class="lvl">Camp Sherman store area: '+lv.name+'</div>'+
-      '<div class="what">'+lv.what+'</div><div class="zone">'+zoneNote+'</div>';
-  } else {
-    b.className="card L0";
-    b.innerHTML = '<div class="lvl">No evacuation order at the Camp Sherman store right now</div>'+
-      '<div class="what">Nearby zones are posted — check the map for your exact location, and use “Where am I?”.</div>';
-  }
+    return '<div class="prow"><span class="pname">'+pl.name+'</span>'+chip+'<span class="pnote">'+note+'</span></div>';
+  });
+  b.className = "card L"+worst;
+  const worstTxt = worst ? LVL[worst].what : "Stay alert — posted zones nearby can change quickly.";
+  b.innerHTML = prows.join("") + '<div class="what" style="margin-top:9px">'+worstTxt+'</div>';
 
   // ----- zones table -----
   const rows = state.evacFeatures.map(f=>f.properties)
@@ -390,6 +434,40 @@ async function loadEvac(){
       return "<tr"+(mine?' class="mine"':"")+"><td><span class='chip "+lv.cls+"'>"+lv.short+"</span></td><td>"+
         (p.Evac_Area_Name||"—").trim()+(mine?" ★":"")+"</td><td>"+(p.County||"—")+"</td><td class='muted'>"+pdt(p.last_edited_date)+"</td></tr>";
     }).join("")+"</tbody></table>";
+}
+
+/* Animated air-flow layer: build a 9×7 wind grid from Open-Meteo (one call),
+   feed it to leaflet-velocity. Fails soft — page works fine without it. */
+const WGRID = {nx:9, ny:7, lo1:-122.15, la1:44.75, dx:0.125, dy:0.7/6};
+let windLayer=null;
+async function loadWindFlow(){
+  if(!L.velocityLayer) return;                       // CDN blocked → skip quietly
+  const lats=[], lons=[];
+  for(let r=0;r<WGRID.ny;r++) for(let c=0;c<WGRID.nx;c++){
+    lats.push((WGRID.la1 - r*WGRID.dy).toFixed(4)); lons.push((WGRID.lo1 + c*WGRID.dx).toFixed(4));
+  }
+  const j = await fetch("https://api.open-meteo.com/v1/forecast?latitude="+lats.join(",")+"&longitude="+lons.join(",")+
+    "&current=wind_speed_10m,wind_direction_10m&wind_speed_unit=ms").then(r=>r.json());
+  if(!Array.isArray(j) || j.length!==WGRID.nx*WGRID.ny) throw new Error("wind grid incomplete");
+  const u=[], v=[];
+  for(const cell of j){
+    const s=cell.current.wind_speed_10m, dRad=cell.current.wind_direction_10m*Math.PI/180;
+    u.push(-s*Math.sin(dRad)); v.push(-s*Math.cos(dRad));   // meteorological "from" → vector "toward"
+  }
+  const header = {parameterUnit:"m.s-1", parameterCategory:2, nx:WGRID.nx, ny:WGRID.ny,
+    lo1:WGRID.lo1, la1:WGRID.la1, lo2:WGRID.lo1+(WGRID.nx-1)*WGRID.dx, la2:WGRID.la1-(WGRID.ny-1)*WGRID.dy,
+    dx:WGRID.dx, dy:WGRID.dy, refTime:new Date().toISOString()};
+  const data=[{header:Object.assign({parameterNumber:2,parameterNumberName:"eastward_wind"},header), data:u},
+              {header:Object.assign({parameterNumber:3,parameterNumberName:"northward_wind"},header), data:v}];
+  if(windLayer){
+    try { windLayer.setData(data); return; }
+    catch(e){ map.removeLayer(windLayer); layersCtl.removeLayer(windLayer); windLayer=null; }
+  }
+  windLayer = L.velocityLayer({data, velocityScale:0.012, maxVelocity:14, lineWidth:1.6,
+    particleMultiplier:1/250, frameRate:18, displayValues:false,
+    colorScale:["#7d8a9b","#5d7d9e","#3f6ea0","#2b5f9e","#d95f0e","#b91c1c"]});
+  windLayer.addTo(map);
+  layersCtl.addOverlay(windLayer, "Air flow (animated, live)");
 }
 
 async function loadHotspots(){
@@ -485,18 +563,22 @@ async function loadAlerts(){
 
 async function refreshAll(){
   $("lastCheck").textContent = "Checking…";
+  // Perimeters change ~1-2×/day and their server is the quota-strained one:
+  // refetch only every 12 min (manual refresh forces it) to dodge the 429 bursts.
+  const fireStale = Date.now()-(state.fireOkAt||0) > 12*60000;
   await Promise.all([
     card("banner",   loadEvac),
-    card("stats",    loadFire),
+    fireStale ? card("stats", loadFire) : Promise.resolve(),
     card("map",      loadHotspots),
     card("windCard", loadWeather),
     card("aqiCard",  loadAqi),
-    card("alertsCard", loadAlerts)
+    card("alertsCard", loadAlerts),
+    loadWindFlow().catch(e=>console.warn("air flow layer:", e.message))  // decorative — fail soft
   ]);
   state.lastRefresh = Date.now();
   $("lastCheck").textContent = "Updated "+pt(state.lastRefresh)+" · next check "+pt(state.lastRefresh+5*60000);
 }
-$("refreshBtn").onclick = refreshAll;
+$("refreshBtn").onclick = () => { state.fireOkAt = 0; refreshAll(); };
 document.addEventListener("visibilitychange", ()=>{   // phone woke up → refresh if stale
   if(!document.hidden && state.lastRefresh && Date.now()-state.lastRefresh>120000) refreshAll();
 });
