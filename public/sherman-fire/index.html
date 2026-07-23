@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akawa Butte Fire — Camp Sherman Tracker</title>
+<meta name="description" content="Live tracker for the Akawa Butte Fire near Camp Sherman, Oregon: evacuation zones, fire perimeter, satellite hotspots, wind, and air quality — assembled from official public data feeds.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<style>
+  :root{
+    --paper:#faf7f2; --card:#ffffff; --ink:#211c16; --ink2:#5b5347; --ink3:#8a8070;
+    --hair:#e6dfd3; --l1:#c79b00; --l1bg:#fdf3d0; --l2:#d95f0e; --l2bg:#fde8d4; --l3:#b91c1c; --l3bg:#fbdcdc;
+    --fire:#8b1a0f; --ok:#3d7a37; --okbg:#e2efdf;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);
+       font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+  .wrap{max-width:980px;margin:0 auto;padding:0 14px 60px}
+  header{padding:26px 0 6px}
+  .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--fire);font-weight:700}
+  h1{font-family:Charter,Georgia,"Times New Roman",serif;font-weight:700;font-size:clamp(26px,5.5vw,40px);
+     line-height:1.12;margin:4px 0 6px}
+  .sub{color:var(--ink2);font-size:14px;margin:0}
+  .sub .dot{color:var(--ink3);padding:0 6px}
+  #refreshBtn{border:1px solid var(--hair);background:var(--card);color:var(--ink2);border-radius:7px;
+     padding:4px 10px;font-size:13px;cursor:pointer}
+  #refreshBtn:active{transform:translateY(1px)}
+  .card{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:16px 18px;margin:14px 0}
+  .card h2{font-family:Charter,Georgia,serif;font-size:19px;margin:0 0 10px}
+  .card .asof{float:right;font-size:12px;color:var(--ink3);font-weight:400;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  .failed{color:#8f2f24;font-size:14px}
+  /* status banner */
+  #banner{border-radius:12px;padding:18px 20px;margin:16px 0;border:2px solid var(--hair);background:var(--card)}
+  #banner .lvl{font-size:clamp(22px,5vw,32px);font-weight:800;letter-spacing:.01em;line-height:1.15}
+  #banner .what{margin-top:6px;font-size:15px;color:var(--ink2)}
+  #banner .zone{margin-top:8px;font-size:13.5px;color:var(--ink2)}
+  #banner.L1{background:var(--l1bg);border-color:var(--l1)} #banner.L1 .lvl{color:#7a5f00}
+  #banner.L2{background:var(--l2bg);border-color:var(--l2)} #banner.L2 .lvl{color:#9a4a0f}
+  #banner.L3{background:var(--l3bg);border-color:var(--l3)} #banner.L3 .lvl{color:var(--l3)}
+  #banner.L0{background:var(--okbg);border-color:var(--ok)} #banner.L0 .lvl{color:var(--ok)}
+  /* stat strip */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+  @media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:12px 14px}
+  .stat .n{font-size:clamp(20px,4vw,27px);font-weight:750;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .stat .l{font-size:12px;color:var(--ink2);margin-top:2px;line-height:1.3}
+  .stat .s{font-size:11.5px;color:var(--ink3);margin-top:3px}
+  /* map */
+  #map{height:66vh;min-height:380px;border-radius:12px;border:1px solid var(--hair)}
+  .maplegend{background:rgba(255,255,255,.94);border:1px solid var(--hair);border-radius:9px;
+     padding:8px 11px;font-size:12px;line-height:1.85;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+  .maplegend .sw{display:inline-block;width:13px;height:13px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1.5px solid}
+  .maplegend .hs{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:8px;margin-left:1px}
+  #locBtn{position:absolute;z-index:1000;right:10px;top:10px;background:#fff;border:1.5px solid rgba(0,0,0,.25);
+     border-radius:7px;padding:6px 11px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+  .mapwrap{position:relative}
+  /* tables */
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);text-align:left;
+     font-weight:650;padding:5px 8px;border-bottom:1.5px solid var(--hair)}
+  td{padding:7px 8px;border-bottom:1px solid var(--hair);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr.mine{background:#fbf6ea}
+  .chip{display:inline-block;font-size:12px;font-weight:750;border-radius:6px;padding:2px 8px;white-space:nowrap}
+  .chip.c1{background:var(--l1bg);color:#7a5f00;border:1px solid var(--l1)}
+  .chip.c2{background:var(--l2bg);color:#9a4a0f;border:1px solid var(--l2)}
+  .chip.c3{background:var(--l3bg);color:var(--l3);border:1px solid var(--l3)}
+  .arrow{display:inline-block;font-size:16px;line-height:1}
+  .muted{color:var(--ink3)}
+  /* AQI */
+  .aqirow{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .aqinum{font-size:44px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+  .aqicat{font-weight:750;font-size:15px}
+  .aqiadv{font-size:13.5px;color:var(--ink2);max-width:420px}
+  .spark{flex:1 1 200px;min-width:180px}
+  /* alerts */
+  details{border:1px solid var(--hair);border-radius:9px;padding:9px 13px;margin:7px 0;background:#fffdf8}
+  summary{cursor:pointer;font-weight:650;font-size:14px}
+  details p{font-size:13.5px;color:var(--ink2);white-space:pre-line;margin:8px 0 2px}
+  .redflag{border-color:var(--l3);background:var(--l3bg)}
+  /* links */
+  .links{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:9px}
+  .links a{display:block;border:1px solid var(--hair);border-radius:9px;padding:10px 13px;text-decoration:none;
+     color:var(--ink);background:var(--card);font-size:14px;font-weight:600}
+  .links a span{display:block;font-weight:400;font-size:12.5px;color:var(--ink3);margin-top:2px}
+  .links a:hover{border-color:var(--ink3)}
+  footer{font-size:12.5px;color:var(--ink3);line-height:1.65;margin-top:26px}
+  footer a{color:var(--ink2)}
+  .notice{font-size:13.5px;color:var(--ink2);background:var(--card);border:1px dashed var(--hair);
+     border-radius:9px;padding:10px 13px;margin:12px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="kicker">Live fire tracker · Unofficial · Auto-refreshes every 5 min</div>
+  <h1>Akawa Butte Fire — Camp Sherman</h1>
+  <p class="sub"><span id="lastCheck">Loading live data…</span><span class="dot">·</span>
+     <button id="refreshBtn" type="button">↻ Refresh now</button></p>
+</header>
+
+<div id="banner" class="card"><div class="lvl">Checking evacuation status…</div>
+  <div class="what muted">Pulling the State of Oregon's live evacuation map.</div></div>
+
+<div class="stats" id="stats">
+  <div class="stat"><div class="n" id="stAcres">—</div><div class="l">acres burned</div><div class="s" id="stAcresS"></div></div>
+  <div class="stat"><div class="n" id="stCont">—</div><div class="l">contained</div><div class="s" id="stContS"></div></div>
+  <div class="stat"><div class="n" id="stDist">—</div><div class="l">fire edge → Camp&nbsp;Sherman store</div><div class="s" id="stDistS"></div></div>
+  <div class="stat"><div class="n" id="stAqi">—</div><div class="l">air quality (US&nbsp;AQI)</div><div class="s" id="stAqiS"></div></div>
+</div>
+
+<div class="card" style="padding:10px">
+  <div class="mapwrap">
+    <button id="locBtn" type="button">📍 Where am I?</button>
+    <div id="map"></div>
+  </div>
+</div>
+
+<div class="card" id="zonesCard">
+  <h2>Evacuation zones near Camp Sherman <span class="asof" id="zonesAsof"></span></h2>
+  <p style="font-size:13.5px;color:var(--ink2);margin:2px 0 10px">
+    Oregon levels: <b>1 = BE READY</b> (pack, stay alert) · <b>2 = BE SET</b> (be ready to leave at a moment's notice)
+    · <b>3 = GO NOW</b> (leave immediately). Rows mentioning Camp Sherman are highlighted.</p>
+  <div id="zonesTbl" class="muted">Loading…</div>
+</div>
+
+<div class="card" id="windCard">
+  <h2>Wind &amp; weather <span class="asof" id="windAsof"></span></h2>
+  <div id="windNow" style="font-size:14.5px;margin-bottom:9px" class="muted">Loading…</div>
+  <div id="windTbl"></div>
+  <div id="fcastText" style="font-size:13.5px;color:var(--ink2);margin-top:10px"></div>
+</div>
+
+<div class="card" id="aqiCard">
+  <h2>Smoke &amp; air quality at Camp Sherman <span class="asof" id="aqiAsof"></span></h2>
+  <div class="aqirow" id="aqiRow"><span class="muted">Loading…</span></div>
+</div>
+
+<div class="card" id="alertsCard">
+  <h2>Weather service alerts for this area</h2>
+  <div id="alertsList" class="muted">Loading…</div>
+</div>
+
+<div class="card">
+  <h2>Official sources &amp; help</h2>
+  <div class="links">
+    <a href="https://centraloregonfire.org" target="_blank" rel="noopener">Central Oregon Fire Info<span>Official daily updates on this fire</span></a>
+    <a href="https://app.watchduty.org" target="_blank" rel="noopener">Watch Duty<span>Free app — push alerts for evac changes</span></a>
+    <a href="https://www.tripcheck.com" target="_blank" rel="noopener">TripCheck (ODOT)<span>Road closures — check Hwy 20 status</span></a>
+    <a href="https://fire.airnow.gov" target="_blank" rel="noopener">AirNow Fire &amp; Smoke Map<span>Official smoke / AQI monitors</span></a>
+    <a href="https://forecast.weather.gov/MapClick.php?lat=44.465&lon=-121.639" target="_blank" rel="noopener">NWS forecast — Camp Sherman<span>Full 7-day forecast</span></a>
+    <a href="https://www.google.com/maps/search/1700+W+McKinney+Butte+Rd+Sisters+OR" target="_blank" rel="noopener">Evacuation shelter<span>Sisters High School, 1700 W McKinney Butte Rd</span></a>
+  </div>
+  <div class="notice">⚠️ This page assembles <b>official public data feeds</b> (National Interagency Fire Center, State of Oregon
+  evacuation map, NASA/NOAA satellites, National Weather Service) but it is <b>not an official source</b>. Evacuation
+  decisions: always follow the Jefferson County &amp; Deschutes County Sheriffs and fire officials on the ground.</div>
+</div>
+
+<footer id="foot">
+  Data: fire perimeter &amp; stats — NIFC/WFIGS · evacuation zones — Oregon Dept. of Emergency Management (statewide live layer)
+  · hotspots — NASA VIIRS via Esri Living Atlas · weather — National Weather Service · air quality — Open-Meteo (US AQI).
+  All times Pacific. Satellite hotspots show where satellites detected heat in the last 24 h — edges of the cluster are
+  the most recently active fire line, but detections lag reality by up to a few hours and can include cool burned areas.
+  Made with ❤️ for the Loftus family by Alex's computer. <span id="buildStamp"></span>
+</footer>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+"use strict";
+/* ================= constants ================= */
+const CS = [44.4646, -121.6392];                    // Camp Sherman store (community center point)
+const KM = 60000;                                    // search radius, meters
+const PERIM = "https://services3.arcgis.com/T4QMspbfLg3qTGWY/arcgis/rest/services/WFIGS_Interagency_Perimeters_Current/FeatureServer/0/query";
+const EVAC  = "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Fire_Evacuation_Areas_Public/FeatureServer/0/query";
+const VIIRS = "https://services9.arcgis.com/RHVPKKiFTONKtxq3/arcgis/rest/services/Satellite_VIIRS_Thermal_Hotspots_and_Fire_Activity/FeatureServer/0/query";
+const NWS_HOURLY = "https://api.weather.gov/gridpoints/PDT/29,62/forecast/hourly";
+const NWS_DAILY  = "https://api.weather.gov/gridpoints/PDT/29,62/forecast";
+const NWS_ALERTS = "https://api.weather.gov/alerts/active?point=44.465,-121.639";
+const OM_AQ = "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=44.465&longitude=-121.639&current=us_aqi,pm2_5&hourly=us_aqi&past_days=1&forecast_days=1&timezone=America%2FLos_Angeles";
+const OM_WX = "https://api.open-meteo.com/v1/forecast?latitude=44.465&longitude=-121.639&current=temperature_2m,wind_speed_10m,wind_gusts_10m,wind_direction_10m,relative_humidity_2m&wind_speed_unit=mph&temperature_unit=fahrenheit&timezone=America%2FLos_Angeles";
+
+const fmtT = new Intl.DateTimeFormat("en-US",{timeZone:"America/Los_Angeles",hour:"numeric",minute:"2-digit"});
+const fmtDT = new Intl.DateTimeFormat("en-US",{timeZone:"America/Los_Angeles",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"});
+const pt = ms => fmtT.format(new Date(ms)) + " PT";
+const pdt = ms => fmtDT.format(new Date(ms)) + " PT";
+const $ = id => document.getElementById(id);
+
+function arc(url, params){                            // ArcGIS query helper → GeoJSON
+  const p = new URLSearchParams(Object.assign({
+    geometry: CS[1] + "," + CS[0], geometryType: "esriGeometryPoint",
+    distance: KM, units: "esriSRUnit_Meter", inSR: 4326, outSR: 4326,
+    spatialRel: "esriSpatialRelIntersects", geometryPrecision: 5, f: "geojson"
+  }, params));
+  return fetch(url + "?" + p).then(r => { if(!r.ok) throw new Error(url.split("/")[2]+" HTTP "+r.status); return r.json(); })
+    .then(j => { if(j.error) throw new Error(j.error.message||"ArcGIS error"); return j; });
+}
+function havMi(a, b){                                 // haversine, miles
+  const R=3958.8, d=Math.PI/180, dLat=(b[0]-a[0])*d, dLon=(b[1]-a[1])*d;
+  const h=Math.sin(dLat/2)**2 + Math.cos(a[0]*d)*Math.cos(b[0]*d)*Math.sin(dLon/2)**2;
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+function bearing(a, b){
+  const d=Math.PI/180, y=Math.sin((b[1]-a[1])*d)*Math.cos(b[0]*d),
+        x=Math.cos(a[0]*d)*Math.sin(b[0]*d)-Math.sin(a[0]*d)*Math.cos(b[0]*d)*Math.cos((b[1]-a[1])*d);
+  return (Math.atan2(y,x)*180/Math.PI+360)%360;
+}
+const COMPASS=["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"];
+const compass = deg => COMPASS[Math.round(deg/22.5)%16];
+function pointInGeom(lat, lon, geom){                 // even-odd ray cast across all rings
+  const rings = geom.type==="Polygon" ? [geom.coordinates] :
+                geom.type==="MultiPolygon" ? geom.coordinates : [];
+  return rings.some(poly=>{
+    let inside=false;
+    for(const ring of poly) for(let i=0,j=ring.length-1;i<ring.length;j=i++){
+      const [xi,yi]=ring[i],[xj,yj]=ring[j];
+      if((yi>lat)!==(yj>lat) && lon < (xj-xi)*(lat-yi)/(yj-yi)+xi) inside=!inside;
+    }
+    return inside;
+  });
+}
+function geomVerts(geom){                             // flatten all vertices as [lat,lon]
+  const out=[], walk=c=>{ if(typeof c[0]==="number") out.push([c[1],c[0]]); else c.forEach(walk); };
+  walk(geom.coordinates); return out;
+}
+function minDistToGeom(pointLatLon, geom){
+  let best=Infinity, bestV=null;
+  for(const v of geomVerts(geom)){ const m=havMi(pointLatLon,v); if(m<best){best=m;bestV=v;} }
+  return {mi:best, at:bestV};
+}
+const LVL = {
+  1:{name:"LEVEL 1 — BE READY", short:"1 READY", cls:"c1", color:"#c79b00", fill:"#e6b800",
+     what:"Be aware. Pack essentials (documents, medications, pets) and stay tuned to alerts."},
+  2:{name:"LEVEL 2 — BE SET",   short:"2 SET",   cls:"c2", color:"#d95f0e", fill:"#e2711d",
+     what:"Be ready to leave at a moment's notice. Consider leaving now, especially if you need extra time."},
+  3:{name:"LEVEL 3 — GO NOW",   short:"3 GO",    cls:"c3", color:"#b91c1c", fill:"#c62828",
+     what:"Leave immediately. Do not stop to gather belongings. Danger is current or imminent."}
+};
+
+/* ================= map ================= */
+const map = L.map("map", {zoomSnap:.5});
+map.setView(CS, 11);
+const topo = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+  {maxZoom:17, attribution:"Esri, USGS, NOAA"}).addTo(map);
+const sat = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+  {maxZoom:17, attribution:"Esri, Maxar"});
+L.control.layers({"Terrain":topo,"Satellite":sat},null,{position:"topleft"}).addTo(map);
+L.control.scale({imperial:true, metric:false}).addTo(map);
+map.createPane("evacPane");  map.getPane("evacPane").style.zIndex = 410;
+map.createPane("firePane");  map.getPane("firePane").style.zIndex = 420;
+map.createPane("hotPane");   map.getPane("hotPane").style.zIndex  = 430;
+const evacLayer = L.layerGroup().addTo(map), fireLayer = L.layerGroup().addTo(map),
+      hotLayer  = L.layerGroup().addTo(map);
+L.marker(CS, {icon: L.divIcon({className:"", html:
+  "<div style='background:#211c16;color:#fff;font:600 11.5px -apple-system,sans-serif;padding:3px 8px;border-radius:6px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4)'>Camp Sherman store</div>",
+  iconAnchor:[52,32]})}).addTo(map);
+L.circleMarker(CS,{radius:6,color:"#fff",weight:2,fillColor:"#211c16",fillOpacity:1,pane:"hotPane"}).addTo(map);
+
+const legend = L.control({position:"bottomleft"});
+legend.onAdd = () => {
+  const d = L.DomUtil.create("div","maplegend");
+  d.innerHTML =
+    '<span class="sw" style="background:#e6b80022;border-color:#c79b00"></span>Level 1 — Be Ready<br>' +
+    '<span class="sw" style="background:#e2711d33;border-color:#d95f0e"></span>Level 2 — Be Set<br>' +
+    '<span class="sw" style="background:#c6282840;border-color:#b91c1c"></span>Level 3 — GO NOW<br>' +
+    '<span class="sw" style="background:#8b1a0f45;border-color:#8b1a0f"></span>Fire perimeter (mapped)<br>' +
+    '<span class="hs" style="background:#ff2000"></span>Satellite heat &lt; 6 h<br>' +
+    '<span class="hs" style="background:#ff9d2e"></span>Heat 6–12 h ago<br>' +
+    '<span class="hs" style="background:#b0a08e"></span>Heat 12–24 h ago';
+  return d;
+};
+legend.addTo(map);
+
+let meMarker=null;
+$("locBtn").onclick = () => {
+  if(!navigator.geolocation) return alert("Location not available in this browser.");
+  navigator.geolocation.getCurrentPosition(pos=>{
+    const ll=[pos.coords.latitude,pos.coords.longitude];
+    if(meMarker) map.removeLayer(meMarker);
+    const zone = state.evacFeatures.filter(f=>pointInGeom(ll[0],ll[1],f.geometry))
+                 .sort((a,b)=>b.properties.Fire_Evacuation_Level-a.properties.Fire_Evacuation_Level)[0];
+    const txt = zone ? "You are in <b>"+LVL[zone.properties.Fire_Evacuation_Level].name+"</b><br>zone “"+
+                (zone.properties.Evac_Area_Name||"").trim()+"”" : "You are <b>not</b> in a posted evacuation zone right now.";
+    meMarker = L.circleMarker(ll,{radius:8,color:"#fff",weight:2.5,fillColor:"#0b57d0",fillOpacity:1,pane:"hotPane"})
+      .addTo(map).bindPopup(txt).openPopup();
+    map.setView(ll, Math.max(map.getZoom(), 12));
+  }, err=>alert("Couldn't get location: "+err.message), {enableHighAccuracy:true, timeout:10000});
+};
+
+/* ================= data refresh ================= */
+const state = {evacFeatures:[], failures:{}};
+
+async function card(id, fn, isRetry){
+  try { await fn(); state.failures[id]=0; }
+  catch(e){
+    console.error(id, e);
+    state.failures[id]=(state.failures[id]||0)+1;
+    const el=$(id); if(el && !el.querySelector(".failed")){ const d=document.createElement("div"); d.className="failed";
+      d.textContent="Couldn't load this section ("+e.message+"). Retrying shortly…"; el.prepend(d);
+      setTimeout(()=>d.remove(), 290000);}
+    if(!isRetry) setTimeout(()=>card(id, fn, true).then(()=>{   // one quick retry beats waiting 5 min on flaky cell service
+      const el2=$(id), d2=el2&&el2.querySelector(".failed"); if(d2&&!state.failures[id]) d2.remove();
+    }), 12000);
+  }
+}
+
+async function loadFire(){
+  const j = await arc(PERIM, {outFields:"poly_IncidentName,attr_IncidentSize,poly_GISAcres,attr_PercentContained,poly_DateCurrent,attr_FireDiscoveryDateTime,attr_IncidentShortDescription"});
+  if(!j.features.length) throw new Error("no perimeter returned");
+  fireLayer.clearLayers();
+  // primary = the fire whose mapped edge is CLOSEST to Camp Sherman (not the largest —
+  // the Brewer Fire ~36 mi east is bigger but is not the threat this page is about)
+  const primary = j.features.slice().sort((a,b)=>minDistToGeom(CS,a.geometry).mi-minDistToGeom(CS,b.geometry).mi)[0];
+  for(const f of j.features){
+    const p=f.properties, acres=Math.round(p.attr_IncidentSize||p.poly_GISAcres||0);
+    L.geoJSON(f, {pane:"firePane", style:{color:"#8b1a0f",weight:2.5,fillColor:"#8b1a0f",fillOpacity:.26}})
+      .bindPopup("<b>"+(p.poly_IncidentName||"Fire")+" Fire</b><br>"+acres.toLocaleString()+" acres · "+
+        (p.attr_PercentContained??"?")+"% contained<br>Perimeter mapped "+pdt(p.poly_DateCurrent))
+      .addTo(fireLayer);
+  }
+  const p=primary.properties;
+  const acres=Math.round(p.attr_IncidentSize||p.poly_GISAcres||0);
+  $("stAcres").textContent = acres.toLocaleString();
+  $("stAcresS").textContent = "perimeter mapped "+pdt(p.poly_DateCurrent);
+  $("stCont").textContent = (p.attr_PercentContained??"—")+"%";
+  $("stContS").textContent = "of "+(p.poly_IncidentName||"fire")+" Fire";
+  const near = minDistToGeom(CS, primary.geometry);
+  const dir = compass(bearing(CS, near.at));
+  $("stDist").textContent = near.mi<0.05 ? "AT" : near.mi.toFixed(1)+" mi";
+  $("stDistS").textContent = "nearest mapped edge, to the "+dir+" — may lag hours behind the real fire line";
+  state.fireBounds = L.geoJSON(primary).getBounds();
+  if(!state.fitted){ map.fitBounds(state.fireBounds.extend(L.latLng(CS)).pad(.12)); state.fitted=true; }
+}
+
+async function loadEvac(){
+  const j = await arc(EVAC, {outFields:"Fire_Name,Fire_Evacuation_Level,Evac_Area_Name,County,last_edited_date",
+                             maxAllowableOffset:0.0001});   // ~10 m simplification: 222KB → 69KB, zones are miles wide
+  state.evacFeatures = j.features.filter(f=>f.geometry && LVL[f.properties.Fire_Evacuation_Level]);
+  evacLayer.clearLayers();
+  let newest=0;
+  for(const f of state.evacFeatures){
+    const lv=LVL[f.properties.Fire_Evacuation_Level];
+    newest=Math.max(newest, f.properties.last_edited_date||0);
+    L.geoJSON(f,{pane:"evacPane",style:{color:lv.color,weight:1.6,fillColor:lv.fill,
+        fillOpacity:{1:.10,2:.20,3:.30}[f.properties.Fire_Evacuation_Level], dashArray: f.properties.Fire_Evacuation_Level===1?"4 3":null}})
+      .bindPopup("<b>"+lv.name+"</b><br>Zone “"+(f.properties.Evac_Area_Name||"?").trim()+"” · "+(f.properties.County||"")+
+                 "<br>Updated "+pdt(f.properties.last_edited_date))
+      .addTo(evacLayer);
+  }
+  $("zonesAsof").textContent = "zones last edited "+pdt(newest);
+
+  // ----- banner: what level is Camp Sherman? -----
+  const containing = state.evacFeatures.filter(f=>pointInGeom(CS[0],CS[1],f.geometry))
+        .sort((a,b)=>b.properties.Fire_Evacuation_Level-a.properties.Fire_Evacuation_Level);
+  const b=$("banner");
+  if(containing.length){
+    const f=containing[0], lv=LVL[f.properties.Fire_Evacuation_Level];
+    b.className="card L"+f.properties.Fire_Evacuation_Level;
+    let zoneNote = "Zone “"+(f.properties.Evac_Area_Name||"").trim()+"” · updated "+pdt(f.properties.last_edited_date);
+    // nearest zone with a HIGHER level
+    const higher = state.evacFeatures.filter(g=>g.properties.Fire_Evacuation_Level>f.properties.Fire_Evacuation_Level);
+    if(higher.length){
+      let best={mi:Infinity}, bf=null;
+      for(const g of higher){ const d=minDistToGeom(CS,g.geometry); if(d.mi<best.mi){best=d;bf=g;} }
+      if(bf) zoneNote += "<br>Nearest <b>"+LVL[bf.properties.Fire_Evacuation_Level].short+"</b> zone (“"+
+        (bf.properties.Evac_Area_Name||"").trim()+"”) is ~"+best.mi.toFixed(1)+" mi "+compass(bearing(CS,best.at))+" of the store.";
+    }
+    b.innerHTML = '<div class="lvl">Camp Sherman store area: '+lv.name+'</div>'+
+      '<div class="what">'+lv.what+'</div><div class="zone">'+zoneNote+'</div>';
+  } else {
+    b.className="card L0";
+    b.innerHTML = '<div class="lvl">No evacuation order at the Camp Sherman store right now</div>'+
+      '<div class="what">Nearby zones are posted — check the map for your exact location, and use “Where am I?”.</div>';
+  }
+
+  // ----- zones table -----
+  const rows = state.evacFeatures.map(f=>f.properties)
+    .sort((a,b)=> b.Fire_Evacuation_Level-a.Fire_Evacuation_Level || (b.last_edited_date||0)-(a.last_edited_date||0));
+  $("zonesTbl").className="";
+  $("zonesTbl").innerHTML = "<table><thead><tr><th>Level</th><th>Zone</th><th>County</th><th>Updated</th></tr></thead><tbody>"+
+    rows.map(p=>{
+      const lv=LVL[p.Fire_Evacuation_Level];
+      const mine=/camp sherman/i.test(p.Evac_Area_Name||"");
+      return "<tr"+(mine?' class="mine"':"")+"><td><span class='chip "+lv.cls+"'>"+lv.short+"</span></td><td>"+
+        (p.Evac_Area_Name||"—").trim()+(mine?" ★":"")+"</td><td>"+(p.County||"—")+"</td><td class='muted'>"+pdt(p.last_edited_date)+"</td></tr>";
+    }).join("")+"</tbody></table>";
+}
+
+async function loadHotspots(){
+  const j = await arc(VIIRS, {outFields:"esritimeutc,frp", orderByFields:"esritimeutc DESC", resultRecordCount:1500});
+  hotLayer.clearLayers();
+  const now=Date.now(), H=3600000;
+  let shown=0;
+  for(const f of j.features){
+    const age=(now-f.properties.esritimeutc)/H;
+    if(age>24) continue;
+    shown++;
+    const c = age<6 ? "#ff2000" : age<12 ? "#ff9d2e" : "#b0a08e";
+    const [lon,lat]=f.geometry.coordinates;
+    L.circleMarker([lat,lon],{pane:"hotPane",radius: age<6?4:3, stroke:false, fillColor:c,
+      fillOpacity: age<6?.85:age<12?.6:.4})
+      .bindPopup("Satellite heat detection<br>"+pdt(f.properties.esritimeutc)+" · intensity "+(f.properties.frp||"?")+" MW")
+      .addTo(hotLayer);
+  }
+  console.assert(shown>0, "no hotspots in last 24h — quiet night or feed issue");
+}
+
+async function loadWeather(){
+  const [now, hourly, daily] = await Promise.all([
+    fetch(OM_WX).then(r=>r.json()),
+    fetch(NWS_HOURLY,{headers:{accept:"application/geo+json"}}).then(r=>{if(!r.ok)throw new Error("NWS "+r.status);return r.json();}),
+    fetch(NWS_DAILY,{headers:{accept:"application/geo+json"}}).then(r=>r.ok?r.json():null).catch(()=>null)
+  ]);
+  const c=now.current;
+  $("windNow").className="";
+  $("windNow").innerHTML = "<b>Right now:</b> wind "+Math.round(c.wind_speed_10m)+" mph from the "+compass(c.wind_direction_10m)+
+    ", gusts "+Math.round(c.wind_gusts_10m)+" mph · "+Math.round(c.temperature_2m)+"°F · "+c.relative_humidity_2m+"% humidity"+
+    "<div class='muted' style='font-size:12.5px;margin-top:3px'>Wind <b>from</b> the "+compass(c.wind_direction_10m)+
+    " pushes fire &amp; smoke toward the "+compass((c.wind_direction_10m+180)%360)+".</div>";
+  const periods=(hourly.properties.periods||[]).slice(0,12);
+  $("windTbl").innerHTML = "<table><thead><tr><th>Time</th><th>Wind</th><th>Blows toward</th><th>Sky</th></tr></thead><tbody>"+
+    periods.map(p=>{
+      const deg = {N:0,NNE:22,NE:45,ENE:67,E:90,ESE:112,SE:135,SSE:157,S:180,SSW:202,SW:225,WSW:247,W:270,WNW:292,NW:315,NNW:337}[p.windDirection] ?? 0;
+      return "<tr><td class='muted'>"+fmtT.format(new Date(p.startTime))+"</td><td><span class='arrow' style='transform:rotate("+(deg+90)+"deg)'>➤</span> "+
+        p.windSpeed+" from "+p.windDirection+"</td><td>"+compass((deg+180)%360)+"</td><td class='muted'>"+p.shortForecast+"</td></tr>";
+    }).join("")+"</tbody></table>";
+  if(daily){
+    const d=(daily.properties.periods||[]).slice(0,2);
+    $("fcastText").innerHTML = d.map(p=>"<b>"+p.name+":</b> "+p.detailedForecast).join("<br>");
+  }
+  $("windAsof").textContent = "forecast issued "+pdt(new Date(hourly.properties.updateTime||Date.now()).getTime());
+}
+
+const AQI_CATS=[[50,"Good","#3d7a37","Air is clean."],[100,"Moderate","#b58900","Fine for most people."],
+  [150,"Unhealthy for Sensitive Groups","#d95f0e","Limit long outdoor exertion."],
+  [200,"Unhealthy","#b91c1c","Stay indoors when possible; N95 if outside."],
+  [300,"Very Unhealthy","#7b2d8b","Stay indoors, run air filtration, N95 outside."],
+  [9999,"Hazardous","#6d1a1a","Emergency conditions — remain indoors."]];
+async function loadAqi(){
+  const j = await fetch(OM_AQ).then(r=>r.json());
+  const v = Math.round(j.current.us_aqi);
+  const cat = AQI_CATS.find(c=>v<=c[0]);
+  $("stAqi").textContent = v;
+  $("stAqi").style.color = cat[2];
+  $("stAqiS").textContent = cat[1];
+  // sparkline: past 24h + next 12h
+  const idxNow = j.hourly.time.indexOf(j.current.time.slice(0,13)+":00");
+  const series = j.hourly.us_aqi.slice(Math.max(0,idxNow-24), idxNow+13).filter(x=>x!=null);
+  const mx=Math.max(...series,301), mn=0, W=260, Hh=56;
+  const pts=series.map((y,i)=>(i/(series.length-1)*W).toFixed(1)+","+(Hh-(y-mn)/(mx-mn)*Hh).toFixed(1)).join(" ");
+  const nowX=((series.length-13)/(series.length-1)*W).toFixed(1);
+  $("aqiRow").innerHTML =
+    '<div><div class="aqinum" style="color:'+cat[2]+'">'+v+'</div>'+
+    '<div class="aqicat" style="color:'+cat[2]+'">'+cat[1]+'</div></div>'+
+    '<div class="aqiadv">'+cat[3]+' PM2.5 now: '+j.current.pm2_5+' µg/m³. Smoke often worst overnight and early morning, clearing midday.</div>'+
+    '<div class="spark"><svg viewBox="0 0 '+W+' '+(Hh+16)+'" width="100%" role="img" aria-label="AQI last 24 hours and next 12">'+
+    '<line x1="'+nowX+'" y1="0" x2="'+nowX+'" y2="'+Hh+'" stroke="#c9beac" stroke-dasharray="3 3"/>'+
+    '<polyline points="'+pts+'" fill="none" stroke="'+cat[2]+'" stroke-width="2"/>'+
+    '<text x="'+nowX+'" y="'+(Hh+13)+'" font-size="10" fill="#8a8070" text-anchor="middle">now</text>'+
+    '<text x="0" y="'+(Hh+13)+'" font-size="10" fill="#8a8070">−24 h</text>'+
+    '<text x="'+W+'" y="'+(Hh+13)+'" font-size="10" fill="#8a8070" text-anchor="end">+12 h</text></svg></div>';
+  $("aqiAsof").textContent = "reading from "+j.current.time.slice(11)+" PT";
+}
+
+async function loadAlerts(){
+  const j = await fetch(NWS_ALERTS,{headers:{accept:"application/geo+json"}}).then(r=>{if(!r.ok)throw new Error("NWS "+r.status);return r.json();});
+  const seen={}, list=[];
+  for(const f of j.features){                       // newest per event type
+    const p=f.properties;
+    if(seen[p.event]) continue; seen[p.event]=1; list.push(p);
+  }
+  $("alertsList").className="";
+  $("alertsList").innerHTML = list.length ? list.map(p=>{
+      const rf=/red flag|fire/i.test(p.event);
+      return "<details"+(rf?' class="redflag"':"")+"><summary>"+p.event+" — until "+pdt(new Date(p.ends||p.expires).getTime())+
+        "</summary><p>"+(p.description||"").replace(/</g,"&lt;")+"</p></details>";
+    }).join("") : "<span class='muted'>No active weather alerts for this point right now.</span>";
+}
+
+async function refreshAll(){
+  $("lastCheck").textContent = "Checking…";
+  await Promise.all([
+    card("banner",   loadEvac),
+    card("stats",    loadFire),
+    card("map",      loadHotspots),
+    card("windCard", loadWeather),
+    card("aqiCard",  loadAqi),
+    card("alertsCard", loadAlerts)
+  ]);
+  state.lastRefresh = Date.now();
+  $("lastCheck").textContent = "Updated "+pt(state.lastRefresh)+" · next check "+pt(state.lastRefresh+5*60000);
+}
+$("refreshBtn").onclick = refreshAll;
+document.addEventListener("visibilitychange", ()=>{   // phone woke up → refresh if stale
+  if(!document.hidden && state.lastRefresh && Date.now()-state.lastRefresh>120000) refreshAll();
+});
+setInterval(refreshAll, 5*60000);
+$("buildStamp").textContent = "Page built 2026-07-23.";
+refreshAll();
+</script>
+</body>
+</html>
