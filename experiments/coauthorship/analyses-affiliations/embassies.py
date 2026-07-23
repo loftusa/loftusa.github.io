@@ -47,9 +47,9 @@ solo_types = Counter(ORG_BY_ID[o]["type"] for o in solo_orgs)
 holders = Counter(members[o][0] for o in solo_orgs)
 assert sorted(p for p, k in holders.items() if k == 5) == [
     "allan deutsch", "jacopo teneggi", "jesse hoogland",
-    "liv gorton", "lucia quirke", "roy rinberg",
-]
-assert len(PEOPLE) - len(holders) == 5  # the five with zero stay a COUNT — never named
+    "lucia quirke", "roy rinberg",
+]  # kira de-solos DeepMind/Google/Stanford: liv gorton drops to 4
+assert len(PEOPLE) - len(holders) == 6  # the six with zero stay a COUNT — never named
 
 # ---- ambassadors: everyone holding >=5 embassies ----
 solo_by_person: dict[str, list[str]] = defaultdict(list)

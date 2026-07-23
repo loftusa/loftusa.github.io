@@ -107,7 +107,7 @@ orgs_out.sort(key=lambda g: (g["first"], g["id"]))
 by_id = {g["id"]: g for g in orgs_out}
 assert min(g["first"] for g in orgs_out) >= 1990
 
-assert sum(1 for o in AFF["orgs"] if o["n_members"] == 2) == 14  # the omitted two-member rooms (ETH Zurich now Antonio + Wendler)
+assert sum(1 for o in AFF["orgs"] if o["n_members"] == 2) == 15  # the omitted two-member rooms
 
 _top = sorted(orgs_out, key=lambda g: (-g["n"], g["first"]))[:3]
 _top.sort(key=lambda g: g["first"])

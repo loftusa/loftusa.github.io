@@ -225,11 +225,25 @@
    "city": "Berkeley, CA"
   },
   {
+   "id": "kira sidhu",
+   "label": "Kira Sidhu",
+   "initials": "KS",
+   "community": -1,
+   "city": ""
+  },
+  {
    "id": "kola ayonrinde",
    "label": "K. Ayonrinde",
    "initials": "KA",
    "community": 1,
    "city": "London"
+  },
+  {
+   "id": "kyle o brien",
+   "label": "Kyle O'Brien",
+   "initials": "KO",
+   "community": 0,
+   "city": ""
   },
   {
    "id": "leo mckee reid",
@@ -526,7 +540,7 @@
    "id": "columbia-university",
    "label": "Columbia University",
    "type": "university",
-   "n_members": 2
+   "n_members": 3
   },
   {
    "id": "cosmos-institute-fire",
@@ -562,7 +576,7 @@
    "id": "deepmind",
    "label": "DeepMind",
    "type": "company",
-   "n_members": 1
+   "n_members": 2
   },
   {
    "id": "digipen-institute-of-technology",
@@ -592,7 +606,7 @@
    "id": "eleutherai",
    "label": "EleutherAI",
    "type": "community",
-   "n_members": 5
+   "n_members": 6
   },
   {
    "id": "enlitic",
@@ -611,6 +625,12 @@
    "label": "EPFL Data Science Lab (dlab)",
    "type": "lab",
    "n_members": 2
+  },
+  {
+   "id": "era-ai-fellowship-cambridge",
+   "label": "ERA: AI Fellowship (Cambridge)",
+   "type": "program",
+   "n_members": 1
   },
   {
    "id": "eth-zurich",
@@ -643,6 +663,12 @@
    "n_members": 1
   },
   {
+   "id": "geodesic-research",
+   "label": "Geodesic Research",
+   "type": "company",
+   "n_members": 1
+  },
+  {
    "id": "georgia-tech",
    "label": "Georgia Tech",
    "type": "university",
@@ -658,7 +684,7 @@
    "id": "google",
    "label": "Google",
    "type": "company",
-   "n_members": 1
+   "n_members": 2
   },
   {
    "id": "govai",
@@ -676,7 +702,7 @@
    "id": "harvard-ai-safety-team",
    "label": "Harvard AI Safety Team",
    "type": "program",
-   "n_members": 2
+   "n_members": 3
   },
   {
    "id": "harvard-university",
@@ -814,7 +840,7 @@
    "id": "microsoft",
    "label": "Microsoft",
    "type": "company",
-   "n_members": 5
+   "n_members": 6
   },
   {
    "id": "mila",
@@ -916,7 +942,7 @@
    "id": "openai",
    "label": "OpenAI",
    "type": "company",
-   "n_members": 4
+   "n_members": 7
   },
   {
    "id": "opendp-harvard",
@@ -1078,7 +1104,7 @@
    "id": "stanford-university",
    "label": "Stanford University",
    "type": "university",
-   "n_members": 1
+   "n_members": 2
   },
   {
    "id": "technically-private",
@@ -1412,6 +1438,13 @@
    "source": "https://www.lesswrong.com/posts/gKeq7y9aqdnWG8GKf/interview-applications-w-alice-rigg"
   },
   {
+   "person": "alice rigg",
+   "org": "openai",
+   "role": "Red-Teaming Contractor",
+   "years": "",
+   "source": "self-reported (provided by Alex)"
+  },
+  {
    "person": "allan deutsch",
    "org": "digipen-institute-of-technology",
    "role": "BS in Computer Science",
@@ -1501,6 +1534,13 @@
    "role": "Researcher",
    "years": "",
    "source": "https://scholar.google.com/citations?user=VL62tXMAAAAJ"
+  },
+  {
+   "person": "antonio mari",
+   "org": "openai",
+   "role": "Red-Teaming Contractor",
+   "years": "",
+   "source": "self-reported (provided by Alex)"
   },
   {
    "person": "arman ohmid",
@@ -1893,6 +1933,13 @@
    "role": "Researcher (mechanistic interpretability)",
    "years": "",
    "source": "https://scholar.google.com/citations?user=vkcZSNAAAAAJ"
+  },
+  {
+   "person": "giordano rogers",
+   "org": "openai",
+   "role": "Red-Teaming Contractor",
+   "years": "",
+   "source": "self-reported (provided by Alex)"
   },
   {
    "person": "goncalo paulo",
@@ -2301,6 +2348,34 @@
    "source": "https://nlp.cs.berkeley.edu/members.shtml"
   },
   {
+   "person": "kira sidhu",
+   "org": "columbia-university",
+   "role": "BA, Classics & Mathematics",
+   "years": "2015–2019",
+   "source": "self-reported (provided by Alex)"
+  },
+  {
+   "person": "kira sidhu",
+   "org": "deepmind",
+   "role": "Senior Research Engineer (Foundational Research)",
+   "years": "2024–2026",
+   "source": "self-reported (provided by Alex)"
+  },
+  {
+   "person": "kira sidhu",
+   "org": "google",
+   "role": "Senior Software Engineer (BigQuery)",
+   "years": "2021–2024",
+   "source": "self-reported (provided by Alex)"
+  },
+  {
+   "person": "kira sidhu",
+   "org": "stanford-university",
+   "role": "Graduate AI coursework (non-degree)",
+   "years": "2024–2025",
+   "source": "self-reported (provided by Alex)"
+  },
+  {
    "person": "kola ayonrinde",
    "org": "lasr-labs",
    "role": "Research supervisor",
@@ -2327,6 +2402,34 @@
    "role": "Alumnus (degree unspecified)",
    "years": "",
    "source": "https://scholar.google.com/citations?user=j40ixccAAAAJ&hl=en"
+  },
+  {
+   "person": "kyle o brien",
+   "org": "eleutherai",
+   "role": "Researcher (Pythia; Deep Ignorance)",
+   "years": "2023–2025",
+   "source": "https://kyleobrien.io/"
+  },
+  {
+   "person": "kyle o brien",
+   "org": "era-ai-fellowship-cambridge",
+   "role": "Fellow, then Research Manager",
+   "years": "2025",
+   "source": "https://kyleobrien.io/"
+  },
+  {
+   "person": "kyle o brien",
+   "org": "geodesic-research",
+   "role": "Founding Member of Technical Staff (leads the alignment-pretraining agenda)",
+   "years": "2025–",
+   "source": "https://manifund.org/projects/seed-funding-for-geodesic-research"
+  },
+  {
+   "person": "kyle o brien",
+   "org": "microsoft",
+   "role": "Software Engineer, then Applied Scientist II",
+   "years": "2020–2025",
+   "source": "https://kyleobrien.io/"
   },
   {
    "person": "leo mckee reid",
@@ -2516,6 +2619,13 @@
    "role": "Summer Fellow",
    "years": "2026–",
    "source": "https://rodmoshtagi.ai/about"
+  },
+  {
+   "person": "rod moshtagi",
+   "org": "harvard-ai-safety-team",
+   "role": "Member",
+   "years": "",
+   "source": "self-reported (provided by Alex)"
   },
   {
    "person": "rod moshtagi",
@@ -2956,9 +3066,10 @@
   {
    "a": "alex loftus",
    "b": "alice rigg",
-   "weight": 1.0,
+   "weight": 3.0,
    "shared": [
-    "eleutherai"
+    "eleutherai",
+    "openai"
    ]
   },
   {
@@ -2967,6 +3078,14 @@
    "weight": 3.0,
    "shared": [
     "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "antonio mari",
+   "weight": 2.0,
+   "shared": [
+    "openai"
    ]
   },
   {
@@ -3053,9 +3172,10 @@
   {
    "a": "alex loftus",
    "b": "giordano rogers",
-   "weight": 3.0,
+   "weight": 5.0,
    "shared": [
-    "bau-lab-northeastern-ndif"
+    "bau-lab-northeastern-ndif",
+    "openai"
    ]
   },
   {
@@ -3109,6 +3229,14 @@
   },
   {
    "a": "alex loftus",
+   "b": "kyle o brien",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "alex loftus",
    "b": "lucia quirke",
    "weight": 1.0,
    "shared": [
@@ -3129,6 +3257,14 @@
    "weight": 3.0,
    "shared": [
     "bau-lab-northeastern-ndif"
+   ]
+  },
+  {
+   "a": "alex loftus",
+   "b": "rod moshtagi",
+   "weight": 2.0,
+   "shared": [
+    "harvard-ai-safety-team"
    ]
   },
   {
@@ -3214,6 +3350,22 @@
   },
   {
    "a": "alice rigg",
+   "b": "antonio mari",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "alice rigg",
+   "b": "bijan varjavand",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "alice rigg",
    "b": "can rager",
    "weight": 2.0,
    "shared": [
@@ -3222,7 +3374,39 @@
   },
   {
    "a": "alice rigg",
+   "b": "cat khor",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "alice rigg",
+   "b": "giordano rogers",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "alice rigg",
    "b": "goncalo paulo",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "alice rigg",
+   "b": "jannik brinkmann",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "alice rigg",
+   "b": "kyle o brien",
    "weight": 1.0,
    "shared": [
     "eleutherai"
@@ -3264,6 +3448,14 @@
   {
    "a": "allan deutsch",
    "b": "kayo yin",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "allan deutsch",
+   "b": "kyle o brien",
    "weight": 2.0,
    "shared": [
     "microsoft"
@@ -3367,10 +3559,42 @@
   },
   {
    "a": "antonio mari",
+   "b": "bijan varjavand",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "antonio mari",
+   "b": "cat khor",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "antonio mari",
    "b": "chris wendler",
    "weight": 1.0,
    "shared": [
     "eth-zurich"
+   ]
+  },
+  {
+   "a": "antonio mari",
+   "b": "giordano rogers",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "antonio mari",
+   "b": "jannik brinkmann",
+   "weight": 2.0,
+   "shared": [
+    "openai"
    ]
   },
   {
@@ -3507,6 +3731,14 @@
    "weight": 3.0,
    "shared": [
     "neurodata-lab-johns-hopkins"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "giordano rogers",
+   "weight": 2.0,
+   "shared": [
+    "openai"
    ]
   },
   {
@@ -3801,6 +4033,14 @@
   },
   {
    "a": "cat khor",
+   "b": "giordano rogers",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "cat khor",
    "b": "jannik brinkmann",
    "weight": 2.0,
    "shared": [
@@ -3985,6 +4225,14 @@
   },
   {
    "a": "eric bridgeford",
+   "b": "kira sidhu",
+   "weight": 1.0,
+   "shared": [
+    "stanford-university"
+   ]
+  },
+  {
+   "a": "eric bridgeford",
    "b": "madi kusmonov",
    "weight": 3.0,
    "shared": [
@@ -4114,9 +4362,9 @@
   {
    "a": "fred heiding",
    "b": "rod moshtagi",
-   "weight": 1.0,
+   "weight": 2.0,
    "shared": [
-    "harvard-university"
+    "harvard-ai-safety-team"
    ]
   },
   {
@@ -4138,9 +4386,10 @@
   {
    "a": "giordano rogers",
    "b": "jannik brinkmann",
-   "weight": 3.0,
+   "weight": 5.0,
    "shared": [
-    "bau-lab-northeastern-ndif"
+    "bau-lab-northeastern-ndif",
+    "openai"
    ]
   },
   {
@@ -4173,6 +4422,14 @@
    "weight": 1.0,
    "shared": [
     "northeastern-university"
+   ]
+  },
+  {
+   "a": "goncalo paulo",
+   "b": "kyle o brien",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
    ]
   },
   {
@@ -4210,6 +4467,14 @@
   {
    "a": "grace proebsting",
    "b": "kayo yin",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "grace proebsting",
+   "b": "kyle o brien",
    "weight": 2.0,
    "shared": [
     "microsoft"
@@ -4266,6 +4531,14 @@
   {
    "a": "hayden helm",
    "b": "kayo yin",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
+   ]
+  },
+  {
+   "a": "hayden helm",
+   "b": "kyle o brien",
    "weight": 2.0,
    "shared": [
     "microsoft"
@@ -4435,10 +4708,34 @@
   },
   {
    "a": "josh ying",
+   "b": "kira sidhu",
+   "weight": 1.0,
+   "shared": [
+    "columbia-university"
+   ]
+  },
+  {
+   "a": "josh ying",
    "b": "roy rinberg",
    "weight": 1.0,
    "shared": [
     "columbia-university"
+   ]
+  },
+  {
+   "a": "kayo yin",
+   "b": "kira sidhu",
+   "weight": 2.0,
+   "shared": [
+    "deepmind"
+   ]
+  },
+  {
+   "a": "kayo yin",
+   "b": "kyle o brien",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
    ]
   },
   {
@@ -4455,6 +4752,22 @@
    "weight": 2.0,
    "shared": [
     "microsoft"
+   ]
+  },
+  {
+   "a": "kira sidhu",
+   "b": "liv gorton",
+   "weight": 2.0,
+   "shared": [
+    "google"
+   ]
+  },
+  {
+   "a": "kira sidhu",
+   "b": "roy rinberg",
+   "weight": 1.0,
+   "shared": [
+    "columbia-university"
    ]
   },
   {
@@ -4487,6 +4800,30 @@
    "weight": 1.0,
    "shared": [
     "university-of-cambridge"
+   ]
+  },
+  {
+   "a": "kyle o brien",
+   "b": "lucia quirke",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "kyle o brien",
+   "b": "stella biderman",
+   "weight": 1.0,
+   "shared": [
+    "eleutherai"
+   ]
+  },
+  {
+   "a": "kyle o brien",
+   "b": "will levine",
+   "weight": 2.0,
+   "shared": [
+    "microsoft"
    ]
   },
   {

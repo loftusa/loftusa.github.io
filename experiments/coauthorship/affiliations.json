@@ -254,6 +254,16 @@
     "source": "https://scholar.google.com/citations?user=9kp2s8UAAAAJ&hl=en",
     "evidence": "Google Scholar profile lists affiliation 'Independent Researcher' with mechanistic-interpretability papers; OpenReview lists 'Independent Researcher in Mechanistic Interpretability (2023–2024)'.",
     "verified": true
+   },
+   {
+    "org": "OpenAI",
+    "type": "company",
+    "role": "Red-Teaming Contractor",
+    "years": "",
+    "current": true,
+    "source": "self-reported (provided by Alex)",
+    "evidence": "Added by Alex (2026-06-25): part of the OpenAI red-teaming contractor cohort (the Agents of Chaos crowd), alongside the OpenAI members already on the map.",
+    "verified": true
    }
   ],
   "city": "Bay Area",
@@ -2116,6 +2126,16 @@
     "source": "https://www.belfercenter.org/research-analysis/ai-and-future-conflict-resolution-how-can-artificial-intelligence-improve-peace",
     "evidence": "Belfer Center page lists authors 'Rod Moshtagi, Josh Cortez, and Angie Sohn', published May 27, 2025.",
     "verified": true
+   },
+   {
+    "org": "Harvard AI Safety Team (HAIST)",
+    "type": "program",
+    "role": "Member",
+    "years": "",
+    "current": true,
+    "source": "self-reported (provided by Alex)",
+    "evidence": "Added by Alex (2026-06-25): member of the Harvard AI Safety Team (HAIST), consistent with his current Harvard Kennedy School / AI-governance work.",
+    "verified": true
    }
   ],
   "city": "Cambridge, MA",
@@ -2762,6 +2782,16 @@
     "source": "https://scholar.google.com/citations?user=VL62tXMAAAAJ",
     "evidence": "Google Scholar profile (user=VL62tXMAAAAJ) lists affiliation \"ETH Zürich\" with a verified ethz.ch email; research in deep learning / probabilistic circuits / probabilistic ML.",
     "verified": true
+   },
+   {
+    "org": "OpenAI",
+    "type": "company",
+    "role": "Red-Teaming Contractor",
+    "years": "",
+    "current": true,
+    "source": "self-reported (provided by Alex)",
+    "evidence": "Added by Alex (2026-06-25): part of the OpenAI red-teaming contractor cohort (the Agents of Chaos crowd), alongside the OpenAI members already on the map.",
+    "verified": true
    }
   ],
   "city": "Zurich",
@@ -2828,11 +2858,117 @@
     "source": "https://www.semanticscholar.org/author/2388980977",
     "evidence": "Co-author on Bau Lab work — 'LLMs Process Lists With General Filter Heads' (with Arnab Sen Sharma, Natalie Shapira, David Bau) and 'Agents of Chaos' (Wendler, Loftus, Brinkmann, Rager, Ripa, Gandikota, Fiotto-Kaufman, Bau).",
     "verified": true
+   },
+   {
+    "org": "OpenAI",
+    "type": "company",
+    "role": "Red-Teaming Contractor",
+    "years": "",
+    "current": true,
+    "source": "self-reported (provided by Alex)",
+    "evidence": "Added by Alex (2026-06-25): part of the OpenAI red-teaming contractor cohort (the Agents of Chaos crowd), alongside the OpenAI members already on the map.",
+    "verified": true
    }
   ],
   "city": "Boston",
   "identity_confident": true,
   "notes": "Added 2026-06-24 to the core roster (Alex). Clean, well-connected S2 identity (s2 2388980977, Google Scholar vkcZSNAAAAAJ) — Northeastern, mechanistic interpretability, in David Bau's lab orbit; verified via in-network co-events (Filter Heads with Sen Sharma/Bau; Agents of Chaos). Exact role/degree at Northeastern is NOT yet confirmed (he is not on the Bau Lab member page and lists no title on Google Scholar), so the role is written generically as 'Researcher' rather than PhD student — refine when sourced. OpenAlex (A5009093200) is contaminated by a 2003 robotic-surgery homonym, so the OA side is null. City Boston inferred from the current Northeastern/Bau Lab affiliation.",
   "reviewed": true
+ },
+ "kira sidhu": {
+  "entries": [
+   {
+    "org": "DeepMind",
+    "type": "company",
+    "role": "Senior Research Engineer (Foundational Research)",
+    "years": "2024–2026",
+    "current": false,
+    "source": "self-reported (provided by Alex)",
+    "evidence": "Career history provided by Alex (2026-06-25): Senior Research Engineer, Google DeepMind (the map's existing 'DeepMind' org node), Foundational Research, Mar 2024 – Mar 2026.",
+    "verified": true
+   },
+   {
+    "org": "Google",
+    "type": "company",
+    "role": "Senior Software Engineer (BigQuery)",
+    "years": "2021–2024",
+    "current": false,
+    "source": "self-reported (provided by Alex)",
+    "evidence": "Career history provided by Alex (2026-06-25): Senior Software Engineer, Google (BigQuery), Oct 2021 – Mar 2024.",
+    "verified": true
+   },
+   {
+    "org": "Stanford University",
+    "type": "university",
+    "role": "Graduate AI coursework (non-degree)",
+    "years": "2024–2025",
+    "current": false,
+    "source": "self-reported (provided by Alex)",
+    "evidence": "Career history provided by Alex (2026-06-25): graduate AI classes at Stanford, non-degree (online), 2024–2025.",
+    "verified": true
+   },
+   {
+    "org": "Columbia University",
+    "type": "university",
+    "role": "BA, Classics & Mathematics",
+    "years": "2015–2019",
+    "current": false,
+    "source": "self-reported (provided by Alex)",
+    "evidence": "Career history provided by Alex (2026-06-25): Columbia, Classics & Mathematics, 2015–2019 (Phi Beta Kappa, Putnam award).",
+    "verified": true
+   }
+  ],
+  "city": "",
+  "identity_confident": true,
+  "notes": "Added 2026-06-25 to the core roster (Alex). No-publication person (AI/ML engineer + VC scout) — isolated hollow node on the papers map (no co-events), seated on the careers map by shared orgs. Identity + career provided by Alex via LinkedIn (linkedin.com/in/kiraks); per Alex's instruction the LinkedIn URL is NOT published — entries are sourced 'self-reported (provided by Alex)'. No public academic profile exists (the S2 'Kiran Sidhu' is a cardiologist; the OA 'Kira Sidhu' is a pain/opioid researcher — both homonyms). All four mapped orgs are PAST roles; her current role is an unnamed stealth startup (not mapped), so she has no current chapter. City unknown (current location not stated) — left blank, refine when known. Shares DeepMind with kayo yin, Google with liv gorton, Stanford with eric bridgeford, Columbia with josh ying + roy rinberg.",
+  "reviewed": true
+ },
+ "kyle o'brien": {
+  "entries": [
+   {
+    "org": "Geodesic Research",
+    "type": "company",
+    "role": "Founding Member of Technical Staff (leads the alignment-pretraining agenda)",
+    "years": "2025–",
+    "current": true,
+    "source": "https://manifund.org/projects/seed-funding-for-geodesic-research",
+    "evidence": "Geodesic's Manifund page: 'Kyle O'Brien — Founding Member of Technical Staff', leads the alignment pretraining agenda; 'Geodesic was founded July 2025'; 'joined Geodesic through the ERA fellowship'. kyleobrien.io lists Geodesic as his current role.",
+    "verified": false
+   },
+   {
+    "org": "Microsoft",
+    "type": "company",
+    "role": "Software Engineer, then Applied Scientist II",
+    "years": "2020–2025",
+    "current": false,
+    "source": "https://kyleobrien.io/",
+    "evidence": "kyleobrien.io: applied scientist and software engineer at Microsoft before moving into AI safety research. Years per his LinkedIn as indexed by RocketReach (SWE 2020–22, Applied Scientist II 2022–25) — approximate, not independently confirmed.",
+    "verified": false
+   },
+   {
+    "org": "EleutherAI",
+    "type": "community",
+    "role": "Researcher (Pythia; Deep Ignorance)",
+    "years": "2023–2025",
+    "current": false,
+    "source": "https://kyleobrien.io/",
+    "evidence": "kyleobrien.io lists EleutherAI among past roles ('scientist and engineer at EleutherAI and Microsoft'); co-author on EleutherAI's Pythia (ICML 2023) and Deep Ignorance (2025), both with stella biderman. Years span the attested papers.",
+    "verified": false
+   },
+   {
+    "org": "ERA: AI Fellowship (Cambridge)",
+    "type": "program",
+    "role": "Fellow, then Research Manager",
+    "years": "2025",
+    "current": false,
+    "source": "https://kyleobrien.io/",
+    "evidence": "kyleobrien.io lists ERA Cambridge Research Manager (mentored junior researchers, matched mentors, ran empirical projects); Geodesic's Manifund bio: 'joined Geodesic through the ERA fellowship'.",
+    "verified": false
+   }
+  ],
+  "city": "",
+  "identity_confident": true,
+  "notes": "Added 2026-07-23 to the core roster (Alex's request). AI safety researcher; papers flow through the papers map (S2 2212970046 — Pythia + Deep Ignorance with stella biderman). Careers researched from his own pages (kyleobrien.io; Geodesic's Manifund page); Microsoft years are LinkedIn-derived (RocketReach index) — approximate. Education (RocketReach claims UCSC B.A. CS 2018–20) left OUT pending confirmation. City left blank: GitHub profile says Seattle while Geodesic Research is Cambridge, UK — unclear which is current. Shares Microsoft with allan deutsch + will levine, EleutherAI with stella biderman, alice rigg, goncalo paulo, lucia quirke, alex loftus.",
+  "reviewed": false
  }
 }

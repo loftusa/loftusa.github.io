@@ -78,7 +78,7 @@ assert split["both"] <= min(split["company_now"], split["academia_now"])
 primary_of = {pid: next((t for t in PREC if t in ts), None) for pid, ts in types_of.items()}
 assigned_counts = Counter(t for t in primary_of.values() if t)
 assert sum(assigned_counts.values()) == len(SRC) - len(no_current)
-assert sum(assigned_counts.values()) == 49     # program: 0 — all 8 hold a heavier hat too
+assert sum(assigned_counts.values()) == 50     # 54 people minus the 4 with no current chapter
 
 # ---- cities: fold variants, group metros ---------------------------------------------------
 CITY_CANON = {"Cambridge, Massachusetts": "Cambridge, MA",
@@ -102,7 +102,7 @@ metro_size = Counter()
 for c, mem in city_members.items():
     metro_size[metro_of(c)] += len(mem)
 assert sum(1 for n in metro_size.values() if n == 1) == 8      # Zurich (Antonio Mari) joins as a new singleton
-assert sum(metro_size.values()) + len(unknown) == 52
+assert sum(metro_size.values()) + len(unknown) == 54
 
 # rows ordered: metro size desc, metro name; sub-cities by size desc, name
 comm = lambda pid: aff_people[pid]["community"]
@@ -128,7 +128,7 @@ for pid in sorted(cur_of):
         "metro": metro_of(city_of[pid]) if city_of[pid] else "",
     })
 assert len(people) == len(SRC) and all(p["id"] in graph_ids for p in people)
-assert sum(len(p["all_current"]) for p in people) == 86        # 87 raw, fred's Harvard folded
+assert sum(len(p["all_current"]) for p in people) == 91        # raw current hats, fred's Harvard folded
 
 gb = metro_size["Greater Boston"]
 _even = abs(split["company_now"] - split["academia_now"]) <= 6
