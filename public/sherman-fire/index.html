@@ -34,7 +34,7 @@
   .card{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:16px 18px;margin:14px 0}
   .card h2{font-family:Charter,Georgia,serif;font-size:19px;margin:0 0 10px}
   .card .asof{float:right;font-size:12px;color:var(--ink3);font-weight:400;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-  .failed{color:#8f2f24;font-size:14px}
+  .failed{color:#8f2f24;font-size:14px;grid-column:1/-1}
   /* status banner */
   #banner{border-radius:12px;padding:18px 20px;margin:16px 0;border:2px solid var(--hair);background:var(--card)}
   #banner .lvl{font-size:clamp(22px,5vw,32px);font-weight:800;letter-spacing:.01em;line-height:1.15}
@@ -58,15 +58,20 @@
   .stat .s{font-size:11.5px;color:var(--ink3);margin-top:3px}
   /* map */
   #map{height:66vh;min-height:380px;border-radius:12px;border:1px solid var(--hair)}
-  .maplegend{background:rgba(255,255,255,.94);border:1px solid var(--hair);border-radius:9px;
-     padding:8px 11px;font-size:12px;line-height:1.85;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
-  .maplegend .sw{display:inline-block;width:13px;height:13px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1.5px solid}
-  .maplegend .hs{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:8px;margin-left:1px}
-  #locBtn{position:absolute;z-index:1000;right:10px;top:10px;background:#fff;border:1.5px solid rgba(0,0,0,.25);
-     border-radius:7px;padding:6px 11px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+  .maplegend{background:rgba(250,247,242,.96);border:1px solid #d8cfc0;border-radius:8px;
+     padding:7px 11px 8px;font-size:11.5px;line-height:1.8;color:var(--ink);box-shadow:0 1px 3px rgba(33,28,22,.14)}
+  .maplegend .lh{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);
+     font-weight:700;margin-top:3px}
+  .maplegend .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1.5px solid}
+  .maplegend .hs{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:7px;margin-left:1px}
+  #locBtn{position:absolute;z-index:1000;right:10px;top:10px;background:rgba(250,247,242,.96);border:1px solid #c9beac;
+     border-radius:8px;padding:6px 11px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;box-shadow:0 1px 3px rgba(33,28,22,.14)}
   .mapwrap{position:relative}
-  #flowCtl{position:absolute;z-index:1000;right:10px;top:52px;background:#fff;border:1.5px solid rgba(0,0,0,.25);
-     border-radius:7px;padding:6px 9px;font-size:12px;box-shadow:0 1px 4px rgba(0,0,0,.15);max-width:230px;text-align:right}
+  .leaflet-control-velocity{background:rgba(250,247,242,.95)!important;color:var(--ink)!important;
+     border:1px solid #d8cfc0;border-radius:8px;padding:4px 9px!important;
+     font:11.5px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+  #flowCtl{position:absolute;z-index:1000;right:10px;top:52px;background:rgba(250,247,242,.96);border:1px solid #c9beac;
+     border-radius:8px;padding:6px 9px;font-size:12px;color:var(--ink);box-shadow:0 1px 3px rgba(33,28,22,.14);max-width:230px;text-align:right}
   #flowCtl .fl{font-weight:700;margin-right:2px}
   #flowCtl button{border:1px solid var(--hair);background:#faf7f2;border-radius:5px;margin:2px 0 2px 3px;
      padding:3px 6px;font-size:11.5px;font-weight:600;cursor:pointer;color:var(--ink)}
@@ -266,23 +271,27 @@ function minDistToGeom(pointLatLon, geom){
   for(const v of geomVerts(geom)){ const m=havMi(pointLatLon,v); if(m<best){best=m;bestV=v;} }
   return {mi:best, at:bestV};
 }
-const LVL = {
-  1:{name:"LEVEL 1 — BE READY", short:"1 READY", cls:"c1", color:"#c79b00", fill:"#e6b800",
+const LVL = {   // boundaries carry the classification; fills stay faint so layers don't stack into a wash
+  1:{name:"LEVEL 1 — BE READY", short:"1 READY", cls:"c1", color:"#a87f00", fill:"#e6b800", fillOp:.05, w:1.6, dash:"5 4",
      what:"Be aware. Pack essentials (documents, medications, pets) and stay tuned to alerts."},
-  2:{name:"LEVEL 2 — BE SET",   short:"2 SET",   cls:"c2", color:"#d95f0e", fill:"#e2711d",
+  2:{name:"LEVEL 2 — BE SET",   short:"2 SET",   cls:"c2", color:"#c2570f", fill:"#e2711d", fillOp:.09, w:2, dash:null,
      what:"Be ready to leave at a moment's notice. Consider leaving now, especially if you need extra time."},
-  3:{name:"LEVEL 3 — GO NOW",   short:"3 GO",    cls:"c3", color:"#b91c1c", fill:"#c62828",
+  3:{name:"LEVEL 3 — GO NOW",   short:"3 GO",    cls:"c3", color:"#a51212", fill:"#c62828", fillOp:.15, w:2.4, dash:null,
      what:"Leave immediately. Do not stop to gather belongings. Danger is current or imminent."}
 };
 
 /* ================= map ================= */
 const map = L.map("map", {zoomSnap:.5});
 map.setView(CS, 11);
+// Default basemap is deliberately quiet (pale gray, thin labels) so the data layers
+// carry the ink; terrain and imagery stay one tap away in the layer control.
+const quiet = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+  {maxZoom:19, subdomains:"abcd", attribution:"&copy; OpenStreetMap &copy; CARTO"}).addTo(map);
 const topo = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
-  {maxZoom:17, attribution:"Esri, USGS, NOAA"}).addTo(map);
+  {maxZoom:17, attribution:"Esri, USGS, NOAA"});
 const sat = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   {maxZoom:17, attribution:"Esri, Maxar"});
-const layersCtl = L.control.layers({"Terrain":topo,"Satellite (sharp)":sat},null,{position:"topleft"}).addTo(map);
+const layersCtl = L.control.layers({"Clean map":quiet,"Terrain":topo,"Satellite (sharp)":sat},null,{position:"topleft"}).addTo(map);
 L.control.scale({imperial:true, metric:false}).addTo(map);
 
 // NASA GIBS daily true-color photo (smoke plume is visible on it). Today's image
@@ -305,24 +314,29 @@ map.createPane("hotPane");   map.getPane("hotPane").style.zIndex  = 430;
 const evacLayer = L.layerGroup().addTo(map), fireLayer = L.layerGroup().addTo(map),
       hotLayer  = L.layerGroup().addTo(map);
 for(const pl of PLACES){
+  // dark ink on paper, sitting to the right of its dot — readable on any basemap
   L.marker(pl.ll, {icon: L.divIcon({className:"", html:
-    "<div style='background:#211c16;color:#fff;font:600 11.5px -apple-system,sans-serif;padding:3px 8px;border-radius:6px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4)'>"+pl.name+"</div>",
-    iconAnchor:[52,32]})}).addTo(map);
-  L.circleMarker(pl.ll,{radius:6,color:"#fff",weight:2,fillColor:"#211c16",fillOpacity:1,pane:"hotPane"}).addTo(map);
+    "<div style='display:inline-block;background:rgba(250,247,242,.95);color:#211c16;border:1.5px solid #211c16;"+
+    "font:700 12px -apple-system,BlinkMacSystemFont,sans-serif;padding:2px 8px;border-radius:6px;white-space:nowrap;"+
+    "box-shadow:0 1px 3px rgba(33,28,22,.25)'>"+pl.name+"</div>", iconAnchor:[-9,13]})}).addTo(map);
+  L.circleMarker(pl.ll,{radius:5.5,color:"#faf7f2",weight:2,fillColor:"#211c16",fillOpacity:1,pane:"hotPane"}).addTo(map);
 }
 
 const legend = L.control({position:"bottomleft"});
 legend.onAdd = () => {
   const d = L.DomUtil.create("div","maplegend");
   d.innerHTML =
-    '<span class="sw" style="background:#e6b80022;border-color:#c79b00"></span>Level 1 — Be Ready<br>' +
-    '<span class="sw" style="background:#e2711d33;border-color:#d95f0e"></span>Level 2 — Be Set<br>' +
-    '<span class="sw" style="background:#c6282840;border-color:#b91c1c"></span>Level 3 — GO NOW<br>' +
-    '<span class="sw" style="background:#8b1a0f45;border-color:#8b1a0f"></span>Fire perimeter (mapped)<br>' +
-    '<span class="hs" style="background:#ff2000"></span>Satellite heat &lt; 6 h<br>' +
-    '<span class="hs" style="background:#ff9d2e"></span>Heat 6–12 h ago<br>' +
-    '<span class="hs" style="background:#b0a08e"></span>Heat 12–24 h ago<br>' +
-    'Air flow, mph:<span class="wsw" style="background:#9aa5b1"></span>&lt;5<span class="wsw" style="background:#5d7d9e"></span>10' +
+    '<div class="lh" style="margin-top:0">Evacuation zones</div>' +
+    '<span class="sw" style="background:#e6b8000d;border-color:#a87f00;border-style:dashed"></span>Level 1 — Be Ready<br>' +
+    '<span class="sw" style="background:#e2711d1a;border-color:#c2570f"></span>Level 2 — Be Set<br>' +
+    '<span class="sw" style="background:#c6282828;border-color:#a51212"></span>Level 3 — GO NOW' +
+    '<div class="lh">Fire</div>' +
+    '<span class="sw" style="background:#7f1d1d4d;border-color:#6d1212"></span>Perimeter (mapped)<br>' +
+    '<span class="hs" style="background:#ff2000"></span>Satellite heat &lt; 6 h ' +
+    '<span class="hs" style="background:#ff9d2e"></span>6–12 h ' +
+    '<span class="hs" style="background:#a89a86"></span>12–24 h' +
+    '<div class="lh">Air flow, mph</div>' +
+    '<span class="wsw" style="background:#9aa5b1;margin-left:0"></span>&lt;5<span class="wsw" style="background:#5d7d9e"></span>10' +
     '<span class="wsw" style="background:#2b5f9e"></span>15<span class="wsw" style="background:#e8a13c"></span>20' +
     '<span class="wsw" style="background:#d95f0e"></span>25<span class="wsw" style="background:#b91c1c"></span>30+';
   return d;
@@ -377,7 +391,7 @@ async function loadFire(){
     // field gets reset/fat-fingered during updates (seen 19,034 → "5,000" while the
     // polygon itself grew) — the mapped perimeter is the self-consistent number.
     const p=f.properties, acres=Math.round(p.poly_GISAcres||p.attr_IncidentSize||0);
-    L.geoJSON(f, {pane:"firePane", style:{color:"#8b1a0f",weight:2.5,fillColor:"#8b1a0f",fillOpacity:.26}})
+    L.geoJSON(f, {pane:"firePane", style:{color:"#6d1212",weight:3,fillColor:"#7f1d1d",fillOpacity:.3}})
       .bindPopup("<b>"+(p.poly_IncidentName||"Fire")+" Fire</b><br>"+acres.toLocaleString()+" acres · "+
         (p.attr_PercentContained??"?")+"% contained<br>Perimeter mapped "+pdt(p.poly_DateCurrent))
       .addTo(fireLayer);
@@ -408,8 +422,8 @@ async function loadEvac(){
   for(const f of state.evacFeatures){
     const lv=LVL[f.properties.Fire_Evacuation_Level];
     newest=Math.max(newest, f.properties.last_edited_date||0);
-    L.geoJSON(f,{pane:"evacPane",style:{color:lv.color,weight:1.6,fillColor:lv.fill,
-        fillOpacity:{1:.10,2:.20,3:.30}[f.properties.Fire_Evacuation_Level], dashArray: f.properties.Fire_Evacuation_Level===1?"4 3":null}})
+    L.geoJSON(f,{pane:"evacPane",style:{color:lv.color,weight:lv.w,fillColor:lv.fill,
+        fillOpacity:lv.fillOp, dashArray:lv.dash}})
       .bindPopup("<b>"+lv.name+"</b><br>Zone “"+(f.properties.Evac_Area_Name||"?").trim()+"” · "+(f.properties.County||"")+
                  "<br>Updated "+pdt(f.properties.last_edited_date))
       .addTo(evacLayer);
@@ -535,10 +549,10 @@ async function loadHotspots(){
     const age=(now-f.properties.esritimeutc)/H;
     if(age>24) continue;
     shown++;
-    const c = age<6 ? "#ff2000" : age<12 ? "#ff9d2e" : "#b0a08e";
+    const c = age<6 ? "#ff2000" : age<12 ? "#ff9d2e" : "#a89a86";
     const [lon,lat]=f.geometry.coordinates;
-    L.circleMarker([lat,lon],{pane:"hotPane",radius: age<6?4:3, stroke:false, fillColor:c,
-      fillOpacity: age<6?.85:age<12?.6:.4})
+    L.circleMarker([lat,lon],{pane:"hotPane",radius: age<6?4.5:age<12?3.5:2.5, stroke:false, fillColor:c,
+      fillOpacity: age<6?.9:age<12?.65:.35})
       .bindPopup("Satellite heat detection<br>"+pdt(f.properties.esritimeutc)+" · intensity "+(f.properties.frp||"?")+" MW")
       .addTo(hotLayer);
   }
