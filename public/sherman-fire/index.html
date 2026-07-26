@@ -34,7 +34,7 @@
   .card{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:16px 18px;margin:14px 0}
   .card h2{font-family:Charter,Georgia,serif;font-size:19px;margin:0 0 10px}
   .card .asof{float:right;font-size:12px;color:var(--ink3);font-weight:400;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-  .failed{color:#8f2f24;font-size:14px}
+  .failed{color:#8f2f24;font-size:14px;grid-column:1/-1}
   /* status banner */
   #banner{border-radius:12px;padding:18px 20px;margin:16px 0;border:2px solid var(--hair);background:var(--card)}
   #banner .lvl{font-size:clamp(22px,5vw,32px);font-weight:800;letter-spacing:.01em;line-height:1.15}
@@ -58,13 +58,29 @@
   .stat .s{font-size:11.5px;color:var(--ink3);margin-top:3px}
   /* map */
   #map{height:66vh;min-height:380px;border-radius:12px;border:1px solid var(--hair)}
-  .maplegend{background:rgba(255,255,255,.94);border:1px solid var(--hair);border-radius:9px;
-     padding:8px 11px;font-size:12px;line-height:1.85;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
-  .maplegend .sw{display:inline-block;width:13px;height:13px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1.5px solid}
-  .maplegend .hs{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:8px;margin-left:1px}
-  #locBtn{position:absolute;z-index:1000;right:10px;top:10px;background:#fff;border:1.5px solid rgba(0,0,0,.25);
-     border-radius:7px;padding:6px 11px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+  .maplegend{background:rgba(250,247,242,.96);border:1px solid #d8cfc0;border-radius:8px;
+     padding:7px 11px 8px;font-size:11.5px;line-height:1.8;color:var(--ink);box-shadow:0 1px 3px rgba(33,28,22,.14)}
+  .maplegend .lh{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);
+     font-weight:700;margin-top:3px}
+  .maplegend .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1.5px solid}
+  .maplegend .hs{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:7px;margin-left:1px}
+  #locBtn{position:absolute;z-index:1000;right:10px;top:10px;background:rgba(250,247,242,.96);border:1px solid #c9beac;
+     border-radius:8px;padding:6px 11px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;box-shadow:0 1px 3px rgba(33,28,22,.14)}
   .mapwrap{position:relative}
+  .leaflet-control-velocity{background:rgba(250,247,242,.95)!important;color:var(--ink)!important;
+     border:1px solid #d8cfc0;border-radius:8px;padding:4px 9px!important;
+     font:11.5px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important}
+  #flowCtl{position:absolute;z-index:1000;right:10px;top:52px;background:rgba(250,247,242,.96);border:1px solid #c9beac;
+     border-radius:8px;padding:6px 9px;font-size:12px;color:var(--ink);box-shadow:0 1px 3px rgba(33,28,22,.14);max-width:230px;text-align:right}
+  #flowCtl .fl{font-weight:700;margin-right:2px}
+  #flowCtl button{border:1px solid var(--hair);background:#faf7f2;border-radius:5px;margin:2px 0 2px 3px;
+     padding:3px 6px;font-size:11.5px;font-weight:600;cursor:pointer;color:var(--ink)}
+  #flowCtl button.on{background:#211c16;color:#fff;border-color:#211c16}
+  #flowWhen{font-size:10.5px;color:var(--ink3);margin-top:2px}
+  .mapcap{font-size:13px;color:var(--ink2);margin:9px 4px 2px;line-height:1.5}
+  .wsw{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin:0 2px 0 6px}
+  tr.windy td{background:#fdf0e0}
+  tr.vwindy td{background:#fbdcdc}
   /* tables */
   table{width:100%;border-collapse:collapse;font-size:14px}
   th{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);text-align:left;
@@ -115,7 +131,7 @@
   <div class="what muted">Pulling the State of Oregon's live evacuation map.</div></div>
 
 <div class="stats" id="stats">
-  <div class="stat"><div class="n" id="stAcres">—</div><div class="l">acres burned</div><div class="s" id="stAcresS"></div></div>
+  <div class="stat"><div class="n" id="stAcres">—</div><div class="l">acres inside mapped perimeter</div><div class="s" id="stAcresS"></div></div>
   <div class="stat"><div class="n" id="stCont">—</div><div class="l">contained</div><div class="s" id="stContS"></div></div>
   <div class="stat"><div class="n" id="stDist">—</div><div class="l">fire edge → nearest family spot</div><div class="s" id="stDistS"></div></div>
   <div class="stat"><div class="n" id="stAqi">—</div><div class="l">air quality (US&nbsp;AQI)</div><div class="s" id="stAqiS"></div></div>
@@ -124,8 +140,15 @@
 <div class="card" style="padding:10px">
   <div class="mapwrap">
     <button id="locBtn" type="button">📍 Where am I?</button>
+    <div id="flowCtl"><span class="fl">Air flow:</span><button data-off="0" class="on">Now</button><button
+      data-off="6" disabled>+6h</button><button data-off="12" disabled>+12h</button><button
+      data-off="24" disabled>+24h</button><button data-off="36" disabled>+36h</button><div id="flowWhen"></div></div>
     <div id="map"></div>
   </div>
+  <p class="mapcap">The moving streaks are the air itself: <b>they travel the direction the wind blows, and
+  faster + redder streaks = stronger wind</b> (speed scale in the legend). Hover or tap anywhere on the map to read
+  the exact wind speed at that spot (bottom-right readout). The <b>Air flow buttons</b> (top right) switch between
+  the wind right now and the forecast for the coming hours — useful ahead of a wind warning.</p>
 </div>
 
 <div class="card" id="zonesCard">
@@ -248,23 +271,27 @@ function minDistToGeom(pointLatLon, geom){
   for(const v of geomVerts(geom)){ const m=havMi(pointLatLon,v); if(m<best){best=m;bestV=v;} }
   return {mi:best, at:bestV};
 }
-const LVL = {
-  1:{name:"LEVEL 1 — BE READY", short:"1 READY", cls:"c1", color:"#c79b00", fill:"#e6b800",
+const LVL = {   // boundaries carry the classification; fills stay faint so layers don't stack into a wash
+  1:{name:"LEVEL 1 — BE READY", short:"1 READY", cls:"c1", color:"#a87f00", fill:"#e6b800", fillOp:.05, w:1.6, dash:"5 4",
      what:"Be aware. Pack essentials (documents, medications, pets) and stay tuned to alerts."},
-  2:{name:"LEVEL 2 — BE SET",   short:"2 SET",   cls:"c2", color:"#d95f0e", fill:"#e2711d",
+  2:{name:"LEVEL 2 — BE SET",   short:"2 SET",   cls:"c2", color:"#c2570f", fill:"#e2711d", fillOp:.09, w:2, dash:null,
      what:"Be ready to leave at a moment's notice. Consider leaving now, especially if you need extra time."},
-  3:{name:"LEVEL 3 — GO NOW",   short:"3 GO",    cls:"c3", color:"#b91c1c", fill:"#c62828",
+  3:{name:"LEVEL 3 — GO NOW",   short:"3 GO",    cls:"c3", color:"#a51212", fill:"#c62828", fillOp:.15, w:2.4, dash:null,
      what:"Leave immediately. Do not stop to gather belongings. Danger is current or imminent."}
 };
 
 /* ================= map ================= */
 const map = L.map("map", {zoomSnap:.5});
 map.setView(CS, 11);
+// Default basemap is deliberately quiet (pale gray, thin labels) so the data layers
+// carry the ink; terrain and imagery stay one tap away in the layer control.
+const quiet = L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+  {maxZoom:19, subdomains:"abcd", attribution:"&copy; OpenStreetMap &copy; CARTO"}).addTo(map);
 const topo = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
-  {maxZoom:17, attribution:"Esri, USGS, NOAA"}).addTo(map);
+  {maxZoom:17, attribution:"Esri, USGS, NOAA"});
 const sat = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   {maxZoom:17, attribution:"Esri, Maxar"});
-const layersCtl = L.control.layers({"Terrain":topo,"Satellite (sharp)":sat},null,{position:"topleft"}).addTo(map);
+const layersCtl = L.control.layers({"Clean map":quiet,"Terrain":topo,"Satellite (sharp)":sat},null,{position:"topleft"}).addTo(map);
 L.control.scale({imperial:true, metric:false}).addTo(map);
 
 // NASA GIBS daily true-color photo (smoke plume is visible on it). Today's image
@@ -287,24 +314,31 @@ map.createPane("hotPane");   map.getPane("hotPane").style.zIndex  = 430;
 const evacLayer = L.layerGroup().addTo(map), fireLayer = L.layerGroup().addTo(map),
       hotLayer  = L.layerGroup().addTo(map);
 for(const pl of PLACES){
+  // dark ink on paper, sitting to the right of its dot — readable on any basemap
   L.marker(pl.ll, {icon: L.divIcon({className:"", html:
-    "<div style='background:#211c16;color:#fff;font:600 11.5px -apple-system,sans-serif;padding:3px 8px;border-radius:6px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.4)'>"+pl.name+"</div>",
-    iconAnchor:[52,32]})}).addTo(map);
-  L.circleMarker(pl.ll,{radius:6,color:"#fff",weight:2,fillColor:"#211c16",fillOpacity:1,pane:"hotPane"}).addTo(map);
+    "<div style='display:inline-block;background:rgba(250,247,242,.95);color:#211c16;border:1.5px solid #211c16;"+
+    "font:700 12px -apple-system,BlinkMacSystemFont,sans-serif;padding:2px 8px;border-radius:6px;white-space:nowrap;"+
+    "box-shadow:0 1px 3px rgba(33,28,22,.25)'>"+pl.name+"</div>", iconAnchor:[-9,13]})}).addTo(map);
+  L.circleMarker(pl.ll,{radius:5.5,color:"#faf7f2",weight:2,fillColor:"#211c16",fillOpacity:1,pane:"hotPane"}).addTo(map);
 }
 
 const legend = L.control({position:"bottomleft"});
 legend.onAdd = () => {
   const d = L.DomUtil.create("div","maplegend");
   d.innerHTML =
-    '<span class="sw" style="background:#e6b80022;border-color:#c79b00"></span>Level 1 — Be Ready<br>' +
-    '<span class="sw" style="background:#e2711d33;border-color:#d95f0e"></span>Level 2 — Be Set<br>' +
-    '<span class="sw" style="background:#c6282840;border-color:#b91c1c"></span>Level 3 — GO NOW<br>' +
-    '<span class="sw" style="background:#8b1a0f45;border-color:#8b1a0f"></span>Fire perimeter (mapped)<br>' +
-    '<span class="hs" style="background:#ff2000"></span>Satellite heat &lt; 6 h<br>' +
-    '<span class="hs" style="background:#ff9d2e"></span>Heat 6–12 h ago<br>' +
-    '<span class="hs" style="background:#b0a08e"></span>Heat 12–24 h ago<br>' +
-    '<span class="hs" style="background:linear-gradient(90deg,#5d7d9e,#b91c1c);border-radius:2px"></span>Moving streaks = live air flow';
+    '<div class="lh" style="margin-top:0">Evacuation zones</div>' +
+    '<span class="sw" style="background:#e6b8000d;border-color:#a87f00;border-style:dashed"></span>Level 1 — Be Ready<br>' +
+    '<span class="sw" style="background:#e2711d1a;border-color:#c2570f"></span>Level 2 — Be Set<br>' +
+    '<span class="sw" style="background:#c6282828;border-color:#a51212"></span>Level 3 — GO NOW' +
+    '<div class="lh">Fire</div>' +
+    '<span class="sw" style="background:#7f1d1d4d;border-color:#6d1212"></span>Perimeter (mapped)<br>' +
+    '<span class="hs" style="background:#ff2000"></span>Satellite heat &lt; 6 h ' +
+    '<span class="hs" style="background:#ff9d2e"></span>6–12 h ' +
+    '<span class="hs" style="background:#a89a86"></span>12–24 h' +
+    '<div class="lh">Air flow, mph</div>' +
+    '<span class="wsw" style="background:#9aa5b1;margin-left:0"></span>&lt;5<span class="wsw" style="background:#5d7d9e"></span>10' +
+    '<span class="wsw" style="background:#2b5f9e"></span>15<span class="wsw" style="background:#e8a13c"></span>20' +
+    '<span class="wsw" style="background:#d95f0e"></span>25<span class="wsw" style="background:#b91c1c"></span>30+';
   return d;
 };
 legend.addTo(map);
@@ -353,14 +387,17 @@ async function loadFire(){
   // the Brewer Fire ~36 mi east is bigger but is not the threat this page is about)
   const primary = j.features.slice().sort((a,b)=>minDistToGeom(CS,a.geometry).mi-minDistToGeom(CS,b.geometry).mi)[0];
   for(const f of j.features){
-    const p=f.properties, acres=Math.round(p.attr_IncidentSize||p.poly_GISAcres||0);
-    L.geoJSON(f, {pane:"firePane", style:{color:"#8b1a0f",weight:2.5,fillColor:"#8b1a0f",fillOpacity:.26}})
+    // poly_GISAcres (the polygon's own area) over attr_IncidentSize: the IRWIN size
+    // field gets reset/fat-fingered during updates (seen 19,034 → "5,000" while the
+    // polygon itself grew) — the mapped perimeter is the self-consistent number.
+    const p=f.properties, acres=Math.round(p.poly_GISAcres||p.attr_IncidentSize||0);
+    L.geoJSON(f, {pane:"firePane", style:{color:"#6d1212",weight:3,fillColor:"#7f1d1d",fillOpacity:.3}})
       .bindPopup("<b>"+(p.poly_IncidentName||"Fire")+" Fire</b><br>"+acres.toLocaleString()+" acres · "+
         (p.attr_PercentContained??"?")+"% contained<br>Perimeter mapped "+pdt(p.poly_DateCurrent))
       .addTo(fireLayer);
   }
   const p=primary.properties;
-  const acres=Math.round(p.attr_IncidentSize||p.poly_GISAcres||0);
+  const acres=Math.round(p.poly_GISAcres||p.attr_IncidentSize||0);
   $("stAcres").textContent = acres.toLocaleString();
   $("stAcresS").textContent = "perimeter mapped "+pdt(p.poly_DateCurrent);
   $("stCont").textContent = (p.attr_PercentContained??"—")+"%";
@@ -385,8 +422,8 @@ async function loadEvac(){
   for(const f of state.evacFeatures){
     const lv=LVL[f.properties.Fire_Evacuation_Level];
     newest=Math.max(newest, f.properties.last_edited_date||0);
-    L.geoJSON(f,{pane:"evacPane",style:{color:lv.color,weight:1.6,fillColor:lv.fill,
-        fillOpacity:{1:.10,2:.20,3:.30}[f.properties.Fire_Evacuation_Level], dashArray: f.properties.Fire_Evacuation_Level===1?"4 3":null}})
+    L.geoJSON(f,{pane:"evacPane",style:{color:lv.color,weight:lv.w,fillColor:lv.fill,
+        fillOpacity:lv.fillOp, dashArray:lv.dash}})
       .bindPopup("<b>"+lv.name+"</b><br>Zone “"+(f.properties.Evac_Area_Name||"?").trim()+"” · "+(f.properties.County||"")+
                  "<br>Updated "+pdt(f.properties.last_edited_date))
       .addTo(evacLayer);
@@ -436,10 +473,17 @@ async function loadEvac(){
     }).join("")+"</tbody></table>";
 }
 
-/* Animated air-flow layer: build a 9×7 wind grid from Open-Meteo (one call),
-   feed it to leaflet-velocity. Fails soft — page works fine without it. */
+/* Animated air-flow layer: a 9×7 wind grid from Open-Meteo (current + 3-day hourly
+   forecast in one call) fed to leaflet-velocity. Speed is encoded twice — particle
+   pace and color (FLOW_COLORS, 5 mph per step to 30+) — and readable exactly via the
+   hover/tap readout. The Air-flow buttons scrub forward in forecast time.
+   Fails soft — page works fine without it. */
 const WGRID = {nx:9, ny:7, lo1:-122.15, la1:44.75, dx:0.125, dy:0.7/6};
-let windLayer=null;
+const FLOW_COLORS=["#9aa5b1","#5d7d9e","#2b5f9e","#e8a13c","#d95f0e","#b91c1c"];  // <5,10,15,20,25,30+ mph
+const FLOW_MAX_MS=13.4;                                                            // 30 mph = top of color scale
+let windLayer=null, windState=null, flowSel=0;
+const fmtWD = new Intl.DateTimeFormat("en-US",{timeZone:"America/Los_Angeles",weekday:"short",hour:"numeric"});
+
 async function loadWindFlow(){
   if(!L.velocityLayer) return;                       // CDN blocked → skip quietly
   const lats=[], lons=[];
@@ -447,28 +491,54 @@ async function loadWindFlow(){
     lats.push((WGRID.la1 - r*WGRID.dy).toFixed(4)); lons.push((WGRID.lo1 + c*WGRID.dx).toFixed(4));
   }
   const j = await fetch("https://api.open-meteo.com/v1/forecast?latitude="+lats.join(",")+"&longitude="+lons.join(",")+
-    "&current=wind_speed_10m,wind_direction_10m&wind_speed_unit=ms").then(r=>r.json());
+    "&current=wind_speed_10m,wind_direction_10m&hourly=wind_speed_10m,wind_direction_10m&forecast_days=3&wind_speed_unit=ms")
+    .then(r=>r.json());
   if(!Array.isArray(j) || j.length!==WGRID.nx*WGRID.ny) throw new Error("wind grid incomplete");
+  const nowIdx = j[0].hourly.time.indexOf(j[0].current.time.slice(0,13)+":00");   // times are UTC (no tz param)
+  if(nowIdx<0) throw new Error("wind time alignment");
+  windState = {cells:j, times:j[0].hourly.time, nowIdx};
+  document.querySelectorAll("#flowCtl button").forEach(btn=>{                     // real clock labels, PT
+    const off=+btn.dataset.off;
+    if(off>0){ btn.textContent = fmtWD.format(new Date(windState.times[nowIdx+off]+"Z")); btn.disabled=false; }
+  });
+  setFlowHour(flowSel);
+}
+function buildFlowData(idx){
   const u=[], v=[];
-  for(const cell of j){
-    const s=cell.current.wind_speed_10m, dRad=cell.current.wind_direction_10m*Math.PI/180;
+  for(const cell of windState.cells){
+    const s    =  idx==null ? cell.current.wind_speed_10m     : cell.hourly.wind_speed_10m[idx];
+    const dRad = (idx==null ? cell.current.wind_direction_10m : cell.hourly.wind_direction_10m[idx])*Math.PI/180;
     u.push(-s*Math.sin(dRad)); v.push(-s*Math.cos(dRad));   // meteorological "from" → vector "toward"
   }
   const header = {parameterUnit:"m.s-1", parameterCategory:2, nx:WGRID.nx, ny:WGRID.ny,
     lo1:WGRID.lo1, la1:WGRID.la1, lo2:WGRID.lo1+(WGRID.nx-1)*WGRID.dx, la2:WGRID.la1-(WGRID.ny-1)*WGRID.dy,
     dx:WGRID.dx, dy:WGRID.dy, refTime:new Date().toISOString()};
-  const data=[{header:Object.assign({parameterNumber:2,parameterNumberName:"eastward_wind"},header), data:u},
-              {header:Object.assign({parameterNumber:3,parameterNumberName:"northward_wind"},header), data:v}];
+  return [{header:Object.assign({parameterNumber:2,parameterNumberName:"eastward_wind"},header), data:u},
+          {header:Object.assign({parameterNumber:3,parameterNumberName:"northward_wind"},header), data:v}];
+}
+function setFlowHour(off){
+  if(!windState) return;
+  flowSel = off;
+  const idx = off===0 ? null : windState.nowIdx+off;
+  const data = buildFlowData(idx);
   if(windLayer){
-    try { windLayer.setData(data); return; }
+    try { windLayer.setData(data); }
     catch(e){ map.removeLayer(windLayer); layersCtl.removeLayer(windLayer); windLayer=null; }
   }
-  windLayer = L.velocityLayer({data, velocityScale:0.012, maxVelocity:14, lineWidth:1.6,
-    particleMultiplier:1/250, frameRate:18, displayValues:false,
-    colorScale:["#7d8a9b","#5d7d9e","#3f6ea0","#2b5f9e","#d95f0e","#b91c1c"]});
-  windLayer.addTo(map);
-  layersCtl.addOverlay(windLayer, "Air flow (animated, live)");
+  if(!windLayer){
+    windLayer = L.velocityLayer({data, velocityScale:0.012, maxVelocity:FLOW_MAX_MS, lineWidth:1.7,
+      particleMultiplier:1/250, frameRate:18, colorScale:FLOW_COLORS,
+      displayValues:true, displayOptions:{velocityType:"Wind", position:"bottomright",
+        emptyString:"Hover or tap the map to read the wind there", speedUnit:"mph",
+        angleConvention:"meteoCW", showCardinal:true}});
+    windLayer.addTo(map);
+    layersCtl.addOverlay(windLayer, "Air flow (animated)");
+  }
+  document.querySelectorAll("#flowCtl button").forEach(b=>b.classList.toggle("on", +b.dataset.off===off));
+  $("flowWhen").textContent = off===0 ? "current wind" :
+    "forecast · "+fmtWD.format(new Date(windState.times[idx]+"Z"))+" PT";
 }
+document.querySelectorAll("#flowCtl button").forEach(b=>b.onclick=()=>setFlowHour(+b.dataset.off));
 
 async function loadHotspots(){
   const j = await arc(VIIRS, {outFields:"esritimeutc,frp", orderByFields:"esritimeutc DESC", resultRecordCount:1500});
@@ -479,10 +549,10 @@ async function loadHotspots(){
     const age=(now-f.properties.esritimeutc)/H;
     if(age>24) continue;
     shown++;
-    const c = age<6 ? "#ff2000" : age<12 ? "#ff9d2e" : "#b0a08e";
+    const c = age<6 ? "#ff2000" : age<12 ? "#ff9d2e" : "#a89a86";
     const [lon,lat]=f.geometry.coordinates;
-    L.circleMarker([lat,lon],{pane:"hotPane",radius: age<6?4:3, stroke:false, fillColor:c,
-      fillOpacity: age<6?.85:age<12?.6:.4})
+    L.circleMarker([lat,lon],{pane:"hotPane",radius: age<6?4.5:age<12?3.5:2.5, stroke:false, fillColor:c,
+      fillOpacity: age<6?.9:age<12?.65:.35})
       .bindPopup("Satellite heat detection<br>"+pdt(f.properties.esritimeutc)+" · intensity "+(f.properties.frp||"?")+" MW")
       .addTo(hotLayer);
   }
@@ -501,11 +571,13 @@ async function loadWeather(){
     ", gusts "+Math.round(c.wind_gusts_10m)+" mph · "+Math.round(c.temperature_2m)+"°F · "+c.relative_humidity_2m+"% humidity"+
     "<div class='muted' style='font-size:12.5px;margin-top:3px'>Wind <b>from</b> the "+compass(c.wind_direction_10m)+
     " pushes fire &amp; smoke toward the "+compass((c.wind_direction_10m+180)%360)+".</div>";
-  const periods=(hourly.properties.periods||[]).slice(0,12);
+  const periods=(hourly.properties.periods||[]).filter((_,i)=>i%3===0).slice(0,13);  // every 3 h out to ~36 h — far enough to cover a wind warning
   $("windTbl").innerHTML = "<table><thead><tr><th>Time</th><th>Wind</th><th>Blows toward</th><th>Sky</th></tr></thead><tbody>"+
     periods.map(p=>{
       const deg = {N:0,NNE:22,NE:45,ENE:67,E:90,ESE:112,SE:135,SSE:157,S:180,SSW:202,SW:225,WSW:247,W:270,WNW:292,NW:315,NNW:337}[p.windDirection] ?? 0;
-      return "<tr><td class='muted'>"+fmtT.format(new Date(p.startTime))+"</td><td><span class='arrow' style='transform:rotate("+(deg+90)+"deg)'>➤</span> "+
+      const mph = Math.max(...(String(p.windSpeed).match(/\d+/g)||[0]).map(Number));
+      const cls = mph>=25 ? " class='vwindy'" : mph>=15 ? " class='windy'" : "";
+      return "<tr"+cls+"><td class='muted'>"+fmtWD.format(new Date(p.startTime))+"</td><td><span class='arrow' style='transform:rotate("+(deg+90)+"deg)'>➤</span> "+
         p.windSpeed+" from "+p.windDirection+"</td><td>"+compass((deg+180)%360)+"</td><td class='muted'>"+p.shortForecast+"</td></tr>";
     }).join("")+"</tbody></table>";
   if(daily){
@@ -555,7 +627,7 @@ async function loadAlerts(){
   }
   $("alertsList").className="";
   $("alertsList").innerHTML = list.length ? list.map(p=>{
-      const rf=/red flag|fire/i.test(p.event);
+      const rf=/red flag|fire|wind/i.test(p.event);
       return "<details"+(rf?' class="redflag"':"")+"><summary>"+p.event+" — until "+pdt(new Date(p.ends||p.expires).getTime())+
         "</summary><p>"+(p.description||"").replace(/</g,"&lt;")+"</p></details>";
     }).join("") : "<span class='muted'>No active weather alerts for this point right now.</span>";
