@@ -204,6 +204,13 @@
    "city": "Berkeley, CA"
   },
   {
+   "id": "joe krisciunas",
+   "label": "Joe Krisciunas",
+   "initials": "JK",
+   "community": -1,
+   "city": "San Francisco"
+  },
+  {
    "id": "josh ying",
    "label": "Z. Ying",
    "initials": "ZY",
@@ -391,6 +398,12 @@
    "label": "AI Safety Camp",
    "type": "program",
    "n_members": 3
+  },
+  {
+   "id": "amazon-web-services",
+   "label": "Amazon Web Services",
+   "type": "company",
+   "n_members": 1
   },
   {
    "id": "amsterdam-university-college",
@@ -765,6 +778,12 @@
    "n_members": 13
   },
   {
+   "id": "julius-ai",
+   "label": "Julius AI",
+   "type": "company",
+   "n_members": 1
+  },
+  {
    "id": "kaggle",
    "label": "Kaggle",
    "type": "community",
@@ -942,7 +961,7 @@
    "id": "openai",
    "label": "OpenAI",
    "type": "company",
-   "n_members": 7
+   "n_members": 8
   },
   {
    "id": "opendp-harvard",
@@ -1285,6 +1304,12 @@
    "label": "Vesuvius Challenge team",
    "type": "community",
    "n_members": 2
+  },
+  {
+   "id": "vivarium",
+   "label": "Vivarium",
+   "type": "community",
+   "n_members": 1
   },
   {
    "id": "washu-school-of-medicine",
@@ -2241,6 +2266,34 @@
    "role": "MSc student, Theoretical Physics",
    "years": "2019–2021",
    "source": "https://www.jessehoogland.com/about/"
+  },
+  {
+   "person": "joe krisciunas",
+   "org": "amazon-web-services",
+   "role": "Software Engineer",
+   "years": "",
+   "source": "https://www.linkedin.com/in/joe-krisciunas/"
+  },
+  {
+   "person": "joe krisciunas",
+   "org": "julius-ai",
+   "role": "Founding team — infrastructure",
+   "years": "",
+   "source": "https://www.linkedin.com/in/joe-krisciunas/"
+  },
+  {
+   "person": "joe krisciunas",
+   "org": "openai",
+   "role": "Engineer (role title not publicly stated)",
+   "years": "",
+   "source": "self-reported (provided by Alex)"
+  },
+  {
+   "person": "joe krisciunas",
+   "org": "vivarium",
+   "role": "Helps run the space",
+   "years": "2025–",
+   "source": "https://vivarium.sh/"
   },
   {
    "person": "josh ying",
@@ -3221,6 +3274,14 @@
   },
   {
    "a": "alex loftus",
+   "b": "joe krisciunas",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "alex loftus",
    "b": "josh ying",
    "weight": 2.0,
    "shared": [
@@ -3399,6 +3460,14 @@
   {
    "a": "alice rigg",
    "b": "jannik brinkmann",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "alice rigg",
+   "b": "joe krisciunas",
    "weight": 2.0,
    "shared": [
     "openai"
@@ -3598,6 +3667,14 @@
    ]
   },
   {
+   "a": "antonio mari",
+   "b": "joe krisciunas",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
    "a": "arman ohmid",
    "b": "madi kusmonov",
    "weight": 1.0,
@@ -3779,6 +3856,14 @@
    "weight": 2.0,
    "shared": [
     "mats"
+   ]
+  },
+  {
+   "a": "bijan varjavand",
+   "b": "joe krisciunas",
+   "weight": 2.0,
+   "shared": [
+    "openai"
    ]
   },
   {
@@ -4042,6 +4127,14 @@
   {
    "a": "cat khor",
    "b": "jannik brinkmann",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "cat khor",
+   "b": "joe krisciunas",
    "weight": 2.0,
    "shared": [
     "openai"
@@ -4394,6 +4487,14 @@
   },
   {
    "a": "giordano rogers",
+   "b": "joe krisciunas",
+   "weight": 2.0,
+   "shared": [
+    "openai"
+   ]
+  },
+  {
+   "a": "giordano rogers",
    "b": "michael ripa",
    "weight": 3.0,
    "shared": [
@@ -4640,6 +4741,14 @@
    "weight": 1.0,
    "shared": [
     "johns-hopkins-university"
+   ]
+  },
+  {
+   "a": "jannik brinkmann",
+   "b": "joe krisciunas",
+   "weight": 2.0,
+   "shared": [
+    "openai"
    ]
   },
   {
