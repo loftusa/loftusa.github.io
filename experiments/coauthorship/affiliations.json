@@ -2970,5 +2970,53 @@
   "identity_confident": true,
   "notes": "Added 2026-07-23 to the core roster (Alex's request). AI safety researcher; papers flow through the papers map (S2 2212970046 — Pythia + Deep Ignorance with stella biderman). Careers researched from his own pages (kyleobrien.io; Geodesic's Manifund page); Microsoft years are LinkedIn-derived (RocketReach index) — approximate. Education (RocketReach claims UCSC B.A. CS 2018–20) left OUT pending confirmation. City left blank: GitHub profile says Seattle while Geodesic Research is Cambridge, UK — unclear which is current. Shares Microsoft with allan deutsch + will levine, EleutherAI with stella biderman, alice rigg, goncalo paulo, lucia quirke, alex loftus.",
   "reviewed": false
+ },
+ "joe krisciunas": {
+  "entries": [
+   {
+    "org": "OpenAI",
+    "type": "company",
+    "role": "Engineer (role title not publicly stated)",
+    "years": "",
+    "current": true,
+    "source": "self-reported (provided by Alex)",
+    "evidence": "Provided by Alex (2026-07-26): works at OpenAI. His site joekrisciunas.com frames his work as safety alignment / evaluations / safeguards for agents. Start date not publicly stated.",
+    "verified": true
+   },
+   {
+    "org": "Vivarium",
+    "type": "community",
+    "role": "Helps run the space",
+    "years": "2025–",
+    "current": true,
+    "source": "https://vivarium.sh/",
+    "evidence": "Provided by Alex (2026-07-26): helps run Vivarium. vivarium.sh: 'a collective of like-minded engineers and artists pursuing self-directed work in the pursuit of mutual good' — ~7,000 sq ft shared space in San Francisco, 'established in the summer of 2025'. The site names no organizers publicly.",
+    "verified": true
+   },
+   {
+    "org": "Julius AI",
+    "type": "company",
+    "role": "Founding team — infrastructure",
+    "years": "",
+    "current": false,
+    "source": "https://www.linkedin.com/in/joe-krisciunas/",
+    "evidence": "LinkedIn headline 'Founding Team - Infrastructure - Julius AI' (as indexed by search); his GitHub company field still reads Julius AI. Dates not public — left undated.",
+    "verified": false
+   },
+   {
+    "org": "Amazon Web Services",
+    "type": "company",
+    "role": "Software Engineer",
+    "years": "",
+    "current": false,
+    "source": "https://www.linkedin.com/in/joe-krisciunas/",
+    "evidence": "LinkedIn-derived (search index): software engineer at AWS (co-led design/scaling of a file management service) before moving into generative-AI infrastructure. Dates not public — left undated.",
+    "verified": false
+   }
+  ],
+  "city": "San Francisco",
+  "identity_confident": true,
+  "notes": "Added 2026-07-26 to the core roster (Alex's request). No-publication person — isolated hollow node on the papers map, seated on the careers map via the shared OpenAI room (with giordano rogers, alice rigg, antonio mari, cat khor et al.). OpenAI + Vivarium facts provided by Alex firsthand; Julius AI + AWS rows are LinkedIn-derived (search index) and undated — refine when known. City San Francisco per his GitHub profile and Vivarium's location. New org nodes: Vivarium (community), Julius AI + Amazon Web Services (solo companies).",
+  "reviewed": false
  }
 }
