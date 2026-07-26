@@ -121,9 +121,9 @@ bins = [
     {"w": w, "open": open_hist.get(w, 0), "both": both_hist.get(w, 0), "label": BIN_LABEL[w]}
     for w in sorted(set(open_hist) | set(both_hist))
 ]
-assert sum(b["open"] for b in bins) == 141 and sum(b["both"] for b in bins) == 72
+assert sum(b["open"] for b in bins) == 168 and sum(b["both"] for b in bins) == 73
 
-# ---- all 182 connected pairs (open + both), the dot population ----
+# ---- all 241 connected pairs (open + both), the dot population ----
 pairs = []
 for a, b in sorted(open_pairs + both_pairs):
     p = proj[(a, b)]
@@ -150,7 +150,7 @@ no_papers = {n["id"] for n in GRAPH["nodes"] if n.get("no_papers")}
 assert no_papers is not None
 nameable = [(a, b) for a, b in open_pairs if a not in no_papers and b not in no_papers]
 assert len(nameable) <= len(open_pairs)
-assert sum(1 for a, b in open_pairs if a in no_papers or b in no_papers) == 13
+assert sum(1 for a, b in open_pairs if a in no_papers or b in no_papers) == 22
 
 ranked = sorted(
     nameable,

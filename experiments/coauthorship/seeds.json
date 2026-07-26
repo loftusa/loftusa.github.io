@@ -3092,5 +3092,78 @@
       "title_overlap_frac": 0.0,
       "agree": false
     }
+  },
+  {
+    "name": "kira sidhu",
+    "s2_id": null,
+    "url": null,
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": null,
+    "h_index": null,
+    "confidence": "high",
+    "verified": true,
+    "note": "No-publication person (AI/ML engineer + VC scout) — seed stub, like ted kyi. No academic profile: the only Semantic Scholar 'Kiran Sidhu' is a cardiologist and the only OpenAlex 'Kira Sidhu' is a pain/opioid medical researcher (both homonyms, wrong field). Identity + career from Alex (LinkedIn, 2026-06-25): Columbia (Classics + Math, 2015-19), Google (SWE, 2021-24), Google DeepMind (Senior Research Engineer, 2024-26), Stanford grad AI coursework (non-degree, 2024-25), now at a stealth startup. Lands as an isolated hollow node on the papers map (no co-events); appears on the careers map via shared orgs (DeepMind/Google/Stanford/Columbia).",
+    "sample_titles": [],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": null,
+    "oa_url": null,
+    "oa_affiliation": "",
+    "oa_n_works": null,
+    "oa_orcid": null,
+    "oa_titles": [],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
+  },
+  {
+    "name": "kyle o'brien",
+    "s2_id": "2212970046",
+    "url": "https://www.semanticscholar.org/author/2212970046",
+    "affiliation": "Geodesic Research",
+    "homepage": "https://kyleobrien.io/",
+    "orcid": null,
+    "n_papers": 8,
+    "h_index": 6,
+    "confidence": "high",
+    "verified": true,
+    "note": "AI safety researcher — pretraining/midtraining safeguards for open-weight LLMs. Founding member of technical staff at Geodesic Research (Cambridge, UK; joined via the ERA fellowship); previously applied scientist / software engineer at Microsoft and researcher with EleutherAI. Clean S2 profile (2212970046, 8 papers, h=6): Pythia, Steering Language Model Refusal with Sparse Autoencoders, Deep Ignorance, Recite/Reconstruct/Recollect, Alignment Pretraining, Composable Interventions, In-Context Rewriting, Expanding External Access. Verified via in-network co-event: the cached Pythia (2023) record under stella biderman's profile lists him as authorId 2212970046 — the same id — and Deep Ignorance (2025) pairs him with her again. OpenAlex is contaminated: his ML papers are lodged inside A5057239077, a 49-work mega-merge dominated by a Southern Connecticut State social-work researcher (plus a 1995 pharmacology letter and 2017 BigDAWG systems papers); no clean OA profile exists, so the OA side is pinned null (S2-only), like daniel brown / cat khor.",
+    "sample_titles": [
+      "Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling (2023)",
+      "Steering Language Model Refusal with Sparse Autoencoders (2024)",
+      "Deep Ignorance: Filtering Pretraining Data Builds Tamper-Resistant Safeguards into Open-Weight LLMs (2025)",
+      "Recite, Reconstruct, Recollect: Memorization in LMs as a Multifaceted Phenomenon (2024)",
+      "Alignment Pretraining: AI Discourse Causes Self-Fulfilling (Mis)alignment (2026)"
+    ],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_verified": true,
+    "oa_id": null,
+    "oa_url": null,
+    "oa_affiliation": "",
+    "oa_n_works": null,
+    "oa_orcid": null,
+    "oa_titles": [],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    }
   }
 ]

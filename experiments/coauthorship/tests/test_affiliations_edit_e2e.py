@@ -56,18 +56,18 @@ with sync_playwright() as pw:
     page.goto(f"http://127.0.0.1:{PORT}/networks/affiliations/")
     page.wait_for_selector("#graph svg g.person", timeout=15000)
     page.wait_for_timeout(1500)
-    assert page.locator("#graph g.person").count() == 53, "joiner not minted"
-    # 12 no-paper people are community -1 (beige by design — colorOf guard); +1 = the joiner
+    assert page.locator("#graph g.person").count() == 55, "joiner not minted"
+    # 13 no-paper people are community -1 (beige by design — colorOf guard); +1 = the joiner
     grey = page.eval_on_selector_all("#graph g.person circle",
         "els => els.filter(e => e.getAttribute('fill') === '#b3a98f').length")
-    assert grey == 13, ("12 community:-1 people + the joiner", grey)
+    assert grey == 14, ("13 community:-1 people + the joiner", grey)
     black = page.eval_on_selector_all("#graph g.person circle",
         "els => els.filter(e => !e.getAttribute('fill')).length")
     assert black == 0, "undefined fills are back (PALETTE[-1] regression)"
     page.locator("#people li", has_text="Pat Tester").click()
     detail = page.locator("#detail").inner_text()
     assert "EleutherAI" in detail and "Lisbon" in detail
-    print("overlay at load OK (53 people, joiner grey, joiner entry visible)")
+    print("overlay at load OK (55 people, joiner grey, joiner entry visible)")
 
     # ---- edit flow: add an entry -> correct POST + optimistic render, no reload ----
     page.locator("#edit-toggle").click()
@@ -112,7 +112,7 @@ with sync_playwright() as pw:
     assert join["type"] == "aff_join" and join["payload"]["name"] == "Totally New Member"
     assert join["payload"]["entries"][0]["org"] == "MATS"
     assert join["payload"]["entries"][0]["type"] == "program"   # datalist match locked the type
-    assert page.locator("#graph g.person").count() == 54
+    assert page.locator("#graph g.person").count() == 56
     print("join flow OK (aff_join posted, temp node minted)")
 
     # ---- papers map: pending joiner minted instantly as a hollow no-papers node ----

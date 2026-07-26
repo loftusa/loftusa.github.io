@@ -27,7 +27,7 @@ org_type = {o["id"]: o["type"] for o in AFF["orgs"]}
 assert set(org_type.values()) == TYPES, f"unexpected org types: {set(org_type.values())}"
 
 people_ids = {p["id"] for p in AFF["people"]}
-assert len(people_ids) == 52
+assert len(people_ids) == 54
 assert people_ids <= graph_ids, f"AFF people missing from graph: {people_ids - graph_ids}"
 
 person_orgs: dict[str, set[str]] = defaultdict(set)
