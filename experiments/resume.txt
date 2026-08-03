@@ -43,7 +43,7 @@ Strategic Advisory: Leading red-teaming sprints for OpenAI; Head of Growth at El
   CBAI mentor page: https://www.cbai.ai/david-bau-alex-loftus
   Krnel.ai: https://krnel.ai/
 
-AI Infrastructure: Co-first author on ICLR paper on scaling up AI systems for interpretability (led a team of 6); scaled up an AI pipeline for computational neuroscience.
+AI Infrastructure: Co-first author on ICLR paper on NNsight/NDIF, distributed inference infrastructure for probing foundation-model internals at scale (led a team of 6); scaled up an AI pipeline for computational neuroscience.
   ICLR paper (NNsight/NDIF): https://arxiv.org/abs/2407.14561
   M2G pipeline: https://github.com/neurodata/m2g
 
@@ -131,7 +131,7 @@ SELECTED PUBLICATIONS
 
 Agents of Chaos
 N. Shapira, ..., A.R. Loftus, et al. Preprint, 2026.
-Viral red-teaming investigation of LLMs in a social Discord server. Covered by Science, WIRED, and Die Zeit; featured in Anthropic co-founder Jack Clark's Import AI #447. Led to leadership of OpenAI red-teaming campaigns.
+Multi-agent red-teaming investigation of LLMs in a social Discord server; went viral on X. Covered by Science, WIRED, and Die Zeit; featured in Anthropic co-founder Jack Clark's Import AI #447. Led to leadership of OpenAI red-teaming campaigns.
 
 Token Entanglement in Subliminal Learning
 A. Zur, Z. Ying, A.R. Loftus, et al. NeurIPS mechanistic interpretability workshop 2025.
@@ -240,7 +240,7 @@ Khoury Distinguished Fellowship — 2024
 Northeastern University PhD fellowship.
 
 First Place Winner — 2023
-Kaggle Vesuvius Competition, $100,000.
+Kaggle Vesuvius Competition, $100,000 (1,249 teams).
   Link: https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection/overview
 
 Best Poster Award — 2023
