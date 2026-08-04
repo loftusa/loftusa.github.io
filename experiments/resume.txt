@@ -36,10 +36,10 @@ Competitions: Part of a 4-person team that won 1st place in the $1,000,000 Vesuv
   Kaggle competition: https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection
   Scientific American feature: https://www.scientificamerican.com/article/inside-the-ai-competition-that-decoded-an-ancient-scroll-and-changed/
 
-Research: Subliminal learning work featured in YouTube video with 1m+ subscribers; best poster award for a NeurIPS workshop paper; meeting lead for Harvard AI Safety technical fellowship.
+Research: Subliminal learning work featured in YouTube video with 1m+ subscribers; best poster award for a NeurIPS workshop paper; technical lead and paid facilitator for the Harvard AI Safety technical fellowship.
   Welch Labs video: https://youtu.be/NUAb6zHXqdI?t=1671
 
-Strategic Advisory: Leading red-teaming sprints for OpenAI; Head of Growth at EleutherAI; CBAI mentor for Harvard/MIT students; advisor for cybersecurity/mechanistic interpretability startup.
+Strategic Advisory: Leading red-teaming campaigns for OpenAI; Head of Growth at EleutherAI; CBAI mentor for Harvard/MIT students; advisor for cybersecurity/mechanistic interpretability startup.
   CBAI mentor page: https://www.cbai.ai/david-bau-alex-loftus
   Krnel.ai: https://krnel.ai/
 
@@ -78,7 +78,7 @@ Red-Teaming Program Lead — OpenAI (contract via Handshake) | Remote | March 20
 - Live operations & incident response: Owned operational health across both live campaigns: incident triage and response (including weekends), zero-downtime hot-patching of running agents, a data-loss postmortem closed with corrective actions (redundant backup pipelines; maximum loss window cut from 24 hours to 5 minutes), and daily operational reporting to the team.
 
 Data Scientist — Creyon Bio | San Diego, CA | 2023–2024
-- Large Protein Models For Splice-Site Prediction: Explored splice site prediction for LLMs trained on protein sequences. Pre-training, fine-tuning, and benchmarking+evals.
+- Large Protein Models For Splice-Site Prediction: Explored splice site prediction for LLMs trained on protein sequences. Pre-training, fine-tuning, and benchmarking+evals. Designed and ran experiments measuring model performance across biological domains.
 - ML for Toxicity Prediction: Developed a novel contrastive learning pipeline to predict drug toxicity from 3-D electrostatic maps of molecules; increased classification AUC from 0.73 to 0.88.
 - Neuron Toxicity Detection: Developed scalable neuron segmentation and toxicology classification pipeline.
 
