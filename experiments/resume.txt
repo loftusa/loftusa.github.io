@@ -21,7 +21,7 @@ Chat with this CV: https://www.alex-loftus.com/chat
 CAREER HIGHLIGHTS
 -----------------
 
-Red-Teaming Program Leadership: Designed and ran two multi-agent red-teaming campaigns for OpenAI from scratch: wrote the proposal, recruited and led a 16-person team (doubled for the second campaign), developed the harm taxonomy, set the research direction, and delivered findings and recommendations to stakeholders.
+Red-Teaming Program Leadership: Designed and ran two multi-agent red-teaming campaigns for OpenAI from scratch: wrote the proposal, recruited and led a 16-person team (doubled for the second campaign), developed the harm taxonomy, set the research direction, and translated emergent risk signals into structured findings and recommendations for OpenAI stakeholders.
 
 Operational Ownership: Built ~17K lines of campaign infrastructure in under two weeks (~45K lines of code by campaign end), then operated it 24/7 through the live two-week campaign, keeping it running reliably under continuous load.
 
@@ -43,7 +43,7 @@ Strategic Advisory: Leading red-teaming campaigns for OpenAI; Head of Growth at 
   CBAI mentor page: https://www.cbai.ai/david-bau-alex-loftus
   Krnel.ai: https://krnel.ai/
 
-AI Infrastructure: Co-first author on ICLR paper on NNsight/NDIF, distributed inference infrastructure for probing foundation-model internals at scale (led a team of 6); scaled up an AI pipeline for computational neuroscience.
+AI Infrastructure: Co-first author on ICLR 2025 paper on NNsight/NDIF, distributed inference infrastructure for probing foundation-model internals at scale (led a team of 6); scaled up an AI pipeline for computational neuroscience.
   ICLR paper (NNsight/NDIF): https://arxiv.org/abs/2407.14561
   M2G pipeline: https://github.com/neurodata/m2g
 
@@ -78,7 +78,7 @@ Red-Teaming Program Lead — OpenAI (contract via Handshake) | Remote | March 20
 - Live operations & incident response: Owned operational health across both live campaigns: incident triage and response (including weekends), zero-downtime hot-patching of running agents, a data-loss postmortem closed with corrective actions (redundant backup pipelines; maximum loss window cut from 24 hours to 5 minutes), and daily operational reporting to the team.
 
 Data Scientist — Creyon Bio | San Diego, CA | 2023–2024
-- Large Protein Models For Splice-Site Prediction: Explored splice site prediction for LLMs trained on protein sequences. Pre-training, fine-tuning, and benchmarking+evals. Designed and ran experiments measuring model performance across biological domains.
+- Large Protein Models For Splice-Site Prediction: Built evaluation pipelines for large protein models: pre-training, fine-tuning, and benchmarking for splice-site prediction. Designed and ran experiments measuring model performance across biological domains.
 - ML for Toxicity Prediction: Developed a novel contrastive learning pipeline to predict drug toxicity from 3-D electrostatic maps of molecules; increased classification AUC from 0.73 to 0.88.
 - Neuron Toxicity Detection: Developed scalable neuron segmentation and toxicology classification pipeline.
 
