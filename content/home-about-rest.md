@@ -1,6 +1,6 @@
 I've been fortunate to work with a number of brilliant people over the years. Here are some fun projects which resulted:
 
-- I designed and led an internal red-teaming campaign for OpenAI — writing the proposal, recruiting the 16-person team, and building ~17K lines of evaluation infrastructure in under two weeks. The project was successful enough that a second campaign is now underway, with double the team size.
+- I designed and led a two-week internal project for a frontier lab, recruited 10 people, and built 17,000 lines of evaluation infrastructure in under two weeks. The project was successful enough that a follow-up occured, with double the team size.
 - I'm a co-author of [Agents of Chaos](https://agentsofchaos.baulab.info/), which was covered by [Science](https://www.science.org/content/article/ai-algorithms-can-become-agents-chaos) and WIRED, featured in [Anthropic co-founder Jack Clark's Import AI](https://jack-clark.net/), and went viral on X (millions of views).
 - I helped organize the [New England Mechanistic Interpretability (NEMI) conference](https://www.khoury.northeastern.edu/northeastern-mechanistic-interpretability-workshop-aims-to-make-sense-of-ai-systems/) to help build the interpretability community in the Northeast.
 - I helped out with some work on [Subliminal Learning](https://www.lesswrong.com/posts/m5XzhbZjEuF9uRgGR/it-s-owl-in-the-numbers-token-entanglement-in-subliminal-1), which got featured in a [Welsh labs YouTube video](https://www.youtube.com/watch?v=NUAb6zHXqdI)
