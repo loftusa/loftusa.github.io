@@ -21,7 +21,7 @@ Chat with this CV: https://www.alex-loftus.com/chat
 CAREER HIGHLIGHTS
 -----------------
 
-Red-Teaming Program Leadership: Designed and ran two multi-agent red-teaming campaigns for OpenAI from scratch: wrote the proposal, recruited and led a 16-person team (doubled for the second campaign), developed the harm taxonomy, set the research direction, and translated emergent risk signals into structured findings and recommendations for OpenAI stakeholders.
+Red-Teaming Program Leadership: Designed and led two multi-agent red-teaming campaigns for OpenAI from scratch: wrote the proposal, recruited and led a 16-person team (doubled for the second campaign), developed the harm taxonomy, set the research direction, and translated emergent risk signals into structured findings and recommendations for OpenAI stakeholders.
 
 Operational Ownership: Built ~17K lines of campaign infrastructure in under two weeks (~45K lines of code by campaign end), then operated it 24/7 through the live two-week campaign, keeping it running reliably under continuous load.
 
@@ -192,7 +192,7 @@ TALKS & DEMOS
 -------------
 
 White-Box Techniques for Code LLMs: Influence Benchmarking, the Attendome, and Variable State Debugging
-Lawrence Livermore National Laboratory, 2025.
+Lawrence Livermore National Laboratory (LLNL), 2025.
 Invited talk on interpretability for code LLMs.
 
 A Shared Infrastructure for Interpretability
