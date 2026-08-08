@@ -127,7 +127,7 @@ Statistics + spectral representation theory on networks. 524 pages, 147 figures.
 SELECTED PUBLICATIONS
 ---------------------
 
-(* indicates equal contribution; trophy indicates best poster)
+(* indicates equal contribution; a [Best Poster] tag indicates a best-poster award)
 
 Agents of Chaos
 N. Shapira, ..., A.R. Loftus, et al. Preprint, 2026.
