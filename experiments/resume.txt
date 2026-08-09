@@ -140,7 +140,7 @@ Investigation on token entanglement in LLMs. Featured in Welch Labs video on You
   Video: https://www.youtube.com/watch?v=NUAb6zHXqdI&t=1671s
 
 NNsight and NDIF: Democratizing Access to Open-Weight Foundation Model Internals
-A.R. Loftus*, J.Fiotto-Kaufman*, et al. ICLR 2025.
+A.R. Loftus*, J. Fiotto-Kaufman*, et al. ICLR 2025.
 Open source infrastructure for probing & manipulating LLM internals at scale, without engineering overhead.
   Paper: https://arxiv.org/abs/2407.14561
 
