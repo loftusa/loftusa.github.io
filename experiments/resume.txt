@@ -88,7 +88,7 @@ Machine Learning Research Engineer — BlueHalo | Rockville, MD | 2022–2023
 - Geometric Multi-Resolution Analysis: Led infra for document clustering & analysis method.
 
 Research Software Engineer — NeuroData Lab, Johns Hopkins University | Dr. Joshua Vogelstein | Baltimore, MD | 2018–2020
-- MRI-to-Graphs: Optimized a diffusion MRI pipeline with docker and AWS Batch. Halved runtime and cut cloud costs by 40%. Open-sourced and adopted by multiple research groups.
+- MRI-to-Graphs: Optimized a diffusion MRI pipeline with Docker and AWS Batch. Halved runtime and cut cloud costs by 40%. Open-sourced and adopted by multiple research groups.
   Link: https://neurodata.io/m2g/
 - Graspologic: Core contributor to an open-source graph statistics library. Later adopted by Microsoft Research for large-scale network analysis.
   Link: https://microsoft.github.io/graspologic/latest/
