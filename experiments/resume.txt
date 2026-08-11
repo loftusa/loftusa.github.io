@@ -91,7 +91,7 @@ Research Software Engineer — NeuroData Lab, Johns Hopkins University | Dr. Jos
 - MRI-to-Graphs: Optimized a diffusion MRI pipeline with Docker and AWS Batch. Halved runtime and cut cloud costs by 40%. Open-sourced and adopted by multiple research groups.
   Link: https://neurodata.io/m2g/
 - Graspologic: Core contributor to an open-source graph statistics library. Later adopted by Microsoft Research for large-scale network analysis.
-  Link: https://microsoft.github.io/graspologic/latest/
+  Link: https://graspologic-org.github.io/graspologic/
 
 Assistant Director — iD Tech Camps | University of Washington | Seattle, WA | 2014–2018 summers
 - Leader and Manager: Managed 10+ instructors/week and 300+ students.
@@ -132,6 +132,8 @@ SELECTED PUBLICATIONS
 Agents of Chaos
 N. Shapira, ..., A.R. Loftus, et al. Preprint, 2026.
 Multi-agent red-teaming investigation of LLMs in a social Discord server; went viral on X. Covered by Science, WIRED, and Die Zeit; featured in Anthropic co-founder Jack Clark's Import AI #447. Led to leadership of OpenAI red-teaming campaigns.
+  Project page: https://agentsofchaos.baulab.info/
+  Science coverage: https://www.science.org/content/article/ai-algorithms-can-become-agents-chaos
 
 Token Entanglement in Subliminal Learning
 A. Zur, Z. Ying, A.R. Loftus, et al. NeurIPS mechanistic interpretability workshop 2025.
@@ -169,7 +171,7 @@ Paid facilitator for the Spring 2026 Introductory Technical AI Safety Fellowship
 
 Conference Organizer — NEMI | 2025
 Organized 200+ person interpretability conference; Raised $17,000 grant funding.
-  Link: https://nemiconf.github.io/summer24/
+  Link: https://nemiconf.github.io/summer25/
 
 Research Mentor — CBAI | 2025
 Mentoring Harvard/MIT students in interpretability research.
@@ -303,13 +305,15 @@ https://scholar.google.com/citations?user=CYI6cKgAAAAJ&hl=en&oi=ao
 https://scholar.google.com/citations?user=DWPfdT4AAAAJ&hl=en&oi=ao
 https://alex-loftus.com/files/submitted_thesis.pdf
 https://neurodata.io/m2g/
-https://microsoft.github.io/graspologic/latest/
+https://graspologic-org.github.io/graspologic/
 https://www.cambridge.org/core/books/handson-network-machine-learning-with-python/9735741A096973A9C963E930BBAF5368
 https://openreview.net/forum?id=auKgpBRzIW&noteId=auKgpBRzIW
 https://www.youtube.com/watch?v=NUAb6zHXqdI&t=1671s
 https://arxiv.org/abs/2311.06454
 https://www.biorxiv.org/content/10.1101/2021.11.01.466686v2
-https://nemiconf.github.io/summer24/
+https://agentsofchaos.baulab.info/
+https://www.science.org/content/article/ai-algorithms-can-become-agents-chaos
+https://nemiconf.github.io/summer25/
 https://www.meetup.com/san-diego-machine-learning/
 https://neurodata.devpost.com/
 https://youtu.be/q9mC3T2aBL8
