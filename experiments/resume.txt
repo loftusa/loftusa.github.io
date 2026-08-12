@@ -134,6 +134,7 @@ N. Shapira, ..., A.R. Loftus, et al. Preprint, 2026.
 Multi-agent red-teaming investigation of LLMs in a social Discord server; went viral on X. Covered by Science, WIRED, and Die Zeit; featured in Anthropic co-founder Jack Clark's Import AI #447. Led to leadership of OpenAI red-teaming campaigns.
   Project page: https://agentsofchaos.baulab.info/
   Science coverage: https://www.science.org/content/article/ai-algorithms-can-become-agents-chaos
+  Import AI (Jack Clark): https://jack-clark.net/
 
 Token Entanglement in Subliminal Learning
 A. Zur, Z. Ying, A.R. Loftus, et al. NeurIPS mechanistic interpretability workshop 2025.
@@ -313,6 +314,7 @@ https://arxiv.org/abs/2311.06454
 https://www.biorxiv.org/content/10.1101/2021.11.01.466686v2
 https://agentsofchaos.baulab.info/
 https://www.science.org/content/article/ai-algorithms-can-become-agents-chaos
+https://jack-clark.net/
 https://nemiconf.github.io/summer25/
 https://www.meetup.com/san-diego-machine-learning/
 https://neurodata.devpost.com/
