@@ -23,7 +23,7 @@ CAREER HIGHLIGHTS
 
 Red-Teaming Program Leadership: Designed and led two multi-agent red-teaming campaigns for OpenAI from scratch: wrote the proposal, recruited and led a 16-person team (doubled for the second campaign), developed the harm taxonomy, set the research direction, and translated emergent risk signals into structured findings and recommendations for OpenAI stakeholders.
 
-Operational Ownership: Built ~17K lines of campaign infrastructure in under two weeks (~45K lines of code by campaign end), then operated it 24/7 through the live two-week campaign, keeping it running reliably under continuous load.
+Operational Ownership: Built ~17K lines of campaign infrastructure in under two weeks (~45K lines of code by campaign end), then operated it 24/7 through the live two-week campaign: 50+ isolated agent VMs, redundant data pipelines, zero-downtime hot-patching, automated daily monitoring, and weekend incident response.
 
 Textbook Authorship: Authored a 524-page technical book on statistical network ML (Cambridge University Press, November 2025).
   Link: https://a.co/d/9r4BFkX
@@ -43,7 +43,7 @@ Strategic Advisory: Leading red-teaming campaigns for OpenAI; Head of Growth at 
   CBAI mentor page: https://www.cbai.ai/david-bau-alex-loftus
   Krnel.ai: https://krnel.ai/
 
-AI Infrastructure: Co-first author on ICLR 2025 paper on NNsight/NDIF, distributed inference infrastructure for probing foundation-model internals at scale (led a team of 6); scaled up an AI pipeline for computational neuroscience.
+AI Infrastructure: Co-first author on ICLR 2025 paper on NNsight/NDIF, distributed inference infrastructure for probing foundation-model internals at scale (led a team of 6); core contributor to Graspologic, later adopted by Microsoft Research; scaled up an AI pipeline for computational neuroscience.
   ICLR paper (NNsight/NDIF): https://arxiv.org/abs/2407.14561
   M2G pipeline: https://github.com/neurodata/m2g
 
