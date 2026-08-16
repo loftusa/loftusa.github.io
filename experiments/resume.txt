@@ -138,7 +138,7 @@ Multi-agent red-teaming investigation of LLMs in a social Discord server; went v
 
 Token Entanglement in Subliminal Learning
 A. Zur, Z. Ying, A.R. Loftus, et al. NeurIPS mechanistic interpretability workshop 2025.
-Investigation on token entanglement in LLMs. Featured in Welch Labs video on YouTube.
+Investigation on token entanglement in LLMs. Featured in Welch Labs video on YouTube (1M+ subscribers).
   Paper: https://openreview.net/forum?id=auKgpBRzIW&noteId=auKgpBRzIW
   Video: https://www.youtube.com/watch?v=NUAb6zHXqdI&t=1671s
 
