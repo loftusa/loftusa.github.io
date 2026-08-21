@@ -101,3 +101,58 @@ def test_schema_delete_requires_bearer():
     )
     assert r.status_code == 200
     assert all(x["id"] != sid for x in c.get("/klist/schema").json())
+
+
+# ---------- Slack heads-up (fires after the response; never blocks or breaks a POST) ----------
+
+
+def _enable_webhook(monkeypatch):
+    from backend.app import config
+
+    monkeypatch.setattr(config, "KLIST_SLACK_WEBHOOK", "https://hooks.slack.test/T00/B00/xyz")
+
+
+def test_submission_fires_slack_webhook(monkeypatch, httpx_mock):
+    _enable_webhook(monkeypatch)
+    httpx_mock.add_response(url="https://hooks.slack.test/T00/B00/xyz", method="POST")
+    c = _client()
+    r = c.post("/klist/submissions", json={"name": "Sam", "payload": PAYLOAD})
+    assert r.status_code == 200
+    req = httpx_mock.get_request()
+    assert req is not None
+    text = req.read().decode()
+    assert "Sam" in text
+    assert str(r.json()["id"]) in text
+    # privacy: the checklist content itself must never reach Slack
+    assert "Blowjobs" not in text and "favourite" not in text
+
+
+def test_schema_add_fires_slack_webhook(monkeypatch, httpx_mock):
+    _enable_webhook(monkeypatch)
+    httpx_mock.add_response(url="https://hooks.slack.test/T00/B00/xyz", method="POST")
+    c = _client()
+    r = c.post("/klist/schema", json={"section": "Sensation", "item": "Ice cubes"})
+    assert r.status_code == 200
+    req = httpx_mock.get_request()
+    assert req is not None
+    body = req.read().decode()
+    assert "Sensation" in body and "Ice cubes" in body
+
+
+def test_no_webhook_configured_means_no_call(httpx_mock):
+    # KLIST_SLACK_WEBHOOK unset (default in tests) — submission works, nothing is fetched
+    c = _client()
+    r = c.post("/klist/submissions", json={"name": "Quiet", "payload": PAYLOAD})
+    assert r.status_code == 200
+    assert httpx_mock.get_request() is None
+
+
+def test_webhook_failure_never_breaks_submission(monkeypatch, httpx_mock):
+    _enable_webhook(monkeypatch)
+    import httpx
+
+    httpx_mock.add_exception(httpx.ConnectError("slack is down"))
+    c = _client()
+    r = c.post("/klist/submissions", json={"name": "Sam", "payload": PAYLOAD})
+    assert r.status_code == 200
+    assert r.json()["ok"] is True

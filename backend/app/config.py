@@ -80,6 +80,8 @@ KLIST_ADMIN_RATE = (
 # Separate from LOG_ACCESS_TOKEN so the (short, human-typable) checklist PIN never
 # unlocks the chat-log export.
 KLIST_ACCESS_TOKEN = os.getenv("KLIST_ACCESS_TOKEN")
+# Slack incoming-webhook URL for submission heads-ups; unset → notifications are off.
+KLIST_SLACK_WEBHOOK = os.getenv("KLIST_SLACK_WEBHOOK")
 
 # --- /jobs interest store --------------------------------------------------------------------
 JOBS_INTEREST_RATE = (10, 600)  # at most 10 interest submissions / 600s / client IP

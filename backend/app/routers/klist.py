@@ -11,7 +11,14 @@ import json
 import secrets
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, Depends, Header, HTTPException, Request
+from fastapi import (
+    APIRouter,
+    BackgroundTasks,
+    Depends,
+    Header,
+    HTTPException,
+    Request,
+)
 from pydantic import BaseModel, Field, field_validator
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -20,7 +27,7 @@ from .. import config
 from ..db import get_db
 from ..deps import client_ip
 from ..models import KlistSchemaItem, KlistSubmission
-from ..services import rate_limit
+from ..services import notify, rate_limit
 
 router = APIRouter(prefix="/klist", tags=["klist"])
 
@@ -40,7 +47,12 @@ class SubmissionIn(BaseModel):
 
 
 @router.post("/submissions")
-def submit(body: SubmissionIn, request: Request, db: Session = Depends(get_db)) -> dict:
+def submit(
+    body: SubmissionIn,
+    request: Request,
+    background: BackgroundTasks,
+    db: Session = Depends(get_db),
+) -> dict:
     """Store a filled checklist. Public but rate-limited per client IP."""
     limit, window = config.KLIST_RATE
     if not rate_limit.rate_ok(
@@ -55,6 +67,13 @@ def submit(body: SubmissionIn, request: Request, db: Session = Depends(get_db)) 
     )
     db.add(row)
     db.commit()
+    # Heads-up carries id + name only — checklist content stays out of Slack.
+    who = f" from “{row.name}”" if row.name else ""
+    background.add_task(
+        notify.klist_notify,
+        f"New checklist submission #{row.id}{who} — "
+        "https://alex-loftus.com/klist/admin.html",
+    )
     return {"ok": True, "id": row.id}
 
 
@@ -112,7 +131,10 @@ def list_schema(db: Session = Depends(get_db)) -> list[dict]:
 
 @router.post("/schema")
 def add_schema_item(
-    body: SchemaItemIn, request: Request, db: Session = Depends(get_db)
+    body: SchemaItemIn,
+    request: Request,
+    background: BackgroundTasks,
+    db: Session = Depends(get_db),
 ) -> dict:
     """Permanently add a tile (and implicitly its section) to the checklist.
 
@@ -136,6 +158,10 @@ def add_schema_item(
     row = KlistSchemaItem(section=section, item=item, ip=client_ip(request))
     db.add(row)
     db.commit()
+    background.add_task(
+        notify.klist_notify,
+        f"Checklist grew: “{item}” added to “{section}” (schema id {row.id})",
+    )
     return {"ok": True, "id": row.id}
 
 
