@@ -209,7 +209,7 @@ const BLANK_LABEL = "Does not apply / do not care";
 const MODS = ["give", "receive", "both"];
 const MOD_LETTER = { give: "G", receive: "R", both: "B" };
 
-const PROFILE_FIELDS = ["Age", "Gender", "Location", "Orientation", "Role", "Contact"];
+const PROFILE_FIELDS = ["Name", "Age", "Gender", "Location", "Orientation", "Role", "Contact"];
 
 const FEATURES = [
   "Tall","Short","Muscular","Fat","Chubby","Thin","Skinny","Petite","White","Black",
@@ -545,7 +545,8 @@ document.getElementById("print").addEventListener("click", () => window.print())
 const statusEl = document.getElementById("status");
 document.getElementById("send").addEventListener("click", async () => {
   const btn = document.getElementById("send");
-  const name = state.profile.contact
+  const name = state.profile.name
+    || state.profile.contact
     || [state.profile.gender, state.profile.age].filter(Boolean).join(", ")
     || null;
   const body = {
