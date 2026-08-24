@@ -28,7 +28,7 @@ Operational Ownership: Built ~17K lines of campaign infrastructure in under two 
 Textbook Authorship: Authored a 524-page technical book on statistical network ML (Cambridge University Press, November 2025).
   Link: https://a.co/d/9r4BFkX
 
-Community-building: Organized the New England Mechanistic Interpretability (NEMI) conference; Linear Algebra YouTube lecture series creator; delivered 10+ invited talks to 20–300 attendees; taught hundreds of students through meetups, summer camps, and tutorials; regularly organize 100+ member groups and events for AI conferences.
+Community-building: Organized the New England Mechanistic Interpretability (NEMI) conference; Linear Algebra YouTube lecture series creator; delivered 10+ invited talks to 20–300 attendees, including DC policymakers and LLNL; taught hundreds of students through meetups, summer camps, and tutorials; regularly organize 100+ member groups and events for AI conferences.
   NEMI article: https://www.khoury.northeastern.edu/northeastern-mechanistic-interpretability-workshop-aims-to-make-sense-of-ai-systems/
   Linear Algebra YouTube series: https://youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh&si=oR1Ool9xr3zrc_NN
 
