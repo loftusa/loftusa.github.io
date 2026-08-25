@@ -36,7 +36,8 @@ Competitions: Part of a 4-person team that won 1st place in the $1,000,000 Vesuv
   Kaggle competition: https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection
   Scientific American feature: https://www.scientificamerican.com/article/inside-the-ai-competition-that-decoded-an-ancient-scroll-and-changed/
 
-Research: Subliminal learning work featured in YouTube video with 1m+ subscribers; best poster award for a NeurIPS workshop paper; technical lead and paid facilitator for the Harvard AI Safety technical fellowship.
+Research: Agents of Chaos went viral on X; covered by Science, WIRED, and Die Zeit, and featured in Anthropic co-founder Jack Clark's Import AI. Subliminal learning work featured in YouTube video with 1m+ subscribers; best poster award for a NeurIPS workshop paper; technical lead and paid facilitator for the Harvard AI Safety technical fellowship.
+  Agents of Chaos: https://agentsofchaos.baulab.info/
   Welch Labs video: https://youtu.be/NUAb6zHXqdI?t=1671
 
 Strategic Advisory: Leading red-teaming campaigns for OpenAI; Head of Growth at EleutherAI; CBAI mentor for Harvard/MIT students; advisor for cybersecurity/mechanistic interpretability startup.
