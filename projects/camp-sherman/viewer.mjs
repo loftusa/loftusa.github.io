@@ -12,7 +12,7 @@ import {SceneWorld} from './world.mjs';
 import {prepareSceneMaterials,createPracticalLights,batchVegetation} from './rendering.mjs';
 
 const $ = id => document.getElementById(id);
-const ui = Object.fromEntries(['scene','orbit','walk','roof','trees','reset','viewpoint','loading','loading-title','loading-message','progress','retry','announcement','view-label','walk-hint'].map(id=>[id,$(id)]));
+const ui = Object.fromEntries(['scene','orbit','walk','enter-house','roof','trees','reset','viewpoint','loading','loading-title','loading-message','progress','retry','announcement','view-label','walk-hint'].map(id=>[id,$(id)]));
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#e8ece3');
 const camera = new THREE.PerspectiveCamera(48,1,.06,1200);
@@ -98,6 +98,11 @@ function walkTo(point) {
   renderer.domElement.focus({preventScroll:true});
   renderNeeded=true;
 }
+function enterHouse() {
+  const point=manifest.waypoints.find(point=>point.id==='living'&&point.mode!=='orbit')
+    ??manifest.waypoints.find(point=>point.mode!=='orbit');
+  if(point)walkTo(point);
+}
 function goToViewpoint(point) {
   if(point.mode!=='orbit'){walkTo(point);return;}
   releaseMouse();clearInput();mode='orbit';
@@ -124,7 +129,7 @@ function showError(error) {
   ui.loading.hidden=false;ui.loading.dataset.error='true';ui.retry.hidden=false;ui.progress.hidden=true;
   ui['loading-title'].textContent='The clearing is out of reach';
   ui['loading-message'].textContent=renderer?'The model could not be opened. Please check your connection and try again.':'This browser could not start the 3D view. Try again, or open this page in a browser with WebGL enabled.';
-  for (const control of [ui.orbit,ui.walk,ui.roof,ui.trees,ui.reset,ui.viewpoint]) control.disabled=true;
+  for (const control of [ui.orbit,ui.walk,ui['enter-house'],ui.roof,ui.trees,ui.reset,ui.viewpoint]) control.disabled=true;
   releaseMouse();announce('The model could not be opened. Try again is available.');
 }
 function rotateLook(dx,dy) {
@@ -247,7 +252,7 @@ async function loadScene() {
     orbit.maxDistance=Math.max(diagonal*1.4,100);camera.far=Math.max(1200,diagonal*3);camera.updateProjectionMatrix();
     scene.fog=new THREE.FogExp2('#cbd3cd',.0017);
     ui.viewpoint.replaceChildren(new Option('Choose a viewpoint',''),...manifest.waypoints.map(point=>new Option(point.label,point.id)));
-    for (const control of [ui.orbit,ui.walk,ui.roof,ui.trees,ui.reset,ui.viewpoint]) control.disabled=false;
+    for (const control of [ui.orbit,ui.walk,ui['enter-house'],ui.roof,ui.trees,ui.reset,ui.viewpoint]) control.disabled=false;
     ui.trees.disabled=world.vegetation.length===0;
     homeView({resetRoof:true});
     ready=true;loading=false;document.body.dataset.ready='true';
@@ -256,7 +261,8 @@ async function loadScene() {
 }
 
 ui.orbit.addEventListener('click',()=>homeView());
-ui.walk.addEventListener('click',()=>{if (mode!=='walk') walkTo(manifest.waypoints.find(point=>point.mode!=='orbit'));});
+ui.walk.addEventListener('click',()=>{if (mode!=='walk') enterHouse();});
+ui['enter-house'].addEventListener('click',enterHouse);
 ui.viewpoint.addEventListener('change',()=>{const point=manifest.waypoints.find(p=>p.id===ui.viewpoint.value);if(point)goToViewpoint(point);});
 ui.reset.addEventListener('click',()=>homeView({resetRoof:true}));
 ui.roof.addEventListener('click',()=>{setRoof(!roofHidden);announce(roofHidden?'Roof hidden. The interior plan is visible.':'Roof shown.');});

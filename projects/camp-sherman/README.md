@@ -35,6 +35,8 @@ Blender node extras carry `collider`, `walkable`, and `layer: "roof" | "vegetati
 
 Navigation supports free flight through walls, floors, roofs and furniture, with no gravity or site-boundary clamping. The modeled stairs and open doors remain part of the scene. Use room shortcuts or Reset view to return to the house.
 
+Enter house, beside the title, takes visitors straight to the living room and remains available to return inside from anywhere. It clears held movement and focuses the scene for immediate keyboard navigation. The Fly mode button also starts at the living-room viewpoint, independent of manifest order.
+
 The existing internal `walk` mode identifier remains compatible with authored manifests and visibility styles; the visible control is labeled Fly. The legacy walking solver and collision checks remain available for source-model validation, but the viewer uses `advanceFlight`.
 
 In Fly mode, click the scene and move the mouse to look around; click again or press Escape to stop. You can also hold the left mouse button and drag. Move in the direction you look with WASD or arrow keys. Hold Shift for 4× speed (10 m/s versus 2.5 m/s), Space to rise, or Control to descend. Release movement keys to hover; Escape and focus loss stop held movement. Click-to-look falls back to ordinary mouse movement when an embedded browser cannot capture the pointer; moving outside the scene stops this fallback. On touch screens, drag to look and hold the direction buttons to move; Up, Down and Fast control height and speed.

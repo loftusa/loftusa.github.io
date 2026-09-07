@@ -28,3 +28,6 @@ body[data-mode=walk] .masthead .subtitle {display:none}
 .rise {grid-area:1/4}.descend {grid-area:2/4}.boost {grid-area:1/1}
 .touch-pad .rise,.touch-pad .descend,.touch-pad .boost {font-size:11px}
 .walk-hint {white-space:normal;text-align:center;max-width:calc(100vw - 34px)}
+.enter-house {display:flex;align-items:center;justify-content:space-between;gap:24px;pointer-events:auto;margin-top:15px;min-height:42px;padding:0 16px;border:0;border-radius:3px;background:var(--ink);color:var(--paper);font-size:12px;font-weight:600}
+.enter-house:hover:not(:disabled) {background:#355342}
+@media(max-width:760px) {body[data-mode=walk] .walk-hint {top:154px}}
