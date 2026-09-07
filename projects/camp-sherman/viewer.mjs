@@ -26,7 +26,7 @@ const touchKeys = new Set();
 let lookPointer=null;
 let mouseLook=null, dragDistance=0;
 const light = new THREE.DirectionalLight('#ffddb1',3.1);
-scene.add(new THREE.HemisphereLight('#cbdbea','#70604b',.28));
+scene.add(new THREE.HemisphereLight('#d0e5ed','#718653',.38));
 scene.add(light);scene.add(light.target);
 light.castShadow=true;
 light.shadow.mapSize.set(4096,4096);
@@ -42,8 +42,8 @@ function updateSunlight(force=false) {
   }
 }
 const sky=new Sky();sky.scale.setScalar(1500);scene.add(sky);
-Object.assign(sky.material.uniforms.turbidity,{value:3.4});
-Object.assign(sky.material.uniforms.rayleigh,{value:1.7});
+Object.assign(sky.material.uniforms.turbidity,{value:2.2});
+Object.assign(sky.material.uniforms.rayleigh,{value:2.1});
 sky.material.uniforms.mieCoefficient.value=.004;
 sky.material.uniforms.mieDirectionalG.value=.82;
 sky.material.uniforms.sunPosition.value.set(-35,32,-45).normalize();
@@ -220,7 +220,7 @@ async function loadEnvironment(path) {
   const target=generator.fromEquirectangular(texture);
   texture.dispose();generator.dispose();environmentTarget?.dispose();
   environmentTarget=target;scene.environment=target.texture;
-  scene.environmentIntensity=.3;
+  scene.environmentIntensity=.45;
   scene.environmentRotation.y=.5;
 }
 
@@ -250,7 +250,7 @@ async function loadScene() {
     practicalLights=createPracticalLights(manifest.lights);scene.add(practicalLights);
     const diagonal=new THREE.Vector3(...manifest.bounds.max).sub(new THREE.Vector3(...manifest.bounds.min)).length();
     orbit.maxDistance=Math.max(diagonal*1.4,100);camera.far=Math.max(1200,diagonal*3);camera.updateProjectionMatrix();
-    scene.fog=new THREE.FogExp2('#cbd3cd',.0017);
+    scene.fog=new THREE.FogExp2('#c7dcda',.0012);
     ui.viewpoint.replaceChildren(new Option('Choose a viewpoint',''),...manifest.waypoints.map(point=>new Option(point.label,point.id)));
     for (const control of [ui.orbit,ui.walk,ui['enter-house'],ui.roof,ui.trees,ui.reset,ui.viewpoint]) control.disabled=false;
     ui.trees.disabled=world.vegetation.length===0;

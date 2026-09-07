@@ -53,4 +53,6 @@ Warm late-afternoon sunlight and the local environment light are composed in lin
 
 The editable Blender project retains calibrated CC0 photographic surfaces, original woven materials, curved furniture, and separately baked AO. The richer representative forest shares geometry across repeated trees; collision proxies remain separate.
 
+The landscape presents a lush spring interpretation: moss-green terrain, clustered grasses, ferns and broadleaf understory, with fuller pine and fir crowns. Surveyed tree anchors, architectural geometry and path placement are preserved. The broader planting and seasonal colors are visualization choices. Shadow fill keeps the greens readable beneath the warm afternoon sun.
+
 Sun shadows follow selected viewpoints and walking or panning beyond 16 meters. The detailed 42-meter shadow radius expands in stable steps for the property overview, up to 100 meters; unchanged views reuse the cached shadow map. Fine needle cutouts retain distant alpha coverage and use multisample edge smoothing.
