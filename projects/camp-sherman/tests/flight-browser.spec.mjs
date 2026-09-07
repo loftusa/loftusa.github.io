@@ -7,7 +7,7 @@ import {fixtureGlb,fixtureManifest} from './fixture.mjs';
 // Observe the real camera through a test-only bundle, with no production debug API.
 const source=await readFile(new URL('../viewer.mjs',import.meta.url),'utf8');
 const bundle=await build({stdin:{contents:source+'\nglobalThis.flightCamera=camera;',resolveDir:fileURLToPath(new URL('../',import.meta.url)),sourcefile:'viewer.mjs'},bundle:true,format:'esm',write:false});
-async function setup(page,{clock=true}={}) {
+async function setup(page,{clock=true,manifest=fixtureManifest}={}) {
   // Drive actual animation callbacks deterministically; virtual browser clocks
   // stalled RAF in this fixture, while software GPU speed varies by host.
   if(clock)await page.addInitScript(()=>{
@@ -22,13 +22,28 @@ async function setup(page,{clock=true}={}) {
     };
   });
   await page.route('**/viewer.bundle.mjs',route=>route.fulfill({contentType:'text/javascript',body:bundle.outputFiles[0].text}));
-  await page.route('**/scene.json',route=>route.fulfill({json:fixtureManifest}));
+  await page.route('**/scene.json',route=>route.fulfill({json:manifest}));
   await page.route('**/assets/camp-sherman.glb',route=>route.fulfill({contentType:'model/gltf-binary',body:fixtureGlb()}));
   await page.goto('/');await expect(page.locator('#loading')).toBeHidden();
   await page.locator('#viewpoint').selectOption('entry');
 }
 const frames=(page,ms)=>page.evaluate(ms=>window.advanceFlightFrames(ms),ms);
 const position=page=>page.evaluate(()=>globalThis.flightCamera.position.toArray());
+test('Enter house opens the living room and returns there from flight without hunting through viewpoints',async({page})=>{
+  const living={id:'living',label:'Living room',position:[-1,1.65,0],lookAt:[0,1.65,-2]};
+  await setup(page,{manifest:{...fixtureManifest,waypoints:[...fixtureManifest.waypoints,living]}});
+  await page.locator('#reset').click();
+  const enter=page.getByRole('button',{name:'Enter house',exact:true});
+  await expect(enter).toBeVisible();await enter.click();
+  expect(await position(page)).toEqual(living.position);
+  await expect(page.locator('#viewpoint')).toHaveValue('living');
+  await expect(page.locator('canvas')).toBeFocused();
+  await hold(page,['Shift','Space'],400);expect((await position(page))[1]).toBeGreaterThan(4);
+  await page.keyboard.down('Space');await frames(page,100);
+  await enter.click();await frames(page,100);expect(await position(page)).toEqual(living.position);
+  await page.keyboard.up('Space');
+  await hold(page,['w'],100);expect(await position(page)).not.toEqual(living.position);
+});
 async function hold(page,keys,ms) {
   for(const key of keys)await page.keyboard.down(key);
   await frames(page,ms);

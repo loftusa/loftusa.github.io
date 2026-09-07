@@ -2,6 +2,7 @@
 
 - Preserve the main house, two lofts, studio, garage, shelter, and surrounding landscape from the authored model.
 - Keep orbit, free flight, room viewpoints, whole-property overview, roof cutaway, tree visibility, and desktop/touch controls working.
+- Keep a prominent Enter house button available on desktop and mobile. It goes directly to the living-room viewpoint from orbit or flight, clears held movement, and focuses the scene so navigation works immediately. It remains usable for returning inside after flying away.
 - In Fly mode, clicking the scene enables mouse look; clicking again or Escape stops it. Mouse dragging must also work, including when browser pointer lock is unavailable or refused. Touch dragging remains supported.
 - Visual direction: professional architectural photography in warm late-afternoon sunlight through the trees. Preserve natural wood, dark metal roofing and stone, realistic material scale, soft furnishings and a planted woodland setting.
 - Postprocessing must preserve cutaway and hidden-object state. Glass and alpha-cutout foliage participate in beauty rendering but must not become solid objects in the ambient-occlusion normal pass. Cap AO resolution independently, with lower mobile sampling.
