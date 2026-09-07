@@ -27,6 +27,14 @@ export default function ProjectPreviews({ data }: { data: PreviewsData }) {
   return (
     <section className={styles.strip} aria-label="Live previews of Alex's project pages">
       <h2 className={styles.label}>Recent Projects</h2>
+      <Link href="/camp-sherman/" className={styles.houseProject}>
+        <img src="/camp-sherman/assets/preview.jpg" alt="Wood house and stone chimney among the trees in Camp Sherman" width={800} height={525} loading="lazy" />
+        <div>
+          <h3>Camp Sherman</h3>
+          <p>A house and its surroundings, rebuilt in Blender from architectural drawings and Oregon terrain data.</p>
+          <span>Explore the house in 3D →</span>
+        </div>
+      </Link>
       <div className={styles.grid}>
         <Card
           href="/houses/"

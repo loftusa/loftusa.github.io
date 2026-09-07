@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eef0e9">
+  <meta name="description" content="Explore a house and its woodland setting in Camp Sherman, Oregon. An interactive architectural study.">
+  <title>Camp Sherman · A house among the pines</title>
+  <link rel="canonical" href="https://alex-loftus.com/camp-sherman/">
+  <meta property="og:title" content="Camp Sherman · A house among the pines">
+  <meta property="og:description" content="Explore a house and woodland property rebuilt in Blender from architectural drawings and Oregon terrain data.">
+  <meta property="og:image" content="https://alex-loftus.com/camp-sherman/assets/preview.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232b3d34'/%3E%3Cpath d='M12 36 32 18 52 36M20 31v19h24V31' fill='none' stroke='%23f4f3eb' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-mode="orbit" data-ready="false">
+  <main id="scene" aria-label="Interactive house and landscape"></main>
+  <header class="masthead">
+    <a class="home-link" href="/">← Alex Loftus</a>
+    <p class="eyebrow">Central Oregon · Architectural study</p>
+    <h1>Camp Sherman</h1>
+    <p class="subtitle">A house among the pines</p>
+  </header>
+  <details class="guide">
+    <summary aria-label="How to explore" title="How to explore">?</summary>
+    <div class="guide-panel">
+      <h2>Take a look around</h2>
+      <p><strong>Site view</strong> Drag to orbit. Scroll or pinch to zoom. Right-drag or use two fingers to pan.</p>
+      <p><strong>Walk</strong> Click the scene to look around. Move with <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrow keys. <kbd>Q</kbd> and <kbd>E</kbd> turn. Press <kbd>Esc</kbd> to release the mouse.</p>
+      <p><strong>On touch</strong> Drag the scene to look. Hold the direction buttons to move.</p>
+      <p><strong>Inside</strong> Choose a room below. Hide the roof for a view of the plan.</p>
+      <p><strong>The landscape</strong> Hide trees for an unobstructed look at the architecture.</p>
+      <p class="guide-note">A visualization of the design drawings. Finishes, furnishings, and unsurveyed planting are interpreted.</p>
+      <p><a href="./credits.html">Sources and model notes</a></p>
+    </div>
+  </details>
+  <div id="crosshair" aria-hidden="true"></div>
+  <p id="walk-hint" class="walk-hint">Click the scene to look · WASD to move</p>
+  <div class="touch-pad" aria-label="Walking controls">
+    <button type="button" data-move="w" class="forward" aria-label="Move forward">↑</button>
+    <button type="button" data-move="a" class="left" aria-label="Move left">←</button>
+    <button type="button" data-move="s" class="back" aria-label="Move backward">↓</button>
+    <button type="button" data-move="d" class="right" aria-label="Move right">→</button>
+  </div>
+  <footer class="explorer">
+    <div class="toolbar" role="group" aria-label="Explore the property">
+      <div class="mode-switch" role="group" aria-label="Navigation mode">
+        <button id="orbit" type="button" aria-pressed="true" disabled>Site view</button>
+        <button id="walk" type="button" aria-pressed="false" disabled>Walk</button>
+      </div>
+      <div class="viewpoint-control">
+        <label for="viewpoint">Go to</label>
+        <select id="viewpoint" aria-label="Go to a viewpoint" disabled><option value="">Choose a viewpoint</option></select>
+      </div>
+      <span class="divider" aria-hidden="true"></span>
+      <button id="roof" type="button" aria-label="Hide roof" aria-pressed="false" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 12 9-7 9 7M6 12v8h12v-8M9 20v-5h6v5"/></svg>
+        <span>Hide roof</span>
+      </button>
+      <button id="trees" type="button" aria-label="Hide trees" aria-pressed="false" disabled>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m12 3-5 7h3l-5 7h6v4h2v-4h6l-5-7h3z"/></svg>
+        <span>Hide trees</span>
+      </button>
+      <button id="reset" class="reset" type="button" aria-label="Reset view" title="Reset view" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 11a8 8 0 1 1 2 7M4 5v6h6"/></svg></button>
+    </div>
+    <div class="caption"><span id="view-label">The property</span><span class="orbit-instructions">Drag to orbit <span>·</span> Scroll to explore</span><span class="study-note">Design study</span></div>
+  </footer>
+  <section id="loading" class="loading" aria-label="Scene loading">
+    <div class="loading-card">
+      <svg class="loading-mark" viewBox="0 0 72 56" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M4 32 24 15l20 17M12 25v23h24V25M40 25l13-11 15 13M47 21v27h13V22M2 49h68M54 11V2m-4 5h8"/></svg>
+      <p class="eyebrow">Camp Sherman</p>
+      <h2 id="loading-title">Entering the clearing</h2>
+      <p id="loading-message" role="status" aria-live="polite">Preparing the house and landscape…</p>
+      <progress id="progress" aria-label="Model download progress"></progress>
+      <button id="retry" type="button" hidden>Try again</button>
+    </div>
+  </section>
+  <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+  <noscript><div class="noscript">Turn on JavaScript to explore the house and landscape.</div></noscript>
+  <script type="module" src="./viewer.bundle.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+{
+  "title": "Camp Sherman",
+  "assets": {
+    "scene": "./assets/camp-sherman.glb",
+    "environment": "./assets/sunset_forest_1k.hdr"
+  },
+  "home": {
+    "camera": [
+      -7,
+      14,
+      -30
+    ],
+    "target": [
+      2,
+      2,
+      0
+    ]
+  },
+  "bounds": {
+    "min": [
+      -180,
+      -60,
+      -180
+    ],
+    "max": [
+      180,
+      100,
+      180
+    ]
+  },
+  "waypoints": [
+    {
+      "id": "living",
+      "label": "Living room",
+      "position": [
+        11.160606715,
+        2.035642905,
+        -3.106922645
+      ],
+      "lookAt": [
+        6.654227641,
+        2.153600505,
+        -5.664563395
+      ]
+    },
+    {
+      "id": "kitchen",
+      "label": "Kitchen & dining",
+      "position": [
+        8.053630236,
+        2.035642905,
+        1.386605897
+      ],
+      "lookAt": [
+        5.306951588,
+        1.757360505,
+        1.322353238
+      ]
+    },
+    {
+      "id": "bedroom",
+      "label": "Main bedroom",
+      "position": [
+        -5.417824935,
+        2.035642905,
+        4.327008406
+      ],
+      "lookAt": [
+        -6.898533741,
+        1.300160505,
+        2.55890194
+      ]
+    },
+    {
+      "id": "loft1",
+      "label": "Bedroom loft",
+      "position": [
+        -0.907484313,
+        5.051892905,
+        -0.514208906
+      ],
+      "lookAt": [
+        1.616049333,
+        4.316410505,
+        0.052180375
+      ]
+    },
+    {
+      "id": "loft2",
+      "label": "Kitchen loft",
+      "position": [
+        6.714760223,
+        4.772492905,
+        4.399425634
+      ],
+      "lookAt": [
+        6.568718411,
+        3.732210505,
+        1.605547879
+      ]
+    },
+    {
+      "id": "entry",
+      "label": "Front entry",
+      "position": [
+        14.353816839,
+        1.757360505,
+        1.364866382
+      ],
+      "lookAt": [
+        11.340997102,
+        1.604960505,
+        0.025996369
+      ]
+    },
+    {
+      "id": "studio",
+      "label": "Studio",
+      "position": [
+        26.641393607,
+        1.831717143,
+        -5.624301635
+      ],
+      "lookAt": [
+        28.743084494,
+        1.583914743,
+        -5.445354705
+      ]
+    },
+    {
+      "id": "studio_office1",
+      "label": "studio_office1",
+      "position": [
+        30.35395276,
+        1.831717143,
+        -9.724173167
+      ],
+      "lookAt": [
+        31.313741621,
+        1.614394743,
+        -7.083043911
+      ]
+    },
+    {
+      "id": "garage",
+      "label": "Garage & shop",
+      "position": [
+        62.08975186,
+        2.707289876,
+        2.715292498
+      ],
+      "lookAt": [
+        58.384002772,
+        2.429007476,
+        -0.457319426
+      ]
+    },
+    {
+      "id": "workshop",
+      "label": "workshop",
+      "position": [
+        57.681911609,
+        2.707289876,
+        -1.499634005
+      ],
+      "lookAt": [
+        54.691240282,
+        2.429007476,
+        -0.911255715
+      ]
+    },
+    {
+      "id": "picnic_shelter",
+      "label": "picnic_shelter",
+      "position": [
+        39.817744355,
+        1.464613859,
+        -23.621571644
+      ],
+      "lookAt": [
+        45.36910373,
+        1.125371459,
+        -27.103932815
+      ]
+    },
+    {
+      "id": "creek",
+      "label": "Creek bank",
+      "position": [
+        3.048,
+        0.302547528,
+        -27.1272
+      ],
+      "lookAt": [
+        6.7056,
+        -1.042534872,
+        -33.2232
+      ]
+    },
+    {
+      "id": "property_overview",
+      "label": "Whole property",
+      "mode": "orbit",
+      "position": [
+        74.676,
+        73.152,
+        70.104
+      ],
+      "lookAt": [
+        27.432,
+        1.524,
+        -10.668
+      ]
+    }
+  ],
+  "lights": [
+    {
+      "position": [
+        4.254493749,
+        2.321240505,
+        -1.763318375
+      ],
+      "color": "#ffe4bc",
+      "intensity": 16,
+      "distance": 10
+    },
+    {
+      "position": [
+        5.972183575,
+        2.321240505,
+        1.802991818
+      ],
+      "color": "#ffe4bc",
+      "intensity": 10,
+      "distance": 10
+    },
+    {
+      "position": [
+        6.796163022,
+        2.321240505,
+        1.281086654
+      ],
+      "color": "#ffe4bc",
+      "intensity": 10,
+      "distance": 10
+    },
+    {
+      "position": [
+        9.340856651,
+        3.647120505,
+        -4.840680536
+      ],
+      "color": "#ffe4bc",
+      "intensity": 18,
+      "distance": 10
+    },
+    {
+      "position": [
+        -5.999876326,
+        1.330640505,
+        2.097935313
+      ],
+      "color": "#ffe4bc",
+      "intensity": 4,
+      "distance": 10
+    },
+    {
+      "position": [
+        -0.130752267,
+        1.330640505,
+        -1.908181523
+      ],
+      "color": "#ffe4bc",
+      "intensity": 4,
+      "distance": 10
+    }
+  ],
+  "source": {
+    "drawingDate": "2025-09-03",
+    "description": "Reconstruction from issued design drawings. Finishes, furnishings and tree heights are interpreted."
+  }
+}
