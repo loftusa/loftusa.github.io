@@ -18,8 +18,28 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.9rem;
 }
+.houseProject {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: .9rem;
+  padding: .7rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  color: var(--ink-soft);
+  text-decoration: none;
+  background: var(--paper-raised);
+}
+.houseProject img { display: block; width: 100%; height: auto; border-radius: var(--radius); }
+.houseProject h3 { margin: 0 0 .45rem; font-family: var(--font-serif-text); font-size: 1.25rem; font-weight: 500; }
+.houseProject p { font-size: .82rem; line-height: 1.5; margin: 0 0 .6rem; }
+.houseProject span { color: var(--accent); font-size: .8rem; }
+.houseProject:hover { border-color: var(--accent); }
+.houseProject:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 @media (max-width: 640px) {
   .grid { grid-template-columns: 1fr; }
+  .houseProject { grid-template-columns: 1fr; gap: .75rem; }
 }
 
 /* ---- card ---- */

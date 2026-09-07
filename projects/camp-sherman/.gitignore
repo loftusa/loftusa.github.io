@@ -1,0 +1,5 @@
+viewer.bundle.mjs
+node_modules
+test-results/
+playwright-report/
+tests/scratchpad/

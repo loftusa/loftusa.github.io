@@ -16,6 +16,8 @@ const nextConfig: NextConfig = {
       { source: "/chat", destination: "/chat/index.html" },
       // Bay Area rental scout — self-contained Leaflet page under public/houses/.
       { source: "/houses", destination: "/houses/index.html" },
+      // Blender house and property model with orbit and walking controls.
+      { source: "/camp-sherman", destination: "/camp-sherman/index.html" },
       // Frontier AI Jobs board — self-contained page under public/jobs/.
       { source: "/jobs", destination: "/jobs/index.html" },
       // Gated per-customer boards (Jobs Pro) — make_user.py emits these dirs.
