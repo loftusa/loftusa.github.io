@@ -4,6 +4,9 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {RGBELoader} from 'three/addons/loaders/RGBELoader.js';
 import {MeshoptDecoder} from 'three/addons/libs/meshopt_decoder.module.js';
+import {Sky} from 'three/addons/objects/Sky.js';
+import {createPhotographicRenderer} from './photography.mjs';
+import {createSunlightController} from './sunlight.mjs';
 import {advanceWalker, movementVector, frameSeconds, validateManifest, orbitFramingScale} from './navigation.mjs';
 import {SceneWorld} from './world.mjs';
 import {prepareSceneMaterials,createPracticalLights,batchVegetation} from './rendering.mjs';
@@ -14,7 +17,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color('#e8ece3');
 const camera = new THREE.PerspectiveCamera(48,1,.06,1200);
 camera.rotation.order = 'YXZ';
-let renderer, orbit, model, world, manifest, environmentTarget, practicalLights;
+let renderer, photography, orbit, model, world, manifest, environmentTarget, practicalLights;
 let ready=false, loading=false, mode='orbit', roofHidden=false, treesHidden=false, walker, lastGoodPosition;
 let previousTime=0;
 let renderNeeded=true;
@@ -22,14 +25,28 @@ const keys = new Set();
 const touchKeys = new Set();
 let lookPointer=null;
 let mouseLook=null, dragDistance=0;
-const light = new THREE.DirectionalLight('#fff0d8',2.5);
-scene.add(new THREE.HemisphereLight('#dbe8f1','#697455',.45));
+const light = new THREE.DirectionalLight('#ffddb1',3.1);
+scene.add(new THREE.HemisphereLight('#cbdbea','#70604b',.28));
 scene.add(light);scene.add(light.target);
 light.castShadow=true;
 light.shadow.mapSize.set(4096,4096);
-light.shadow.bias=-.00008;
-light.shadow.normalBias=.012;
+light.shadow.bias=-.000025;
+light.shadow.normalBias=.006;
 light.shadow.radius=3;
+const sunlight=createSunlightController(light);
+function updateSunlight(force=false) {
+  const focus=mode==='walk'?camera.position:orbit.target;
+  const orbitDistance=mode==='orbit'?camera.position.distanceTo(orbit.target):0;
+  if(sunlight.update(focus,{orbitDistance,force})) {
+    renderer.shadowMap.needsUpdate=true;renderNeeded=true;
+  }
+}
+const sky=new Sky();sky.scale.setScalar(1500);scene.add(sky);
+Object.assign(sky.material.uniforms.turbidity,{value:3.4});
+Object.assign(sky.material.uniforms.rayleigh,{value:1.7});
+sky.material.uniforms.mieCoefficient.value=.004;
+sky.material.uniforms.mieDirectionalG.value=.82;
+sky.material.uniforms.sunPosition.value.set(-35,32,-45).normalize();
 
 function announce(text) { ui.announcement.textContent=text; }
 function clearInput() { keys.clear();touchKeys.clear();lookPointer=null;mouseLook=null;updateLookHint(); }
@@ -69,6 +86,7 @@ function homeView({resetRoof=false}={}) {
   orbit.enabled=true;orbit.update();
   ui.viewpoint.value='';ui['view-label'].textContent='The property';
   if (resetRoof) {setRoof(false);setTrees(false);}
+  updateSunlight(true);
   synchronizeControls();announce('Site view. Drag to orbit the property.');
 }
 function walkTo(point) {
@@ -77,6 +95,7 @@ function walkTo(point) {
   walker={position:[...point.position],verticalSpeed:0};
   lastGoodPosition=[...point.position];
   ui.viewpoint.value=point.id;ui['view-label'].textContent=point.label;
+  updateSunlight(true);
   synchronizeControls();announce(`${point.label}. Walk with WASD or the direction controls.`);
   renderer.domElement.focus({preventScroll:true});
   renderNeeded=true;
@@ -87,6 +106,7 @@ function goToViewpoint(point) {
   camera.position.fromArray(point.position);orbit.target.fromArray(point.lookAt);
   camera.position.sub(orbit.target).multiplyScalar(orbitFramingScale(camera.aspect)).add(orbit.target);
   orbit.enabled=true;orbit.update();ui.viewpoint.value=point.id;
+  updateSunlight(true);
   ui['view-label'].textContent=point.label;synchronizeControls();announce(`${point.label}. Drag to orbit.`);
 }
 function resize() {
@@ -94,8 +114,9 @@ function resize() {
   const nextAspect=innerWidth/innerHeight;
   if(orbit&&mode==='orbit')camera.position.sub(orbit.target).multiplyScalar(orbitFramingScale(nextAspect)/orbitFramingScale(camera.aspect)).add(orbit.target);
   camera.aspect=nextAspect;camera.updateProjectionMatrix();
-  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio,matchMedia('(pointer:coarse)').matches?1.5:2));
   renderer.setSize(innerWidth,innerHeight);
+  photography?.resize(innerWidth,innerHeight,renderer.getPixelRatio());
   renderNeeded=true;
   if (orbit) synchronizeControls();
 }
@@ -116,7 +137,7 @@ function rotateLook(dx,dy) {
 function createRenderer() {
   renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});
   renderer.outputColorSpace=THREE.SRGBColorSpace;
-  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.95;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.0;
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
   renderer.shadowMap.autoUpdate=false;
   const environment=new RoomEnvironment();
@@ -171,6 +192,8 @@ function createRenderer() {
   canvas.addEventListener('pointerleave',()=>{mouseLook=null;updateLookHint();});
   canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();showError(new Error('The graphics context was lost.'));});
   resize();
+  const mobile=matchMedia('(pointer:coarse)').matches;
+  photography=createPhotographicRenderer(renderer,scene,camera,{aoIntensity:.38,aoRadius:.65,maxAoDimension:mobile?800:1200,samples:mobile?2:4});
 }
 
 function disposeModel() {
@@ -194,7 +217,8 @@ async function loadEnvironment(path) {
   const target=generator.fromEquirectangular(texture);
   texture.dispose();generator.dispose();environmentTarget?.dispose();
   environmentTarget=target;scene.environment=target.texture;
-  scene.environmentIntensity=.95;
+  scene.environmentIntensity=.3;
+  scene.environmentRotation.y=.5;
 }
 
 async function loadScene() {
@@ -221,21 +245,15 @@ async function loadScene() {
     scene.add(model);
     if(practicalLights)scene.remove(practicalLights);
     practicalLights=createPracticalLights(manifest.lights);scene.add(practicalLights);
-    const center=new THREE.Vector3(...manifest.home.target);
     const diagonal=new THREE.Vector3(...manifest.bounds.max).sub(new THREE.Vector3(...manifest.bounds.min)).length();
-    const shadowExtent=Math.min(80,Math.max(20,diagonal*.35));
-    light.position.copy(center).add(new THREE.Vector3(-45,70,30));light.target.position.copy(center);
-    Object.assign(light.shadow.camera,{left:-shadowExtent,right:shadowExtent,top:shadowExtent,bottom:-shadowExtent,near:.5,far:250});
-    light.shadow.camera.updateProjectionMatrix();
-    renderer.shadowMap.needsUpdate=true;
     orbit.maxDistance=Math.max(diagonal*1.4,100);camera.far=Math.max(1200,diagonal*3);camera.updateProjectionMatrix();
-    scene.fog=new THREE.Fog('#e8ece3',diagonal*1.1,diagonal*3);
+    scene.fog=new THREE.FogExp2('#cbd3cd',.0017);
     ui.viewpoint.replaceChildren(new Option('Choose a viewpoint',''),...manifest.waypoints.map(point=>new Option(point.label,point.id)));
     for (const control of [ui.orbit,ui.walk,ui.roof,ui.trees,ui.reset,ui.viewpoint]) control.disabled=false;
     ui.trees.disabled=world.vegetation.length===0;
     homeView({resetRoof:true});
     ready=true;loading=false;document.body.dataset.ready='true';
-    renderer.render(scene,camera);renderNeeded=false;ui.loading.hidden=true;
+    photography.render();renderNeeded=false;ui.loading.hidden=true;
   } catch(error) {showError(error);}
 }
 
@@ -284,7 +302,8 @@ function animate(time) {
     if(camera.position.distanceToSquared(new THREE.Vector3(...walker.position))>1e-12)renderNeeded=true;
     camera.position.fromArray(walker.position);
   }
-  if(renderNeeded){renderer.render(scene,camera);renderNeeded=false;}
+  updateSunlight();
+  if(renderNeeded){photography.render(dt);renderNeeded=false;}
 }
 requestAnimationFrame(animate);
 loadScene();

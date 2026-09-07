@@ -4,7 +4,7 @@ A static Three.js walk-through of a house and woodland property reconstructed in
 
 ```text
 Private drawing + terrain sources → Blender authoring → full-detail .blend
-                                                   → GLB → WebP + Meshopt
+                                                   → UV1 ambient occlusion → GLB → WebP + Meshopt
                                                                ↓
 Viewer source → esbuild → public/camp-sherman/ → Next.js rewrite
 ```
@@ -42,3 +42,11 @@ In Walk mode, click the scene and move the mouse to look around; click again or 
 Export a GLB with node extras and meter units. Convert textures to WebP, then apply Meshopt compression; reversing these steps decodes the geometry during texture conversion. Keep the uncompressed editable model separately. Copy the resulting file to `public/camp-sherman/assets/camp-sherman.glb` and update its manifest and preview together. Check walking routes, room viewpoints, collision, cutaway, tree visibility, desktop/mobile layout, and model load errors before publishing.
 
 The source and fidelity notes visible to visitors are maintained in `credits.html`.
+
+## Rendering quality
+
+Warm late-afternoon sunlight and the local environment light are composed in linear HDR with multisample antialiasing, bounded GTAO contact shadows and a single ACES display transform. Ambient-occlusion atlases in the GLB use UV1; base-color, roughness and normal maps retain their authored UV0 scale. Glass and alpha-cutout foliage are excluded only during the GTAO normal capture. Mobile rendering caps pixel ratio, AO resolution and antialiasing samples independently. The scene still renders only when the camera or controls change.
+
+The editable Blender project retains calibrated CC0 photographic surfaces, original woven materials, curved furniture, and separately baked AO. The richer representative forest shares geometry across repeated trees; collision proxies remain separate.
+
+Sun shadows follow selected viewpoints and walking or panning beyond 16 meters. The detailed 42-meter shadow radius expands in stable steps for the property overview, up to 100 meters; unchanged views reuse the cached shadow map. Fine needle cutouts retain distant alpha coverage and use multisample edge smoothing.

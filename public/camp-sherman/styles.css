@@ -13,3 +13,12 @@
 .home-link {display:inline-block;pointer-events:auto;color:var(--muted);font-size:10px;text-decoration:none;margin-bottom:12px}.home-link:hover {text-decoration:underline}.home-link:focus-visible {outline:2px solid var(--ink);outline-offset:4px}.guide-panel a {color:var(--ink)}
 #trees {display:flex;align-items:center;gap:7px;padding:0 6px}#trees svg {width:22px;height:22px}#trees[aria-pressed=true] {color:#496c32}
 @media(max-width:760px) {#roof span,#trees span {display:none}#roof,#trees {padding:0 9px}.mode-switch {flex:1 1 120px}}
+/* Keep the architecture dominant while retaining clear navigation. */
+.masthead {top:max(28px,env(safe-area-inset-top));left:30px}
+.masthead h1 {font-size:32px}
+.masthead .eyebrow {display:none}
+.masthead .subtitle {margin-top:6px}
+.masthead::before {inset:-12px -15px;background:#f8f7f1d9;backdrop-filter:blur(12px)}
+body[data-mode=walk] .masthead h1 {font-size:24px}
+body[data-mode=walk] .masthead .subtitle {display:none}
+@media(max-width:760px) {.masthead {left:23px;top:max(25px,env(safe-area-inset-top))}.masthead h1 {font-size:29px}body[data-mode=walk] .walk-hint {top:100px}}

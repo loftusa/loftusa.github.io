@@ -23,6 +23,13 @@ test('opaque textures preserve authored materials and gain anisotropy for grazin
   assert.equal(wall.material,material);assert.equal(texture.anisotropy,8);
   assert.equal(wall.castShadow,true);assert.equal(wall.receiveShadow,true);
 });
+test('fine needle cutouts retain distant coverage and multisample edge smoothing',()=>{
+  const root=new THREE.Group();const material=new THREE.MeshStandardMaterial({alphaTest:.32});
+  material.name='Conifer_needles';root.add(new THREE.Mesh(new THREE.PlaneGeometry(),material));
+  prepareSceneMaterials(root,8);
+  assert.ok(material.alphaTest<=.12,'mip-filtered thin needles need a lower cutout threshold');
+  assert.equal(material.alphaToCoverage,true);
+});
 test('collision proxy meshes remain available for raycasts without being drawn',()=>{
   const root=new THREE.Group();const proxy=new THREE.Mesh(new THREE.BoxGeometry(),new THREE.MeshStandardMaterial());
   proxy.userData.collision_only=true;root.add(proxy);prepareSceneMaterials(root,4);
