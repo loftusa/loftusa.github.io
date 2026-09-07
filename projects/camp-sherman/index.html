@@ -26,8 +26,8 @@
     <div class="guide-panel">
       <h2>Take a look around</h2>
       <p><strong>Site view</strong> Drag to orbit. Scroll or pinch to zoom. Right-drag or use two fingers to pan.</p>
-      <p><strong>Walk</strong> Click the scene, then move the mouse to look around. Click again or press <kbd>Esc</kbd> to stop. You can also hold and drag to look. Move with <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrow keys. <kbd>Q</kbd> and <kbd>E</kbd> turn.</p>
-      <p><strong>On touch</strong> Drag the scene to look. Hold the direction buttons to move.</p>
+      <p><strong>Fly</strong> Click the scene, then move the mouse to look around. Click again or press <kbd>Esc</kbd> to stop. You can also hold and drag to look. Move with <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or arrow keys. Hold <kbd>Shift</kbd> to fly faster. <kbd>Space</kbd> rises; <kbd>Ctrl</kbd> descends. Fly freely through walls and roofs. <kbd>Q</kbd> and <kbd>E</kbd> turn.</p>
+      <p><strong>On touch</strong> Drag the scene to look. Hold the direction buttons to move, Up/Down to change height, or Fast to boost.</p>
       <p><strong>Inside</strong> Choose a room below. Hide the roof for a view of the plan.</p>
       <p><strong>The landscape</strong> Hide trees for an unobstructed look at the architecture.</p>
       <p class="guide-note">A visualization of the design drawings. Finishes, furnishings, and unsurveyed planting are interpreted.</p>
@@ -35,8 +35,11 @@
     </div>
   </details>
   <div id="crosshair" aria-hidden="true"></div>
-  <p id="walk-hint" class="walk-hint">Click the scene to look · WASD to move</p>
-  <div class="touch-pad" aria-label="Walking controls">
+  <p id="walk-hint" class="walk-hint">Click to look · WASD · Shift faster · Space ↑ · Ctrl ↓</p>
+  <div class="touch-pad" aria-label="Flight controls">
+    <button type="button" data-move=" " class="rise" aria-label="Fly up">Up</button>
+    <button type="button" data-move="control" class="descend" aria-label="Fly down">Down</button>
+    <button type="button" data-move="shift" class="boost" aria-label="Fly faster">Fast</button>
     <button type="button" data-move="w" class="forward" aria-label="Move forward">↑</button>
     <button type="button" data-move="a" class="left" aria-label="Move left">←</button>
     <button type="button" data-move="s" class="back" aria-label="Move backward">↓</button>
@@ -46,7 +49,7 @@
     <div class="toolbar" role="group" aria-label="Explore the property">
       <div class="mode-switch" role="group" aria-label="Navigation mode">
         <button id="orbit" type="button" aria-pressed="true" disabled>Site view</button>
-        <button id="walk" type="button" aria-pressed="false" disabled>Walk</button>
+        <button id="walk" type="button" aria-pressed="false" disabled>Fly</button>
       </div>
       <div class="viewpoint-control">
         <label for="viewpoint">Go to</label>

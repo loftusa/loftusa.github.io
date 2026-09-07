@@ -18,6 +18,21 @@ export function movementVector(right, forward, yaw) {
     z: (-right*Math.sin(yaw)-forward*Math.cos(yaw))/length};
 }
 
+/**
+ * Free flight in meters: camera-relative WASD, world-vertical rise/descent, no collisions.
+ * @param {number[]} position
+ * @param {{right:number,forward:number,up:number,yaw:number,pitch:number,boost:boolean}} input
+ * @param {number} dt Elapsed seconds, capped for tab suspension.
+ * @returns {number[]}
+ */
+export function advanceFlight(position,{right,forward,up,yaw,pitch,boost},dt) {
+  const x=right*Math.cos(yaw)-forward*Math.sin(yaw)*Math.cos(pitch);
+  const y=up+forward*Math.sin(pitch);
+  const z=-right*Math.sin(yaw)-forward*Math.cos(yaw)*Math.cos(pitch);
+  const scale=SPEED*(boost?4:1)*Math.min(.05,Math.max(0,dt))/Math.max(1,Math.hypot(x,y,z));
+  return [position[0]+x*scale,position[1]+y*scale,position[2]+z*scale];
+}
+
 /** Resolve one short walking frame. Axis separation provides sliding at corners. */
 export function advanceWalker(state, movement, dt, world, bounds) {
   dt = Math.min(.05, Math.max(0,dt));

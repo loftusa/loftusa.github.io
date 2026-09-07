@@ -10,7 +10,7 @@ test('local model loads, roof cuts away, walking viewpoints work and reset retur
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await fixture(page);await page.goto('/');
   await expect(page.locator('#loading')).toBeHidden();
-  await expect(page.getByRole('button',{name:'Walk',exact:true})).toBeEnabled();
+  await expect(page.getByRole('button',{name:'Fly',exact:true})).toBeEnabled();
   const original=await page.locator('canvas').screenshot();
   await page.screenshot({path:'tests/scratchpad/fixture-desktop.png'});
   await page.getByRole('button',{name:'Hide roof'}).click();
@@ -55,7 +55,7 @@ test('an optional local HDR loads, while a failed HDR falls back without losing 
   expect(hdrRequested).toBe(true);
   await page.route('**/*.hdr',route=>route.fulfill({status:503,body:'Unavailable'}));
   await page.reload();await expect(page.locator('#loading')).toBeHidden();
-  await expect(page.getByRole('button',{name:'Walk',exact:true})).toBeEnabled();
+  await expect(page.getByRole('button',{name:'Fly',exact:true})).toBeEnabled();
 });
 test('an overview viewpoint stays in orbit mode instead of falling to the ground',async({page})=>{
   await fixture(page);
@@ -68,7 +68,7 @@ test('an overview viewpoint stays in orbit mode instead of falling to the ground
 test('touch layout fits a narrow screen and offers movement after entering walk mode', async ({page}) => {
   await page.setViewportSize({width:390,height:844});
   await fixture(page);await page.goto('/');await expect(page.locator('#loading')).toBeHidden();
-  await page.getByRole('button',{name:'Walk',exact:true}).click();
+  await page.getByRole('button',{name:'Fly',exact:true}).click();
   await expect(page.getByRole('button',{name:'Move forward'})).toBeVisible();
   await page.screenshot({path:'tests/scratchpad/fixture-mobile.png'});
   expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -130,7 +130,7 @@ test('touch dragging changes the view and holding the touch pad moves through th
   const page=await context.newPage();
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await fixture(page);await page.goto('http://127.0.0.1:8086/');await expect(page.locator('#loading')).toBeHidden();
-  await page.getByRole('button',{name:'Walk',exact:true}).tap();
+  await page.getByRole('button',{name:'Fly',exact:true}).tap();
   const cdp=await context.newCDPSession(page);
   const before=await page.locator('canvas').screenshot();
   await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:200,y:350}]});
