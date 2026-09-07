@@ -21,6 +21,7 @@ let renderNeeded=true;
 const keys = new Set();
 const touchKeys = new Set();
 let lookPointer=null;
+let mouseLook=null, dragDistance=0;
 const light = new THREE.DirectionalLight('#fff0d8',2.5);
 scene.add(new THREE.HemisphereLight('#dbe8f1','#697455',.45));
 scene.add(light);scene.add(light.target);
@@ -31,15 +32,18 @@ light.shadow.normalBias=.012;
 light.shadow.radius=3;
 
 function announce(text) { ui.announcement.textContent=text; }
-function clearInput() { keys.clear();touchKeys.clear();lookPointer=null; }
+function clearInput() { keys.clear();touchKeys.clear();lookPointer=null;mouseLook=null;updateLookHint(); }
 function releaseMouse() { if (document.pointerLockElement) document.exitPointerLock(); }
+function updateLookHint() {
+  const isTouch = matchMedia('(pointer:coarse)').matches;
+  ui['walk-hint'].textContent=mouseLook?'Move mouse to look · Click or Esc to stop · WASD to move':isTouch?'Drag to look · Hold arrows to move':'Click or drag to look · WASD to move';
+}
 function synchronizeControls() {
   document.body.dataset.mode=mode;
   ui.orbit.setAttribute('aria-pressed',String(mode==='orbit'));
   ui.walk.setAttribute('aria-pressed',String(mode==='walk'));
   orbit.enabled=mode==='orbit';
-  const isTouch = matchMedia('(pointer:coarse)').matches || innerWidth <= 760;
-  ui['walk-hint'].textContent=isTouch?'Drag to look · Hold arrows to move':'Click the scene to look · WASD to move';
+  updateLookHint();
 }
 function setRoof(hidden) {
   roofHidden=hidden;
@@ -131,28 +135,40 @@ function createRenderer() {
   orbit.screenSpacePanning=true;
   orbit.addEventListener('change',()=>{renderNeeded=true;});
   canvas.addEventListener('pointerdown',event=>{
-    if (!ready || mode!=='walk') return;
+    if (!ready || mode!=='walk' || event.button!==0) return;
     canvas.focus({preventScroll:true});
-    if (event.pointerType==='touch' || event.pointerType==='pen') {
-      event.preventDefault();
-      if (lookPointer===null) {lookPointer={id:event.pointerId,x:event.clientX,y:event.clientY};canvas.setPointerCapture(event.pointerId);}
+    dragDistance=0;
+    if (!mouseLook && !document.pointerLockElement && lookPointer===null) {
+      if(event.pointerType!=='mouse')event.preventDefault();
+      lookPointer={id:event.pointerId,x:event.clientX,y:event.clientY};canvas.setPointerCapture(event.pointerId);
     }
   });
   canvas.addEventListener('click',event=>{
-    if (!ready || mode!=='walk' || event.pointerType==='touch' || event.pointerType==='pen') return;
+    if (!ready || mode!=='walk' || event.button!==0 || event.pointerType==='touch' || event.pointerType==='pen' || dragDistance>4) return;
     canvas.focus({preventScroll:true});
+    if(mouseLook || document.pointerLockElement===canvas){releaseMouse();clearInput();return;}
+    // Keep mouse look usable in embedded browsers that cannot capture the pointer.
+    mouseLook={x:event.clientX,y:event.clientY};updateLookHint();
     if (canvas.requestPointerLock && !document.pointerLockElement) {
-      try {const promise=canvas.requestPointerLock();promise?.catch(()=>announce('Use Q and E to turn, or drag on a touch screen.'));}
-      catch {announce('Use Q and E to turn.');}
+      try {const promise=canvas.requestPointerLock();promise?.catch(()=>{});}
+      catch { /* Click-to-look remains active without pointer capture. */ }
     }
   });
   canvas.addEventListener('pointermove',event=>{
+    if(mode!=='walk' || document.pointerLockElement===canvas)return;
+    if(mouseLook && event.pointerType==='mouse'){
+      rotateLook(event.clientX-mouseLook.x,event.clientY-mouseLook.y);
+      mouseLook={x:event.clientX,y:event.clientY};return;
+    }
     if (lookPointer?.id!==event.pointerId) return;
+    dragDistance+=Math.hypot(event.clientX-lookPointer.x,event.clientY-lookPointer.y);
     rotateLook(event.clientX-lookPointer.x,event.clientY-lookPointer.y);
     lookPointer.x=event.clientX;lookPointer.y=event.clientY;
   });
   const endLook=event=>{if (lookPointer?.id===event.pointerId) lookPointer=null;};
   canvas.addEventListener('pointerup',endLook);canvas.addEventListener('pointercancel',endLook);
+  canvas.addEventListener('lostpointercapture',endLook);
+  canvas.addEventListener('pointerleave',()=>{mouseLook=null;updateLookHint();});
   canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();showError(new Error('The graphics context was lost.'));});
   resize();
 }
@@ -239,7 +255,9 @@ for (const button of document.querySelectorAll('[data-move]')) {
 }
 document.addEventListener('mousemove',event=>{if (mode==='walk'&&document.pointerLockElement===renderer?.domElement)rotateLook(event.movementX,event.movementY);});
 document.addEventListener('pointerlockchange',()=>{document.body.dataset.locked=String(Boolean(document.pointerLockElement));clearInput();});
+document.addEventListener('pointerdown',event=>{if(event.target!==renderer?.domElement){mouseLook=null;updateLookHint();}});
 document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'){releaseMouse();clearInput();return;}
   if (!ready || mode!=='walk' || /^(INPUT|TEXTAREA|SELECT|BUTTON|SUMMARY)$/.test(event.target.tagName)) return;
   const key=event.key.toLowerCase();
   if (['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright','q','e'].includes(key)) {event.preventDefault();keys.add(key);}

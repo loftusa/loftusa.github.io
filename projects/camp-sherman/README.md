@@ -35,6 +35,8 @@ Blender node extras carry `collider`, `walkable`, and `layer: "roof" | "vegetati
 
 Navigation supports walking and the modeled stairs. It does not provide jumping, crouching, opening doors, or editable furniture. Doors are modeled open. Use room shortcuts to reach any room directly.
 
+In Walk mode, click the scene and move the mouse to look around; click again or press Escape to stop. You can also hold the left mouse button and drag. Move with WASD or arrow keys. Click-to-look falls back to ordinary mouse movement when an embedded browser cannot capture the pointer; moving outside the scene stops this fallback. On touch screens, drag to look and hold the direction buttons to move.
+
 ## Replacing the scene
 
 Export a GLB with node extras and meter units. Convert textures to WebP, then apply Meshopt compression; reversing these steps decodes the geometry during texture conversion. Keep the uncompressed editable model separately. Copy the resulting file to `public/camp-sherman/assets/camp-sherman.glb` and update its manifest and preview together. Check walking routes, room viewpoints, collision, cutaway, tree visibility, desktop/mobile layout, and model load errors before publishing.
