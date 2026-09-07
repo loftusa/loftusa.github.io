@@ -84,6 +84,47 @@ test('metallic interior surfaces retain readable lighting without an external en
 });
 function assertReadable(rgb) {expect((rgb[0]+rgb[1]+rgb[2])/3).toBeGreaterThan(30);}
 
+for(const capture of ['unavailable','rejected','error-event'])test(`click enables mouse look when capture is ${capture}, and Escape stops it`,async({page})=>{
+  await page.addInitScript(capture=>{
+    Element.prototype.requestPointerLock=capture==='unavailable'?undefined:capture==='rejected'?()=>Promise.reject(new DOMException('Capture denied','NotAllowedError')):()=>document.dispatchEvent(new Event('pointerlockerror'));
+  },capture);
+  await fixture(page);await page.goto('/');await expect(page.locator('#loading')).toBeHidden();
+  await page.getByLabel('Go to a viewpoint').selectOption('entry');
+  await page.mouse.click(600,350);
+  const before=await page.locator('canvas').screenshot();
+  await page.mouse.move(750,390);
+  expect(Buffer.compare(before,await page.locator('canvas').screenshot())).not.toBe(0);
+  await page.keyboard.press('Escape');
+  const stopped=await page.locator('canvas').screenshot();
+  await page.mouse.move(850,420);
+  expect(Buffer.compare(stopped,await page.locator('canvas').screenshot())).toBe(0);
+});
+
+test('mouse dragging turns in walk mode without enabling hover look on release',async({page})=>{
+  await fixture(page);await page.goto('/');await expect(page.locator('#loading')).toBeHidden();
+  await page.getByLabel('Go to a viewpoint').selectOption('entry');
+  await page.mouse.move(600,350);
+  const before=await page.locator('canvas').screenshot();
+  await page.mouse.down();await page.mouse.move(750,400,{steps:5});
+  expect(Buffer.compare(before,await page.locator('canvas').screenshot())).not.toBe(0);
+  await page.mouse.up();
+  const stopped=await page.locator('canvas').screenshot();
+  await page.mouse.move(850,420);
+  expect(Buffer.compare(stopped,await page.locator('canvas').screenshot())).toBe(0);
+});
+
+test('native click capture turns the camera and clicking again releases it',async({page})=>{
+  await fixture(page);await page.goto('/');await expect(page.locator('#loading')).toBeHidden();
+  await page.getByLabel('Go to a viewpoint').selectOption('entry');
+  await page.mouse.click(600,350);
+  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement?.tagName)).toBe('CANVAS');
+  const before=await page.locator('canvas').screenshot();
+  await page.mouse.move(750,400);
+  expect(Buffer.compare(before,await page.locator('canvas').screenshot())).not.toBe(0);
+  await page.mouse.click(750,400);
+  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement===null)).toBe(true);
+});
+
 test('touch dragging changes the view and holding the touch pad moves through the room',async ({browser})=>{
   const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
   const page=await context.newPage();
