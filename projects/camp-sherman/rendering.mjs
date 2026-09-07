@@ -37,14 +37,19 @@ export function prepareSceneMaterials(root,maxAnisotropy) {
     let hasGlass=false;
     const prepare=material=>{
       for(const value of Object.values(material)) if(value?.isTexture) value.anisotropy=maxAnisotropy;
+      // Thin needles lose alpha coverage in distant mip levels.
+      if (/conifer.*needles/i.test(material.name) && material.alphaTest>0) {
+        material.alphaTest=.12;
+        material.alphaToCoverage=true;
+      }
       if (!/^glass(?:[_. ]|$)/i.test(material.name)) return material;
       hasGlass=true;
       if (!replacements.has(material)) {
         const glass=new THREE.MeshPhysicalMaterial({
-          name:material.name,color:0xf1faf8,metalness:0,roughness:.015,
-          transmission:.94,thickness:.012,ior:1.5,opacity:1,
+          name:material.name,color:0xffffff,metalness:0,roughness:0,
+          transmission:1,thickness:.003,ior:1.45,opacity:1,
           attenuationColor:new THREE.Color('#def0e9'),attenuationDistance:15,
-          side:THREE.DoubleSide,envMapIntensity:1.05,
+          side:THREE.DoubleSide,envMapIntensity:.7,
         });
         replacements.set(material,glass);
       }
