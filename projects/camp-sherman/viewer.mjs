@@ -7,7 +7,7 @@ import {MeshoptDecoder} from 'three/addons/libs/meshopt_decoder.module.js';
 import {Sky} from 'three/addons/objects/Sky.js';
 import {createPhotographicRenderer} from './photography.mjs';
 import {createSunlightController} from './sunlight.mjs';
-import {advanceWalker, movementVector, frameSeconds, validateManifest, orbitFramingScale} from './navigation.mjs';
+import {advanceFlight, frameSeconds, validateManifest, orbitFramingScale} from './navigation.mjs';
 import {SceneWorld} from './world.mjs';
 import {prepareSceneMaterials,createPracticalLights,batchVegetation} from './rendering.mjs';
 
@@ -18,7 +18,7 @@ scene.background = new THREE.Color('#e8ece3');
 const camera = new THREE.PerspectiveCamera(48,1,.06,1200);
 camera.rotation.order = 'YXZ';
 let renderer, photography, orbit, model, world, manifest, environmentTarget, practicalLights;
-let ready=false, loading=false, mode='orbit', roofHidden=false, treesHidden=false, walker, lastGoodPosition;
+let ready=false, loading=false, mode='orbit', roofHidden=false, treesHidden=false;
 let previousTime=0;
 let renderNeeded=true;
 const keys = new Set();
@@ -53,7 +53,7 @@ function clearInput() { keys.clear();touchKeys.clear();lookPointer=null;mouseLoo
 function releaseMouse() { if (document.pointerLockElement) document.exitPointerLock(); }
 function updateLookHint() {
   const isTouch = matchMedia('(pointer:coarse)').matches;
-  ui['walk-hint'].textContent=mouseLook?'Move mouse to look · Click or Esc to stop · WASD to move':isTouch?'Drag to look · Hold arrows to move':'Click or drag to look · WASD to move';
+  ui['walk-hint'].textContent=mouseLook?'Mouse to look · Click/Esc to stop · WASD · Shift faster · Space ↑ · Ctrl ↓':isTouch?'Drag to look · Hold arrows to fly':'Click or drag to look · WASD · Shift faster · Space ↑ · Ctrl ↓';
 }
 function synchronizeControls() {
   document.body.dataset.mode=mode;
@@ -79,7 +79,7 @@ function setTrees(hidden) {
   renderNeeded=true;renderer.shadowMap.needsUpdate=true;
 }
 function homeView({resetRoof=false}={}) {
-  releaseMouse();clearInput();mode='orbit';walker=null;
+  releaseMouse();clearInput();mode='orbit';
   camera.position.fromArray(manifest.home.camera);
   orbit.target.fromArray(manifest.home.target);
   camera.position.sub(orbit.target).multiplyScalar(orbitFramingScale(camera.aspect)).add(orbit.target);
@@ -92,17 +92,15 @@ function homeView({resetRoof=false}={}) {
 function walkTo(point) {
   releaseMouse();clearInput();mode='walk';
   camera.position.fromArray(point.position);camera.lookAt(new THREE.Vector3(...point.lookAt));
-  walker={position:[...point.position],verticalSpeed:0};
-  lastGoodPosition=[...point.position];
   ui.viewpoint.value=point.id;ui['view-label'].textContent=point.label;
   updateSunlight(true);
-  synchronizeControls();announce(`${point.label}. Walk with WASD or the direction controls.`);
+  synchronizeControls();announce(`${point.label}. Fly with WASD. Shift speeds up, Space rises, Control descends.`);
   renderer.domElement.focus({preventScroll:true});
   renderNeeded=true;
 }
 function goToViewpoint(point) {
   if(point.mode!=='orbit'){walkTo(point);return;}
-  releaseMouse();clearInput();mode='orbit';walker=null;
+  releaseMouse();clearInput();mode='orbit';
   camera.position.fromArray(point.position);orbit.target.fromArray(point.lookAt);
   camera.position.sub(orbit.target).multiplyScalar(orbitFramingScale(camera.aspect)).add(orbit.target);
   orbit.enabled=true;orbit.update();ui.viewpoint.value=point.id;
@@ -148,7 +146,7 @@ function createRenderer() {
   environment.dispose();generator.dispose();
   if (matchMedia('(pointer:coarse)').matches) light.shadow.mapSize.set(2048,2048);
   const canvas=renderer.domElement;
-  canvas.tabIndex=0;canvas.setAttribute('aria-label','3D property view. Drag to orbit. In Walk mode, use WASD or arrow keys to move.');
+  canvas.tabIndex=0;canvas.setAttribute('aria-label','3D property view. Drag to orbit. In Fly mode, use WASD or arrow keys to move, Shift to speed up, Space to rise and Control to descend.');
   ui.scene.replaceChildren(canvas);
   orbit=new OrbitControls(camera,canvas);
   orbit.enableDamping=true;orbit.dampingFactor=.07;
@@ -278,7 +276,7 @@ document.addEventListener('keydown',event=>{
   if(event.key==='Escape'){releaseMouse();clearInput();return;}
   if (!ready || mode!=='walk' || /^(INPUT|TEXTAREA|SELECT|BUTTON|SUMMARY)$/.test(event.target.tagName)) return;
   const key=event.key.toLowerCase();
-  if (['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright','q','e'].includes(key)) {event.preventDefault();keys.add(key);}
+  if (['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright','q','e','shift',' ','control'].includes(key)) {event.preventDefault();keys.add(key);}
 });
 document.addEventListener('keyup',event=>keys.delete(event.key.toLowerCase()));
 window.addEventListener('blur',clearInput);
@@ -294,13 +292,14 @@ function animate(time) {
     const turn=((held('q')?1:0)-(held('e')?1:0))*dt*1.5;
     camera.rotation.y+=turn;
     if(turn)renderNeeded=true;
-    const input=movementVector((held('d')||held('arrowright')?1:0)-(held('a')||held('arrowleft')?1:0),(held('w')||held('arrowup')?1:0)-(held('s')||held('arrowdown')?1:0),camera.rotation.y);
-    walker=advanceWalker(walker,input,dt,world,manifest.bounds);
-    if (walker.position[1]<manifest.bounds.min[1]-5) {
-      walker={position:[...lastGoodPosition],verticalSpeed:0};announce('Returned to the last walking surface.');
-    } else if (walker.verticalSpeed===0 && !world.blockedAt(walker.position)) lastGoodPosition=[...walker.position];
-    if(camera.position.distanceToSquared(new THREE.Vector3(...walker.position))>1e-12)renderNeeded=true;
-    camera.position.fromArray(walker.position);
+    const next=advanceFlight(camera.position.toArray(),{
+      right:(held('d')||held('arrowright')?1:0)-(held('a')||held('arrowleft')?1:0),
+      forward:(held('w')||held('arrowup')?1:0)-(held('s')||held('arrowdown')?1:0),
+      up:(held(' ')?1:0)-(held('control')?1:0),
+      yaw:camera.rotation.y,pitch:camera.rotation.x,boost:held('shift'),
+    },dt);
+    if(next.some((value,index)=>value!==camera.position.getComponent(index)))renderNeeded=true;
+    camera.position.fromArray(next);
   }
   updateSunlight();
   if(renderNeeded){photography.render(dt);renderNeeded=false;}
