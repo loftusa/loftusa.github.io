@@ -263,11 +263,11 @@ Foundations of Computational Biology and Bioinformatics, EN.BME.410/634
 
 Teaching Assistant — Johns Hopkins University | Spring 2020
 NeuroData Design II, EN.BME.438/638
-  Link: https://neurodatadesign.io/
+  Link: https://github.com/NeuroDataDesign
 
 Teaching Assistant — Johns Hopkins University | Fall 2019
 NeuroData Design I, EN.BME.437/637
-  Link: https://neurodatadesign.io/
+  Link: https://github.com/NeuroDataDesign
 
 Teaching Assistant — Western Washington University | Winter 2017
 Introduction to Behavioral Neuroscience, PSY.220
@@ -326,5 +326,5 @@ https://lu.ma/aisd1
 https://www.youtube.com/playlist?list=PLlP-93ntHnnu-ETNlIfelO9C6T8VrADAh
 https://aisst.ai/tech-fellowship
 https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection/overview
-https://neurodatadesign.io/
+https://github.com/NeuroDataDesign
 https://aisst.ai/tech-fellowship
