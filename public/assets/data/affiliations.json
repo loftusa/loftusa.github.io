@@ -211,6 +211,13 @@
    "city": "San Francisco"
   },
   {
+   "id": "josh engels",
+   "label": "Joshua Engels",
+   "initials": "JE",
+   "community": 1,
+   "city": ""
+  },
+  {
    "id": "josh ying",
    "label": "Z. Ying",
    "initials": "ZY",
@@ -589,7 +596,7 @@
    "id": "deepmind",
    "label": "DeepMind",
    "type": "company",
-   "n_members": 2
+   "n_members": 3
   },
   {
    "id": "digipen-institute-of-technology",
@@ -856,6 +863,12 @@
    "n_members": 1
   },
   {
+   "id": "metr",
+   "label": "METR",
+   "type": "company",
+   "n_members": 1
+  },
+  {
    "id": "microsoft",
    "label": "Microsoft",
    "type": "company",
@@ -883,7 +896,7 @@
    "id": "mit",
    "label": "MIT",
    "type": "university",
-   "n_members": 3
+   "n_members": 4
   },
   {
    "id": "mit-csail",
@@ -1033,7 +1046,7 @@
    "id": "rice-university",
    "label": "Rice University",
    "type": "university",
-   "n_members": 1
+   "n_members": 2
   },
   {
    "id": "rockstar-games",
@@ -1129,6 +1142,12 @@
    "id": "technically-private",
    "label": "Technically Private",
    "type": "community",
+   "n_members": 1
+  },
+  {
+   "id": "thirdai",
+   "label": "ThirdAI",
+   "type": "company",
    "n_members": 1
   },
   {
@@ -2294,6 +2313,41 @@
    "role": "Helps run the space",
    "years": "2025–",
    "source": "https://vivarium.sh/"
+  },
+  {
+   "person": "josh engels",
+   "org": "deepmind",
+   "role": "AGI safety team (interpretability — probes for Gemini, with Neel Nanda / Arthur Conmy's group)",
+   "years": "2025–2026",
+   "source": "https://www.joshengels.com/"
+  },
+  {
+   "person": "josh engels",
+   "org": "metr",
+   "role": "Researcher — investigates AI misalignment incidents (role title not publicly stated)",
+   "years": "2026–",
+   "source": "https://www.joshengels.com/"
+  },
+  {
+   "person": "josh engels",
+   "org": "mit",
+   "role": "PhD student, mechanistic interpretability (Max Tegmark's group; earlier parallel ANN-search algorithms with Julian Shun)",
+   "years": "2022–2025",
+   "source": "https://www.joshengels.com/"
+  },
+  {
+   "person": "josh engels",
+   "org": "rice-university",
+   "role": "Undergraduate (near-neighbor search research with Anshumali Shrivastava's lab)",
+   "years": "–2021",
+   "source": "https://api.openalex.org/works?filter=title.search:practical%20near%20neighbor%20search%20via%20group%20testing"
+  },
+  {
+   "person": "josh engels",
+   "org": "thirdai",
+   "role": "Machine learning engineer (BOLT terabyte-scale training framework)",
+   "years": "2021–2022",
+   "source": "https://arxiv.org/abs/2303.17727"
   },
   {
    "person": "josh ying",
@@ -4366,6 +4420,14 @@
   },
   {
    "a": "eric michaud",
+   "b": "josh engels",
+   "weight": 1.0,
+   "shared": [
+    "mit"
+   ]
+  },
+  {
+   "a": "eric michaud",
    "b": "kayo yin",
    "weight": 1.0,
    "shared": [
@@ -4813,6 +4875,39 @@
    "weight": 2.0,
    "shared": [
     "mats"
+   ]
+  },
+  {
+   "a": "josh engels",
+   "b": "kayo yin",
+   "weight": 2.0,
+   "shared": [
+    "deepmind"
+   ]
+  },
+  {
+   "a": "josh engels",
+   "b": "kira sidhu",
+   "weight": 2.0,
+   "shared": [
+    "deepmind"
+   ]
+  },
+  {
+   "a": "josh engels",
+   "b": "sarah schwettman",
+   "weight": 2.0,
+   "shared": [
+    "mit",
+    "rice-university"
+   ]
+  },
+  {
+   "a": "josh engels",
+   "b": "tommy atthey",
+   "weight": 1.0,
+   "shared": [
+    "mit"
    ]
   },
   {

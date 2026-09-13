@@ -56,7 +56,7 @@ with sync_playwright() as pw:
     page.goto(f"http://127.0.0.1:{PORT}/networks/affiliations/")
     page.wait_for_selector("#graph svg g.person", timeout=15000)
     page.wait_for_timeout(1500)
-    assert page.locator("#graph g.person").count() == 56, "joiner not minted"
+    assert page.locator("#graph g.person").count() == 57, "joiner not minted"
     # 14 no-paper people are community -1 (beige by design — colorOf guard); +1 = the joiner
     grey = page.eval_on_selector_all("#graph g.person circle",
         "els => els.filter(e => e.getAttribute('fill') === '#b3a98f').length")
@@ -67,7 +67,7 @@ with sync_playwright() as pw:
     page.locator("#people li", has_text="Pat Tester").click()
     detail = page.locator("#detail").inner_text()
     assert "EleutherAI" in detail and "Lisbon" in detail
-    print("overlay at load OK (56 people, joiner grey, joiner entry visible)")
+    print("overlay at load OK (57 people, joiner grey, joiner entry visible)")
 
     # ---- edit flow: add an entry -> correct POST + optimistic render, no reload ----
     page.locator("#edit-toggle").click()
@@ -112,7 +112,7 @@ with sync_playwright() as pw:
     assert join["type"] == "aff_join" and join["payload"]["name"] == "Totally New Member"
     assert join["payload"]["entries"][0]["org"] == "MATS"
     assert join["payload"]["entries"][0]["type"] == "program"   # datalist match locked the type
-    assert page.locator("#graph g.person").count() == 57
+    assert page.locator("#graph g.person").count() == 58
     print("join flow OK (aff_join posted, temp node minted)")
 
     # ---- papers map: pending joiner minted instantly as a hollow no-papers node ----
