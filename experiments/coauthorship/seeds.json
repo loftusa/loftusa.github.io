@@ -3199,5 +3199,57 @@
       "title_overlap_frac": 0.0,
       "agree": false
     }
+  },
+  {
+    "name": "josh engels",
+    "s2_id": "2302803624",
+    "url": "https://www.semanticscholar.org/author/2302803624",
+    "affiliation": "METR",
+    "homepage": "https://www.joshengels.com/",
+    "orcid": null,
+    "n_papers": 14,
+    "h_index": 9,
+    "confidence": "high",
+    "verified": true,
+    "note": "AI safety / mechanistic interpretability researcher. Currently investigates AI misalignment incidents at METR; previously Google DeepMind AGI safety team; before that MIT PhD in mechanistic interpretability in Max Tegmark's group (left for DeepMind); earlier parallel ANN-search work with Julian Shun (MIT CSAIL) and near-neighbor search at Rice / ThirdAI with Anshumali Shrivastava. Pinned S2 profile 2302803624 (14 papers, h=9) is the interp facet: verified via in-network co-event — 'Not All Language Model Features Are One-Dimensionally Linear' (2024) lists him as authorId 2302803624 alongside eric michaud's pinned 2064378938 (also shared: Switch SAEs 2024, Geometry of Concepts 2024). S2 splits him into three fragments: merge_ids fold in 2271574793 (MIT ANN-search: CleANN, window filters, PECANN) and 2114432649 (Rice/ThirdAI: DESSERT, group testing, BOLT — plus one stranger's 2018 NCI serum-cytokines epi paper, stripped via exclude_titles; that Joshua Engels is a DC-area policy/statistics person). OpenAlex pinned to the clean interp profile A5104313316 (10 works, MIT + Google DeepMind); his ANN papers sit inside contaminated mega-merge A5078548467 (Third Way / NCI homonym blob, ThirdAI mis-mapped to 'Third Way') — left out, like the kyle o'brien OA pattern.",
+    "sample_titles": [
+      "Not All Language Model Features Are One-Dimensionally Linear (2024)",
+      "Decomposing The Dark Matter of Sparse Autoencoders (2024)",
+      "Are Sparse Autoencoders Useful? A Case Study in Sparse Probing (2025)",
+      "Scaling Laws For Scalable Oversight (2025)",
+      "Building Production-Ready Probes For Gemini (2026)"
+    ],
+    "merge_ids": [
+      "2271574793",
+      "2114432649"
+    ],
+    "exclude_titles": [
+      "serum cytokines"
+    ],
+    "alternatives": [],
+    "oa_verified": true,
+    "oa_id": "A5104313316",
+    "oa_url": "https://openalex.org/A5104313316",
+    "oa_affiliation": "Massachusetts Institute of Technology",
+    "oa_n_works": 10,
+    "oa_orcid": null,
+    "oa_titles": [
+      "Not All Language Model Features Are One-Dimensionally Linear (2024)",
+      "Dense SAE Latents Are Features, Not Bugs (2025)",
+      "Are Sparse Autoencoders Useful? A Case Study in Sparse Probing (2025)",
+      "Low-Rank Adapting Models for Sparse Autoencoders (2025)",
+      "Scaling Laws For Scalable Oversight (2025)"
+    ],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 5,
+      "title_overlap_frac": 1.0,
+      "agree": true
+    }
   }
 ]

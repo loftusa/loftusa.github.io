@@ -3018,5 +3018,63 @@
   "identity_confident": true,
   "notes": "Added 2026-07-26 to the core roster (Alex's request). No-publication person — isolated hollow node on the papers map, seated on the careers map via the shared OpenAI room (with giordano rogers, alice rigg, antonio mari, cat khor et al.). OpenAI + Vivarium facts provided by Alex firsthand; Julius AI + AWS rows are LinkedIn-derived (search index) and undated — refine when known. City San Francisco per his GitHub profile and Vivarium's location. New org nodes: Vivarium (community), Julius AI + Amazon Web Services (solo companies).",
   "reviewed": false
+ },
+ "josh engels": {
+  "entries": [
+   {
+    "org": "METR",
+    "type": "company",
+    "role": "Researcher — investigates AI misalignment incidents (role title not publicly stated)",
+    "years": "2026–",
+    "current": true,
+    "source": "https://www.joshengels.com/",
+    "evidence": "Homepage: 'I am currently investigating AI misalignment incidents at METR.' GitHub profile (github.com/JoshEngels) company field reads METR. Start date not publicly stated; his 2026 papers are still DeepMind-affiliated, so the move reads as 2026.",
+    "verified": false
+   },
+   {
+    "org": "DeepMind",
+    "type": "company",
+    "role": "AGI safety team (interpretability — probes for Gemini, with Neel Nanda / Arthur Conmy's group)",
+    "years": "2025–2026",
+    "current": false,
+    "source": "https://www.joshengels.com/",
+    "evidence": "Homepage: 'Previously, I was at Google DeepMind on the AGI safety team.' Corroborated by DeepMind-side papers: Building Production-Ready Probes For Gemini (2026), How Transparent is DiffusionGemma? (2026); OpenAlex profile A5104313316 carries Google / Google DeepMind (UK) affiliations. Years approximate — inferred from the paper window and his MIT exit.",
+    "verified": false
+   },
+   {
+    "org": "Massachusetts Institute of Technology",
+    "type": "university",
+    "role": "PhD student, mechanistic interpretability (Max Tegmark's group; earlier parallel ANN-search algorithms with Julian Shun)",
+    "years": "2022–2025",
+    "current": false,
+    "source": "https://www.joshengels.com/",
+    "evidence": "Homepage: 'I was pursuing a PhD in mechanistic interpretability at MIT in Max Tegmark's group' (past tense — left for DeepMind without the degree stated as completed). Shun-era papers: PECANN (2023), ANN with Window Filters (2024), CleANN (2025); Tegmark-era: Not All LM Features Are One-Dimensionally Linear (2024) etc. Years inferred from the publication window (first MIT paper 2023, Rice graduation 2021 + ThirdAI gap year).",
+    "verified": false
+   },
+   {
+    "org": "ThirdAI",
+    "type": "company",
+    "role": "Machine learning engineer (BOLT terabyte-scale training framework)",
+    "years": "2021–2022",
+    "current": false,
+    "source": "https://arxiv.org/abs/2303.17727",
+    "evidence": "BOLT (2023) lists his affiliation as ThirdAI Corp (Anshumali Shrivastava's startup; OpenAlex mis-maps the string to 'Third Way'). Fits the gap between Rice (2021 group-testing paper) and MIT (first paper 2023). Years approximate — LinkedIn not consulted.",
+    "verified": false
+   },
+   {
+    "org": "Rice University",
+    "type": "university",
+    "role": "Undergraduate (near-neighbor search research with Anshumali Shrivastava's lab)",
+    "years": "–2021",
+    "current": false,
+    "source": "https://api.openalex.org/works?filter=title.search:practical%20near%20neighbor%20search%20via%20group%20testing",
+    "evidence": "Practical Near Neighbor Search via Group Testing (NeurIPS 2021) lists Joshua Engels → Rice University (OpenAlex authorship institutions), alongside Benjamin Coleman and Anshumali Shrivastava. End year from the paper; degree/major not publicly stated.",
+    "verified": false
+   }
+  ],
+  "city": "",
+  "identity_confident": true,
+  "notes": "Added 2026-09-12 to the core roster (Alex's request). Papers map: pinned S2 2302803624, three co-events with eric michaud (Not All LM Features Are One-Dimensionally Linear, Switch SAEs, Geometry of Concepts — all Tegmark-lab). Careers map shared rooms: MIT with eric michaud, DeepMind with kayo yin + kira sidhu, Rice University with sarah schwettman. New org nodes: METR, ThirdAI. City left blank: METR is Berkeley-based but his own pages state no location. All rows unverified-flagged for the crowd/verifier pass; years on DeepMind/ThirdAI/MIT are publication-window inferences, flagged in evidence.",
+  "reviewed": false
  }
 }
