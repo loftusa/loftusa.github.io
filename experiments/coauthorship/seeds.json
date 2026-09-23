@@ -3251,5 +3251,39 @@
       "title_overlap_frac": 1.0,
       "agree": true
     }
+  },
+  {
+    "name": "sheldrick, george m.",
+    "s2_id": null,
+    "url": null,
+    "affiliation": "",
+    "homepage": null,
+    "orcid": null,
+    "n_papers": null,
+    "h_index": null,
+    "confidence": "none",
+    "verified": true,
+    "sample_titles": [],
+    "merge_ids": [],
+    "alternatives": [],
+    "oa_id": null,
+    "oa_url": null,
+    "oa_affiliation": "",
+    "oa_n_works": null,
+    "oa_orcid": null,
+    "oa_titles": [],
+    "oa_merge_ids": [],
+    "oa_alternatives": [],
+    "crosscheck": {
+      "orcid_s2": null,
+      "orcid_oa": null,
+      "orcid_match": false,
+      "orcid_conflict": false,
+      "title_overlap_n": 0,
+      "title_overlap_frac": 0.0,
+      "agree": false
+    },
+    "oa_verified": true,
+    "self_joined": true
   }
 ]
