@@ -16,4 +16,4 @@ I have a number of academic side-interests, including spectral theory, informati
 
 I grew up in Seattle, WA. I was a competitive Starcraft 2 player in high school (grandmaster league - competed/won in seattle-area tournaments!). I studied behavioral neuroscience during my undergraduate years, with a philosophy minor focused on ethics. I got interested in math and programming and started a computational neuroscience club, where I taught weekly seminars. I also spent a lot of time partner dancing and playing guitar at open mic nights!
 
-Set up a meeting with me here: [calendly.com/alexloftus2004](https://calendly.com/alexloftus2004/new-meeting-1)
+Set up a meeting with me here: [calendar.app.google/CybkE4wfc4NGVDzA8](https://calendar.app.google/CybkE4wfc4NGVDzA8)
